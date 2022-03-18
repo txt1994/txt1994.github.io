@@ -1,0 +1,988 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QFileDevice Class Public Types Public Functions Reimplemented Public Functions Reimplemented Protected Functions Detailed Description Member Type Documentation enum QFileDevice::FileError enum QF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QFileDevice类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/F/QFileDevice/QFileDevice/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QFileDevice Class Public Types Public Functions Reimplemented Public Functions Reimplemented Protected Functions Detailed Description Member Type Documentation enum QFileDevice::FileError enum QF">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:16:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:39:29.921Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="F">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QFileDevice类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QFileDevice类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:16" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      13k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      109 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QFileDevice类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qfiledevice-class">QFileDevice Class</a><ul>
+<li><a href="#public-types">Public Types</a></li>
+<li><a href="#public-functions">Public Functions</a></li>
+<li><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li><a href="#detailed-description">Detailed Description</a></li>
+<li><a href="#member-type-documentation">Member Type Documentation</a><ul>
+<li><a href="#enum-qfiledevice-fileerror">enum QFileDevice::FileError</a></li>
+<li><a href="#enum-qfiledevice-filehandleflag-flags-qfiledevice-filehandleflags">enum QFileDevice::FileHandleFlag flags QFileDevice::FileHandleFlags</a></li>
+<li><a href="#since-5-10-enum-qfiledevice-filetime"><code>[since 5.10]</code>enum QFileDevice::FileTime</a></li>
+<li><a href="#enum-qfiledevice-memorymapflag-flags-qfiledevice-memorymapflags">enum QFileDevice::MemoryMapFlag flags QFileDevice::MemoryMapFlags</a></li>
+<li><a href="#enum-qfiledevice-permission-flags-qfiledevice-permissions">enum QFileDevice::Permission flags QFileDevice::Permissions</a></li>
+</ul>
+</li>
+<li><a href="#member-function-documentation">Member Function Documentation</a><ul>
+<li><a href="#virtual-qfiledevice-qfiledevice"><code>[virtual]</code>QFileDevice::~QFileDevice()</a></li>
+<li><a href="#override-virtual-bool-qfiledevice-atend-const"><code>[override virtual]</code>bool QFileDevice::atEnd() const</a></li>
+<li><a href="#override-virtual-void-qfiledevice-close"><code>[override virtual]</code>void QFileDevice::close()</a></li>
+<li><a href="#qfiledevice-fileerror-https-doc-qt-io-qt-6-qfiledevice-html-fileerror-enum-qfiledevice-error-const">QFileDevice::FileError</a></li>
+<li><a href="#virtual-qstring-https-doc-qt-io-qt-6-qstring-html-qfiledevice-filename-const"><code>[virtual]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> QFileDevice::fileName() const</li>
+<li><a href="#since-5-10-qdatetime-https-doc-qt-io-qt-6-qdatetime-html-qfiledevice-filetime-qfiledevice-filetime-https-doc-qt-io-qt-6-qfiledevice-html-filetime-enum-time-const"><code>[since 5.10]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdatetime.html">QDateTime</a> QFileDevice::fileTime(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#FileTime-enum">QFileDevice::FileTime</a> <em>time</em>) const</li>
+<li><a href="#bool-qfiledevice-flush">bool QFileDevice::flush()</a></li>
+<li><a href="#int-qfiledevice-handle-const">int QFileDevice::handle() const</a></li>
+<li><a href="#override-virtual-bool-qfiledevice-issequential-const"><code>[override virtual]</code>bool QFileDevice::isSequential() const</a></li>
+<li><a href="#uchar-https-doc-qt-io-qt-6-qtglobal-html-uchar-typedef-qfiledevice-map-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-offset-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-size-qfiledevice-memorymapflags-https-doc-qt-io-qt-6-qfiledevice-html-memorymapflag-enum-flags-nooptions">uchar</a></li>
+<li><a href="#virtual-qfiledevice-permissions-https-doc-qt-io-qt-6-qfiledevice-html-permission-enum-qfiledevice-permissions-const"><code>[virtual]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#Permission-enum">QFileDevice::Permissions</a> QFileDevice::permissions() const</li>
+<li><a href="#override-virtual-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-qfiledevice-pos-const"><code>[override virtual]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qint64-typedef">qint64</a> QFileDevice::pos() const</li>
+<li><a href="#override-virtual-protected-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-qfiledevice-readdata-char-data-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-len"><code>[override virtual protected]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qint64-typedef">qint64</a> QFileDevice::readData(char *<em>data</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qint64-typedef">qint64</a> <em>len</em>)</li>
+<li><a href="#override-virtual-protected-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-qfiledevice-readlinedata-char-data-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-maxlen"><code>[override virtual protected]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qint64-typedef">qint64</a> QFileDevice::readLineData(char *<em>data</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qint64-typedef">qint64</a> <em>maxlen</em>)</li>
+<li><a href="#virtual-bool-qfiledevice-resize-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-sz"><code>[virtual]</code>bool QFileDevice::resize(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qint64-typedef">qint64</a> <em>sz</em>)</li>
+<li><a href="#override-virtual-bool-qfiledevice-seek-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-pos"><code>[override virtual]</code>bool QFileDevice::seek(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qint64-typedef">qint64</a> <em>pos</em>)</li>
+<li><a href="#since-5-10-bool-qfiledevice-setfiletime-const-qdatetime-https-doc-qt-io-qt-6-qdatetime-html-newdate-qfiledevice-filetime-https-doc-qt-io-qt-6-qfiledevice-html-filetime-enum-filetime"><code>[since 5.10]</code>bool QFileDevice::setFileTime(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdatetime.html">QDateTime</a> &amp;<em>newDate</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#FileTime-enum">QFileDevice::FileTime</a> <em>fileTime</em>)</li>
+<li><a href="#virtual-bool-qfiledevice-setpermissions-qfiledevice-permissions-https-doc-qt-io-qt-6-qfiledevice-html-permission-enum-permissions"><code>[virtual]</code>bool QFileDevice::setPermissions(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#Permission-enum">QFileDevice::Permissions</a> <em>permissions</em>)</li>
+<li><a href="#override-virtual-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-qfiledevice-size-const"><code>[override virtual]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qint64-typedef">qint64</a> QFileDevice::size() const</li>
+<li><a href="#bool-qfiledevice-unmap-uchar-https-doc-qt-io-qt-6-qtglobal-html-uchar-typedef-address">bool QFileDevice::unmap(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#uchar-typedef">uchar</a> *<em>address</em>)</li>
+<li><a href="#void-qfiledevice-unseterror">void QFileDevice::unsetError()</a></li>
+<li><a href="#override-virtual-protected-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-qfiledevice-writedata-const-char-data-qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-len"><code>[override virtual protected]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qint64-typedef">qint64</a> QFileDevice::writeData(const char *<em>data</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qint64-typedef">qint64</a> <em>len</em>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QFileDevice Class
+
+<p>The QFileDevice class provides an interface for reading from and writing to open files. <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#details">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qfiledevice></qfiledevice></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 5.0</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html">QIODevice</a></td>
+</tr>
+<tr>
+<td>Inherited By:</td>
+<td><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfile.html">QFile</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsavefile.html">QSaveFile</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice-members.html">List of all members, including inherited members</a></li>
+</ul>
+<p><strong>Note:</strong> All functions in this class are <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/17-qdoc-commands-thread.html#reentrant">reentrant</a>.</p>
+<h2><span id="public-types">Public Types</span><a href="#public-types" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#FileError-enum">FileError</a></strong> { NoError, ReadError, WriteError, FatalError, ResourceError, …, CopyError }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#FileHandleFlag-enum">FileHandleFlag</a></strong> { AutoCloseHandle, DontCloseHandle }</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#FileHandleFlag-enum">FileHandleFlags</a></strong></td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#FileTime-enum">FileTime</a></strong> { FileAccessTime, FileBirthTime, FileMetadataChangeTime, FileModificationTime }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#MemoryMapFlag-enum">MemoryMapFlag</a></strong> { NoOptions, MapPrivateOption }</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#MemoryMapFlag-enum">MemoryMapFlags</a></strong></td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#Permission-enum">Permission</a></strong> { ReadOwner, WriteOwner, ExeOwner, ReadUser, WriteUser, …, ExeOther }</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#Permission-enum">Permissions</a></strong></td>
+</tr>
+</tbody></table>
+<h2><span id="public-functions">Public Functions</span><a href="#public-functions" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#dtor.QFileDevice">~QFileDevice</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QFileDevice::FileError</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#error">error</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#fileName">fileName</a></strong>() const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#fileTime">fileTime</a></strong>(QFileDevice::FileTime <em>time</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#flush">flush</a></strong>()</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#handle">handle</a></strong>() const</td>
+</tr>
+<tr>
+<td>uchar *</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#map">map</a></strong>(qint64 <em>offset</em>, qint64 <em>size</em>, QFileDevice::MemoryMapFlags <em>flags</em> = NoOptions)</td>
+</tr>
+<tr>
+<td>virtual QFileDevice::Permissions</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#permissions">permissions</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#resize">resize</a></strong>(qint64 <em>sz</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#setFileTime">setFileTime</a></strong>(const QDateTime &amp;<em>newDate</em>, QFileDevice::FileTime <em>fileTime</em>)</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#setPermissions">setPermissions</a></strong>(QFileDevice::Permissions <em>permissions</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#unmap">unmap</a></strong>(uchar *<em>address</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#unsetError">unsetError</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="reimplemented-public-functions">Reimplemented Public Functions</span><a href="#reimplemented-public-functions" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual bool</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#atEnd">atEnd</a></strong>() const override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#close">close</a></strong>() override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#isSequential">isSequential</a></strong>() const override</td>
+</tr>
+<tr>
+<td>virtual qint64</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#pos">pos</a></strong>() const override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#seek">seek</a></strong>(qint64 <em>pos</em>) override</td>
+</tr>
+<tr>
+<td>virtual qint64</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#size">size</a></strong>() const override</td>
+</tr>
+</tbody></table>
+<h2><span id="reimplemented-protected-functions">Reimplemented Protected Functions</span><a href="#reimplemented-protected-functions" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual qint64</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#readData">readData</a></strong>(char *<em>data</em>, qint64 <em>len</em>) override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual qint64</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#readLineData">readLineData</a></strong>(char *<em>data</em>, qint64 <em>maxlen</em>) override</td>
+</tr>
+<tr>
+<td>virtual qint64</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#writeData">writeData</a></strong>(const char *<em>data</em>, qint64 <em>len</em>) override</td>
+</tr>
+</tbody></table>
+<h2><span id="detailed-description">Detailed Description</span><a href="#detailed-description" class="header-anchor">#</a></h2><p>QFileDevice is the base class for I/O devices that can read and write text and binary files and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/resources.html">resources</a>. <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfile.html">QFile</a> offers the main functionality, QFileDevice serves as a base class for sharing functionality with other file devices such as <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtemporaryfile.html">QTemporaryFile</a>, by providing all the operations that can be done on files that have been opened by <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfile.html">QFile</a> or <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtemporaryfile.html">QTemporaryFile</a>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfile.html">QFile</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtemporaryfile.html">QTemporaryFile</a>.</p>
+<h2><span id="member-type-documentation">Member Type Documentation</span><a href="#member-type-documentation" class="header-anchor">#</a></h2><h3><span id="enum-qfiledevice-fileerror">enum QFileDevice::FileError</span><a href="#enum-qfiledevice-fileerror" class="header-anchor">#</a></h3><p>This enum describes the errors that may be returned by the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#error">error</a>() function.</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QFileDevice::NoError</code></td>
+<td><code>0</code></td>
+<td>No error occurred.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::ReadError</code></td>
+<td><code>1</code></td>
+<td>An error occurred when reading from the file.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::WriteError</code></td>
+<td><code>2</code></td>
+<td>An error occurred when writing to the file.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::FatalError</code></td>
+<td><code>3</code></td>
+<td>A fatal error occurred.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::ResourceError</code></td>
+<td><code>4</code></td>
+<td>Out of resources (e.g., too many open files, out of memory, etc.)</td>
+</tr>
+<tr>
+<td><code>QFileDevice::OpenError</code></td>
+<td><code>5</code></td>
+<td>The file could not be opened.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::AbortError</code></td>
+<td><code>6</code></td>
+<td>The operation was aborted.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::TimeOutError</code></td>
+<td><code>7</code></td>
+<td>A timeout occurred.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::UnspecifiedError</code></td>
+<td><code>8</code></td>
+<td>An unspecified error occurred.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::RemoveError</code></td>
+<td><code>9</code></td>
+<td>The file could not be removed.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::RenameError</code></td>
+<td><code>10</code></td>
+<td>The file could not be renamed.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::PositionError</code></td>
+<td><code>11</code></td>
+<td>The position in the file could not be changed.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::ResizeError</code></td>
+<td><code>12</code></td>
+<td>The file could not be resized.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::PermissionsError</code></td>
+<td><code>13</code></td>
+<td>The file could not be accessed.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::CopyError</code></td>
+<td><code>14</code></td>
+<td>The file could not be copied.</td>
+</tr>
+</tbody></table>
+<h3><span id="enum-qfiledevice-filehandleflag-flags-qfiledevice-filehandleflags">enum QFileDevice::FileHandleFlag flags QFileDevice::FileHandleFlags</span><a href="#enum-qfiledevice-filehandleflag-flags-qfiledevice-filehandleflags" class="header-anchor">#</a></h3><p>This enum is used when opening a file to specify additional options which only apply to files and not to a generic <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html">QIODevice</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QFileDevice::AutoCloseHandle</code></td>
+<td><code>0x0001</code></td>
+<td>The file handle passed into <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#open">open</a>() should be closed by <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#close">close</a>(), the default behavior is that close just flushes the file and the application is responsible for closing the file handle. When opening a file by name, this flag is ignored as Qt always owns the file handle and must close it.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::DontCloseHandle</code></td>
+<td><code>0</code></td>
+<td>If not explicitly closed, the underlying file handle is left open when the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfile.html">QFile</a> object is destroyed.</td>
+</tr>
+</tbody></table>
+<p>The FileHandleFlags type is a typedef for <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qflags.html">QFlags</a><filehandleflag>. It stores an OR combination of FileHandleFlag values.</filehandleflag></p>
+<h3><span id="since-5-10-enum-qfiledevice-filetime"><code>[since 5.10]</code>enum QFileDevice::FileTime</span><a href="#since-5-10-enum-qfiledevice-filetime" class="header-anchor">#</a></h3><p>This enum is used by the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#fileTime">fileTime</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#setFileTime">setFileTime</a>() functions.</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QFileDevice::FileAccessTime</code></td>
+<td><code>0</code></td>
+<td>When the file was most recently accessed (e.g. read or written to).</td>
+</tr>
+<tr>
+<td><code>QFileDevice::FileBirthTime</code></td>
+<td><code>1</code></td>
+<td>When the file was created (may not be not supported on UNIX).</td>
+</tr>
+<tr>
+<td><code>QFileDevice::FileMetadataChangeTime</code></td>
+<td><code>2</code></td>
+<td>When the file’s metadata was last changed.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::FileModificationTime</code></td>
+<td><code>3</code></td>
+<td>When the file was most recently modified.</td>
+</tr>
+</tbody></table>
+<p>This enum was introduced or modified in Qt 5.10.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#setFileTime">setFileTime</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#fileTime">fileTime</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfileinfo.html#fileTime">QFileInfo::fileTime</a>().</p>
+<h3><span id="enum-qfiledevice-memorymapflag-flags-qfiledevice-memorymapflags">enum QFileDevice::MemoryMapFlag flags QFileDevice::MemoryMapFlags</span><a href="#enum-qfiledevice-memorymapflag-flags-qfiledevice-memorymapflags" class="header-anchor">#</a></h3><p>This enum describes special options that may be used by the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#map">map</a>() function.</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QFileDevice::NoOptions</code></td>
+<td><code>0</code></td>
+<td>No options.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::MapPrivateOption</code></td>
+<td><code>0x0001</code></td>
+<td>The mapped memory will be private, so any modifications will not be visible to other processes and will not be written to disk. Any such modifications will be lost when the memory is unmapped. It is unspecified whether modifications made to the file made after the mapping is created will be visible through the mapped memory. This enum value was introduced in Qt 5.4.</td>
+</tr>
+</tbody></table>
+<p>The MemoryMapFlags type is a typedef for <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qflags.html">QFlags</a><memorymapflag>. It stores an OR combination of MemoryMapFlag values.</memorymapflag></p>
+<h3><span id="enum-qfiledevice-permission-flags-qfiledevice-permissions">enum QFileDevice::Permission flags QFileDevice::Permissions</span><a href="#enum-qfiledevice-permission-flags-qfiledevice-permissions" class="header-anchor">#</a></h3><p>This enum is used by the permission() function to report the permissions and ownership of a file. The values may be OR-ed together to test multiple permissions and ownership values.</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QFileDevice::ReadOwner</code></td>
+<td><code>0x4000</code></td>
+<td>The file is readable by the owner of the file.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::WriteOwner</code></td>
+<td><code>0x2000</code></td>
+<td>The file is writable by the owner of the file.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::ExeOwner</code></td>
+<td><code>0x1000</code></td>
+<td>The file is executable by the owner of the file.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::ReadUser</code></td>
+<td><code>0x0400</code></td>
+<td>The file is readable by the user.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::WriteUser</code></td>
+<td><code>0x0200</code></td>
+<td>The file is writable by the user.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::ExeUser</code></td>
+<td><code>0x0100</code></td>
+<td>The file is executable by the user.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::ReadGroup</code></td>
+<td><code>0x0040</code></td>
+<td>The file is readable by the group.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::WriteGroup</code></td>
+<td><code>0x0020</code></td>
+<td>The file is writable by the group.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::ExeGroup</code></td>
+<td><code>0x0010</code></td>
+<td>The file is executable by the group.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::ReadOther</code></td>
+<td><code>0x0004</code></td>
+<td>The file is readable by anyone.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::WriteOther</code></td>
+<td><code>0x0002</code></td>
+<td>The file is writable by anyone.</td>
+</tr>
+<tr>
+<td><code>QFileDevice::ExeOther</code></td>
+<td><code>0x0001</code></td>
+<td>The file is executable by anyone.</td>
+</tr>
+</tbody></table>
+<p><strong>Warning:</strong> Because of differences in the platforms supported by Qt, the semantics of ReadUser, WriteUser and ExeUser are platform-dependent: On Unix, the rights of the owner of the file are returned and on Windows the rights of the current user are returned. This behavior might change in a future Qt version.</p>
+<p><strong>Note:</strong> On NTFS file systems, ownership and permissions checking is disabled by default for performance reasons. To enable it, include the following line:</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">extern</span> Q_CORE_EXPORT <span class="hljs-type">int</span> qt_ntfs_permission_lookup;</code></pre></div>
+
+<p>Permission checking is then turned on and off by incrementing and decrementing <code>qt_ntfs_permission_lookup</code> by 1.</p>
+<div class="code-wrapper"><pre><code class="hljs awk">qt_ntfs_permission_lookup++; <span class="hljs-regexp">//</span> turn checking on
+qt_ntfs_permission_lookup--; <span class="hljs-regexp">//</span> turn it off again</code></pre></div>
+
+<p>The Permissions type is a typedef for <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qflags.html">QFlags</a><permission>. It stores an OR combination of Permission values.</permission></p>
+<h2><span id="member-function-documentation">Member Function Documentation</span><a href="#member-function-documentation" class="header-anchor">#</a></h2><h3><span id="virtual-qfiledevice-qfiledevice"><code>[virtual]</code>QFileDevice::~QFileDevice()</span><a href="#virtual-qfiledevice-qfiledevice" class="header-anchor">#</a></h3><p>Destroys the file device, closing it if necessary.</p>
+<h3><span id="override-virtual-bool-qfiledevice-atend-const"><code>[override virtual]</code>bool QFileDevice::atEnd() const</span><a href="#override-virtual-bool-qfiledevice-atend-const" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#atEnd">QIODevice::atEnd() const</a>.</p>
+<p>Returns <code>true</code> if the end of the file has been reached; otherwise returns false.</p>
+<p>For regular empty files on Unix (e.g. those in <code>/proc</code>), this function returns <code>true</code>, since the file system reports that the size of such a file is 0. Therefore, you should not depend on atEnd() when reading data from such a file, but rather call <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#read">read</a>() until no more data can be read.</p>
+<h3><span id="override-virtual-void-qfiledevice-close"><code>[override virtual]</code>void QFileDevice::close()</span><a href="#override-virtual-void-qfiledevice-close" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#close">QIODevice::close</a>().</p>
+<p>Calls <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#flush">QFileDevice::flush</a>() and closes the file. Errors from flush are ignored.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#close">QIODevice::close</a>().</p>
+<h3><span id="qfiledevice-fileerror-qfiledevice-error-const"> QFileDevice::error() const</span><a href="#qfiledevice-fileerror-qfiledevice-error-const" class="header-anchor">#</a></h3><p>Returns the file error status.</p>
+<p>The I/O device status returns an error code. For example, if <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#open">open</a>() returns <code>false</code>, or a read/write operation returns -1, this function can be called to find out the reason why the operation failed.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#unsetError">unsetError</a>().</p>
+<h3><span id="virtual-qstring-qfiledevice-filename-const"><code>[virtual]</code> QFileDevice::fileName() const</span><a href="#virtual-qstring-qfiledevice-filename-const" class="header-anchor">#</a></h3><p>Returns the name of the file. The default implementation in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html">QFileDevice</a> returns a null string.</p>
+<h3><span id="since-5-10-qdatetime-qfiledevice-filetime-qfiledevice-filetime-time-const"><code>[since 5.10]</code> QFileDevice::fileTime( <em>time</em>) const</span><a href="#since-5-10-qdatetime-qfiledevice-filetime-qfiledevice-filetime-time-const" class="header-anchor">#</a></h3><p>Returns the file time specified by <em>time</em>. If the time cannot be determined return QDateTime() (an invalid date time).</p>
+<p>This function was introduced in Qt 5.10.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#setFileTime">setFileTime</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#FileTime-enum">FileTime</a>, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdatetime.html#isValid">QDateTime::isValid</a>().</p>
+<h3><span id="bool-qfiledevice-flush">bool QFileDevice::flush()</span><a href="#bool-qfiledevice-flush" class="header-anchor">#</a></h3><p>Flushes any buffered data to the file. Returns <code>true</code> if successful; otherwise returns <code>false</code>.</p>
+<h3><span id="int-qfiledevice-handle-const">int QFileDevice::handle() const</span><a href="#int-qfiledevice-handle-const" class="header-anchor">#</a></h3><p>Returns the file handle of the file.</p>
+<p>This is a small positive integer, suitable for use with C library functions such as <code>fdopen()</code> and <code>fcntl()</code>. On systems that use file descriptors for sockets (i.e. Unix systems, but not Windows) the handle can be used with <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsocketnotifier.html">QSocketNotifier</a> as well.</p>
+<p>If the file is not open, or there is an error, handle() returns -1.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsocketnotifier.html">QSocketNotifier</a>.</p>
+<h3><span id="override-virtual-bool-qfiledevice-issequential-const"><code>[override virtual]</code>bool QFileDevice::isSequential() const</span><a href="#override-virtual-bool-qfiledevice-issequential-const" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#isSequential">QIODevice::isSequential() const</a>.</p>
+<p>Returns <code>true</code> if the file can only be manipulated sequentially; otherwise returns <code>false</code>.</p>
+<p>Most files support random-access, but some special files may not.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#isSequential">QIODevice::isSequential</a>().</p>
+<h3><span id="uchar-qfiledevice-map-qint64-offset-qint64-size-qfiledevice-memorymapflags-flags-nooptions"> *QFileDevice::map( <em>offset</em>,  <em>size</em>,  <em>flags</em> = NoOptions)</span><a href="#uchar-qfiledevice-map-qint64-offset-qint64-size-qfiledevice-memorymapflags-flags-nooptions" class="header-anchor">#</a></h3><p>Maps <em>size</em> bytes of the file into memory starting at <em>offset</em>. A file should be open for a map to succeed but the file does not need to stay open after the memory has been mapped. When the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfile.html">QFile</a> is destroyed or a new file is opened with this object, any maps that have not been unmapped will automatically be unmapped.</p>
+<p>The mapping will have the same open mode as the file (read and/or write), except when using <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#MemoryMapFlag-enum">MapPrivateOption</a>, in which case it is always possible to write to the mapped memory.</p>
+<p>Any mapping options can be passed through <em>flags</em>.</p>
+<p>Returns a pointer to the memory or <code>nullptr</code> if there is an error.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#unmap">unmap</a>().</p>
+<h3><span id="virtual-qfiledevice-permissions-qfiledevice-permissions-const"><code>[virtual]</code> QFileDevice::permissions() const</span><a href="#virtual-qfiledevice-permissions-qfiledevice-permissions-const" class="header-anchor">#</a></h3><p>Returns the complete OR-ed together combination of QFile::Permission for the file.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#setPermissions">setPermissions</a>().</p>
+<h3><span id="override-virtual-qint64-qfiledevice-pos-const"><code>[override virtual]</code> QFileDevice::pos() const</span><a href="#override-virtual-qint64-qfiledevice-pos-const" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#pos">QIODevice::pos() const</a>.</p>
+<h3><span id="override-virtual-protected-qint64-qfiledevice-readdata-char-data-qint64-len"><code>[override virtual protected]</code> QFileDevice::readData(char *<em>data</em>,  <em>len</em>)</span><a href="#override-virtual-protected-qint64-qfiledevice-readdata-char-data-qint64-len" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#readData">QIODevice::readData</a>(char *data, qint64 maxSize).</p>
+<h3><span id="override-virtual-protected-qint64-qfiledevice-readlinedata-char-data-qint64-maxlen"><code>[override virtual protected]</code> QFileDevice::readLineData(char *<em>data</em>,  <em>maxlen</em>)</span><a href="#override-virtual-protected-qint64-qfiledevice-readlinedata-char-data-qint64-maxlen" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#readLineData">QIODevice::readLineData</a>(char *data, qint64 maxSize).</p>
+<h3><span id="virtual-bool-qfiledevice-resize-qint64-sz"><code>[virtual]</code>bool QFileDevice::resize( <em>sz</em>)</span><a href="#virtual-bool-qfiledevice-resize-qint64-sz" class="header-anchor">#</a></h3><p>Sets the file size (in bytes) <em>sz</em>. Returns <code>true</code> if the resize succeeds; false otherwise. If <em>sz</em> is larger than the file currently is, the new bytes will be set to 0; if <em>sz</em> is smaller, the file is simply truncated.</p>
+<p><strong>Warning:</strong> This function can fail if the file doesn’t exist.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#size">size</a>().</p>
+<h3><span id="override-virtual-bool-qfiledevice-seek-qint64-pos"><code>[override virtual]</code>bool QFileDevice::seek( <em>pos</em>)</span><a href="#override-virtual-bool-qfiledevice-seek-qint64-pos" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#seek">QIODevice::seek</a>(qint64 pos).</p>
+<p>For random-access devices, this function sets the current position to <em>pos</em>, returning true on success, or false if an error occurred. For sequential devices, the default behavior is to do nothing and return false.</p>
+<p>Seeking beyond the end of a file: If the position is beyond the end of a file, then seek() will not immediately extend the file. If a write is performed at this position, then the file will be extended. The content of the file between the previous end of file and the newly written data is UNDEFINED and varies between platforms and file systems.</p>
+<h3><span id="since-5-10-bool-qfiledevice-setfiletime-const-qdatetime-amp-newdate-qfiledevice-filetime-filetime"><code>[since 5.10]</code>bool QFileDevice::setFileTime(const  &amp;<em>newDate</em>,  <em>fileTime</em>)</span><a href="#since-5-10-bool-qfiledevice-setfiletime-const-qdatetime-amp-newdate-qfiledevice-filetime-filetime" class="header-anchor">#</a></h3><p>Sets the file time specified by <em>fileTime</em> to <em>newDate</em>, returning true if successful; otherwise returns false.</p>
+<p><strong>Note:</strong> The file must be open to use this function.</p>
+<p>This function was introduced in Qt 5.10.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#fileTime">fileTime</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#FileTime-enum">FileTime</a>.</p>
+<h3><span id="virtual-bool-qfiledevice-setpermissions-qfiledevice-permissions-permissions"><code>[virtual]</code>bool QFileDevice::setPermissions( <em>permissions</em>)</span><a href="#virtual-bool-qfiledevice-setpermissions-qfiledevice-permissions-permissions" class="header-anchor">#</a></h3><p>Sets the permissions for the file to the <em>permissions</em> specified. Returns <code>true</code> if successful, or <code>false</code> if the permissions cannot be modified.</p>
+<p><strong>Warning:</strong> This function does not manipulate ACLs, which may limit its effectiveness.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#permissions">permissions</a>().</p>
+<h3><span id="override-virtual-qint64-qfiledevice-size-const"><code>[override virtual]</code> QFileDevice::size() const</span><a href="#override-virtual-qint64-qfiledevice-size-const" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#size">QIODevice::size() const</a>.</p>
+<p>Returns the size of the file.</p>
+<p>For regular empty files on Unix (e.g. those in <code>/proc</code>), this function returns 0; the contents of such a file are generated on demand in response to you calling <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#read">read</a>().</p>
+<h3><span id="bool-qfiledevice-unmap-uchar-address">bool QFileDevice::unmap( *<em>address</em>)</span><a href="#bool-qfiledevice-unmap-uchar-address" class="header-anchor">#</a></h3><p>Unmaps the memory <em>address</em>.</p>
+<p>Returns <code>true</code> if the unmap succeeds; false otherwise.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#map">map</a>().</p>
+<h3><span id="void-qfiledevice-unseterror">void QFileDevice::unsetError()</span><a href="#void-qfiledevice-unseterror" class="header-anchor">#</a></h3><p>Sets the file’s error to <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#FileError-enum">QFileDevice::NoError</a>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfiledevice.html#error">error</a>().</p>
+<h3><span id="override-virtual-protected-qint64-qfiledevice-writedata-const-char-data-qint64-len"><code>[override virtual protected]</code> QFileDevice::writeData(const char *<em>data</em>,  <em>len</em>)</span><a href="#override-virtual-protected-qint64-qfiledevice-writedata-const-char-data-qint64-len" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#writeData">QIODevice::writeData</a>(const char *data, qint64 maxSize).</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/F/">F</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/F/QFileDialog/QFileDialog/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QFileDialog类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/F/QFileIconProvider/QFileIconProvider/">
+                        <span class="hidden-mobile">QFileIconProvider类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

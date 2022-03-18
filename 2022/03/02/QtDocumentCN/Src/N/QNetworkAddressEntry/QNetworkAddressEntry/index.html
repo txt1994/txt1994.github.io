@@ -1,0 +1,771 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QNetworkAddressEntry Class 公共类型 公共函数 相关非成员 详细描述 成员类型文档 [since 5.11]enum QNetworkAddressEntry::DnsEligibilityStatus   成员函数文档 QNetworkAddressEntry::QNetworkAddressEntry(const QNetworkAddressEntry &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QNetworkAddressEntry类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/N/QNetworkAddressEntry/QNetworkAddressEntry/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QNetworkAddressEntry Class 公共类型 公共函数 相关非成员 详细描述 成员类型文档 [since 5.11]enum QNetworkAddressEntry::DnsEligibilityStatus   成员函数文档 QNetworkAddressEntry::QNetworkAddressEntry(const QNetworkAddressEntry &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:48:55.247Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="N">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QNetworkAddressEntry类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QNetworkAddressEntry类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      72 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QNetworkAddressEntry类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qnetworkaddressentry-class">QNetworkAddressEntry Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-guan-fei-cheng-yuan">相关非成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#since-5-11-enum-qnetworkaddressentry-dnseligibilitystatus"><code>[since 5.11]</code>enum QNetworkAddressEntry::DnsEligibilityStatus</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qnetworkaddressentry-qnetworkaddressentry-const-qnetworkaddressentry-qnetworkaddressentry-other">QNetworkAddressEntry::QNetworkAddressEntry(const </a><a href="#QNetworkAddressEntry">QNetworkAddressEntry</a> &amp;<em>other</em>)</li>
+<li><a href="#qnetworkaddressentry-qnetworkaddressentry">QNetworkAddressEntry::QNetworkAddressEntry()</a></li>
+<li><a href="#qnetworkaddressentry-qnetworkaddressentry-qnetworkaddressentry-operator-const-qnetworkaddressentry-qnetworkaddressentry-other">QNetworkAddressEntry</a></li>
+<li><a href="#qnetworkaddressentry-qnetworkaddressentry">QNetworkAddressEntry::~QNetworkAddressEntry()</a></li>
+<li><a href="#qhostaddress-qhostaddress-html-qnetworkaddressentry-broadcast-const">QHostAddress</a></li>
+<li><a href="#since-5-11-void-qnetworkaddressentry-clearaddresslifetime"><code>[since 5.11]</code>void QNetworkAddressEntry::clearAddressLifetime()</a></li>
+<li><a href="#since-5-11-qnetworkaddressentry-dnseligibilitystatus-dnseligibilitystatus-enum-qnetworkaddressentry-dnseligibility-const"><code>[since 5.11]</code></a><a href="#DnsEligibilityStatus-enum">QNetworkAddressEntry::DnsEligibilityStatus</a> QNetworkAddressEntry::dnsEligibility() const</li>
+<li><a href="#qhostaddress-qhostaddress-html-qnetworkaddressentry-ip-const-1">QHostAddress</a></li>
+<li><a href="#since-5-11-bool-qnetworkaddressentry-islifetimeknown-const"><code>[since 5.11]</code>bool QNetworkAddressEntry::isLifetimeKnown() const</a></li>
+<li><a href="#since-5-11-bool-qnetworkaddressentry-ispermanent-const"><code>[since 5.11]</code>bool QNetworkAddressEntry::isPermanent() const</a></li>
+<li><a href="#since-5-11-bool-qnetworkaddressentry-istemporary-const"><code>[since 5.11]</code>bool QNetworkAddressEntry::isTemporary() const</a></li>
+<li><a href="#qhostaddress-qhostaddress-html-qnetworkaddressentry-netmask-const-2">QHostAddress</a></li>
+<li><a href="#since-5-11-qdeadlinetimer-qdeadlinetimer-html-qnetworkaddressentry-preferredlifetime-const"><code>[since 5.11]</code></a><a href="qdeadlinetimer.html">QDeadlineTimer</a> QNetworkAddressEntry::preferredLifetime() const</li>
+<li><a href="#int-qnetworkaddressentry-prefixlength-const">int QNetworkAddressEntry::prefixLength() const</a></li>
+<li><a href="#since-5-11-void-qnetworkaddressentry-setaddresslifetime-qdeadlinetimer-qdeadlinetimer-html-preferred-qdeadlinetimer-qdeadlinetimer-html-validity"><code>[since 5.11]</code>void QNetworkAddressEntry::setAddressLifetime(</a><a href="qdeadlinetimer.html">QDeadlineTimer</a> <em>preferred</em>, <a href="qdeadlinetimer.html">QDeadlineTimer</a> <em>validity</em>)</li>
+<li><a href="#void-qnetworkaddressentry-setbroadcast-const-qhostaddress-qhostaddress-html-newbroadcast">void QNetworkAddressEntry::setBroadcast(const </a><a href="qhostaddress.html">QHostAddress</a> &amp;<em>newBroadcast</em>)</li>
+<li><a href="#since-5-11-void-qnetworkaddressentry-setdnseligibility-qnetworkaddressentry-dnseligibilitystatus-dnseligibilitystatus-enum-status"><code>[since 5.11]</code>void QNetworkAddressEntry::setDnsEligibility(</a><a href="#DnsEligibilityStatus-enum">QNetworkAddressEntry::DnsEligibilityStatus</a> <em>status</em>)</li>
+<li><a href="#void-qnetworkaddressentry-setip-const-qhostaddress-qhostaddress-html-newip">void QNetworkAddressEntry::setIp(const </a><a href="qhostaddress.html">QHostAddress</a> &amp;<em>newIp</em>)</li>
+<li><a href="#void-qnetworkaddressentry-setnetmask-const-qhostaddress-qhostaddress-html-newnetmask">void QNetworkAddressEntry::setNetmask(const </a><a href="qhostaddress.html">QHostAddress</a> &amp;<em>newNetmask</em>)</li>
+<li><a href="#void-qnetworkaddressentry-setprefixlength-int-length">void QNetworkAddressEntry::setPrefixLength(int <em>length</em>)</a></li>
+<li><a href="#since-5-0-void-qnetworkaddressentry-swap-qnetworkaddressentry-qnetworkaddressentry-other"><code>[since 5.0]</code>void QNetworkAddressEntry::swap(</a><a href="#QNetworkAddressEntry">QNetworkAddressEntry</a> &amp;<em>other</em>)</li>
+<li><a href="#since-5-11-qdeadlinetimer-qdeadlinetimer-html-qnetworkaddressentry-validitylifetime-const"><code>[since 5.11]</code></a><a href="qdeadlinetimer.html">QDeadlineTimer</a> QNetworkAddressEntry::validityLifetime() const</li>
+<li><a href="#bool-qnetworkaddressentry-operator-const-qnetworkaddressentry-qnetworkaddressentry-other-const">bool QNetworkAddressEntry::operator!=(const </a><a href="#QNetworkAddressEntry">QNetworkAddressEntry</a> &amp;<em>other</em>) const</li>
+<li><a href="#bool-qnetworkaddressentry-operator-const-qnetworkaddressentry-qnetworkaddressentry-other-const">bool QNetworkAddressEntry::operator==(const </a><a href="#QNetworkAddressEntry">QNetworkAddressEntry</a> &amp;<em>other</em>) const</li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-cheng-yuan-1">相关非成员</a><ul>
+<li><a href="#since-6-2-qdebug-qdebug-html-operator-qdebug-qdebug-html-debug-const-qnetworkaddressentry-qnetworkaddressentry-entry"><code>[since 6.2]</code></a><a href="qdebug.html">QDebug</a> operator&lt;&lt;(<a href="qdebug.html">QDebug</a> <em>debug</em>, const <a href="#QNetworkAddressEntry">QNetworkAddressEntry</a> &amp;<em>entry</em>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+目录：
+
+<ul>
+<li><a href="#%E5%85%AC%E5%85%B1%E7%B1%BB%E5%9E%8B">公共类型</a></li>
+<li><a href="#%E5%85%AC%E5%85%B1%E5%87%BD%E6%95%B0">公共函数</a></li>
+<li><a href="#%E7%9B%B8%E5%85%B3%E9%9D%9E%E6%88%90%E5%91%98">相关非成员</a></li>
+<li><a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">详细描述</a></li>
+<li><a href="#%E6%88%90%E5%91%98%E7%B1%BB%E5%9E%8B%E6%96%87%E6%A1%A3">成员类型文档</a></li>
+<li><a href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%96%87%E6%A1%A3">成员函数文档</a></li>
+<li><a href="#%E7%9B%B8%E5%85%B3%E9%9D%9E%E6%88%90%E5%91%98">相关非成员</a></li>
+</ul>
+<h1><span id="qnetworkaddressentry-class">QNetworkAddressEntry Class</span><a href="#qnetworkaddressentry-class" class="header-anchor">#</a></h1><p>QNetworkAddressEntry类存储了一个网络接口所支持的一个IP地址，以及其相关的网络掩码和广播地址。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qnetworkaddressentry></qnetworkaddressentry></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Network REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Network)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += network</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qnetworkaddressentry-members.html">List of all members, including inherited members</a></li>
+</ul>
+<p><strong>注意：</strong>该类中的所有函数都是[可重入]（threads-reentrancy.html）。</p>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#DnsEligibilityStatus-enum">DnsEligibilityStatus</a></strong> { DnsEligibilityUnknown, DnsEligible, DnsIneligible }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QNetworkAddressEntry-1">QNetworkAddressEntry</a></strong>(const QNetworkAddressEntry &amp;<em>other</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QNetworkAddressEntry">QNetworkAddressEntry</a></strong>()</td>
+</tr>
+<tr>
+<td>QNetworkAddressEntry &amp;</td>
+<td><strong><a href="#operator-eq-1">operator=</a></strong>(const QNetworkAddressEntry &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QNetworkAddressEntry">~QNetworkAddressEntry</a></strong>()</td>
+</tr>
+<tr>
+<td>QHostAddress</td>
+<td><strong><a href="#broadcast">broadcast</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#clearAddressLifetime">clearAddressLifetime</a></strong>()</td>
+</tr>
+<tr>
+<td>QNetworkAddressEntry::DnsEligibilityStatus</td>
+<td><strong><a href="#dnsEligibility">dnsEligibility</a></strong>() const</td>
+</tr>
+<tr>
+<td>QHostAddress</td>
+<td><strong><a href="#ip">ip</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isLifetimeKnown">isLifetimeKnown</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isPermanent">isPermanent</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isTemporary">isTemporary</a></strong>() const</td>
+</tr>
+<tr>
+<td>QHostAddress</td>
+<td><strong><a href="#netmask">netmask</a></strong>() const</td>
+</tr>
+<tr>
+<td>QDeadlineTimer</td>
+<td><strong><a href="#preferredLifetime">preferredLifetime</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#prefixLength">prefixLength</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setAddressLifetime">setAddressLifetime</a></strong>(QDeadlineTimer <em>preferred</em>, QDeadlineTimer <em>validity</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setBroadcast">setBroadcast</a></strong>(const QHostAddress &amp;<em>newBroadcast</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setDnsEligibility">setDnsEligibility</a></strong>(QNetworkAddressEntry::DnsEligibilityStatus <em>status</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setIp">setIp</a></strong>(const QHostAddress &amp;<em>newIp</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setNetmask">setNetmask</a></strong>(const QHostAddress &amp;<em>newNetmask</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setPrefixLength">setPrefixLength</a></strong>(int <em>length</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#swap">swap</a></strong>(QNetworkAddressEntry &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QDeadlineTimer</td>
+<td><strong><a href="#validityLifetime">validityLifetime</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-not-eq">operator!=</a></strong>(const QNetworkAddressEntry &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-eq-eq">operator==</a></strong>(const QNetworkAddressEntry &amp;<em>other</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QDebug</th>
+<th><strong><a href="#operator-lt-lt">operator&lt;&lt;</a></strong>(QDebug <em>debug</em>, const QNetworkAddressEntry &amp;<em>entry</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>每个网络接口可以包含零个或多个IP地址，而这些地址又可以与一个网络掩码和/或一个广播地址相关联（取决于操作系统的支持）。</p>
+<p>该类代表一个这样的组。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="since-5-11-enum-qnetworkaddressentry-dnseligibilitystatus"><code>[since 5.11]</code>enum QNetworkAddressEntry::DnsEligibilityStatus</span><a href="#since-5-11-enum-qnetworkaddressentry-dnseligibilitystatus" class="header-anchor">#</a></h3><p>这个枚举表明一个给定的主机地址是否有资格被公布在域名系统（DNS）或其他类似的名称解析机制中。一般来说，如果一个地址是可以在不确定的时间内到达这台机器的地址，那么这个地址就适合公布，尽管它不一定是永久性的。例如，通过DHCP获得的地址通常符合条件，但通过加密生成的临时IPv6地址则不符合条件。</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QNetworkAddressEntry::DnsEligibilityUnknown</code></td>
+<td><code>-1</code></td>
+<td>Qt和操作系统无法确定这个地址是否应该被发布。如果找不到任何符合条件的地址，应用程序可能需要进一步应用启发式方法。</td>
+</tr>
+<tr>
+<td><code>QNetworkAddressEntry::DnsEligible</code></td>
+<td><code>1</code></td>
+<td>This address is eligible for publication in DNS.</td>
+</tr>
+<tr>
+<td><code>QNetworkAddressEntry::DnsIneligible</code></td>
+<td><code>0</code></td>
+<td>这个地址不应该在DNS中公布，也不应该传送给其他各方，除非是作为一个外发数据包的源地址。</td>
+</tr>
+</tbody></table>
+<p>这个枚举是在Qt 5.11中引入或修改的。</p>
+<p><strong>See also</strong> <a href="#dnsEligibility">dnsEligibility</a>() and <a href="#setDnsEligibility">setDnsEligibility</a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qnetworkaddressentry-qnetworkaddressentry-const-qnetworkaddressentry-amp-other">QNetworkAddressEntry::QNetworkAddressEntry(const  &amp;<em>other</em>)</span><a href="#qnetworkaddressentry-qnetworkaddressentry-const-qnetworkaddressentry-amp-other" class="header-anchor">#</a></h3><p>构建一个QNetworkAddressEntry对象，它是对象<em>other</em>的副本。</p>
+<h3><span id="qnetworkaddressentry-qnetworkaddressentry">QNetworkAddressEntry::QNetworkAddressEntry()</span><a href="#qnetworkaddressentry-qnetworkaddressentry" class="header-anchor">#</a></h3><p>构建一个空的QNetworkAddressEntry对象。</p>
+<h3><span id="qnetworkaddressentry-amp-qnetworkaddressentry-operator-const-qnetworkaddressentry-amp-other"> &amp;QNetworkAddressEntry::operator=(const  &amp;<em>other</em>)</span><a href="#qnetworkaddressentry-amp-qnetworkaddressentry-operator-const-qnetworkaddressentry-amp-other" class="header-anchor">#</a></h3><p>制作一个<a href>QNetworkAddressEntry</a>对象的副本<em>other</em>。</p>
+<h3><span id="qnetworkaddressentry-qnetworkaddressentry">QNetworkAddressEntry::~QNetworkAddressEntry()</span><a href="#qnetworkaddressentry-qnetworkaddressentry" class="header-anchor">#</a></h3><p>销毁这个<a href>QNetworkAddressEntry</a>对象。</p>
+<h3><span id="qhostaddress-qnetworkaddressentry-broadcast-const"> QNetworkAddressEntry::broadcast() const</span><a href="#qhostaddress-qnetworkaddressentry-broadcast-const" class="header-anchor">#</a></h3><p>返回与IPv4地址和网络掩码相关的广播地址。它通常可以通过将净掩码包含0的IP地址位设置为1而得到。（换句话说，通过将IP地址与净掩码的倒数进行位运算）</p>
+<p>对于IPv6地址来说，这个成员总是空的，因为在该系统中，广播的概念已经被放弃，转而使用组播。特别是，对应于本地网络中所有节点的主机组可以通过 “所有节点 “的特殊组播组（地址FF02::1）到达。</p>
+<p><strong>See also</strong> <a href="#setBroadcast">setBroadcast</a>().</p>
+<h3><span id="since-5-11-void-qnetworkaddressentry-clearaddresslifetime"><code>[since 5.11]</code>void QNetworkAddressEntry::clearAddressLifetime()</span><a href="#since-5-11-void-qnetworkaddressentry-clearaddresslifetime" class="header-anchor">#</a></h3><p>重置该地址的首选寿命和有效寿命。在此调用后，<a href="#isLifetimeKnown">isLifetimeKnown</a>()将返回<code>false</code>。</p>
+<p>这个函数从Qt 5.11引入。</p>
+<p><strong>See also</strong> <a href="#preferredLifetime">preferredLifetime</a>(), <a href="#validityLifetime">validityLifetime</a>(), <a href="#isLifetimeKnown">isLifetimeKnown</a>(), and <a href="#setAddressLifetime">setAddressLifetime</a>().</p>
+<h3><span id="since-5-11-qnetworkaddressentry-dnseligibilitystatus-qnetworkaddressentry-dnseligibility-const"><code>[since 5.11]</code> QNetworkAddressEntry::dnsEligibility() const</span><a href="#since-5-11-qnetworkaddressentry-dnseligibilitystatus-qnetworkaddressentry-dnseligibility-const" class="header-anchor">#</a></h3><p>返回这个地址是否有资格在域名系统（DNS）或类似的名称解析机制中公布。</p>
+<p>一般来说，如果一个地址是一个可以在不确定的时间内到达本机的地址，那么它就适合公布，尽管它不一定是永久性的。例如，通过DHCP获得的地址通常是合格的，但通过加密生成的临时IPv6地址则不合格。</p>
+<p>在某些系统中，<a href="qnetworkinterface.html">QNetworkInterface</a>需要启发式地确定哪些地址是合格的。</p>
+<p>这个函数从Qt 5.11引入。</p>
+<p><strong>See also</strong> <a href="#isLifetimeKnown">isLifetimeKnown</a>(), <a href="#isPermanent">isPermanent</a>(), and <a href="#setDnsEligibility">setDnsEligibility</a>().</p>
+<h3><span id="qhostaddress-qnetworkaddressentry-ip-const"> QNetworkAddressEntry::ip() const</span><a href="#qhostaddress-qnetworkaddressentry-ip-const" class="header-anchor">#</a></h3><p>该函数返回在一个网络接口中发现的一个IPv4或IPv6地址。</p>
+<p><strong>See also</strong> <a href="#setIp">setIp</a>().</p>
+<h3><span id="since-5-11-bool-qnetworkaddressentry-islifetimeknown-const"><code>[since 5.11]</code>bool QNetworkAddressEntry::isLifetimeKnown() const</span><a href="#since-5-11-bool-qnetworkaddressentry-islifetimeknown-const" class="header-anchor">#</a></h3><p>如果地址寿命是已知的，返回 “true”，如果不是，返回 “false”。如果不知道，<a href="#preferredLifetime">preferredLifetime</a>()和<a href="#validityLifetime">validityLifetime</a>()都将返回<a href="qdeadlinetimer.html#ForeverConstant-enum">QDeadlineTimer::Forever</a>。</p>
+<p>这个函数从Qt 5.11引入。</p>
+<p><strong>See also</strong> <a href="#preferredLifetime">preferredLifetime</a>(), <a href="#validityLifetime">validityLifetime</a>(), <a href="#setAddressLifetime">setAddressLifetime</a>(), and <a href="#clearAddressLifetime">clearAddressLifetime</a>().</p>
+<h3><span id="since-5-11-bool-qnetworkaddressentry-ispermanent-const"><code>[since 5.11]</code>bool QNetworkAddressEntry::isPermanent() const</span><a href="#since-5-11-bool-qnetworkaddressentry-ispermanent-const" class="header-anchor">#</a></h3><p>如果这个地址在这个接口上是永久的，返回 “true”，如果是临时的，返回 “false”。永久地址是没有过期时间的，通常是静态的（手动配置的）。</p>
+<p>如果不能确定这一信息，该函数返回`true’。</p>
+<p><strong>注意：</strong>取决于操作系统和网络配置工具，如果工具没有将细节正确地告知操作系统，临时地址有可能被解释为永久地址。</p>
+<p>这个函数从Qt 5.11引入。</p>
+<p><strong>See also</strong> <a href="#isLifetimeKnown">isLifetimeKnown</a>(), <a href="#validityLifetime">validityLifetime</a>(), and <a href="#isTemporary">isTemporary</a>().</p>
+<h3><span id="since-5-11-bool-qnetworkaddressentry-istemporary-const"><code>[since 5.11]</code>bool QNetworkAddressEntry::isTemporary() const</span><a href="#since-5-11-bool-qnetworkaddressentry-istemporary-const" class="header-anchor">#</a></h3><p>如果这个地址在这个接口上是临时的，返回<code>true</code>，如果是永久的，返回<code>false</code>。</p>
+<p>这个函数从Qt 5.11引入。</p>
+<p><strong>See also</strong> <a href="#isLifetimeKnown">isLifetimeKnown</a>(), <a href="#validityLifetime">validityLifetime</a>(), and <a href="#isPermanent">isPermanent</a>().</p>
+<h3><span id="qhostaddress-qnetworkaddressentry-netmask-const"> QNetworkAddressEntry::netmask() const</span><a href="#qhostaddress-qnetworkaddressentry-netmask-const" class="header-anchor">#</a></h3><p>返回与IP地址相关的网络掩码。网络掩码以IP地址的形式表示，如255.255.0.0。</p>
+<p>对于IPv6地址，前缀长度被转换为一个地址，其中设置为1的比特数等于前缀长度。对于前缀长度为64位（最常见的值），网络掩码将被表示为一个<a href="qhostaddress.html">QHostAddress</a>，持有地址FFF:FFF:FFF:FFF:。</p>
+<p><strong>See also</strong> <a href="#setNetmask">setNetmask</a>() and <a href="#prefixLength">prefixLength</a>().</p>
+<h3><span id="since-5-11-qdeadlinetimer-qnetworkaddressentry-preferredlifetime-const"><code>[since 5.11]</code> QNetworkAddressEntry::preferredLifetime() const</span><a href="#since-5-11-qdeadlinetimer-qnetworkaddressentry-preferredlifetime-const" class="header-anchor">#</a></h3><p>如果知道的话，返回这个地址变得废弃（不再是首选）的最后期限。如果地址的寿命不知道（见<a href="#isLifetimeKnown">isLifetimeKnown</a>()），这个函数总是返回[QDeadlineTimer::Forever]（qdeadlinetimer.html#ForeverConstant-enum）。</p>
+<p>当一个地址被优先使用时，它可能被操作系统作为新的、流出的数据包的源地址。在它被废弃后，它将对传入的数据包再保持一段时间的有效性，直到最后被删除（见<a href="#validityLifetime">validityLifetime</a>()）。</p>
+<p>这个函数从Qt 5.11引入。</p>
+<p><strong>See also</strong> <a href="#validityLifetime">validityLifetime</a>(), <a href="#isLifetimeKnown">isLifetimeKnown</a>(), <a href="#setAddressLifetime">setAddressLifetime</a>(), and <a href="#clearAddressLifetime">clearAddressLifetime</a>().</p>
+<h3><span id="int-qnetworkaddressentry-prefixlength-const">int QNetworkAddressEntry::prefixLength() const</span><a href="#int-qnetworkaddressentry-prefixlength-const" class="header-anchor">#</a></h3><p>返回这个IP地址的前缀长度。前缀长度与网络掩码中设置为1的位数一致（见<a href="#netmask">netmask</a>()）。对于IPv4地址，该值在0到32之间。对于IPv6地址，它包含在0到128之间，是表示地址的首选形式。</p>
+<p>如果不能确定前缀长度，该函数返回-1（即<a href="#netmask">netmask</a>()返回一个空的QHostAddress()）。</p>
+<p><strong>See also</strong> <a href="#setPrefixLength">setPrefixLength</a>() and <a href="#netmask">netmask</a>().</p>
+<h3><span id="since-5-11-void-qnetworkaddressentry-setaddresslifetime-qdeadlinetimer-preferred-qdeadlinetimer-validity"><code>[since 5.11]</code>void QNetworkAddressEntry::setAddressLifetime( <em>preferred</em>,  <em>validity</em>)</span><a href="#since-5-11-void-qnetworkaddressentry-setaddresslifetime-qdeadlinetimer-preferred-qdeadlinetimer-validity" class="header-anchor">#</a></h3><p>将此地址的首选寿命和有效寿命分别设置为<em>preferred</em>和<em>validity</em>的期限。在这次调用之后，<a href="#isLifetimeKnown">isLifetimeKnown</a>()将返回<code>true</code>，即使两个参数都是<a href="qdeadlinetimer.html#ForeverConstant-enum">QDeadlineTimer::Forever</a>。</p>
+<p>这个函数从Qt 5.11引入。</p>
+<p><strong>See also</strong> <a href="#preferredLifetime">preferredLifetime</a>(), <a href="#validityLifetime">validityLifetime</a>(), <a href="#isLifetimeKnown">isLifetimeKnown</a>(), and <a href="#clearAddressLifetime">clearAddressLifetime</a>().</p>
+<h3><span id="void-qnetworkaddressentry-setbroadcast-const-qhostaddress-amp-newbroadcast">void QNetworkAddressEntry::setBroadcast(const  &amp;<em>newBroadcast</em>)</span><a href="#void-qnetworkaddressentry-setbroadcast-const-qhostaddress-amp-newbroadcast" class="header-anchor">#</a></h3><p>将此<a href>QNetworkAddressEntry</a>对象的广播IP地址设置为<em>newBroadcast</em>。</p>
+<p><strong>See also</strong> <a href="#broadcast">broadcast</a>().</p>
+<h3><span id="since-5-11-void-qnetworkaddressentry-setdnseligibility-qnetworkaddressentry-dnseligibilitystatus-status"><code>[since 5.11]</code>void QNetworkAddressEntry::setDnsEligibility( <em>status</em>)</span><a href="#since-5-11-void-qnetworkaddressentry-setdnseligibility-qnetworkaddressentry-dnseligibilitystatus-status" class="header-anchor">#</a></h3><p>将该地址的DNS资格标志设置为<em>status</em>。</p>
+<p>这个函数从Qt 5.11引入。</p>
+<p><strong>See also</strong> <a href="#dnsEligibility">dnsEligibility</a>().</p>
+<h3><span id="void-qnetworkaddressentry-setip-const-qhostaddress-amp-newip">void QNetworkAddressEntry::setIp(const  &amp;<em>newIp</em>)</span><a href="#void-qnetworkaddressentry-setip-const-qhostaddress-amp-newip" class="header-anchor">#</a></h3><p>将<a href>QNetworkAddressEntry</a>对象包含的IP地址设置为<em>newIp</em>。</p>
+<p><strong>See also</strong> <a href="#ip">ip</a>().</p>
+<h3><span id="void-qnetworkaddressentry-setnetmask-const-qhostaddress-amp-newnetmask">void QNetworkAddressEntry::setNetmask(const  &amp;<em>newNetmask</em>)</span><a href="#void-qnetworkaddressentry-setnetmask-const-qhostaddress-amp-newnetmask" class="header-anchor">#</a></h3><p>将此<a href>QNetworkAddressEntry</a>对象包含的网络掩码设置为<em>newNetmask</em>。设置网络掩码的同时也设置了前缀的长度，以匹配新的网络掩码。</p>
+<p><strong>See also</strong> <a href="#netmask">netmask</a>() and <a href="#setPrefixLength">setPrefixLength</a>().</p>
+<h3><span id="void-qnetworkaddressentry-setprefixlength-int-length">void QNetworkAddressEntry::setPrefixLength(int <em>length</em>)</span><a href="#void-qnetworkaddressentry-setprefixlength-int-length" class="header-anchor">#</a></h3><p>设置此IP地址的前缀长度为<em>length</em>。对于这种类型的IP地址，<em>length</em>的值必须是有效的：对于IPv4地址在0到32之间，对于IPv6地址在0到128之间。设置为任何无效的值相当于设置为-1，这意味着 “没有前缀长度”。</p>
+<p>设置前缀长度也会设置净掩码（见<a href="#netmask">netmask</a>()）。</p>
+<p><strong>See also</strong> <a href="#prefixLength">prefixLength</a>() and <a href="#setNetmask">setNetmask</a>().</p>
+<h3><span id="since-5-0-void-qnetworkaddressentry-swap-qnetworkaddressentry-amp-other"><code>[since 5.0]</code>void QNetworkAddressEntry::swap( &amp;<em>other</em>)</span><a href="#since-5-0-void-qnetworkaddressentry-swap-qnetworkaddressentry-amp-other" class="header-anchor">#</a></h3><p>将这个网络地址条目实例与<em>other</em>交换。这个功能非常快，而且从不失败。</p>
+<p>这个函数从Qt 5.0引入。</p>
+<h3><span id="since-5-11-qdeadlinetimer-qnetworkaddressentry-validitylifetime-const"><code>[since 5.11]</code> QNetworkAddressEntry::validityLifetime() const</span><a href="#since-5-11-qdeadlinetimer-qnetworkaddressentry-validitylifetime-const" class="header-anchor">#</a></h3><p>如果知道的话，返回这个地址变得无效并将从网络堆栈中删除的期限。如果地址寿命不知道（见<a href="#isLifetimeKnown">isLifetimeKnown</a>()），这个函数总是返回<a href="qdeadlinetimer.html#ForeverConstant-enum">QDeadlineTimer::Forever</a> 。</p>
+<p>当一个地址是有效的，它将被操作系统接受为本机的有效目标地址。它是否被用作新的、传出的数据包的源地址，除其他规则外，由首选寿命控制（见<a href="#preferredLifetime">preferredLifetime</a>()）。</p>
+<p>这个函数从Qt 5.11引入。</p>
+<p><strong>See also</strong> <a href="#preferredLifetime">preferredLifetime</a>(), <a href="#isLifetimeKnown">isLifetimeKnown</a>(), <a href="#setAddressLifetime">setAddressLifetime</a>(), and <a href="#clearAddressLifetime">clearAddressLifetime</a>().</p>
+<h3><span id="bool-qnetworkaddressentry-operator-const-qnetworkaddressentry-amp-other-const">bool QNetworkAddressEntry::operator!=(const  &amp;<em>other</em>) const</span><a href="#bool-qnetworkaddressentry-operator-const-qnetworkaddressentry-amp-other-const" class="header-anchor">#</a></h3><p>如果该网络地址条目与<em>other</em>条目不同，则返回<code>true</code>。</p>
+<h3><span id="bool-qnetworkaddressentry-operator-const-qnetworkaddressentry-amp-other-const">bool QNetworkAddressEntry::operator==(const  &amp;<em>other</em>) const</span><a href="#bool-qnetworkaddressentry-operator-const-qnetworkaddressentry-amp-other-const" class="header-anchor">#</a></h3><p>如果该网络地址条目与<em>other</em>条目相同，则返回<code>true</code>。</p>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><h3><span id="since-6-2-qdebug-operator-lt-lt-qdebug-debug-const-qnetworkaddressentry-amp-entry"><code>[since 6.2]</code> operator&lt;&lt;( <em>debug</em>, const  &amp;<em>entry</em>)</span><a href="#since-6-2-qdebug-operator-lt-lt-qdebug-debug-const-qnetworkaddressentry-amp-entry" class="header-anchor">#</a></h3><p>将<a href>QNetworkAddressEntry</a><em>debug</em>写入流，并返回对<em>entry</em>流的引用。</p>
+<p>这个函数从Qt 6.2引入。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/N/">N</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/N/QNetworkCacheMetaData/QNetworkCacheMetaData/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QNetworkCacheMetaData类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/N/QNetworkCookie/QNetworkCookie/">
+                        <span class="hidden-mobile">QNetworkCookie类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

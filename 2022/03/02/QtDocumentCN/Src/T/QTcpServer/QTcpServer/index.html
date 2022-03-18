@@ -1,0 +1,774 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QTcpServer Class 公共成员函数 信号 保护成员函数 详细介绍 成员函数文档 QTcpServer::QTcpServer(QObject *parent &#x3D; nullptr) [SIGNAL] void QTcpServer::acceptError(QAbstractSocket::SocketError socketError) [SIGNAL] void QTcpS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QTcpServer类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/T/QTcpServer/QTcpServer/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QTcpServer Class 公共成员函数 信号 保护成员函数 详细介绍 成员函数文档 QTcpServer::QTcpServer(QObject *parent &#x3D; nullptr) [SIGNAL] void QTcpServer::acceptError(QAbstractSocket::SocketError socketError) [SIGNAL] void QTcpS">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:55:25.553Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="T">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QTcpServer类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QTcpServer类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      62 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QTcpServer类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qtcpserver-class">QTcpServer Class</a><ul>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#bao-hu-cheng-yuan-han-shu">保护成员函数</a></li>
+<li><a href="#xiang-xi-jie-shao">详细介绍</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qtcpserver-qtcpserver-qobject-o-qobject-parent-nullptr">QTcpServer::<strong>QTcpServer</strong>(</a><a href="../../O/QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#signal-void-qtcpserver-accepterror-qabstractsocket-socketerror-a-qabstractsocket-qabstractsocket-md-enum-qabstractsocketsocketerror-socketerror"><em>[SIGNAL]</em> void QTcpServer::<strong>acceptError</strong>(</a><a href="../../A/QAbstractSocket/QAbstractSocket.md#enum-qabstractsocketsocketerror">QAbstractSocket::SocketError</a> <em>socketError</em>)</li>
+<li><a href="#signal-void-qtcpserver-newconnection"><em>[SIGNAL]</em> void QTcpServer::<strong>newConnection</strong>()</a></li>
+<li><a href="#virtual-qtcpserver-qtcpserver"><em>[virtual]</em> QTcpServer::~<strong>QTcpServer</strong>()</a></li>
+<li><a href="#protected-void-qtcpserver-addpendingconnection-qtcpsocket-t-qtcpsocket-qtcpsocket-md-socket"><em>[protected]</em> void QTcpServer::<strong>addPendingConnection</strong>(</a><a href="../../T/QTcpSocket/QTcpSocket.md">QTcpSocket</a> *<em>socket</em>)</li>
+<li><a href="#void-qtcpserver-close">void QTcpServer::<strong>close</strong>()</a></li>
+<li><a href="#qstring-s-qstring-qstring-md-qtcpserver-errorstring-const">QString</a></li>
+<li><a href="#virtual-bool-qtcpserver-haspendingconnections-const"><em>[virtual]</em> bool QTcpServer::<strong>hasPendingConnections</strong>() const</a></li>
+<li><a href="#virtual-protected-void-qtcpserver-incomingconnection-qintptr-socketdescriptor"><em>[virtual protected]</em> void QTcpServer::<strong>incomingConnection</strong>(qintptr <em>socketDescriptor</em>)</a></li>
+<li><a href="#bool-qtcpserver-islistening-const">bool QTcpServer::<strong>isListening</strong>() const</a></li>
+<li><a href="#bool-qtcpserver-listen-const-qhostaddress-h-qhostaddress-qhostaddress-md-address-qhostaddress-any-quint16-port-0">bool QTcpServer::<strong>listen</strong>(const </a><a href="../../H/QHostAddress/QHostAddress.md">QHostAddress</a> &amp;<em>address</em> = QHostAddress::Any, quint16 <em>port</em> = 0)</li>
+<li><a href="#int-qtcpserver-maxpendingconnections-const">int QTcpServer::<strong>maxPendingConnections</strong>() const</a></li>
+<li><a href="#virtual-qtcpsocket-t-qtcpsocket-qtcpsocket-md-qtcpserver-nextpendingconnection"><em>[virtual]</em> </a><a href="../../T/QTcpSocket/QTcpSocket.md">QTcpSocket</a> *QTcpServer::<strong>nextPendingConnection</strong>()</li>
+<li><a href="#void-qtcpserver-pauseaccepting">void QTcpServer::<strong>pauseAccepting</strong>()</a></li>
+<li><a href="#qnetworkproxy-n-qnetworkproxy-qnetworkproxy-md-qtcpserver-proxy-const">QNetworkProxy</a></li>
+<li><a href="#void-qtcpserver-resumeaccepting">void QTcpServer::<strong>resumeAccepting</strong>()</a></li>
+<li><a href="#qhostaddress-qhostaddress-qhostaddress-md-qtcpserver-serveraddress-const">QHostAddress</a></li>
+<li><a href="#qabstractsocket-socketerror-a-qabstractsocket-qabstractsocket-md-enum-qabstractsocketsocketerror-qtcpserver-servererror-const">QAbstractSocket::SocketError</a></li>
+<li><a href="#quint16-qtcpserver-serverport-const">quint16 QTcpServer::<strong>serverPort</strong>() const</a></li>
+<li><a href="#void-qtcpserver-setmaxpendingconnections-int-numconnections">void QTcpServer::<strong>setMaxPendingConnections</strong>(int <em>numConnections</em>)</a></li>
+<li><a href="#void-qtcpserver-setproxy-const-qnetworkproxy-n-qnetworkproxy-qnetworkproxy-md-networkproxy">void QTcpServer::<strong>setProxy</strong>(const </a><a href="../../N/QNetworkProxy/QNetworkProxy.md">QNetworkProxy</a> &amp;<em>networkProxy</em>)</li>
+<li><a href="#bool-qtcpserver-setsocketdescriptor-qintptr-socketdescriptor">bool QTcpServer::<strong>setSocketDescriptor</strong>(qintptr <em>socketDescriptor</em>)</a></li>
+<li><a href="#qintptr-qtcpserver-socketdescriptor-const">qintptr QTcpServer::<strong>socketDescriptor</strong>() const</a></li>
+<li><a href="#bool-qtcpserver-waitfornewconnection-int-msec-0-bool-timedout-nullptr">bool QTcpServer::<strong>waitForNewConnection</strong>(int <em>msec</em> = 0, bool *<em>timedOut</em> = nullptr)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QTcpServer Class
+
+<p>QTcpServer 类提供了一个基于 TCP 协议的服务器。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件</td>
+<td>#include &lt;QTcpServer&gt;</td>
+</tr>
+<tr>
+<td>qmake</td>
+<td>QT += network</td>
+</tr>
+<tr>
+<td>父类</td>
+<td><a href="../../O/QObject/QObject.md">QObject</a></td>
+</tr>
+<tr>
+<td>子类</td>
+<td><a href="../../S/QSctpServer/QSctpServer.md">QSctpServer</a></td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong> 该类的所有成员函数都是可重入的。</p>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"></td>
+<td><strong><a href="#qtcpserverqtcpserverqobject-parent--nullptr"> QTcpServer</a></strong>(QObject *<em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td align="left">virtual</td>
+<td><strong><a href="#virtual-qtcpserverqtcpserver">~QTcpServer</a></strong>()</td>
+</tr>
+<tr>
+<td align="left">void</td>
+<td><strong><a href="#void-qtcpserverclose">close</a></strong>()</td>
+</tr>
+<tr>
+<td align="left">QString</td>
+<td><strong><a href="#qstring-qtcpservererrorstring-const">errorString</a></strong>() const</td>
+</tr>
+<tr>
+<td align="left">virtual bool</td>
+<td><strong><a href="#virtual-bool-qtcpserverhaspendingconnections-const">hasPendingConnections</a></strong>() const</td>
+</tr>
+<tr>
+<td align="left">bool</td>
+<td><strong><a href="#bool-qtcpserverislistening-const">isListening</a></strong>() const</td>
+</tr>
+<tr>
+<td align="left">bool</td>
+<td><strong><a href="#bool-qtcpserverlistenconst-qhostaddress-address--qhostaddressany-quint16-port--0">listen</a></strong>(const QHostAddress &amp;<em>address</em> = QHostAddress::Any, quint16 <em>port</em> = 0)</td>
+</tr>
+<tr>
+<td align="left">int</td>
+<td><strong><a href="#int-qtcpservermaxpendingconnections-const">maxPendingConnections</a></strong>() const</td>
+</tr>
+<tr>
+<td align="left">virtual QTcpSocket *</td>
+<td><strong><a href="#virtual-qtcpsocket-qtcpservernextpendingconnection">nextPendingConnection</a></strong>()</td>
+</tr>
+<tr>
+<td align="left">void</td>
+<td><strong><a href="#void-qtcpserverpauseaccepting">pauseAccepting</a></strong>()</td>
+</tr>
+<tr>
+<td align="left">QNetworkProxy</td>
+<td><strong><a href="#qnetworkproxy-qtcpserverproxy-const">proxy</a></strong>() const</td>
+</tr>
+<tr>
+<td align="left">void</td>
+<td><strong><a href="#void-qtcpserverresumeaccepting">resumeAccepting</a></strong>()</td>
+</tr>
+<tr>
+<td align="left">QHostAddress</td>
+<td><strong><a href="#qhostaddress-qtcpserverserveraddress-const">serverAddress</a></strong>() const</td>
+</tr>
+<tr>
+<td align="left">QAbstractSocket::SocketError</td>
+<td><strong><a href="#qabstractsocketsocketerror-qtcpserverservererror-const">serverError</a></strong>() const</td>
+</tr>
+<tr>
+<td align="left">quint16</td>
+<td><strong><a href="#quint16-qtcpserverserverport-const">serverPort</a></strong>() const</td>
+</tr>
+<tr>
+<td align="left">void</td>
+<td><strong><a href="#void-qtcpserversetmaxpendingconnectionsint-numconnections">setMaxPendingConnections</a></strong>(int <em>numConnections</em>)</td>
+</tr>
+<tr>
+<td align="left">void</td>
+<td><strong><a href="#void-qtcpserversetproxyconst-qnetworkproxy-networkproxy">setProxy</a></strong>(const QNetworkProxy &amp;<em>networkProxy</em>)</td>
+</tr>
+<tr>
+<td align="left">bool</td>
+<td><strong><a href="#bool-qtcpserversetsocketdescriptorqintptr-socketdescriptor">setSocketDescriptor</a></strong>(qintptr <em>socketDescriptor</em>)</td>
+</tr>
+<tr>
+<td align="left">qintptr</td>
+<td><strong><a href="#qintptr-qtcpserversocketdescriptor-const">socketDescriptor</a></strong>() const</td>
+</tr>
+<tr>
+<td align="left">bool</td>
+<td><strong><a href="#bool-qtcpserverwaitfornewconnectionint-msec--0-bool-timedout--nullptr">waitForNewConnection</a></strong>(int <em>msec</em> = 0, bool *<em>timedOut</em> = nullptr)</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#signal-void-qtcpserveraccepterrorqabstractsocketsocketerror-socketerror">acceptError</a></strong>(QAbstractSocket::SocketError <em>socketError</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#signal-void-qtcpservernewconnection">newConnection</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="bao-hu-cheng-yuan-han-shu">保护成员函数</span><a href="#bao-hu-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">void</td>
+<td align="left"><strong><a href="#protected-void-qtcpserveraddpendingconnectionqtcpsocket-socket">addPendingConnection</a></strong>(QTcpSocket *<em>socket</em>)</td>
+</tr>
+<tr>
+<td align="left">virtual void</td>
+<td align="left"><strong><a href="#virtual-protected-void-qtcpserverincomingconnectionqintptrsocketdescriptor">incomingConnection</a></strong>(qintptr <em>socketDescriptor</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-jie-shao">详细介绍</span><a href="#xiang-xi-jie-shao" class="header-anchor">#</a></h2><p>这个类使“用Qt编写一个接受 TCP 链接的服务器”的构想成为可能。您可以为 QTcpServer 指定一个端口或者让它自动选一个。您也可以令 QTcpServer 仅监听一个指定的地址或者让它监听这台机器上的所有地址。</p>
+<p>调用 <a href="#bool-qtcpserverlistenconst-qhostaddress-address--qhostaddressany-quint16-port--0">listen</a>() 函数来为到达的连接建立服务器监听。每次当有新的客户端连接到这个服务端时，QTcpServer 都会发出 <a href="#signal-void-qtcpservernewconnection">newConnection</a>() 信号。</p>
+<p>调用 <a href="#virtual-qtcpsocket-qtcpservernextpendingconnection">nextPendingConnection</a>() 函数接受一个连接到 QTcpServer 的待处理连接。 该函数会返回一个处于<em>已连接</em>（ <a href="../../A/QAbstractSocket/QAbstractSocket.md#enum-qabstractsocketsocketstate"><em>QAbstractSocket::ConnectedState</em></a> ）状态的 <a href="../QTcpSocket/QTcpSocket.md">QTcpSocket</a> ，您可以使用这个 QTcpSocket 与客户端进行通信。</p>
+<p>如果发生错误，<a href="#qabstractsocketsocketerror-qtcpserverservererror-const">serverError</a>() 函数会返回该错误的类型。 您可以调用 <a href="#qstring-qtcpservererrorstring-const">errorString</a>() 函数来获取一个能让人看懂的错误描述。</p>
+<p>当服务器正在监听连接时，服务器所监听的地址和端口可以通过 <a href="#qhostaddress-qtcpserverserveraddress-const">serverAddress</a>() 和 <a href="#quint16-qtcpserverserverport-const">serverPort</a>() 函数来获取。</p>
+<p>调用 <a href="#void-qtcpserverclose">close</a>() 函数后 QTcpServer 会停止监听到达的连接。</p>
+<p>另外您也可以在 <a href="../QTcpSocket/QTcpSocket.md">QTcpSocket</a> 类文档和Qt官方给出的 Fortune Server Example ，Threaded Fortune Server Example ，Loopback Example 和 Torrent Example 示例文档中找到相关信息。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qtcpserver-qtcpserver-qobject-parent-nullptr">QTcpServer::<strong>QTcpServer</strong>( *<em>parent</em> = nullptr)</span><a href="#qtcpserver-qtcpserver-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>构造函数。构造一个 QTcpServer 对象。</p>
+<p><em>parent</em> 参数将传递到 <a href="../../O/QObject">QObject</a> 的构造函数中。</p>
+<p>另外您也可以在 <a href="#bool-qtcpserverlistenconst-qhostaddress-address--qhostaddressany-quint16-port--0">listen</a>() 和 <a href="#bool-qtcpserversetsocketdescriptorqintptr-socketdescriptor">setSocketDescriptor</a>() 函数介绍中找到相关介绍。</p>
+<hr>
+<h3><span id="signal-void-qtcpserver-accepterror-qabstractsocket-socketerror-socketerror"><em>[SIGNAL]</em> void QTcpServer::<strong>acceptError</strong>( <em>socketError</em>)</span><a href="#signal-void-qtcpserver-accepterror-qabstractsocket-socketerror-socketerror" class="header-anchor">#</a></h3><p>当接受一个新的连接时出错，QTcpServer 会发送此信号。 <em>socketError</em> 参数描述了该错误的类型。</p>
+<p>该函数最早在Qt5.0版本引入。</p>
+<p>另外您也可以在 <a href="#void-qtcpserverpauseaccepting">pauseAccepting</a>() 和 <a href="#void-qtcpserverresumeaccepting">resumeAccepting</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="signal-void-qtcpserver-newconnection"><em>[SIGNAL]</em> void QTcpServer::<strong>newConnection</strong>()</span><a href="#signal-void-qtcpserver-newconnection" class="header-anchor">#</a></h3><p>每当有新的连接可用时，QTcpServer 都会发送该消息。</p>
+<p>另外您也可以在 <a href="#virtual-bool-qtcpserverhaspendingconnections-const">hasPendingConnections</a>() 和 <a href="#virtual-qtcpsocket-qtcpservernextpendingconnection">nextPendingConnection</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="virtual-qtcpserver-qtcpserver"><em>[virtual]</em> QTcpServer::~<strong>QTcpServer</strong>()</span><a href="#virtual-qtcpserver-qtcpserver" class="header-anchor">#</a></h3><p>析构函数。销毁 QTcpServer 对象。如果服务器正在监听连接，套接字会自动关闭。</p>
+<p>在服务端删除之前，所有仍处于连接状态的客户端 <a href="../QTcpSocket/QTcpSocket.md">QTcpSocket</a> 都必须断开连接或者重新指定父类。</p>
+<p>另外您也可以在 <a href="#void-qtcpserverclose">close</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="protected-void-qtcpserver-addpendingconnection-qtcpsocket-socket"><em>[protected]</em> void QTcpServer::<strong>addPendingConnection</strong>( *<em>socket</em>)</span><a href="#protected-void-qtcpserver-addpendingconnection-qtcpsocket-socket" class="header-anchor">#</a></h3><p>该函数由 <a href="#virtual-protected-void-qtcpserverincomingconnectionqintptrsocketdescriptor">QTcpServer::incomingConnection()</a> 函数调用，作用是添加 <em>socket</em> 到待处理连接列表中。</p>
+<p><strong>注意：</strong> 如果您不想破坏连接处理机制，请不要忘记从重新实现的 <a href="#virtual-protected-void-qtcpserverincomingconnectionqintptrsocketdescriptor">incomingConnection()</a> 中调用此成员。</p>
+<p>该函数最初在Qt4.7版本引入。</p>
+<p>另外您也可以在 <a href="#virtual-protected-void-qtcpserverincomingconnectionqintptrsocketdescriptor">incomingConnection</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="void-qtcpserver-close">void QTcpServer::<strong>close</strong>()</span><a href="#void-qtcpserver-close" class="header-anchor">#</a></h3><p>关闭服务器。服务器将不再监听到达的连接。</p>
+<p>另外您也可以在 <a href="#bool-qtcpserverlistenconst-qhostaddress-address--qhostaddressany-quint16-port--0">listen</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qstring-qtcpserver-errorstring-const"> QTcpServer::<strong>errorString</strong>() const</span><a href="#qstring-qtcpserver-errorstring-const" class="header-anchor">#</a></h3><p>将最后一个出现的错误的相关信息按照适合人阅读的形式返回。</p>
+<p>另外您也可以在 <a href="#qabstractsocketsocketerror-qtcpserverservererror-const">serverError</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="virtual-bool-qtcpserver-haspendingconnections-const"><em>[virtual]</em> bool QTcpServer::<strong>hasPendingConnections</strong>() const</span><a href="#virtual-bool-qtcpserver-haspendingconnections-const" class="header-anchor">#</a></h3><p>当服务端有待处理的连接时该函数返回 true ，否则返回 false 。</p>
+<p>另外您也可以在 <a href="#virtual-qtcpsocket-qtcpservernextpendingconnection">nextPendingConnection</a>() 和 <a href="#void-qtcpserversetmaxpendingconnectionsint-numconnections">setMaxPendingConnections</a>() 函数中找到相关信息。</p>
+<hr>
+<h3><span id="virtual-protected-void-qtcpserver-incomingconnection-qintptr-socketdescriptor"><em>[virtual protected]</em> void QTcpServer::<strong>incomingConnection</strong>(qintptr <em>socketDescriptor</em>)</span><a href="#virtual-protected-void-qtcpserver-incomingconnection-qintptr-socketdescriptor" class="header-anchor">#</a></h3><p>当有新的连接到达时， QTcpServer 会调用该虚函数。 <em>socketDescriptor</em> 参数是为该连接指定的本机套接字描述符。</p>
+<p>对该虚函数重写，您需要进行以下操作：</p>
+<ul>
+<li>构建一个 <a href="../QTcpSocket/QTcpSocket.md">QTcpSocket</a> 。</li>
+<li>设置套接字描述符。</li>
+<li>将 <a href="../QTcpSocket/QTcpSocket.md">QTcpSocket</a> 储存在内部的待处理连接列表中。</li>
+<li>发送 <a href="#signal-void-qtcpservernewconnection">newConnection</a>() 信号。</li>
+</ul>
+<p>重写此函数，以在连接可用时更改服务器的行为。</p>
+<p>如果该服务器使用了 <a href="../../N/QNetworkProxy/QNetworkProxy.md">QNetworkProxy</a> ，<em>socketDescriptor</em> 可能并不能被本地套接字功能使用，应该仅被 <a href="../../A/QAbstractSocket/QAbstractSocket.md#virtual-bool-qabstractsocketsetsocketdescriptorqintptr-socketdescriptor-qabstractsocketsocketstate-socketstate--connectedstate-qiodeviceopenmode-openmode--readwrite">QTcpSocket::setSocketDescriptor()</a> 函数使用。</p>
+<p><strong>注意：</strong> 如果在这个方法中创建了另外一个套接字，该套接字需要通过调用 <a href="#protected-void-qtcpserveraddpendingconnectionqtcpsocket-socket">addPendingConnection</a>() 函数添加到连接处理机制中。</p>
+<p><strong>注意：</strong> 如果您想在另外一个线程中将到达的连接当作一个新的 <a href="../QTcpSocket/QTcpSocket.md">QTcpSocket</a> 进行处理，您需要将套接字描述符传递到那个线程中并在那个线程中创建一个 <a href="../QTcpSocket/QTcpSocket.md">QTcpSocket</a> 对象并使用该该对象的 <a href="../../A/QAbstractSocket/QAbstractSocket.md#virtual-bool-qabstractsocketsetsocketdescriptorqintptr-socketdescriptor-qabstractsocketsocketstate-socketstate--connectedstate-qiodeviceopenmode-openmode--readwrite">setSocketDescriptor()</a> 方法。</p>
+<p>另外您也可以在 <a href="#signal-void-qtcpservernewconnection">newConnection</a>() ，<a href="#virtual-qtcpsocket-qtcpservernextpendingconnection">nextPendingConnection</a>() 和 <a href="#protected-void-qtcpserveraddpendingconnectionqtcpsocket-socket">addPendingConnection</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qtcpserver-islistening-const">bool QTcpServer::<strong>isListening</strong>() const</span><a href="#bool-qtcpserver-islistening-const" class="header-anchor">#</a></h3><p>当服务端正在监听连接时返回 true ，否则返回 false 。</p>
+<p>另外您也可以在 <a href="#bool-qtcpserverlistenconst-qhostaddress-address--qhostaddressany-quint16-port--0">listen</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qtcpserver-listen-const-qhostaddress-amp-address-qhostaddress-any-quint16-port-0">bool QTcpServer::<strong>listen</strong>(const  &amp;<em>address</em> = QHostAddress::Any, quint16 <em>port</em> = 0)</span><a href="#bool-qtcpserver-listen-const-qhostaddress-amp-address-qhostaddress-any-quint16-port-0" class="header-anchor">#</a></h3><p>令服务端监听在 <em>address</em> 指定的地址和 <em>port</em> 指定的端口上到达的连接。如果 <em>port</em> 参数为0 ，QTcpServer 会自动选择一个端口。 如果 <em>address</em> 参数为 <em>QHostAddress::Any</em> ，服务端会监听所有的网络接口。</p>
+<p>操作成功该函数返回 true ，否则返回 false 。</p>
+<p>另外您也可以在 <a href="#bool-qtcpserverislistening-const">isListening</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="int-qtcpserver-maxpendingconnections-const">int QTcpServer::<strong>maxPendingConnections</strong>() const</span><a href="#int-qtcpserver-maxpendingconnections-const" class="header-anchor">#</a></h3><p>返回最大的待处理的已接受连接数。默认为30。</p>
+<p>另外您也可以在 <a href="#void-qtcpserversetmaxpendingconnectionsint-numconnections">setMaxPendingConnections</a>() 和 <a href="#virtual-bool-qtcpserverhaspendingconnections-const">hasPendingConnections</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="virtual-qtcpsocket-qtcpserver-nextpendingconnection"><em>[virtual]</em>  *QTcpServer::<strong>nextPendingConnection</strong>()</span><a href="#virtual-qtcpsocket-qtcpserver-nextpendingconnection" class="header-anchor">#</a></h3><p>将下一个待处理的连接作为已连接的 <a href="../QTcpSocket/QTcpSocket.md">QTcpSocket</a> 对象返回。</p>
+<p>该套接字将作为该服务端的子对象创建，这就意味着当 QTcpServer 对象销毁后，该套接字对象也会被销毁。最好在完成处理后显式删除该对象，以避免浪费内存。</p>
+<p>如果没有待处理的连接，该函数会返回 <code>nullptr</code> 。</p>
+<p><strong>注意：</strong> 返回的 QTcpSocket 对象不能在其他线程中使用。如果您想在其他的线程中使用到达的连接，您需要重写 <a href="#virtual-protected-void-qtcpserverincomingconnectionqintptrsocketdescriptor">incomingConnection</a>() 函数。</p>
+<p>另外您也可以在 <a href="#virtual-bool-qtcpserverhaspendingconnections-const">hasPendingConnections</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="void-qtcpserver-pauseaccepting">void QTcpServer::<strong>pauseAccepting</strong>()</span><a href="#void-qtcpserver-pauseaccepting" class="header-anchor">#</a></h3><p>暂停接收新连接。队列连接会保留在队列中。</p>
+<p>该函数最初在Qt5.0版本引入。</p>
+<p>另外您也可以在 <a href="#void-qtcpserverresumeaccepting">resumeAccepting</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qnetworkproxy-qtcpserver-proxy-const"> QTcpServer::<strong>proxy</strong>() const</span><a href="#qnetworkproxy-qtcpserver-proxy-const" class="header-anchor">#</a></h3><p>返回该套接字的网络代理。默认将使用 QNetworkProxy::DefaultProxy 。</p>
+<p>该函数最初在Qt4.1版本引入。</p>
+<p>另外您也可以在 <a href="#void-qtcpserversetproxyconst-qnetworkproxy-networkproxy">setProxy</a>() 函数介绍和 <a href="../../N/QNetworkProxy/QNetworkProxy.md">QNetworkProxy</a> 文档中找到相关信息。</p>
+<hr>
+<h3><span id="void-qtcpserver-resumeaccepting">void QTcpServer::<strong>resumeAccepting</strong>()</span><a href="#void-qtcpserver-resumeaccepting" class="header-anchor">#</a></h3><p>恢复接收新连接。</p>
+<p>该函数最初在Qt5.0版本引入。</p>
+<p>另外您也可以在 <a href="#void-qtcpserverpauseaccepting">pauseAccepting</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qhostaddress-qtcpserver-serveraddress-const"> QTcpServer::<strong>serverAddress</strong>() const</span><a href="#qhostaddress-qtcpserver-serveraddress-const" class="header-anchor">#</a></h3><p>如果服务端正在监听，则返回服务端的地址，否则返回 QHostAddress::Null 。</p>
+<p>另外您也可以在 <a href="#quint16-qtcpserverserverport-const">serverPort</a>() 和 <a href="#bool-qtcpserverlistenconst-qhostaddress-address--qhostaddressany-quint16-port--0">listen</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qabstractsocket-socketerror-qtcpserver-servererror-const"> QTcpServer::<strong>serverError</strong>() const</span><a href="#qabstractsocket-socketerror-qtcpserver-servererror-const" class="header-anchor">#</a></h3><p>返回最后出现的错误的代码。</p>
+<p>另外您也可以在 <a href="#qstring-qtcpservererrorstring-const">errorString</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="quint16-qtcpserver-serverport-const">quint16 QTcpServer::<strong>serverPort</strong>() const</span><a href="#quint16-qtcpserver-serverport-const" class="header-anchor">#</a></h3><p>如果服务端正在监听，则返回服务端的端口，否则返回 0 。</p>
+<p>另外您也可以在 <a href="#qhostaddress-qtcpserverserveraddress-const">serverAddress</a>() 和 <a href="#bool-qtcpserverlistenconst-qhostaddress-address--qhostaddressany-quint16-port--0">listen</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="void-qtcpserver-setmaxpendingconnections-int-numconnections">void QTcpServer::<strong>setMaxPendingConnections</strong>(int <em>numConnections</em>)</span><a href="#void-qtcpserver-setmaxpendingconnections-int-numconnections" class="header-anchor">#</a></h3><p>设置待处理的已接受连接的数目最大值为 <em>numConnections</em> 。超过该数目后，在调用 <a href="#virtual-qtcpsocket-qtcpservernextpendingconnection">nextPendingConnection</a>() 函数之前， QTcpServer 将不会再接收到达的连接。默认情况下，QTcpServer接收连接的最大值为30。</p>
+<p>服务器达到其最大待处理连接数后，客户端仍然可以连接（即 <a href="../QTcpSocket/QTcpSocket.md">QTcpSocket</a> 仍可以发出 connected() 信号）。 QTcpServer 将停止接受新连接，但是操作系统仍可以将它们保持在队列中。</p>
+<p>另外您也可以在 <a href="#int-qtcpservermaxpendingconnections-const">maxPendingConnections</a>() 和 <a href="#virtual-bool-qtcpserverhaspendingconnections-const">hasPendingConnections</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="void-qtcpserver-setproxy-const-qnetworkproxy-amp-networkproxy">void QTcpServer::<strong>setProxy</strong>(const  &amp;<em>networkProxy</em>)</span><a href="#void-qtcpserver-setproxy-const-qnetworkproxy-amp-networkproxy" class="header-anchor">#</a></h3><p>显式设置该套接字的网络代理为 <em>networkProxy</em> 。</p>
+<p>您通过设置使用 QNetworkProxy::NoProxy 代理类型来禁止套接字使用代理：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">server-&gt;<span class="hljs-built_in">setProxy</span>(QNetworkProxy::NoProxy);</code></pre></div>
+
+<p>该函数最初在Qt4.1版本时引入。</p>
+<p>另外您也可以在 <a href="#qnetworkproxy-qtcpserverproxy-const">proxy</a>() 函数介绍和 <a href="../../N/QNetworkProxy/QNetworkProxy.md">QNetworkProxy</a> 文档中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qtcpserver-setsocketdescriptor-qintptr-socketdescriptor">bool QTcpServer::<strong>setSocketDescriptor</strong>(qintptr <em>socketDescriptor</em>)</span><a href="#bool-qtcpserver-setsocketdescriptor-qintptr-socketdescriptor" class="header-anchor">#</a></h3><p>设置该服务端监听连接时使用的套接字描述符为 <em>socketDescriptor</em> 。当操作成功时返回 true ，否则返回 false 。</p>
+<p>调用该函数时，服务端应该处于正在监听的状态。</p>
+<p>另外您也可以在 <a href="#qintptr-qtcpserversocketdescriptor-const">socketDescriptor</a>() 和 <a href="#bool-qtcpserverislistening-const">isListening</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qintptr-qtcpserver-socketdescriptor-const">qintptr QTcpServer::<strong>socketDescriptor</strong>() const</span><a href="#qintptr-qtcpserver-socketdescriptor-const" class="header-anchor">#</a></h3><p>返回服务端监听连接时使用的套接字描述符，如果该服务器未处于监听状态返回-1。</p>
+<p>如果服务器正在使用 <a href="../../N/QNetworkProxy/QNetworkProxy.md">QNetworkProxy</a> ，返回的套接字描述符可能并不能在本地套接字函数中使用。</p>
+<p>另外您也可以在 <a href="../../A/QAbstractSocket/QAbstractSocket.md#virtual-bool-qabstractsocketsetsocketdescriptorqintptr-socketdescriptor-qabstractsocketsocketstate-socketstate--connectedstate-qiodeviceopenmode-openmode--readwrite">setSocketDescriptor</a>() 和 <a href="#bool-qtcpserverislistening-const">isListening</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qtcpserver-waitfornewconnection-int-msec-0-bool-timedout-nullptr">bool QTcpServer::<strong>waitForNewConnection</strong>(int <em>msec</em> = 0, bool *<em>timedOut</em> = nullptr)</span><a href="#bool-qtcpserver-waitfornewconnection-int-msec-0-bool-timedout-nullptr" class="header-anchor">#</a></h3><p>等待 <em>msec</em> 毫秒或者直到有新的连接接入。如果有新的连接，该函数返回 true ， 否则返回 false 。如果 <em>timeOut</em> 参数不为 <code>nullptr</code> 并且操作超时， <em>*timeOut</em> 将被设置为 true 。</p>
+<p>这是一个可以引起阻塞的函数。不推荐在一个单线程的 GUI 程序中使用该函数，因为使用该函数后直到该函数返回之前整个应用程序会停止响应。 waitForNewConnection() 函数通常在没有事件循环的情况下使用。</p>
+<p>不阻塞应用程序的可选方案是使用 <a href="#signal-void-qtcpservernewconnection">newConnection</a>() 信号。</p>
+<p>如果 <em>msec</em> 参数设置为-1，该函数将不会超时。</p>
+<p>另外您也可以在 <a href="#virtual-bool-qtcpserverhaspendingconnections-const">hasPendingConnections</a>() 和 <a href="#virtual-qtcpsocket-qtcpservernextpendingconnection">nextPendingConnection</a>() 函数介绍中找到相关信息。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/T/">T</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/R/Resource_Compiler_rcc/Resource_Compiler_rcc/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">资源编译器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/T/QTcpSocket/QTcpSocket/">
+                        <span class="hidden-mobile">QTcpSocket类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

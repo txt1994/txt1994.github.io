@@ -1,0 +1,712 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QMutex 公共成员类型 公共成员函数 详细描述 成员类型文档 enum QMutex::RecursionMode   成员函数文档 QMutex::QMutex(QMutex::RecursionMode mode) QMutex::QMutex() QMutex::~QMutex() bool QMutex::isRecursive() const void QMutex::lo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QMutex类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/M/QMutex/QMutex/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QMutex 公共成员类型 公共成员函数 详细描述 成员类型文档 enum QMutex::RecursionMode   成员函数文档 QMutex::QMutex(QMutex::RecursionMode mode) QMutex::QMutex() QMutex::~QMutex() bool QMutex::isRecursive() const void QMutex::lo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:47:54.603Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="M">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QMutex类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QMutex类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      39 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QMutex类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qmutex">QMutex</a><ul>
+<li><a href="#gong-gong-cheng-yuan-lei-xing">公共成员类型</a></li>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qmutex-recursionmode">enum QMutex::RecursionMode</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qmutex-qmutex-qmutex-recursionmode-mode">QMutex::QMutex(QMutex::RecursionMode <em>mode</em>)</a></li>
+<li><a href="#qmutex-qmutex">QMutex::QMutex()</a></li>
+<li><a href="#qmutex-qmutex">QMutex::~QMutex()</a></li>
+<li><a href="#bool-qmutex-isrecursive-const">bool QMutex::isRecursive() const</a></li>
+<li><a href="#void-qmutex-lock">void QMutex::lock()</a></li>
+<li><a href="#bool-qmutex-trylock-int-timeout-0">bool QMutex::tryLock(int <em>timeout</em> = 0)</a></li>
+<li><a href="#bool-qmutex-try-lock">bool QMutex::try_lock()</a></li>
+<li><a href="#template-typename-rep-typename-period-bool-qmutex-try-lock-for-std-chrono-duration-rep-period-duration">template &lt;typename Rep, typename Period&gt; bool QMutex::try_lock_for(std::chrono::duration&lt;Rep, Period&gt; <em>duration</em>)</a></li>
+<li><a href="#template-typename-clock-typename-duration-bool-qmutex-try-lock-until-std-chrono-time-point-clock-duration-timepoint">template &lt;typename Clock, typename Duration&gt; bool QMutex::try_lock_until(std::chrono::time_point&lt;Clock, Duration&gt; <em>timePoint</em>)</a></li>
+<li><a href="#void-qmutex-unlock">void QMutex::unlock()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QMutex
+
+<p>&amp;emsp;&amp;emsp;QMutex类提供线程间的访问序列化。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件</td>
+<td><code>#include&lt;QMutex&gt;</code></td>
+</tr>
+<tr>
+<td>qmake</td>
+<td><code>QT += core</code></td>
+</tr>
+<tr>
+<td>子类</td>
+<td><code>QRecursiveMutex</code></td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong> 此类中所有函数都是<a href="../../R/Reentrancy_and_Thread-Safety/Reentrancy_and_Thread-Safety.md">线程安全</a>的。</p>
+<h2><span id="gong-gong-cheng-yuan-lei-xing">公共成员类型</span><a href="#gong-gong-cheng-yuan-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enmu</td>
+<td><strong><a href="#enum-qmutexrecursionmode">RecursionMode</a></strong> { Recursive, NonRecursive}</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>返回类型</th>
+<th>函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#qmutexqmutexqmutexrecursionmode-mode">QMutex</a></strong>(QMutex::RecursionMode <em>mode</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qmutexqmutex">QMutex</a></strong>()</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qmutexqmutex-1">~QMutex</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qmutexisrecursive-const">isRecursive</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#void-qmutexlock">lock</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qmutextrylockint-timeout--0">tryLock</a></strong>(int <em>timeout</em> = 0)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qmutextrylock">try_lock</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#template-typename-rep-typename-period-bool-qmutextrylockforstdchronodurationrep-period-duration">try_lock_for</a></strong>(std::chrono::duration&lt;Rep, Period&gt; <em>duration</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#template-typename-clock-typename-duration-bool-qmutextrylockuntilstdchronotimepointclock-duration-timepoint">try_lock_until</a></strong>(std::chrono::time_point&lt;Clock, Duration&gt; <em>timePoint</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#void-qmutexunlock">unlock</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>&amp;emsp;&amp;emsp;QMutex的目的是保护对象、数据结构或代码段，以便一次只有一个线程可以访问它们（这类似于 <code>Java</code> <code>synchronized</code> 关键字）。最好通过 <a href="../QMutexLocker.md">QMutexLocker</a> 来使用互斥量，这样可以很方便确保成对执行锁和解锁。<br>例如，假设有一个方法将消息打印到两行上：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-type">int</span> number = <span class="hljs-number">6</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">method1</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    number *= <span class="hljs-number">5</span>;
+    number /= <span class="hljs-number">4</span>;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">method2</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    number *= <span class="hljs-number">3</span>;
+    number /= <span class="hljs-number">2</span>;
+}</code></pre></div>
+
+<p>&amp;emsp;&amp;emsp;如果连续调用这两个方法，将发生以下情况：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// method1()</span>
+number *= <span class="hljs-number">5</span>;        <span class="hljs-comment">// number 30</span>
+number /= <span class="hljs-number">4</span>;        <span class="hljs-comment">// number  7</span>
+
+<span class="hljs-comment">// method2()</span>
+number *= <span class="hljs-number">3</span>;        <span class="hljs-comment">// number 21</span>
+number /= <span class="hljs-number">2</span>;        <span class="hljs-comment">// number 10</span></code></pre></div>
+
+<p>&amp;emsp;&amp;emsp;如果两个线程同时调用这两个方法，则可能会产生以下结果：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// 线程 1 调用 method1()</span>
+number *= <span class="hljs-number">5</span>;        <span class="hljs-comment">// number 30</span>
+
+<span class="hljs-comment">// 线程 2 调用 method2().</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// 很可能线程 1 已被操作系统置于等待队列</span>
+<span class="hljs-comment">// 操作系统运行线程 2</span>
+number *= <span class="hljs-number">3</span>;        <span class="hljs-comment">// number 90</span>
+number /= <span class="hljs-number">2</span>;        <span class="hljs-comment">// number 45</span>
+
+<span class="hljs-comment">// 线程 1 执行完毕</span>
+number /= <span class="hljs-number">4</span>;        <span class="hljs-comment">// number 是 11，而不是 10</span></code></pre></div>
+
+<p>&amp;emsp;&amp;emsp;如果我们添加一个互斥量，我们就能得到我们想要的结果：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">QMutex mutex;
+<span class="hljs-type">int</span> number = <span class="hljs-number">6</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">method1</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    mutex.<span class="hljs-built_in">lock</span>();
+    number *= <span class="hljs-number">5</span>;
+    number /= <span class="hljs-number">4</span>;
+    mutex.<span class="hljs-built_in">unlock</span>();
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">method2</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    mutex.<span class="hljs-built_in">lock</span>();
+    number *= <span class="hljs-number">3</span>;
+    number /= <span class="hljs-number">2</span>;
+    mutex.<span class="hljs-built_in">unlock</span>();
+}</code></pre></div>
+
+<p>&amp;emsp;&amp;emsp;在任何给定的时间只有一个线程可以修改 <code>number</code>，并正确执行。虽然这只是一个微不足道的例子，但也适用于其他需要有序执行的地方。</p>
+<p>&amp;emsp;&amp;emsp;当你在一个线程中调用 <a href="#void-qmutexlock">lock</a>() 时，在同一位置尝试调用 <a href="#void-qmutexlock">lock</a>() 的其他线程将阻塞，直到获得锁的线程调用 <a href="#void-qmutexunlock">unlock</a>()。替代 <a href="#void-qmutexlock">lock</a>() 的非阻塞方法是 <a href="#bool-qmutextrylockint-timeout--0">tryLock</a>()。</p>
+<p>&amp;emsp;&amp;emsp;QMutex被优化为在非争用情况 （ the non-contended ）下速度更快。如果互斥体上没有争用，非递归QMutex将不会分配内存。它的构造和销毁几乎没有任何开销，这意味着将互斥体作为类的一部分是很好的做法。</p>
+<p><strong>另请参阅：</strong> <a href="../../R/QRecursiveMutex/QRecursiveMutex.md">QRecursiveMutex</a>，<a href="../QMutexLocker/QMutexLocker.md">QMutexLocker</a>，<a href="../../R/QReadWriteLock/QReadWriteLock.md">QReadWriteLock</a>，<a href="../../S/QSemaphore/QSemaphore.md">QSemaphore</a> 和 <a href="../../W/QWaitCondition/QWaitCondition.md">QWaitCondition</a>。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qmutex-recursionmode">enum QMutex::RecursionMode</span><a href="#enum-qmutex-recursionmode" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th>常量</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QMutex::Recursive</td>
+<td>1</td>
+<td>&amp;emsp;&amp;emsp;在这种模式下，一个线程可以多次锁定同一个互斥量，并且在调用相同数量的 <a href="#void-qmutexunlock">unlock</a>() 之前，互斥体不会被解锁。对于这种情况，您应该使用 <a href="../../R/QRecursiveMutex.md">QRecursiveMutex</a>。</td>
+</tr>
+<tr>
+<td>QMutex::NonRecursive</td>
+<td>0</td>
+<td>&amp;emsp;&amp;emsp;在这种模式下，一个线程只能锁定一次。</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅：</strong><a href="#qmutexqmutexqmutexrecursionmode-mode">QMutex</a>()，<a href="../../R/QRecursiveMutex/QRecursiveMutex.md">QRecursiveMutex</a>。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qmutex-qmutex-qmutex-recursionmode-mode">QMutex::QMutex(QMutex::RecursionMode <em>mode</em>)</span><a href="#qmutex-qmutex-qmutex-recursionmode-mode" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;构造一个互斥量，初始状态为未上锁。</p>
+<p>&amp;emsp;&amp;emsp;如果 <code>mode</code> 是 <code>QMutex:：Recursive</code>，则线程可以多次锁定同一个互斥量，并且在调用相同数量的 <a href="#void-qmutexunlock">unlock</a>() 之前，互斥量不会被解锁。否则，线程只能锁定互斥量一次。默认值为 <code>QMutex::NonRecursive</code>。</p>
+<p><strong>另请参阅：</strong> <a href="#void-qmutexlock">lock</a>()，<a href="#void-qmutexunlock">unlock</a>()。</p>
+<hr>
+<h3><span id="qmutex-qmutex">QMutex::QMutex()</span><a href="#qmutex-qmutex" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;构造一个互斥量，初始状态为未上锁。</p>
+<hr>
+<h3><span id="qmutex-qmutex">QMutex::~QMutex()</span><a href="#qmutex-qmutex" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;析构。</p>
+<p><strong>警告：</strong> 销毁锁定的互斥量可能会导致未定义的行为。</p>
+<hr>
+<h3><span id="bool-qmutex-isrecursive-const">bool QMutex::isRecursive() const</span><a href="#bool-qmutex-isrecursive-const" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;如果互斥量是递归的，则返回 <code>true</code>。</p>
+<p>&amp;emsp;&amp;emsp;在 Qt 5.7 引入该函数。</p>
+<hr>
+<h3><span id="void-qmutex-lock">void QMutex::lock()</span><a href="#void-qmutex-lock" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;锁定互斥量。如果另一个线程锁定了该互斥量，那么这个调用将被阻塞，直到锁定线程将其解锁为止。</p>
+<p>&amp;emsp;&amp;emsp;如果该互斥量是<a href="../../R/QRecursiveMutex.md">递归互斥量</a>，则允许在同一线程的同一互斥体上多次调用此函数。如果这个互斥量是非递归互斥量，则当该互斥量递归锁定时，这个函数将死锁。</p>
+<p><strong>另请参阅：</strong> <a href="#void-qmutexunlock">unlock</a>()。</p>
+<hr>
+<h3><span id="bool-qmutex-trylock-int-timeout-0">bool QMutex::tryLock(int <em>timeout</em> = 0)</span><a href="#bool-qmutex-trylock-int-timeout-0" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;尝试锁定互斥量。如果获得了锁，此函数返回 <code>true</code>；否则返回 <code>false</code>。如果另一个线程锁定了互斥量，则此函数最多将等待 <code>timeout</code> 毫秒，以尝试获取。</p>
+<p><strong>注意：</strong> 传递一个负数给 <code>timeout</code> 相当于调用 <a href="#void-qmutexlock">lock</a>()。即，如果 <code>timeout</code> 为负数，这个函数将一直待，直到互斥量被锁定为止。</p>
+<p>&amp;emsp;&amp;emsp;如果获得了锁，则必须使用 <a href="#void-qmutexunlock">unlock</a>() 解锁，另一个线程才能成功锁定。</p>
+<p>&amp;emsp;&amp;emsp;如果该互斥量是递归互斥量，则允许在同一线程的同一互斥量上多次调用此函数。如果此互斥量是非递归互斥量，则当尝试递归锁定互斥量时，此函数将始终返回 <code>false</code>。</p>
+<p><strong>另请参阅：</strong> <a href="#void-qmutexlock">lock</a>()，<a href="#void-qmutexunlock">unlock</a>()。</p>
+<hr>
+<h3><span id="bool-qmutex-try-lock">bool QMutex::try_lock()</span><a href="#bool-qmutex-try-lock" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;尝试锁定互斥量。如果获得了锁，此函数返回 <code>true</code>；否则返回 <code>false</code>。</p>
+<p>&amp;emsp;&amp;emsp;提供此函数是为了与可锁定的标准库概念兼容。它相当于 <a href="#bool-qmutextrylockint-timeout--0">tryLock</a>()。</p>
+<p>&amp;emsp;&amp;emsp;在 Qt 5.8 引入该函数。</p>
+<hr>
+<h3><span id="template-lt-typename-rep-typename-period-gt-bool-qmutex-try-lock-for-std-chrono-duration-lt-rep-period-gt-duration">template &lt;typename Rep, typename Period&gt; bool QMutex::try_lock_for(std::chrono::duration&lt;Rep, Period&gt; <em>duration</em>)</span><a href="#template-lt-typename-rep-typename-period-gt-bool-qmutex-try-lock-for-std-chrono-duration-lt-rep-period-gt-duration" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;尝试锁定互斥量。如果获得了锁，此函数返回 <code>true</code>；否则返回 <code>false</code>。如果另一个线程锁定了互斥量，则此函数最多将等待 <code>duration</code> 这么长时间，以尝试获取。</p>
+<p><strong>注意：</strong> 传递一个负数给 <code>duration</code> 相当于调用 <a href="#bool-qmutextrylock">try_lock</a>()。此行为与 <a href="#bool-qmutextrylockint-timeout--0">tryLock</a>() 不同。</p>
+<p>&amp;emsp;&amp;emsp;如果获得了锁，则必须使用 <a href="#void-qmutexunlock">unlock</a>() 解锁，另一个线程才能成功锁定。</p>
+<p>&amp;emsp;&amp;emsp;如果该互斥量是递归互斥量，则允许在同一线程的同一互斥量上多次调用此函数。如果此互斥量是非递归互斥量，则当尝试递归锁定互斥量时，此函数将始终返回 <code>false</code>。</p>
+<p>&amp;emsp;&amp;emsp;在 Qt 5.8 引入该函数。</p>
+<p><strong>另请参阅：</strong> <a href="#void-qmutexlock">lock</a>()，<a href="#void-qmutexunlock">unlock</a>()。</p>
+<hr>
+<h3><span id="template-lt-typename-clock-typename-duration-gt-bool-qmutex-try-lock-until-std-chrono-time-point-lt-clock-duration-gt-timepoint">template &lt;typename Clock, typename Duration&gt; bool QMutex::try_lock_until(std::chrono::time_point&lt;Clock, Duration&gt; <em>timePoint</em>)</span><a href="#template-lt-typename-clock-typename-duration-gt-bool-qmutex-try-lock-until-std-chrono-time-point-lt-clock-duration-gt-timepoint" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;尝试锁定互斥量。如果获得了锁，此函数返回 <code>true</code>；否则返回 <code>false</code>。如果另一个线程锁定了互斥量，则此函数最多将等待 <code>timePoint</code> 这么长时间，以尝试获取。</p>
+<p><strong>注意：</strong> 传递一个负数给 <code>timePoint</code> 相当于调用 <a href="#bool-qmutextrylock">try_lock</a>()。此行为与 <a href="#bool-qmutextrylockint-timeout--0">tryLock</a>() 不同。</p>
+<p>&amp;emsp;&amp;emsp;如果获得了锁，则必须使用 <a href="#void-qmutexunlock">unlock</a>() 解锁，另一个线程才能成功锁定。</p>
+<p>&amp;emsp;&amp;emsp;如果该互斥量是递归互斥量，则允许在同一线程的同一互斥量上多次调用此函数。如果此互斥量是非递归互斥量，则当尝试递归锁定互斥量时，此函数将始终返回 <code>false</code>。</p>
+<p>&amp;emsp;&amp;emsp;在 Qt 5.8 引入该函数。</p>
+<p><strong>另请参阅：</strong> <a href="#void-qmutexlock">lock</a>()，<a href="#void-qmutexunlock">unlock</a>()。</p>
+<hr>
+<h3><span id="void-qmutex-unlock">void QMutex::unlock()</span><a href="#void-qmutex-unlock" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;解锁互斥量。<strong>试图在不同线程中解锁互斥量会导致错误。解锁未锁定的互斥量会导致未定义的行为。</strong></p>
+<p><strong>另请参阅：</strong> <a href="#void-qmutexlock">lock</a>()。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/M/">M</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/M/QMutableMapIterator/QMutableMapIterator/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QMutableMapIterator类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/M/QMutableHashIterator/QMutableHashIterator/">
+                        <span class="hidden-mobile">QMutableHashIterator类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

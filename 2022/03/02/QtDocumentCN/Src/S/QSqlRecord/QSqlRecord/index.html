@@ -1,0 +1,748 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QSqlRecord Class 公共函数 详细描述 成员函数文档 QSqlRecord::QSqlRecord(const QSqlRecord &amp;other) QSqlRecord::QSqlRecord() QSqlRecord QSqlRecord::~QSqlRecord() void QSqlRecord::append(const QSqlField &amp;fi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QSqlRecord类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/QSqlRecord/QSqlRecord/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QSqlRecord Class 公共函数 详细描述 成员函数文档 QSqlRecord::QSqlRecord(const QSqlRecord &amp;other) QSqlRecord::QSqlRecord() QSqlRecord QSqlRecord::~QSqlRecord() void QSqlRecord::append(const QSqlField &amp;fi">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:53:59.146Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="S">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QSqlRecord类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QSqlRecord类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      54 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QSqlRecord类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qsqlrecord-class">QSqlRecord Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qsqlrecord-qsqlrecord-const-qsqlrecord-qsqlrecord-other">QSqlRecord::QSqlRecord(const </a><a href="#QSqlRecord">QSqlRecord</a> &amp;<em>other</em>)</li>
+<li><a href="#qsqlrecord-qsqlrecord">QSqlRecord::QSqlRecord()</a></li>
+<li><a href="#qsqlrecord-qsqlrecord-qsqlrecord-operator-const-qsqlrecord-qsqlrecord-other">QSqlRecord</a></li>
+<li><a href="#qsqlrecord-qsqlrecord">QSqlRecord::~QSqlRecord()</a></li>
+<li><a href="#void-qsqlrecord-append-const-qsqlfield-qsqlfield-html-field">void QSqlRecord::append(const </a><a href="qsqlfield.html">QSqlField</a> &amp;<em>field</em>)</li>
+<li><a href="#void-qsqlrecord-clear">void QSqlRecord::clear()</a></li>
+<li><a href="#void-qsqlrecord-clearvalues">void QSqlRecord::clearValues()</a></li>
+<li><a href="#bool-qsqlrecord-contains-const-qstring-qstring-html-name-const">bool QSqlRecord::contains(const </a><a href="qstring.html">QString</a> &amp;<em>name</em>) const</li>
+<li><a href="#int-qsqlrecord-count-const">int QSqlRecord::count() const</a></li>
+<li><a href="#qsqlfield-qsqlfield-html-qsqlrecord-field-int-index-const">QSqlField</a></li>
+<li><a href="#qsqlfield-qsqlfield-html-qsqlrecord-field-const-qstring-qstring-html-name-const-1">QSqlField</a></li>
+<li><a href="#qstring-qstring-html-qsqlrecord-fieldname-int-index-const">QString</a></li>
+<li><a href="#int-qsqlrecord-indexof-const-qstring-qstring-html-name-const">int QSqlRecord::indexOf(const </a><a href="qstring.html">QString</a> &amp;<em>name</em>) const</li>
+<li><a href="#void-qsqlrecord-insert-int-pos-const-qsqlfield-qsqlfield-html-field">void QSqlRecord::insert(int <em>pos</em>, const </a><a href="qsqlfield.html">QSqlField</a> &amp;<em>field</em>)</li>
+<li><a href="#bool-qsqlrecord-isempty-const">bool QSqlRecord::isEmpty() const</a></li>
+<li><a href="#bool-qsqlrecord-isgenerated-const-qstring-qstring-html-name-const">bool QSqlRecord::isGenerated(const </a><a href="qstring.html">QString</a> &amp;<em>name</em>) const</li>
+<li><a href="#bool-qsqlrecord-isgenerated-int-index-const">bool QSqlRecord::isGenerated(int <em>index</em>) const</a></li>
+<li><a href="#bool-qsqlrecord-isnull-const-qstring-qstring-html-name-const">bool QSqlRecord::isNull(const </a><a href="qstring.html">QString</a> &amp;<em>name</em>) const</li>
+<li><a href="#bool-qsqlrecord-isnull-int-index-const">bool QSqlRecord::isNull(int <em>index</em>) const</a></li>
+<li><a href="#since-5-1-qsqlrecord-qsqlrecord-qsqlrecord-keyvalues-const-qsqlrecord-qsqlrecord-keyfields-const"><code>[since 5.1]</code></a><a href="#QSqlRecord">QSqlRecord</a> QSqlRecord::keyValues(const <a href="#QSqlRecord">QSqlRecord</a> &amp;<em>keyFields</em>) const</li>
+<li><a href="#void-qsqlrecord-remove-int-pos">void QSqlRecord::remove(int <em>pos</em>)</a></li>
+<li><a href="#void-qsqlrecord-replace-int-pos-const-qsqlfield-qsqlfield-html-field">void QSqlRecord::replace(int <em>pos</em>, const </a><a href="qsqlfield.html">QSqlField</a> &amp;<em>field</em>)</li>
+<li><a href="#void-qsqlrecord-setgenerated-const-qstring-qstring-html-name-bool-generated">void QSqlRecord::setGenerated(const </a><a href="qstring.html">QString</a> &amp;<em>name</em>, bool <em>generated</em>)</li>
+<li><a href="#void-qsqlrecord-setgenerated-int-index-bool-generated">void QSqlRecord::setGenerated(int <em>index</em>, bool <em>generated</em>)</a></li>
+<li><a href="#void-qsqlrecord-setnull-int-index">void QSqlRecord::setNull(int <em>index</em>)</a></li>
+<li><a href="#void-qsqlrecord-setnull-const-qstring-qstring-html-name">void QSqlRecord::setNull(const </a><a href="qstring.html">QString</a> &amp;<em>name</em>)</li>
+<li><a href="#void-qsqlrecord-setvalue-int-index-const-qvariant-qvariant-html-val">void QSqlRecord::setValue(int <em>index</em>, const </a><a href="qvariant.html">QVariant</a> &amp;<em>val</em>)</li>
+<li><a href="#void-qsqlrecord-setvalue-const-qstring-qstring-html-name-const-qvariant-qvariant-html-val">void QSqlRecord::setValue(const </a><a href="qstring.html">QString</a> &amp;<em>name</em>, const <a href="qvariant.html">QVariant</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-html-qsqlrecord-value-int-index-const">QVariant</a></li>
+<li><a href="#qvariant-qvariant-html-qsqlrecord-value-const-qstring-qstring-html-name-const-1">QVariant</a></li>
+<li><a href="#bool-qsqlrecord-operator-const-qsqlrecord-qsqlrecord-other-const">bool QSqlRecord::operator!=(const </a><a href="#QSqlRecord">QSqlRecord</a> &amp;<em>other</em>) const</li>
+<li><a href="#bool-qsqlrecord-operator-const-qsqlrecord-qsqlrecord-other-const">bool QSqlRecord::operator==(const </a><a href="#QSqlRecord">QSqlRecord</a> &amp;<em>other</em>) const</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QSqlRecord Class
+
+<p>QSqlRecord 类封装了一个数据库记录。 <a href="#details">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qsqlrecord></qsqlrecord></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Sql REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Sql)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += sql</td>
+</tr>
+<tr>
+<td>Inherited By:</td>
+<td><a href="qsqlindex.html">QSqlIndex</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qsqlrecord-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QSqlRecord-1">QSqlRecord</a></strong>(const QSqlRecord &amp;<em>other</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QSqlRecord">QSqlRecord</a></strong>()</td>
+</tr>
+<tr>
+<td>QSqlRecord &amp;</td>
+<td><strong><a href="#operator-eq">operator=</a></strong>(const QSqlRecord &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QSqlRecord">~QSqlRecord</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#append">append</a></strong>(const QSqlField &amp;<em>field</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#clear">clear</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#clearValues">clearValues</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#contains">contains</a></strong>(const QString &amp;<em>name</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#count">count</a></strong>() const</td>
+</tr>
+<tr>
+<td>QSqlField</td>
+<td><strong><a href="#field">field</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QSqlField</td>
+<td><strong><a href="#field-1">field</a></strong>(const QString &amp;<em>name</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#fieldName">fieldName</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#indexOf">indexOf</a></strong>(const QString &amp;<em>name</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#insert">insert</a></strong>(int <em>pos</em>, const QSqlField &amp;<em>field</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isEmpty">isEmpty</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isGenerated">isGenerated</a></strong>(const QString &amp;<em>name</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isGenerated-1">isGenerated</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNull">isNull</a></strong>(const QString &amp;<em>name</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNull-1">isNull</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QSqlRecord</td>
+<td><strong><a href="#keyValues">keyValues</a></strong>(const QSqlRecord &amp;<em>keyFields</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#remove">remove</a></strong>(int <em>pos</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#replace">replace</a></strong>(int <em>pos</em>, const QSqlField &amp;<em>field</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setGenerated">setGenerated</a></strong>(const QString &amp;<em>name</em>, bool <em>generated</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setGenerated-1">setGenerated</a></strong>(int <em>index</em>, bool <em>generated</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setNull">setNull</a></strong>(int <em>index</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setNull-1">setNull</a></strong>(const QString &amp;<em>name</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setValue">setValue</a></strong>(int <em>index</em>, const QVariant &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setValue-1">setValue</a></strong>(const QString &amp;<em>name</em>, const QVariant &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#value">value</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#value-1">value</a></strong>(const QString &amp;<em>name</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-not-eq">operator!=</a></strong>(const QSqlRecord &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-eq-eq">operator==</a></strong>(const QSqlRecord &amp;<em>other</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QSqlRecord 类封装了数据库记录（通常是数据库中表或视图中的一行）的功能和特征。 QSqlRecord 支持添加和删除字段以及设置和检索字段值。</p>
+<p>记录字段的值可以通过名称或位置使用 <a href="#setValue">setValue</a>();如果要将字段设置为空，请使用 <a href="#setNull">setNull</a>()。要按名称查找字段的位置，请使用 <a href="#indexOf">indexOf</a>()，要查找特定位置的字段名称，请使用 <a href="#fieldName">fieldName</a>()。使用 <a href="#field">field</a>() 检索给定字段的 <a href="qsqlfield.html">QSqlField</a> 对象。使用 <a href="#contains">contains</a>() 查看记录是否包含特定字段名称。</p>
+<p>当生成要在数据库上执行的查询时，只有那些 <a href="#isGenerated">isGenerated</a>() 为 true 的字段才会包含在生成的 SQL 中。</p>
+<p>一条记录的字段可以用 <a href="#append">append</a>() 或 <a href="#insert">insert</a>() 添加，用 <a href="#replace">replace</a>() 替换，用 <a href="#remove">remove</a>( ）。可以使用 <a href="#clear">clear</a>() 删除所有字段。字段数由 <a href="#count">count</a>() 给出；可以使用 <a href="#clearValues">clearValues</a>() 将它们的所有值清除（为空）。</p>
+<p><strong>See also</strong> <a href="qsqlfield.html">QSqlField</a> and <a href="qsqlquery.html#record">QSqlQuery::record</a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qsqlrecord-qsqlrecord-const-qsqlrecord-amp-other">QSqlRecord::QSqlRecord(const  &amp;<em>other</em>)</span><a href="#qsqlrecord-qsqlrecord-const-qsqlrecord-amp-other" class="header-anchor">#</a></h3><p>构造 <em>other</em> 的副本。</p>
+<p>QSqlRecord 是 <a href="implicit-sharing.html">隐式共享</a>。 这意味着您可以在 <a href="containers.html#constant-time">恒定时间</a> 内复制记录。</p>
+<h3><span id="qsqlrecord-qsqlrecord">QSqlRecord::QSqlRecord()</span><a href="#qsqlrecord-qsqlrecord" class="header-anchor">#</a></h3><p>构造一个空记录。</p>
+<p><strong>See also</strong> <a href="#isEmpty">isEmpty</a>(), <a href="#append">append</a>(), and <a href="#insert">insert</a>().</p>
+<h3><span id="qsqlrecord-amp-qsqlrecord-operator-const-qsqlrecord-amp-other"> &amp;QSqlRecord::operator=(const  &amp;<em>other</em>)</span><a href="#qsqlrecord-amp-qsqlrecord-operator-const-qsqlrecord-amp-other" class="header-anchor">#</a></h3><p>设置记录等于 <em>other</em>。</p>
+<p><a href>QSqlRecord</a> 是 <a href="implicit-sharing.html">隐式共享</a>。 这意味着您可以在 <a href="containers.html#constant-time">恒定时间</a> 内复制记录。</p>
+<h3><span id="qsqlrecord-qsqlrecord">QSqlRecord::~QSqlRecord()</span><a href="#qsqlrecord-qsqlrecord" class="header-anchor">#</a></h3><p>销毁对象并释放所有分配的资源。</p>
+<h3><span id="void-qsqlrecord-append-const-qsqlfield-amp-field">void QSqlRecord::append(const  &amp;<em>field</em>)</span><a href="#void-qsqlrecord-append-const-qsqlfield-amp-field" class="header-anchor">#</a></h3><p>将字段 <em>field</em> 的副本附加到记录的末尾。</p>
+<p><strong>See also</strong> <a href="#insert">insert</a>(), <a href="#replace">replace</a>(), and <a href="#remove">remove</a>().</p>
+<h3><span id="void-qsqlrecord-clear">void QSqlRecord::clear()</span><a href="#void-qsqlrecord-clear" class="header-anchor">#</a></h3><p>删除所有记录的字段。</p>
+<p><strong>See also</strong> <a href="#clearValues">clearValues</a>() and <a href="#isEmpty">isEmpty</a>().</p>
+<h3><span id="void-qsqlrecord-clearvalues">void QSqlRecord::clearValues()</span><a href="#void-qsqlrecord-clearvalues" class="header-anchor">#</a></h3><p>清除记录中所有字段的值，并将每个字段设置为空。</p>
+<p><strong>See also</strong> <a href="#setValue">setValue</a>().</p>
+<h3><span id="bool-qsqlrecord-contains-const-qstring-amp-name-const">bool QSqlRecord::contains(const  &amp;<em>name</em>) const</span><a href="#bool-qsqlrecord-contains-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>如果记录中有一个名为 <em>name</em> 的字段，则返回 <code>true</code>； 否则返回<code>false</code>。</p>
+<h3><span id="int-qsqlrecord-count-const">int QSqlRecord::count() const</span><a href="#int-qsqlrecord-count-const" class="header-anchor">#</a></h3><p>返回记录中的字段数。</p>
+<p><strong>另请参阅</strong> <a href="#isEmpty">isEmpty</a>()。</p>
+<h3><span id="qsqlfield-qsqlrecord-field-int-index-const"> QSqlRecord::field(int <em>index</em>) const</span><a href="#qsqlfield-qsqlrecord-field-int-index-const" class="header-anchor">#</a></h3><p>返回位置 <em>index</em> 处的字段。如果 <em>index</em> 超出范围，则函数返回 <a href="containers.html#default-constructed-value">default-constructed value</a>。</p>
+<h3><span id="qsqlfield-qsqlrecord-field-const-qstring-amp-name-const"> QSqlRecord::field(const  &amp;<em>name</em>) const</span><a href="#qsqlfield-qsqlrecord-field-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>返回名为 <em>name</em> 的字段。</p>
+<h3><span id="qstring-qsqlrecord-fieldname-int-index-const"> QSqlRecord::fieldName(int <em>index</em>) const</span><a href="#qstring-qsqlrecord-fieldname-int-index-const" class="header-anchor">#</a></h3><p>返回位置 <em>index</em> 的字段名称。如果该字段不存在，则返回一个空字符串。</p>
+<p><strong>另见</strong> <a href="#indexOf">indexOf</a>()。</p>
+<h3><span id="int-qsqlrecord-indexof-const-qstring-amp-name-const">int QSqlRecord::indexOf(const  &amp;<em>name</em>) const</span><a href="#int-qsqlrecord-indexof-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>返回记录中名为 <em>name</em> 的字段的位置，如果找不到，则返回 -1。字段名称不区分大小写。如果多个字段匹配，则返回第一个。</p>
+<p><strong>另见</strong> <a href="#fieldName">fieldName</a>()。</p>
+<h3><span id="void-qsqlrecord-insert-int-pos-const-qsqlfield-amp-field">void QSqlRecord::insert(int <em>pos</em>, const  &amp;<em>field</em>)</span><a href="#void-qsqlrecord-insert-int-pos-const-qsqlfield-amp-field" class="header-anchor">#</a></h3><p>在记录中的 <em>pos</em> 位置插入字段 <em>field</em>。</p>
+<p><strong>另请参阅</strong> <a href="#append">append</a>()、<a href="#replace">replace</a>() 和 <a href="#remove">remove</a>()。</p>
+<h3><span id="bool-qsqlrecord-isempty-const">bool QSqlRecord::isEmpty() const</span><a href="#bool-qsqlrecord-isempty-const" class="header-anchor">#</a></h3><p>如果记录中没有字段，则返回 <code>true</code>；否则返回<code>false</code>。</p>
+<p><strong>另请参阅</strong> <a href="#append">append</a>()、<a href="#insert">insert</a>() 和 <a href="#clear">clear</a>()。</p>
+<h3><span id="bool-qsqlrecord-isgenerated-const-qstring-amp-name-const">bool QSqlRecord::isGenerated(const  &amp;<em>name</em>) const</span><a href="#bool-qsqlrecord-isgenerated-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>如果记录有一个名为 <em>name</em> 的字段并且要生成该字段（默认），则返回 <code>true</code>；否则返回<code>false</code>。</p>
+<p><strong>另请参阅</strong> <a href="#setGenerated">setGenerated</a>()。</p>
+<h3><span id="bool-qsqlrecord-isgenerated-int-index-const">bool QSqlRecord::isGenerated(int <em>index</em>) const</span><a href="#bool-qsqlrecord-isgenerated-int-index-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>如果记录在 <em>index</em> 位置有一个字段并且要生成该字段（默认），则返回 <code>true</code>；否则返回<code>false</code>。</p>
+<p><strong>另请参阅</strong> <a href="#setGenerated">setGenerated</a>()。</p>
+<h3><span id="bool-qsqlrecord-isnull-const-qstring-amp-name-const">bool QSqlRecord::isNull(const  &amp;<em>name</em>) const</span><a href="#bool-qsqlrecord-isnull-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>如果名为 <em>name</em> 的字段为空或没有名为 <em>name</em> 的字段，则返回 <code>true</code>；否则返回<code>false</code>。</p>
+<p><strong>另请参阅</strong> <a href="#setNull">setNull</a>()。</p>
+<h3><span id="bool-qsqlrecord-isnull-int-index-const">bool QSqlRecord::isNull(int <em>index</em>) const</span><a href="#bool-qsqlrecord-isnull-int-index-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>如果字段 <em>index</em> 为 null 或位置 <em>index</em> 处没有字段，则返回 <code>true</code>；否则返回<code>false</code>。</p>
+<h3><span id="since-5-1-qsqlrecord-qsqlrecord-keyvalues-const-qsqlrecord-amp-keyfields-const"><code>[since 5.1]</code> QSqlRecord::keyValues(const  &amp;<em>keyFields</em>) const</span><a href="#since-5-1-qsqlrecord-qsqlrecord-keyvalues-const-qsqlrecord-amp-keyfields-const" class="header-anchor">#</a></h3><p>返回包含 <em>keyFields</em> 中表示的字段的记录，这些字段设置为按字段名称匹配的值。</p>
+<p>该函数在 Qt 5.1 引入。</p>
+<h3><span id="void-qsqlrecord-remove-int-pos">void QSqlRecord::remove(int <em>pos</em>)</span><a href="#void-qsqlrecord-remove-int-pos" class="header-anchor">#</a></h3><p>删除位置 <em>pos</em> 处的字段。如果 <em>pos</em> 超出范围，则不会发生任何事情。</p>
+<p><strong>另请参阅</strong> <a href="#append">append</a>()、<a href="#insert">insert</a>() 和 <a href="#replace">replace</a>()。</p>
+<h3><span id="void-qsqlrecord-replace-int-pos-const-qsqlfield-amp-field">void QSqlRecord::replace(int <em>pos</em>, const  &amp;<em>field</em>)</span><a href="#void-qsqlrecord-replace-int-pos-const-qsqlfield-amp-field" class="header-anchor">#</a></h3><p>用给定的 <em>field</em> 替换位置 <em>pos</em> 的字段。如果 <em>pos</em> 超出范围，则不会发生任何事情。</p>
+<p><strong>另请参阅</strong> <a href="#append">append</a>()、<a href="#insert">insert</a>() 和 <a href="#remove">remove</a>()。</p>
+<h3><span id="void-qsqlrecord-setgenerated-const-qstring-amp-name-bool-generated">void QSqlRecord::setGenerated(const  &amp;<em>name</em>, bool <em>generated</em>)</span><a href="#void-qsqlrecord-setgenerated-const-qstring-amp-name-bool-generated" class="header-anchor">#</a></h3><p>将名为 <em>name</em> 的字段的生成标志设置为 <em>generated</em>。如果该字段不存在，则不会发生任何事情。例如，只有 <em>generated</em> 设置为 true 的字段才会包含在由 <a href="qsqlquerymodel.html">QSqlQueryModel</a> 生成的 SQL 中。</p>
+<p><strong>另请参阅</strong> <a href="#isGenerated">isGenerated</a>()。</p>
+<h3><span id="void-qsqlrecord-setgenerated-int-index-bool-generated">void QSqlRecord::setGenerated(int <em>index</em>, bool <em>generated</em>)</span><a href="#void-qsqlrecord-setgenerated-int-index-bool-generated" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将字段 <em>index</em> 的生成标志设置为 <em>generated</em>。</p>
+<p><strong>另请参阅</strong> <a href="#isGenerated">isGenerated</a>()。</p>
+<h3><span id="void-qsqlrecord-setnull-int-index">void QSqlRecord::setNull(int <em>index</em>)</span><a href="#void-qsqlrecord-setnull-int-index" class="header-anchor">#</a></h3><p>将字段 <em>index</em> 的值设置为 null。如果该字段不存在，则不会发生任何事情。</p>
+<p><strong>另请参阅</strong> <a href="#isNull">isNull</a>() 和 <a href="#setValue">setValue</a>()。</p>
+<h3><span id="void-qsqlrecord-setnull-const-qstring-amp-name">void QSqlRecord::setNull(const  &amp;<em>name</em>)</span><a href="#void-qsqlrecord-setnull-const-qstring-amp-name" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将名为 <em>name</em> 的字段的值设置为 null。如果该字段不存在，则不会发生任何事情。</p>
+<h3><span id="void-qsqlrecord-setvalue-int-index-const-qvariant-amp-val">void QSqlRecord::setValue(int <em>index</em>, const  &amp;<em>val</em>)</span><a href="#void-qsqlrecord-setvalue-int-index-const-qvariant-amp-val" class="header-anchor">#</a></h3><p>将位置 <em>index</em> 处的字段值设置为 <em>val</em>。如果该字段不存在，则不会发生任何事情。</p>
+<p><strong>See also</strong> <a href="#value">value</a>() and <a href="#setNull">setNull</a>().</p>
+<h3><span id="void-qsqlrecord-setvalue-const-qstring-amp-name-const-qvariant-amp-val">void QSqlRecord::setValue(const  &amp;<em>name</em>, const  &amp;<em>val</em>)</span><a href="#void-qsqlrecord-setvalue-const-qstring-amp-name-const-qvariant-amp-val" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将名为 <em>name</em> 的字段的值设置为 <em>val</em>。如果该字段不存在，则不会发生任何事情。</p>
+<h3><span id="qvariant-qsqlrecord-value-int-index-const"> QSqlRecord::value(int <em>index</em>) const</span><a href="#qvariant-qsqlrecord-value-int-index-const" class="header-anchor">#</a></h3><p>返回记录中位于 <em>index</em> 位置的字段的值。如果 <em>index</em> 超出范围，则返回无效的 <a href="qvariant.html">QVariant</a>。</p>
+<p><strong>另请参阅</strong> <a href="#setValue">setValue</a>()、<a href="#fieldName">fieldName</a>() 和 <a href="#isNull">isNull</a>()。</p>
+<h3><span id="qvariant-qsqlrecord-value-const-qstring-amp-name-const"> QSqlRecord::value(const  &amp;<em>name</em>) const</span><a href="#qvariant-qsqlrecord-value-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>返回记录中名为 <em>name</em> 的字段的值。如果字段 <em>name</em> 不存在，则返回无效变体。</p>
+<p><strong>另见</strong> <a href="#indexOf">indexOf</a>()。</p>
+<h3><span id="bool-qsqlrecord-operator-const-qsqlrecord-amp-other-const">bool QSqlRecord::operator!=(const  &amp;<em>other</em>) const</span><a href="#bool-qsqlrecord-operator-const-qsqlrecord-amp-other-const" class="header-anchor">#</a></h3><p>如果此对象与 <em>other</em> 不同，则返回 <code>true</code>；否则返回<code>false</code>。</p>
+<p><strong>另见</strong> <a href="#operator-eq-eq">operator==</a>()。</p>
+<h3><span id="bool-qsqlrecord-operator-const-qsqlrecord-amp-other-const">bool QSqlRecord::operator==(const  &amp;<em>other</em>) const</span><a href="#bool-qsqlrecord-operator-const-qsqlrecord-amp-other-const" class="header-anchor">#</a></h3><p>如果此对象与 <em>other</em> 相同（即，具有相同顺序的相同字段），则返回 <code>true</code>；否则返回<code>false</code>。</p>
+<p><strong>See also</strong> <a href="#operator-not-eq">operator!=</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/S/">S</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSqlRelationalTableModel/QSqlRelationalTableModel/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QSqlRelationalTableModel类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSqlResult/QSqlResult/">
+                        <span class="hidden-mobile">QSqlResult类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

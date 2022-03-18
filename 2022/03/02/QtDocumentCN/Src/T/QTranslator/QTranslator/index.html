@@ -1,0 +1,642 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QTranslator Class 公共函数 详细描述 查找翻译 使用多个翻译   成员函数文档 QTranslator::QTranslator(QObject *parent &#x3D; nullptr) [virtual]QTranslator::~QTranslator() [since 5.15]QString QTranslator::filePath() const [virtua">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QTranslator类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/T/QTranslator/QTranslator/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QTranslator Class 公共函数 详细描述 查找翻译 使用多个翻译   成员函数文档 QTranslator::QTranslator(QObject *parent &#x3D; nullptr) [virtual]QTranslator::~QTranslator() [since 5.15]QString QTranslator::filePath() const [virtua">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:56:18.184Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="T">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QTranslator类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QTranslator类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      51 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QTranslator类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qtranslator-class">QTranslator Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#cha-zhao-fan-yi">查找翻译</a></li>
+<li><a href="#shi-yong-duo-ge-fan-yi">使用多个翻译</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qtranslator-qtranslator-qobject-qobject-html-qobject-parent-nullptr">QTranslator::QTranslator(</a><a href="qobject.html#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#virtual-qtranslator-qtranslator"><code>[virtual]</code>QTranslator::~QTranslator()</a></li>
+<li><a href="#since-5-15-qstring-qstring-html-qtranslator-filepath-const"><code>[since 5.15]</code></a><a href="qstring.html">QString</a> QTranslator::filePath() const</li>
+<li><a href="#virtual-bool-qtranslator-isempty-const"><code>[virtual]</code>bool QTranslator::isEmpty() const</a></li>
+<li><a href="#since-5-15-qstring-qstring-html-qtranslator-language-const"><code>[since 5.15]</code></a><a href="qstring.html">QString</a> QTranslator::language() const</li>
+<li><a href="#bool-qtranslator-load-const-qstring-qstring-html-filename-const-qstring-qstring-html-directory-qstring-const-qstring-qstring-html-search-delimiters-qstring-const-qstring-qstring-html-suffix-qstring">bool QTranslator::load(const </a><a href="qstring.html">QString</a> &amp;<em>filename</em>, const <a href="qstring.html">QString</a> &amp;<em>directory</em> = QString(), const <a href="qstring.html">QString</a> &amp;<em>search_delimiters</em> = QString(), const <a href="qstring.html">QString</a> &amp;<em>suffix</em> = QString())</li>
+<li><a href="#bool-qtranslator-load-const-qlocale-qlocale-html-locale-const-qstring-qstring-html-filename-const-qstring-qstring-html-prefix-qstring-const-qstring-qstring-html-directory-qstring-const-qstring-qstring-html-suffix-qstring">bool QTranslator::load(const </a><a href="qlocale.html">QLocale</a> &amp;<em>locale</em>, const <a href="qstring.html">QString</a> &amp;<em>filename</em>, const <a href="qstring.html">QString</a> &amp;<em>prefix</em> = QString(), const <a href="qstring.html">QString</a> &amp;<em>directory</em> = QString(), const <a href="qstring.html">QString</a> &amp;<em>suffix</em> = QString())</li>
+<li><a href="#bool-qtranslator-load-const-uchar-qtglobal-html-uchar-typedef-data-int-len-const-qstring-qstring-html-directory-qstring">bool QTranslator::load(const </a><a href="qtglobal.html#uchar-typedef">uchar</a> *<em>data</em>, int <em>len</em>, const <a href="qstring.html">QString</a> &amp;<em>directory</em> = QString())</li>
+<li><a href="#virtual-qstring-qstring-html-qtranslator-translate-const-char-context-const-char-sourcetext-const-char-disambiguation-nullptr-int-n-1-const"><code>[virtual]</code></a><a href="qstring.html">QString</a> QTranslator::translate(const char *<em>context</em>, const char *<em>sourceText</em>, const char *<em>disambiguation</em> = nullptr, int <em>n</em> = -1) const</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QTranslator Class
+
+<p>QTranslator 类为文本输出提供国际化支持。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qtranslator></qtranslator></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a href="qobject.html">QObject</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qtranslator-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QTranslator">QTranslator</a></strong>(QObject *<em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QTranslator">~QTranslator</a></strong>()</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#filePath">filePath</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#isEmpty">isEmpty</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#language">language</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#load">load</a></strong>(const QString &amp;<em>filename</em>, const QString &amp;<em>directory</em> = QString(), const QString &amp;<em>search_delimiters</em> = QString(), const QString &amp;<em>suffix</em> = QString())</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#load-1">load</a></strong>(const QLocale &amp;<em>locale</em>, const QString &amp;<em>filename</em>, const QString &amp;<em>prefix</em> = QString(), const QString &amp;<em>directory</em> = QString(), const QString &amp;<em>suffix</em> = QString())</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#load-2">load</a></strong>(const uchar *<em>data</em>, int <em>len</em>, const QString &amp;<em>directory</em> = QString())</td>
+</tr>
+<tr>
+<td>virtual QString</td>
+<td><strong><a href="#translate">translate</a></strong>(const char *<em>context</em>, const char *<em>sourceText</em>, const char *<em>disambiguation</em> = nullptr, int <em>n</em> = -1) const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>此类的对象包含一组从源语言到目标语言的翻译。 QTranslator 提供了在翻译文件中查找翻译的功能。 翻译文件是使用 <a href="qtlinguist-index.html">Qt Linguist</a> 创建的。</p>
+<p>QTranslator 最常见的用途是：加载翻译文件，并使用 <a href="qcoreapplication.html#installTranslator">QCoreApplication::installTranslator</a>() 安装它。</p>
+<p>这是一个使用 QTranslator 的示例 <code>main()</code> 函数：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">QApplication <span class="hljs-title">app</span><span class="hljs-params">(argc, argv)</span></span>;
+
+    QTranslator translator;
+    <span class="hljs-comment">// look up e.g. :/i18n/myapp_de.qm</span>
+    <span class="hljs-keyword">if</span> (translator.<span class="hljs-built_in">load</span>(<span class="hljs-built_in">QLocale</span>(), <span class="hljs-built_in">QLatin1String</span>(<span class="hljs-string">"myapp"</span>), <span class="hljs-built_in">QLatin1String</span>(<span class="hljs-string">"_"</span>), <span class="hljs-built_in">QLatin1String</span>(<span class="hljs-string">":/i18n"</span>)))
+        QCoreApplication::<span class="hljs-built_in">installTranslator</span>(&amp;translator);
+
+    <span class="hljs-function">QPushButton <span class="hljs-title">hello</span><span class="hljs-params">(QCoreApplication::translate(<span class="hljs-string">"main"</span>, <span class="hljs-string">"Hello world!"</span>))</span></span>;
+    hello.<span class="hljs-built_in">resize</span>(<span class="hljs-number">100</span>, <span class="hljs-number">30</span>);
+
+    hello.<span class="hljs-built_in">show</span>();
+    <span class="hljs-keyword">return</span> app.<span class="hljs-built_in">exec</span>();
+}</code></pre></div>
+
+<p>请注意，必须在 <em>之前</em> 应用程序的小部件创建转换器。</p>
+<p>大多数应用程序永远不需要对这个类做任何其他事情。 此类提供的其他功能对于处理翻译文件的应用程序很有用。</p>
+<h3><span id="cha-zhao-fan-yi">查找翻译</span><a href="#cha-zhao-fan-yi" class="header-anchor">#</a></h3><p>可以使用 <a href="#translate">translate</a>() 查找翻译（如 <a href="qobject.html#tr">tr</a>() 和 <a href="qcoreapplication.html#translate">QCoreApplication::translate</a>() 做） . <a href="#translate">translate</a>() 函数最多需要三个参数：</p>
+<ul>
+<li><em>context</em> - 通常是 <a href="qobject.html#tr">tr</a>() 调用者的类名。</li>
+<li><em>源文本</em> - 通常是 <a href="qobject.html#tr">tr</a>() 的参数。</li>
+<li><em>disambiguation</em> - 一个可选字符串，有助于消除相同上下文中相同文本的不同用途的歧义。</li>
+</ul>
+<p>例如，当程序以波兰语运行时，对话框中的“取消”可能有“Anuluj”（在这种情况下，源文本将是“取消”）。上下文（通常）是对话框的类名；通常没有评论，翻译后的文本将是“Anuluj”。</p>
+<p>但这并不总是那么简单。带有双面打印和装订设置的西班牙语版本的打印机对话框可能需要“Activado”和“Activada”作为“已启用”的翻译。在这种情况下，源文本在这两种情况下都将是“启用”，上下文将是对话框的类名，但是这两个项目会有歧义，例如一个为“双面打印”，另一个为“绑定”。消歧使翻译者能够为西班牙语版本选择适当的性别，并使 Qt 能够区分翻译。</p>
+<h3><span id="shi-yong-duo-ge-fan-yi">使用多个翻译</span><a href="#shi-yong-duo-ge-fan-yi" class="header-anchor">#</a></h3><p>可以在一个应用程序中安装多个翻译文件。翻译按安装时的相反顺序搜索，因此首先搜索最近安装的翻译文件，最后搜索最早的翻译文件。一旦找到包含匹配字符串的翻译，搜索就会停止。</p>
+<p>这种机制使得特定翻译可以被“选择”或优先于其他翻译；只需将翻译器从应用程序中卸载，将其传递给 <a href="qcoreapplication.html#removeTranslator">QCoreApplication::removeTranslator</a>() 函数，然后使用 <a href="qcoreapplication.html#installTranslator">QCoreApplication::installTranslator</a>() 重新安装它。然后它将是第一个搜索匹配字符串的翻译。</p>
+<p><strong>See also</strong> <a href="qcoreapplication.html#installTranslator">QCoreApplication::installTranslator</a>(), <a href="qcoreapplication.html#removeTranslator">QCoreApplication::removeTranslator</a>(), <a href="qobject.html#tr">QObject::tr</a>(), <a href="qcoreapplication.html#translate">QCoreApplication::translate</a>(), <a href="qtwidgets-tools-i18n-example.html">I18N Example</a>, <a href="qtlinguist-hellotr-example.html">Hello tr() Example</a>, <a href="qtlinguist-arrowpad-example.html">Arrow Pad Example</a>, and <a href="qtlinguist-trollprint-example.html">Troll Print Example</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qtranslator-qtranslator-qobject-parent-nullptr">QTranslator::QTranslator( *<em>parent</em> = nullptr)</span><a href="#qtranslator-qtranslator-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>构造一个空的消息文件对象，其父 <em>parent</em> 未连接到任何文件。</p>
+<h3><span id="virtual-qtranslator-qtranslator"><code>[virtual]</code>QTranslator::~QTranslator()</span><a href="#virtual-qtranslator-qtranslator" class="header-anchor">#</a></h3><p>销毁对象并释放所有分配的资源。</p>
+<h3><span id="since-5-15-qstring-qtranslator-filepath-const"><code>[since 5.15]</code> QTranslator::filePath() const</span><a href="#since-5-15-qstring-qtranslator-filepath-const" class="header-anchor">#</a></h3><p>返回加载的翻译文件的路径。</p>
+<p>如果尚未加载翻译、加载失败或未从文件加载翻译，则文件路径为空。</p>
+<p>这个函数是在 Qt 5.15 中引入的。</p>
+<h3><span id="virtual-bool-qtranslator-isempty-const"><code>[virtual]</code>bool QTranslator::isEmpty() const</span><a href="#virtual-bool-qtranslator-isempty-const" class="header-anchor">#</a></h3><p>如果此转换器为空，则返回 <code>true</code>，否则返回 <code>false</code>。 此功能适用于剥离和未剥离的翻译文件。</p>
+<h3><span id="since-5-15-qstring-qtranslator-language-const"><code>[since 5.15]</code> QTranslator::language() const</span><a href="#since-5-15-qstring-qtranslator-language-const" class="header-anchor">#</a></h3><p>返回存储在翻译文件中的目标语言。</p>
+<p>这个函数是在 Qt 5.15 中引入的。</p>
+<h3><span id="bool-qtranslator-load-const-qstring-amp-filename-const-qstring-amp-directory-qstring-const-qstring-amp-search-delimiters-qstring-const-qstring-amp-suffix-qstring">bool QTranslator::load(const  &amp;<em>filename</em>, const  &amp;<em>directory</em> = QString(), const  &amp;<em>search_delimiters</em> = QString(), const  &amp;<em>suffix</em> = QString())</span><a href="#bool-qtranslator-load-const-qstring-amp-filename-const-qstring-amp-directory-qstring-const-qstring-amp-search-delimiters-qstring-const-qstring-amp-suffix-qstring" class="header-anchor">#</a></h3><p>加载 <em>filename</em> + <em>suffix</em>（如果没有指定 <em>suffix</em>，则为“.qm”），它可以是绝对文件名或相对于 <em>directory</em>。如果翻译成功加载，则返回 <code>true</code>；否则返回“假”。</p>
+<p>如果未指定 <em>directory</em>，则使用当前目录（即，作为 <a href="qdir.html#currentPath">currentPath</a>()）。</p>
+<p>此翻译器对象的先前内容将被丢弃。</p>
+<p>如果文件名不存在，则按以下顺序尝试其他文件名：</p>
+<ol>
+<li>不带<em>后缀</em>的文件名。</li>
+<li>去掉 <em>search_delimiters</em> 中的一个字符后带有文本的文件名（“_.”是 <em>search_delimiters</em> 的默认值，如果它是一个空字符串）和 <em>suffix</em>。</li>
+<li>删除文件名，不附加<em>后缀</em>。</li>
+</ol>
+<p>4.文件名进一步剥离等。</p>
+<p>例如，在 fr_CA 语言环境（加拿大法语区）中运行的应用程序可能会调用 load(“foo.fr_ca”, “/opt/foolib”)。 load() 然后会尝试从这个列表中打开第一个现有的可读文件：</p>
+<p>1.<code>/opt/foolib/foo.fr_ca.qm</code><br>2.<code>/opt/foolib/foo.fr_ca</code><br>3.<code>/opt/foolib/foo.fr.qm</code><br>4.<code>/opt/foolib/foo.fr</code><br>5.<code>/opt/foolib/foo.qm</code><br>6.<code>/opt/foolib/foo</code></p>
+<p>通常，最好使用 QTranslator::load(const <a href="qlocale.html">QLocale</a> &amp;, const <a href="qstring.html">QString</a> &amp;, const <a href="qstring.html">QString</a> &amp;, const [QString] (qstring.html) &amp;, const <a href="qstring.html">QString</a> &amp;) 函数，因为它使用 <a href="qlocale.html#uiLanguages">QLocale::uiLanguages</a>() 而不仅仅是语言环境名称，它指的是日期和数字的格式，不一定是 UI 语言。</p>
+<h3><span id="bool-qtranslator-load-const-qlocale-amp-locale-const-qstring-amp-filename-const-qstring-amp-prefix-qstring-const-qstring-amp-directory-qstring-const-qstring-amp-suffix-qstring">bool QTranslator::load(const  &amp;<em>locale</em>, const  &amp;<em>filename</em>, const  &amp;<em>prefix</em> = QString(), const  &amp;<em>directory</em> = QString(), const  &amp;<em>suffix</em> = QString())</span><a href="#bool-qtranslator-load-const-qlocale-amp-locale-const-qstring-amp-filename-const-qstring-amp-prefix-qstring-const-qstring-amp-directory-qstring-const-qstring-amp-suffix-qstring" class="header-anchor">#</a></h3><p>加载 <em>filename</em> + <em>prefix</em> + <a href="qlocale.html#uiLanguages">ui 语言名称</a> + <em>suffix</em>（如果没有指定 <em>suffix</em> 则为“.qm”），它可以是绝对文件名或相对于<em>目录</em>。如果翻译成功加载，则返回 <code>true</code>；否则返回“假”。</p>
+<p>此翻译器对象的先前内容将被丢弃。</p>
+<p>如果文件名不存在，则按以下顺序尝试其他文件名：</p>
+<ol>
+<li>不带<em>后缀</em>的文件名。</li>
+<li>删除“_”字符和<em>后缀</em>后带有ui语言部分的文件名。</li>
+<li>去掉了ui语言部分的文件名，不附加<em>后缀</em>。</li>
+<li>进一步剥离 ui 语言部分的文件名等。</li>
+</ol>
+<p>例如，在 <em>locale</em> 中运行的应用程序具有以下 <a href="qlocale.html#uiLanguages">ui 语言</a> - “es”, “fr-CA”, “de” 可能会调用 load(QLocale(), “foo” 、“.”、“/opt/foolib”、“.qm”）。 load() 会在 ui 语言中将 ‘-‘（破折号）替换为 ‘_’（下划线），然后尝试从该列表中打开第一个现有的可读文件：</p>
+<p>1.<code>/opt/foolib/foo.es.qm</code><br>2.<code>/opt/foolib/foo.es</code><br>3.<code>/opt/foolib/foo.fr_CA.qm</code><br>4.<code>/opt/foolib/foo.fr_CA</code><br>5.<code>/opt/foolib/foo.fr.qm</code><br>6.<code>/opt/foolib/foo.fr</code><br>7.<code>/opt/foolib/foo.de.qm</code><br>8.<code>/opt/foolib/foo.de</code><br>9.<code>/opt/foolib/foo.qm</code><br>10.<code>/opt/foolib/foo</code>。<br>11.<code>/opt/foolib/foo</code></p>
+<p>在文件系统区分大小写的操作系统上，<a href>QTranslator</a> 还尝试加载区域设置名称的小写版本。</p>
+<h3><span id="bool-qtranslator-load-const-uchar-data-int-len-const-qstring-amp-directory-qstring">bool QTranslator::load(const  *<em>data</em>, int <em>len</em>, const  &amp;<em>directory</em> = QString())</span><a href="#bool-qtranslator-load-const-uchar-data-int-len-const-qstring-amp-directory-qstring" class="header-anchor">#</a></h3><p>此函数重载 load()。</p>
+<p>将长度为 <em>len</em> 的 QM 文件数据 <em>data</em> 加载到转换器中。</p>
+<p>数据不会被复制。 调用者必须能够保证 <em>data</em> 不会被删除或修改。</p>
+<p><em>directory</em> 仅用于在加载 QM 文件的依赖项时指定基本目录。 如果文件没有依赖关系，则忽略此参数。</p>
+<h3><span id="virtual-qstring-qtranslator-translate-const-char-context-const-char-sourcetext-const-char-disambiguation-nullptr-int-n-1-const"><code>[virtual]</code> QTranslator::translate(const char *<em>context</em>, const char *<em>sourceText</em>, const char *<em>disambiguation</em> = nullptr, int <em>n</em> = -1) const</span><a href="#virtual-qstring-qtranslator-translate-const-char-context-const-char-sourcetext-const-char-disambiguation-nullptr-int-n-1-const" class="header-anchor">#</a></h3><p>返回键的翻译 (<em>context</em>, <em>sourceText</em>, <em>disambiguation</em>)。 如果没有找到，也尝试 (<em>context</em>, <em>sourceText</em>, “”)。 如果仍然失败，则返回一个空字符串。</p>
+<p><strong>注意：</strong> 不完整的翻译可能会导致意外行为：如果未提供 (<em>context</em>, <em>sourceText</em>, “”) 的翻译，则在这种情况下，该方法实际上可能会返回不同 <em>disambiguation</em> 的翻译。</p>
+<p>如果 <em>n</em> 不是 -1，它用于为翻译选择适当的形式（例如，“找到%n 个文件”与“找到%n 个文件”）。</p>
+<p>如果您需要以编程方式将翻译插入 <a href>QTranslator</a>，则可以重新实现此函数。</p>
+<p><strong>See also</strong> <a href="#load">load</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/T/">T</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/T/QTimer/QTimer/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QTimer类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/T/Time/Time/">
+                        <span class="hidden-mobile">QTime类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

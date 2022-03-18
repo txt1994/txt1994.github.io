@@ -1,0 +1,1423 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="代理模式 适配器模式 桥接模式 组合模式 装饰模式 外观模式 享元模式      推荐看👉常用设计模式有哪些？ (refactoringguru.cn) 代理模式#解释  对真正要被访问的产品或类加以控制，并可以进行一些控制，把访问产品与代理进行映射，访问代理就相当于访问产品  适用场景： 使用代理模式的方式多种多样， 我们来看看最常见的几种。  延迟初始化 （虚拟代理）。 如果你有一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++设计模式-结构型模式">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/03/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="代理模式 适配器模式 桥接模式 组合模式 装饰模式 外观模式 享元模式      推荐看👉常用设计模式有哪些？ (refactoringguru.cn) 代理模式#解释  对真正要被访问的产品或类加以控制，并可以进行一些控制，把访问产品与代理进行映射，访问代理就相当于访问产品  适用场景： 使用代理模式的方式多种多样， 我们来看看最常见的几种。  延迟初始化 （虚拟代理）。 如果你有一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/R-C.png">
+<meta property="article:published_time" content="2022-01-03T07:07:58.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:02:21.588Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/R-C.png">
+  
+  
+  <title>C++设计模式-结构型模式 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++设计模式-结构型模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-03 15:07" pubdate>
+        2022年1月3日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      24k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      197 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++设计模式-结构型模式</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#dai-li-mo-shi">代理模式</a></li>
+<li><a href="#gua-pei-qi-mo-shi">适配器模式</a></li>
+<li><a href="#qiao-jie-mo-shi">桥接模式</a></li>
+<li><a href="#zu-he-mo-shi">组合模式</a></li>
+<li><a href="#zhuang-shi-mo-shi">装饰模式</a></li>
+<li><a href="#wai-guan-mo-shi">外观模式</a></li>
+<li><a href="#xiang-yuan-mo-shi">享元模式</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<p>推荐看👉<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns">常用设计模式有哪些？ (refactoringguru.cn)</a></p>
+<h1><span id="dai-li-mo-shi">代理模式</span><a href="#dai-li-mo-shi" class="header-anchor">#</a></h1><p>解释</p>
+<blockquote>
+<p>对真正要被访问的产品或类加以控制，并可以进行一些控制，把访问产品与代理进行映射，访问代理就相当于访问产品</p>
+</blockquote>
+<p>适用场景：</p>
+<p>使用代理模式的方式多种多样， 我们来看看最常见的几种。</p>
+<ul>
+<li><p><strong>延迟初始化 （虚拟代理）。 如果你有一个偶尔使用的重量级服务对象， 一直保持该对象运行会消耗系统资源时， 可使用代理模式。</strong></p>
+</li>
+<li><p>你无需在程序启动时就创建该对象， 可将对象的初始化延迟到真正有需要的时候。</p>
+</li>
+<li><p><strong>访问控制 （保护代理）。 如果你只希望特定客户端使用服务对象， 这里的对象可以是操作系统中非常重要的部分， 而客户端则是各种已启动的程序 （包括恶意程序）， 此时可使用代理模式。</strong></p>
+</li>
+<li><p>代理可仅在客户端凭据满足要求时将请求传递给服务对象。</p>
+</li>
+<li><p><strong>本地执行远程服务 （远程代理）。 适用于服务对象位于远程服务器上的情形。</strong></p>
+</li>
+<li><p>在这种情形中， 代理通过网络传递客户端请求， 负责处理所有与网络相关的复杂细节。</p>
+</li>
+<li><p><strong>记录日志请求 （日志记录代理）。 适用于当你需要保存对于服务对象的请求历史记录时。 代理可以在向服务传递请求前进行记录。</strong></p>
+</li>
+<li><p>缓存请求结果 （缓存代理）。 适用于需要缓存客户请求结果并对缓存生命周期进行管理时， 特别是当返回结果的体积非常大时。</p>
+</li>
+<li><p>代理可对重复请求所需的相同结果进行缓存， 还可使用请求参数作为索引缓存的键值。</p>
+</li>
+<li><p><strong>智能引用。 可在没有客户端使用某个重量级对象时立即销毁该对象。</strong></p>
+</li>
+<li><p>代理会将所有获取了指向服务对象或其结果的客户端记录在案。 代理会时不时地遍历各个客户端， 检查它们是否仍在运行。 如果相应的客户端列表为空， 代理就会销毁该服务对象， 释放底层系统资源。</p>
+</li>
+<li><p>代理还可以记录客户端是否修改了服务对象。 其他客户端还可以复用未修改的对象。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Subject</span> {
+	<span class="hljs-keyword">public</span>:
+  	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Request</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The RealSubject contains some core business logic. Usually, RealSubjects are</span>
+<span class="hljs-comment"> * capable of doing some useful work which may also be very slow or sensitive -</span>
+<span class="hljs-comment"> * e.g. correcting input data. A Proxy can solve these issues without any</span>
+<span class="hljs-comment"> * changes to the RealSubject's code.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">RealSubject</span> : <span class="hljs-keyword">public</span> Subject {
+<span class="hljs-keyword">public</span>:
+  	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Request</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+    std::cout &lt;&lt; <span class="hljs-string">"RealSubject: Handling request.\n"</span>;
+  	}
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Proxy has an interface identical to the RealSubject.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Proxy</span> : <span class="hljs-keyword">public</span> Subject {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * @var RealSubject</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">private</span>:
+  	RealSubject *real_subject_;
+
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">CheckAccess</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-comment">// Some real checks should go here.</span>
+        std::cout &lt;&lt; <span class="hljs-string">"Proxy: Checking access prior to firing a real request.\n"</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">LogAccess</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Proxy: Logging the time of request.\n"</span>;
+    }
+
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * The Proxy maintains a reference to an object of the RealSubject class. It</span>
+<span class="hljs-comment">   * can be either lazy-loaded or passed to the Proxy by the client.</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Proxy</span>(RealSubject *real_subject) : <span class="hljs-built_in">real_subject_</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">RealSubject</span>(*real_subject)) {
+    }
+
+    ~<span class="hljs-built_in">Proxy</span>() {
+        <span class="hljs-keyword">delete</span> real_subject_;
+    }
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * The most common applications of the Proxy pattern are lazy loading,</span>
+<span class="hljs-comment">   * caching, controlling the access, logging, etc. A Proxy can perform one of</span>
+<span class="hljs-comment">   * these things and then, depending on the result, pass the execution to the</span>
+<span class="hljs-comment">   * same method in a linked RealSubject object.</span>
+<span class="hljs-comment">   */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Request</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">CheckAccess</span>()) {
+            <span class="hljs-keyword">this</span>-&gt;real_subject_-&gt;<span class="hljs-built_in">Request</span>();
+            <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">LogAccess</span>();
+        }
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code is supposed to work with all objects (both subjects and</span>
+<span class="hljs-comment"> * proxies) via the Subject interface in order to support both real subjects and</span>
+<span class="hljs-comment"> * proxies. In real life, however, clients mostly work with their real subjects</span>
+<span class="hljs-comment"> * directly. In this case, to implement the pattern more easily, you can extend</span>
+<span class="hljs-comment"> * your proxy from the real subject's class.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">(<span class="hljs-type">const</span> Subject &amp;subject)</span> </span>{
+    <span class="hljs-comment">// ...</span>
+    subject.<span class="hljs-built_in">Request</span>();
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    std::cout &lt;&lt; <span class="hljs-string">"Client: Executing the client code with a real subject:\n"</span>;
+    RealSubject *real_subject = <span class="hljs-keyword">new</span> RealSubject;
+    <span class="hljs-built_in">ClientCode</span>(*real_subject);
+    std::cout &lt;&lt; <span class="hljs-string">"\n"</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"Client: Executing the same client code with a proxy:\n"</span>;
+    Proxy *proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(real_subject);
+    <span class="hljs-built_in">ClientCode</span>(*proxy);
+
+    <span class="hljs-keyword">delete</span> real_subject;
+    <span class="hljs-keyword">delete</span> proxy;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="gua-pei-qi-mo-shi">适配器模式</span><a href="#gua-pei-qi-mo-shi" class="header-anchor">#</a></h1><p><strong>适配器模式</strong>是一种结构型设计模式， 它能使接口不兼容的对象能够相互合作。</p>
+<p>适用场景：</p>
+<ul>
+<li><p><strong>当你希望使用某个类， 但是其接口与其他代码不兼容时， 可以使用适配器类。</strong></p>
+</li>
+<li><p>适配器模式允许你创建一个中间层类， 其可作为代码与遗留类、 第三方类或提供怪异接口的类之间的转换器。</p>
+</li>
+<li><p><strong>如果您需要复用这样一些类， 他们处于同一个继承体系， 并且他们又有了额外的一些共同的方法， 但是这些共同的方法不是所有在这一继承体系中的子类所具有的共性。</strong></p>
+</li>
+<li><p>你可以扩展每个子类， 将缺少的功能添加到新的子类中。 但是， 你必须在所有新子类中重复添加这些代码， 这样会使得代码有<a target="_blank" rel="noopener" href="https://refactoringguru.cn/smells/duplicate-code">坏味道</a>。</p>
+</li>
+<li><p>将缺失功能添加到一个适配器类中是一种优雅得多的解决方案。 然后你可以将缺少功能的对象封装在适配器中， 从而动态地获取所需功能。 如要这一点正常运作， 目标类必须要有通用接口， 适配器的成员变量应当遵循该通用接口。 这种方式同<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/decorator">装饰</a>模式非常相似。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Target</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Target</span>() = <span class="hljs-keyword">default</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">Request</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Target: The default target's behavior."</span>;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Adaptee contains some useful behavior, but its interface is incompatible</span>
+<span class="hljs-comment"> * with the existing client code. The Adaptee needs some adaptation before the</span>
+<span class="hljs-comment"> * client code can use it.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Adaptee</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">std::string <span class="hljs-title">SpecificRequest</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">".eetpadA eht fo roivaheb laicepS"</span>;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Adapter makes the Adaptee's interface compatible with the Target's</span>
+<span class="hljs-comment"> * interface.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Adapter</span> : <span class="hljs-keyword">public</span> Target {
+<span class="hljs-keyword">private</span>:
+  	Adaptee *adaptee_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Adapter</span>(Adaptee *adaptee) : <span class="hljs-built_in">adaptee_</span>(adaptee) {}
+    <span class="hljs-function">std::string <span class="hljs-title">Request</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::string to_reverse = <span class="hljs-keyword">this</span>-&gt;adaptee_-&gt;<span class="hljs-built_in">SpecificRequest</span>();
+        std::<span class="hljs-built_in">reverse</span>(to_reverse.<span class="hljs-built_in">begin</span>(), to_reverse.<span class="hljs-built_in">end</span>());
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Adapter: (TRANSLATED) "</span> + to_reverse;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code supports all classes that follow the Target interface.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">(<span class="hljs-type">const</span> Target *target)</span> </span>{
+  	std::cout &lt;&lt; target-&gt;<span class="hljs-built_in">Request</span>();
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    std::cout &lt;&lt; <span class="hljs-string">"Client: I can work just fine with the Target objects:\n"</span>;
+    Target *target = <span class="hljs-keyword">new</span> Target;
+    <span class="hljs-built_in">ClientCode</span>(target);
+    std::cout &lt;&lt; <span class="hljs-string">"\n\n"</span>;
+    Adaptee *adaptee = <span class="hljs-keyword">new</span> Adaptee;
+    std::cout &lt;&lt; <span class="hljs-string">"Client: The Adaptee class has a weird interface. See, I don't understand it:\n"</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"Adaptee: "</span> &lt;&lt; adaptee-&gt;<span class="hljs-built_in">SpecificRequest</span>();
+    std::cout &lt;&lt; <span class="hljs-string">"\n\n"</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"Client: But I can work with it via the Adapter:\n"</span>;
+    Adapter *adapter = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Adapter</span>(adaptee);
+    <span class="hljs-built_in">ClientCode</span>(adapter);
+    std::cout &lt;&lt; <span class="hljs-string">"\n"</span>;
+
+    <span class="hljs-keyword">delete</span> target;
+    <span class="hljs-keyword">delete</span> adaptee;
+    <span class="hljs-keyword">delete</span> adapter;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="qiao-jie-mo-shi">桥接模式</span><a href="#qiao-jie-mo-shi" class="header-anchor">#</a></h1><p><strong>桥接模式</strong>是一种结构型设计模式， 可将一个大类或一系列紧密相关的类拆分为抽象和实现两个独立的层次结构， 从而能在开发时分别使用。</p>
+<p>适用场景：</p>
+<ul>
+<li><p><strong>如果你想要拆分或重组一个具有多重功能的庞杂类 （例如能与多个数据库服务器进行交互的类）， 可以使用桥接模式。</strong></p>
+</li>
+<li><p>类的代码行数越多， 弄清其运作方式就越困难， 对其进行修改所花费的时间就越长。 一个功能上的变化可能需要在整个类范围内进行修改， 而且常常会产生错误， 甚至还会有一些严重的副作用。</p>
+</li>
+<li><p>桥接模式可以将庞杂类拆分为几个类层次结构。 此后， 你可以修改任意一个类层次结构而不会影响到其他类层次结构。 这种方法可以简化代码的维护工作， 并将修改已有代码的风险降到最低。</p>
+</li>
+<li><p><strong>如果你希望在几个独立维度上扩展一个类， 可使用该模式。</strong></p>
+</li>
+<li><p>桥接建议将每个维度抽取为独立的类层次。 初始类将相关工作委派给属于对应类层次的对象， 无需自己完成所有工作。</p>
+</li>
+<li><p><strong>如果你需要在运行时切换不同实现方法， 可使用桥接模式。</strong></p>
+</li>
+<li><p>当然并不是说一定要实现这一点， 桥接模式可替换抽象部分中的实现对象， 具体操作就和给成员变量赋新值一样简单。</p>
+</li>
+<li><p>顺便提一句， 最后一点是很多人混淆桥接模式和<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/strategy">策略</a>模式的主要原因。 记住， 设计模式并不仅是一种对类进行组织的方式， 它还能用于沟通意图和解决问题。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Implementation</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Implementation</span>() {}
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">OperationImplementation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Each Concrete Implementation corresponds to a specific platform and</span>
+<span class="hljs-comment"> * implements the Implementation interface using that platform's API.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteImplementationA</span> : <span class="hljs-keyword">public</span> Implementation {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">std::string <span class="hljs-title">OperationImplementation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"ConcreteImplementationA: Here's the result on the platform A.\n"</span>;
+    }
+};
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteImplementationB</span> : <span class="hljs-keyword">public</span> Implementation {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">std::string <span class="hljs-title">OperationImplementation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"ConcreteImplementationB: Here's the result on the platform B.\n"</span>;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Abstraction defines the interface for the "control" part of the two class</span>
+<span class="hljs-comment"> * hierarchies. It maintains a reference to an object of the Implementation</span>
+<span class="hljs-comment"> * hierarchy and delegates all of the real work to this object.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Abstraction</span> {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * @var Implementation</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">protected</span>:
+  	Implementation* implementation_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Abstraction</span>(Implementation* implementation) : <span class="hljs-built_in">implementation_</span>(implementation) {
+    }
+
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Abstraction</span>() {
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">Operation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Abstraction: Base operation with:\n"</span> +
+            <span class="hljs-keyword">this</span>-&gt;implementation_-&gt;<span class="hljs-built_in">OperationImplementation</span>();
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * You can extend the Abstraction without changing the Implementation classes.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ExtendedAbstraction</span> : <span class="hljs-keyword">public</span> Abstraction {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">ExtendedAbstraction</span>(Implementation* implementation) : <span class="hljs-built_in">Abstraction</span>(implementation) {
+    }
+    <span class="hljs-function">std::string <span class="hljs-title">Operation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"ExtendedAbstraction: Extended operation with:\n"</span> +
+            <span class="hljs-keyword">this</span>-&gt;implementation_-&gt;<span class="hljs-built_in">OperationImplementation</span>();
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Except for the initialization phase, where an Abstraction object gets linked</span>
+<span class="hljs-comment"> * with a specific Implementation object, the client code should only depend on</span>
+<span class="hljs-comment"> * the Abstraction class. This way the client code can support any abstraction-</span>
+<span class="hljs-comment"> * implementation combination.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">(<span class="hljs-type">const</span> Abstraction&amp; abstraction)</span> </span>{
+    <span class="hljs-comment">// ...</span>
+    std::cout &lt;&lt; abstraction.<span class="hljs-built_in">Operation</span>();
+    <span class="hljs-comment">// ...</span>
+}
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code should be able to work with any pre-configured abstraction-</span>
+<span class="hljs-comment"> * implementation combination.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    Implementation* implementation = <span class="hljs-keyword">new</span> ConcreteImplementationA;
+    Abstraction* abstraction = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Abstraction</span>(implementation);
+    <span class="hljs-built_in">ClientCode</span>(*abstraction);
+    std::cout &lt;&lt; std::endl;
+    <span class="hljs-keyword">delete</span> implementation;
+    <span class="hljs-keyword">delete</span> abstraction;
+
+    implementation = <span class="hljs-keyword">new</span> ConcreteImplementationB;
+    abstraction = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ExtendedAbstraction</span>(implementation);
+    <span class="hljs-built_in">ClientCode</span>(*abstraction);
+
+    <span class="hljs-keyword">delete</span> implementation;
+    <span class="hljs-keyword">delete</span> abstraction;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="zu-he-mo-shi">组合模式</span><a href="#zu-he-mo-shi" class="header-anchor">#</a></h1><p><strong>组合模式</strong>是一种结构型设计模式， 你可以使用它将对象组合成树状结构， 并且能像使用独立对象一样使用它们。</p>
+<p><strong>适用场景</strong></p>
+<ul>
+<li><p>如果你需要实现树状对象结构， 可以使用组合模式。</p>
+</li>
+<li><p>组合模式为你提供了两种共享公共接口的基本元素类型： 简单叶节点和复杂容器。 容器中可以包含叶节点和其他容器。 这使得你可以构建树状嵌套递归对象结构。</p>
+</li>
+<li><p>如果你希望客户端代码以相同方式处理简单和复杂元素， 可以使用该模式。</p>
+</li>
+<li><p>组合模式中定义的所有元素共用同一个接口。 在这一接口的帮助下， 客户端不必在意其所使用的对象的具体类。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;list&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The base Component class declares common operations for both simple and</span>
+<span class="hljs-comment"> * complex objects of a composition.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Component</span> {
+      <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * @var Component</span>
+<span class="hljs-comment">       */</span>
+<span class="hljs-keyword">protected</span>:
+  	Component *parent_;
+      <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * Optionally, the base Component can declare an interface for setting and</span>
+<span class="hljs-comment">       * accessing a parent of the component in a tree structure. It can also</span>
+<span class="hljs-comment">       * provide some default implementation for these methods.</span>
+<span class="hljs-comment">       */</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Component</span>() {}
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SetParent</span><span class="hljs-params">(Component *parent)</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;parent_ = parent;
+    }
+    <span class="hljs-function">Component *<span class="hljs-title">GetParent</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;parent_;
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * In some cases, it would be beneficial to define the child-management</span>
+<span class="hljs-comment">       * operations right in the base Component class. This way, you won't need to</span>
+<span class="hljs-comment">       * expose any concrete component classes to the client code, even during the</span>
+<span class="hljs-comment">       * object tree assembly. The downside is that these methods will be empty for</span>
+<span class="hljs-comment">       * the leaf-level components.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Add</span><span class="hljs-params">(Component *component)</span> </span>{}
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Remove</span><span class="hljs-params">(Component *component)</span> </span>{}
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * You can provide a method that lets the client code figure out whether a</span>
+<span class="hljs-comment">       * component can bear children.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">bool</span> <span class="hljs-title">IsComposite</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * The base Component may implement some default behavior or leave it to</span>
+<span class="hljs-comment">       * concrete classes (by declaring the method containing the behavior as</span>
+<span class="hljs-comment">       * "abstract").</span>
+<span class="hljs-comment">       */</span>
+  	<span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">Operation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * The Leaf class represents the end objects of a composition. A leaf can't have</span>
+<span class="hljs-comment">     * any children.</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * Usually, it's the Leaf objects that do the actual work, whereas Composite</span>
+<span class="hljs-comment">     * objects only delegate to their sub-components.</span>
+<span class="hljs-comment">     */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Leaf</span> : <span class="hljs-keyword">public</span> Component {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">std::string <span class="hljs-title">Operation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Leaf"</span>;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Composite class represents the complex components that may have children.</span>
+<span class="hljs-comment"> * Usually, the Composite objects delegate the actual work to their children and</span>
+<span class="hljs-comment"> * then "sum-up" the result.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Composite</span> : <span class="hljs-keyword">public</span> Component {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * @var \SplObjectStorage</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">protected</span>:
+  	std::list&lt;Component *&gt; children_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * A composite object can add or remove other components (both simple or</span>
+<span class="hljs-comment">       * complex) to or from its child list.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Add</span><span class="hljs-params">(Component *component)</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;children_.<span class="hljs-built_in">push_back</span>(component);
+        component-&gt;<span class="hljs-built_in">SetParent</span>(<span class="hljs-keyword">this</span>);
+    }
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * Have in mind that this method removes the pointer to the list but doesn't</span>
+<span class="hljs-comment">   * frees the</span>
+<span class="hljs-comment">   *     memory, you should do it manually or better use smart pointers.</span>
+<span class="hljs-comment">   */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Remove</span><span class="hljs-params">(Component *component)</span> <span class="hljs-keyword">override</span> </span>{
+        children_.<span class="hljs-built_in">remove</span>(component);
+        component-&gt;<span class="hljs-built_in">SetParent</span>(<span class="hljs-literal">nullptr</span>);
+    }
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">IsComposite</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * The Composite executes its primary logic in a particular way. It traverses</span>
+<span class="hljs-comment">   * recursively through all its children, collecting and summing their results.</span>
+<span class="hljs-comment">   * Since the composite's children pass these calls to their children and so</span>
+<span class="hljs-comment">   * forth, the whole object tree is traversed as a result.</span>
+<span class="hljs-comment">   */</span>
+    <span class="hljs-function">std::string <span class="hljs-title">Operation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::string result;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> Component *c : children_) {
+            <span class="hljs-keyword">if</span> (c == children_.<span class="hljs-built_in">back</span>()) {
+                result += c-&gt;<span class="hljs-built_in">Operation</span>();
+            } <span class="hljs-keyword">else</span> {
+                result += c-&gt;<span class="hljs-built_in">Operation</span>() + <span class="hljs-string">"+"</span>;
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Branch("</span> + result + <span class="hljs-string">")"</span>;
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code works with all of the components via the base interface.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">(Component *component)</span> </span>{
+    <span class="hljs-comment">// ...</span>
+    std::cout &lt;&lt; <span class="hljs-string">"RESULT: "</span> &lt;&lt; component-&gt;<span class="hljs-built_in">Operation</span>();
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Thanks to the fact that the child-management operations are declared in the</span>
+<span class="hljs-comment"> * base Component class, the client code can work with any component, simple or</span>
+<span class="hljs-comment"> * complex, without depending on their concrete classes.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode2</span><span class="hljs-params">(Component *component1, Component *component2)</span> </span>{
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-keyword">if</span> (component1-&gt;<span class="hljs-built_in">IsComposite</span>()) {
+        component1-&gt;<span class="hljs-built_in">Add</span>(component2);
+    }
+    std::cout &lt;&lt; <span class="hljs-string">"RESULT: "</span> &lt;&lt; component1-&gt;<span class="hljs-built_in">Operation</span>();
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * This way the client code can support the simple leaf components...</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    Component *simple = <span class="hljs-keyword">new</span> Leaf;
+    std::cout &lt;&lt; <span class="hljs-string">"Client: I've got a simple component:\n"</span>;
+    <span class="hljs-built_in">ClientCode</span>(simple);
+    std::cout &lt;&lt; <span class="hljs-string">"\n\n"</span>;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * ...as well as the complex composites.</span>
+<span class="hljs-comment">       */</span>
+
+    Component *tree = <span class="hljs-keyword">new</span> Composite;
+    Component *branch1 = <span class="hljs-keyword">new</span> Composite;
+
+    Component *leaf_1 = <span class="hljs-keyword">new</span> Leaf;
+    Component *leaf_2 = <span class="hljs-keyword">new</span> Leaf;
+    Component *leaf_3 = <span class="hljs-keyword">new</span> Leaf;
+    branch1-&gt;<span class="hljs-built_in">Add</span>(leaf_1);
+    branch1-&gt;<span class="hljs-built_in">Add</span>(leaf_2);
+    Component *branch2 = <span class="hljs-keyword">new</span> Composite;
+    branch2-&gt;<span class="hljs-built_in">Add</span>(leaf_3);
+    tree-&gt;<span class="hljs-built_in">Add</span>(branch1);
+    tree-&gt;<span class="hljs-built_in">Add</span>(branch2);
+    std::cout &lt;&lt; <span class="hljs-string">"Client: Now I've got a composite tree:\n"</span>;
+    <span class="hljs-built_in">ClientCode</span>(tree);
+    std::cout &lt;&lt; <span class="hljs-string">"\n\n"</span>;
+
+    std::cout &lt;&lt; <span class="hljs-string">"Client: I don't need to check the components classes even when managing the tree:\n"</span>;
+    <span class="hljs-built_in">ClientCode2</span>(tree, simple);
+    std::cout &lt;&lt; <span class="hljs-string">"\n"</span>;
+
+    <span class="hljs-keyword">delete</span> simple;
+    <span class="hljs-keyword">delete</span> tree;
+    <span class="hljs-keyword">delete</span> branch1;
+    <span class="hljs-keyword">delete</span> branch2;
+    <span class="hljs-keyword">delete</span> leaf_1;
+    <span class="hljs-keyword">delete</span> leaf_2;
+    <span class="hljs-keyword">delete</span> leaf_3;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="zhuang-shi-mo-shi">装饰模式</span><a href="#zhuang-shi-mo-shi" class="header-anchor">#</a></h1><p><strong>装饰模式</strong>是一种结构型设计模式， 允许你通过将对象放入包含行为的特殊封装对象中来为原对象绑定新的行为。</p>
+<p>适用场景：</p>
+<ul>
+<li><p>如果你希望在无需修改代码的情况下即可使用对象， 且希望在运行时为对象新增额外的行为， 可以使用装饰模式。</p>
+</li>
+<li><p>装饰能将业务逻辑组织为层次结构， 你可为各层创建一个装饰， 在运行时将各种不同逻辑组合成对象。 由于这些对象都遵循通用接口， 客户端代码能以相同的方式使用这些对象。</p>
+</li>
+<li><p>如果用继承来扩展对象行为的方案难以实现或者根本不可行， 你可以使用该模式。</p>
+</li>
+<li><p>许多编程语言使用 <code>final</code> <code>最终</code>关键字来限制对某个类的进一步扩展。 复用最终类已有行为的唯一方法是使用装饰模式： 用封装器对其进行封装。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The base Component interface defines operations that can be altered by</span>
+<span class="hljs-comment"> * decorators.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Component</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Component</span>() {}
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">Operation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Concrete Components provide default implementations of the operations. There</span>
+<span class="hljs-comment"> * might be several variations of these classes.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteComponent</span> : <span class="hljs-keyword">public</span> Component {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">std::string <span class="hljs-title">Operation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"ConcreteComponent"</span>;
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The base Decorator class follows the same interface as the other components.</span>
+<span class="hljs-comment"> * The primary purpose of this class is to define the wrapping interface for all</span>
+<span class="hljs-comment"> * concrete decorators. The default implementation of the wrapping code might</span>
+<span class="hljs-comment"> * include a field for storing a wrapped component and the means to initialize</span>
+<span class="hljs-comment"> * it.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Decorator</span> : <span class="hljs-keyword">public</span> Component {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * @var Component</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">protected</span>:
+  	Component* component_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Decorator</span>(Component* component) : <span class="hljs-built_in">component_</span>(component) {
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * The Decorator delegates all work to the wrapped component.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function">std::string <span class="hljs-title">Operation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;component_-&gt;<span class="hljs-built_in">Operation</span>();
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Concrete Decorators call the wrapped object and alter its result in some way.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteDecoratorA</span> : <span class="hljs-keyword">public</span> Decorator {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * Decorators may call parent implementation of the operation, instead of</span>
+<span class="hljs-comment">   * calling the wrapped object directly. This approach simplifies extension of</span>
+<span class="hljs-comment">   * decorator classes.</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">ConcreteDecoratorA</span>(Component* component) : <span class="hljs-built_in">Decorator</span>(component) {
+    }
+    <span class="hljs-function">std::string <span class="hljs-title">Operation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"ConcreteDecoratorA("</span> + Decorator::<span class="hljs-built_in">Operation</span>() + <span class="hljs-string">")"</span>;
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Decorators can execute their behavior either before or after the call to a</span>
+<span class="hljs-comment"> * wrapped object.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteDecoratorB</span> : <span class="hljs-keyword">public</span> Decorator {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">ConcreteDecoratorB</span>(Component* component) : <span class="hljs-built_in">Decorator</span>(component) {
+    }
+
+    <span class="hljs-function">std::string <span class="hljs-title">Operation</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"ConcreteDecoratorB("</span> + Decorator::<span class="hljs-built_in">Operation</span>() + <span class="hljs-string">")"</span>;
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code works with all objects using the Component interface. This</span>
+<span class="hljs-comment"> * way it can stay independent of the concrete classes of components it works</span>
+<span class="hljs-comment"> * with.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">(Component* component)</span> </span>{
+    <span class="hljs-comment">// ...</span>
+    std::cout &lt;&lt; <span class="hljs-string">"RESULT: "</span> &lt;&lt; component-&gt;<span class="hljs-built_in">Operation</span>();
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * This way the client code can support both simple components...</span>
+<span class="hljs-comment">       */</span>
+    Component* simple = <span class="hljs-keyword">new</span> ConcreteComponent;
+    std::cout &lt;&lt; <span class="hljs-string">"Client: I've got a simple component:\n"</span>;
+    <span class="hljs-built_in">ClientCode</span>(simple);
+    std::cout &lt;&lt; <span class="hljs-string">"\n\n"</span>;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * ...as well as decorated ones.</span>
+<span class="hljs-comment">       *</span>
+<span class="hljs-comment">       * Note how decorators can wrap not only simple components but the other</span>
+<span class="hljs-comment">       * decorators as well.</span>
+<span class="hljs-comment">       */</span>
+    Component* decorator1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ConcreteDecoratorA</span>(simple);
+    Component* decorator2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ConcreteDecoratorB</span>(decorator1);
+    std::cout &lt;&lt; <span class="hljs-string">"Client: Now I've got a decorated component:\n"</span>;
+    <span class="hljs-built_in">ClientCode</span>(decorator2);
+    std::cout &lt;&lt; <span class="hljs-string">"\n"</span>;
+
+    <span class="hljs-keyword">delete</span> simple;
+    <span class="hljs-keyword">delete</span> decorator1;
+    <span class="hljs-keyword">delete</span> decorator2;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="wai-guan-mo-shi">外观模式</span><a href="#wai-guan-mo-shi" class="header-anchor">#</a></h1><p><strong>外观模式</strong>是一种结构型设计模式， 能为程序库、 框架或其他复杂类提供一个简单的接口。</p>
+<p>适用场景:</p>
+<ul>
+<li><p><strong>如果你需要一个指向复杂子系统的直接接口， 且该接口的功能有限， 则可以使用外观模式。</strong></p>
+</li>
+<li><p>子系统通常会随着时间的推进变得越来越复杂。 即便是应用了设计模式， 通常你也会创建更多的类。 尽管在多种情形中子系统可能是更灵活或易于复用的， 但其所需的配置和样板代码数量将会增长得更快。 为了解决这个问题， 外观将会提供指向子系统中最常用功能的快捷方式， 能够满足客户端的大部分需求。</p>
+</li>
+<li><p><strong>如果需要将子系统组织为多层结构， 可以使用外观。</strong></p>
+</li>
+<li><p>创建外观来定义子系统中各层次的入口。 你可以要求子系统仅使用外观来进行交互， 以减少子系统之间的耦合。</p>
+</li>
+<li><p>让我们回到视频转换框架的例子。 该框架可以拆分为两个层次： 音频相关和视频相关。 你可以为每个层次创建一个外观， 然后要求各层的类必须通过这些外观进行交互。 这种方式看上去与<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/mediator">中介者</a>模式非常相似。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Subsystem can accept requests either from the facade or client directly.</span>
+<span class="hljs-comment"> * In any case, to the Subsystem, the Facade is yet another client, and it's not</span>
+<span class="hljs-comment"> * a part of the Subsystem.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Subsystem1</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">std::string <span class="hljs-title">Operation1</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Subsystem1: Ready!\n"</span>;
+    }
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-function">std::string <span class="hljs-title">OperationN</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Subsystem1: Go!\n"</span>;
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Some facades can work with multiple subsystems at the same time.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Subsystem2</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">std::string <span class="hljs-title">Operation1</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Subsystem2: Get ready!\n"</span>;
+    }
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-function">std::string <span class="hljs-title">OperationZ</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Subsystem2: Fire!\n"</span>;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Facade class provides a simple interface to the complex logic of one or</span>
+<span class="hljs-comment"> * several subsystems. The Facade delegates the client requests to the</span>
+<span class="hljs-comment"> * appropriate objects within the subsystem. The Facade is also responsible for</span>
+<span class="hljs-comment"> * managing their lifecycle. All of this shields the client from the undesired</span>
+<span class="hljs-comment"> * complexity of the subsystem.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Facade</span> {
+<span class="hljs-keyword">protected</span>:
+    Subsystem1 *subsystem1_;
+    Subsystem2 *subsystem2_;
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * Depending on your application's needs, you can provide the Facade with</span>
+<span class="hljs-comment">   * existing subsystem objects or force the Facade to create them on its own.</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * In this case we will delegate the memory ownership to Facade Class</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-built_in">Facade</span>(
+        Subsystem1 *subsystem1 = <span class="hljs-literal">nullptr</span>,
+        Subsystem2 *subsystem2 = <span class="hljs-literal">nullptr</span>) {
+        <span class="hljs-keyword">this</span>-&gt;subsystem1_ = subsystem1 ?: <span class="hljs-keyword">new</span> Subsystem1;
+        <span class="hljs-keyword">this</span>-&gt;subsystem2_ = subsystem2 ?: <span class="hljs-keyword">new</span> Subsystem2;
+    }
+    ~<span class="hljs-built_in">Facade</span>() {
+        <span class="hljs-keyword">delete</span> subsystem1_;
+        <span class="hljs-keyword">delete</span> subsystem2_;
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * The Facade's methods are convenient shortcuts to the sophisticated</span>
+<span class="hljs-comment">       * functionality of the subsystems. However, clients get only to a fraction of</span>
+<span class="hljs-comment">       * a subsystem's capabilities.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function">std::string <span class="hljs-title">Operation</span><span class="hljs-params">()</span> </span>{
+        std::string result = <span class="hljs-string">"Facade initializes subsystems:\n"</span>;
+        result += <span class="hljs-keyword">this</span>-&gt;subsystem1_-&gt;<span class="hljs-built_in">Operation1</span>();
+        result += <span class="hljs-keyword">this</span>-&gt;subsystem2_-&gt;<span class="hljs-built_in">Operation1</span>();
+        result += <span class="hljs-string">"Facade orders subsystems to perform the action:\n"</span>;
+        result += <span class="hljs-keyword">this</span>-&gt;subsystem1_-&gt;<span class="hljs-built_in">OperationN</span>();
+        result += <span class="hljs-keyword">this</span>-&gt;subsystem2_-&gt;<span class="hljs-built_in">OperationZ</span>();
+        <span class="hljs-keyword">return</span> result;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code works with complex subsystems through a simple interface</span>
+<span class="hljs-comment"> * provided by the Facade. When a facade manages the lifecycle of the subsystem,</span>
+<span class="hljs-comment"> * the client might not even know about the existence of the subsystem. This</span>
+<span class="hljs-comment"> * approach lets you keep the complexity under control.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">(Facade *facade)</span> </span>{
+    <span class="hljs-comment">// ...</span>
+    std::cout &lt;&lt; facade-&gt;<span class="hljs-built_in">Operation</span>();
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code may have some of the subsystem's objects already created. In</span>
+<span class="hljs-comment"> * this case, it might be worthwhile to initialize the Facade with these objects</span>
+<span class="hljs-comment"> * instead of letting the Facade create new instances.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    Subsystem1 *subsystem1 = <span class="hljs-keyword">new</span> Subsystem1;
+    Subsystem2 *subsystem2 = <span class="hljs-keyword">new</span> Subsystem2;
+    Facade *facade = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Facade</span>(subsystem1, subsystem2);
+    <span class="hljs-built_in">ClientCode</span>(facade);
+
+    <span class="hljs-keyword">delete</span> facade;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="xiang-yuan-mo-shi">享元模式</span><a href="#xiang-yuan-mo-shi" class="header-anchor">#</a></h1><p><strong>享元模式</strong>是一种结构型设计模式， 它摒弃了在每个对象中保存所有数据的方式， 通过共享多个对象所共有的相同状态， 让你能在有限的内存容量中载入更多对象。</p>
+<p>适用场景:</p>
+<ul>
+<li><p><strong>仅在程序必须支持大量对象且没有足够的内存容量时使用享元模式。</strong></p>
+</li>
+<li><p>应用该模式所获的收益大小取决于使用它的方式和情景。 它在下列情况中最有效：</p>
+<ul>
+<li>程序需要生成数量巨大的相似对象</li>
+<li>这将耗尽目标设备的所有内存</li>
+<li>对象中包含可抽取且能在多个对象间共享的重复状态。</li>
+</ul>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Flyweight Design Pattern</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * Intent: Lets you fit more objects into the available amount of RAM by sharing</span>
+<span class="hljs-comment"> * common parts of state between multiple objects, instead of keeping all of the</span>
+<span class="hljs-comment"> * data in each object.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">SharedState</span>
+{
+    std::string brand_;
+    std::string model_;
+    std::string color_;
+
+    <span class="hljs-built_in">SharedState</span>(<span class="hljs-type">const</span> std::string &amp;brand, <span class="hljs-type">const</span> std::string &amp;model, <span class="hljs-type">const</span> std::string &amp;color)
+        : <span class="hljs-built_in">brand_</span>(brand), <span class="hljs-built_in">model_</span>(model), <span class="hljs-built_in">color_</span>(color)
+    {
+    }
+
+    <span class="hljs-keyword">friend</span> std::ostream &amp;<span class="hljs-keyword">operator</span>&lt;&lt;(std::ostream &amp;os, <span class="hljs-type">const</span> SharedState &amp;ss)
+    {
+        <span class="hljs-keyword">return</span> os &lt;&lt; <span class="hljs-string">"[ "</span> &lt;&lt; ss.brand_ &lt;&lt; <span class="hljs-string">" , "</span> &lt;&lt; ss.model_ &lt;&lt; <span class="hljs-string">" , "</span> &lt;&lt; ss.color_ &lt;&lt; <span class="hljs-string">" ]"</span>;
+    }
+};
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">UniqueState</span>
+{
+    std::string owner_;
+    std::string plates_;
+
+    <span class="hljs-built_in">UniqueState</span>(<span class="hljs-type">const</span> std::string &amp;owner, <span class="hljs-type">const</span> std::string &amp;plates)
+        : <span class="hljs-built_in">owner_</span>(owner), <span class="hljs-built_in">plates_</span>(plates)
+    {
+    }
+
+    <span class="hljs-keyword">friend</span> std::ostream &amp;<span class="hljs-keyword">operator</span>&lt;&lt;(std::ostream &amp;os, <span class="hljs-type">const</span> UniqueState &amp;us)
+    {
+        <span class="hljs-keyword">return</span> os &lt;&lt; <span class="hljs-string">"[ "</span> &lt;&lt; us.owner_ &lt;&lt; <span class="hljs-string">" , "</span> &lt;&lt; us.plates_ &lt;&lt; <span class="hljs-string">" ]"</span>;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Flyweight stores a common portion of the state (also called intrinsic</span>
+<span class="hljs-comment"> * state) that belongs to multiple real business entities. The Flyweight accepts</span>
+<span class="hljs-comment"> * the rest of the state (extrinsic state, unique for each entity) via its</span>
+<span class="hljs-comment"> * method parameters.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Flyweight</span>
+{
+<span class="hljs-keyword">private</span>:
+    SharedState *shared_state_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Flyweight</span>(<span class="hljs-type">const</span> SharedState *shared_state) : <span class="hljs-built_in">shared_state_</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">SharedState</span>(*shared_state))
+    {
+    }
+    <span class="hljs-built_in">Flyweight</span>(<span class="hljs-type">const</span> Flyweight &amp;other) : <span class="hljs-built_in">shared_state_</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">SharedState</span>(*other.shared_state_))
+    {
+    }
+    ~<span class="hljs-built_in">Flyweight</span>()
+    {
+        <span class="hljs-keyword">delete</span> shared_state_;
+    }
+    <span class="hljs-function">SharedState *<span class="hljs-title">shared_state</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">return</span> shared_state_;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Operation</span><span class="hljs-params">(<span class="hljs-type">const</span> UniqueState &amp;unique_state)</span> <span class="hljs-type">const</span></span>
+<span class="hljs-function">    </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Flyweight: Displaying shared ("</span> &lt;&lt; *shared_state_ &lt;&lt; <span class="hljs-string">") and unique ("</span> &lt;&lt; unique_state &lt;&lt; <span class="hljs-string">") state.\n"</span>;
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Flyweight Factory creates and manages the Flyweight objects. It ensures</span>
+<span class="hljs-comment"> * that flyweights are shared correctly. When the client requests a flyweight,</span>
+<span class="hljs-comment"> * the factory either returns an existing instance or creates a new one, if it</span>
+<span class="hljs-comment"> * doesn't exist yet.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">FlyweightFactory</span>
+{
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * @var Flyweight[]</span>
+<span class="hljs-comment">     */</span>
+<span class="hljs-keyword">private</span>:
+    std::unordered_map&lt;std::string, Flyweight&gt; flyweights_;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * Returns a Flyweight's string hash for a given state.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function">std::string <span class="hljs-title">GetKey</span><span class="hljs-params">(<span class="hljs-type">const</span> SharedState &amp;ss)</span> <span class="hljs-type">const</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">return</span> ss.brand_ + <span class="hljs-string">"_"</span> + ss.model_ + <span class="hljs-string">"_"</span> + ss.color_;
+    }
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">FlyweightFactory</span>(std::initializer_list&lt;SharedState&gt; share_states)
+    {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> SharedState &amp;ss : share_states)
+        {
+            <span class="hljs-keyword">this</span>-&gt;flyweights_.<span class="hljs-built_in">insert</span>(std::<span class="hljs-built_in">make_pair</span>&lt;std::string, Flyweight&gt;(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">GetKey</span>(ss), <span class="hljs-built_in">Flyweight</span>(&amp;ss)));
+        }
+    }
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * Returns an existing Flyweight with a given state or creates a new one.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function">Flyweight <span class="hljs-title">GetFlyweight</span><span class="hljs-params">(<span class="hljs-type">const</span> SharedState &amp;shared_state)</span></span>
+<span class="hljs-function">    </span>{
+        std::string key = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">GetKey</span>(shared_state);
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;flyweights_.<span class="hljs-built_in">find</span>(key) == <span class="hljs-keyword">this</span>-&gt;flyweights_.<span class="hljs-built_in">end</span>())
+        {
+            std::cout &lt;&lt; <span class="hljs-string">"FlyweightFactory: Can't find a flyweight, creating new one.\n"</span>;
+            <span class="hljs-keyword">this</span>-&gt;flyweights_.<span class="hljs-built_in">insert</span>(std::<span class="hljs-built_in">make_pair</span>(key, <span class="hljs-built_in">Flyweight</span>(&amp;shared_state)));
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            std::cout &lt;&lt; <span class="hljs-string">"FlyweightFactory: Reusing existing flyweight.\n"</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;flyweights_.<span class="hljs-built_in">at</span>(key);
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ListFlyweights</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-type">size_t</span> count = <span class="hljs-keyword">this</span>-&gt;flyweights_.<span class="hljs-built_in">size</span>();
+        std::cout &lt;&lt; <span class="hljs-string">"\nFlyweightFactory: I have "</span> &lt;&lt; count &lt;&lt; <span class="hljs-string">" flyweights:\n"</span>;
+        <span class="hljs-keyword">for</span> (std::pair&lt;std::string, Flyweight&gt; pair : <span class="hljs-keyword">this</span>-&gt;flyweights_)
+        {
+            std::cout &lt;&lt; pair.first &lt;&lt; <span class="hljs-string">"\n"</span>;
+        }
+    }
+};
+
+<span class="hljs-comment">// ...</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">AddCarToPoliceDatabase</span><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">    FlyweightFactory &amp;ff, <span class="hljs-type">const</span> std::string &amp;plates, <span class="hljs-type">const</span> std::string &amp;owner,</span></span>
+<span class="hljs-params"><span class="hljs-function">    <span class="hljs-type">const</span> std::string &amp;brand, <span class="hljs-type">const</span> std::string &amp;model, <span class="hljs-type">const</span> std::string &amp;color)</span></span>
+<span class="hljs-function"></span>{
+    std::cout &lt;&lt; <span class="hljs-string">"\nClient: Adding a car to database.\n"</span>;
+    <span class="hljs-type">const</span> Flyweight &amp;flyweight = ff.<span class="hljs-built_in">GetFlyweight</span>({brand, model, color});
+    <span class="hljs-comment">// The client code either stores or calculates extrinsic state and passes it</span>
+    <span class="hljs-comment">// to the flyweight's methods.</span>
+    flyweight.<span class="hljs-built_in">Operation</span>({owner, plates});
+}
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code usually creates a bunch of pre-populated flyweights in the</span>
+<span class="hljs-comment"> * initialization stage of the application.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    FlyweightFactory *factory = <span class="hljs-keyword">new</span> <span class="hljs-built_in">FlyweightFactory</span>({{<span class="hljs-string">"Chevrolet"</span>, <span class="hljs-string">"Camaro2018"</span>, <span class="hljs-string">"pink"</span>}, {<span class="hljs-string">"Mercedes Benz"</span>, <span class="hljs-string">"C300"</span>, <span class="hljs-string">"black"</span>}, {<span class="hljs-string">"Mercedes Benz"</span>, <span class="hljs-string">"C500"</span>, <span class="hljs-string">"red"</span>}, {<span class="hljs-string">"BMW"</span>, <span class="hljs-string">"M5"</span>, <span class="hljs-string">"red"</span>}, {<span class="hljs-string">"BMW"</span>, <span class="hljs-string">"X6"</span>, <span class="hljs-string">"white"</span>}});
+    factory-&gt;<span class="hljs-built_in">ListFlyweights</span>();
+
+    <span class="hljs-built_in">AddCarToPoliceDatabase</span>(*factory,
+                            <span class="hljs-string">"CL234IR"</span>,
+                            <span class="hljs-string">"James Doe"</span>,
+                            <span class="hljs-string">"BMW"</span>,
+                            <span class="hljs-string">"M5"</span>,
+                            <span class="hljs-string">"red"</span>);
+
+    <span class="hljs-built_in">AddCarToPoliceDatabase</span>(*factory,
+                            <span class="hljs-string">"CL234IR"</span>,
+                            <span class="hljs-string">"James Doe"</span>,
+                            <span class="hljs-string">"BMW"</span>,
+                            <span class="hljs-string">"X1"</span>,
+                            <span class="hljs-string">"red"</span>);
+    factory-&gt;<span class="hljs-built_in">ListFlyweights</span>();
+    <span class="hljs-keyword">delete</span> factory;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/03/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A1%8C%E4%B8%BA%E6%A8%A1%E5%BC%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++设计模式-行为模式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="hidden-mobile">数据结构</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

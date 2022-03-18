@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QSqlIndex Class 公共函数 详细描述 成员函数文档 QSqlIndex::QSqlIndex(const QSqlIndex &amp;other) QSqlIndex::QSqlIndex(const QString &amp;cursorname &#x3D; QString(), const QString &amp;name &#x3D; QString()) QSqlIndex QS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QSqlIndex类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/QSqlIndex/QSqlIndex/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QSqlIndex Class 公共函数 详细描述 成员函数文档 QSqlIndex::QSqlIndex(const QSqlIndex &amp;other) QSqlIndex::QSqlIndex(const QString &amp;cursorname &#x3D; QString(), const QString &amp;name &#x3D; QString()) QSqlIndex QS">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:53:46.530Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="S">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QSqlIndex类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QSqlIndex类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QSqlIndex类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qsqlindex-class">QSqlIndex Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qsqlindex-qsqlindex-const-qsqlindex-qsqlindex-other">QSqlIndex::QSqlIndex(const </a><a href="#QSqlIndex">QSqlIndex</a> &amp;<em>other</em>)</li>
+<li><a href="#qsqlindex-qsqlindex-const-qstring-qstring-html-cursorname-qstring-const-qstring-qstring-html-name-qstring">QSqlIndex::QSqlIndex(const </a><a href="qstring.html">QString</a> &amp;<em>cursorname</em> = QString(), const <a href="qstring.html">QString</a> &amp;<em>name</em> = QString())</li>
+<li><a href="#qsqlindex-qsqlindex-qsqlindex-operator-const-qsqlindex-qsqlindex-other">QSqlIndex</a></li>
+<li><a href="#qsqlindex-qsqlindex">QSqlIndex::~QSqlIndex()</a></li>
+<li><a href="#void-qsqlindex-append-const-qsqlfield-qsqlfield-html-field">void QSqlIndex::append(const </a><a href="qsqlfield.html">QSqlField</a> &amp;<em>field</em>)</li>
+<li><a href="#void-qsqlindex-append-const-qsqlfield-qsqlfield-html-field-bool-desc">void QSqlIndex::append(const </a><a href="qsqlfield.html">QSqlField</a> &amp;<em>field</em>, bool <em>desc</em>)</li>
+<li><a href="#qstring-qstring-html-qsqlindex-cursorname-const">QString</a></li>
+<li><a href="#bool-qsqlindex-isdescending-int-i-const">bool QSqlIndex::isDescending(int <em>i</em>) const</a></li>
+<li><a href="#qstring-qstring-html-qsqlindex-name-const-1">QString</a></li>
+<li><a href="#void-qsqlindex-setcursorname-const-qstring-qstring-html-cursorname">void QSqlIndex::setCursorName(const </a><a href="qstring.html">QString</a> &amp;<em>cursorName</em>)</li>
+<li><a href="#void-qsqlindex-setdescending-int-i-bool-desc">void QSqlIndex::setDescending(int <em>i</em>, bool <em>desc</em>)</a></li>
+<li><a href="#void-qsqlindex-setname-const-qstring-qstring-html-name">void QSqlIndex::setName(const </a><a href="qstring.html">QString</a> &amp;<em>name</em>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QSqlIndex Class
+
+<p>QSqlIndex 类提供了操作和描述数据库索引的函数。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qsqlindex></qsqlindex></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Sql REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Sql)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += sql</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a href="qsqlrecord.html">QSqlRecord</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qsqlindex-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QSqlIndex-1">QSqlIndex</a></strong>(const QSqlIndex &amp;<em>other</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QSqlIndex">QSqlIndex</a></strong>(const QString &amp;<em>cursorname</em> = QString(), const QString &amp;<em>name</em> = QString())</td>
+</tr>
+<tr>
+<td>QSqlIndex &amp;</td>
+<td><strong><a href="#operator-eq">operator=</a></strong>(const QSqlIndex &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QSqlIndex">~QSqlIndex</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#append">append</a></strong>(const QSqlField &amp;<em>field</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#append-1">append</a></strong>(const QSqlField &amp;<em>field</em>, bool <em>desc</em>)</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#cursorName">cursorName</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isDescending">isDescending</a></strong>(int <em>i</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#name">name</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setCursorName">setCursorName</a></strong>(const QString &amp;<em>cursorName</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setDescending">setDescending</a></strong>(int <em>i</em>, bool <em>desc</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setName">setName</a></strong>(const QString &amp;<em>name</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p><em>index</em> 指的是数据库中的单个表或视图。 有关构成索引的字段的信息可用于生成 SQL 语句。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qsqlindex-qsqlindex-const-qsqlindex-amp-other">QSqlIndex::QSqlIndex(const  &amp;<em>other</em>)</span><a href="#qsqlindex-qsqlindex-const-qsqlindex-amp-other" class="header-anchor">#</a></h3><p>构造 <em>other</em> 的副本。</p>
+<h3><span id="qsqlindex-qsqlindex-const-qstring-amp-cursorname-qstring-const-qstring-amp-name-qstring">QSqlIndex::QSqlIndex(const  &amp;<em>cursorname</em> = QString(), const  &amp;<em>name</em> = QString())</span><a href="#qsqlindex-qsqlindex-const-qstring-amp-cursorname-qstring-const-qstring-amp-name-qstring" class="header-anchor">#</a></h3><p>使用游标名称 <em>cursorname</em> 和索引名称 <em>name</em> 构造一个空索引。</p>
+<h3><span id="qsqlindex-amp-qsqlindex-operator-const-qsqlindex-amp-other"> &amp;QSqlIndex::operator=(const  &amp;<em>other</em>)</span><a href="#qsqlindex-amp-qsqlindex-operator-const-qsqlindex-amp-other" class="header-anchor">#</a></h3><p>设置索引等于 <em>other</em>。</p>
+<h3><span id="qsqlindex-qsqlindex">QSqlIndex::~QSqlIndex()</span><a href="#qsqlindex-qsqlindex" class="header-anchor">#</a></h3><p>销毁对象并释放所有分配的资源。</p>
+<h3><span id="void-qsqlindex-append-const-qsqlfield-amp-field">void QSqlIndex::append(const  &amp;<em>field</em>)</span><a href="#void-qsqlindex-append-const-qsqlfield-amp-field" class="header-anchor">#</a></h3><p>将字段 <em>field</em> 附加到索引字段列表中。 该字段附加了升序排序顺序。</p>
+<h3><span id="void-qsqlindex-append-const-qsqlfield-amp-field-bool-desc">void QSqlIndex::append(const  &amp;<em>field</em>, bool <em>desc</em>)</span><a href="#void-qsqlindex-append-const-qsqlfield-amp-field-bool-desc" class="header-anchor">#</a></h3><p>这是一个过载功能。</p>
+<p>将字段 <em>field</em> 附加到索引字段列表中。 除非 <em>desc</em> 为真，否则该字段会附加升序排序。</p>
+<h3><span id="qstring-qsqlindex-cursorname-const"> QSqlIndex::cursorName() const</span><a href="#qstring-qsqlindex-cursorname-const" class="header-anchor">#</a></h3><p>返回与索引关联的游标的名称。</p>
+<p><strong>See also</strong> <a href="#setCursorName">setCursorName</a>().</p>
+<h3><span id="bool-qsqlindex-isdescending-int-i-const">bool QSqlIndex::isDescending(int <em>i</em>) const</span><a href="#bool-qsqlindex-isdescending-int-i-const" class="header-anchor">#</a></h3><p>如果索引中的字段 <em>i</em> 按降序排序，则返回 <code>true</code>； 否则返回“假”。</p>
+<h3><span id="qstring-qsqlindex-name-const"> QSqlIndex::name() const</span><a href="#qstring-qsqlindex-name-const" class="header-anchor">#</a></h3><p>返回索引的名称。</p>
+<p><strong>See also</strong> <a href="#setName">setName</a>().</p>
+<h3><span id="void-qsqlindex-setcursorname-const-qstring-amp-cursorname">void QSqlIndex::setCursorName(const  &amp;<em>cursorName</em>)</span><a href="#void-qsqlindex-setcursorname-const-qstring-amp-cursorname" class="header-anchor">#</a></h3><p>将与索引关联的游标的名称设置为 <em>cursorName</em>。</p>
+<p><strong>See also</strong> <a href="#cursorName">cursorName</a>().</p>
+<h3><span id="void-qsqlindex-setdescending-int-i-bool-desc">void QSqlIndex::setDescending(int <em>i</em>, bool <em>desc</em>)</span><a href="#void-qsqlindex-setdescending-int-i-bool-desc" class="header-anchor">#</a></h3><p>如果 <em>desc</em> 为真，则字段 <em>i</em> 按降序排序。 否则，字段 <em>i</em> 将按升序排序（默认）。 如果该字段不存在，则不会发生任何事情。</p>
+<p><strong>See also</strong> <a href="#isDescending">isDescending</a>().</p>
+<h3><span id="void-qsqlindex-setname-const-qstring-amp-name">void QSqlIndex::setName(const  &amp;<em>name</em>)</span><a href="#void-qsqlindex-setname-const-qstring-amp-name" class="header-anchor">#</a></h3><p>将索引的名称设置为 <em>name</em>。</p>
+<p><strong>See also</strong> <a href="#name">name</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/S/">S</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSqlField/QSqlField/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QSqlField类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSqlQueryModel/QSqlQueryModel/">
+                        <span class="hidden-mobile">QSqlQueryModel类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

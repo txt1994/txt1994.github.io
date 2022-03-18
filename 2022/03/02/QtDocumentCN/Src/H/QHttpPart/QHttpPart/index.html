@@ -1,0 +1,614 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QHttpPart Class 公共函数 详细描述 成员函数文档 QHttpPart::QHttpPart(const QHttpPart &amp;other) QHttpPart::QHttpPart() QHttpPart QHttpPart::~QHttpPart() void QHttpPart::setBody(const QByteArray &amp;body) void">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QHttpPart类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/H/QHttpPart/QHttpPart/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QHttpPart Class 公共函数 详细描述 成员函数文档 QHttpPart::QHttpPart(const QHttpPart &amp;other) QHttpPart::QHttpPart() QHttpPart QHttpPart::~QHttpPart() void QHttpPart::setBody(const QByteArray &amp;body) void">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:31:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:41:17.842Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="H">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QHttpPart类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QHttpPart类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:31" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      37 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QHttpPart类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qhttppart-class">QHttpPart Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qhttppart-qhttppart-const-qhttppart-https-doc-qt-io-qt-6-qhttppart-html-qhttppart-other">QHttpPart::QHttpPart(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#QHttpPart">QHttpPart</a> &amp;<em>other</em>)</li>
+<li><a href="#qhttppart-qhttppart">QHttpPart::QHttpPart()</a></li>
+<li><a href="#qhttppart-https-doc-qt-io-qt-6-qhttppart-html-qhttppart-qhttppart-operator-const-qhttppart-https-doc-qt-io-qt-6-qhttppart-html-qhttppart-other">QHttpPart</a></li>
+<li><a href="#qhttppart-qhttppart">QHttpPart::~QHttpPart()</a></li>
+<li><a href="#void-qhttppart-setbody-const-qbytearray-https-doc-qt-io-qt-6-qbytearray-html-body">void QHttpPart::setBody(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbytearray.html">QByteArray</a> &amp;<em>body</em>)</li>
+<li><a href="#void-qhttppart-setbodydevice-qiodevice-https-doc-qt-io-qt-6-qiodevice-html-device">void QHttpPart::setBodyDevice(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html">QIODevice</a> *<em>device</em>)</li>
+<li><a href="#void-qhttppart-setheader-qnetworkrequest-knownheaders-https-doc-qt-io-qt-6-qnetworkrequest-html-knownheaders-enum-header-const-qvariant-https-doc-qt-io-qt-6-qvariant-html-value">void QHttpPart::setHeader(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkrequest.html#KnownHeaders-enum">QNetworkRequest::KnownHeaders</a> <em>header</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a> &amp;<em>value</em>)</li>
+<li><a href="#void-qhttppart-setrawheader-const-qbytearray-https-doc-qt-io-qt-6-qbytearray-html-headername-const-qbytearray-https-doc-qt-io-qt-6-qbytearray-html-headervalue">void QHttpPart::setRawHeader(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbytearray.html">QByteArray</a> &amp;<em>headerName</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbytearray.html">QByteArray</a> &amp;<em>headerValue</em>)</li>
+<li><a href="#since-5-0-void-qhttppart-swap-qhttppart-https-doc-qt-io-qt-6-qhttppart-html-qhttppart-other"><code>[since 5.0]</code>void QHttpPart::swap(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#QHttpPart">QHttpPart</a> &amp;<em>other</em>)</li>
+<li><a href="#bool-qhttppart-operator-const-qhttppart-https-doc-qt-io-qt-6-qhttppart-html-qhttppart-other-const">bool QHttpPart::operator!=(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#QHttpPart">QHttpPart</a> &amp;<em>other</em>) const</li>
+<li><a href="#bool-qhttppart-operator-const-qhttppart-https-doc-qt-io-qt-6-qhttppart-html-qhttppart-other-const">bool QHttpPart::operator==(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#QHttpPart">QHttpPart</a> &amp;<em>other</em>) const</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QHttpPart Class
+
+<p>QHttpPart类持有一个用于HTTP多部分MIME消息中的主体部分. <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qhttppart></qhttppart></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Network REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Network)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += network</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#QHttpPart-1">QHttpPart</a></strong>(const QHttpPart &amp;<em>other</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#QHttpPart">QHttpPart</a></strong>()</td>
+</tr>
+<tr>
+<td>QHttpPart &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#operator-eq-1">operator=</a></strong>(const QHttpPart &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#dtor.QHttpPart">~QHttpPart</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setBody">setBody</a></strong>(const QByteArray &amp;<em>body</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setBodyDevice">setBodyDevice</a></strong>(QIODevice *<em>device</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setHeader">setHeader</a></strong>(QNetworkRequest::KnownHeaders <em>header</em>, const QVariant &amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setRawHeader">setRawHeader</a></strong>(const QByteArray &amp;<em>headerName</em>, const QByteArray &amp;<em>headerValue</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#swap">swap</a></strong>(QHttpPart &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#operator-not-eq">operator!=</a></strong>(const QHttpPart &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#operator-eq-eq">operator==</a></strong>(const QHttpPart &amp;<em>other</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QHttpPart类持有一个在HTTP多部分MIME消息（由<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttpmultipart.html">QHttpMultiPart</a>类表示）中使用的主体部分。一个QHttpPart由一个头块和一个数据块组成，它们之间由两个连续的新行分开。一个部分的例子是：</p>
+<div class="code-wrapper"><pre><code class="hljs http"><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>text/plain
+<span class="hljs-attribute">Content-Disposition</span><span class="hljs-punctuation">: </span>form-data; name="text"
+
+here goes the body</code></pre></div>
+
+<p>对于设置标题，使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setHeader">setHeader</a>()和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setRawHeader">setRawHeader</a>()，它们的行为与<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkrequest.html#setHeader">QNetworkRequest::setHeader</a>()和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkrequest.html#setRawHeader">QNetworkRequest::setRawHeader</a>()完全一样。</p>
+<p>对于读取小块的数据，使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setBody">setBody</a>()；对于较大的数据块，如图像，使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setBodyDevice">setBodyDevice</a>()。后一种方法不在内部复制数据，而是直接从设备上读取，从而节省了内存。这意味着在通过<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkaccessmanager.html#post">QNetworkAccessManager::post</a>()在网络上发送包含身体部分的多部分消息时，该设备必须被打开并可读。</p>
+<p>为了构造一个具有小体的QHttpPart，请考虑下面的片段（这产生了上面例子中所示的数据）：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QHttpPart textPart;
+textPart.<span class="hljs-built_in">setHeader</span>(QNetworkRequest::ContentTypeHeader, <span class="hljs-built_in">QVariant</span>(<span class="hljs-string">"text/plain"</span>));
+textPart.<span class="hljs-built_in">setHeader</span>(QNetworkRequest::ContentDispositionHeader, <span class="hljs-built_in">QVariant</span>(<span class="hljs-string">"form-data; name=\"text\""</span>));
+textPart.<span class="hljs-built_in">setBody</span>(<span class="hljs-string">"here goes the body"</span>);</code></pre></div>
+
+<p>为了构造一个从设备（例如一个文件）读取的QHttpPart，可以应用以下内容：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QHttpPart imagePart;
+imagePart.<span class="hljs-built_in">setHeader</span>(QNetworkRequest::ContentTypeHeader, <span class="hljs-built_in">QVariant</span>(<span class="hljs-string">"image/jpeg"</span>));
+imagePart.<span class="hljs-built_in">setHeader</span>(QNetworkRequest::ContentDispositionHeader, <span class="hljs-built_in">QVariant</span>(<span class="hljs-string">"form-data; name=\"image\""</span>));
+imagePart.<span class="hljs-built_in">setRawHeader</span>(<span class="hljs-string">"Content-ID"</span>, <span class="hljs-string">"my@content.id"</span>); <span class="hljs-comment">// add any headers you like via setRawHeader()</span>
+QFile *file = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QFile</span>(<span class="hljs-string">"image.jpg"</span>);
+file-&gt;<span class="hljs-built_in">open</span>(QIODevice::ReadOnly);
+imagePart.<span class="hljs-built_in">setBodyDevice</span>(file);</code></pre></div>
+
+<p>请注意，QHttpPart在被设置时并没有取得设备的所有权，所以当它不再被需要时，销毁它是开发者的责任。一个好的主意可能是将多部件消息设置为设备的父对象，正如<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttpmultipart.html">QHttpMultiPart</a>的文档所记载的那样。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttpmultipart.html">QHttpMultiPart</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkaccessmanager.html">QNetworkAccessManager</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qhttppart-qhttppart-const-qhttppart-amp-other">QHttpPart::QHttpPart(const  &amp;<em>other</em>)</span><a href="#qhttppart-qhttppart-const-qhttppart-amp-other" class="header-anchor">#</a></h3><p>创建一个<em>other</em>的副本。</p>
+<h3><span id="qhttppart-qhttppart">QHttpPart::QHttpPart()</span><a href="#qhttppart-qhttppart" class="header-anchor">#</a></h3><p>创建一个空的QHttpPart对象.</p>
+<h3><span id="qhttppart-amp-qhttppart-operator-const-qhttppart-amp-other"> &amp;QHttpPart::operator=(const  &amp;<em>other</em>)</span><a href="#qhttppart-amp-qhttppart-operator-const-qhttppart-amp-other" class="header-anchor">#</a></h3><p>创建一个<em>other</em>的副本。</p>
+<h3><span id="qhttppart-qhttppart">QHttpPart::~QHttpPart()</span><a href="#qhttppart-qhttppart" class="header-anchor">#</a></h3><p>摧毁这个  <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html">QHttpPart</a>.</p>
+<h3><span id="void-qhttppart-setbody-const-qbytearray-amp-body">void QHttpPart::setBody(const  &amp;<em>body</em>)</span><a href="#void-qhttppart-setbody-const-qbytearray-amp-body" class="header-anchor">#</a></h3><p>将这个MIME部分的主体设置为<em>body</em>。除非通过<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setBodyDevice">setBodyDevice</a>()设置设备，否则将使用用此方法设置的body。对于大量的数据（如图片），请使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setBodyDevice">setBodyDevice</a>()，它将不会在内部复制数据。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setBodyDevice">setBodyDevice</a>().</p>
+<h3><span id="void-qhttppart-setbodydevice-qiodevice-device">void QHttpPart::setBodyDevice( *<em>device</em>)</span><a href="#void-qhttppart-setbodydevice-qiodevice-device" class="header-anchor">#</a></h3><p>把要读取内容的设备设置为<em>device</em>。对于大量的数据，这个方法应该比<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setBody">setBody</a>()更受欢迎，因为使用这个方法时，内容不会被复制，而是直接从设备读取。<em>device</em>必须是开放的和可读的。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html">QHttpPart</a>并不占有<em>device</em>的所有权，也就是说，如果有必要的话，必须关闭并销毁该设备。如果<em>device</em>是连续的（例如，套接字，但不是文件），<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkaccessmanager.html#post">QNetworkAccessManager::post</a>()应该在<em>device</em>发出 finished()之后被呼叫。对于通过<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setBody">setBody</a>()取消设置设备和使用数据集，使用 “setBodyDevice(0)”。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setBody">setBody</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkaccessmanager.html#post">QNetworkAccessManager::post</a>().</p>
+<h3><span id="void-qhttppart-setheader-qnetworkrequest-knownheaders-header-const-qvariant-amp-value">void QHttpPart::setHeader( <em>header</em>, const  &amp;<em>value</em>)</span><a href="#void-qhttppart-setheader-qnetworkrequest-knownheaders-header-const-qvariant-amp-value" class="header-anchor">#</a></h3><p>将已知的头信息<em>header</em>的值设置为<em>value</em>，覆盖之前设置的任何头信息。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkrequest.html#KnownHeaders-enum">QNetworkRequest::KnownHeaders</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setRawHeader">setRawHeader</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkrequest.html#setHeader">QNetworkRequest::setHeader</a>().</p>
+<h3><span id="void-qhttppart-setrawheader-const-qbytearray-amp-headername-const-qbytearray-amp-headervalue">void QHttpPart::setRawHeader(const  &amp;<em>headerName</em>, const  &amp;<em>headerValue</em>)</span><a href="#void-qhttppart-setrawheader-const-qbytearray-amp-headername-const-qbytearray-amp-headervalue" class="header-anchor">#</a></h3><p>设置头信息<em>headerName</em>的值为<em>headerValue</em>。如果<em>headerName</em>对应于一个已知的头（见<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkrequest.html#KnownHeaders-enum">QNetworkRequest::KnownHeaders</a>），原始格式将被解析，相应的 “熟 “头也将被设置。</p>
+<p><strong>注意：</strong>两次设置同一个头会覆盖之前的设置。为了完成多个同名HTTP头的行为，你应该把两个值连接起来，用逗号（”,”）分开，然后设置一个单一的原始头。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkrequest.html#KnownHeaders-enum">QNetworkRequest::KnownHeaders</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#setHeader">setHeader</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkrequest.html#setRawHeader">QNetworkRequest::setRawHeader</a>().</p>
+<h3><span id="since-5-0-void-qhttppart-swap-qhttppart-amp-other"><code>[since 5.0]</code>void QHttpPart::swap( &amp;<em>other</em>)</span><a href="#since-5-0-void-qhttppart-swap-qhttppart-amp-other" class="header-anchor">#</a></h3><p>将这个HTTP部分与<em>other</em>的部分交换。这个功能非常快，而且从未失败。</p>
+<p>此函数被加入于 5.0.</p>
+<h3><span id="bool-qhttppart-operator-const-qhttppart-amp-other-const">bool QHttpPart::operator!=(const  &amp;<em>other</em>) const</span><a href="#bool-qhttppart-operator-const-qhttppart-amp-other-const" class="header-anchor">#</a></h3><p>如果这个对象与<em>other</em>对象不一样，返回<code>true</code>。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#operator-eq-eq">operator==</a>().</p>
+<h3><span id="bool-qhttppart-operator-const-qhttppart-amp-other-const">bool QHttpPart::operator==(const  &amp;<em>other</em>) const</span><a href="#bool-qhttppart-operator-const-qhttppart-amp-other-const" class="header-anchor">#</a></h3><p>如果该对象与<em>other</em>对象相同，则返回 “true”（即，如果它们有相同的标题和正文）。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhttppart.html#operator-not-eq">operator!=</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/H/">H</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/H/QHttp2Configuration/QHttp2Configuration/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QHttp2Configuration类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/H/QHttpMultiPart/QHttpMultiPart/">
+                        <span class="hidden-mobile">QHttpMultiPart类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

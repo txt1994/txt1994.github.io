@@ -1,0 +1,907 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QSslCertificate Class 公共成员类型 公共成员函数 静态成员 详细描述 成员类型文档 enum QSslCertificate::SubjectInfo   成员函数文档 QSslCertificate::QSslCertificate(const QSslCertificate &amp;other) QSslCertificate::QSslCertificate">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QSslCertificate类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/QSslCertificate/QSslCertificate/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QSslCertificate Class 公共成员类型 公共成员函数 静态成员 详细描述 成员类型文档 enum QSslCertificate::SubjectInfo   成员函数文档 QSslCertificate::QSslCertificate(const QSslCertificate &amp;other) QSslCertificate::QSslCertificate">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:54:23.533Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="S">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QSslCertificate类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QSslCertificate类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      89 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QSslCertificate类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qsslcertificate-class">QSslCertificate Class</a></li>
+<li><a href="#gong-gong-cheng-yuan-lei-xing">公共成员类型</a><ul>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#jing-tai-cheng-yuan">静态成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qsslcertificate-subjectinfo">enum QSslCertificate::<strong>SubjectInfo</strong></a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qsslcertificate-qsslcertificate-const-qsslcertificate-other">QSslCertificate::<strong>QSslCertificate</strong>(const QSslCertificate &amp;<em>other</em>)</a></li>
+<li><a href="#qsslcertificate-qsslcertificate-const-qbytearray-b-qbytearray-qbytearray-md-data-qbytearray-qssl-encodingformat-qssl-qssl-md-enum-qsslencodingformat-format-qssl-pem">QSslCertificate::<strong>QSslCertificate</strong>(const </a><a href="../../B/QByteArray/QByteArray.md">QByteArray</a> &amp;<em>data</em> = QByteArray(), <a href="../QSsl/QSsl.md#enum-qsslencodingformat">QSsl::EncodingFormat</a> <em>format</em> = QSsl::Pem)</li>
+<li><a href="#qsslcertificate-qsslcertificate-qiodevice-i-qiodevice-qiodevice-md-device-qssl-encodingformat-qssl-qssl-md-enum-qsslencodingformat-format-qssl-pem">QSslCertificate::<strong>QSslCertificate</strong>(</a><a href="../../I/QIODevice/QIODevice.md">QIODevice</a> *<em>device</em>, <a href="../QSsl/QSsl.md#enum-qsslencodingformat">QSsl::EncodingFormat</a> <em>format</em> = QSsl::Pem)</li>
+<li><a href="#qsslcertificate-qsslcertificate-operator-const-qsslcertificate-other">QSslCertificate &amp;QSslCertificate::<strong>operator=</strong>(const QSslCertificate &amp;<em>other</em>)</a></li>
+<li><a href="#qsslcertificate-qsslcertificate">QSslCertificate::<strong>~QSslCertificate</strong>()</a></li>
+<li><a href="#void-qsslcertificate-clear">void QSslCertificate::<strong>clear</strong>()</a></li>
+<li><a href="#qbytearray-b-qbytearray-qbytearray-md-qsslcertificate-digest-qcryptographichash-algorithm-qthelp-org-qt-project-qtnetwork-5150-qtcore-qcryptographichash-html-algorithm-enum-algorithm-qcryptographichash-md5-const">QByteArray</a></li>
+<li><a href="#qdatetime-d-qdatetime-qdatetime-md-qsslcertificate-effectivedate-const">QDateTime</a></li>
+<li><a href="#qdatetime-d-qdatetime-qdatetime-md-qsslcertificate-expirydate-const-1">QDateTime</a></li>
+<li><a href="#qlist-l-qlist-qlist-md-qsslcertificateextension-qsslcertificateextension-qsslcertificateextension-md-qsslcertificate-extensions-const">QList</a></li>
+<li><a href="#static-qlist-l-qlist-qlist-md-qsslcertificate-qsslcertificate-fromdata-const-qbytearray-b-qbytearray-qbytearray-md-data-qssl-encodingformat-qssl-qssl-md-enum-qsslencodingformat-format-qssl-pem"><em>[static]</em> </a><a href="../../L/QList/QList.md">QList</a>&lt;QSslCertificate&gt; QSslCertificate::<strong>fromData</strong>(const <a href="../../B/QByteArray/QByteArray.md">QByteArray</a> &amp;<em>data</em>, <a href="../QSsl/QSsl.md#enum-qsslencodingformat">QSsl::EncodingFormat</a> <em>format</em> = QSsl::Pem)</li>
+<li><a href="#static-qlist-l-qlist-qlist-md-qsslcertificate-qsslcertificate-fromdevice-qiodevice-i-qiodevice-qiodevice-md-device-qssl-encodingformat-qssl-qssl-md-enum-qsslencodingformat-format-qssl-pem"><em>[static]</em> </a><a href="../../L/QList/QList.md">QList</a>&lt;QSslCertificate&gt; QSslCertificate::<strong>fromDevice</strong>(<a href="../../I/QIODevice/QIODevice.md">QIODevice</a> *<em>device</em>, <a href="../QSsl/QSsl.md#enum-qsslencodingformat">QSsl::EncodingFormat</a> <em>format</em> = QSsl::Pem)</li>
+<li><a href="#static-qlist-l-qlist-qlist-md-qsslcertificate-qsslcertificate-frompath-const-qstring-s-qstring-qstring-md-path-qssl-encodingformat-qssl-qssl-md-enum-qsslencodingformat-format-qssl-pem-qsslcertificate-patternsyntax-syntax-patternsyntax-fixedstring"><em>[static]</em> </a><a href="../../L/QList/QList.md">QList</a>&lt;QSslCertificate&gt; QSslCertificate::<strong>fromPath</strong>(const <a href="../../S/QString/QString.md">QString</a> &amp;<em>path</em>, <a href="../QSsl/QSsl.md#enum-qsslencodingformat">QSsl::EncodingFormat</a> <em>format</em> = QSsl::Pem, QSslCertificate::PatternSyntax <em>syntax</em> = PatternSyntax::FixedString)</li>
+<li><a href="#qt-handle-qthelp-org-qt-project-qtnetwork-5150-qtcore-qt-html-handle-typedef-qsslcertificate-handle-const">Qt::HANDLE</a></li>
+<li><a href="#static-bool-qsslcertificate-importpkcs12-qiodevice-i-qiodevice-qiodevice-md-device-qsslkey-qsslkey-qsslkey-md-key-qsslcertificate-certificate-qlist-l-qlist-qlist-md-qsslcertificate-cacertificates-nullptr-const-qbytearray-b-qbytearray-qbytearray-md-passphrase-qbytearray"><em>[static]</em> bool QSslCertificate::<strong>importPkcs12</strong>(</a><a href="../../I/QIODevice/QIODevice.md">QIODevice</a> *<em>device</em>, <a href="../QSslKey/QSslKey.md">QSslKey</a> *<em>key</em>, QSslCertificate *<em>certificate</em>, <a href="../../L/QList/QList.md">QList</a>&lt;QSslCertificate&gt; *<em>caCertificates</em> = nullptr, const <a href="../../B/QByteArray/QByteArray.md">QByteArray</a> &amp;<em>passPhrase</em> = QByteArray())</li>
+<li><a href="#bool-qsslcertificate-isblacklisted-const">bool QSslCertificate::<strong>isBlacklisted</strong>() const</a></li>
+<li><a href="#bool-qsslcertificate-isnull-const">bool QSslCertificate::<strong>isNull</strong>() const</a></li>
+<li><a href="#bool-qsslcertificate-isselfsigned-const">bool QSslCertificate::<strong>isSelfSigned</strong>() const</a></li>
+<li><a href="#qstring-s-qstring-qstring-md-qsslcertificate-issuerdisplayname-const">QString</a></li>
+<li><a href="#qstringlist-s-qstringlist-qstringlist-md-qsslcertificate-issuerinfo-qsslcertificate-subjectinfo-enum-qsslcertificatesubjectinfo-subject-const">QStringList</a></li>
+<li><a href="#qstringlist-s-qstringlist-qstringlist-md-qsslcertificate-issuerinfo-const-qbytearray-b-qbytearray-qbytearray-md-attribute-const-1">QStringList</a></li>
+<li><a href="#qlist-l-qlist-qlist-md-qbytearray-b-qbytearray-qbytearray-md-qsslcertificate-issuerinfoattributes-const-1">QList</a></li>
+<li><a href="#qsslkey-qsslkey-qsslkey-md-qsslcertificate-publickey-const">QSslKey</a></li>
+<li><a href="#qbytearray-b-qbytearray-qbytearray-md-qsslcertificate-serialnumber-const-1">QByteArray</a></li>
+<li><a href="#qmultimap-qmultimap-qmultimap-md-qssl-alternativenameentrytype-qssl-qssl-md-enum-qsslalternativenameentrytype-qstring-s-qstring-qstring-md-qsslcertificate-subjectalternativenames-const">QMultiMap</a></li>
+<li><a href="#qstring-s-qstring-qstring-md-qsslcertificate-subjectdisplayname-const-1">QString</a></li>
+<li><a href="#qstringlist-s-qstringlist-qstringlist-md-qsslcertificate-subjectinfo-qsslcertificate-subjectinfo-enum-qsslcertificatesubjectinfo-subject-const-2">QStringList</a></li>
+<li><a href="#qstringlist-s-qstringlist-qstringlist-md-qsslcertificate-subjectinfo-const-qbytearray-b-qbytearray-qbytearray-md-attribute-const-3">QStringList</a></li>
+<li><a href="#qlist-l-qlist-qlist-md-qbytearray-b-qbytearray-qbytearray-md-qsslcertificate-subjectinfoattributes-const-2">QList</a></li>
+<li><a href="#void-qsslcertificate-swap-qsslcertificate-other">void QSslCertificate::<strong>swap</strong>(QSslCertificate &amp;<em>other</em>)</a></li>
+<li><a href="#qbytearray-b-qbytearray-qbytearray-md-qsslcertificate-toder-const-2">QByteArray</a></li>
+<li><a href="#qbytearray-b-qbytearray-qbytearray-md-qsslcertificate-topem-const-3">QByteArray</a></li>
+<li><a href="#qstring-qstring-qstring-md-qsslcertificate-totext-const-2">QString</a></li>
+<li><a href="#static-qlist-l-qlist-qlist-md-qsslerror-qsslerror-qsslerror-md-qsslcertificate-verify-qlist-l-qlist-qlist-md-qsslcertificate-certificatechain-const-qstring-qstring-qstring-md-hostname-qstring"><em>[static]</em> </a><a href="../../L/QList/QList.md">QList</a>&lt;<a href="../QSslError/QSslError.md">QSslError</a>&gt; QSslCertificate::<strong>verify</strong>(<a href="../../L/QList/QList.md">QList</a>&lt;QSslCertificate&gt; <em>certificateChain</em>, const <a href="../../QString/QString.md">QString</a> &amp;<em>hostName</em> = QString())</li>
+<li><a href="#qbytearray-b-qbytearray-qbytearray-md-qsslcertificate-version-const-4">QByteArray</a></li>
+<li><a href="#bool-qsslcertificate-operator-const-qsslcertificate-other-const">bool QSslCertificate::<strong>operator!=</strong>(const QSslCertificate &amp;<em>other</em>) const</a></li>
+<li><a href="#bool-qsslcertificate-operator-const-qsslcertificate-other-const">bool QSslCertificate::<strong>operator==</strong>(const QSslCertificate &amp;<em>other</em>) const</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QSslCertificate Class
+
+<p>QSslCertificate 类为 X509 证书提供了便捷的 API 集成。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件</td>
+<td><code>#include &lt;QSslCertificate&gt;</code></td>
+</tr>
+<tr>
+<td>qmake</td>
+<td>QT += network</td>
+</tr>
+<tr>
+<td>引入</td>
+<td>Qt 4.3</td>
+</tr>
+</tbody></table>
+<p>该类最初在 Qt 4.3 版本引入。</p>
+<p>您可以<a href="../QSslCertificate_Obsolete/QSslCertificate_Obsolete.md">在此</a>查看已经废弃的类成员。</p>
+<p><strong>注意：</strong> 该类所有的函数都是可重入的。</p>
+<h1><span id="gong-gong-cheng-yuan-lei-xing">公共成员类型</span><a href="#gong-gong-cheng-yuan-lei-xing" class="header-anchor">#</a></h1><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a href="#enum-qsslcertificatesubjectinfo">SubjectInfo</a></strong> { Organization, CommonName, LocalityName, OrganizationalUnitName, CountryName, …, EmailAddress }</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#qsslcertificateqsslcertificateconst-qsslcertificate-other"> QSslCertificate</a></strong>(const QSslCertificate &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qsslcertificateqsslcertificateconst-qbytearray-data--qbytearray-qsslencodingformat-format--qsslpem">QSslCertificate</a></strong>(const QByteArray &amp;<em>data</em> = QByteArray(), QSsl::EncodingFormat <em>format</em> = QSsl::Pem)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qsslcertificateqsslcertificateqiodevice-device-qsslencodingformat-format--qsslpem">QSslCertificate</a></strong>(QIODevice *<em>device</em>, QSsl::EncodingFormat <em>format</em> = QSsl::Pem)</td>
+</tr>
+<tr>
+<td>QSslCertificate &amp;</td>
+<td><strong><a href="#qsslcertificate-qsslcertificateoperatorconst-qsslcertificate-other">operator=</a></strong>(const QSslCertificate &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qsslcertificateqsslcertificate">~QSslCertificate</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#void-qsslcertificateclear">clear</a></strong>()</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#qbytearray-qsslcertificatedigestqcryptographichashalgorithm-algorithm--qcryptographichashmd5-const">digest</a></strong>(QCryptographicHash::Algorithm <em>algorithm</em> = QCryptographicHash::Md5) const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="#qdatetime-qsslcertificateeffectivedate-const">effectiveDate</a></strong>() const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="#qdatetime-qsslcertificateexpirydate-const">expiryDate</a></strong>() const</td>
+</tr>
+<tr>
+<td>QList&lt;QSslCertificateExtension&gt;</td>
+<td><strong><a href="#qlistqsslcertificateextension-qsslcertificateextensions-const">extensions</a></strong>() const</td>
+</tr>
+<tr>
+<td>Qt::HANDLE</td>
+<td><strong><a href="#qthandle-qsslcertificatehandle-const">handle</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qsslcertificateisblacklisted-const">isBlacklisted</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qsslcertificateisnull-const">isNull</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qsslcertificateisselfsigned-const">isSelfSigned</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qsslcertificateissuerdisplayname-const">issuerDisplayName</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringList</td>
+<td><strong><a href="#qstringlist-qsslcertificateissuerinfoqsslcertificatesubjectinfo-subject-const">issuerInfo</a></strong>(QSslCertificate::SubjectInfo <em>subject</em>) const</td>
+</tr>
+<tr>
+<td>QStringList</td>
+<td><strong><a href="#qstringlist-qsslcertificateissuerinfoconst-qbytearray-attribute-const">issuerInfo</a></strong>(const QByteArray &amp;<em>attribute</em>) const</td>
+</tr>
+<tr>
+<td>QList&lt;QByteArray&gt;</td>
+<td><strong><a href="#qlistqbytearray-qsslcertificateissuerinfoattributes-const">issuerInfoAttributes</a></strong>() const</td>
+</tr>
+<tr>
+<td>QSslKey</td>
+<td><strong><a href="#qsslkey-qsslcertificatepublickey-const">publicKey</a></strong>() const</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#qbytearray-qsslcertificateserialnumber-const">serialNumber</a></strong>() const</td>
+</tr>
+<tr>
+<td>QMultiMap&lt;QSsl::AlternativeNameEntryType, QString&gt;</td>
+<td><strong><a href="#qmultimapqsslalternativenameentrytype-qstring-qsslcertificatesubjectalternativenames-const">subjectAlternativeNames</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qsslcertificatesubjectdisplayname-const">subjectDisplayName</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringList</td>
+<td><strong><a href="#qstringlist-qsslcertificatesubjectinfoqsslcertificatesubjectinfo-subject-const">subjectInfo</a></strong>(QSslCertificate::SubjectInfo <em>subject</em>) const</td>
+</tr>
+<tr>
+<td>QStringList</td>
+<td><strong><a href="#qstringlist-qsslcertificatesubjectinfoconst-qbytearray-attribute-const">subjectInfo</a></strong>(const QByteArray &amp;<em>attribute</em>) const</td>
+</tr>
+<tr>
+<td>QList&lt;QByteArray&gt;</td>
+<td><strong><a href="#qlistqbytearray-qsslcertificatesubjectinfoattributes-const">subjectInfoAttributes</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#void-qsslcertificateswapqsslcertificate-other">swap</a></strong>(QSslCertificate &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#qbytearray-qsslcertificatetoder-const">toDer</a></strong>() const</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#qbytearray-qsslcertificatetopem-const">toPem</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qsslcertificatetotext-const">toText</a></strong>() const</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#qbytearray-qsslcertificateversion-const">version</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qsslcertificateoperatorconst-qsslcertificate-other-const">operator!=</a></strong>(const QSslCertificate &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qsslcertificateoperatorconst-qsslcertificate-other-const-1">operator==</a></strong>(const QSslCertificate &amp;<em>other</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-cheng-yuan">静态成员</span><a href="#jing-tai-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QList&lt;QSslCertificate&gt;</td>
+<td><strong><a href="#static-qlistqsslcertificate-qsslcertificatefromdataconst-qbytearray-data-qsslencodingformat-format--qsslpem">fromData</a></strong>(const QByteArray &amp;<em>data</em>, QSsl::EncodingFormat <em>format</em> = QSsl::Pem)</td>
+</tr>
+<tr>
+<td>QList&lt;QSslCertificate&gt;</td>
+<td><strong><a href="#static-qlistqsslcertificate-qsslcertificatefromdeviceqiodevice-device-qsslencodingformat-format--qsslpem">fromDevice</a></strong>(QIODevice *<em>device</em>, QSsl::EncodingFormat <em>format</em> = QSsl::Pem)</td>
+</tr>
+<tr>
+<td>QList&lt;QSslCertificate&gt;</td>
+<td><strong><a href="#static-qlistqsslcertificate-qsslcertificatefrompathconst-qstring-path-qsslencodingformat-format--qsslpem-qsslcertificatepatternsyntax-syntax--patternsyntaxfixedstring">fromPath</a></strong>(const QString &amp;<em>path</em>, QSsl::EncodingFormat <em>format</em> = QSsl::Pem, QSslCertificate::PatternSyntax <em>syntax</em> = PatternSyntax::FixedString)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-bool-qsslcertificateimportpkcs12qiodevice-device-qsslkey-key-qsslcertificate-certificate-qlistqsslcertificate-cacertificates--nullptr-const-qbytearraypassphrase--qbytearray">importPkcs12</a></strong>(QIODevice *<em>device</em>, QSslKey *<em>key</em>, QSslCertificate *<em>certificate</em>, QList&lt;QSslCertificate&gt; *<em>caCertificates</em> = nullptr, const QByteArray &amp;<em>passPhrase</em> = QByteArray())</td>
+</tr>
+<tr>
+<td>QList&lt;QSslError&gt;</td>
+<td><strong><a href="#static-qlistqsslerror-qsslcertificateverifyqlistqsslcertificate-certificatechain-const-qstring-hostname--qstring">verify</a></strong>(QList&lt;QSslCertificate&gt; <em>certificateChain</em>, const QString &amp;<em>hostName</em> = QString())</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qsslcertificate-subjectinfo">enum QSslCertificate::<strong>SubjectInfo</strong></span><a href="#enum-qsslcertificate-subjectinfo" class="header-anchor">#</a></h3><p>描述了您可以传递到 <a href="#qstringlist-qsslcertificateissuerinfoqsslcertificatesubjectinfo-subject-const">QSslCertificate::issuerInfo</a>() 和 <a href="#qstringlist-qsslcertificatesubjectinfoqsslcertificatesubjectinfo-subject-const">QSslCertificate::subjectInfo</a>() 函数的键。您可以通过这些键查找出对应的发行人、主题的有关信息。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">QSslCertificate::Organization</td>
+<td align="left">0</td>
+<td align="left">“O”：组织。</td>
+</tr>
+<tr>
+<td align="left">QSslCertificate::CommonName</td>
+<td align="left">1</td>
+<td align="left">“CN”：常用名，通常用来储存主机名。</td>
+</tr>
+<tr>
+<td align="left">QSslCertificate::LocalityName</td>
+<td align="left">2</td>
+<td align="left">“L”：地区。</td>
+</tr>
+<tr>
+<td align="left">QSslCertificate::OrganizationalUnitName</td>
+<td align="left">3</td>
+<td align="left">“OU” ：组织单位。</td>
+</tr>
+<tr>
+<td align="left">QSslCertificate::CountryName</td>
+<td align="left">4</td>
+<td align="left">“C” ：国家。</td>
+</tr>
+<tr>
+<td align="left">QSslCertificate::StateOrProvinceName</td>
+<td align="left">5</td>
+<td align="left">“ST” ：州或省。</td>
+</tr>
+<tr>
+<td align="left">QSslCertificate::DistinguishedNameQualifier</td>
+<td align="left">6</td>
+<td align="left">专有名称修饰符。</td>
+</tr>
+<tr>
+<td align="left">QSslCertificate::SerialNumber</td>
+<td align="left">7</td>
+<td align="left">证书系列号。</td>
+</tr>
+<tr>
+<td align="left">QSslCertificate::EmailAddress</td>
+<td align="left">8</td>
+<td align="left">邮件地址。</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qsslcertificate-qsslcertificate-const-qsslcertificate-amp-other">QSslCertificate::<strong>QSslCertificate</strong>(const QSslCertificate &amp;<em>other</em>)</span><a href="#qsslcertificate-qsslcertificate-const-qsslcertificate-amp-other" class="header-anchor">#</a></h3><p>拷贝构造函数。由 <em>other</em> 拷贝出新的一份 QSslCertificate 对象。</p>
+<hr>
+<h3><span id="qsslcertificate-qsslcertificate-const-qbytearray-amp-data-qbytearray-qssl-encodingformat-format-qssl-pem">QSslCertificate::<strong>QSslCertificate</strong>(const  &amp;<em>data</em> = QByteArray(),  <em>format</em> = QSsl::Pem)</span><a href="#qsslcertificate-qsslcertificate-const-qbytearray-amp-data-qbytearray-qssl-encodingformat-format-qssl-pem" class="header-anchor">#</a></h3><p>构造函数。使用 <em>format</em> 指定的编码格式对 <em>data</em> 进行编码作为证书数据，并使用第一个找到的可用证书构造一个 QSslCertificate 对象。</p>
+<p>构造后，您可以使用 <a href="#bool-qsslcertificateisnull-const">isNull</a>() 函数来检查 <em>data</em> 是否包含一个证书或者该证书是否已经成功载入。</p>
+<hr>
+<h3><span id="qsslcertificate-qsslcertificate-qiodevice-device-qssl-encodingformat-format-qssl-pem">QSslCertificate::<strong>QSslCertificate</strong>( *<em>device</em>,  <em>format</em> = QSsl::Pem)</span><a href="#qsslcertificate-qsslcertificate-qiodevice-device-qssl-encodingformat-format-qssl-pem" class="header-anchor">#</a></h3><p>构造函数。从 <em>device</em> 指定的 IO 设备中读取以 <em>format</em> 格式编码的数据，并使用第一个找到的可用证书构造一个 QSslCertificate 对象。</p>
+<p>构造后，您可以使用 <a href="#bool-qsslcertificateisnull-const">isNull</a>() 函数来检查 <em>data</em> 是否包含一个证书或者该证书是否已经成功载入。</p>
+<hr>
+<h3><span id="qsslcertificate-amp-qsslcertificate-operator-const-qsslcertificate-amp-other">QSslCertificate &amp;QSslCertificate::<strong>operator=</strong>(const QSslCertificate &amp;<em>other</em>)</span><a href="#qsslcertificate-amp-qsslcertificate-operator-const-qsslcertificate-amp-other" class="header-anchor">#</a></h3><p>将 <em>other</em> 的内容拷贝到此证书，使等式左右值相等。</p>
+<hr>
+<h3><span id="qsslcertificate-qsslcertificate">QSslCertificate::<strong>~QSslCertificate</strong>()</span><a href="#qsslcertificate-qsslcertificate" class="header-anchor">#</a></h3><p>析构函数。销毁 QSslCertificate 对象。</p>
+<hr>
+<h3><span id="void-qsslcertificate-clear">void QSslCertificate::<strong>clear</strong>()</span><a href="#void-qsslcertificate-clear" class="header-anchor">#</a></h3><p>清除该证书的内容，使其变为空证书。</p>
+<p>另外您也可以在 <a href="#bool-qsslcertificateisnull-const">isNull</a>() 函数介绍中找到相关内容。</p>
+<hr>
+<h3><span id="qbytearray-qsslcertificate-digest-qcryptographichash-algorithm-algorithm-qcryptographichash-md5-const"> QSslCertificate::<strong>digest</strong>( <em>algorithm</em> = QCryptographicHash::Md5) const</span><a href="#qbytearray-qsslcertificate-digest-qcryptographichash-algorithm-algorithm-qcryptographichash-md5-const" class="header-anchor">#</a></h3><p>返回该证书的加密摘要。默认情况下将会使用 MD5 算法生成数字摘要，您也可以指定使用 <em>algorithm</em> 摘要算法。</p>
+<hr>
+<h3><span id="qdatetime-qsslcertificate-effectivedate-const"> QSslCertificate::<strong>effectiveDate</strong>() const</span><a href="#qdatetime-qsslcertificate-effectivedate-const" class="header-anchor">#</a></h3><p>返回该证书的生效日期。若该证书为空，则返回一个空的 QDateTime 对象。</p>
+<p>另外您也可以在 <a href="#qdatetime-qsslcertificateexpirydate-const">expiryDate</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qdatetime-qsslcertificate-expirydate-const"> QSslCertificate::<strong>expiryDate</strong>() const</span><a href="#qdatetime-qsslcertificate-expirydate-const" class="header-anchor">#</a></h3><p>返回该证书过期日期。若该证书为空，则返回一个空的 QDateTime 对象。</p>
+<p>另外您也可以在 <a href="#qdatetime-qsslcertificateeffectivedate-const">effectiveDate</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qlist-lt-qsslcertificateextension-gt-qsslcertificate-extensions-const">&lt;&gt; QSslCertificate::<strong>extensions</strong>() const</span><a href="#qlist-lt-qsslcertificateextension-gt-qsslcertificate-extensions-const" class="header-anchor">#</a></h3><p>返回此证书所包含的 X509 扩展列表。</p>
+<p>该函数最早在 Qt 5.0 版本引入。</p>
+<hr>
+<h3><span id="static-qlist-lt-qsslcertificate-gt-qsslcertificate-fromdata-const-qbytearray-amp-data-qssl-encodingformat-format-qssl-pem"><em>[static]</em> &lt;QSslCertificate&gt; QSslCertificate::<strong>fromData</strong>(const  &amp;<em>data</em>,  <em>format</em> = QSsl::Pem)</span><a href="#static-qlist-lt-qsslcertificate-gt-qsslcertificate-fromdata-const-qbytearray-amp-data-qssl-encodingformat-format-qssl-pem" class="header-anchor">#</a></h3><p>搜索 <em>data</em> 中所有 <em>format</em> 编码格式的证书，并返回这些证书的列表。</p>
+<p>另外您也可以在 <a href="#static-qlistqsslcertificate-qsslcertificatefromdeviceqiodevice-device-qsslencodingformat-format--qsslpem">fromDevice</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="static-qlist-lt-qsslcertificate-gt-qsslcertificate-fromdevice-qiodevice-device-qssl-encodingformat-format-qssl-pem"><em>[static]</em> &lt;QSslCertificate&gt; QSslCertificate::<strong>fromDevice</strong>( *<em>device</em>,  <em>format</em> = QSsl::Pem)</span><a href="#static-qlist-lt-qsslcertificate-gt-qsslcertificate-fromdevice-qiodevice-device-qssl-encodingformat-format-qssl-pem" class="header-anchor">#</a></h3><p>搜索设备 <em>device</em> 中所有 <em>format</em> 编码格式的证书，并返回这些证书的列表。</p>
+<p>另外您也可以在 <a href="#static-qlistqsslcertificate-qsslcertificatefromdataconst-qbytearray-data-qsslencodingformat-format--qsslpem">fromData</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="static-qlist-lt-qsslcertificate-gt-qsslcertificate-frompath-const-qstring-amp-path-qssl-encodingformat-format-qssl-pem-qsslcertificate-patternsyntax-syntax-patternsyntax-fixedstring"><em>[static]</em> &lt;QSslCertificate&gt; QSslCertificate::<strong>fromPath</strong>(const  &amp;<em>path</em>,  <em>format</em> = QSsl::Pem, QSslCertificate::PatternSyntax <em>syntax</em> = PatternSyntax::FixedString)</span><a href="#static-qlist-lt-qsslcertificate-gt-qsslcertificate-frompath-const-qstring-amp-path-qssl-encodingformat-format-qssl-pem-qsslcertificate-patternsyntax-syntax-patternsyntax-fixedstring" class="header-anchor">#</a></h3><p>搜索路径 <em>path</em> 中所有 <em>format</em> 编码格式的证书，并返回这些证书的列表。 <em>path</em> 必须是一个文件，<em>pattern</em> 指定的模式必须能检测到至少一个文件。</p>
+<p>Qt 官方示例如下：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> certs = QSslCertificate::<span class="hljs-built_in">fromPath</span>(<span class="hljs-string">"C:/ssl/certificate.*.pem"</span>,
+                                             QSsl::Pem, QSslCertificate::Wildcard);
+<span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> QSslCertificate &amp;cert : certs) {
+    <span class="hljs-built_in">qDebug</span>() &lt;&lt; cert.<span class="hljs-built_in">issuerInfo</span>(QSslCertificate::Organization);
+}</code></pre></div>
+
+<p>该函数最初在 Qt 5.15版本引入。</p>
+<p>另外您也可以在 <a href="#static-qlistqsslcertificate-qsslcertificatefromdataconst-qbytearray-data-qsslencodingformat-format--qsslpem">fromData</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qt-handle-qsslcertificate-handle-const"> QSslCertificate::<strong>handle</strong>() const</span><a href="#qt-handle-qsslcertificate-handle-const" class="header-anchor">#</a></h3><p>返回证书的本地句柄，若该证书没有句柄则返回 <em>nullptr</em> 。</p>
+<p>您可以结合本地 API 来使用本句柄，这样便可获取该证书的拓展信息。</p>
+<p><strong>警告：</strong> 使用此功能很有可能无法移植，其返回值可能因平台而异，或因次要发行版而异。</p>
+<hr>
+<h3><span id="static-bool-qsslcertificate-importpkcs12-qiodevice-device-qsslkey-key-qsslcertificate-certificate-qlist-lt-qsslcertificate-gt-cacertificates-nullptr-const-qbytearray-amp-passphrase-qbytearray"><em>[static]</em> bool QSslCertificate::<strong>importPkcs12</strong>( *<em>device</em>,  *<em>key</em>, QSslCertificate *<em>certificate</em>, &lt;QSslCertificate&gt; *<em>caCertificates</em> = nullptr, const  &amp;<em>passPhrase</em> = QByteArray())</span><a href="#static-bool-qsslcertificate-importpkcs12-qiodevice-device-qsslkey-key-qsslcertificate-certificate-qlist-lt-qsslcertificate-gt-cacertificates-nullptr-const-qbytearray-amp-passphrase-qbytearray" class="header-anchor">#</a></h3><p>从指定的设备 <em>device</em> 中导入 PKCS#12 (pfx) 文件。一个 PKCS#12 是一个包含了众多证书和私钥的包。这个函数会读取一条私钥 <em>key</em> ，和与这个私钥的证书 <em>certificate</em> 以及这个包中任何相关的证书 <em>caCertificates</em> 。 如果指定了 <em>passPhrase</em> ，该函数会使用 <em>passPhrase</em> 去解码该包。如果 PKCS#12 文件成功导入则返回 <em>true</em> 。</p>
+<p><strong>注意：</strong> 设备 <em>device</em> 必须已经打开并追被好从中读取数据。</p>
+<p>该函数最初在 Qt 5.4版本引入。</p>
+<p>This function was introduced in Qt 5.4.</p>
+<hr>
+<h3><span id="bool-qsslcertificate-isblacklisted-const">bool QSslCertificate::<strong>isBlacklisted</strong>() const</span><a href="#bool-qsslcertificate-isblacklisted-const" class="header-anchor">#</a></h3><p>如果该证书被列入黑名单则返回 <em>true</em> ，否则返回 <em>false</em> 。</p>
+<p>另外您也可以在 <a href="#bool-qsslcertificateisnull-const">isNull</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qsslcertificate-isnull-const">bool QSslCertificate::<strong>isNull</strong>() const</span><a href="#bool-qsslcertificate-isnull-const" class="header-anchor">#</a></h3><p>如果该证书为空则返回 <em>true</em> ，否则返回 <em>false</em> 。</p>
+<p>默认情况下，QSslCertificate 对象会构造一个空的证书。</p>
+<p>另外你您也可以在 <a href="#void-qsslcertificateclear">clear</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qsslcertificate-isselfsigned-const">bool QSslCertificate::<strong>isSelfSigned</strong>() const</span><a href="#bool-qsslcertificate-isselfsigned-const" class="header-anchor">#</a></h3><p>如果该证书为自签名证书则返回 <em>true</em> ，否则返回 <em>false</em> 。</p>
+<p>如果该证书的发行人和主题相同，则会被认为是一个自签名证书。</p>
+<p>该函数最初在 Qt 5.4版本引入。</p>
+<hr>
+<h3><span id="qstring-qsslcertificate-issuerdisplayname-const"> QSslCertificate::<strong>issuerDisplayName</strong>() const</span><a href="#qstring-qsslcertificate-issuerdisplayname-const" class="header-anchor">#</a></h3><p>返回发行者的名称。如果可获得 <a href="#enum-qsslcertificatesubjectinfo">QSslCertificate::CommonName </a> 则将返回该值，否则将返回首个 <a href="#enum-qsslcertificatesubjectinfo">QSslCertificate::Organization</a> 或者首个 <a href="#enum-qsslcertificatesubjectinfo">QSslCertificate::OrganizationalUnitName</a> 。</p>
+<p>该函数最初在 Qt 5.12版本引入。</p>
+<p>另外您也可以在 <a href="#qstringlist-qsslcertificateissuerinfoqsslcertificatesubjectinfo-subject-const">issuerInfo()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qstringlist-qsslcertificate-issuerinfo-qsslcertificate-subjectinfo-subject-const"> QSslCertificate::<strong>issuerInfo</strong>( <em>subject</em>) const</span><a href="#qstringlist-qsslcertificate-issuerinfo-qsslcertificate-subjectinfo-subject-const" class="header-anchor">#</a></h3><p>返回 <em>subject</em> 指定的发行信息，若 <em>subject</em> 指定的发行信息为空贼返回一个空的列表。每种类型可能不止有一条记录。</p>
+<p>另外您也可以在 <a href="#qstringlist-qsslcertificatesubjectinfoconst-qbytearray-attribute-const">subjectInfo</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qstringlist-qsslcertificate-issuerinfo-const-qbytearray-amp-attribute-const"> QSslCertificate::<strong>issuerInfo</strong>(const  &amp;<em>attribute</em>) const</span><a href="#qstringlist-qsslcertificate-issuerinfo-const-qbytearray-amp-attribute-const" class="header-anchor">#</a></h3><p>返回证书中 <em>attribute</em> 指定的属性的发行信息。若该属性指定的发行信息为空则返回一个空列表。每种属性可能不止有一条记录。</p>
+<p>另外您也可以在 <a href="qthelp://org.qt-project.qtnetwork.5150/qtnetwork/qsslcertificate.html#subjectInfo">subjectInfo</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qlist-lt-qbytearray-gt-qsslcertificate-issuerinfoattributes-const">&lt;&gt; QSslCertificate::<strong>issuerInfoAttributes</strong>() const</span><a href="#qlist-lt-qbytearray-gt-qsslcertificate-issuerinfoattributes-const" class="header-anchor">#</a></h3><p>返回发行信息中有值的属性的列表。与一个给定属性先关联的信息可以使用 <a href="#qstringlist-qsslcertificateissuerinfoqsslcertificatesubjectinfo-subject-const">issuerInfo()</a>() 函数来查看。请注意，此列表可能包含 SSL 后端未知的任何元素的 OID 。</p>
+<p>该函数最初在 Qt 5.0版本引入。</p>
+<p>另外您也可以在 <a href="qthelp://org.qt-project.qtnetwork.5150/qtnetwork/qsslcertificate.html#subjectInfo">subjectInfo</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qsslkey-qsslcertificate-publickey-const"> QSslCertificate::<strong>publicKey</strong>() const</span><a href="#qsslkey-qsslcertificate-publickey-const" class="header-anchor">#</a></h3><p>返回证书的公钥。</p>
+<hr>
+<h3><span id="qbytearray-qsslcertificate-serialnumber-const"> QSslCertificate::<strong>serialNumber</strong>() const</span><a href="#qbytearray-qsslcertificate-serialnumber-const" class="header-anchor">#</a></h3><p>返回十六进制形式的该证书的系列号。</p>
+<hr>
+<h3><span id="qmultimap-lt-qssl-alternativenameentrytype-qstring-gt-qsslcertificate-subjectalternativenames-const">&lt;, &gt; QSslCertificate::<strong>subjectAlternativeNames</strong>() const</span><a href="#qmultimap-lt-qssl-alternativenameentrytype-qstring-gt-qsslcertificate-subjectalternativenames-const" class="header-anchor">#</a></h3><p>返回该证书可选主题的名称列表。可选名称通常来说包含该证书的主机名，有时候会包含通配符。</p>
+<p>如果 <a href="#enum-qsslcertificatesubjectinfo">CommonName</a> 的主题信息未定义一个有效的主机名或者主题信息名称不能匹配对等端的主机名，则将这些名称与连接的对等方的主机名进行测试。</p>
+<p>另外您也可以在 <a href="qthelp://org.qt-project.qtnetwork.5150/qtnetwork/qsslcertificate.html#subjectInfo">subjectInfo</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qstring-qsslcertificate-subjectdisplayname-const"> QSslCertificate::<strong>subjectDisplayName</strong>() const</span><a href="#qstring-qsslcertificate-subjectdisplayname-const" class="header-anchor">#</a></h3><p>返回主题的名称。如果可获得 <a href="#enum-qsslcertificatesubjectinfo">QSslCertificate::CommonName </a> 则将返回该值，否则将返回首个 <a href="#enum-qsslcertificatesubjectinfo">QSslCertificate::Organization</a> 或者首个 <a href="#enum-qsslcertificatesubjectinfo">QSslCertificate::OrganizationalUnitName</a> 。</p>
+<p>该函数最初在 Qt 5.12版本引入。</p>
+<p>另外您也可以在 <a href="qthelp://org.qt-project.qtnetwork.5150/qtnetwork/qsslcertificate.html#subjectInfo">subjectInfo</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qstringlist-qsslcertificate-subjectinfo-qsslcertificate-subjectinfo-subject-const"> QSslCertificate::<strong>subjectInfo</strong>( <em>subject</em>) const</span><a href="#qstringlist-qsslcertificate-subjectinfo-qsslcertificate-subjectinfo-subject-const" class="header-anchor">#</a></h3><p>返回证书中 <em>subject</em> 指定的主题的信息。若该主题指定的主题信息为空则返回一个空列表。每种主题可能不止有一条记录。</p>
+<p>另外您也可以在 <a href="#qstringlist-qsslcertificateissuerinfoqsslcertificatesubjectinfo-subject-const">issuerInfo()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qstringlist-qsslcertificate-subjectinfo-const-qbytearray-amp-attribute-const"> QSslCertificate::<strong>subjectInfo</strong>(const  &amp;<em>attribute</em>) const</span><a href="#qstringlist-qsslcertificate-subjectinfo-const-qbytearray-amp-attribute-const" class="header-anchor">#</a></h3><p>返回证书中 <em>attribute</em> 指定的主题的发行信息。若该属性指定的主题信息为空则返回一个空列表。每种属性可能不止有一条记录。</p>
+<p>另外您也可以在 <a href="#qstringlist-qsslcertificateissuerinfoqsslcertificatesubjectinfo-subject-const">issuerInfo()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qlist-lt-qbytearray-gt-qsslcertificate-subjectinfoattributes-const">&lt;&gt; QSslCertificate::<strong>subjectInfoAttributes</strong>() const</span><a href="#qlist-lt-qbytearray-gt-qsslcertificate-subjectinfoattributes-const" class="header-anchor">#</a></h3><p>返回该证书中包含主题信息的属性列表。与给定属性相关的信息可以使用 <a href="qthelp://org.qt-project.qtnetwork.5150/qtnetwork/qsslcertificate.html#subjectInfo">subjectInfo</a>() 函数来获取。请注意，此列表可能包含 SSL 后端未知的任何元素的 OID 。</p>
+<p>该函数最初在 Qt 5.0版本引入。</p>
+<p>另外您也可以在 <a href="qthelp://org.qt-project.qtnetwork.5150/qtnetwork/qsslcertificate.html#subjectInfo">subjectInfo</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="void-qsslcertificate-swap-qsslcertificate-amp-other">void QSslCertificate::<strong>swap</strong>(QSslCertificate &amp;<em>other</em>)</span><a href="#void-qsslcertificate-swap-qsslcertificate-amp-other" class="header-anchor">#</a></h3><p>将该证书的内容与 <em>other</em> 快速交换。该函数执行速度极快并保证操作成功。</p>
+<p>该函数最初在 Qt 5.0版本引入。</p>
+<hr>
+<h3><span id="qbytearray-qsslcertificate-toder-const"> QSslCertificate::<strong>toDer</strong>() const</span><a href="#qbytearray-qsslcertificate-toder-const" class="header-anchor">#</a></h3><p>将证书转化为 DER（binary）格式返回。</p>
+<hr>
+<h3><span id="qbytearray-qsslcertificate-topem-const"> QSslCertificate::<strong>toPem</strong>() const</span><a href="#qbytearray-qsslcertificate-topem-const" class="header-anchor">#</a></h3><p>将证书转化为 PEM（Base64）格式返回。</p>
+<hr>
+<h3><span id="qstring-qsslcertificate-totext-const"> QSslCertificate::<strong>toText</strong>() const</span><a href="#qstring-qsslcertificate-totext-const" class="header-anchor">#</a></h3><p>将证书转化为易于阅读的形式返回。</p>
+<p>该函数最初在 Qt 5.0版本引入。</p>
+<hr>
+<h3><span id="static-qlist-lt-qsslerror-gt-qsslcertificate-verify-qlist-lt-qsslcertificate-gt-certificatechain-const-qstring-amp-hostname-qstring"><em>[static]</em> &lt;&gt; QSslCertificate::<strong>verify</strong>(&lt;QSslCertificate&gt; <em>certificateChain</em>, const  &amp;<em>hostName</em> = QString())</span><a href="#static-qlist-lt-qsslerror-gt-qsslcertificate-verify-qlist-lt-qsslcertificate-gt-certificatechain-const-qstring-amp-hostname-qstring" class="header-anchor">#</a></h3><p>验证 <em>certificateChain</em> 参数指定的证书链。列表中的第一个证书应是要验证的链的节点证书。如果 <em>hostName</em> 指定了一个主机地址，该函数也会检查该证书是否对主机名有效。</p>
+<p>请注意，根（CA）证书不应包含在要验证的列表中，可以使用 QSslSocket::defaultCaCertificates() 指定的CA列表自动查找。在 Unix 平台上也可以在需要时将其加载。</p>
+<p>该函数最初在 Qt 5.0版本引入。</p>
+<hr>
+<h3><span id="qbytearray-qsslcertificate-version-const"> QSslCertificate::<strong>version</strong>() const</span><a href="#qbytearray-qsslcertificate-version-const" class="header-anchor">#</a></h3><p>以字符串的形式返回该证书的版本。</p>
+<hr>
+<h3><span id="bool-qsslcertificate-operator-const-qsslcertificate-amp-other-const">bool QSslCertificate::<strong>operator!=</strong>(const QSslCertificate &amp;<em>other</em>) const</span><a href="#bool-qsslcertificate-operator-const-qsslcertificate-amp-other-const" class="header-anchor">#</a></h3><p>如果该证书不与 <em>other</em>  相同返回 <em>true</em> ，否则返回 <em>false</em> 。</p>
+<hr>
+<h3><span id="bool-qsslcertificate-operator-const-qsslcertificate-amp-other-const">bool QSslCertificate::<strong>operator==</strong>(const QSslCertificate &amp;<em>other</em>) const</span><a href="#bool-qsslcertificate-operator-const-qsslcertificate-amp-other-const" class="header-anchor">#</a></h3><p>如果该证书与 <em>other</em>  相同返回 <em>true</em> ，否则返回 <em>false</em> 。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/S/">S</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSsl/QSsl/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QSsl类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSslCertificate_Obsolete/QSslCertificate_Obsolete/">
+                        <span class="hidden-mobile">QSslCertificate Obsolete废弃</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

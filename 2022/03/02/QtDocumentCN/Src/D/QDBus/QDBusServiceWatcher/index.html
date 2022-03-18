@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QDBusServiceWatcher 类 公共类型 特性 公共函数 信号 详细描述 成员类型文档编制 enum QDBusServiceWatcher:: WatchModeFlag flags QDBusServiceWatcher:: WatchMode   特性文档编制 [bindable] watchMode : WatchMode [bindable] watchedServ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QDBusServiceWatcher类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusServiceWatcher/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QDBusServiceWatcher 类 公共类型 特性 公共函数 信号 详细描述 成员类型文档编制 enum QDBusServiceWatcher:: WatchModeFlag flags QDBusServiceWatcher:: WatchMode   特性文档编制 [bindable] watchMode : WatchMode [bindable] watchedServ">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:12:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:38:39.088Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="D">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QDBusServiceWatcher类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QDBusServiceWatcher类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:12" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      68 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QDBusServiceWatcher类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qdbusservicewatcher-lei">QDBusServiceWatcher 类</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#te-xing">特性</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#enum-qdbusservicewatcher-watchmodeflag-flags-qdbusservicewatcher-watchmode">enum QDBusServiceWatcher:: WatchModeFlag flags QDBusServiceWatcher:: WatchMode</a></li>
+</ul>
+</li>
+<li><a href="#te-xing-wen-dang-bian-zhi">特性文档编制</a><ul>
+<li><a href="#bindable-watchmode-watchmode-watchmodeflag-enum"><code>[bindable] </code>watchMode : </a><a href="#WatchModeFlag-enum">WatchMode</a></li>
+<li><a href="#bindable-watchedservices-qstringlist-qstringlist-html"><code>[bindable] </code>watchedServices : </a><a href="qstringlist.html">QStringList</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qdbusservicewatcher-qdbusservicewatcher-const-qstring-qstring-html-service-const-qdbusconnection-qdbusconnection-html-connection-qdbusservicewatcher-watchmode-watchmodeflag-enum-watchmode-watchforownerchange-qobject-qobject-html-qobject-parent-nullptr">QDBusServiceWatcher:: QDBusServiceWatcher (const </a><a href="qstring.html">QString </a>&amp; <em>service</em> , const <a href="qdbusconnection.html">QDBusConnection </a>&amp; <em>connection</em> , <a href="#WatchModeFlag-enum">QDBusServiceWatcher::WatchMode </a><em>watchMode</em> = WatchForOwnerChange, <a href="qobject.html#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#qdbusservicewatcher-qdbusservicewatcher-qobject-qobject-html-qobject-parent-nullptr">QDBusServiceWatcher:: QDBusServiceWatcher ( </a><a href="qobject.html#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#signal-void-qdbusservicewatcher-serviceownerchanged-const-qstring-qstring-html-servicename-const-qstring-qstring-html-oldowner-const-qstring-qstring-html-newowner"><code>[signal] </code>void QDBusServiceWatcher:: serviceOwnerChanged (const </a><a href="qstring.html">QString </a>&amp; <em>serviceName</em> , const <a href="qstring.html">QString </a>&amp; <em>oldOwner</em> , const <a href="qstring.html">QString </a>&amp; <em>newOwner</em> )</li>
+<li><a href="#signal-void-qdbusservicewatcher-serviceregistered-const-qstring-qstring-html-servicename"><code>[signal] </code>void QDBusServiceWatcher:: serviceRegistered (const </a><a href="qstring.html">QString </a>&amp; <em>serviceName</em> )</li>
+<li><a href="#signal-void-qdbusservicewatcher-serviceunregistered-const-qstring-qstring-html-servicename"><code>[signal] </code>void QDBusServiceWatcher:: serviceUnregistered (const </a><a href="qstring.html">QString </a>&amp; <em>serviceName</em> )</li>
+<li><a href="#virtual-qdbusservicewatcher-qdbusservicewatcher"><code>[virtual] </code>QDBusServiceWatcher:: ~QDBusServiceWatcher ()</a></li>
+<li><a href="#void-qdbusservicewatcher-addwatchedservice-const-qstring-qstring-html-newservice">void QDBusServiceWatcher:: addWatchedService (const </a><a href="qstring.html">QString </a>&amp; <em>newService</em> )</li>
+<li><a href="#qdbusconnection-qdbusconnection-html-qdbusservicewatcher-connection-const">QDBusConnection </a></li>
+<li><a href="#bool-qdbusservicewatcher-removewatchedservice-const-qstring-qstring-html-service">bool QDBusServiceWatcher:: removeWatchedService (const </a><a href="qstring.html">QString </a>&amp; <em>service</em> )</li>
+<li><a href="#void-qdbusservicewatcher-setconnection-const-qdbusconnection-qdbusconnection-html-connection">void QDBusServiceWatcher:: setConnection (const </a><a href="qdbusconnection.html">QDBusConnection </a>&amp; <em>connection</em> )</li>
+<li><a href="#void-qdbusservicewatcher-setwatchedservices-const-qstringlist-qstringlist-html-services">void QDBusServiceWatcher:: setWatchedServices (const </a><a href="qstringlist.html">QStringList </a>&amp; <em>services</em> )</li>
+<li><a href="#qstringlist-qstringlist-html-qdbusservicewatcher-watchedservices-const">QStringList </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QDBusServiceWatcher 类
+
+<p>QDBusServiceWatcher 类允许用户看守总线服务改变。 <a href="#details">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qdbusservicewatcher></qdbusservicewatcher></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Dbus REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Dbus)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += dbus</td>
+</tr>
+<tr>
+<td>继承：</td>
+<td><a href="qobject.html">QObject</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qdbusservicewatcher-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>flags</th>
+<th><strong><a href="#WatchModeFlag-enum">WatchMode</a></strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a href="#WatchModeFlag-enum">WatchModeFlag </a></strong>{ WatchForRegistration, WatchForUnregistration, WatchForOwnerChange }</td>
+</tr>
+</tbody></table>
+<h2><span id="te-xing">特性</span><a href="#te-xing" class="header-anchor">#</a></h2><ul>
+<li><strong><a href="#watchMode-prop">watchMode </a></strong>: WatchMode</li>
+<li><strong><a href="#watchedServices-prop">watchedServices </a></strong>: QStringList</li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QDBusServiceWatcher-1">QDBusServiceWatcher </a></strong>(const QString &amp; <em>service</em> , const QDBusConnection &amp; <em>connection</em> , QDBusServiceWatcher::WatchMode <em>watchMode</em> = WatchForOwnerChange, QObject * <em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QDBusServiceWatcher">QDBusServiceWatcher </a></strong>(QObject * <em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QDBusServiceWatcher">~QDBusServiceWatcher </a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addWatchedService">addWatchedService </a></strong>(const QString &amp; <em>newService</em> )</td>
+</tr>
+<tr>
+<td>QDBusConnection</td>
+<td><strong><a href="#connection">connection </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#removeWatchedService">removeWatchedService </a></strong>(const QString &amp; <em>service</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setConnection">setConnection </a></strong>(const QDBusConnection &amp; <em>connection</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#watchMode-prop">setWatchMode </a></strong>(QDBusServiceWatcher::WatchMode <em>mode</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setWatchedServices">setWatchedServices </a></strong>(const QStringList &amp; <em>services</em> )</td>
+</tr>
+<tr>
+<td>QDBusServiceWatcher::WatchMode</td>
+<td><strong><a href="#watchMode-prop">watchMode </a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringList</td>
+<td><strong><a href="#watchedServices">watchedServices </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#serviceOwnerChanged">serviceOwnerChanged </a></strong>(const QString &amp; <em>serviceName</em> , const QString &amp; <em>oldOwner</em> , const QString &amp; <em>newOwner</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#serviceRegistered">serviceRegistered </a></strong>(const QString &amp; <em>serviceName</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#serviceUnregistered">serviceUnregistered </a></strong>(const QString &amp; <em>serviceName</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>A QDBusServiceWatcher object can be used to notify the application about an ownership change of a service name on the bus. It has three watch modes:</p>
+<ul>
+<li>Watching for service registration only.</li>
+<li>Watching for service unregistration only.</li>
+<li>Watching for any kind of service ownership change (the default mode).</li>
+</ul>
+<p>Besides being created or deleted, services may change owners without a unregister/register operation happening. So the <a href="#serviceRegistered">serviceRegistered </a>() 和 <a href="#serviceUnregistered">serviceUnregistered </a>() signals may not be emitted if that happens.</p>
+<p>This class is more efficient than using the QDBusConnectionInterface::serviceOwnerChanged() signal because it allows one to receive only the signals for which the class is interested in.</p>
+<p>Ending a service name with the character ‘*’ will match all service names within the specified namespace.</p>
+<p>For example “com.example.backend1*” will match</p>
+<ul>
+<li>com.example.backend1</li>
+<li>com.example.backend1.foo</li>
+<li>com.example.backend1.foo.bar</li>
+</ul>
+<p>Substrings in the same domain will not be matched, i.e “com.example.backend12”.</p>
+<p><strong>另请参阅</strong> <a href="qdbusconnection.html">QDBusConnection </a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="enum-qdbusservicewatcher-watchmodeflag-flags-qdbusservicewatcher-watchmode">enum QDBusServiceWatcher:: WatchModeFlag flags QDBusServiceWatcher:: WatchMode</span><a href="#enum-qdbusservicewatcher-watchmodeflag-flags-qdbusservicewatcher-watchmode" class="header-anchor">#</a></h3><p><a href>QDBusServiceWatcher </a>supports three different watch modes, which are configured by this flag:</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QDBusServiceWatcher::WatchForRegistration</code></td>
+<td align="left"><code>0x01</code></td>
+<td align="left">watch for service registration only, ignoring any signals related to other service ownership change.</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusServiceWatcher::WatchForUnregistration</code></td>
+<td align="left"><code>0x02</code></td>
+<td align="left">watch for service unregistration only, ignoring any signals related to other service ownership change.</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusServiceWatcher::WatchForOwnerChange</code></td>
+<td align="left"><code>0x03</code></td>
+<td align="left">watch for any kind of service ownership change.</td>
+</tr>
+</tbody></table>
+<p>The WatchMode type is a typedef for <a href="qflags.html">QFlags </a><watchmodeflag>. It stores an OR combination of WatchModeFlag values.</watchmodeflag></p>
+<h2><span id="te-xing-wen-dang-bian-zhi">特性文档编制</span><a href="#te-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="bindable-watchmode-watchmode"><code>[bindable] </code>watchMode : </span><a href="#bindable-watchmode-watchmode" class="header-anchor">#</a></h3><p><strong>注意：</strong> 此特性支持 <a href="qproperty.html">QProperty </a>绑定。</p>
+<p>This property holds the current watch mode for this <a href>QDBusServiceWatcher </a>对象。</p>
+<p>The default value for this property is QDBusServiceWatcher::WatchForOwnershipChange.</p>
+<h3><span id="bindable-watchedservices-qstringlist"><code>[bindable] </code>watchedServices : </span><a href="#bindable-watchedservices-qstringlist" class="header-anchor">#</a></h3><p><strong>注意：</strong> 此特性支持 <a href="qproperty.html">QProperty </a>绑定。</p>
+<p>This property holds the list of services watched.</p>
+<p><strong>注意：</strong> Modifying this list with setServicesWatched() is an expensive operation. If you can, prefer to change it by way of <a href="#addWatchedService">addWatchedService </a>() 和 <a href="#removeWatchedService">removeWatchedService </a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qdbusservicewatcher-qdbusservicewatcher-const-qstring-amp-service-const-qdbusconnection-amp-connection-qdbusservicewatcher-watchmode-watchmode-watchforownerchange-qobject-parent-nullptr">QDBusServiceWatcher:: QDBusServiceWatcher (const &amp; <em>service</em> , const &amp; <em>connection</em> , <em>watchMode</em> = WatchForOwnerChange, * <em>parent</em> = nullptr)</span><a href="#qdbusservicewatcher-qdbusservicewatcher-const-qstring-amp-service-const-qdbusconnection-amp-connection-qdbusservicewatcher-watchmode-watchmode-watchforownerchange-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>Creates a QDBusServiceWatcher object and attaches it to the <em>connection</em> connection. Also, this function immediately starts watching for <em>watchMode</em> changes to service <em>service</em> .</p>
+<p><em>parent</em> 参数会被传递给 <a href="qobject.html">QObject </a>to set the parent of this object.</p>
+<h3><span id="qdbusservicewatcher-qdbusservicewatcher-qobject-parent-nullptr">QDBusServiceWatcher:: QDBusServiceWatcher ( * <em>parent</em> = nullptr)</span><a href="#qdbusservicewatcher-qdbusservicewatcher-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>Creates a QDBusServiceWatcher object. Note that until you set a connection with <a href="#setConnection">setConnection </a>(), this object will not emit any signals.</p>
+<p><em>parent</em> 参数会被传递给 <a href="qobject.html">QObject </a>to set the parent of this object.</p>
+<h3><span id="signal-void-qdbusservicewatcher-serviceownerchanged-const-qstring-amp-servicename-const-qstring-amp-oldowner-const-qstring-amp-newowner"><code>[signal] </code>void QDBusServiceWatcher:: serviceOwnerChanged (const &amp; <em>serviceName</em> , const &amp; <em>oldOwner</em> , const &amp; <em>newOwner</em> )</span><a href="#signal-void-qdbusservicewatcher-serviceownerchanged-const-qstring-amp-servicename-const-qstring-amp-oldowner-const-qstring-amp-newowner" class="header-anchor">#</a></h3><p>This signal is emitted whenever this object detects that there was a service ownership change relating to the <em>serviceName</em> service. The <em>oldOwner</em> parameter contains the old owner name and <em>newOwner</em> is the new owner. Both <em>oldOwner</em> and <em>newOwner</em> are unique connection names.</p>
+<p>Note that this signal is also emitted whenever the <em>serviceName</em> service was registered or unregistered. If it was registered, <em>oldOwner</em> will contain an empty string, whereas if it was unregistered, <em>newOwner</em> will contain an empty string.</p>
+<p>If you need only to find out if the service is registered or unregistered only, without being notified that the ownership changed, consider using the specific modes for those operations. This class is more efficient if you use the more specific modes.</p>
+<p><strong>另请参阅</strong> <a href="#serviceRegistered">serviceRegistered </a>() 和 <a href="#serviceUnregistered">serviceUnregistered </a>().</p>
+<h3><span id="signal-void-qdbusservicewatcher-serviceregistered-const-qstring-amp-servicename"><code>[signal] </code>void QDBusServiceWatcher:: serviceRegistered (const &amp; <em>serviceName</em> )</span><a href="#signal-void-qdbusservicewatcher-serviceregistered-const-qstring-amp-servicename" class="header-anchor">#</a></h3><p>This signal is emitted whenever this object detects that the service <em>serviceName</em> became available on the bus.</p>
+<p><strong>另请参阅</strong> <a href="#serviceUnregistered">serviceUnregistered </a>() 和 <a href="#serviceOwnerChanged">serviceOwnerChanged </a>().</p>
+<h3><span id="signal-void-qdbusservicewatcher-serviceunregistered-const-qstring-amp-servicename"><code>[signal] </code>void QDBusServiceWatcher:: serviceUnregistered (const &amp; <em>serviceName</em> )</span><a href="#signal-void-qdbusservicewatcher-serviceunregistered-const-qstring-amp-servicename" class="header-anchor">#</a></h3><p>This signal is emitted whenever this object detects that the service <em>serviceName</em> was unregistered from the bus and is no longer available.</p>
+<p><strong>另请参阅</strong> <a href="#serviceRegistered">serviceRegistered </a>() 和 <a href="#serviceOwnerChanged">serviceOwnerChanged </a>().</p>
+<h3><span id="virtual-qdbusservicewatcher-qdbusservicewatcher"><code>[virtual] </code>QDBusServiceWatcher:: ~QDBusServiceWatcher ()</span><a href="#virtual-qdbusservicewatcher-qdbusservicewatcher" class="header-anchor">#</a></h3><p>销毁 <a href>QDBusServiceWatcher </a>object and releases any resources associated with it.</p>
+<h3><span id="void-qdbusservicewatcher-addwatchedservice-const-qstring-amp-newservice">void QDBusServiceWatcher:: addWatchedService (const &amp; <em>newService</em> )</span><a href="#void-qdbusservicewatcher-addwatchedservice-const-qstring-amp-newservice" class="header-anchor">#</a></h3><p>添加 <em>newService</em> to the list of services to be watched by this object. This function is more efficient than <a href="#setWatchedServices">setWatchedServices </a>() and should be used whenever possible to add services.</p>
+<p>Removes any existing binding of <a href="#watchedServices">watchedServices </a>.</p>
+<h3><span id="qdbusconnection-qdbusservicewatcher-connection-const">QDBusServiceWatcher:: connection () const</span><a href="#qdbusconnection-qdbusservicewatcher-connection-const" class="header-anchor">#</a></h3><p>返回 <a href="qdbusconnection.html">QDBusConnection </a>that this object is attached to.</p>
+<p><strong>另请参阅</strong> <a href="#setConnection">setConnection </a>().</p>
+<h3><span id="bool-qdbusservicewatcher-removewatchedservice-const-qstring-amp-service">bool QDBusServiceWatcher:: removeWatchedService (const &amp; <em>service</em> )</span><a href="#bool-qdbusservicewatcher-removewatchedservice-const-qstring-amp-service" class="header-anchor">#</a></h3><p>移除 <em>service</em> from the list of services being watched by this object. Note that D-Bus notifications are asynchronous, so there may still be signals pending delivery about <em>service</em> . Those signals will still be emitted whenever the D-Bus messages are processed.</p>
+<p>Removes any existing binding of <a href="#watchedServices">watchedServices </a>.</p>
+<p>此函数返回 <code>true </code>if any services were removed.</p>
+<h3><span id="void-qdbusservicewatcher-setconnection-const-qdbusconnection-amp-connection">void QDBusServiceWatcher:: setConnection (const &amp; <em>connection</em> )</span><a href="#void-qdbusservicewatcher-setconnection-const-qdbusconnection-amp-connection" class="header-anchor">#</a></h3><p>Sets the D-Bus connection that this object is attached to be <em>connection</em> . All services watched will be transferred to this connection.</p>
+<p>注意， <a href="qdbusconnection.html">QDBusConnection </a>objects are reference counted: <a href>QDBusServiceWatcher </a>will keep a reference for this connection while it exists. The connection is not closed until the reference count drops to zero, so this will ensure that any notifications are received while this <a href>QDBusServiceWatcher </a>object exists.</p>
+<p><strong>另请参阅</strong> <a href="#connection">connection </a>().</p>
+<h3><span id="void-qdbusservicewatcher-setwatchedservices-const-qstringlist-amp-services">void QDBusServiceWatcher:: setWatchedServices (const &amp; <em>services</em> )</span><a href="#void-qdbusservicewatcher-setwatchedservices-const-qstringlist-amp-services" class="header-anchor">#</a></h3><p>Sets the list of D-Bus services being watched to be <em>services</em> .</p>
+<p>Note that setting the entire list means removing all previous rules for watching services and adding new ones. This is an expensive operation and should be avoided, if possible. Instead, use <a href="#addWatchedService">addWatchedService </a>() 和 <a href="#removeWatchedService">removeWatchedService </a>() if you can to manipulate entries in the list.</p>
+<p>Removes any existing binding of <a href="#watchedServices">watchedServices </a>.</p>
+<p><strong>注意：</strong> Setter 函数对于特性 <a href="#watchedServices">watchedServices </a>.</p>
+<p><strong>另请参阅</strong> <a href="#watchedServices">watchedServices </a>().</p>
+<h3><span id="qstringlist-qdbusservicewatcher-watchedservices-const">QDBusServiceWatcher:: watchedServices () const</span><a href="#qstringlist-qdbusservicewatcher-watchedservices-const" class="header-anchor">#</a></h3><p>Returns the list of D-Bus services that are being watched.</p>
+<p><strong>注意：</strong> Getter function for property watchedServices.</p>
+<p><strong>另请参阅</strong> <a href="#setWatchedServices">setWatchedServices </a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/D/">D</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusReply/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QDBusReply类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusSignature/">
+                        <span class="hidden-mobile">QDBusSignature类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

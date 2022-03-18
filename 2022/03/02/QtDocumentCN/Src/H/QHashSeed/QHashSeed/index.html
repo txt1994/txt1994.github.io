@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QHashSeed Struct Public Functions Static Public Members Detailed Description Member Function Documentation QHashSeed::QHashSeed(size_t data &#x3D; 0) [static]QHashSeed QHashSeed::globalSeed() [static]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QHashSeed类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/H/QHashSeed/QHashSeed/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QHashSeed Struct Public Functions Static Public Members Detailed Description Member Function Documentation QHashSeed::QHashSeed(size_t data &#x3D; 0) [static]QHashSeed QHashSeed::globalSeed() [static]">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:21:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:40:52.493Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="H">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QHashSeed类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QHashSeed类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:21" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      22 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QHashSeed类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qhashseed-struct">QHashSeed Struct</a><ul>
+<li><a href="#public-functions">Public Functions</a></li>
+<li><a href="#static-public-members">Static Public Members</a></li>
+<li><a href="#detailed-description">Detailed Description</a></li>
+<li><a href="#member-function-documentation">Member Function Documentation</a><ul>
+<li><a href="#qhashseed-qhashseed-size-t-data-0">QHashSeed::QHashSeed(size_t <em>data</em> = 0)</a></li>
+<li><a href="#static-qhashseed-https-doc-qt-io-qt-6-qhashseed-html-qhashseed-qhashseed-globalseed"><code>[static]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhashseed.html#QHashSeed">QHashSeed</a> QHashSeed::globalSeed()</li>
+<li><a href="#static-void-qhashseed-resetrandomglobalseed"><code>[static]</code>void QHashSeed::resetRandomGlobalSeed()</a></li>
+<li><a href="#static-void-qhashseed-setdeterministicglobalseed"><code>[static]</code>void QHashSeed::setDeterministicGlobalSeed()</a></li>
+<li><a href="#size-t-qhashseed-operator-size-t-const">size_t QHashSeed::operator size_t() const</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QHashSeed Struct
+
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qhashseed></qhashseed></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 6.2</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhashseed-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="public-functions">Public Functions</span><a href="#public-functions" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhashseed.html#QHashSeed">QHashSeed</a></strong>(size_t <em>data</em> = 0)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>size_t</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhashseed.html#operator-size_t">operator size_t</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="static-public-members">Static Public Members</span><a href="#static-public-members" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QHashSeed</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhashseed.html#globalSeed">globalSeed</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhashseed.html#resetRandomGlobalSeed">resetRandomGlobalSeed</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhashseed.html#setDeterministicGlobalSeed">setDeterministicGlobalSeed</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="detailed-description">Detailed Description</span><a href="#detailed-description" class="header-anchor">#</a></h2><p>QHashSeed类是用来传达<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhash.html#qhash">QHash</a>的种子。它被<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhash.html#qhash">QHash</a>内部使用，并提供了三个静态成员函数以允许用户获得哈希值和重置它。</p>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhash.html#qhash">QHash</a>和qHash()函数实现了所谓的 “盐化哈希”。其目的是不同的应用程序和同一应用程序的不同实例将对相同的输入产生不同的散列值，从而使<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhash.html#qhash">QHash</a>中元素的排序对外部观察者来说是不可预测的。这提高了应用程序对试图迫使散列表进入退化模式的攻击的复原力。</p>
+<p>大多数应用程序不需要直接处理散列种子，因为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhash.html#qhash">QHash</a>会在需要时这样做。然而，应用程序可能希望以与<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhash.html#qhash">QHash</a>相同的方式将其用于自己的目的：作为一个应用程序的全局随机值（但也可参见<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrandomgenerator.html">QRandomGenerator</a>）。请注意，如果调用了<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhashseed.html#resetRandomGlobalSeed">resetRandomGlobalSeed</a>()函数，全局哈希种子可能会在应用程序的生命周期内发生变化。全局哈希的用户需要存储他们正在使用的值，而不是依赖再次获得它。</p>
+<p>这个类还实现了将哈希种子设置为一个确定的值的功能，qHash()函数会认为这意味着他们也应该在他们的数据上使用一个固定的哈希函数。这个功能只是为了在调试应用程序中使用。这种行为也可以通过设置<code>QT_HASH_SEED</code>环境变量为0来控制（任何其他值都会被忽略）。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhash.html#qhash">QHash</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrandomgenerator.html">QRandomGenerator</a>.</p>
+<h2><span id="member-function-documentation">Member Function Documentation</span><a href="#member-function-documentation" class="header-anchor">#</a></h2><h3><span id="qhashseed-qhashseed-size-t-data-0">QHashSeed::QHashSeed(size_t <em>data</em> = 0)</span><a href="#qhashseed-qhashseed-size-t-data-0" class="header-anchor">#</a></h3><p>Constructs a new QHashSeed object using <em>data</em> as the seed.</p>
+<h3><span id="static-qhashseed-qhashseed-globalseed"><code>[static]</code> QHashSeed::globalSeed()</span><a href="#static-qhashseed-qhashseed-globalseed" class="header-anchor">#</a></h3><p>Returns the current global <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhash.html#qhash">QHash</a> seed. The value returned by this function will be zero if <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhashseed.html#setDeterministicGlobalSeed">setDeterministicGlobalSeed</a>() has been called or if the <code>QT_HASH_SEED</code> environment variable is set to zero.</p>
+<p><strong>Note:</strong> This function is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/threads-reentrancy.html">thread-safe</a>.</p>
+<h3><span id="static-void-qhashseed-resetrandomglobalseed"><code>[static]</code>void QHashSeed::resetRandomGlobalSeed()</span><a href="#static-void-qhashseed-resetrandomglobalseed" class="header-anchor">#</a></h3><p>Reseeds the Qt hashing seed to a new, random value. Calling this function is not necessary, but long-running applications may want to do so after a long period of time in which information about its hash may have been exposed to potential attackers.</p>
+<p>If the environment variable <code>QT_HASH_SEED</code> is set to zero, calling this function will result in a no-op.</p>
+<p>Qt never calls this function during the execution of the application, but unless the <code>QT_HASH_SEED</code> variable is set to 0, the hash seed returned by <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhashseed.html#globalSeed">globalSeed</a>() will be a random value as if this function had been called.</p>
+<p><strong>Note:</strong> This function is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/threads-reentrancy.html">thread-safe</a>.</p>
+<h3><span id="static-void-qhashseed-setdeterministicglobalseed"><code>[static]</code>void QHashSeed::setDeterministicGlobalSeed()</span><a href="#static-void-qhashseed-setdeterministicglobalseed" class="header-anchor">#</a></h3><p>Forces the Qt hash seed to a deterministic value (zero) and asks the qHash() functions to use a pre-determined hashing function. This mode is only useful for debugging and should not be used in production code.</p>
+<p>Regular operation can be restored by calling <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhashseed.html#resetRandomGlobalSeed">resetRandomGlobalSeed</a>().</p>
+<p><strong>Note:</strong> This function is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/threads-reentrancy.html">thread-safe</a>.</p>
+<h3><span id="size-t-qhashseed-operator-size-t-const">size_t QHashSeed::operator size_t() const</span><a href="#size-t-qhashseed-operator-size-t-const" class="header-anchor">#</a></h3><p>Converts the returned hash seed into a <code>size_t</code>.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/H/">H</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/H/QHashIterator/QHashIterator/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QHashIterator类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/G/QGenericArgument/QGenericArgument/">
+                        <span class="hidden-mobile">QGenericArgument类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

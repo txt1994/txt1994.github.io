@@ -1,0 +1,1785 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QSerialPort 类 公共成员类型 属性 公共成员函数 重写公共成员函数 信号 重写保护成员函数 详细描述 成员类型文档 enum QSerialPort::BaudRate enum QSerialPort::DataBits enum QSerialPort::Direction flags QSerialPort::Directions enum QSerialPort::F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QSerialPort类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/QSerialPort/QSerialPort/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QSerialPort 类 公共成员类型 属性 公共成员函数 重写公共成员函数 信号 重写保护成员函数 详细描述 成员类型文档 enum QSerialPort::BaudRate enum QSerialPort::DataBits enum QSerialPort::Direction flags QSerialPort::Directions enum QSerialPort::F">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:53:01.590Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="S">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QSerialPort类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QSerialPort类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      20k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      171 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QSerialPort类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qserialport-lei">QSerialPort 类</a><ul>
+<li><a href="#gong-gong-cheng-yuan-lei-xing">公共成员类型</a></li>
+<li><a href="#shu-xing">属性</a></li>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#chong-xie-gong-gong-cheng-yuan-han-shu">重写公共成员函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#chong-xie-bao-hu-cheng-yuan-han-shu">重写保护成员函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qserialport-baudrate">enum QSerialPort::BaudRate</a></li>
+<li><a href="#enum-qserialport-databits">enum QSerialPort::DataBits</a></li>
+<li><a href="#enum-qserialport-direction">enum QSerialPort::Direction</a></li>
+<li><a href="#flags-qserialport-directions">flags QSerialPort::Directions</a></li>
+<li><a href="#enum-qserialport-flowcontrol">enum QSerialPort::FlowControl</a></li>
+<li><a href="#enum-qserial-parity">enum QSerial::Parity</a></li>
+<li><a href="#enum-qserialport-pinoutsignal">enum QSerialPort::PinoutSignal</a></li>
+<li><a href="#flags-qserialport-pinoutsignals">flags QSerialPort::PinoutSignals</a></li>
+<li><a href="#enum-qserialport-serialporterror">enum QSerialPort::SerialPortError</a></li>
+<li><a href="#enum-qserialport-stopbits">enum QSerialPort::StopBits</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-shu-xing-wen-dang">成员属性文档</a><ul>
+<li><a href="#baudrate-qint32-https-doc-qt-io-qt-5-qtglobal-html-qint32-typedef">baudRate : </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint32-typedef">qint32</a></li>
+<li><a href="#breakenabled-bool">breakEnabled : bool</a></li>
+<li><a href="#databits-databits-https-doc-qt-io-qt-5-qserialport-html-databits-enum">dataBits : </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#DataBits-enum">DataBits</a></li>
+<li><a href="#dataterminalready-bool">dataTerminalReady : bool</a></li>
+<li><a href="#error-serialporterror-https-doc-qt-io-qt-5-qserialport-html-serialporterror-enum">error : </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">SerialPortError</a></li>
+<li><a href="#flowcontrol-flowcontrol-https-doc-qt-io-qt-5-qserialport-html-flowcontrol-enum">flowControl : </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#FlowControl-enum">FlowControl</a></li>
+<li><a href="#parity-parity-https-doc-qt-io-qt-5-qserialport-html-parity-enum">parity : </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#Parity-enum">Parity</a></li>
+<li><a href="#requesttosend-bool">requestToSend : bool</a></li>
+<li><a href="#stopbits-stopbits-https-doc-qt-io-qt-5-qserialport-html-stopbits-enum">stopBits : </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#StopBits-enum">StopBits</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qserialport-qserialport-const-qserialportinfo-https-doc-qt-io-qt-5-qserialportinfo-html-serialportinfo-qobject-https-doc-qt-io-qt-5-qobject-html-qobject-parent-nullptr">QSerialPort::QSerialPort(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialportinfo.html">QSerialPortInfo</a> &amp;<em>serialPortInfo</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qobject.html#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#qserialport-qserialport-const-qstring-https-doc-qt-io-qt-5-qstring-html-name-qobject-https-doc-qt-io-qt-5-qobject-html-qobject-parent-nullptr">QSerialPort::QSerialPort(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>name</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qobject.html#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#qserialport-qserialport-qobject-https-doc-qt-io-qt-5-qobject-html-qobject-parent-nullptr">QSerialPort::QSerialPort(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qobject.html#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#signal-void-qserialport-baudratechanged-qint32-https-doc-qt-io-qt-5-qtglobal-html-qint32-typedef-baudrate-qserialport-directions-https-doc-qt-io-qt-5-qserialport-html-direction-enum-directions">[signal] void QSerialPort::baudRateChanged(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint32-typedef">qint32</a> <em>baudRate</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#Direction-enum">QSerialPort::Directions</a> <em>directions</em>)</li>
+<li><a href="#signal-void-qserialport-databitschanged-qserialport-databits-https-doc-qt-io-qt-5-qserialport-html-databits-enum-databits">[signal] void QSerialPort::dataBitsChanged(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#DataBits-enum">QSerialPort::DataBits</a> <em>dataBits</em>)</li>
+<li><a href="#signal-void-qserialport-dataterminalreadychanged-bool-set">[signal] void QSerialPort::dataTerminalReadyChanged(bool <em>set</em>)</a></li>
+<li><a href="#signal-void-qserialport-erroroccurred-qserialport-serialporterror-https-doc-qt-io-qt-5-qserialport-html-serialporterror-enum-error">[signal] void QSerialPort::errorOccurred(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">QSerialPort::SerialPortError</a> <em>error</em>)</li>
+<li><a href="#signal-void-qserialport-flowcontrolchanged-qserialport-flowcontrol-https-doc-qt-io-qt-5-qserialport-html-flowcontrol-enum-flow">[signal] void QSerialPort::flowControlChanged(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#FlowControl-enum">QSerialPort::FlowControl</a> <em>flow</em>)</li>
+<li><a href="#signal-void-qserialport-paritychanged-qserialport-parity-https-doc-qt-io-qt-5-qserialport-html-parity-enum-parity">[signal] void QSerialPort::parityChanged(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#Parity-enum">QSerialPort::Parity</a> <em>parity</em>)</li>
+<li><a href="#signal-void-qserialport-requesttosendchanged-bool-set">[signal] void QSerialPort::requestToSendChanged(bool <em>set</em>)</a></li>
+<li><a href="#signal-void-qserialport-stopbitschanged-qserialport-stopbits-https-doc-qt-io-qt-5-qserialport-html-stopbits-enum-stopbits">[signal] void QSerialPort::stopBitsChanged(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#StopBits-enum">QSerialPort::StopBits</a> <em>stopBits</em>)</li>
+<li><a href="#virtual-qserialport-qserialport">[virtual] QSerialPort::~QSerialPort()</a></li>
+<li><a href="#override-virtual-bool-qserialport-atend-const">[override virtual] bool QSerialPort::atEnd() const</a></li>
+<li><a href="#override-virtual-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-qserialport-bytesavailable-const">[override virtual] </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> QSerialPort::bytesAvailable() const</li>
+<li><a href="#override-virtual-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-qserialport-bytestowrite-const">[override virtual] </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> QSerialPort::bytesToWrite() const</li>
+<li><a href="#override-virtual-bool-qserialport-canreadline-const">[override virtual] bool QSerialPort::canReadLine() const</a></li>
+<li><a href="#bool-qserialport-clear-qserialport-directions-https-doc-qt-io-qt-5-qserialport-html-direction-enum-directions-alldirections">bool QSerialPort::clear(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#Direction-enum">QSerialPort::Directions</a> <em>directions</em> = AllDirections)</li>
+<li><a href="#override-virtual-void-qserialport-close">[override virtual] void QSerialPort::close()</a></li>
+<li><a href="#bool-qserialport-flush">bool QSerialPort::flush()</a></li>
+<li><a href="#qserialport-handle-qserialport-handle-const">QSerialPort::Handle QSerialPort::handle() const</a></li>
+<li><a href="#override-virtual-bool-qserialport-issequential-const">[override virtual] bool QSerialPort::isSequential() const</a></li>
+<li><a href="#override-virtual-bool-qserialport-open-qiodevice-openmode-https-doc-qt-io-qt-5-qiodevice-html-openmodeflag-enum-mode">[override virtual] bool QSerialPort::open(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::OpenMode</a> <em>mode</em>)</li>
+<li><a href="#qserialport-pinoutsignals-https-doc-qt-io-qt-5-qserialport-html-pinoutsignal-enum-qserialport-pinoutsignals">QSerialPort::PinoutSignals</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-5-qstring-html-qserialport-portname-const">QString</a></li>
+<li><a href="#qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-qserialport-readbuffersize-const">qint64</a></li>
+<li><a href="#override-virtual-protected-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-qserialport-readdata-char-data-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-maxsize">[override virtual protected] </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> QSerialPort::readData(char *<em>data</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> <em>maxSize</em>)</li>
+<li><a href="#override-virtual-protected-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-qserialport-readlinedata-char-data-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-maxsize">[override virtual protected] </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> QSerialPort::readLineData(char *<em>data</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> <em>maxSize</em>)</li>
+<li><a href="#bool-qserialport-sendbreak-int-duration-0">bool QSerialPort::sendBreak(int <em>duration</em> = 0)</a></li>
+<li><a href="#void-qserialport-setport-const-qserialportinfo-https-doc-qt-io-qt-5-qserialportinfo-html-serialportinfo">void QSerialPort::setPort(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialportinfo.html">QSerialPortInfo</a> &amp;<em>serialPortInfo</em>)</li>
+<li><a href="#void-qserialport-setportname-const-qstring-https-doc-qt-io-qt-5-qstring-html-name">void QSerialPort::setPortName(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>name</em>)</li>
+<li><a href="#void-qserialport-setreadbuffersize-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-size">void QSerialPort::setReadBufferSize(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> <em>size</em>)</li>
+<li><a href="#override-virtual-bool-qserialport-waitforbyteswritten-int-msecs-30000">[override virtual] bool QSerialPort::waitForBytesWritten(int <em>msecs</em> = 30000)</a></li>
+<li><a href="#override-virtual-bool-qserialport-waitforreadyread-int-msecs-30000">[override virtual] bool QSerialPort::waitForReadyRead(int <em>msecs</em> = 30000)</a></li>
+<li><a href="#override-virtual-protected-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-qserialport-writedata-const-char-data-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-maxsize">[override virtual protected] </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> QSerialPort::writeData(const char *<em>data</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> <em>maxSize</em>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QSerialPort 类
+
+<p>QSerialPort 类用于访问串口。 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#details">更多内容…</a></p>
+<table>
+<thead>
+<tr>
+<th align="right">属性</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">头文件:</td>
+<td align="left"><code>#include &lt;QSerialPort&gt;</code></td>
+</tr>
+<tr>
+<td align="right">qmake:</td>
+<td align="left"><code>QT += serialport</code></td>
+</tr>
+<tr>
+<td align="right">父类:</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html">QIODevice</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport-members.html">列出所有成员, 包括子类成员</a></li>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport-obsolete.html">废弃的类</a></li>
+</ul>
+<p><strong>注意:</strong> 该类中的所有函数均为 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/threads-reentrancy.html">reentrant</a>.</p>
+<h2><span id="gong-gong-cheng-yuan-lei-xing">公共成员类型</span><a href="#gong-gong-cheng-yuan-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">enum</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#BaudRate-enum"><strong>BaudRate</strong></a> {Baud1200, Baud2400, Baud4800, Baud9600, Baud19200, …, UnknownBaud }</td>
+</tr>
+<tr>
+<td align="right">enum</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#DataBits-enum"><strong>DataBits</strong></a> { Data5, Data6, Data7, Data8, UnknownDataBits }</td>
+</tr>
+<tr>
+<td align="right">enum</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#Direction-enum"><strong>Direction</strong></a> { Input, Output, AllDirections }</td>
+</tr>
+<tr>
+<td align="right">flags</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#Direction-enum"><strong>Directions</strong></a></td>
+</tr>
+<tr>
+<td align="right">enum</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#FlowControl-enum"><strong>FlowControl</strong></a> { NoFlowControl, HardwareControl, SoftwareControl, UnknownFlowControl }</td>
+</tr>
+<tr>
+<td align="right">enum</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#Parity-enum"><strong>Parity</strong></a> { NoParity, EvenParity, OddParity, SpaceParity, MarkParity, UnknownParity }</td>
+</tr>
+<tr>
+<td align="right">enum</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#PinoutSignal-enum"><strong>PinoutSignal</strong></a> { NoSignal, TransmittedDataSignal, ReceivedDataSignal,  DataTerminalReadySignal, DataCarrierDetectSignal, …,  SecondaryReceivedDataSignal }</td>
+</tr>
+<tr>
+<td align="right">flags</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#PinoutSignal-enum"><strong>PinoutSignals</strong></a></td>
+</tr>
+<tr>
+<td align="right">enum</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum"><strong>SerialPortError</strong></a> { NoError, DeviceNotFoundError, PermissionError, OpenError, NotOpenError, …, UnknownError }</td>
+</tr>
+<tr>
+<td align="right">enum</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#StopBits-enum"><strong>StopBits</strong></a> { OneStop, OneAndHalfStop, TwoStop, UnknownStopBits }</td>
+</tr>
+</tbody></table>
+<h2><span id="shu-xing">属性</span><a href="#shu-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="right">属性名</th>
+<th align="left">类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#baudRate-prop"><strong>baudRate</strong></a></td>
+<td align="left">qint32</td>
+</tr>
+<tr>
+<td align="right"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#breakEnabled-prop"><strong>breakEnabled</strong></a></td>
+<td align="left">bool</td>
+</tr>
+<tr>
+<td align="right"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataBits-prop"><strong>dataBits</strong></a></td>
+<td align="left">dataBits</td>
+</tr>
+<tr>
+<td align="right"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataTerminalReady-prop"><strong>dataTerminalReady</strong></a></td>
+<td align="left">bool</td>
+</tr>
+<tr>
+<td align="right"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop"><strong>error</strong></a></td>
+<td align="left">SerialPortError</td>
+</tr>
+<tr>
+<td align="right"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flowControl-prop"><strong>flowControl</strong></a></td>
+<td align="left">FlowControl</td>
+</tr>
+<tr>
+<td align="right"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#parity-prop"><strong>parity</strong></a></td>
+<td align="left">Parity</td>
+</tr>
+<tr>
+<td align="right"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#requestToSend-prop"><strong>requestToSend</strong></a></td>
+<td align="left">bool</td>
+</tr>
+<tr>
+<td align="right"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#stopBits-prop"><strong>stopBits</strong></a></td>
+<td align="left">StopBits</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right"></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#QSerialPort-2"><strong>QSerialPort</strong></a>(const QSerialPortInfo &amp;<em>serialPortInfo</em>, QObject *<em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#QSerialPort-1"><strong>QSerialPort</strong></a>(const QString &amp;<em>name</em>, QObject *<em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left">[**QSerialPort**](QObject **parent* = nullptr)</td>
+</tr>
+<tr>
+<td align="right">virtual</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dtor.QSerialPort"><strong>~QSerialPort</strong></a>()</td>
+</tr>
+<tr>
+<td align="right">qint32</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#baudRate-prop"><strong>baudRate</strong></a>(QSerialPort::Directions <em>directions</em> = AllDirections) const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#clear"><strong>clear</strong></a>(QSerialPort::Directions <em>directions</em> = AllDirections)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop"><strong>clearError</strong></a>()</td>
+</tr>
+<tr>
+<td align="right">QSerialPort::DataBits</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataBits-prop"><strong>dataBits</strong></a>() const</td>
+</tr>
+<tr>
+<td align="right">QSerialPort::SerialPortError</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop"><strong>error</strong></a>() const</td>
+</tr>
+<tr>
+<td align="right">QSerialPort::FlowControl</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flowControl-prop">flowControl</a></strong>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flush">flush</a></strong>()</td>
+</tr>
+<tr>
+<td align="right">QSerialPort::Handle</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#handle">handle</a></strong>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#breakEnabled-prop">isBreakEnabled</a></strong>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataTerminalReady-prop">isDataTerminalReady</a></strong>()</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#requestToSend-prop">isRequestToSend</a></strong>()</td>
+</tr>
+<tr>
+<td align="right">QSerialPort::Parity</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#parity-prop">parity</a></strong>() const</td>
+</tr>
+<tr>
+<td align="right">QSerialPort::PinoutSignals</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#pinoutSignals">pinoutSignals</a></strong>()</td>
+</tr>
+<tr>
+<td align="right">QString</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#portName">portName</a></strong>() const</td>
+</tr>
+<tr>
+<td align="right">qint64</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#readBufferSize">readBufferSize</a></strong>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#sendBreak">sendBreak</a></strong>(int <em>duration</em> = 0)</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#baudRate-prop">setBaudRate</a></strong>(qint32 <em>baudRate</em>, QSerialPort::Directions <em>directions</em> = AllDirections)</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#breakEnabled-prop">setBreakEnabled</a></strong>(bool <em>set</em> = true)</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataBits-prop">setDataBits</a></strong>(QSerialPort::DataBits <em>dataBits</em>)</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataTerminalReady-prop">setDataTerminalReady</a></strong>(bool <em>set</em>)</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flowControl-prop">setFlowControl</a></strong>(QSerialPort::FlowControl <em>flowControl</em>)</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#parity-prop">setParity</a></strong>(QSerialPort::Parity <em>parity</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setPort">setPort</a></strong>(const QSerialPortInfo &amp;<em>serialPortInfo</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setPortName">setPortName</a></strong>(const QString &amp;<em>name</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setReadBufferSize">setReadBufferSize</a></strong>(qint64 <em>size</em>)</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#requestToSend-prop">setRequestToSend</a></strong>(bool <em>set</em>)</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#stopBits-prop">setStopBits</a></strong>(QSerialPort::StopBits <em>stopBits</em>)</td>
+</tr>
+<tr>
+<td align="right">QSerialPort::StopBits</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#stopBits-prop">stopBits</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-xie-gong-gong-cheng-yuan-han-shu">重写公共成员函数</span><a href="#chong-xie-gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">virtual bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#atEnd">atEnd</a></strong>() const override</td>
+</tr>
+<tr>
+<td align="right">virtual qint64</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#bytesAvailable">bytesAvailable</a></strong>() const override</td>
+</tr>
+<tr>
+<td align="right">virtual qint64</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#bytesToWrite">bytesToWrite</a></strong>() const override</td>
+</tr>
+<tr>
+<td align="right">virtual bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#canReadLine">canReadLine</a></strong>() const override</td>
+</tr>
+<tr>
+<td align="right">virtual void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#close">close</a></strong>() override</td>
+</tr>
+<tr>
+<td align="right">virtual bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#isSequential">isSequential</a></strong>() const override</td>
+</tr>
+<tr>
+<td align="right">virtual bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#open">open</a></strong>(QIODevice::OpenMode <em>mode</em>) override</td>
+</tr>
+<tr>
+<td align="right">virtual bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#waitForBytesWritten">waitForBytesWritten</a></strong>(int <em>msecs</em> = 30000) override</td>
+</tr>
+<tr>
+<td align="right">virtual bool</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#waitForReadyRead">waitForReadyRead</a></strong>(int <em>msecs</em> = 30000) override</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#baudRateChanged">baudRateChanged</a></strong>(qint32 <em>baudRate</em>, QSerialPort::Directions <em>directions</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#breakEnabled-prop">breakEnabledChanged</a></strong>(bool <em>set</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataBitsChanged">dataBitsChanged</a></strong>(QSerialPort::DataBits <em>dataBits</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataTerminalReadyChanged">dataTerminalReadyChanged</a></strong>(bool <em>set</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#errorOccurred">errorOccurred</a></strong>(QSerialPort::SerialPortError <em>error</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flowControlChanged">flowControlChanged</a></strong>(QSerialPort::FlowControl <em>flow</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#parityChanged">parityChanged</a></strong>(QSerialPort::Parity <em>parity</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#requestToSendChanged">requestToSendChanged</a></strong>(bool <em>set</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#stopBitsChanged">stopBitsChanged</a></strong>(QSerialPort::StopBits <em>stopBits</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-xie-bao-hu-cheng-yuan-han-shu">重写保护成员函数</span><a href="#chong-xie-bao-hu-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">virtual qint64</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#readData">readData</a></strong>(char *<em>data</em>, qint64 <em>maxSize</em>) override</td>
+</tr>
+<tr>
+<td align="right">virtual qint64</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#readLineData">readLineData</a></strong>(char *<em>data</em>, qint64 <em>maxSize</em>) override</td>
+</tr>
+<tr>
+<td align="right">virtual qint64</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#writeData">writeData</a></strong>(const char *<em>data</em>, qint64 <em>maxSize</em>) override</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>您可以使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialportinfo.html">QSerialPortInfo</a> 帮助类来获取可用串口的信息，这个类可以枚举系统中的所有串口，当您想使用某个串口时，使用这个类可以获得正确的串口名。可以通过把 QSerialPortInfo 类实例对象作为参数传递给  <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setPort">setPort</a>() 或 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setPortName">setPortName</a>() 方法来指定串口设备。</p>
+<p>串口设置完毕以后，可以使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#open">open</a>() 方法以只读 (r/o)、只写 (w/o)、读写 (r/w) 模式打开串口。</p>
+<p><strong>注意</strong>: 串口总是以独占访问的方式打开，即其它进程或线程无法访问已经打开的串口。</p>
+<p>请使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#close">close</a>() 方法来关闭串口或取消串口读写操作。</p>
+<p>串口打开以后，<code>QSerialPort</code> 会检查串口当前的配置并初始化。您可以使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#baudRate-prop">setBaudRate</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataBits-prop">setDataBits</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#parity-prop">setParity</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#stopBits-prop">setStopBits</a>(), 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flowControl-prop">setFlowControl</a>() 方法重新配置串口。</p>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataTerminalReady-prop">QSerialPort::dataTerminalReady</a> 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#requestToSend-prop">QSerialPort::requestToSend</a> 属性用来设置串口引脚信号，还可以使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#pinoutSignals">pinoutSignals</a>() 方法来查询串口引脚信号。</p>
+<p>当串口准备好时，可以用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#read">read</a>() 或 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#write">write</a>() 方法来读写串口。您还可以使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readLine">readLine</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readAll">readAll</a>() 这样的便捷方法读写串口。如果数据没有一次读完，剩下的数据会被接下来有新数据被添加至 <code>QSerialPort</code> 内部读缓冲器时再读出。您可以使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setReadBufferSize">setReadBufferSize</a>() 方法来设置串口读缓冲区的大小。</p>
+<p><code>QSerialPort</code> 提供了一组函数来暂停线程调用直到触发特定的信号。这些函数可以用来阻塞串口：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#waitForReadyRead">waitForReadyRead</a>() 函数阻塞线程调用直到串口有新数据准备读出</li>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#waitForBytesWritten">waitForBytesWritten</a>() 函数阻塞线程调用直到有新数据被写进串口</li>
+</ul>
+<p>阻塞串口代码示例：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> numRead = <span class="hljs-number">0</span>, numReadTotal = <span class="hljs-number">0</span>;
+<span class="hljs-type">char</span> buffer[<span class="hljs-number">50</span>];
+
+<span class="hljs-keyword">for</span> (;;) {
+    numRead  = serial.<span class="hljs-built_in">read</span>(buffer, <span class="hljs-number">50</span>);
+
+    <span class="hljs-comment">// Do whatever with the array</span>
+
+    numReadTotal += numRead;
+    <span class="hljs-keyword">if</span> (numRead == <span class="hljs-number">0</span> &amp;&amp; !serial.<span class="hljs-built_in">waitForReadyRead</span>())
+        <span class="hljs-keyword">break</span>;
+}</code></pre></div>
+
+<p>如果 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#waitForReadyRead">waitForReadyRead()</a> 返回 <code>false</code>，说明串口连接已经关闭或者有错误出现。</p>
+<p>如果串口出现错误，<code>QSerialPort</code> 将会发射 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#errorOccurred">errorOccurred</a>() 信号。您还可以调用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop">error</a>() 方法来查询串口最近一次出现错误的类型。</p>
+<p><strong>注意</strong>: 在 <code>QSerialPort</code> 中，并非所有的错误都是以操作系统平台无关的方式处理。诸如帧、奇偶校验、终止条件这样的错误需要由应用程序代码来处理，可能需要使用设备描述符中的操作系统相关的 <code>ioctls</code> 和(或)解析串口数据流中的字节填充。 </p>
+<p>编程阻塞串口与编程非阻塞串口完全不同。阻塞串口不需要事件循环，通常会让编程更简单。然而，在图形用户界面程序中，阻塞串口应该仅用于非图形用户界面线程，这样做可以避免用户界面卡顿。</p>
+<p>若想更深入了解这方面内容，请参考 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtserialport-examples.html">example</a> 中的例程。</p>
+<p><code>QSerialPort</code> 类还可以与 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a> 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qdatastream.html">QDataStream</a> 的流运算符(<code>&lt;&lt;()</code>和<code>&gt;&gt;()</code>)一起使用。有一点需要注意：在使用流运算符 <code>&gt;&gt;()</code> 之前请确保串口缓冲区有足够多的数据可读。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialportinfo.html">QSerialPortInfo</a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qserialport-baudrate">enum QSerialPort::BaudRate</span><a href="#enum-qserialport-baudrate" class="header-anchor">#</a></h3><hr>
+<p>该枚举描述了串口通信波特率。</p>
+<p><strong>注意</strong>: 该枚举仅列出了最常用的串口通信波特率。</p>
+<table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th align="center">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>QSerialPort::Baud1200</code></td>
+<td align="center"><code>1200</code></td>
+<td>1200 比特/秒</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::Baud2400</code></td>
+<td align="center"><code>2400</code></td>
+<td>2400 比特/秒</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::Baud4800</code></td>
+<td align="center"><code>4800</code></td>
+<td>4800 比特/秒</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::Baud9600</code></td>
+<td align="center"><code>9600</code></td>
+<td>9600 比特/秒</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::Baud19200</code></td>
+<td align="center"><code>19200</code></td>
+<td>19200 比特/秒</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::Baud38400</code></td>
+<td align="center"><code>38400</code></td>
+<td>38400 比特/秒</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::Baud57600</code></td>
+<td align="center"><code>57600</code></td>
+<td>57600 比特/秒</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::Baud115200</code></td>
+<td align="center"><code>115200</code></td>
+<td>115200 比特/秒</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::UnknownBaud</code></td>
+<td align="center"><code>-1</code></td>
+<td>波特率未知。这个值已经废弃了。此处保留是为了兼容旧的代码。强烈建议您在新开发的代码中不使用这个值</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#baudRate-prop">QSerialPort::baudRate</a>.</p>
+<h3><span id="enum-qserialport-databits">enum QSerialPort::DataBits</span><a href="#enum-qserialport-databits" class="header-anchor">#</a></h3><hr>
+<p>该枚举描述了每个字符所使用的数据比特数。</p>
+<table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th align="center">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>QSerialPort::Data5</code></td>
+<td align="center"><code>5</code></td>
+<td>每个字符用5比特表示，用于波特码，常见于旧式设备，例如电传打字机</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::Data6</code></td>
+<td align="center"><code>6</code></td>
+<td>每个字符用6比特表示，很少这样用</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::Data7</code></td>
+<td align="center"><code>7</code></td>
+<td>每个字符用7比特表示，用于ASCII码，常见于旧式设备，例如电传打字机</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::Data8</code></td>
+<td align="center"><code>8</code></td>
+<td>每个字符用8比特表示，大部分数据采用此格式，因为1个字节包含8比特。它在新应用中广泛使用</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::UnknownDataBits</code></td>
+<td align="center"><code>-1</code></td>
+<td>比特数未知。这个值已经废弃了。此处保留是为了兼容旧的代码。强烈建议您在新开发的代码中不使用这个值</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataBits-prop">QSerialPort::dataBits</a>.</p>
+<h3><span id="enum-qserialport-direction">enum QSerialPort::Direction</span><a href="#enum-qserialport-direction" class="header-anchor">#</a></h3><h3><span id="flags-qserialport-directions">flags QSerialPort::Directions</span><a href="#flags-qserialport-directions" class="header-anchor">#</a></h3><hr>
+<p>该枚举描述了串口数据传输方向。</p>
+<p><strong>注意</strong>: 在某些操作系统中(例如类 POSIX 系统)，该枚举对串口的输入/输出波特率单独设置。</p>
+<table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th align="center">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>QSerialPort::Input</code></td>
+<td align="center"><code>1</code></td>
+<td>输入方向</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::Output</code></td>
+<td align="center"><code>2</code></td>
+<td>输出方向</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::AllDirections</code></td>
+<td align="center">`Input</td>
+<td>Output`</td>
+</tr>
+</tbody></table>
+<p>方向类型是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qflags.html">QFlags</a><direction> 的类型定义(<code>typedef</code>)，它保存了方向值的 OR 组合。</direction></p>
+<h3><span id="enum-qserialport-flowcontrol">enum QSerialPort::FlowControl</span><a href="#enum-qserialport-flowcontrol" class="header-anchor">#</a></h3><hr>
+<p>该枚举描述了串口使用的流控制方式。</p>
+<table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th align="center">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>QSerialPort::NoFlowControl</code></td>
+<td align="center"><code>0</code></td>
+<td>没有流控制</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::HardwareControl</code></td>
+<td align="center"><code>1</code></td>
+<td>硬件流控制 (RTS/CTS)</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::SoftwareControl</code></td>
+<td align="center"><code>2</code></td>
+<td>软件流控制 (XON/XOFF)</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::UnknownFlowControl</code></td>
+<td align="center"><code>-1</code></td>
+<td>流控制未知。这个值已经废弃了。此处保留是为了兼容旧的代码。强烈建议您在新开发的代码中不使用这个值</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flowControl-prop">QSerialPort::flowControl</a>.</p>
+<h3><span id="enum-qserial-parity">enum QSerial::Parity</span><a href="#enum-qserial-parity" class="header-anchor">#</a></h3><hr>
+<p>该枚举描述了串口使用的奇偶校验模式。</p>
+<table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th align="center">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>QSerialPort::NoParity</code></td>
+<td align="center"><code>0</code></td>
+<td>没有奇偶校验。这是最常见的奇偶校验设置。错误检测由通信协议完成</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::EvenParity</code></td>
+<td align="center"><code>2</code></td>
+<td>每个字符包含1比特奇偶校验，字符比特数为偶数(含奇偶校验位)</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::OddParity</code></td>
+<td align="center"><code>3</code></td>
+<td>每个字符包含1比特奇偶校验，字符比特数为奇数(含奇偶校验位)。它确保了每个字符至少有一次状态转换</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::SpaceParity</code></td>
+<td align="center"><code>4</code></td>
+<td>间隔奇偶校验。奇偶校验位在间隔信号中发送。它不提供错误检测信息</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::MarkParity</code></td>
+<td align="center"><code>5</code></td>
+<td>标志奇偶校验。奇偶校验位总是被置为标志信号(逻辑 <code>1</code>)。它不提供错误检测信息</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::UnknownParity</code></td>
+<td align="center"><code>-1</code></td>
+<td>奇偶校验未知。这个值已经废弃了。此处保留是为了兼容旧的代码。强烈建议您在新开发的代码中不使用这个值</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#parity-prop">QSerialPort::parity</a>.</p>
+<h3><span id="enum-qserialport-pinoutsignal">enum QSerialPort::PinoutSignal</span><a href="#enum-qserialport-pinoutsignal" class="header-anchor">#</a></h3><h3><span id="flags-qserialport-pinoutsignals">flags QSerialPort::PinoutSignals</span><a href="#flags-qserialport-pinoutsignals" class="header-anchor">#</a></h3><hr>
+<p>该枚举用于描述串口引脚信号。</p>
+<table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th align="center">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>QSerialPort::NoSignal</code></td>
+<td align="center"><code>0x00</code></td>
+<td>无信号</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::TransmittedDataSignal</code></td>
+<td align="center"><code>0x01</code></td>
+<td>TxD (发送数据)。这个值已经废弃了。此处保留是为了兼容旧的代码。强烈建议您在新开发的代码中不使用这个值</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::ReceivedDataSignal</code></td>
+<td align="center"><code>0x02</code></td>
+<td>RxD (接收数据)。这个值已经废弃了。此处保留是为了兼容旧的代码。强烈建议您在新开发的代码中不使用这个值</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::DataTerminalReadySignal</code></td>
+<td align="center"><code>0x04</code></td>
+<td>DTR (数据终端就绪)</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::DataCarrierDetectSignal</code></td>
+<td align="center"><code>0x08</code></td>
+<td>DCD (数据载波检测)</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::DataSetReadySignal</code></td>
+<td align="center"><code>0x10</code></td>
+<td>DSR (数据就绪)</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::RingIndicatorSignal</code></td>
+<td align="center"><code>0x20</code></td>
+<td>RNG (振铃提示)</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::RequestToSendSignal</code></td>
+<td align="center"><code>0x40</code></td>
+<td>RTS (请求发送)</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::ClearToSendSignal</code></td>
+<td align="center"><code>0x80</code></td>
+<td>CTS (清除发送)</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::SecondaryTransmittedDataSignal</code></td>
+<td align="center"><code>0x100</code></td>
+<td>STD (辅助发送数据)</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::SecondaryReceivedDataSignal</code></td>
+<td align="center"><code>0x200</code></td>
+<td>SRD (辅助接收数据)</td>
+</tr>
+</tbody></table>
+<p><code>PinoutSignals</code>类型是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qflags.html">QFlags</a><pinoutsignal> 的类型定义(<code>typedef</code>)，它保存了<code>PinoutSignal</code>值的 OR 组合。</pinoutsignal></p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#pinoutSignals">pinoutSignals</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataTerminalReady-prop">QSerialPort::dataTerminalReady</a>, 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#requestToSend-prop">QSerialPort::requestToSend</a>.</p>
+<h3><span id="enum-qserialport-serialporterror">enum QSerialPort::SerialPortError</span><a href="#enum-qserialport-serialporterror" class="header-anchor">#</a></h3><hr>
+<p>该枚举描述了 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop">QSerialPort::error</a> 属性的错误类型。</p>
+<table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th align="center">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>QSerialPort::NoError</code></td>
+<td align="center"><code>0</code></td>
+<td>没有错误</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::DeviceNotFoundError</code></td>
+<td align="center"><code>1</code></td>
+<td>尝试打开一个不存在的串口设备</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::PermissionError</code></td>
+<td align="center"><code>2</code></td>
+<td>其它进程试图打开一个已经开启的串口设备或者用户没有足够的权限打开串口</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::OpenError</code></td>
+<td align="center"><code>3</code></td>
+<td>在当前对象中试图打开一个已经开启的串口</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::NotOpenError</code></td>
+<td align="center"><code>13</code></td>
+<td>在串口未开启时执行某个操作。这个值从 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtserialport-module.html">QtSerialPort</a> 5.2 开始使用</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::ParityError</code></td>
+<td align="center"><code>4</code></td>
+<td>读串口时硬件检测到奇偶校验错误。这个值已经废弃了。强烈建议您在新开发的代码中不使用这个值</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::FramingError</code></td>
+<td align="center"><code>5</code></td>
+<td>读串口时硬件检测到帧错误。这个值已经废弃了。强烈建议您在新开发的代码中不使用这个值</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::BreakConditionError</code></td>
+<td align="center"><code>6</code></td>
+<td>串口输入线上检测到终止条件。这个值已经废弃了。强烈建议您在新开发的代码中不使用这个值</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::WriteError</code></td>
+<td align="center"><code>7</code></td>
+<td>写串口时出现的 I/O 错误</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::ReadError</code></td>
+<td align="center"><code>8</code></td>
+<td>读串口时出现的 I/O 错误</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::ResourceError</code></td>
+<td align="center"><code>9</code></td>
+<td>当资源无法访问时出现的 I/O 错误。例如：当串口设备意外断开时</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::UnsupportedOperationError</code></td>
+<td align="center"><code>10</code></td>
+<td>操作系统禁止或不支持请求的串口操作</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::TimeoutError</code></td>
+<td align="center"><code>12</code></td>
+<td>超时错误。这个值从 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtserialport-module.html">QtSerialPort</a> 5.2 开始使用</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::UnknownError</code></td>
+<td align="center"><code>11</code></td>
+<td>未知错误</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop">QSerialPort::error</a>.</p>
+<h3><span id="enum-qserialport-stopbits">enum QSerialPort::StopBits</span><a href="#enum-qserialport-stopbits" class="header-anchor">#</a></h3><hr>
+<p>该枚举描述了串口停止位的比特数。</p>
+<table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th align="center">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>QSerialPort::OneStop</code></td>
+<td align="center"><code>1</code></td>
+<td>1比特停止位</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::OneAndHalfStop</code></td>
+<td align="center"><code>3</code></td>
+<td>1.5比特停止位(仅适用于Windows系统)</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::TwoStop</code></td>
+<td align="center"><code>2</code></td>
+<td>2比特停止位</td>
+</tr>
+<tr>
+<td align="center"><code>QSerialPort::UnknownStopBits</code></td>
+<td align="center"><code>-1</code></td>
+<td>停止位比特数未知。这个值已经废弃了。此处保留是为了兼容旧的代码。强烈建议您在新开发的代码中不使用这个值</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#stopBits-prop">QSerialPort::stopBits</a>.</p>
+<h2><span id="cheng-yuan-shu-xing-wen-dang">成员属性文档</span><a href="#cheng-yuan-shu-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="baudrate-qint32">baudRate : </span><a href="#baudrate-qint32" class="header-anchor">#</a></h3><hr>
+<p>该属性为串口在指定方向(输入/输出)上的通信波特率。</p>
+<p>如果串口波特率设置成功或者打开串口前设置好波特率，那么返回<code>true</code>，否则返回<code>false</code>并且把错误码置<code>1</code>。该错误码可以通过读取 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop">QSerialPort::error</a> 属性的值获得。您可以使用枚举 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#BaudRate-enum">QSerialPort::BaudRate</a> 或者任何 <code>qint32</code> 型正整数值设置串口通信波特率。</p>
+<p><strong>注意</strong>: 如果在打开串口前设置该属性，那么真实的串口设置将会在串口打开后，在 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#open">QSerialPort::open</a>() 方法中自动完成。</p>
+<p><strong>警告</strong>: 所有操作系统均支持 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#Direction-enum">AllDirections</a> 标志位设置，但 Windows 系统仅支持这种模式。</p>
+<p><strong>警告</strong>: 在 Windows 系统中无论串口输入还是输出，其波特率均相同。</p>
+<p>该属性的默认值为 <code>Baud9600</code>，即 9600 比特/秒。</p>
+<p><strong>存取函数</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">qint32</td>
+<td align="left"><strong>baudRate</strong>(QSerialPort::Directions <em>directions</em> = AllDirections) const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong>setBaudRate</strong>(qint32 <em>baudRate</em>, QSerialPort::Directions <em>directions</em> = AllDirections)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#baudRateChanged">baudRateChanged</a></strong>(qint32 <em>baudRate</em>, QSerialPort::Directions <em>directions</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="breakenabled-bool">breakEnabled : bool</span><a href="#breakenabled-bool" class="header-anchor">#</a></h3><hr>
+<p>该属性为串口是否终止传输的标志位。</p>
+<p>若串口终止通信，则该属性为 <code>true</code>，否则为 <code>false</code>。</p>
+<p><strong>注意</strong>: 在设置或访问该属性前串口必须已经打开，否则返回 <code>false</code> 并且 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">NotOpenError</a> 错误码将被置 <code>1</code>。这一点与常规的 Qt 类属性设置不同。然而，这种差异性源于该属性是通过操作系统内核与串口硬件之间的交互来设置的，因此 Qt 串口类属性与其它 Qt 类属性不完全等同。</p>
+<p>该属性从 Qt 5.5 开始使用。</p>
+<p><strong>存取函数</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">bool</td>
+<td align="left"><strong>isBreakEnabled</strong>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong>setBreakEnabled</strong>(bool <em>set</em> = true)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left"><strong>breakEnabledChanged</strong>(bool <em>set</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="databits-databits">dataBits : </span><a href="#databits-databits" class="header-anchor">#</a></h3><hr>
+<p>该属性为串口数据帧中的比特数。</p>
+<p>若设置成功或者打开串口前设置好该属性，那么返回<code>true</code>，否则返回<code>false</code>并且把错误码置<code>1</code>。该错误码可以通过读取 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop">QSerialPort::error</a> 属性的值获得。</p>
+<p><strong>注意</strong>: 如果在打开串口前设置该属性，那么真实的串口设置将会在串口打开后，在 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#open">QSerialPort::open</a>() 方法中自动完成。</p>
+<p>该属性的默认值为 <code>Data8</code>，即数据帧为<code>8</code>比特。</p>
+<p><strong>存取函数</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QSerialPort::DataBits</td>
+<td align="left"><strong>dataBits</strong>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong>setDataBits</strong>(QSerialPort::DataBits <em>dataBits</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataBitsChanged">dataBitsChanged</a></strong>(QSerialPort::DataBits <em>dataBits</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="dataterminalready-bool">dataTerminalReady : bool</span><a href="#dataterminalready-bool" class="header-anchor">#</a></h3><hr>
+<p>该属性为串口信号线 DTR 的状态(高或低)。</p>
+<p>如果串口信号线 DTR 被置为高电平，则返回<code>true</code>，否则返回<code>false</code>.</p>
+<p><strong>注意</strong>: 在设置或访问该属性前串口必须已经打开，否则返回 <code>false</code> 并且 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">NotOpenError</a> 错误码将被置 <code>1</code>。</p>
+<p><strong>存取函数</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">bool</td>
+<td align="left"><strong>isDataTerminalReady</strong>()</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong>setDataTerminalReady</strong>(bool <em>set</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataTerminalReadyChanged">dataTerminalReadyChanged</a></strong>(bool <em>set</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#pinoutSignals">pinoutSignals</a>().</p>
+<h3><span id="error-serialporterror">error : </span><a href="#error-serialporterror" class="header-anchor">#</a></h3><hr>
+<p>该属性为串口的错误码。</p>
+<p>串口设备会返回一个错误码。例如：如果函数 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#open">open</a>() 返回<code>false</code>，或者读/写操作返回<code>-1</code>，该属性可以用来判断操作失败的原因。</p>
+<p>当调用<code>clearError()</code>函数后，错误码会被置为默认值 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">QSerialPort::NoError</a>.</p>
+<p><strong>存取函数</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QSerialPort::SerialPortError</td>
+<td align="left"><strong>error</strong>() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><strong>clearError</strong>()</td>
+</tr>
+</tbody></table>
+<h3><span id="flowcontrol-flowcontrol">flowControl : </span><a href="#flowcontrol-flowcontrol" class="header-anchor">#</a></h3><hr>
+<p>该属性为串口使用的流控制方式。</p>
+<p>若设置成功或者打开串口前设置好该属性，那么返回<code>true</code>，否则返回<code>false</code>并且把错误码置<code>1</code>。该错误码可以通过读取 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop">QSerialPort::error</a> 属性的值获得。</p>
+<p><strong>注意</strong>: 如果在打开串口前设置该属性，那么真实的串口设置将会在串口打开后，在 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#open">QSerialPort::open</a>() 方法中自动完成。</p>
+<p>该属性的默认值为 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#FlowControl-enum">NoFlowControl</a>，即没有流控制。</p>
+<p><strong>存取函数</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QSerialPort::FlowControl</td>
+<td align="left"><strong>flowControl</strong>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong>setFlowControl</strong>(QSerialPort::FlowControl <em>flowControl</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flowControlChanged">flowControlChanged</a></strong>(QSerialPort::FlowControl <em>flow</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="parity-parity">parity : </span><a href="#parity-parity" class="header-anchor">#</a></h3><hr>
+<p>该属性为串口使用的奇偶校验模式。</p>
+<p>若设置成功或者打开串口前设置好该属性，那么返回<code>true</code>，否则返回<code>false</code>并且把错误码置<code>1</code>。该错误码可以通过读取 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop">QSerialPort::error</a> 属性的值获得。</p>
+<p><strong>注意</strong>: 如果在打开串口前设置该属性，那么真实的串口设置将会在串口打开后，在 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#open">QSerialPort::open</a>() 方法中自动完成。</p>
+<p>该属性的默认值为  <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#Parity-enum">NoParity</a>，即没有奇偶校验。</p>
+<p><strong>存取函数</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QSerialPort::Parity</td>
+<td align="left"><strong>parity</strong>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong>setParity</strong>(QSerialPort::Parity <em>parity</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#parityChanged">parityChanged</a></strong>(QSerialPort::Parity <em>parity</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="requesttosend-bool">requestToSend : bool</span><a href="#requesttosend-bool" class="header-anchor">#</a></h3><hr>
+<p>该属性为串口信号线 RTS 的状态(高或低)。</p>
+<p>如果串口信号线 RTS 被置为高电平，则返回<code>true</code>，否则返回<code>false</code>.</p>
+<p><strong>注意</strong>: 在设置或访问该属性前串口必须已经打开，否则返回 <code>false</code> 并且 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">NotOpenError</a> 错误码将被置 <code>1</code>。</p>
+<p><strong>注意</strong>: 在 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#FlowControl-enum">HardwareControl</a> 模式下直接控制 RTS 信号会出错， 错误码 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">UnsupportedOperationError</a> 会被置<code>1</code>，因为 RTS 信号由驱动自动控制。</p>
+<p><strong>存取函数</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">bool</td>
+<td align="left"><strong>isRequestToSend</strong>()</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong>setRequestToSend</strong>(bool <em>set</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#requestToSendChanged">requestToSendChanged</a></strong>(bool <em>set</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#pinoutSignals">pinoutSignals</a>().</p>
+<h3><span id="stopbits-stopbits">stopBits : </span><a href="#stopbits-stopbits" class="header-anchor">#</a></h3><hr>
+<p>该属性为串口帧的停止位比特数。</p>
+<p>若设置成功或者打开串口前设置好该属性，那么返回<code>true</code>，否则返回<code>false</code>并且把错误码置<code>1</code>。该错误码可以通过读取 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop">QSerialPort::error</a> 属性的值获得。</p>
+<p><strong>注意</strong>: 如果在打开串口前设置该属性，那么真实的串口设置将会在串口打开后，在 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#open">QSerialPort::open</a>() 方法中自动完成。</p>
+<p>该属性的默认值为 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#StopBits-enum">OneStop</a>, 即<code>1</code>比特停止位。</p>
+<p><strong>存取函数</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QSerialPort::StopBits</td>
+<td align="left"><strong>stopBits</strong>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><strong>setStopBits</strong>(QSerialPort::StopBits <em>stopBits</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left"><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#stopBitsChanged">stopBitsChanged</a></strong>(QSerialPort::StopBits <em>stopBits</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qserialport-qserialport-const-qserialportinfo-amp-serialportinfo-qobject-parent-nullptr">QSerialPort::QSerialPort(const  &amp;<em>serialPortInfo</em>,  *<em>parent</em> = nullptr)</span><a href="#qserialport-qserialport-const-qserialportinfo-amp-serialportinfo-qobject-parent-nullptr" class="header-anchor">#</a></h3><hr>
+<p>创建一个新的串口对象并指定父对象，用指定的帮助类 <em>serialPortInfo</em> 表示串口。</p>
+<h3><span id="qserialport-qserialport-const-qstring-amp-name-qobject-parent-nullptr">QSerialPort::QSerialPort(const  &amp;<em>name</em>,  *<em>parent</em> = nullptr)</span><a href="#qserialport-qserialport-const-qstring-amp-name-qobject-parent-nullptr" class="header-anchor">#</a></h3><hr>
+<p>创建一个新的串口对象并指定父对象，用指定的串口名来表示串口。</p>
+<p>串口名必须符合特定的格式，详见 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setPort">setPort</a>() 方法。</p>
+<h3><span id="qserialport-qserialport-qobject-parent-nullptr">QSerialPort::QSerialPort( *<em>parent</em> = nullptr)</span><a href="#qserialport-qserialport-qobject-parent-nullptr" class="header-anchor">#</a></h3><hr>
+<p>创建一个新的串口对象并指定父对象。</p>
+<h3><span id="signal-void-qserialport-baudratechanged-qint32-baudrate-qserialport-directions-directions">[signal] void QSerialPort::baudRateChanged( <em>baudRate</em>,  <em>directions</em>)</span><a href="#signal-void-qserialport-baudratechanged-qint32-baudrate-qserialport-directions-directions" class="header-anchor">#</a></h3><hr>
+<p>当串口通信波特率改变时会触发该信号。新的波特率在参数 <em>baudRate</em> 中，数据传输方向在参数 <em>directions</em> 中。</p>
+<p><strong>注意</strong>: 这是 QSerialPort 类成员属性 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#baudRate-prop">baudRate</a> 的通知信号。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#baudRate-prop">QSerialPort::baudRate</a>.</p>
+<h3><span id="signal-void-qserialport-databitschanged-qserialport-databits-databits">[signal] void QSerialPort::dataBitsChanged( <em>dataBits</em>)</span><a href="#signal-void-qserialport-databitschanged-qserialport-databits-databits" class="header-anchor">#</a></h3><hr>
+<p>当串口帧数据比特数改变时会触发该信号。新的帧数据比特数在参数 <em>dataBits</em> 中。</p>
+<p><strong>注意</strong>: 这是 QSerialPort 类成员属性 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataBits-prop">dataBits</a> 的通知信号。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataBits-prop">QSerialPort::dataBits</a>.</p>
+<h3><span id="signal-void-qserialport-dataterminalreadychanged-bool-set">[signal] void QSerialPort::dataTerminalReadyChanged(bool <em>set</em>)</span><a href="#signal-void-qserialport-dataterminalreadychanged-bool-set" class="header-anchor">#</a></h3><hr>
+<p>当串口信号线 DTR 的电平状态改变时会触发该信号。新的电平状态(高或低)在参数 <em>set</em> 中。</p>
+<p><strong>注意</strong>: 这是 QSerialPort 类成员属性 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataTerminalReady-prop">dataTerminalReady</a> 的通知信号。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#dataTerminalReady-prop">QSerialPort::dataTerminalReady</a>.</p>
+<h3><span id="signal-void-qserialport-erroroccurred-qserialport-serialporterror-error">[signal] void QSerialPort::errorOccurred( <em>error</em>)</span><a href="#signal-void-qserialport-erroroccurred-qserialport-serialporterror-error" class="header-anchor">#</a></h3><hr>
+<p>当串口出错时会触发该信号。错误类型码在参数 <em>error</em> 中。</p>
+<p>此函数从 Qt 5.8 开始使用。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop">QSerialPort::error</a>.</p>
+<h3><span id="signal-void-qserialport-flowcontrolchanged-qserialport-flowcontrol-flow">[signal] void QSerialPort::flowControlChanged( <em>flow</em>)</span><a href="#signal-void-qserialport-flowcontrolchanged-qserialport-flowcontrol-flow" class="header-anchor">#</a></h3><hr>
+<p>当串口流控制方式改变时会触发该信号。新的流控制方式在参数 <em>flow</em> 中。</p>
+<p><strong>注意</strong>: 这是 QSerialPort 类成员属性 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flowControl-prop">flowControl</a> 的通知信号。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flowControl-prop">QSerialPort::flowControl</a>.</p>
+<h3><span id="signal-void-qserialport-paritychanged-qserialport-parity-parity">[signal] void QSerialPort::parityChanged( <em>parity</em>)</span><a href="#signal-void-qserialport-paritychanged-qserialport-parity-parity" class="header-anchor">#</a></h3><hr>
+<p>当串口的奇偶校验模式改变时会触发该信号。新的奇偶校验模式在参数 <em>parity</em> 中。</p>
+<p><strong>注意</strong>: 这是 QSerialPort 类成员属性 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#parity-prop">parity</a> 的通知信号。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#parity-prop">QSerialPort::parity</a>.</p>
+<h3><span id="signal-void-qserialport-requesttosendchanged-bool-set">[signal] void QSerialPort::requestToSendChanged(bool <em>set</em>)</span><a href="#signal-void-qserialport-requesttosendchanged-bool-set" class="header-anchor">#</a></h3><hr>
+<p>当串口信号线 RTS 的电平状态改变时会触发该信号。新的电平状态(高或低)在参数  <em>set</em> 中。</p>
+<p><strong>注意</strong>: 这是 QSerialPort 类成员属性 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#requestToSend-prop">requestToSend</a> 的通知信号。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#requestToSend-prop">QSerialPort::requestToSend</a>.</p>
+<h3><span id="signal-void-qserialport-stopbitschanged-qserialport-stopbits-stopbits">[signal] void QSerialPort::stopBitsChanged( <em>stopBits</em>)</span><a href="#signal-void-qserialport-stopbitschanged-qserialport-stopbits-stopbits" class="header-anchor">#</a></h3><hr>
+<p>当串口帧停止位比特数改变时会触发该信号。新的帧停止位比特数在参数 <em>stopBits</em> 中。</p>
+<p><strong>注意</strong>: 这是 QSerialPort 类成员属性 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#stopBits-prop">stopBits</a> 的通知信号。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#stopBits-prop">QSerialPort::stopBits</a>.</p>
+<h3><span id="virtual-qserialport-qserialport">[virtual] QSerialPort::~QSerialPort()</span><a href="#virtual-qserialport-qserialport" class="header-anchor">#</a></h3><hr>
+<p>关闭串口，若有必要，销毁对象。</p>
+<h3><span id="override-virtual-bool-qserialport-atend-const">[override virtual] bool QSerialPort::atEnd() const</span><a href="#override-virtual-bool-qserialport-atend-const" class="header-anchor">#</a></h3><hr>
+<p>该函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#atEnd">QIODevice::atEnd</a>() 的重写函数。</p>
+<p>若串口有更多数据待读取，函数返回<code>true</code>，否则返回<code>false</code>.</p>
+<p>该函数常出现在循环中读取串口数据，代码示例：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// This slot is connected to QSerialPort::readyRead()</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">QSerialPortClass::readyReadSlot</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">while</span> (!port.<span class="hljs-built_in">atEnd</span>()) {
+        QByteArray data = port.<span class="hljs-built_in">read</span>(<span class="hljs-number">100</span>);
+        ....
+    }
+}</code></pre></div>
+
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#bytesAvailable">bytesAvailable</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readyRead">readyRead</a>().</p>
+<h3><span id="override-virtual-qint64-qserialport-bytesavailable-const">[override virtual]  QSerialPort::bytesAvailable() const</span><a href="#override-virtual-qint64-qserialport-bytesavailable-const" class="header-anchor">#</a></h3><hr>
+<p>该函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#bytesAvailable">QIODevice::bytesAvailable</a>() 的重写函数。</p>
+<p>函数返回串口待读取的数据字节数。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#bytesToWrite">bytesToWrite</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#read">read</a>().</p>
+<h3><span id="override-virtual-qint64-qserialport-bytestowrite-const">[override virtual]  QSerialPort::bytesToWrite() const</span><a href="#override-virtual-qint64-qserialport-bytestowrite-const" class="header-anchor">#</a></h3><hr>
+<p>该函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#bytesToWrite">QIODevice::bytesToWrite</a>() 的重写函数。</p>
+<p>函数返回待写入串口的数据字节数。当控制交还给事件循环或者调用函数 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flush">flush</a>() 后，这些数据被写入串口。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#bytesAvailable">bytesAvailable</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#flush">flush</a>().</p>
+<h3><span id="override-virtual-bool-qserialport-canreadline-const">[override virtual] bool QSerialPort::canReadLine() const</span><a href="#override-virtual-bool-qserialport-canreadline-const" class="header-anchor">#</a></h3><hr>
+<p>该函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#canReadLine">QIODevice::canReadLine</a>() 的重写函数。</p>
+<p>若可以从串口读取一行数据，函数返回<code>true</code>，否则返回<code>false</code>。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readLine">readLine</a>().</p>
+<h3><span id="bool-qserialport-clear-qserialport-directions-directions-alldirections">bool QSerialPort::clear( <em>directions</em> = AllDirections)</span><a href="#bool-qserialport-clear-qserialport-directions-directions-alldirections" class="header-anchor">#</a></h3><hr>
+<p>清空串口输入/输出(取决于串口通信方向)缓冲区中的数据。包括清空内部类缓冲器和串口驱动缓冲区，并且终止后续的读/写串口操作。如果清空串口缓冲区成功，函数返回<code>true</code>，否则返回<code>false</code>。</p>
+<p><strong>注意</strong>: 清空串口缓冲区之前串口必须是打开的，否则函数返回<code>false</code>并且将 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">NotOpenError</a> 错误码置<code>1</code>。</p>
+<h3><span id="override-virtual-void-qserialport-close">[override virtual] void QSerialPort::close()</span><a href="#override-virtual-void-qserialport-close" class="header-anchor">#</a></h3><hr>
+<p>该函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#close">QIODevice::close</a>() 的重写函数。</p>
+<p><strong>注意</strong>: 串口关闭前必须处于打开状态，否则会将 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">NotOpenError</a> 错误码置<code>1</code>。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#close">QIODevice::close</a>().</p>
+<h3><span id="bool-qserialport-flush">bool QSerialPort::flush()</span><a href="#bool-qserialport-flush" class="header-anchor">#</a></h3><hr>
+<p>该函数以非阻塞的方式把内部写缓冲区中的数据尽可能的写入串口。若写入成功，返回返回<code>true</code>，否则返回<code>false</code>。</p>
+<p>调用该函数把缓冲区中的数据立即发送至串口，成功发送的数据字节数取决于操作系统。大部分情况下无需调用此函数，因为当控制权交还给事件循环后，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html">QSerialPort</a> 类会自动发送数据。当没有事件循环时，调用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#waitForBytesWritten">waitForBytesWritten</a>() 函数。</p>
+<p><strong>注意</strong>: 在把缓冲区数据写入串口前串口必须处于打开状态，否则函数返回<code>false</code>并且将 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">NotOpenError</a> 错误码置<code>1</code>。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#write">write</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#waitForBytesWritten">waitForBytesWritten</a>().</p>
+<h3><span id="qserialport-handle-qserialport-handle-const">QSerialPort::Handle QSerialPort::handle() const</span><a href="#qserialport-handle-qserialport-handle-const" class="header-anchor">#</a></h3><hr>
+<p>如果操作系统支持并且串口是打开的，返回原生串口句柄，否则返回<code>-1</code>。</p>
+<p><strong>警告</strong>: 该函数仅限专家使用并且需要承担相应的风险。并且该函数在 Qt 的小版本中不保证兼容性。</p>
+<p>该函数从 Qt 5.2 开始使用。</p>
+<h3><span id="override-virtual-bool-qserialport-issequential-const">[override virtual] bool QSerialPort::isSequential() const</span><a href="#override-virtual-bool-qserialport-issequential-const" class="header-anchor">#</a></h3><hr>
+<p>该函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#isSequential">QIODevice::isSequential</a>() 的重写函数。</p>
+<p>该函数总是返回<code>true</code>，因为串口为顺序设备。</p>
+<h3><span id="override-virtual-bool-qserialport-open-qiodevice-openmode-mode">[override virtual] bool QSerialPort::open( <em>mode</em>)</span><a href="#override-virtual-bool-qserialport-open-qiodevice-openmode-mode" class="header-anchor">#</a></h3><hr>
+<p>该函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#open">QIODevice::open</a>(QIODevice::OpenMode mode) 的重写函数。</p>
+<p>使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">OpenMode</a> 模式打开串口。若串口打开成功，函数返回<code>true</code>，否则返回<code>false</code>并且将错误码置<code>1</code>，该错误码可以通过调用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#error-prop">error</a>() 方法获得。</p>
+<p><strong>注意</strong>: 若串口可以成功打开但不能成功设置串口参数时，该函数返回<code>false</code>。在这种情况下，串口会自动关闭，从而避免串口设置错误。</p>
+<p><strong>警告</strong>: 该函数的参数 <em>mode</em> 只能是  <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::ReadOnly</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::WriteOnly</a>,或 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::ReadWrite</a>. </p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::OpenMode</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setPort">setPort</a>().</p>
+<h3><span id="qserialport-pinoutsignals-qserialport-pinoutsignals"> QSerialPort::pinoutSignals()</span><a href="#qserialport-pinoutsignals-qserialport-pinoutsignals" class="header-anchor">#</a></h3><hr>
+<p>以位图格式返回串口信号线的状态。</p>
+<p>您可以通过把该函数的返回值和一个模板做逻辑与运算来配置串口信号线的状态。这个模板是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#PinoutSignal-enum">QSerialPort::PinoutSignals</a> 的期望枚举值。</p>
+<p><strong>注意</strong>: 该函数执行系统调用以确保串口能正常返回信号线状态。这一点是非常必要的，尤其是当底层操作系统不能提供关于串口信号线状态的通知时。</p>
+<p><strong>注意</strong>: 执行该函数之前，串口必须是打开的，否则函数返回 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#PinoutSignal-enum">NoSignal</a> 并且将 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">NotOpenError</a> 错误码置<code>1</code>。</p>
+<h3><span id="qstring-qserialport-portname-const"> QSerialPort::portName() const</span><a href="#qstring-qserialport-portname-const" class="header-anchor">#</a></h3><hr>
+<p>返回串口名，该名字由函数 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setPort">setPort</a>() 设置或者通过 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html">QSerialPort</a> 类构造函数传递。返回的名字是简略版的串口名，它从设备地址的内部变量系统提取和转换而来。转换算法因系统而异：</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作系统</th>
+<th align="left">简要描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Windows</td>
+<td align="left">从系统设备地址中移除前缀<code>"\\.\"</code>或<code>"//./"</code>，返回剩余的字符串</td>
+</tr>
+<tr>
+<td align="center">Unix, BSD</td>
+<td align="left">从系统设备地址中移除前缀<code>"/dev/"</code>，返回剩余的字符串</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setPortName">setPortName</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setPort">setPort</a>(), 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialportinfo.html#portName">QSerialPortInfo::portName</a>().</p>
+<h3><span id="qint64-qserialport-readbuffersize-const"> QSerialPort::readBufferSize() const</span><a href="#qint64-qserialport-readbuffersize-const" class="header-anchor">#</a></h3><hr>
+<p>返回串口读缓冲区的大小。此返回值决定了程序调用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#read">read</a>() 或 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readAll">readAll</a>() 方法最多能读取多少字节数据。若返回值为<code>0</code>，则串口读缓冲区没有大小限制，数据不会因为读缓冲区不足而丢失。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#setReadBufferSize">setReadBufferSize</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#read">read</a>().</p>
+<h3><span id="override-virtual-protected-qint64-qserialport-readdata-char-data-qint64-maxsize">[override virtual protected]  QSerialPort::readData(char *<em>data</em>,  <em>maxSize</em>)</span><a href="#override-virtual-protected-qint64-qserialport-readdata-char-data-qint64-maxsize" class="header-anchor">#</a></h3><hr>
+<p>该函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readData">QIODevice::readData</a>(char *data, qint64 maxSize) 的重写函数。</p>
+<h3><span id="override-virtual-protected-qint64-qserialport-readlinedata-char-data-qint64-maxsize">[override virtual protected]  QSerialPort::readLineData(char *<em>data</em>,  <em>maxSize</em>)</span><a href="#override-virtual-protected-qint64-qserialport-readlinedata-char-data-qint64-maxsize" class="header-anchor">#</a></h3><hr>
+<p>该函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readLineData">QIODevice::readLineData</a>(char *data, qint64 maxSize) 的重写函数。</p>
+<h3><span id="bool-qserialport-sendbreak-int-duration-0">bool QSerialPort::sendBreak(int <em>duration</em> = 0)</span><a href="#bool-qserialport-sendbreak-int-duration-0" class="header-anchor">#</a></h3><hr>
+<p>若在串口异步通信中使用停止位，在 <em>duration</em> 毫秒的时间内连续发送值为<code>0</code>的比特流。若发送成功，函数返回<code>true</code>，否则返回<code>false</code>。</p>
+<p>若函数参数 <em>duration</em> 的值为<code>0</code>，那么值为<code>0</code>的比特流至少发送<code>0.25</code>秒，但不超过<code>0.5</code>秒。</p>
+<p>若函数参数 <em>duration</em> 的值不等于<code>0</code>，那么传输值为<code>0</code>的比特流的时间长度取决于具体实现。</p>
+<p><strong>注意</strong>: 执行该函数之前，串口必须是打开的，否则函数返回 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#PinoutSignal-enum">NoSignal</a> 并且将 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#SerialPortError-enum">NotOpenError</a> 错误码置<code>1</code>。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#breakEnabled-prop">setBreakEnabled</a>().</p>
+<h3><span id="void-qserialport-setport-const-qserialportinfo-amp-serialportinfo">void QSerialPort::setPort(const  &amp;<em>serialPortInfo</em>)</span><a href="#void-qserialport-setport-const-qserialportinfo-amp-serialportinfo" class="header-anchor">#</a></h3><hr>
+<p>该函数用于设置串口，串口参数在 <em>serialPortInfo</em> 类实例中。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#portName">portName</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialportinfo.html">QSerialPortInfo</a>.</p>
+<h3><span id="void-qserialport-setportname-const-qstring-amp-name">void QSerialPort::setPortName(const  &amp;<em>name</em>)</span><a href="#void-qserialport-setportname-const-qstring-amp-name" class="header-anchor">#</a></h3><hr>
+<p>设置串口名。</p>
+<p>串口名字既可以用简略版的名字也可以用包好系统设备地址的全名。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#portName">portName</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialportinfo.html">QSerialPortInfo</a>.</p>
+<h3><span id="void-qserialport-setreadbuffersize-qint64-size">void QSerialPort::setReadBufferSize( <em>size</em>)</span><a href="#void-qserialport-setreadbuffersize-qint64-size" class="header-anchor">#</a></h3><hr>
+<p>设置串口内部读缓冲区的大小为 <em>size</em> 字节。</p>
+<p>如果 <em>size</em> 不为<code>0</code>，那么串口读缓冲区不会超过 <em>size</em> 字节。如果 <em>size</em> 为<code>0</code>，那么串口读缓冲区没有大小限制，所有读入串口的数据都将被缓存。 <em>size</em> 的默认值为<code>0</code>。</p>
+<p>该函数在一些情况下非常有用，比如仅需要在特定时间读串口(例如实时流应用)或者需要防止串口读入太多数据从而造成内存耗尽的情形。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#readBufferSize">readBufferSize</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#read">read</a>().</p>
+<h3><span id="override-virtual-bool-qserialport-waitforbyteswritten-int-msecs-30000">[override virtual] bool QSerialPort::waitForBytesWritten(int <em>msecs</em> = 30000)</span><a href="#override-virtual-bool-qserialport-waitforbyteswritten-int-msecs-30000" class="header-anchor">#</a></h3><hr>
+<p>该函数是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#waitForBytesWritten">QIODevice::waitForBytesWritten(int msecs)</a> 的重写函数。</p>
+<p>该函数会阻塞串口通信线程直至最后一个字节写入到串口并且触发了 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#bytesWritten">bytesWritten()</a> 信号。函数经过 <em>msecs</em> 毫秒后超时， <em>msecs</em> 的默认值是<code>30000</code>毫秒，如果 <em>msecs</em> 的值为<code>-1</code>，那么该函数不会超时。</p>
+<p>如果成功触发 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#bytesWritten">bytesWritten</a>() 信号，函数将返回<code>true</code>，否则返回<code>false</code>(写串口过程中出错或者操作超时)。</p>
+<h3><span id="override-virtual-bool-qserialport-waitforreadyread-int-msecs-30000">[override virtual] bool QSerialPort::waitForReadyRead(int <em>msecs</em> = 30000)</span><a href="#override-virtual-bool-qserialport-waitforreadyread-int-msecs-30000" class="header-anchor">#</a></h3><hr>
+<p>该函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#waitForReadyRead">QIODevice::waitForReadyRead(int msecs)</a> 的重写函数。</p>
+<p>该函数会阻塞串口通信线程直至新数据已经准备好读入串口并且触发了 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readyRead">readyRead()</a> 信号。函数经过 <em>msecs</em> 毫秒后超时， <em>msecs</em> 的默认值是<code>30000</code>毫秒，如果 <em>msecs</em> 的值为<code>-1</code>，那么该函数不会超时。</p>
+<p>如果成功触发 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readyRead">readyRead</a>() 信号并且串口读缓冲区有新数据，函数将返回<code>true</code>，否则返回<code>false</code>(读串口过程中出错或者操作超时)。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qserialport.html#waitForBytesWritten">waitForBytesWritten</a>().</p>
+<h3><span id="override-virtual-protected-qint64-qserialport-writedata-const-char-data-qint64-maxsize">[override virtual protected]  QSerialPort::writeData(const char *<em>data</em>,  <em>maxSize</em>)</span><a href="#override-virtual-protected-qint64-qserialport-writedata-const-char-data-qint64-maxsize" class="header-anchor">#</a></h3><hr>
+<p>该函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#writeData">QIODevice::writeData(const char *data, qint64 maxSize)</a> 的重写函数。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/S/">S</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSemaphore/QSemaphore/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QSemaphore类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSerialPortInfo/QSerialPortInfo/">
+                        <span class="hidden-mobile">QSerialPortInfo类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

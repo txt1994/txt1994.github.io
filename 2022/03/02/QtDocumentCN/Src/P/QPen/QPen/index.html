@@ -1,0 +1,955 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QPen Class 公共函数 非相关成员 详细描述 pen 样式 cap 样式 Join 样式   成员函数文档 [since 5.4]QPen::QPen(QPen &amp;&amp;pen) QPen::QPen(const QPen &amp;pen) QPen::QPen(const QBrush &amp;brush, qreal width, Qt::PenStyle s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QPen类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/P/QPen/QPen/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QPen Class 公共函数 非相关成员 详细描述 pen 样式 cap 样式 Join 样式   成员函数文档 [since 5.4]QPen::QPen(QPen &amp;&amp;pen) QPen::QPen(const QPen &amp;pen) QPen::QPen(const QBrush &amp;brush, qreal width, Qt::PenStyle s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-solid.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-dash.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-dot.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-dashdot.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-dashdotdot.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-custom.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-square.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-flat.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-roundcap.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-bevel.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-miter.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-roundjoin.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-miterlimit.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-demo.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-dashpattern.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-custom.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpen-miterlimit.png">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:50:28.070Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="P">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://doc.qt.io/qt-6/images/qpen-solid.png">
+  
+  
+  <title>QPen类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QPen类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      80 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QPen类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qpen-class">QPen Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#fei-xiang-guan-cheng-yuan">非相关成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#pen-yang-shi">pen 样式</a></li>
+<li><a href="#cap-yang-shi">cap 样式</a></li>
+<li><a href="#join-yang-shi">Join 样式</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#since-5-4-qpen-qpen-qpen-qpen-pen"><code>[since 5.4]</code>QPen::QPen(</a><a href="#QPen">QPen</a> &amp;&amp;<em>pen</em>)</li>
+<li><a href="#qpen-qpen-const-qpen-qpen-pen">QPen::QPen(const </a><a href="#QPen">QPen</a> &amp;<em>pen</em>)</li>
+<li><a href="#qpen-qpen-const-qbrush-qbrush-html-brush-qreal-qtglobal-html-qreal-typedef-width-qt-penstyle-qt-html-penstyle-enum-style-qt-solidline-qt-pencapstyle-qt-html-pencapstyle-enum-cap-qt-squarecap-qt-penjoinstyle-qt-html-penjoinstyle-enum-join-qt-beveljoin">QPen::QPen(const </a><a href="qbrush.html">QBrush</a> &amp;<em>brush</em>, <a href="qtglobal.html#qreal-typedef">qreal</a> <em>width</em>, <a href="qt.html#PenStyle-enum">Qt::PenStyle</a> <em>style</em> = Qt::SolidLine, <a href="qt.html#PenCapStyle-enum">Qt::PenCapStyle</a> <em>cap</em> = Qt::SquareCap, <a href="qt.html#PenJoinStyle-enum">Qt::PenJoinStyle</a> <em>join</em> = Qt::BevelJoin)</li>
+<li><a href="#qpen-qpen-const-qcolor-qcolor-html-color">QPen::QPen(const </a><a href="qcolor.html">QColor</a> &amp;<em>color</em>)</li>
+<li><a href="#qpen-qpen-qt-penstyle-qt-html-penstyle-enum-style">QPen::QPen(</a><a href="qt.html#PenStyle-enum">Qt::PenStyle</a> <em>style</em>)</li>
+<li><a href="#qpen-qpen">QPen::QPen()</a></li>
+<li><a href="#since-5-2-qpen-qpen-qpen-operator-qpen-qpen-other"><code>[since 5.2]</code></a><a href="#QPen">QPen</a> &amp;QPen::operator=(<a href="#QPen">QPen</a> &amp;&amp;<em>other</em>)</li>
+<li><a href="#qpen-qpen-qpen-operator-const-qpen-qpen-pen">QPen</a></li>
+<li><a href="#qpen-qpen">QPen::~QPen()</a></li>
+<li><a href="#qbrush-qbrush-html-qpen-brush-const">QBrush</a></li>
+<li><a href="#qt-pencapstyle-qt-html-pencapstyle-enum-qpen-capstyle-const">Qt::PenCapStyle</a></li>
+<li><a href="#qcolor-qcolor-html-qpen-color-const">QColor</a></li>
+<li><a href="#qreal-qtglobal-html-qreal-typedef-qpen-dashoffset-const">qreal</a></li>
+<li><a href="#qlist-qlist-html-qreal-qtglobal-html-qreal-typedef-qpen-dashpattern-const">QList</a></li>
+<li><a href="#bool-qpen-iscosmetic-const">bool QPen::isCosmetic() const</a></li>
+<li><a href="#bool-qpen-issolid-const">bool QPen::isSolid() const</a></li>
+<li><a href="#qt-penjoinstyle-qt-html-penjoinstyle-enum-qpen-joinstyle-const">Qt::PenJoinStyle</a></li>
+<li><a href="#qreal-qtglobal-html-qreal-typedef-qpen-miterlimit-const-1">qreal</a></li>
+<li><a href="#void-qpen-setbrush-const-qbrush-qbrush-html-brush">void QPen::setBrush(const </a><a href="qbrush.html">QBrush</a> &amp;<em>brush</em>)</li>
+<li><a href="#void-qpen-setcapstyle-qt-pencapstyle-qt-html-pencapstyle-enum-style">void QPen::setCapStyle(</a><a href="qt.html#PenCapStyle-enum">Qt::PenCapStyle</a> <em>style</em>)</li>
+<li><a href="#void-qpen-setcolor-const-qcolor-qcolor-html-color">void QPen::setColor(const </a><a href="qcolor.html">QColor</a> &amp;<em>color</em>)</li>
+<li><a href="#void-qpen-setcosmetic-bool-cosmetic">void QPen::setCosmetic(bool <em>cosmetic</em>)</a></li>
+<li><a href="#void-qpen-setdashoffset-qreal-qtglobal-html-qreal-typedef-offset">void QPen::setDashOffset(</a><a href="qtglobal.html#qreal-typedef">qreal</a> <em>offset</em>)</li>
+<li><a href="#void-qpen-setdashpattern-const-qlist-qlist-html-qreal-qtglobal-html-qreal-typedef-pattern">void QPen::setDashPattern(const </a><a href="qlist.html">QList</a>&lt;<a href="qtglobal.html#qreal-typedef">qreal</a>&gt; &amp;<em>pattern</em>)</li>
+<li><a href="#void-qpen-setjoinstyle-qt-penjoinstyle-qt-html-penjoinstyle-enum-style">void QPen::setJoinStyle(</a><a href="qt.html#PenJoinStyle-enum">Qt::PenJoinStyle</a> <em>style</em>)</li>
+<li><a href="#void-qpen-setmiterlimit-qreal-qtglobal-html-qreal-typedef-limit">void QPen::setMiterLimit(</a><a href="qtglobal.html#qreal-typedef">qreal</a> <em>limit</em>)</li>
+<li><a href="#void-qpen-setstyle-qt-penstyle-qt-html-penstyle-enum-style">void QPen::setStyle(</a><a href="qt.html#PenStyle-enum">Qt::PenStyle</a> <em>style</em>)</li>
+<li><a href="#void-qpen-setwidth-int-width">void QPen::setWidth(int <em>width</em>)</a></li>
+<li><a href="#void-qpen-setwidthf-qreal-qtglobal-html-qreal-typedef-width">void QPen::setWidthF(</a><a href="qtglobal.html#qreal-typedef">qreal</a> <em>width</em>)</li>
+<li><a href="#qt-penstyle-qt-html-penstyle-enum-qpen-style-const">Qt::PenStyle</a></li>
+<li><a href="#void-qpen-swap-qpen-qpen-other">void QPen::swap(</a><a href="#QPen">QPen</a> &amp;<em>other</em>)</li>
+<li><a href="#int-qpen-width-const">int QPen::width() const</a></li>
+<li><a href="#qreal-qtglobal-html-qreal-typedef-qpen-widthf-const-2">qreal</a></li>
+<li><a href="#qvariant-qvariant-html-qpen-operator-qvariant-const">QVariant</a></li>
+<li><a href="#bool-qpen-operator-const-qpen-qpen-pen-const">bool QPen::operator!=(const </a><a href="#QPen">QPen</a> &amp;<em>pen</em>) const</li>
+<li><a href="#bool-qpen-operator-const-qpen-qpen-pen-const">bool QPen::operator==(const </a><a href="#QPen">QPen</a> &amp;<em>pen</em>) const</li>
+</ul>
+</li>
+<li><a href="#fei-xiang-guan-cheng-yuan-1">非相关成员</a><ul>
+<li><a href="#qdatastream-qdatastream-html-operator-qdatastream-qdatastream-html-stream-const-qpen-qpen-pen">QDataStream</a></li>
+<li><a href="#qdatastream-qdatastream-html-operator-qdatastream-qdatastream-html-stream-qpen-qpen-pen-1">QDataStream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QPen Class
+
+<p>QPen类定义了<a href>QPainter</a>应该如何绘制线条和图形的轮廓。 <a href="#details">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qpen></qpen></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Gui REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Gui)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += gui</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qpen-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QPen-5">QPen</a></strong>(QPen &amp;&amp;<em>pen</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QPen-4">QPen</a></strong>(const QPen &amp;<em>pen</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QPen-3">QPen</a></strong>(const QBrush &amp;<em>brush</em>, qreal <em>width</em>, Qt::PenStyle <em>style</em> = Qt::SolidLine, Qt::PenCapStyle <em>cap</em> = Qt::SquareCap, Qt::PenJoinStyle <em>join</em> = Qt::BevelJoin)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QPen-2">QPen</a></strong>(const QColor &amp;<em>color</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QPen-1">QPen</a></strong>(Qt::PenStyle <em>style</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QPen">QPen</a></strong>()</td>
+</tr>
+<tr>
+<td>QPen &amp;</td>
+<td><strong><a href="#operator-eq-1">operator=</a></strong>(QPen &amp;&amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QPen &amp;</td>
+<td><strong><a href="#operator-eq">operator=</a></strong>(const QPen &amp;<em>pen</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QPen">~QPen</a></strong>()</td>
+</tr>
+<tr>
+<td>QBrush</td>
+<td><strong><a href="#brush">brush</a></strong>() const</td>
+</tr>
+<tr>
+<td>Qt::PenCapStyle</td>
+<td><strong><a href="#capStyle">capStyle</a></strong>() const</td>
+</tr>
+<tr>
+<td>QColor</td>
+<td><strong><a href="#color">color</a></strong>() const</td>
+</tr>
+<tr>
+<td>qreal</td>
+<td><strong><a href="#dashOffset">dashOffset</a></strong>() const</td>
+</tr>
+<tr>
+<td>QList<qreal></qreal></td>
+<td><strong><a href="#dashPattern">dashPattern</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isCosmetic">isCosmetic</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isSolid">isSolid</a></strong>() const</td>
+</tr>
+<tr>
+<td>Qt::PenJoinStyle</td>
+<td><strong><a href="#joinStyle">joinStyle</a></strong>() const</td>
+</tr>
+<tr>
+<td>qreal</td>
+<td><strong><a href="#miterLimit">miterLimit</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setBrush">setBrush</a></strong>(const QBrush &amp;<em>brush</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setCapStyle">setCapStyle</a></strong>(Qt::PenCapStyle <em>style</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setColor">setColor</a></strong>(const QColor &amp;<em>color</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setCosmetic">setCosmetic</a></strong>(bool <em>cosmetic</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setDashOffset">setDashOffset</a></strong>(qreal <em>offset</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setDashPattern">setDashPattern</a></strong>(const QList<qreal> &amp;<em>pattern</em>)</qreal></td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setJoinStyle">setJoinStyle</a></strong>(Qt::PenJoinStyle <em>style</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setMiterLimit">setMiterLimit</a></strong>(qreal <em>limit</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setStyle">setStyle</a></strong>(Qt::PenStyle <em>style</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setWidth">setWidth</a></strong>(int <em>width</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setWidthF">setWidthF</a></strong>(qreal <em>width</em>)</td>
+</tr>
+<tr>
+<td>Qt::PenStyle</td>
+<td><strong><a href="#style">style</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#swap">swap</a></strong>(QPen &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#width">width</a></strong>() const</td>
+</tr>
+<tr>
+<td>qreal</td>
+<td><strong><a href="#widthF">widthF</a></strong>() const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#operator-QVariant">operator QVariant</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-not-eq">operator!=</a></strong>(const QPen &amp;<em>pen</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-eq-eq">operator==</a></strong>(const QPen &amp;<em>pen</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="fei-xiang-guan-cheng-yuan">非相关成员</span><a href="#fei-xiang-guan-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QDataStream &amp;</th>
+<th><strong><a href="#operator-lt-lt">operator&lt;&lt;</a></strong>(QDataStream &amp;<em>stream</em>, const QPen &amp;<em>pen</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QDataStream &amp;</td>
+<td><strong><a href="#operator-gt-gt">operator&gt;&gt;</a></strong>(QDataStream &amp;<em>stream</em>, QPen &amp;<em>pen</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>一支笔有<a href="#style">style</a>()、<a href="#width">width</a>()、<a href="#brush">brush</a>()、<a href="#capStyle">capStyle</a>()和<a href="#joinStyle">joinStyle</a>() 。</p>
+<p>笔的样式定义了线的类型。笔刷用于填充用笔生成的笔触。使用 <a href="qbrush.html">QBrush</a> 类来指定填充样式。笔帽样式决定了可以使用<a href>QPainter</a>绘制的线端帽，而连接样式描述了如何绘制两条线之间的连接。笔宽可以用整数（<a href="#width">width</a>()）和浮点（<a href="#widthF">widthF</a>()）的精度来指定。线条宽度为0，表示是化妆笔。这意味着笔宽总是画成一个像素宽，与画师上设置的<a href="#%E5%9D%90%E6%A0%87-%E5%8F%98%E6%8D%A2">变换</a>无关。</p>
+<p>使用相应的<a href="#setStyle">setStyle</a>()、<a href="#setWidth">setWidth</a>()、<a href="#setBrush">setBrush</a>()、<a href="#setCapStyle">setCapStyle</a>()和<a href="#setJoinStyle">setJoinStyle</a>()函数，可以轻松修改各种设置（注意，在改变笔的属性时必须重置画师的笔）。</p>
+<p>例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>;
+<span class="hljs-function">QPen <span class="hljs-title">pen</span><span class="hljs-params">(Qt::green, <span class="hljs-number">3</span>, Qt::DashDotLine, Qt::RoundCap, Qt::RoundJoin)</span></span>;
+painter.<span class="hljs-built_in">setPen</span>(pen);</code></pre></div>
+
+<p>这相当于：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>;
+QPen pen;  <span class="hljs-comment">// creates a default pen</span>
+
+pen.<span class="hljs-built_in">setStyle</span>(Qt::DashDotLine);
+pen.<span class="hljs-built_in">setWidth</span>(<span class="hljs-number">3</span>);
+pen.<span class="hljs-built_in">setBrush</span>(Qt::green);
+pen.<span class="hljs-built_in">setCapStyle</span>(Qt::RoundCap);
+pen.<span class="hljs-built_in">setJoinStyle</span>(Qt::RoundJoin);
+
+painter.<span class="hljs-built_in">setPen</span>(pen);</code></pre></div>
+
+<p>默认的笔是具有1个宽度的纯黑色笔刷，方形笔帽样式（<a href="qt.html#PenCapStyle-enum">Qt::SquareCap</a>），以及斜面连接样式（<a href="qt.html#PenJoinStyle-enum">Qt::BevelJoin</a>）。</p>
+<p>此外，QPen还提供了<a href="#color">color</a>()和<a href="#setColor">setColor</a>()便利函数，分别用于提取和设置笔刷的颜色。钢笔也可以被比较和流化。</p>
+<p>关于一般绘画的更多信息，请参阅<a href="paintsystem.html">Paint System</a>文档。</p>
+<h3><span id="pen-yang-shi">pen 样式</span><a href="#pen-yang-shi" class="header-anchor">#</a></h3><p>Qt 提供了几种内置的样式，由 <a href="qt.html#PenStyle-enum">Qt::PenStyle</a> 枚举表示：</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://doc.qt.io/qt-6/images/qpen-solid.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+<th><img src="https://doc.qt.io/qt-6/images/qpen-dash.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+<th><img src="https://doc.qt.io/qt-6/images/qpen-dot.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="qt.html#PenStyle-enum">Qt::SolidLine</a></td>
+<td><a href="qt.html#PenStyle-enum">Qt::DashLine</a></td>
+<td><a href="qt.html#PenStyle-enum">Qt::DotLine</a></td>
+</tr>
+<tr>
+<td><img src="https://doc.qt.io/qt-6/images/qpen-dashdot.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td><img src="https://doc.qt.io/qt-6/images/qpen-dashdotdot.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td><img src="https://doc.qt.io/qt-6/images/qpen-custom.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+</tr>
+<tr>
+<td><a href="qt.html#PenStyle-enum">Qt::DashDotLine</a></td>
+<td><a href="qt.html#PenStyle-enum">Qt::DashDotDotLine</a></td>
+<td><a href="qt.html#PenStyle-enum">Qt::CustomDashLine</a></td>
+</tr>
+</tbody></table>
+<p>只需使用 <a href="#setStyle">setStyle</a>() 函数将笔样式转换为任何内置样式，除了我们将回来的 <a href="qt.html#PenStyle-enum">Qt::CustomDashLine</a> 样式 到不久。 将样式设置为 <a href="qt.html#PenStyle-enum">Qt::NoPen</a> 告诉画家不要画线或轮廓。 默认的画笔样式是 <a href="qt.html#PenStyle-enum">Qt::SolidLine</a>。</p>
+<p>从 Qt 4.1 开始，还可以使用 <a href="#setDashPattern">setDashPattern</a>() 函数指定自定义破折号图案，该函数将笔的样式隐式转换为 <a href="qt.html#PenStyle-enum">Qt::CustomDashLine</a>。 模式参数 <a href="qlist.html">QList</a> 必须指定为偶数个 <a href="qtglobal.html#qreal-typedef">qreal</a> 条目，其中条目 1、3、5… 是破折号和 2, 4, 6… 是空格。 例如，上面显示的自定义模式是使用以下代码创建的：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QPen pen;
+QList&lt;qreal&gt; dashes;
+qreal space = <span class="hljs-number">4</span>;
+
+dashes &lt;&lt; <span class="hljs-number">1</span> &lt;&lt; space &lt;&lt; <span class="hljs-number">3</span> &lt;&lt; space &lt;&lt; <span class="hljs-number">9</span> &lt;&lt; space
+    &lt;&lt; <span class="hljs-number">27</span> &lt;&lt; space &lt;&lt; <span class="hljs-number">9</span> &lt;&lt; space;
+
+pen.<span class="hljs-built_in">setDashPattern</span>(dashes);</code></pre></div>
+
+<p>请注意，破折号图案是以笔的宽度为单位来指定的，例如，一个长度为5、宽度为10的破折号是50像素长。</p>
+<p>当前设置的破折号图案可以用<a href="#dashPattern">dashPattern</a>()函数来检索。使用<a href="#isSolid">isSolid</a>()函数来确定笔是否有实体填充。</p>
+<h3><span id="cap-yang-shi">cap 样式</span><a href="#cap-yang-shi" class="header-anchor">#</a></h3><p>帽子样式定义了如何使用<a href>QPainter</a>绘制线条的端点。帽子样式只适用于宽线，即宽度为1或更大时。<a href="qt.html#PenCapStyle-enum">Qt::PenCapStyle</a> 枚举提供了以下样式：</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://doc.qt.io/qt-6/images/qpen-square.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+<th><img src="https://doc.qt.io/qt-6/images/qpen-flat.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+<th><img src="https://doc.qt.io/qt-6/images/qpen-roundcap.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="qt.html#PenCapStyle-enum">Qt::SquareCap</a></td>
+<td><a href="qt.html#PenCapStyle-enum">Qt::FlatCap</a></td>
+<td><a href="qt.html#PenCapStyle-enum">Qt::RoundCap</a></td>
+</tr>
+</tbody></table>
+<p><a href="qt.html#PenCapStyle-enum">Qt::SquareCap</a> 样式是一个覆盖端点的方形线端，并超出其一半的线宽。<a href="qt.html#PenCapStyle-enum">Qt::FlatCap</a> 样式是一个不覆盖线的端点的方形线端。而 <a href="qt.html#PenCapStyle-enum">Qt::RoundCap</a> 样式是一个覆盖端点的圆形线端。</p>
+<p>默认是 <a href="qt.html#PenCapStyle-enum">Qt::SquareCap</a>。</p>
+<p>当笔宽为0或1时，是否绘制端点取决于笔帽样式。使用 <a href="qt.html#PenCapStyle-enum">Qt::SquareCap</a> 或 <a href="qt.html#PenCapStyle-enum">Qt::RoundCap</a> 会绘制，使用 <a href="qt.html#PenCapStyle-enum">Qt::FlatCap</a> 则不绘制。</p>
+<h3><span id="join-yang-shi">Join 样式</span><a href="#join-yang-shi" class="header-anchor">#</a></h3><p>连接样式定义了如何使用<a href>QPainter</a>绘制两条连接线之间的连接。连接样式只适用于宽线，即宽度为1或更大时。<a href="qt.html#PenJoinStyle-enum">Qt::PenJoinStyle</a> 枚举提供了以下样式：</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://doc.qt.io/qt-6/images/qpen-bevel.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+<th><img src="https://doc.qt.io/qt-6/images/qpen-miter.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+<th><img src="https://doc.qt.io/qt-6/images/qpen-roundjoin.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="qt.html#PenJoinStyle-enum">Qt::BevelJoin</a></td>
+<td><a href="qt.html#PenJoinStyle-enum">Qt::MiterJoin</a></td>
+<td><a href="qt.html#PenJoinStyle-enum">Qt::RoundJoin</a></td>
+</tr>
+</tbody></table>
+<p><a href="qt.html#PenJoinStyle-enum">Qt::BevelJoin</a> 样式填充了两条线之间的三角形缺口。<a href="qt.html#PenJoinStyle-enum">Qt::MiterJoin</a> 样式将两条线延伸到一个角度处相遇。而 <a href="qt.html#PenJoinStyle-enum">Qt::RoundJoin</a> 样式在两条线之间填充了一个圆弧。</p>
+<p>默认是 <a href="qt.html#PenJoinStyle-enum">Qt::BevelJoin</a>.</p>
+<p><img src="https://doc.qt.io/qt-6/images/qpen-miterlimit.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>当 <a href="qt.html#PenJoinStyle-enum">Qt::MiterJoin</a> 样式被应用时，可以使用 <a href="#setMiterLimit">setMiterLimit</a>() 函数来指定米特尔连接可以从连接点延伸多远。<a href="#miterLimit">miterLimit</a>()用于减少线条接近平行的线条连接处的伪影。</p>
+<p><a href="#miterLimit">miterLimit</a>()必须以笔的宽度为单位指定，例如，宽度为10的miter limit为5，长度为50像素。默认的米特限制是2，也就是笔宽的两倍（像素）。</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://doc.qt.io/qt-6/images/qpen-demo.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+<th>**<a href="qtwidgets-painting-pathstrok-example.html">The Path Stroking Example</a>**Path Stroking示例展示了Qt的内置破折号图案，并展示了如何使用自定义图案来扩展可用图案的范围。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href>QPainter</a>, <a href="qbrush.html">QBrush</a>, <a href="qtwidgets-painting-pathstroke-example.html">Path Stroking Example</a>, and <a href="qtwidgets-widgets-scribble-example.html">Scribble Example</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="since-5-4-qpen-qpen-qpen-amp-amp-pen"><code>[since 5.4]</code>QPen::QPen( &amp;&amp;<em>pen</em>)</span><a href="#since-5-4-qpen-qpen-qpen-amp-amp-pen" class="header-anchor">#</a></h3><p>移动构建一个从给定的<em>pen</em>中的笔。</p>
+<p>被移出的笔只能被分配、复制或销毁。任何其他操作（在分配之前）都会导致未定义的行为。</p>
+<p> 这个函数是在 Qt 5.4 中引入的。</p>
+<h3><span id="qpen-qpen-const-qpen-amp-pen">QPen::QPen(const  &amp;<em>pen</em>)</span><a href="#qpen-qpen-const-qpen-amp-pen" class="header-anchor">#</a></h3><p>构造一个作为给定 <em>pen</em> 副本的 pen。</p>
+<h3><span id="qpen-qpen-const-qbrush-amp-brush-qreal-width-qt-penstyle-style-qt-solidline-qt-pencapstyle-cap-qt-squarecap-qt-penjoinstyle-join-qt-beveljoin">QPen::QPen(const  &amp;<em>brush</em>,  <em>width</em>,  <em>style</em> = Qt::SolidLine,  <em>cap</em> = Qt::SquareCap,  <em>join</em> = Qt::BevelJoin)</span><a href="#qpen-qpen-const-qbrush-amp-brush-qreal-width-qt-penstyle-style-qt-solidline-qt-pencapstyle-cap-qt-squarecap-qt-penjoinstyle-join-qt-beveljoin" class="header-anchor">#</a></h3><p>构造一个具有指定<em>brush</em>、<em>width</em>、pen <em>style</em>、<em>cap</em> 样式和<em>join</em> 样式的画笔。</p>
+<p><strong>See also</strong> <a href="#setBrush">setBrush</a>(), <a href="#setWidth">setWidth</a>(), <a href="#setStyle">setStyle</a>(), <a href="#setCapStyle">setCapStyle</a>(), and <a href="#setJoinStyle">setJoinStyle</a>().</p>
+<h3><span id="qpen-qpen-const-qcolor-amp-color">QPen::QPen(const  &amp;<em>color</em>)</span><a href="#qpen-qpen-const-qcolor-amp-color" class="header-anchor">#</a></h3><p>构造一个宽度为 1 且具有给定 <em>color</em> 的实线笔。</p>
+<p><strong>See also</strong> <a href="#setBrush">setBrush</a>() and <a href="#setColor">setColor</a>().</p>
+<h3><span id="qpen-qpen-qt-penstyle-style">QPen::QPen( <em>style</em>)</span><a href="#qpen-qpen-qt-penstyle-style" class="header-anchor">#</a></h3><p>构造一个宽度为 1 且具有给定 <em>style</em> 的黑色笔。</p>
+<p><strong>See also</strong> <a href="#setStyle">setStyle</a>().</p>
+<h3><span id="qpen-qpen">QPen::QPen()</span><a href="#qpen-qpen" class="header-anchor">#</a></h3><p>构造一个宽度为 1 的默认黑色实线笔。</p>
+<h3><span id="since-5-2-qpen-amp-qpen-operator-qpen-amp-amp-other"><code>[since 5.2]</code> &amp;QPen::operator=( &amp;&amp;<em>other</em>)</span><a href="#since-5-2-qpen-amp-qpen-operator-qpen-amp-amp-other" class="header-anchor">#</a></h3><p>将 <em>other</em> 移动分配给此 <a href>QPen</a> 实例。</p>
+<p> 这个函数是在 Qt 5.2 中引入的。</p>
+<h3><span id="qpen-amp-qpen-operator-const-qpen-amp-pen"> &amp;QPen::operator=(const  &amp;<em>pen</em>)</span><a href="#qpen-amp-qpen-operator-const-qpen-amp-pen" class="header-anchor">#</a></h3><p>将给定的 <em>pen</em> 分配给此笔并返回对此笔的引用。</p>
+<h3><span id="qpen-qpen">QPen::~QPen()</span><a href="#qpen-qpen" class="header-anchor">#</a></h3><p>销毁笔。</p>
+<h3><span id="qbrush-qpen-brush-const"> QPen::brush() const</span><a href="#qbrush-qpen-brush-const" class="header-anchor">#</a></h3><p>返回用于填充用该笔生成的笔画的笔刷。</p>
+<p><strong>See also</strong> <a href="#setBrush">setBrush</a>().</p>
+<h3><span id="qt-pencapstyle-qpen-capstyle-const"> QPen::capStyle() const</span><a href="#qt-pencapstyle-qpen-capstyle-const" class="header-anchor">#</a></h3><p>返回笔帽的样式。</p>
+<p><strong>See also</strong> <a href="#setCapStyle">setCapStyle</a>() and <a href="#cap-style">Cap Style</a>.</p>
+<h3><span id="qcolor-qpen-color-const"> QPen::color() const</span><a href="#qcolor-qpen-color-const" class="header-anchor">#</a></h3><p>返回这支笔的笔刷的颜色。</p>
+<p><strong>See also</strong> <a href="#brush">brush</a>() and <a href="#setColor">setColor</a>().</p>
+<h3><span id="qreal-qpen-dashoffset-const"> QPen::dashOffset() const</span><a href="#qreal-qpen-dashoffset-const" class="header-anchor">#</a></h3><p>返回笔的破折号偏移。</p>
+<p><strong>See also</strong> <a href="#setDashOffset">setDashOffset</a>().</p>
+<h3><span id="qlist-lt-qreal-gt-qpen-dashpattern-const">&lt;&gt; QPen::dashPattern() const</span><a href="#qlist-lt-qreal-gt-qpen-dashpattern-const" class="header-anchor">#</a></h3><p>返回该笔的破折号图案。</p>
+<p><strong>See also</strong> <a href="#setDashPattern">setDashPattern</a>(), <a href="#style">style</a>(), and <a href="#isSolid">isSolid</a>().</p>
+<h3><span id="bool-qpen-iscosmetic-const">bool QPen::isCosmetic() const</span><a href="#bool-qpen-iscosmetic-const" class="header-anchor">#</a></h3><p>如果该笔是化妆品，返回 “true”；否则返回 “false”。</p>
+<p>化妆笔用于绘制具有恒定宽度的笔画，而不考虑应用于它们的<a href>QPainter</a>的任何变换。用化妆笔画一个形状可以确保它的轮廓在不同的比例因子下有相同的厚度。</p>
+<p>默认情况下，零宽度的笔是美容的。</p>
+<p><strong>See also</strong> <a href="#setCosmetic">setCosmetic</a>() and <a href="#widthF">widthF</a>().</p>
+<h3><span id="bool-qpen-issolid-const">bool QPen::isSolid() const</span><a href="#bool-qpen-issolid-const" class="header-anchor">#</a></h3><p>如果笔有实体填充，返回true，否则返回false。</p>
+<p><strong>See also</strong> <a href="#style">style</a>() and <a href="#dashPattern">dashPattern</a>().</p>
+<h3><span id="qt-penjoinstyle-qpen-joinstyle-const"> QPen::joinStyle() const</span><a href="#qt-penjoinstyle-qpen-joinstyle-const" class="header-anchor">#</a></h3><p>返回钢笔的连接样式。</p>
+<p><strong>See also</strong> <a href="#setJoinStyle">setJoinStyle</a>() and <a href="#join-style">Join Style</a>.</p>
+<h3><span id="qreal-qpen-miterlimit-const"> QPen::miterLimit() const</span><a href="#qreal-qpen-miterlimit-const" class="header-anchor">#</a></h3><p>返回钢笔的割裂极限。只有当连接样式被设置为<a href="qt.html#PenJoinStyle-enum">Qt::MiterJoin</a>时，斜率限制才是相关的。</p>
+<p><strong>See also</strong> <a href="#setMiterLimit">setMiterLimit</a>() and <a href="#join-style">Join Style</a>.</p>
+<h3><span id="void-qpen-setbrush-const-qbrush-amp-brush">void QPen::setBrush(const  &amp;<em>brush</em>)</span><a href="#void-qpen-setbrush-const-qbrush-amp-brush" class="header-anchor">#</a></h3><p>将用于填充用该笔生成的笔触的笔刷设置为给定的<em>brush</em>。</p>
+<p><strong>See also</strong> <a href="#brush">brush</a>() and <a href="#setColor">setColor</a>().</p>
+<h3><span id="void-qpen-setcapstyle-qt-pencapstyle-style">void QPen::setCapStyle( <em>style</em>)</span><a href="#void-qpen-setcapstyle-qt-pencapstyle-style" class="header-anchor">#</a></h3><p>将笔的笔帽样式设置为给定的<em>style</em>。默认值是<a href="qt.html#PenCapStyle-enum">Qt::SquareCap</a>。</p>
+<p><strong>See also</strong> <a href="#capStyle">capStyle</a>() and <a href="#cap-style">Cap Style</a>.</p>
+<h3><span id="void-qpen-setcolor-const-qcolor-amp-color">void QPen::setColor(const  &amp;<em>color</em>)</span><a href="#void-qpen-setcolor-const-qcolor-amp-color" class="header-anchor">#</a></h3><p>将此笔的笔刷的颜色设置为给定的<em>color</em>。</p>
+<p><strong>See also</strong> <a href="#setBrush">setBrush</a>() and <a href="#color">color</a>().</p>
+<h3><span id="void-qpen-setcosmetic-bool-cosmetic">void QPen::setCosmetic(bool <em>cosmetic</em>)</span><a href="#void-qpen-setcosmetic-bool-cosmetic" class="header-anchor">#</a></h3><p>根据<em>cosmetic</em>的值，将此笔设置为cosmetic或noncosmetic。</p>
+<p><strong>See also</strong> <a href="#isCosmetic">isCosmetic</a>().</p>
+<h3><span id="void-qpen-setdashoffset-qreal-offset">void QPen::setDashOffset( <em>offset</em>)</span><a href="#void-qpen-setdashoffset-qreal-offset" class="header-anchor">#</a></h3><p>将此笔的破折号偏移（破折号图案的起始点）设置为<em>offset</em>指定的值。该偏移量是以用于指定破折号图案的单位来衡量的。</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://doc.qt.io/qt-6/images/qpen-dashpattern.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+<th>例如，一个每个笔画长4个单位，后面有2个单位的间隙的图案，当作为线画时，将从笔画开始。然而，如果破折号偏移被设置为4.0，任何线画将从间隙开始。4.0以下的偏移值将导致先画出部分笔画，4.0到6.0之间的偏移值将导致线条从部分间隙开始。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong>这隐含地将笔的样式转换为<a href="qt.html#PenStyle-enum">Qt::CustomDashLine</a>。</p>
+<p><strong>See also</strong> <a href="#dashOffset">dashOffset</a>().</p>
+<h3><span id="void-qpen-setdashpattern-const-qlist-lt-qreal-gt-amp-pattern">void QPen::setDashPattern(const &lt;&gt; &amp;<em>pattern</em>)</span><a href="#void-qpen-setdashpattern-const-qlist-lt-qreal-gt-amp-pattern" class="header-anchor">#</a></h3><p>将此笔的破折号图案设置为给定的<em>pattern</em>。这隐含地将笔的样式转换为<a href="qt.html#PenStyle-enum">Qt::CustomDashLine</a>。</p>
+<p>该模式必须被指定为偶数的正数条目，其中条目1、3、5…是破折号，2、4、6…是空格。比如说：</p>
+<p><img src="https://doc.qt.io/qt-6/images/qpen-custom.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs c++">QPen pen; 
+QList dashes; 
+qreal space = <span class="hljs-number">4</span>; 
+dashes &lt;&lt; <span class="hljs-number">1</span> &lt;&lt; space &lt;&lt; <span class="hljs-number">3</span> &lt;&lt; space &lt;&lt; <span class="hljs-number">9</span> &lt;&lt; space &lt;&lt; <span class="hljs-number">27</span> &lt;&lt; space &lt;&lt; <span class="hljs-number">9</span> &lt;&lt; space; pen.<span class="hljs-built_in">setDashPattern</span>(dashes);</code></pre></div>
+
+
+
+<p>破折号图案是以笔的宽度为单位来指定的；例如，一个长度为5、宽度为10的破折号是50像素长。注意，宽度为零的笔相当于宽度为1像素的化妆笔。</p>
+<p>每个破折号也会受到笔帽样式的影响，所以一个1的破折号在设置了方形笔帽后会在每个方向延伸0.5像素，导致总宽度为2。</p>
+<p>请注意，默认的笔帽样式是<a href="qt.html#PenCapStyle-enum">Qt::SquareCap</a>，这意味着一个正方形的线端覆盖了端点，并在它之外延伸了一半的线宽。</p>
+<p><strong>See also</strong> <a href="#setStyle">setStyle</a>(), <a href="#dashPattern">dashPattern</a>(), <a href="#setCapStyle">setCapStyle</a>(), and <a href="#setCosmetic">setCosmetic</a>().</p>
+<h3><span id="void-qpen-setjoinstyle-qt-penjoinstyle-style">void QPen::setJoinStyle( <em>style</em>)</span><a href="#void-qpen-setjoinstyle-qt-penjoinstyle-style" class="header-anchor">#</a></h3><p>将笔的连接样式设置为给定的<em>style</em>。默认值是<a href="qt.html#PenJoinStyle-enum">Qt::BevelJoin</a>。</p>
+<p><strong>See also</strong> <a href="#joinStyle">joinStyle</a>() and <a href="#join-style">Join Style</a>.</p>
+<h3><span id="void-qpen-setmiterlimit-qreal-limit">void QPen::setMiterLimit( <em>limit</em>)</span><a href="#void-qpen-setmiterlimit-qreal-limit" class="header-anchor">#</a></h3><p>将此笔的割裂极限设置为给定的<em>limit</em>。</p>
+<p><img src="https://doc.qt.io/qt-6/images/qpen-miterlimit.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>铣削极限描述了铣削连接可以从连接点延伸多远。这用于减少线与线之间接近平行时的假象。</p>
+<p>这个值只有在钢笔样式被设置为 <a href="qt.html#PenJoinStyle-enum">Qt::MiterJoin</a> 时才有效果。这个值是以笔的宽度为单位指定的，例如，在宽度为10的情况下，miter limit为5，就是50像素长。默认的割裂限制是2，也就是笔的宽度的两倍（像素）。</p>
+<p><strong>See also</strong> <a href="#miterLimit">miterLimit</a>(), <a href="#setJoinStyle">setJoinStyle</a>(), and <a href="#join-style">Join Style</a>.</p>
+<h3><span id="void-qpen-setstyle-qt-penstyle-style">void QPen::setStyle( <em>style</em>)</span><a href="#void-qpen-setstyle-qt-penstyle-style" class="header-anchor">#</a></h3><p>将笔的样式设置为给定的<em>style</em>。</p>
+<p>请参阅 <a href="qt.html#PenStyle-enum">Qt::PenStyle</a> 文档以了解可用的风格列表。从Qt 4.1开始，也可以使用<a href="#setDashPattern">setDashPattern</a>()函数指定一个自定义的破折号样式，该函数隐含地将笔的样式转换为<a href="qt.html#PenStyle-enum">Qt::CustomDashLine</a>。</p>
+<p><strong>注意：</strong>这个函数将破折号的偏移量重置为零。</p>
+<p><strong>See also</strong> <a href="#style">style</a>() and <a href="#pen-style">Pen Style</a>.</p>
+<h3><span id="void-qpen-setwidth-int-width">void QPen::setWidth(int <em>width</em>)</span><a href="#void-qpen-setwidth-int-width" class="header-anchor">#</a></h3><p>将笔的宽度设置为整数精度的给定<em>width</em>像素。</p>
+<p>行的宽度为零表示是化妆笔。这意味着笔宽总是被画成一个像素宽，与画师上设置的<a href="#%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2">变换</a>无关。</p>
+<p>不支持设置一个负值的笔宽。</p>
+<p><strong>See also</strong> <a href="#setWidthF">setWidthF</a>() and <a href="#width">width</a>().</p>
+<h3><span id="void-qpen-setwidthf-qreal-width">void QPen::setWidthF( <em>width</em>)</span><a href="#void-qpen-setwidthf-qreal-width" class="header-anchor">#</a></h3><p>将笔宽设置为给定的<em>width</em>，以浮点精度计算。</p>
+<p>线条宽度为零表示是化妆笔。这意味着笔宽总是被画成一个像素宽，与画师的<a href="#%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2">变换</a>无关。</p>
+<p>不支持设置一个负值的笔宽。</p>
+<p><strong>See also</strong> <a href="#setWidth">setWidth</a>() and <a href="#widthF">widthF</a>().</p>
+<h3><span id="qt-penstyle-qpen-style-const"> QPen::style() const</span><a href="#qt-penstyle-qpen-style-const" class="header-anchor">#</a></h3><p>返回笔的样式。</p>
+<p><strong>See also</strong> <a href="#setStyle">setStyle</a>() and <a href="#pen-style">Pen Style</a>.</p>
+<h3><span id="void-qpen-swap-qpen-amp-other">void QPen::swap( &amp;<em>other</em>)</span><a href="#void-qpen-swap-qpen-amp-other" class="header-anchor">#</a></h3><p>用这支笔交换<em>other</em>笔。这个操作是非常快的，而且永远不会失败。</p>
+<h3><span id="int-qpen-width-const">int QPen::width() const</span><a href="#int-qpen-width-const" class="header-anchor">#</a></h3><p>以整数精度返回笔的宽度。</p>
+<p><strong>See also</strong> <a href="#setWidth">setWidth</a>() and <a href="#widthF">widthF</a>().</p>
+<h3><span id="qreal-qpen-widthf-const"> QPen::widthF() const</span><a href="#qreal-qpen-widthf-const" class="header-anchor">#</a></h3><p>以浮点精度返回笔的宽度。</p>
+<p><strong>See also</strong> <a href="#setWidthF">setWidthF</a>() and <a href="#width">width</a>().</p>
+<h3><span id="qvariant-qpen-operator-qvariant-const"> QPen::operator QVariant() const</span><a href="#qvariant-qpen-operator-qvariant-const" class="header-anchor">#</a></h3><p>将笔作为<a href="qvariant.html">QVariant</a>返回。</p>
+<h3><span id="bool-qpen-operator-const-qpen-amp-pen-const">bool QPen::operator!=(const  &amp;<em>pen</em>) const</span><a href="#bool-qpen-operator-const-qpen-amp-pen-const" class="header-anchor">#</a></h3><p>如果笔与给定的<em>pen</em>不同，则返回 “true”；否则返回 “false”。如果两支笔有不同的风格、宽度或颜色，就是不同的。</p>
+<p><strong>See also</strong> <a href="#operator-eq-eq">operator==</a>().</p>
+<h3><span id="bool-qpen-operator-const-qpen-amp-pen-const">bool QPen::operator==(const  &amp;<em>pen</em>) const</span><a href="#bool-qpen-operator-const-qpen-amp-pen-const" class="header-anchor">#</a></h3><p>如果笔与给定的<em>pen</em>相等，则返回<code>true</code>；否则返回false。如果两支笔的样式、宽度和颜色相等，则为相等。</p>
+<p><strong>See also</strong> <a href="#operator-not-eq">operator!=</a>().</p>
+<h2><span id="fei-xiang-guan-cheng-yuan">非相关成员</span><a href="#fei-xiang-guan-cheng-yuan" class="header-anchor">#</a></h2><h3><span id="qdatastream-amp-operator-lt-lt-qdatastream-amp-stream-const-qpen-amp-pen"> &amp;operator&lt;&lt;( &amp;<em>stream</em>, const  &amp;<em>pen</em>)</span><a href="#qdatastream-amp-operator-lt-lt-qdatastream-amp-stream-const-qpen-amp-pen" class="header-anchor">#</a></h3><p>将给定的<em>pen</em>写到给定的<em>stream</em>，并返回对<em>stream</em>的引用。</p>
+<p><strong>See also</strong> <a href="datastreamformat.html">Serializing Qt Data Types</a>.</p>
+<h3><span id="qdatastream-amp-operator-gt-gt-qdatastream-amp-stream-qpen-amp-pen"> &amp;operator&gt;&gt;( &amp;<em>stream</em>,  &amp;<em>pen</em>)</span><a href="#qdatastream-amp-operator-gt-gt-qdatastream-amp-stream-qpen-amp-pen" class="header-anchor">#</a></h3><p>从给定的<em>stream</em>中读取一支笔到给定的<em>pen</em>中，并返回对该<em>stream</em>的引用。</p>
+<p><strong>See also</strong> <a href="datastreamformat.html">Serializing Qt Data Types</a>.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/P/">P</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/P/QPixmap/QPixmap/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QPixmap类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/P/QPluginLoader/QPluginLoader/">
+                        <span class="hidden-mobile">QPluginLoader类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

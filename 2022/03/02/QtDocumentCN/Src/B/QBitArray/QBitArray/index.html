@@ -1,0 +1,942 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QBitArray Class 公共函数 静态公共成员 相关非会员 详细描述 成员函数文档 [since 5.2]QBitArray::QBitArray(QBitArray &amp;&amp;other) QBitArray::QBitArray(const QBitArray &amp;other) QBitArray::QBitArray(qsizetype size, bool">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QBitArray类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/B/QBitArray/QBitArray/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QBitArray Class 公共函数 静态公共成员 相关非会员 详细描述 成员函数文档 [since 5.2]QBitArray::QBitArray(QBitArray &amp;&amp;other) QBitArray::QBitArray(const QBitArray &amp;other) QBitArray::QBitArray(qsizetype size, bool">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T04:52:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:35:22.607Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="B">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QBitArray类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QBitArray类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 12:52" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      92 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QBitArray类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qbitarray-class">QBitArray Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-guan-fei-hui-yuan">相关非会员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#since-5-2-qbitarray-qbitarray-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-other"><code>[since 5.2]</code>QBitArray::QBitArray(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray">QBitArray</a> &amp;&amp;<em>other</em>)</li>
+<li><a href="#qbitarray-qbitarray-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-other">QBitArray::QBitArray(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray">QBitArray</a> &amp;<em>other</em>)</li>
+<li><a href="#qbitarray-qbitarray-qsizetype-size-bool-value-false">QBitArray::QBitArray(qsizetype <em>size</em>, bool <em>value</em> = false)</a></li>
+<li><a href="#qbitarray-qbitarray">QBitArray::QBitArray()</a></li>
+<li><a href="#since-5-2-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-qbitarray-operator-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-other"><code>[since 5.2]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray">QBitArray</a> &amp;QBitArray::operator=(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray">QBitArray</a> &amp;&amp;<em>other</em>)</li>
+<li><a href="#qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-qbitarray-operator-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-other">QBitArray</a></li>
+<li><a href="#bool-qbitarray-at-qsizetype-i-const">bool QBitArray::at(qsizetype <em>i</em>) const</a></li>
+<li><a href="#since-5-11-const-char-qbitarray-bits-const"><code>[since 5.11]</code>const char *QBitArray::bits() const</a></li>
+<li><a href="#void-qbitarray-clear">void QBitArray::clear()</a></li>
+<li><a href="#void-qbitarray-clearbit-qsizetype-i">void QBitArray::clearBit(qsizetype <em>i</em>)</a></li>
+<li><a href="#qsizetype-qbitarray-count-const">qsizetype QBitArray::count() const</a></li>
+<li><a href="#qsizetype-qbitarray-count-bool-on-const">qsizetype QBitArray::count(bool <em>on</em>) const</a></li>
+<li><a href="#bool-qbitarray-fill-bool-value-qsizetype-size-1">bool QBitArray::fill(bool <em>value</em>, qsizetype <em>size</em> = -1)</a></li>
+<li><a href="#void-qbitarray-fill-bool-value-qsizetype-begin-qsizetype-end">void QBitArray::fill(bool <em>value</em>, qsizetype <em>begin</em>, qsizetype <em>end</em>)</a></li>
+<li><a href="#static-since-5-11-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-qbitarray-frombits-const-char-data-qsizetype-size"><code>[static, since 5.11]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray">QBitArray</a> QBitArray::fromBits(const char *<em>data</em>, qsizetype <em>size</em>)</li>
+<li><a href="#bool-qbitarray-isempty-const">bool QBitArray::isEmpty() const</a></li>
+<li><a href="#bool-qbitarray-isnull-const">bool QBitArray::isNull() const</a></li>
+<li><a href="#void-qbitarray-resize-qsizetype-size">void QBitArray::resize(qsizetype <em>size</em>)</a></li>
+<li><a href="#void-qbitarray-setbit-qsizetype-i">void QBitArray::setBit(qsizetype <em>i</em>)</a></li>
+<li><a href="#void-qbitarray-setbit-qsizetype-i-bool-value">void QBitArray::setBit(qsizetype <em>i</em>, bool <em>value</em>)</a></li>
+<li><a href="#qsizetype-qbitarray-size-const">qsizetype QBitArray::size() const</a></li>
+<li><a href="#void-qbitarray-swap-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-other">void QBitArray::swap(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray">QBitArray</a> &amp;<em>other</em>)</li>
+<li><a href="#bool-qbitarray-testbit-qsizetype-i-const">bool QBitArray::testBit(qsizetype <em>i</em>) const</a></li>
+<li><a href="#since-6-0-quint32-https-doc-qt-io-qt-6-qtglobal-html-quint32-typedef-qbitarray-touint32-qsysinfo-endian-https-doc-qt-io-qt-6-qsysinfo-html-endian-enum-endianness-bool-ok-nullptr-const"><code>[since 6.0]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#quint32-typedef">quint32</a> QBitArray::toUInt32(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsysinfo.html#Endian-enum">QSysInfo::Endian</a> <em>endianness</em>, bool *<em>ok</em> = nullptr) const</li>
+<li><a href="#bool-qbitarray-togglebit-qsizetype-i">bool QBitArray::toggleBit(qsizetype <em>i</em>)</a></li>
+<li><a href="#void-qbitarray-truncate-qsizetype-pos">void QBitArray::truncate(qsizetype <em>pos</em>)</a></li>
+<li><a href="#bool-qbitarray-operator-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-other-const">bool QBitArray::operator!=(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray">QBitArray</a> &amp;<em>other</em>) const</li>
+<li><a href="#qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-qbitarray-operator-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-other-1">QBitArray</a></li>
+<li><a href="#bool-qbitarray-operator-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-other-const">bool QBitArray::operator==(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray">QBitArray</a> &amp;<em>other</em>) const</li>
+<li><a href="#qbitref-qbitarray-operator-qsizetype-i">QBitRef QBitArray::operator[](qsizetype *i*)</a></li>
+<li><a href="#bool-qbitarray-operator-qsizetype-i-const">bool QBitArray::operator[](qsizetype *i*) const</a></li>
+<li><a href="#qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-qbitarray-operator-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-other-2">QBitArray</a></li>
+<li><a href="#qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-qbitarray-operator-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-other-3">QBitArray</a></li>
+<li><a href="#qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-qbitarray-operator-const-4">QBitArray</a></li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-hui-yuan-1">相关非会员</a><ul>
+<li><a href="#qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-operator-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-a1-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-a2-5">QBitArray</a></li>
+<li><a href="#qdatastream-https-doc-qt-io-qt-6-qdatastream-html-operator-qdatastream-https-doc-qt-io-qt-6-qdatastream-html-out-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-ba">QDataStream</a></li>
+<li><a href="#qdatastream-https-doc-qt-io-qt-6-qdatastream-html-operator-qdatastream-https-doc-qt-io-qt-6-qdatastream-html-in-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-ba-1">QDataStream</a></li>
+<li><a href="#qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-operator-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-a1-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-a2-6">QBitArray</a></li>
+<li><a href="#qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-operator-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-a1-const-qbitarray-https-doc-qt-io-qt-6-qbitarray-html-qbitarray-a2-7">QBitArray</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="qbitarray-class">QBitArray Class</span><a href="#qbitarray-class" class="header-anchor">#</a></h1><p>QBitArray 类提供位数组. <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qbitarray></qbitarray></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray-members.html">List of all members, including inherited members</a></li>
+</ul>
+<p><strong>Note:</strong> All functions in this class are <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/17-qdoc-commands-thread.html#reentrant">reentrant</a>.</p>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray-3">QBitArray</a></strong>(QBitArray &amp;&amp;<em>other</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray-2">QBitArray</a></strong>(const QBitArray &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray-1">QBitArray</a></strong>(qsizetype <em>size</em>, bool <em>value</em> = false)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#QBitArray">QBitArray</a></strong>()</td>
+</tr>
+<tr>
+<td>QBitArray &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-eq-1">operator=</a></strong>(QBitArray &amp;&amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QBitArray &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-eq">operator=</a></strong>(const QBitArray &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#at">at</a></strong>(qsizetype <em>i</em>) const</td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#bits">bits</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#clear">clear</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#clearBit">clearBit</a></strong>(qsizetype <em>i</em>)</td>
+</tr>
+<tr>
+<td>qsizetype</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#count">count</a></strong>() const</td>
+</tr>
+<tr>
+<td>qsizetype</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#count-1">count</a></strong>(bool <em>on</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#fill">fill</a></strong>(bool <em>value</em>, qsizetype <em>size</em> = -1)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#fill-1">fill</a></strong>(bool <em>value</em>, qsizetype <em>begin</em>, qsizetype <em>end</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#isEmpty">isEmpty</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#isNull">isNull</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#resize">resize</a></strong>(qsizetype <em>size</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#setBit">setBit</a></strong>(qsizetype <em>i</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#setBit-1">setBit</a></strong>(qsizetype <em>i</em>, bool <em>value</em>)</td>
+</tr>
+<tr>
+<td>qsizetype</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#swap">swap</a></strong>(QBitArray &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#testBit">testBit</a></strong>(qsizetype <em>i</em>) const</td>
+</tr>
+<tr>
+<td>quint32</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#toUInt32">toUInt32</a></strong>(QSysInfo::Endian <em>endianness</em>, bool *<em>ok</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#toggleBit">toggleBit</a></strong>(qsizetype <em>i</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#truncate">truncate</a></strong>(qsizetype <em>pos</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-not-eq">operator!=</a></strong>(const QBitArray &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>QBitArray &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-and-eq">operator&amp;=</a></strong>(const QBitArray &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-eq-eq">operator==</a></strong>(const QBitArray &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>QBitRef</td>
+<td><strong>[operator<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5b-5d">]</a></strong>(qsizetype <em>i</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong>[operator<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5b-5d-1">]</a></strong>(qsizetype <em>i</em>) const</td>
+</tr>
+<tr>
+<td>QBitArray &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5e-eq">operator^=</a></strong>(const QBitArray &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QBitArray &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7c-eq">operator|=</a></strong>(const QBitArray &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QBitArray</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7e">operator~</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QBitArray</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#fromBits">fromBits</a></strong>(const char *<em>data</em>, qsizetype <em>size</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-hui-yuan">相关非会员</span><a href="#xiang-guan-fei-hui-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QBitArray</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-and">operator&amp;</a></strong>(const QBitArray &amp;<em>a1</em>, const QBitArray &amp;<em>a2</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QDataStream &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-lt-lt-1">operator&lt;&lt;</a></strong>(QDataStream &amp;<em>out</em>, const QBitArray &amp;<em>ba</em>)</td>
+</tr>
+<tr>
+<td>QDataStream &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-gt-gt-1">operator&gt;&gt;</a></strong>(QDataStream &amp;<em>in</em>, QBitArray &amp;<em>ba</em>)</td>
+</tr>
+<tr>
+<td>QBitArray</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5e">operator^</a></strong>(const QBitArray &amp;<em>a1</em>, const QBitArray &amp;<em>a2</em>)</td>
+</tr>
+<tr>
+<td>QBitArray</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7c">operator|</a></strong>(const QBitArray &amp;<em>a1</em>, const QBitArray &amp;<em>a2</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QBitArray 是一个数组，可以访问各个位并提供运算符<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-and">AND</a>、[OR](https:// doc.qt.io/qt-6/qbitarray.html#operator-7c)、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5e">XOR</a>和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7e">NOT</a>)适用于整个位数组。 它使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/implicit-sharing.html">隐式共享</a> (copy-on-write) 来减少内存使用并避免不必要的数据复制。</p>
+<p>以下代码构造了一个包含 200 位初始化为 false (0) 的 QBitArray：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">ba</span><span class="hljs-params">(<span class="hljs-number">200</span>)</span></span>;</code></pre></div>
+
+<p>要将这些位初始化为 true，请将 <code>true</code> 作为第二个参数传递给构造函数，或者稍后调用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#fill">fill</a>()。</p>
+<p>QBitArray 使用从 0 开始的索引，就像 C++ 数组一样。 要访问特定索引位置的位，可以使用 operator<a href></a>。 在非常量位数组上，operator<a href></a> 返回对可用于赋值左侧的位的引用。 例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QBitArray ba;
+ba.<span class="hljs-built_in">resize</span>(<span class="hljs-number">3</span>);
+ba[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>;
+ba[<span class="hljs-number">1</span>] = <span class="hljs-literal">false</span>;
+ba[<span class="hljs-number">2</span>] = <span class="hljs-literal">true</span>;</code></pre></div>
+
+<p>由于技术原因，使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#testBit">testBit</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#setBit">setBit</a>() 效率更高访问数组中的位而不是 operator<a href></a>。 例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">ba</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
+ba.<span class="hljs-built_in">setBit</span>(<span class="hljs-number">0</span>, <span class="hljs-literal">true</span>);
+ba.<span class="hljs-built_in">setBit</span>(<span class="hljs-number">1</span>, <span class="hljs-literal">false</span>);
+ba.<span class="hljs-built_in">setBit</span>(<span class="hljs-number">2</span>, <span class="hljs-literal">true</span>);</code></pre></div>
+
+<p>QBitArray 支持 <code>&amp;</code> (<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-and">AND</a>)、<code>|</code> ([OR](<a target="_blank" rel="noopener" href="https://doc.qt/">https://doc.qt</a>. io/qt-6/qbitarray.html#operator-7c)), <code>^</code> (<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5e">XOR</a>), <code>~ </code> (<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7e">NOT</a>)，以及 <code>&amp;=</code>、<code>|=</code> 和 <code>^=</code>。 这些运算符的工作方式与内置的同名 C++ 位运算符相同。 例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">x</span><span class="hljs-params">(<span class="hljs-number">5</span>)</span></span>;
+x.<span class="hljs-built_in">setBit</span>(<span class="hljs-number">3</span>, <span class="hljs-literal">true</span>);
+<span class="hljs-comment">// x: [ 0, 0, 0, 1, 0 ]</span>
+
+<span class="hljs-function">QBitArray <span class="hljs-title">y</span><span class="hljs-params">(<span class="hljs-number">5</span>)</span></span>;
+y.<span class="hljs-built_in">setBit</span>(<span class="hljs-number">4</span>, <span class="hljs-literal">true</span>);
+<span class="hljs-comment">// y: [ 0, 0, 0, 0, 1 ]</span>
+
+x |= y;
+<span class="hljs-comment">// x: [ 0, 0, 0, 1, 1 ]</span></code></pre></div>
+
+<p>由于历史原因，QBitArray 区分了空位数组和空位数组。 <em>null</em> 位数组是使用 QBitArray 的默认构造函数初始化的位数组。 <em>empty</em> 位数组是大小为 0 的任何位数组。空位数组始终为空，但空位数组不一定为空：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">QBitArray</span>().<span class="hljs-built_in">isNull</span>();           <span class="hljs-comment">// returns true</span>
+<span class="hljs-built_in">QBitArray</span>().<span class="hljs-built_in">isEmpty</span>();          <span class="hljs-comment">// returns true</span>
+
+<span class="hljs-built_in">QBitArray</span>(<span class="hljs-number">0</span>).<span class="hljs-built_in">isNull</span>();          <span class="hljs-comment">// returns false</span>
+<span class="hljs-built_in">QBitArray</span>(<span class="hljs-number">0</span>).<span class="hljs-built_in">isEmpty</span>();         <span class="hljs-comment">// returns true</span>
+
+<span class="hljs-built_in">QBitArray</span>(<span class="hljs-number">3</span>).<span class="hljs-built_in">isNull</span>();          <span class="hljs-comment">// returns false</span>
+<span class="hljs-built_in">QBitArray</span>(<span class="hljs-number">3</span>).<span class="hljs-built_in">isEmpty</span>();         <span class="hljs-comment">// returns false</span></code></pre></div>
+
+<p>除 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#isNull">isNull</a>() 之外的所有函数都将空位数组视为空位数组； 例如，QBitArray() 比较等于 QBitArray(0)。 我们建议您始终使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#isEmpty">isEmpty</a>() 并避免使用 [isNull](<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-">https://doc.qt.io/qt-</a> 6/qbitarray.html#isNull)()。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbytearray.html">QByteArray</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlist.html">QList</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="since-5-2-qbitarray-qbitarray-qbitarray-amp-amp-other"><code>[since 5.2]</code>QBitArray::QBitArray( &amp;&amp;<em>other</em>)</span><a href="#since-5-2-qbitarray-qbitarray-qbitarray-amp-amp-other" class="header-anchor">#</a></h3><p>移动构造一个 QBitArray 实例，使其指向 <em>other</em> 指向的同一个对象。</p>
+<p>这个函数是在 Qt 5.2 中引入的。</p>
+<h3><span id="qbitarray-qbitarray-const-qbitarray-amp-other">QBitArray::QBitArray(const  &amp;<em>other</em>)</span><a href="#qbitarray-qbitarray-const-qbitarray-amp-other" class="header-anchor">#</a></h3><p>构造 <em>other</em> 的副本。</p>
+<p>这个操作需要<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/containers.html#constant-time">恒定时间</a>，因为QBitArray是[隐式共享](<a target="_blank" rel="noopener" href="https://doc.qt.io/qt">https://doc.qt.io/qt</a> -6/隐式共享.html）。 这使得从函数返回 QBitArray 非常快。 如果共享实例被修改，它将被复制（写时复制），这需要[线性时间]（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/containers.html#linear-time%EF%BC%89%E3%80%82">https://doc.qt.io/qt-6/containers.html#linear-time）。</a></p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-eq">operator=</a>().</p>
+<h3><span id="qbitarray-qbitarray-qsizetype-size-bool-value-false">QBitArray::QBitArray(qsizetype <em>size</em>, bool <em>value</em> = false)</span><a href="#qbitarray-qbitarray-qsizetype-size-bool-value-false" class="header-anchor">#</a></h3><p>构造一个包含 <em>size</em> 位的位数组。 这些位使用 <em>value</em> 进行初始化，默认为 false (0)。</p>
+<h3><span id="qbitarray-qbitarray">QBitArray::QBitArray()</span><a href="#qbitarray-qbitarray" class="header-anchor">#</a></h3><p>构造一个空位数组。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#isEmpty">isEmpty</a>().</p>
+<h3><span id="since-5-2-qbitarray-amp-qbitarray-operator-qbitarray-amp-amp-other"><code>[since 5.2]</code> &amp;QBitArray::operator=( &amp;&amp;<em>other</em>)</span><a href="#since-5-2-qbitarray-amp-qbitarray-operator-qbitarray-amp-amp-other" class="header-anchor">#</a></h3><p>将 <em>other</em> 移动到该位数组并返回对该位数组的引用。</p>
+<p>这个函数是在 Qt 5.2 中引入的。</p>
+<h3><span id="qbitarray-amp-qbitarray-operator-const-qbitarray-amp-other"> &amp;QBitArray::operator=(const  &amp;<em>other</em>)</span><a href="#qbitarray-amp-qbitarray-operator-const-qbitarray-amp-other" class="header-anchor">#</a></h3><p>将 <em>other</em> 分配给该位数组并返回对该位数组的引用。</p>
+<h3><span id="bool-qbitarray-at-qsizetype-i-const">bool QBitArray::at(qsizetype <em>i</em>) const</span><a href="#bool-qbitarray-at-qsizetype-i-const" class="header-anchor">#</a></h3><p>返回索引位置 <em>i</em> 处的位值。</p>
+<p><em>i</em> 必须是位数组中的有效索引位置（即 0 &lt;= <em>i</em> &lt; <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>()） .</p>
+<p><strong>See also</strong> [operator<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5b-5d">]</a>().</p>
+<h3><span id="since-5-11-const-char-qbitarray-bits-const"><code>[since 5.11]</code>const char *QBitArray::bits() const</span><a href="#since-5-11-const-char-qbitarray-bits-const" class="header-anchor">#</a></h3><p>返回指向此 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html">QBitArray</a> 的密集位数组的指针。 位从每个字节中的最低有效位向上计数。 最后一个字节中相关的位数由“size() % 8”给出。</p>
+<p>这个函数是在 Qt 5.11 中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#fromBits">fromBits</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>().</p>
+<h3><span id="void-qbitarray-clear">void QBitArray::clear()</span><a href="#void-qbitarray-clear" class="header-anchor">#</a></h3><p>清除位数组的内容并使其为空。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#resize">resize</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#isEmpty">isEmpty</a>().</p>
+<h3><span id="void-qbitarray-clearbit-qsizetype-i">void QBitArray::clearBit(qsizetype <em>i</em>)</span><a href="#void-qbitarray-clearbit-qsizetype-i" class="header-anchor">#</a></h3><p>将索引位置 <em>i</em> 处的位设置为 0。</p>
+<p><em>i</em> 必须是位数组中的有效索引位置（即 0 &lt;= <em>i</em> &lt; <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>()） .</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#setBit">setBit</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#toggleBit">toggleBit</a>().</p>
+<h3><span id="qsizetype-qbitarray-count-const">qsizetype QBitArray::count() const</span><a href="#qsizetype-qbitarray-count-const" class="header-anchor">#</a></h3><p>与 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>() 相同。</p>
+<h3><span id="qsizetype-qbitarray-count-bool-on-const">qsizetype QBitArray::count(bool <em>on</em>) const</span><a href="#qsizetype-qbitarray-count-bool-on-const" class="header-anchor">#</a></h3><p>如果 <em>on</em> 为真，则此函数返回位数组中存储的 1 位数； 否则返回 0 位数。</p>
+<h3><span id="bool-qbitarray-fill-bool-value-qsizetype-size-1">bool QBitArray::fill(bool <em>value</em>, qsizetype <em>size</em> = -1)</span><a href="#bool-qbitarray-fill-bool-value-qsizetype-size-1" class="header-anchor">#</a></h3><p>将位数组中的每一位设置为<em>value</em>，如果成功则返回true； 否则返回“假”。 如果 <em>size</em> 不同于 -1（默认值），则位数组的大小会预先调整为 <em>size</em>。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">ba</span><span class="hljs-params">(<span class="hljs-number">8</span>)</span></span>;
+ba.<span class="hljs-built_in">fill</span>(<span class="hljs-literal">true</span>);
+<span class="hljs-comment">// ba: [ 1, 1, 1, 1, 1, 1, 1, 1 ]</span>
+
+ba.<span class="hljs-built_in">fill</span>(<span class="hljs-literal">false</span>, <span class="hljs-number">2</span>);
+<span class="hljs-comment">// ba: [ 0, 0 ]</span></code></pre></div>
+
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#resize">resize</a>().</p>
+<h3><span id="void-qbitarray-fill-bool-value-qsizetype-begin-qsizetype-end">void QBitArray::fill(bool <em>value</em>, qsizetype <em>begin</em>, qsizetype <em>end</em>)</span><a href="#void-qbitarray-fill-bool-value-qsizetype-begin-qsizetype-end" class="header-anchor">#</a></h3><p>这是一个过载功能。</p>
+<p>将索引位置 <em>begin</em> 直到（但不包括）<em>end</em> 处的位设置为 <em>value</em>。</p>
+<p><em>begin</em> 必须是位数组中的有效索引位置 (0 &lt;= <em>begin</em> &lt; <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>())。</p>
+<p><em>end</em> 必须是有效的索引位置或等于 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>()，在这种情况下，填充操作将一直运行到结束 数组（0 &lt;= <em>end</em> &lt;= <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>()）。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">ba</span><span class="hljs-params">(<span class="hljs-number">4</span>)</span></span>;
+ba.<span class="hljs-built_in">fill</span>(<span class="hljs-literal">true</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>);            <span class="hljs-comment">// ba: [ 0, 1, 0, 0 ]</span>
+ba.<span class="hljs-built_in">fill</span>(<span class="hljs-literal">true</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>);            <span class="hljs-comment">// ba: [ 0, 1, 1, 0 ]</span>
+ba.<span class="hljs-built_in">fill</span>(<span class="hljs-literal">true</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>);            <span class="hljs-comment">// ba: [ 0, 1, 1, 1 ]</span></code></pre></div>
+
+<h3><span id="static-since-5-11-qbitarray-qbitarray-frombits-const-char-data-qsizetype-size"><code>[static, since 5.11]</code> QBitArray::fromBits(const char *<em>data</em>, qsizetype <em>size</em>)</span><a href="#static-since-5-11-qbitarray-qbitarray-frombits-const-char-data-qsizetype-size" class="header-anchor">#</a></h3><p>创建一个 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html">QBitArray</a>，其密集位数组位于 <em>data</em>，具有 <em>size</em> 位。 <em>data</em> 处的字节数组必须至少为 <em>size</em> / 8（向上取整）字节长。</p>
+<p>如果 <em>size</em> 不是 8 的倍数，则此函数将包含 <em>data</em> 中最后一个字节的最低 <em>size</em> % 8 位。</p>
+<p>这个函数是在 Qt 5.11 中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#bits">bits</a>().</p>
+<h3><span id="bool-qbitarray-isempty-const">bool QBitArray::isEmpty() const</span><a href="#bool-qbitarray-isempty-const" class="header-anchor">#</a></h3><p>如果此位数组的大小为 0，则返回 <code>true</code>； 否则返回假。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>().</p>
+<h3><span id="bool-qbitarray-isnull-const">bool QBitArray::isNull() const</span><a href="#bool-qbitarray-isnull-const" class="header-anchor">#</a></h3><p>如果此位数组为空，则返回 <code>true</code>； 否则返回“假”。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">QBitArray</span>().<span class="hljs-built_in">isNull</span>();           <span class="hljs-comment">// returns true</span>
+<span class="hljs-built_in">QBitArray</span>(<span class="hljs-number">0</span>).<span class="hljs-built_in">isNull</span>();          <span class="hljs-comment">// returns false</span>
+<span class="hljs-built_in">QBitArray</span>(<span class="hljs-number">3</span>).<span class="hljs-built_in">isNull</span>();          <span class="hljs-comment">// returns false</span></code></pre></div>
+
+<p>由于历史原因，Qt 对空位数组和空位数组进行了区分。 对于大多数应用程序来说，重要的是位数组是否包含任何数据，这可以使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#isEmpty">isEmpty</a>() 来确定。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#isEmpty">isEmpty</a>().</p>
+<h3><span id="void-qbitarray-resize-qsizetype-size">void QBitArray::resize(qsizetype <em>size</em>)</span><a href="#void-qbitarray-resize-qsizetype-size" class="header-anchor">#</a></h3><p>将位数组的大小调整为 <em>size</em> 位。</p>
+<p>如果 <em>size</em> 大于当前大小，则扩展位数组以使其成为 <em>size</em> 位，并在末尾添加额外的位。 新位被初始化为假 (0)。</p>
+<p>如果 <em>size</em> 小于当前大小，则从末尾删除位。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>().</p>
+<h3><span id="void-qbitarray-setbit-qsizetype-i">void QBitArray::setBit(qsizetype <em>i</em>)</span><a href="#void-qbitarray-setbit-qsizetype-i" class="header-anchor">#</a></h3><p>将索引位置 <em>i</em> 处的位设置为 1。</p>
+<p><em>i</em> 必须是位数组中的有效索引位置（即 0 &lt;= <em>i</em> &lt; <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>()） .</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#clearBit">clearBit</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#toggleBit">toggleBit</a>().</p>
+<h3><span id="void-qbitarray-setbit-qsizetype-i-bool-value">void QBitArray::setBit(qsizetype <em>i</em>, bool <em>value</em>)</span><a href="#void-qbitarray-setbit-qsizetype-i-bool-value" class="header-anchor">#</a></h3><p>这是一个过载功能。</p>
+<p>将索引位置 <em>i</em> 处的位设置为 <em>value</em>。</p>
+<h3><span id="qsizetype-qbitarray-size-const">qsizetype QBitArray::size() const</span><a href="#qsizetype-qbitarray-size-const" class="header-anchor">#</a></h3><p>返回存储在位数组中的位数。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#resize">resize</a>().</p>
+<h3><span id="void-qbitarray-swap-qbitarray-amp-other">void QBitArray::swap( &amp;<em>other</em>)</span><a href="#void-qbitarray-swap-qbitarray-amp-other" class="header-anchor">#</a></h3><p>用此位数组交换位数组 <em>other</em>。 此操作非常快且永不失败。</p>
+<h3><span id="bool-qbitarray-testbit-qsizetype-i-const">bool QBitArray::testBit(qsizetype <em>i</em>) const</span><a href="#bool-qbitarray-testbit-qsizetype-i-const" class="header-anchor">#</a></h3><p>如果索引位置 <em>i</em> 处的位为 1，则返回 <code>true</code>； 否则返回“假”。</p>
+<p><em>i</em> 必须是位数组中的有效索引位置（即 0 &lt;= <em>i</em> &lt; <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>()） .</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#setBit">setBit</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#clearBit">clearBit</a>().</p>
+<h3><span id="since-6-0-quint32-qbitarray-touint32-qsysinfo-endian-endianness-bool-ok-nullptr-const"><code>[since 6.0]</code> QBitArray::toUInt32( <em>endianness</em>, bool *<em>ok</em> = nullptr) const</span><a href="#since-6-0-quint32-qbitarray-touint32-qsysinfo-endian-endianness-bool-ok-nullptr-const" class="header-anchor">#</a></h3><p>返回转换为 int 的位数组。 转换基于 <em>endianness</em>。 将数组的前 32 位转换为 <code>quint32</code> 并返回它，遵循 <em>endianness</em>。 如果 <em>ok</em> 不是空指针，并且数组超过 32 位，则 <em>ok</em> 设置为 false，此函数返回零； 否则，它设置为真。</p>
+<p>此功能是在 Qt 6.0 中引入的。</p>
+<h3><span id="bool-qbitarray-togglebit-qsizetype-i">bool QBitArray::toggleBit(qsizetype <em>i</em>)</span><a href="#bool-qbitarray-togglebit-qsizetype-i" class="header-anchor">#</a></h3><p>反转索引位置 <em>i</em> 处的位的值，将该位的先前值返回为真（如果已设置）或假（如果未设置）。</p>
+<p>如果之前的值为 0，则新的值为 1。如果之前的值为 1，则新的值为 0。</p>
+<p><em>i</em> 必须是位数组中的有效索引位置（即 0 &lt;= <em>i</em> &lt; <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>()） .</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#setBit">setBit</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#clearBit">clearBit</a>().</p>
+<h3><span id="void-qbitarray-truncate-qsizetype-pos">void QBitArray::truncate(qsizetype <em>pos</em>)</span><a href="#void-qbitarray-truncate-qsizetype-pos" class="header-anchor">#</a></h3><p>截断索引位置 <em>pos</em> 处的位数组。</p>
+<p>如果 <em>pos</em> 超出数组的末尾，则不会发生任何事情。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#resize">resize</a>().</p>
+<h3><span id="bool-qbitarray-operator-const-qbitarray-amp-other-const">bool QBitArray::operator!=(const  &amp;<em>other</em>) const</span><a href="#bool-qbitarray-operator-const-qbitarray-amp-other-const" class="header-anchor">#</a></h3><p>如果 <em>other</em> 不等于该位数组，则返回 <code>true</code>； 否则返回“假”。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-eq-eq">operator==</a>().</p>
+<h3><span id="qbitarray-amp-qbitarray-operator-amp-const-qbitarray-amp-other"> &amp;QBitArray::operator&amp;=(const  &amp;<em>other</em>)</span><a href="#qbitarray-amp-qbitarray-operator-amp-const-qbitarray-amp-other" class="header-anchor">#</a></h3><p>在此位数组中的所有位与 <em>other</em> 之间执行 AND 运算。 将结果分配给此位数组，并返回对它的引用。</p>
+<p>结果具有两个位数组中最长的长度，任何丢失的位（如果一个数组比另一个数组短）被视为 0。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
+<span class="hljs-function">QBitArray <span class="hljs-title">b</span><span class="hljs-params">(<span class="hljs-number">2</span>)</span></span>;
+a[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; a[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>; a[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;   <span class="hljs-comment">// a: [ 1, 0, 1 ]</span>
+b[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; b[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;             <span class="hljs-comment">// b: [ 1, 1 ]</span>
+a &amp;= b;                         <span class="hljs-comment">// a: [ 1, 0, 0 ]</span></code></pre></div>
+
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-and">operator&amp;</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7c-eq">operator|=</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5e-eq">operator^=</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7e">operator~</a>().</p>
+<h3><span id="bool-qbitarray-operator-const-qbitarray-amp-other-const">bool QBitArray::operator==(const  &amp;<em>other</em>) const</span><a href="#bool-qbitarray-operator-const-qbitarray-amp-other-const" class="header-anchor">#</a></h3><p>如果 <em>other</em> 等于该位数组，则返回 <code>true</code>； 否则返回“假”。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-not-eq">operator!=</a>().</p>
+<h3><span id="qbitref-qbitarray-operator-qsizetype-i">QBitRef QBitArray::operator[](qsizetype *i*)</span><a href="#qbitref-qbitarray-operator-qsizetype-i" class="header-anchor">#</a></h3><p>返回索引位置 <em>i</em> 处的位作为可修改的引用。</p>
+<p><em>i</em> 必须是位数组中的有效索引位置（即 0 &lt;= <em>i</em> &lt; <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#size">size</a>()） .</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
+a[<span class="hljs-number">0</span>] = <span class="hljs-literal">false</span>;
+a[<span class="hljs-number">1</span>] = <span class="hljs-literal">true</span>;
+a[<span class="hljs-number">2</span>] = a[<span class="hljs-number">0</span>] ^ a[<span class="hljs-number">1</span>];</code></pre></div>
+
+<p>返回值是 QBitRef 类型，是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html">QBitArray</a> 的辅助类。 当你得到一个 QBitRef 类型的对象时，你可以给它赋值，赋值将应用于你从中得到的 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html">QBitArray</a> 中的位 得到了参考。</p>
+<p>函数 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#testBit">testBit</a>()、[setBit](<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html">https://doc.qt.io/qt-6/qbitarray.html</a> #setBit)() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#clearBit">clearBit</a>() 稍快一些。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#at">at</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#testBit">testBit</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#setBit">setBit</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#clearBit">clearBit</a>().</p>
+<h3><span id="bool-qbitarray-operator-qsizetype-i-const">bool QBitArray::operator[](qsizetype *i*) const</span><a href="#bool-qbitarray-operator-qsizetype-i-const" class="header-anchor">#</a></h3><p>这是一个过载功能。</p>
+<h3><span id="qbitarray-amp-qbitarray-operator-const-qbitarray-amp-other"> &amp;QBitArray::operator^=(const  &amp;<em>other</em>)</span><a href="#qbitarray-amp-qbitarray-operator-const-qbitarray-amp-other" class="header-anchor">#</a></h3><p>在此位数组中的所有位与 <em>other</em> 之间执行 XOR 操作。 将结果分配给此位数组，并返回对它的引用。</p>
+<p>结果具有两个位数组中最长的长度，任何丢失的位（如果一个数组比另一个数组短）被视为 0。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
+<span class="hljs-function">QBitArray <span class="hljs-title">b</span><span class="hljs-params">(<span class="hljs-number">2</span>)</span></span>;
+a[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; a[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>; a[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;   <span class="hljs-comment">// a: [ 1, 0, 1 ]</span>
+b[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; b[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;             <span class="hljs-comment">// b: [ 1, 1 ]</span>
+a ^= b;                         <span class="hljs-comment">// a: [ 0, 1, 1 ]</span></code></pre></div>
+
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5e">operator^</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-and-eq">operator&amp;=</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7c-eq">operator|=</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7e">operator~</a>().</p>
+<h3><span id="qbitarray-amp-qbitarray-operator-const-qbitarray-amp-other"> &amp;QBitArray::operator|=(const  &amp;<em>other</em>)</span><a href="#qbitarray-amp-qbitarray-operator-const-qbitarray-amp-other" class="header-anchor">#</a></h3><p>在此位数组中的所有位与 <em>other</em> 之间执行 OR 运算。 将结果分配给此位数组，并返回对它的引用。</p>
+<p>结果具有两个位数组中最长的长度，任何丢失的位（如果一个数组比另一个数组短）被视为 0。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
+<span class="hljs-function">QBitArray <span class="hljs-title">b</span><span class="hljs-params">(<span class="hljs-number">2</span>)</span></span>;
+a[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; a[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>; a[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;   <span class="hljs-comment">// a: [ 1, 0, 1 ]</span>
+b[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; b[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;             <span class="hljs-comment">// b: [ 1, 1 ]</span>
+a |= b;                         <span class="hljs-comment">// a: [ 1, 1, 1 ]</span></code></pre></div>
+
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7c">operator|</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-and-eq">operator&amp;=</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5e-eq">operator^=</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7e">operator~</a>().</p>
+<h3><span id="qbitarray-qbitarray-operator-const"> QBitArray::operator~() const</span><a href="#qbitarray-qbitarray-operator-const" class="header-anchor">#</a></h3><p>返回包含此位数组的反转位的位数组。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
+QBitArray b;
+a[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; a[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>; a[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;   <span class="hljs-comment">// a: [ 1, 0, 1 ]</span>
+b = ~a;                         <span class="hljs-comment">// b: [ 0, 1, 0 ]</span></code></pre></div>
+
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-and">operator&amp;</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7c">operator|</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5e">operator^</a>().</p>
+<h2><span id="xiang-guan-fei-hui-yuan">相关非会员</span><a href="#xiang-guan-fei-hui-yuan" class="header-anchor">#</a></h2><h3><span id="qbitarray-operator-amp-const-qbitarray-amp-a1-const-qbitarray-amp-a2"> operator&amp;(const  &amp;<em>a1</em>, const  &amp;<em>a2</em>)</span><a href="#qbitarray-operator-amp-const-qbitarray-amp-a1-const-qbitarray-amp-a2" class="header-anchor">#</a></h3><p>返回一个位数组，它是位数组 <em>a1</em> 和 <em>a2</em> 的与。</p>
+<p>结果具有两个位数组中最长的长度，任何丢失的位（如果一个数组比另一个数组短）被视为 0。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
+<span class="hljs-function">QBitArray <span class="hljs-title">b</span><span class="hljs-params">(<span class="hljs-number">2</span>)</span></span>;
+QBitArray c;
+a[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; a[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>; a[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;   <span class="hljs-comment">// a: [ 1, 0, 1 ]</span>
+b[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; b[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;             <span class="hljs-comment">// b: [ 1, 1 ]</span>
+c = a &amp; b;                      <span class="hljs-comment">// c: [ 1, 0, 0 ]</span></code></pre></div>
+
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-and-eq">operator&amp;=</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7c">operator|</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5e">operator^</a>().</p>
+<h3><span id="qdatastream-amp-operator-lt-lt-qdatastream-amp-out-const-qbitarray-amp-ba"> &amp;operator&lt;&lt;( &amp;<em>out</em>, const  &amp;<em>ba</em>)</span><a href="#qdatastream-amp-operator-lt-lt-qdatastream-amp-out-const-qbitarray-amp-ba" class="header-anchor">#</a></h3><p>将位数组 <em>ba</em> 写入流 <em>out</em>。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/datastreamformat.html">Format of the QDataStream operators</a>.</p>
+<h3><span id="qdatastream-amp-operator-gt-gt-qdatastream-amp-in-qbitarray-amp-ba"> &amp;operator&gt;&gt;( &amp;<em>in</em>,  &amp;<em>ba</em>)</span><a href="#qdatastream-amp-operator-gt-gt-qdatastream-amp-in-qbitarray-amp-ba" class="header-anchor">#</a></h3><p>从流 <em>in</em> 中将位数组读入 <em>ba</em>。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/datastreamformat.html">Format of the QDataStream operators</a>.</p>
+<h3><span id="qbitarray-operator-const-qbitarray-amp-a1-const-qbitarray-amp-a2"> operator^(const  &amp;<em>a1</em>, const  &amp;<em>a2</em>)</span><a href="#qbitarray-operator-const-qbitarray-amp-a1-const-qbitarray-amp-a2" class="header-anchor">#</a></h3><p>返回一个位数组，它是位数组 <em>a1</em> 和 <em>a2</em> 的 XOR。</p>
+<p>结果具有两个位数组中最长的长度，任何丢失的位（如果一个数组比另一个数组短）被视为 0。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
+<span class="hljs-function">QBitArray <span class="hljs-title">b</span><span class="hljs-params">(<span class="hljs-number">2</span>)</span></span>;
+QBitArray c;
+a[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; a[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>; a[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;   <span class="hljs-comment">// a: [ 1, 0, 1 ]</span>
+b[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; b[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;             <span class="hljs-comment">// b: [ 1, 1 ]</span>
+c = a ^ b;                      <span class="hljs-comment">// c: [ 0, 1, 1 ]</span></code></pre></div>
+
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html">operator^=()</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html">operator&amp;()</a>, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html">operator|()</a>.</p>
+<h3><span id="qbitarray-operator-const-qbitarray-amp-a1-const-qbitarray-amp-a2"> operator|(const  &amp;<em>a1</em>, const  &amp;<em>a2</em>)</span><a href="#qbitarray-operator-const-qbitarray-amp-a1-const-qbitarray-amp-a2" class="header-anchor">#</a></h3><p>返回一个位数组，它是位数组 <em>a1</em> 和 <em>a2</em> 的 OR。</p>
+<p>结果具有两个位数组中最长的长度，任何丢失的位（如果一个数组比另一个数组短）被视为 0。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QBitArray <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
+<span class="hljs-function">QBitArray <span class="hljs-title">b</span><span class="hljs-params">(<span class="hljs-number">2</span>)</span></span>;
+QBitArray c;
+a[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; a[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>; a[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;   <span class="hljs-comment">// a: [ 1, 0, 1 ]</span>
+b[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>; b[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;             <span class="hljs-comment">// b: [ 1, 1 ]</span>
+c = a | b;                      <span class="hljs-comment">// c: [ 1, 1, 1 ]</span></code></pre></div>
+
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-7c-eq">QBitArray::operator|=</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-and">operator&amp;</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html#operator-5e">operator^</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/B/">B</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/B/Best_Practice_Guides/Best_Practice_Guides/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QT最佳实践指南</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/B/QBitmap/QBitmap/">
+                        <span class="hidden-mobile">QBitmap类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

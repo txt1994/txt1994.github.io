@@ -1,0 +1,752 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QXmlDefaultHandler Class Public Functions Reimplemented Public Functions Detailed Description Member Function Documentation QXmlDefaultHandler::QXmlDefaultHandler() [virtual]QXmlDefaultHandler::~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QXmlDefaultHandler类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/X/QXmlDefaultHandler/QXmlDefaultHandler/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QXmlDefaultHandler Class Public Functions Reimplemented Public Functions Detailed Description Member Function Documentation QXmlDefaultHandler::QXmlDefaultHandler() [virtual]QXmlDefaultHandler::~">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:58:27.896Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="X">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QXmlDefaultHandler类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QXmlDefaultHandler类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      14k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      116 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QXmlDefaultHandler类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qxmldefaulthandler-class">QXmlDefaultHandler Class</a><ul>
+<li><a href="#public-functions">Public Functions</a></li>
+<li><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li><a href="#detailed-description">Detailed Description</a></li>
+<li><a href="#member-function-documentation">Member Function Documentation</a><ul>
+<li><a href="#qxmldefaulthandler-qxmldefaulthandler">QXmlDefaultHandler::QXmlDefaultHandler()</a></li>
+<li><a href="#virtual-qxmldefaulthandler-qxmldefaulthandler"><code>[virtual]</code>QXmlDefaultHandler::~QXmlDefaultHandler()</a></li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-attributedecl-const-qstring-https-doc-qt-io-qt-6-qstring-html-ename-const-qstring-https-doc-qt-io-qt-6-qstring-html-aname-const-qstring-https-doc-qt-io-qt-6-qstring-html-type-const-qstring-https-doc-qt-io-qt-6-qstring-html-valuedefault-const-qstring-https-doc-qt-io-qt-6-qstring-html-value"><code>[override virtual]</code>bool QXmlDefaultHandler::attributeDecl(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>eName</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>aName</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>type</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>valueDefault</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>value</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-characters-const-qstring-https-doc-qt-io-qt-6-qstring-html-ch"><code>[override virtual]</code>bool QXmlDefaultHandler::characters(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>ch</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-comment-const-qstring-https-doc-qt-io-qt-6-qstring-html-ch"><code>[override virtual]</code>bool QXmlDefaultHandler::comment(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>ch</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-endcdata"><code>[override virtual]</code>bool QXmlDefaultHandler::endCDATA()</a></li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-enddtd"><code>[override virtual]</code>bool QXmlDefaultHandler::endDTD()</a></li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-enddocument"><code>[override virtual]</code>bool QXmlDefaultHandler::endDocument()</a></li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-endelement-const-qstring-https-doc-qt-io-qt-6-qstring-html-namespaceuri-const-qstring-https-doc-qt-io-qt-6-qstring-html-localname-const-qstring-https-doc-qt-io-qt-6-qstring-html-qname"><code>[override virtual]</code>bool QXmlDefaultHandler::endElement(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>namespaceURI</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>localName</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>qName</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-endentity-const-qstring-https-doc-qt-io-qt-6-qstring-html-name"><code>[override virtual]</code>bool QXmlDefaultHandler::endEntity(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>name</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-endprefixmapping-const-qstring-https-doc-qt-io-qt-6-qstring-html-prefix"><code>[override virtual]</code>bool QXmlDefaultHandler::endPrefixMapping(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>prefix</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-error-const-qxmlparseexception-https-doc-qt-io-qt-6-qxmlparseexception-html-exception"><code>[override virtual]</code>bool QXmlDefaultHandler::error(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlparseexception.html">QXmlParseException</a> &amp;<em>exception</em>)</li>
+<li><a href="#override-virtual-qstring-https-doc-qt-io-qt-6-qstring-html-qxmldefaulthandler-errorstring-const"><code>[override virtual]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> QXmlDefaultHandler::errorString() const</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-externalentitydecl-const-qstring-https-doc-qt-io-qt-6-qstring-html-name-const-qstring-https-doc-qt-io-qt-6-qstring-html-publicid-const-qstring-https-doc-qt-io-qt-6-qstring-html-systemid"><code>[override virtual]</code>bool QXmlDefaultHandler::externalEntityDecl(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>name</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>publicId</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>systemId</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-fatalerror-const-qxmlparseexception-https-doc-qt-io-qt-6-qxmlparseexception-html-exception"><code>[override virtual]</code>bool QXmlDefaultHandler::fatalError(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlparseexception.html">QXmlParseException</a> &amp;<em>exception</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-ignorablewhitespace-const-qstring-https-doc-qt-io-qt-6-qstring-html-ch"><code>[override virtual]</code>bool QXmlDefaultHandler::ignorableWhitespace(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>ch</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-internalentitydecl-const-qstring-https-doc-qt-io-qt-6-qstring-html-name-const-qstring-https-doc-qt-io-qt-6-qstring-html-value"><code>[override virtual]</code>bool QXmlDefaultHandler::internalEntityDecl(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>name</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>value</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-notationdecl-const-qstring-https-doc-qt-io-qt-6-qstring-html-name-const-qstring-https-doc-qt-io-qt-6-qstring-html-publicid-const-qstring-https-doc-qt-io-qt-6-qstring-html-systemid"><code>[override virtual]</code>bool QXmlDefaultHandler::notationDecl(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>name</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>publicId</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>systemId</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-processinginstruction-const-qstring-https-doc-qt-io-qt-6-qstring-html-target-const-qstring-https-doc-qt-io-qt-6-qstring-html-data"><code>[override virtual]</code>bool QXmlDefaultHandler::processingInstruction(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>target</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>data</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-resolveentity-const-qstring-https-doc-qt-io-qt-6-qstring-html-publicid-const-qstring-https-doc-qt-io-qt-6-qstring-html-systemid-qxmlinputsource-https-doc-qt-io-qt-6-qxmlinputsource-html-ret"><code>[override virtual]</code>bool QXmlDefaultHandler::resolveEntity(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>publicId</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>systemId</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlinputsource.html">QXmlInputSource</a> *&amp;<em>ret</em>)</li>
+<li><a href="#override-virtual-void-qxmldefaulthandler-setdocumentlocator-qxmllocator-https-doc-qt-io-qt-6-qxmllocator-html-locator"><code>[override virtual]</code>void QXmlDefaultHandler::setDocumentLocator(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmllocator.html">QXmlLocator</a> *<em>locator</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-skippedentity-const-qstring-https-doc-qt-io-qt-6-qstring-html-name"><code>[override virtual]</code>bool QXmlDefaultHandler::skippedEntity(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>name</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-startcdata"><code>[override virtual]</code>bool QXmlDefaultHandler::startCDATA()</a></li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-startdtd-const-qstring-https-doc-qt-io-qt-6-qstring-html-name-const-qstring-https-doc-qt-io-qt-6-qstring-html-publicid-const-qstring-https-doc-qt-io-qt-6-qstring-html-systemid"><code>[override virtual]</code>bool QXmlDefaultHandler::startDTD(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>name</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>publicId</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>systemId</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-startdocument"><code>[override virtual]</code>bool QXmlDefaultHandler::startDocument()</a></li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-startelement-const-qstring-https-doc-qt-io-qt-6-qstring-html-namespaceuri-const-qstring-https-doc-qt-io-qt-6-qstring-html-localname-const-qstring-https-doc-qt-io-qt-6-qstring-html-qname-const-qxmlattributes-https-doc-qt-io-qt-6-qxmlattributes-html-atts"><code>[override virtual]</code>bool QXmlDefaultHandler::startElement(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>namespaceURI</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>localName</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>qName</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html">QXmlAttributes</a> &amp;<em>atts</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-startentity-const-qstring-https-doc-qt-io-qt-6-qstring-html-name"><code>[override virtual]</code>bool QXmlDefaultHandler::startEntity(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>name</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-startprefixmapping-const-qstring-https-doc-qt-io-qt-6-qstring-html-prefix-const-qstring-https-doc-qt-io-qt-6-qstring-html-uri"><code>[override virtual]</code>bool QXmlDefaultHandler::startPrefixMapping(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>prefix</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>uri</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-unparsedentitydecl-const-qstring-https-doc-qt-io-qt-6-qstring-html-name-const-qstring-https-doc-qt-io-qt-6-qstring-html-publicid-const-qstring-https-doc-qt-io-qt-6-qstring-html-systemid-const-qstring-https-doc-qt-io-qt-6-qstring-html-notationname"><code>[override virtual]</code>bool QXmlDefaultHandler::unparsedEntityDecl(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>name</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>publicId</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>systemId</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>notationName</em>)</li>
+<li><a href="#override-virtual-bool-qxmldefaulthandler-warning-const-qxmlparseexception-https-doc-qt-io-qt-6-qxmlparseexception-html-exception"><code>[override virtual]</code>bool QXmlDefaultHandler::warning(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlparseexception.html">QXmlParseException</a> &amp;<em>exception</em>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QXmlDefaultHandler Class
+
+<p>The QXmlDefaultHandler class provides a default implementation of all the XML handler classes. <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#details">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qxmldefaulthandler></qxmldefaulthandler></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core5Compat REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core5Compat)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core5compat</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html">QXmlContentHandler</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlerrorhandler.html">QXmlErrorHandler</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldtdhandler.html">QXmlDTDHandler</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlentityresolver.html">QXmlEntityResolver</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmllexicalhandler.html">QXmlLexicalHandler</a>, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldeclhandler.html">QXmlDeclHandler</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler-members.html">List of all members, including inherited members</a></li>
+</ul>
+<p><strong>Note:</strong> All functions in this class are <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/threads-reentrancy.html">reentrant</a>.</p>
+<h2><span id="public-functions">Public Functions</span><a href="#public-functions" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#QXmlDefaultHandler">QXmlDefaultHandler</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#dtor.QXmlDefaultHandler">~QXmlDefaultHandler</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="reimplemented-public-functions">Reimplemented Public Functions</span><a href="#reimplemented-public-functions" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual bool</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#attributeDecl">attributeDecl</a></strong>(const QString &amp;<em>eName</em>, const QString &amp;<em>aName</em>, const QString &amp;<em>type</em>, const QString &amp;<em>valueDefault</em>, const QString &amp;<em>value</em>) override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#characters">characters</a></strong>(const QString &amp;<em>ch</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#comment">comment</a></strong>(const QString &amp;<em>ch</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#endCDATA">endCDATA</a></strong>() override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#endDTD">endDTD</a></strong>() override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#endDocument">endDocument</a></strong>() override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#endElement">endElement</a></strong>(const QString &amp;<em>namespaceURI</em>, const QString &amp;<em>localName</em>, const QString &amp;<em>qName</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#endEntity">endEntity</a></strong>(const QString &amp;<em>name</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#endPrefixMapping">endPrefixMapping</a></strong>(const QString &amp;<em>prefix</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#error">error</a></strong>(const QXmlParseException &amp;<em>exception</em>) override</td>
+</tr>
+<tr>
+<td>virtual QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#errorString">errorString</a></strong>() const override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#externalEntityDecl">externalEntityDecl</a></strong>(const QString &amp;<em>name</em>, const QString &amp;<em>publicId</em>, const QString &amp;<em>systemId</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#fatalError">fatalError</a></strong>(const QXmlParseException &amp;<em>exception</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#ignorableWhitespace">ignorableWhitespace</a></strong>(const QString &amp;<em>ch</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#internalEntityDecl">internalEntityDecl</a></strong>(const QString &amp;<em>name</em>, const QString &amp;<em>value</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#notationDecl">notationDecl</a></strong>(const QString &amp;<em>name</em>, const QString &amp;<em>publicId</em>, const QString &amp;<em>systemId</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#processingInstruction">processingInstruction</a></strong>(const QString &amp;<em>target</em>, const QString &amp;<em>data</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#resolveEntity">resolveEntity</a></strong>(const QString &amp;<em>publicId</em>, const QString &amp;<em>systemId</em>, QXmlInputSource *&amp;<em>ret</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#setDocumentLocator">setDocumentLocator</a></strong>(QXmlLocator *<em>locator</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#skippedEntity">skippedEntity</a></strong>(const QString &amp;<em>name</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#startCDATA">startCDATA</a></strong>() override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#startDTD">startDTD</a></strong>(const QString &amp;<em>name</em>, const QString &amp;<em>publicId</em>, const QString &amp;<em>systemId</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#startDocument">startDocument</a></strong>() override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#startElement">startElement</a></strong>(const QString &amp;<em>namespaceURI</em>, const QString &amp;<em>localName</em>, const QString &amp;<em>qName</em>, const QXmlAttributes &amp;<em>atts</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#startEntity">startEntity</a></strong>(const QString &amp;<em>name</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#startPrefixMapping">startPrefixMapping</a></strong>(const QString &amp;<em>prefix</em>, const QString &amp;<em>uri</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#unparsedEntityDecl">unparsedEntityDecl</a></strong>(const QString &amp;<em>name</em>, const QString &amp;<em>publicId</em>, const QString &amp;<em>systemId</em>, const QString &amp;<em>notationName</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldefaulthandler.html#warning">warning</a></strong>(const QXmlParseException &amp;<em>exception</em>) override</td>
+</tr>
+</tbody></table>
+<h2><span id="detailed-description">Detailed Description</span><a href="#detailed-description" class="header-anchor">#</a></h2><p>This class gathers together the features of the specialized handler classes, making it a convenient starting point when implementing custom handlers for subclasses of <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlreader.html">QXmlReader</a>, particularly <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlsimplereader.html">QXmlSimpleReader</a>. The virtual functions from each of the base classes are reimplemented in this class, providing sensible default behavior for many common cases. By subclassing this class, and overriding these functions, you can concentrate on implementing the parts of the handler relevant to your application.</p>
+<p>The XML reader must be told which handler to use for different kinds of events during parsing. This means that, although QXmlDefaultHandler provides default implementations of functions inherited from all its base classes, we can still use specialized handlers for particular kinds of events.</p>
+<p>For example, QXmlDefaultHandler subclasses both <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html">QXmlContentHandler</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlerrorhandler.html">QXmlErrorHandler</a>, so by subclassing it we can use the same handler for both of the following reader functions:</p>
+<div class="code-wrapper"><pre><code class="hljs reasonml">xmlReader.set<span class="hljs-constructor">ContentHandler(<span class="hljs-params">handler</span>)</span>;
+xmlReader.set<span class="hljs-constructor">ErrorHandler(<span class="hljs-params">handler</span>)</span>;</code></pre></div>
+
+<p>Since the reader will inform the handler of parsing errors, it is necessary to reimplement <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlerrorhandler.html#fatalError">QXmlErrorHandler::fatalError</a>() if, for example, we want to stop parsing when such an error occurs:</p>
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-type">bool</span> <span class="hljs-keyword">Handler</span>::fatalError (const QXmlParseException &amp; <span class="hljs-keyword">exception</span>)
+{
+    qWarning() &lt;&lt; "Fatal error on line" &lt;&lt; <span class="hljs-keyword">exception</span>.lineNumber()
+               &lt;&lt; ", column" &lt;&lt; <span class="hljs-keyword">exception</span>.columnNumber() &lt;&lt; <span class="hljs-string">':'</span>
+               &lt;&lt; <span class="hljs-keyword">exception</span>.message();
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+}</code></pre></div>
+
+<p>The above function returns <code>false</code>, which tells the reader to stop parsing. To continue to use the same reader, it is necessary to create a new handler instance, and set up the reader to use it in the manner described above.</p>
+<p>It is useful to examine some of the functions inherited by QXmlDefaultHandler, and consider why they might be reimplemented in a custom handler. Custom handlers will typically reimplement <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#startDocument">QXmlContentHandler::startDocument</a>() to prepare the handler for new content. Document elements and the text within them can be processed by reimplementing <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#startElement">QXmlContentHandler::startElement</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#endElement">QXmlContentHandler::endElement</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#characters">QXmlContentHandler::characters</a>(). You may want to reimplement <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#endDocument">QXmlContentHandler::endDocument</a>() to perform some finalization or validation on the content once the document has been read completely.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldtdhandler.html">QXmlDTDHandler</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldeclhandler.html">QXmlDeclHandler</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html">QXmlContentHandler</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlentityresolver.html">QXmlEntityResolver</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlerrorhandler.html">QXmlErrorHandler</a>, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmllexicalhandler.html">QXmlLexicalHandler</a>.</p>
+<h2><span id="member-function-documentation">Member Function Documentation</span><a href="#member-function-documentation" class="header-anchor">#</a></h2><h3><span id="qxmldefaulthandler-qxmldefaulthandler">QXmlDefaultHandler::QXmlDefaultHandler()</span><a href="#qxmldefaulthandler-qxmldefaulthandler" class="header-anchor">#</a></h3><p>Constructs a handler for use with subclasses of <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlreader.html">QXmlReader</a>.</p>
+<h3><span id="virtual-qxmldefaulthandler-qxmldefaulthandler"><code>[virtual]</code>QXmlDefaultHandler::~QXmlDefaultHandler()</span><a href="#virtual-qxmldefaulthandler-qxmldefaulthandler" class="header-anchor">#</a></h3><p>Destroys the handler.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-attributedecl-const-qstring-amp-ename-const-qstring-amp-aname-const-qstring-amp-type-const-qstring-amp-valuedefault-const-qstring-amp-value"><code>[override virtual]</code>bool QXmlDefaultHandler::attributeDecl(const  &amp;<em>eName</em>, const  &amp;<em>aName</em>, const  &amp;<em>type</em>, const  &amp;<em>valueDefault</em>, const  &amp;<em>value</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-attributedecl-const-qstring-amp-ename-const-qstring-amp-aname-const-qstring-amp-type-const-qstring-amp-valuedefault-const-qstring-amp-value" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldeclhandler.html#attributeDecl">QXmlDeclHandler::attributeDecl</a>(const QString &amp;eName, const QString &amp;aName, const QString &amp;type, const QString &amp;valueDefault, const QString &amp;value).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-characters-const-qstring-amp-ch"><code>[override virtual]</code>bool QXmlDefaultHandler::characters(const  &amp;<em>ch</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-characters-const-qstring-amp-ch" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#characters">QXmlContentHandler::characters</a>(const QString &amp;ch).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-comment-const-qstring-amp-ch"><code>[override virtual]</code>bool QXmlDefaultHandler::comment(const  &amp;<em>ch</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-comment-const-qstring-amp-ch" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmllexicalhandler.html#comment">QXmlLexicalHandler::comment</a>(const QString &amp;ch).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-endcdata"><code>[override virtual]</code>bool QXmlDefaultHandler::endCDATA()</span><a href="#override-virtual-bool-qxmldefaulthandler-endcdata" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmllexicalhandler.html#endCDATA">QXmlLexicalHandler::endCDATA</a>().</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-enddtd"><code>[override virtual]</code>bool QXmlDefaultHandler::endDTD()</span><a href="#override-virtual-bool-qxmldefaulthandler-enddtd" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmllexicalhandler.html#endDTD">QXmlLexicalHandler::endDTD</a>().</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-enddocument"><code>[override virtual]</code>bool QXmlDefaultHandler::endDocument()</span><a href="#override-virtual-bool-qxmldefaulthandler-enddocument" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#endDocument">QXmlContentHandler::endDocument</a>().</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-endelement-const-qstring-amp-namespaceuri-const-qstring-amp-localname-const-qstring-amp-qname"><code>[override virtual]</code>bool QXmlDefaultHandler::endElement(const  &amp;<em>namespaceURI</em>, const  &amp;<em>localName</em>, const  &amp;<em>qName</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-endelement-const-qstring-amp-namespaceuri-const-qstring-amp-localname-const-qstring-amp-qname" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#endElement">QXmlContentHandler::endElement</a>(const QString &amp;namespaceURI, const QString &amp;localName, const QString &amp;qName).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-endentity-const-qstring-amp-name"><code>[override virtual]</code>bool QXmlDefaultHandler::endEntity(const  &amp;<em>name</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-endentity-const-qstring-amp-name" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmllexicalhandler.html#endEntity">QXmlLexicalHandler::endEntity</a>(const QString &amp;name).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-endprefixmapping-const-qstring-amp-prefix"><code>[override virtual]</code>bool QXmlDefaultHandler::endPrefixMapping(const  &amp;<em>prefix</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-endprefixmapping-const-qstring-amp-prefix" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#endPrefixMapping">QXmlContentHandler::endPrefixMapping</a>(const QString &amp;prefix).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-error-const-qxmlparseexception-amp-exception"><code>[override virtual]</code>bool QXmlDefaultHandler::error(const  &amp;<em>exception</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-error-const-qxmlparseexception-amp-exception" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlerrorhandler.html#error">QXmlErrorHandler::error</a>(const QXmlParseException &amp;exception).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-qstring-qxmldefaulthandler-errorstring-const"><code>[override virtual]</code> QXmlDefaultHandler::errorString() const</span><a href="#override-virtual-qstring-qxmldefaulthandler-errorstring-const" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#errorString">QXmlContentHandler::errorString() const</a>.</p>
+<p>Returns the default error string.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-externalentitydecl-const-qstring-amp-name-const-qstring-amp-publicid-const-qstring-amp-systemid"><code>[override virtual]</code>bool QXmlDefaultHandler::externalEntityDecl(const  &amp;<em>name</em>, const  &amp;<em>publicId</em>, const  &amp;<em>systemId</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-externalentitydecl-const-qstring-amp-name-const-qstring-amp-publicid-const-qstring-amp-systemid" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldeclhandler.html#externalEntityDecl">QXmlDeclHandler::externalEntityDecl</a>(const QString &amp;name, const QString &amp;publicId, const QString &amp;systemId).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-fatalerror-const-qxmlparseexception-amp-exception"><code>[override virtual]</code>bool QXmlDefaultHandler::fatalError(const  &amp;<em>exception</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-fatalerror-const-qxmlparseexception-amp-exception" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlerrorhandler.html#fatalError">QXmlErrorHandler::fatalError</a>(const QXmlParseException &amp;exception).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-ignorablewhitespace-const-qstring-amp-ch"><code>[override virtual]</code>bool QXmlDefaultHandler::ignorableWhitespace(const  &amp;<em>ch</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-ignorablewhitespace-const-qstring-amp-ch" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#ignorableWhitespace">QXmlContentHandler::ignorableWhitespace</a>(const QString &amp;ch).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-internalentitydecl-const-qstring-amp-name-const-qstring-amp-value"><code>[override virtual]</code>bool QXmlDefaultHandler::internalEntityDecl(const  &amp;<em>name</em>, const  &amp;<em>value</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-internalentitydecl-const-qstring-amp-name-const-qstring-amp-value" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldeclhandler.html#internalEntityDecl">QXmlDeclHandler::internalEntityDecl</a>(const QString &amp;name, const QString &amp;value).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-notationdecl-const-qstring-amp-name-const-qstring-amp-publicid-const-qstring-amp-systemid"><code>[override virtual]</code>bool QXmlDefaultHandler::notationDecl(const  &amp;<em>name</em>, const  &amp;<em>publicId</em>, const  &amp;<em>systemId</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-notationdecl-const-qstring-amp-name-const-qstring-amp-publicid-const-qstring-amp-systemid" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldtdhandler.html#notationDecl">QXmlDTDHandler::notationDecl</a>(const QString &amp;name, const QString &amp;publicId, const QString &amp;systemId).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-processinginstruction-const-qstring-amp-target-const-qstring-amp-data"><code>[override virtual]</code>bool QXmlDefaultHandler::processingInstruction(const  &amp;<em>target</em>, const  &amp;<em>data</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-processinginstruction-const-qstring-amp-target-const-qstring-amp-data" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#processingInstruction">QXmlContentHandler::processingInstruction</a>(const QString &amp;target, const QString &amp;data).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-resolveentity-const-qstring-amp-publicid-const-qstring-amp-systemid-qxmlinputsource-amp-ret"><code>[override virtual]</code>bool QXmlDefaultHandler::resolveEntity(const  &amp;<em>publicId</em>, const  &amp;<em>systemId</em>,  *&amp;<em>ret</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-resolveentity-const-qstring-amp-publicid-const-qstring-amp-systemid-qxmlinputsource-amp-ret" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlentityresolver.html#resolveEntity">QXmlEntityResolver::resolveEntity</a>(const QString &amp;publicId, const QString &amp;systemId, QXmlInputSource *&amp;ret).</p>
+<p>Sets <em>ret</em> to <code>nullptr</code>, so that the reader uses the system identifier provided in the XML document.</p>
+<h3><span id="override-virtual-void-qxmldefaulthandler-setdocumentlocator-qxmllocator-locator"><code>[override virtual]</code>void QXmlDefaultHandler::setDocumentLocator( *<em>locator</em>)</span><a href="#override-virtual-void-qxmldefaulthandler-setdocumentlocator-qxmllocator-locator" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#setDocumentLocator">QXmlContentHandler::setDocumentLocator</a>(QXmlLocator *locator).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-skippedentity-const-qstring-amp-name"><code>[override virtual]</code>bool QXmlDefaultHandler::skippedEntity(const  &amp;<em>name</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-skippedentity-const-qstring-amp-name" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#skippedEntity">QXmlContentHandler::skippedEntity</a>(const QString &amp;name).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-startcdata"><code>[override virtual]</code>bool QXmlDefaultHandler::startCDATA()</span><a href="#override-virtual-bool-qxmldefaulthandler-startcdata" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmllexicalhandler.html#startCDATA">QXmlLexicalHandler::startCDATA</a>().</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-startdtd-const-qstring-amp-name-const-qstring-amp-publicid-const-qstring-amp-systemid"><code>[override virtual]</code>bool QXmlDefaultHandler::startDTD(const  &amp;<em>name</em>, const  &amp;<em>publicId</em>, const  &amp;<em>systemId</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-startdtd-const-qstring-amp-name-const-qstring-amp-publicid-const-qstring-amp-systemid" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmllexicalhandler.html#startDTD">QXmlLexicalHandler::startDTD</a>(const QString &amp;name, const QString &amp;publicId, const QString &amp;systemId).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-startdocument"><code>[override virtual]</code>bool QXmlDefaultHandler::startDocument()</span><a href="#override-virtual-bool-qxmldefaulthandler-startdocument" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#startDocument">QXmlContentHandler::startDocument</a>().</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-startelement-const-qstring-amp-namespaceuri-const-qstring-amp-localname-const-qstring-amp-qname-const-qxmlattributes-amp-atts"><code>[override virtual]</code>bool QXmlDefaultHandler::startElement(const  &amp;<em>namespaceURI</em>, const  &amp;<em>localName</em>, const  &amp;<em>qName</em>, const  &amp;<em>atts</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-startelement-const-qstring-amp-namespaceuri-const-qstring-amp-localname-const-qstring-amp-qname-const-qxmlattributes-amp-atts" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#startElement">QXmlContentHandler::startElement</a>(const QString &amp;namespaceURI, const QString &amp;localName, const QString &amp;qName, const QXmlAttributes &amp;atts).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-startentity-const-qstring-amp-name"><code>[override virtual]</code>bool QXmlDefaultHandler::startEntity(const  &amp;<em>name</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-startentity-const-qstring-amp-name" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmllexicalhandler.html#startEntity">QXmlLexicalHandler::startEntity</a>(const QString &amp;name).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-startprefixmapping-const-qstring-amp-prefix-const-qstring-amp-uri"><code>[override virtual]</code>bool QXmlDefaultHandler::startPrefixMapping(const  &amp;<em>prefix</em>, const  &amp;<em>uri</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-startprefixmapping-const-qstring-amp-prefix-const-qstring-amp-uri" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#startPrefixMapping">QXmlContentHandler::startPrefixMapping</a>(const QString &amp;prefix, const QString &amp;uri).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-unparsedentitydecl-const-qstring-amp-name-const-qstring-amp-publicid-const-qstring-amp-systemid-const-qstring-amp-notationname"><code>[override virtual]</code>bool QXmlDefaultHandler::unparsedEntityDecl(const  &amp;<em>name</em>, const  &amp;<em>publicId</em>, const  &amp;<em>systemId</em>, const  &amp;<em>notationName</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-unparsedentitydecl-const-qstring-amp-name-const-qstring-amp-publicid-const-qstring-amp-systemid-const-qstring-amp-notationname" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmldtdhandler.html#unparsedEntityDecl">QXmlDTDHandler::unparsedEntityDecl</a>(const QString &amp;name, const QString &amp;publicId, const QString &amp;systemId, const QString &amp;notationName).</p>
+<p>This reimplementation does nothing.</p>
+<h3><span id="override-virtual-bool-qxmldefaulthandler-warning-const-qxmlparseexception-amp-exception"><code>[override virtual]</code>bool QXmlDefaultHandler::warning(const  &amp;<em>exception</em>)</span><a href="#override-virtual-bool-qxmldefaulthandler-warning-const-qxmlparseexception-amp-exception" class="header-anchor">#</a></h3><p>Reimplements: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlerrorhandler.html#warning">QXmlErrorHandler::warning</a>(const QXmlParseException &amp;exception).</p>
+<p>This reimplementation does nothing.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/X/">X</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/X/QXmlAttributes/QXmlAttributes/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QXmlAttributes类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/X/QXmlEntityResolver/QXmlEntityResolver/">
+                        <span class="hidden-mobile">QXmlEntityResolver类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

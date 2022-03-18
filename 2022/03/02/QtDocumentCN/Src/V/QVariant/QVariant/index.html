@@ -1,0 +1,1440 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QVariant Class 公共函数 静态公共成员 相关非成员 详细描述 关于 GUI 类型的说明 连续使用 canConvert() 和 convert()   成员函数文档 const void *QVariant::constData() const const void *QVariant::data() const int QVariant::typeId() const i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QVariant类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/V/QVariant/QVariant/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QVariant Class 公共函数 静态公共成员 相关非成员 详细描述 关于 GUI 类型的说明 连续使用 canConvert() 和 convert()   成员函数文档 const void *QVariant::constData() const const void *QVariant::data() const int QVariant::typeId() const i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:57:00.513Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="V">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QVariant类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QVariant类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      27k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      222 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QVariant类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qvariant-class">QVariant Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-guan-fei-cheng-yuan">相关非成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#guan-yu-gui-lei-xing-de-shuo-ming">关于 GUI 类型的说明</a></li>
+<li><a href="#lian-xu-shi-yong-canconvert-he-convert">连续使用 canConvert() 和 convert()</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#const-void-qvariant-constdata-const">const void *QVariant::constData() const</a></li>
+<li><a href="#const-void-qvariant-data-const">const void *QVariant::data() const</a></li>
+<li><a href="#int-qvariant-typeid-const">int QVariant::typeId() const</a></li>
+<li><a href="#int-qvariant-usertype-const">int QVariant::userType() const</a></li>
+<li><a href="#since-5-2-qvariant-qvariant-qvariant-qvariant-other"><code>[since 5.2]</code>QVariant::QVariant(</a><a href="#QVariant">QVariant</a> &amp;&amp;<em>other</em>)</li>
+<li><a href="#since-5-5-qvariant-qvariant-const-qpersistentmodelindex-qpersistentmodelindex-html-val"><code>[since 5.5]</code>QVariant::QVariant(const </a><a href="qpersistentmodelindex.html">QPersistentModelIndex</a> &amp;<em>val</em>)</li>
+<li><a href="#since-5-0-qvariant-qvariant-const-qmodelindex-qmodelindex-html-val"><code>[since 5.0]</code>QVariant::QVariant(const </a><a href="qmodelindex.html">QModelIndex</a> &amp;<em>val</em>)</li>
+<li><a href="#since-5-0-qvariant-qvariant-const-qjsondocument-qjsondocument-html-val"><code>[since 5.0]</code>QVariant::QVariant(const </a><a href="qjsondocument.html">QJsonDocument</a> &amp;<em>val</em>)</li>
+<li><a href="#since-5-0-qvariant-qvariant-const-qjsonarray-qjsonarray-html-val"><code>[since 5.0]</code>QVariant::QVariant(const </a><a href="qjsonarray.html">QJsonArray</a> &amp;<em>val</em>)</li>
+<li><a href="#since-5-0-qvariant-qvariant-const-qjsonobject-qjsonobject-html-val"><code>[since 5.0]</code>QVariant::QVariant(const </a><a href="qjsonobject.html">QJsonObject</a> &amp;<em>val</em>)</li>
+<li><a href="#since-5-0-qvariant-qvariant-const-qjsonvalue-qjsonvalue-html-val"><code>[since 5.0]</code>QVariant::QVariant(const </a><a href="qjsonvalue.html">QJsonValue</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qurl-qurl-html-val">QVariant::QVariant(const </a><a href="qurl.html">QUrl</a> &amp;<em>val</em>)</li>
+<li><a href="#since-5-0-qvariant-qvariant-const-quuid-quuid-html-val"><code>[since 5.0]</code>QVariant::QVariant(const </a><a href="quuid.html">QUuid</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qeasingcurve-qeasingcurve-html-val">QVariant::QVariant(const </a><a href="qeasingcurve.html">QEasingCurve</a> &amp;<em>val</em>)</li>
+<li><a href="#since-5-0-qvariant-qvariant-const-qregularexpression-qregularexpression-html-re"><code>[since 5.0]</code>QVariant::QVariant(const </a><a href="qregularexpression.html">QRegularExpression</a> &amp;<em>re</em>)</li>
+<li><a href="#qvariant-qvariant-const-qlocale-qlocale-html-l">QVariant::QVariant(const </a><a href="qlocale.html">QLocale</a> &amp;<em>l</em>)</li>
+<li><a href="#qvariant-qvariant-const-qrectf-qrectf-html-val">QVariant::QVariant(const </a><a href="qrectf.html">QRectF</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qrect-qrect-html-val">QVariant::QVariant(const </a><a href="qrect.html">QRect</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qlinef-qlinef-html-val">QVariant::QVariant(const </a><a href="qlinef.html">QLineF</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qline-qline-html-val">QVariant::QVariant(const </a><a href="qline.html">QLine</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qpointf-qpointf-html-val">QVariant::QVariant(const </a><a href="qpointf.html">QPointF</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qpoint-qpoint-html-val">QVariant::QVariant(const </a><a href="qpoint.html">QPoint</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qsizef-qsizef-html-val">QVariant::QVariant(const </a><a href="qsizef.html">QSizeF</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qsize-qsize-html-val">QVariant::QVariant(const </a><a href="qsize.html">QSize</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qhash-qhash-html-qstring-qstring-html-qvariant-qvariant-val">QVariant::QVariant(const </a><a href="qhash.html">QHash</a>&lt;<a href="qstring.html">QString</a>, <a href="#QVariant">QVariant</a>&gt; &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qmap-qmap-html-qstring-qstring-html-qvariant-qvariant-val">QVariant::QVariant(const </a><a href="qmap.html">QMap</a>&lt;<a href="qstring.html">QString</a>, <a href="#QVariant">QVariant</a>&gt; &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qlist-qlist-html-qvariant-qvariant-val">QVariant::QVariant(const </a><a href="qlist.html">QList</a>&lt;<a href="#QVariant">QVariant</a>&gt; &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qdatetime-qdatetime-html-val">QVariant::QVariant(const </a><a href="qdatetime.html">QDateTime</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-qtime-qtime-html-val">QVariant::QVariant(</a><a href="qtime.html">QTime</a> <em>val</em>)</li>
+<li><a href="#qvariant-qvariant-qdate-qdate-html-val">QVariant::QVariant(</a><a href="qdate.html">QDate</a> <em>val</em>)</li>
+<li><a href="#qvariant-qvariant-qchar-qchar-html-c">QVariant::QVariant(</a><a href="qchar.html">QChar</a> <em>c</em>)</li>
+<li><a href="#qvariant-qvariant-const-qstringlist-qstringlist-html-val">QVariant::QVariant(const </a><a href="qstringlist.html">QStringList</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-qlatin1string-qlatin1string-html-val">QVariant::QVariant(</a><a href="qlatin1string.html">QLatin1String</a> <em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qstring-qstring-html-val">QVariant::QVariant(const </a><a href="qstring.html">QString</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qbitarray-qbitarray-html-val">QVariant::QVariant(const </a><a href="qbitarray.html">QBitArray</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-qbytearray-qbytearray-html-val">QVariant::QVariant(const </a><a href="qbytearray.html">QByteArray</a> &amp;<em>val</em>)</li>
+<li><a href="#qvariant-qvariant-const-char-val">QVariant::QVariant(const char *<em>val</em>)</a></li>
+<li><a href="#qvariant-qvariant-float-val">QVariant::QVariant(float <em>val</em>)</a></li>
+<li><a href="#qvariant-qvariant-double-val">QVariant::QVariant(double <em>val</em>)</a></li>
+<li><a href="#qvariant-qvariant-bool-val">QVariant::QVariant(bool <em>val</em>)</a></li>
+<li><a href="#qvariant-qvariant-qulonglong-qtglobal-html-qulonglong-typedef-val">QVariant::QVariant(</a><a href="qtglobal.html#qulonglong-typedef">qulonglong</a> <em>val</em>)</li>
+<li><a href="#qvariant-qvariant-qlonglong-qtglobal-html-qlonglong-typedef-val">QVariant::QVariant(</a><a href="qtglobal.html#qlonglong-typedef">qlonglong</a> <em>val</em>)</li>
+<li><a href="#qvariant-qvariant-uint-qtglobal-html-uint-typedef-val">QVariant::QVariant(</a><a href="qtglobal.html#uint-typedef">uint</a> <em>val</em>)</li>
+<li><a href="#qvariant-qvariant-int-val">QVariant::QVariant(int <em>val</em>)</a></li>
+<li><a href="#qvariant-qvariant-const-qvariant-qvariant-p">QVariant::QVariant(const </a><a href="#QVariant">QVariant</a> &amp;<em>p</em>)</li>
+<li><a href="#qvariant-qvariant-qmetatype-qmetatype-html-type-const-void-copy-nullptr">QVariant::QVariant(</a><a href="qmetatype.html">QMetaType</a> <em>type</em>, const void *<em>copy</em> = nullptr)</li>
+<li><a href="#qvariant-qvariant">QVariant::QVariant()</a></li>
+<li><a href="#since-5-2-qvariant-qvariant-qvariant-operator-qvariant-qvariant-other"><code>[since 5.2]</code></a><a href="#QVariant">QVariant</a> &amp;QVariant::operator=(<a href="#QVariant">QVariant</a> &amp;&amp;<em>other</em>)</li>
+<li><a href="#qvariant-qvariant-qvariant-operator-const-qvariant-qvariant-variant">QVariant</a></li>
+<li><a href="#qvariant-qvariant">QVariant::~QVariant()</a></li>
+<li><a href="#since-6-0-bool-qvariant-canconvert-qmetatype-qmetatype-html-type-const"><code>[since 6.0]</code>bool QVariant::canConvert(</a><a href="qmetatype.html">QMetaType</a> <em>type</em>) const</li>
+<li><a href="#template-typename-t-bool-qvariant-canconvert-const">template <typename t> bool QVariant::canConvert() const</typename></a></li>
+<li><a href="#template-typename-t-bool-qvariant-canview-const">template <typename t> bool QVariant::canView() const</typename></a></li>
+<li><a href="#void-qvariant-clear">void QVariant::clear()</a></li>
+<li><a href="#static-since-6-0-qpartialordering-qpartialordering-html-qvariant-compare-const-qvariant-qvariant-lhs-const-qvariant-qvariant-rhs"><code>[static, since 6.0]</code></a><a href="qpartialordering.html">QPartialOrdering</a> QVariant::compare(const <a href="#QVariant">QVariant</a> &amp;<em>lhs</em>, const <a href="#QVariant">QVariant</a> &amp;<em>rhs</em>)</li>
+<li><a href="#since-6-0-bool-qvariant-convert-qmetatype-qmetatype-html-targettype"><code>[since 6.0]</code>bool QVariant::convert(</a><a href="qmetatype.html">QMetaType</a> <em>targetType</em>)</li>
+<li><a href="#void-qvariant-data">void *QVariant::data()</a></li>
+<li><a href="#static-since-5-11-template-typename-types-qvariant-qvariant-qvariant-fromstdvariant-const-std-variant-types-value"><code>[static, since 5.11]</code>template <typename types> </typename></a><a href="#QVariant">QVariant</a> QVariant::fromStdVariant(const std::variant&lt;Types…&gt; &amp;<em>value</em>)</li>
+<li><a href="#static-template-typename-t-qvariant-qvariant-qvariant-fromvalue-const-t-value"><code>[static]</code>template <typename t> </typename></a><a href="#QVariant">QVariant</a> QVariant::fromValue(const T &amp;<em>value</em>)</li>
+<li><a href="#bool-qvariant-isnull-const">bool QVariant::isNull() const</a></li>
+<li><a href="#bool-qvariant-isvalid-const">bool QVariant::isValid() const</a></li>
+<li><a href="#since-6-0-qmetatype-qmetatype-html-qvariant-metatype-const"><code>[since 6.0]</code></a><a href="qmetatype.html">QMetaType</a> QVariant::metaType() const</li>
+<li><a href="#template-typename-t-typename-void-qvariant-setvalue-t-value">template &lt;typename T, typename&gt; void QVariant::setValue(T &amp;&amp;<em>value</em>)</a></li>
+<li><a href="#void-qvariant-setvalue-const-qvariant-qvariant-value">void QVariant::setValue(const </a><a href="#QVariant">QVariant</a> &amp;<em>value</em>)</li>
+<li><a href="#void-qvariant-setvalue-qvariant-qvariant-value">void QVariant::setValue(</a><a href="#QVariant">QVariant</a> &amp;&amp;<em>value</em>)</li>
+<li><a href="#void-qvariant-swap-qvariant-qvariant-other">void QVariant::swap(</a><a href="#QVariant">QVariant</a> &amp;<em>other</em>)</li>
+<li><a href="#qbitarray-qbitarray-html-qvariant-tobitarray-const">QBitArray</a></li>
+<li><a href="#bool-qvariant-tobool-const">bool QVariant::toBool() const</a></li>
+<li><a href="#qbytearray-qbytearray-html-qvariant-tobytearray-const">QByteArray</a></li>
+<li><a href="#qchar-qchar-html-qvariant-tochar-const">QChar</a></li>
+<li><a href="#qdate-qdate-html-qvariant-todate-const">QDate</a></li>
+<li><a href="#qdatetime-qdatetime-html-qvariant-todatetime-const">QDateTime</a></li>
+<li><a href="#double-qvariant-todouble-bool-ok-nullptr-const">double QVariant::toDouble(bool *<em>ok</em> = nullptr) const</a></li>
+<li><a href="#qeasingcurve-qeasingcurve-html-qvariant-toeasingcurve-const">QEasingCurve</a></li>
+<li><a href="#float-qvariant-tofloat-bool-ok-nullptr-const">float QVariant::toFloat(bool *<em>ok</em> = nullptr) const</a></li>
+<li><a href="#qhash-qhash-html-qstring-qstring-html-qvariant-qvariant-qvariant-tohash-const">QHash</a></li>
+<li><a href="#int-qvariant-toint-bool-ok-nullptr-const">int QVariant::toInt(bool *<em>ok</em> = nullptr) const</a></li>
+<li><a href="#since-5-0-qjsonarray-qjsonarray-html-qvariant-tojsonarray-const"><code>[since 5.0]</code></a><a href="qjsonarray.html">QJsonArray</a> QVariant::toJsonArray() const</li>
+<li><a href="#since-5-0-qjsondocument-qjsondocument-html-qvariant-tojsondocument-const"><code>[since 5.0]</code></a><a href="qjsondocument.html">QJsonDocument</a> QVariant::toJsonDocument() const</li>
+<li><a href="#since-5-0-qjsonobject-qjsonobject-html-qvariant-tojsonobject-const"><code>[since 5.0]</code></a><a href="qjsonobject.html">QJsonObject</a> QVariant::toJsonObject() const</li>
+<li><a href="#since-5-0-qjsonvalue-qjsonvalue-html-qvariant-tojsonvalue-const"><code>[since 5.0]</code></a><a href="qjsonvalue.html">QJsonValue</a> QVariant::toJsonValue() const</li>
+<li><a href="#qline-qline-html-qvariant-toline-const">QLine</a></li>
+<li><a href="#qlinef-qlinef-html-qvariant-tolinef-const">QLineF</a></li>
+<li><a href="#qlist-qlist-html-qvariant-qvariant-qvariant-tolist-const">QList</a></li>
+<li><a href="#qlocale-qlocale-html-qvariant-tolocale-const">QLocale</a></li>
+<li><a href="#qlonglong-https-doc-qt-io-qt-6-qtglobal-html-qlonglong-typedef-qvariant-tolonglong-bool-ok-nullptr-const">qlonglong</a></li>
+<li><a href="#qmap-https-doc-qt-io-qt-6-qmap-html-qstring-https-doc-qt-io-qt-6-qstring-html-qvariant-https-doc-qt-io-qt-6-qvariant-html-qvariant-qvariant-tomap-const">QMap</a></li>
+<li><a href="#since-5-0-qmodelindex-https-doc-qt-io-qt-6-qmodelindex-html-qvariant-tomodelindex-const"><code>[since 5.0]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmodelindex.html">QModelIndex</a> QVariant:: toModelIndex () const</li>
+<li><a href="#since-5-5-qpersistentmodelindex-https-doc-qt-io-qt-6-qpersistentmodelindex-html-qvariant-topersistentmodelindex-const"><code>[since 5.5]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpersistentmodelindex.html">QPersistentModelIndex</a> QVariant:: toPersistentModelIndex () const</li>
+<li><a href="#qpoint-https-doc-qt-io-qt-6-qpoint-html-qvariant-topoint-const">QPoint</a></li>
+<li><a href="#qpointf-https-doc-qt-io-qt-6-qpointf-html-qvariant-topointf-const">QPointF</a></li>
+<li><a href="#qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-qvariant-toreal-bool-ok-nullptr-const">qreal</a></li>
+<li><a href="#qrect-https-doc-qt-io-qt-6-qrect-html-qvariant-torect-const">QRect</a></li>
+<li><a href="#qrectf-https-doc-qt-io-qt-6-qrectf-html-qvariant-torectf-const">QRectF</a></li>
+<li><a href="#since-5-0-qregularexpression-https-doc-qt-io-qt-6-qregularexpression-html-qvariant-toregularexpression-const"><code>[since 5.0]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qregularexpression.html">QRegularExpression</a> QVariant:: toRegularExpression () const</li>
+<li><a href="#qsize-https-doc-qt-io-qt-6-qsize-html-qvariant-tosize-const">QSize</a></li>
+<li><a href="#qsizef-https-doc-qt-io-qt-6-qsizef-html-qvariant-tosizef-const">QSizeF</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qvariant-tostring-const">QString</a></li>
+<li><a href="#qstringlist-https-doc-qt-io-qt-6-qstringlist-html-qvariant-tostringlist-const">QStringList</a></li>
+<li><a href="#qtime-https-doc-qt-io-qt-6-qtime-html-qvariant-totime-const">QTime</a></li>
+<li><a href="#uint-https-doc-qt-io-qt-6-qtglobal-html-uint-typedef-qvariant-touint-bool-ok-nullptr-const">uint</a></li>
+<li><a href="#qulonglong-https-doc-qt-io-qt-6-qtglobal-html-qulonglong-typedef-qvariant-toulonglong-bool-ok-nullptr-const">qulonglong</a></li>
+<li><a href="#qurl-https-doc-qt-io-qt-6-qurl-html-qvariant-tourl-const">QUrl</a></li>
+<li><a href="#since-5-0-quuid-https-doc-qt-io-qt-6-quuid-html-qvariant-touuid-const"><code>[since 5.0]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/quuid.html">QUuid</a> QVariant:: toUuid () const</li>
+<li><a href="#const-char-qvariant-typename-const">const char *QVariant:: typeName () const</a></li>
+<li><a href="#template-typename-t-t-qvariant-value-const">template <typename t> T QVariant:: value () const</typename></a></li>
+<li><a href="#template-typename-t-t-qvariant-view">template <typename t> T QVariant::view()</typename></a></li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-cheng-yuan-1">相关非成员</a><ul>
+<li><a href="#alias-qvarianthash"><code>[alias]</code>QVariantHash</a></li>
+<li><a href="#alias-qvariantlist"><code>[alias]</code>QVariantList</a></li>
+<li><a href="#alias-qvariantmap"><code>[alias]</code>QVariantMap</a></li>
+<li><a href="#template-typename-t-t-qvariant-cast-const-qvariant-qvariant-value">template <typename t> T qvariant_cast(const </typename></a><a href="#QVariant">QVariant</a> &amp;<em>value</em>)</li>
+<li><a href="#bool-operator-const-qvariant-qvariant-v1-const-qvariant-qvariant-v2">bool operator!=(const </a><a href="#QVariant">QVariant</a> &amp;<em>v1</em>, const <a href="#QVariant">QVariant</a> &amp;<em>v2</em>)</li>
+<li><a href="#bool-operator-const-qvariant-qvariant-v1-const-qvariant-qvariant-v2">bool operator==(const </a><a href="#QVariant">QVariant</a> &amp;<em>v1</em>, const <a href="#QVariant">QVariant</a> &amp;<em>v2</em>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QVariant Class
+
+<p>QVariant 类的作用类似于最常见的 Qt 数据类型的联合。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qvariant></qvariant></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qvariant-members.html">List of all members, including inherited members</a></li>
+<li><a href="qvariant-obsolete.html">Deprecated members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QVariant-42">QVariant</a></strong>(QVariant &amp;&amp;<em>other</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QVariant-41">QVariant</a></strong>(const QPersistentModelIndex &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-40">QVariant</a></strong>(const QModelIndex &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-39">QVariant</a></strong>(const QJsonDocument &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-38">QVariant</a></strong>(const QJsonArray &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-37">QVariant</a></strong>(const QJsonObject &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-36">QVariant</a></strong>(const QJsonValue &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-35">QVariant</a></strong>(const QUrl &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-34">QVariant</a></strong>(const QUuid &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-33">QVariant</a></strong>(const QEasingCurve &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-32">QVariant</a></strong>(const QRegularExpression &amp;<em>re</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-31">QVariant</a></strong>(const QLocale &amp;<em>l</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-30">QVariant</a></strong>(const QRectF &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-29">QVariant</a></strong>(const QRect &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-28">QVariant</a></strong>(const QLineF &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-27">QVariant</a></strong>(const QLine &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-26">QVariant</a></strong>(const QPointF &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-25">QVariant</a></strong>(const QPoint &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-24">QVariant</a></strong>(const QSizeF &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-23">QVariant</a></strong>(const QSize &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-22">QVariant</a></strong>(const QHash&lt;QString, QVariant&gt; &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-21">QVariant</a></strong>(const QMap&lt;QString, QVariant&gt; &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-20">QVariant</a></strong>(const QList<qvariant> &amp;<em>val</em>)</qvariant></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-19">QVariant</a></strong>(const QDateTime &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-18">QVariant</a></strong>(QTime <em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-17">QVariant</a></strong>(QDate <em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-16">QVariant</a></strong>(QChar <em>c</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-15">QVariant</a></strong>(const QStringList &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-14">QVariant</a></strong>(QLatin1String <em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-13">QVariant</a></strong>(const QString &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-12">QVariant</a></strong>(const QBitArray &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-11">QVariant</a></strong>(const QByteArray &amp;<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-10">QVariant</a></strong>(const char *<em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-9">QVariant</a></strong>(float <em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-8">QVariant</a></strong>(double <em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-7">QVariant</a></strong>(bool <em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-6">QVariant</a></strong>(qulonglong <em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-5">QVariant</a></strong>(qlonglong <em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-4">QVariant</a></strong>(uint <em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-3">QVariant</a></strong>(int <em>val</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-2">QVariant</a></strong>(const QVariant &amp;<em>p</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant-1">QVariant</a></strong>(QMetaType <em>type</em>, const void *<em>copy</em> = nullptr)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariant">QVariant</a></strong>()</td>
+</tr>
+<tr>
+<td>QVariant &amp;</td>
+<td><strong><a href="#operator-eq-1">operator=</a></strong>(QVariant &amp;&amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QVariant &amp;</td>
+<td><strong><a href="#operator-eq">operator=</a></strong>(const QVariant &amp;<em>variant</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QVariant">~QVariant</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#canConvert">canConvert</a></strong>(QMetaType <em>type</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#canConvert-2">canConvert</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#canView-1">canView</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#clear">clear</a></strong>()</td>
+</tr>
+<tr>
+<td>const void *</td>
+<td><strong><a href="#constData">constData</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#convert">convert</a></strong>(QMetaType <em>targetType</em>)</td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong><a href="#data">data</a></strong>()</td>
+</tr>
+<tr>
+<td>const void *</td>
+<td><strong><a href="#data-1">data</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNull">isNull</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isValid">isValid</a></strong>() const</td>
+</tr>
+<tr>
+<td>QMetaType</td>
+<td><strong><a href="#metaType">metaType</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setValue">setValue</a></strong>(T &amp;&amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setValue-1">setValue</a></strong>(const QVariant &amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setValue-2">setValue</a></strong>(QVariant &amp;&amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#swap">swap</a></strong>(QVariant &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QBitArray</td>
+<td><strong><a href="#toBitArray">toBitArray</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#toBool">toBool</a></strong>() const</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#toByteArray">toByteArray</a></strong>() const</td>
+</tr>
+<tr>
+<td>QChar</td>
+<td><strong><a href="#toChar">toChar</a></strong>() const</td>
+</tr>
+<tr>
+<td>QDate</td>
+<td><strong><a href="#toDate">toDate</a></strong>() const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="#toDateTime">toDateTime</a></strong>() const</td>
+</tr>
+<tr>
+<td>double</td>
+<td><strong><a href="#toDouble">toDouble</a></strong>(bool *<em>ok</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>QEasingCurve</td>
+<td><strong><a href="#toEasingCurve">toEasingCurve</a></strong>() const</td>
+</tr>
+<tr>
+<td>float</td>
+<td><strong><a href="#toFloat">toFloat</a></strong>(bool *<em>ok</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>QHash&lt;QString, QVariant&gt;</td>
+<td><strong><a href="#toHash">toHash</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#toInt">toInt</a></strong>(bool *<em>ok</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>QJsonArray</td>
+<td><strong><a href="#toJsonArray">toJsonArray</a></strong>() const</td>
+</tr>
+<tr>
+<td>QJsonDocument</td>
+<td><strong><a href="#toJsonDocument">toJsonDocument</a></strong>() const</td>
+</tr>
+<tr>
+<td>QJsonObject</td>
+<td><strong><a href="#toJsonObject">toJsonObject</a></strong>() const</td>
+</tr>
+<tr>
+<td>QJsonValue</td>
+<td><strong><a href="#toJsonValue">toJsonValue</a></strong>() const</td>
+</tr>
+<tr>
+<td>QLine</td>
+<td><strong><a href="#toLine">toLine</a></strong>() const</td>
+</tr>
+<tr>
+<td>QLineF</td>
+<td><strong><a href="#toLineF">toLineF</a></strong>() const</td>
+</tr>
+<tr>
+<td>QList<qvariant></qvariant></td>
+<td><strong><a href="#toList">toList</a></strong>() const</td>
+</tr>
+<tr>
+<td>QLocale</td>
+<td><strong><a href="#toLocale">toLocale</a></strong>() const</td>
+</tr>
+<tr>
+<td>qlonglong</td>
+<td><strong><a href="#toLongLong">toLongLong</a></strong>(bool *<em>ok</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>QMap&lt;QString, QVariant&gt;</td>
+<td><strong><a href="#toMap">toMap</a></strong>() const</td>
+</tr>
+<tr>
+<td>QModelIndex</td>
+<td><strong><a href="#toModelIndex">toModelIndex</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPersistentModelIndex</td>
+<td><strong><a href="#toPersistentModelIndex">toPersistentModelIndex</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPoint</td>
+<td><strong><a href="#toPoint">toPoint</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPointF</td>
+<td><strong><a href="#toPointF">toPointF</a></strong>() const</td>
+</tr>
+<tr>
+<td>qreal</td>
+<td><strong><a href="#toReal">toReal</a></strong>(bool *<em>ok</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#toRect">toRect</a></strong>() const</td>
+</tr>
+<tr>
+<td>QRectF</td>
+<td><strong><a href="#toRectF">toRectF</a></strong>() const</td>
+</tr>
+<tr>
+<td>QRegularExpression</td>
+<td><strong><a href="#toRegularExpression">toRegularExpression</a></strong>() const</td>
+</tr>
+<tr>
+<td>QSize</td>
+<td><strong><a href="#toSize">toSize</a></strong>() const</td>
+</tr>
+<tr>
+<td>QSizeF</td>
+<td><strong><a href="#toSizeF">toSizeF</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#toString">toString</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringList</td>
+<td><strong><a href="#toStringList">toStringList</a></strong>() const</td>
+</tr>
+<tr>
+<td>QTime</td>
+<td><strong><a href="#toTime">toTime</a></strong>() const</td>
+</tr>
+<tr>
+<td>uint</td>
+<td><strong><a href="#toUInt">toUInt</a></strong>(bool *<em>ok</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>qulonglong</td>
+<td><strong><a href="#toULongLong">toULongLong</a></strong>(bool *<em>ok</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>QUrl</td>
+<td><strong><a href="#toUrl">toUrl</a></strong>() const</td>
+</tr>
+<tr>
+<td>QUuid</td>
+<td><strong><a href="#toUuid">toUuid</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#typeId">typeId</a></strong>() const</td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong><a href="#typeName">typeName</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#userType">userType</a></strong>() const</td>
+</tr>
+<tr>
+<td>T</td>
+<td><strong><a href="#value">value</a></strong>() const</td>
+</tr>
+<tr>
+<td>T</td>
+<td><strong><a href="#view">view</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QPartialOrdering</th>
+<th><strong><a href="#compare">compare</a></strong>(const QVariant &amp;<em>lhs</em>, const QVariant &amp;<em>rhs</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QVariant</td>
+<td><strong><a href="#fromStdVariant">fromStdVariant</a></strong>(const std::variant&lt;Types…&gt; &amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#fromValue">fromValue</a></strong>(const T &amp;<em>value</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QVariantHash-typedef">QVariantHash</a></strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QVariantList-typedef">QVariantList</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QVariantMap-typedef">QVariantMap</a></strong></td>
+</tr>
+<tr>
+<td>T</td>
+<td><strong><a href="#qvariant_cast">qvariant_cast</a></strong>(const QVariant &amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-not-eq">operator!=</a></strong>(const QVariant &amp;<em>v1</em>, const QVariant &amp;<em>v2</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-eq-eq">operator==</a></strong>(const QVariant &amp;<em>v1</em>, const QVariant &amp;<em>v2</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>因为 C++ 禁止联合包含具有非默认构造函数或析构函数的类型，所以大多数有趣的 Qt 类不能在联合中使用。如果没有 QVariant，这对于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#property">QObject::property</a> () 和数据库工作等来说都是一个问题。</p>
+<p>QVariant 对象一次保存单个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#typeId">typeId</a> () 的单个值。（某些类型是多值的，例如字符串列表。）您可以找出变体持有的类型 T，使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> () 将其转换为不同的类型，使用 toT() 函数之一获取其值（例如，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#toSize">toSize</a> ()），并检查该类型是否可以使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 转换为特定类型。</p>
+<p>名为 toT() 的方法（例如，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#toInt">toInt</a> ()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#toString">toString</a> ()）是 const。如果您要求存储类型，它们会返回存储对象的副本。如果您要求可以从存储的类型生成的类型，toT() 复制并转换并保持对象本身不变。如果请求的类型不能从存储的类型中生成，则结果取决于类型；有关详细信息，请参阅功能文档。</p>
+<p>下面是一些示例代码来演示 QVariant 的使用：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QDataStream <span class="hljs-title">out</span><span class="hljs-params">(...)</span></span>;
+<span class="hljs-function">QVariant <span class="hljs-title">v</span><span class="hljs-params">(<span class="hljs-number">123</span>)</span></span>;                <span class="hljs-comment">// The variant now contains an int</span>
+<span class="hljs-type">int</span> x = v.<span class="hljs-built_in">toInt</span>();              <span class="hljs-comment">// x = 123</span>
+out &lt;&lt; v;                       <span class="hljs-comment">// Writes a type tag and an int to out</span>
+v = <span class="hljs-built_in">QVariant</span>(<span class="hljs-built_in">tr</span>(<span class="hljs-string">"hello"</span>));      <span class="hljs-comment">// The variant now contains a QString</span>
+<span class="hljs-type">int</span> y = v.<span class="hljs-built_in">toInt</span>();              <span class="hljs-comment">// y = 0 since v cannot be converted to an int</span>
+QString s = v.<span class="hljs-built_in">toString</span>();       <span class="hljs-comment">// s = tr("hello")  (see QObject::tr())</span>
+out &lt;&lt; v;                       <span class="hljs-comment">// Writes a type tag and a QString to out</span>
+...
+<span class="hljs-function">QDataStream <span class="hljs-title">in</span><span class="hljs-params">(...)</span></span>;            <span class="hljs-comment">// (opening the previously written stream)</span>
+in &gt;&gt; v;                        <span class="hljs-comment">// Reads an Int variant</span>
+<span class="hljs-type">int</span> z = v.<span class="hljs-built_in">toInt</span>();              <span class="hljs-comment">// z = 123</span>
+<span class="hljs-built_in">qDebug</span>(<span class="hljs-string">"Type is %s"</span>,            <span class="hljs-comment">// prints "Type is int"</span>
+        v.<span class="hljs-built_in">typeName</span>());
+v = v.<span class="hljs-built_in">toInt</span>() + <span class="hljs-number">100</span>;            <span class="hljs-comment">// The variant now holds the value 223</span>
+v = <span class="hljs-built_in">QVariant</span>(<span class="hljs-built_in">QStringList</span>());    <span class="hljs-comment">// The variant now holds a QStringList</span></code></pre></div>
+
+<p>您甚至可以将<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlist.html">QList</a> <qvariant> 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmap.html">QMap</a> &lt; <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> , QVariant&gt; 值存储在变体中，因此您可以轻松构建任意类型的任意复杂数据结构。这是非常强大和通用的，但可能证明比在标准数据结构中存储特定类型的内存和速度效率低。</qvariant></p>
+<p>QVariant 还支持空值的概念。如果变量不包含初始化值或包含空指针，则变量为空。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QVariant x;                                <span class="hljs-comment">// x.isNull() == true</span>
+QVariant y = QVariant::<span class="hljs-built_in">fromValue</span>(<span class="hljs-literal">nullptr</span>); <span class="hljs-comment">// y.isNull() == true</span></code></pre></div>
+
+<p> QVariant 可以扩展以支持<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Type</a>枚举中提到的其他类型。有关详细信息，请参阅<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/custom-types.html">创建自定义 Qt 类型</a>。 </p>
+<h3><span id="guan-yu-gui-lei-xing-de-shuo-ming">关于 GUI 类型的说明</span><a href="#guan-yu-gui-lei-xing-de-shuo-ming" class="header-anchor">#</a></h3><p> 因为 QVariant 是 Qt Core 模块的一部分，它不能提供对 Qt GUI 中定义的数据类型的转换功能，例如<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcolor.html">QColor</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qimage.html">QImage</a>和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpixmap.html">QPixmap</a>。换句话说，没有<code>toColor()</code>功能。相反，您可以使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#value">QVariant::value</a> () 或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#qvariant_cast">qvariant_cast</a> () 模板函数。例如： </p>
+<div class="code-wrapper"><pre><code class="hljs c++">QVariant variant;
+...
+QColor color = variant.<span class="hljs-built_in">value</span>&lt;QColor&gt;();</code></pre></div>
+
+<p> 对于 QVariant 支持的所有数据类型，包括与 GUI 相关的类型，反向转换（例如，从<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcolor.html">QColor到 QVariant）是自动的：</a> </p>
+<div class="code-wrapper"><pre><code class="hljs c++">QColor color = <span class="hljs-built_in">palette</span>().<span class="hljs-built_in">background</span>().<span class="hljs-built_in">color</span>();
+QVariant variant = color;</code></pre></div>
+
+<h3><span id="lian-xu-shi-yong-canconvert-he-convert">连续使用 canConvert() 和 convert()</span><a href="#lian-xu-shi-yong-canconvert-he-convert" class="header-anchor">#</a></h3><p>连续使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> ()和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()时，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> ()有可能返回true，而<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()返回false。这通常是因为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 仅报告 QVariant 在给定合适数据的类型之间转换的一般能力；仍然可以提供实际上无法转换的数据。</p>
+<p>例如，<code>canConvert(QMetaType::fromType())</code>在包含字符串的变体上调用时将返回 true，因为原则上 QVariant 能够将数字字符串转换为整数。但是，如果字符串包含非数字字符，则无法将其转换为整数，并且任何转换它的尝试都将失败。因此，重要的是让两个函数都返回 true 才能成功转换。</p>
+<p><strong>另请参阅</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html">QMetaType</a>。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="const-void-qvariant-constdata-const">const void *QVariant::constData() const</span><a href="#const-void-qvariant-constdata-const" class="header-anchor">#</a></h3><h3><span id="const-void-qvariant-data-const">const void *QVariant::data() const</span><a href="#const-void-qvariant-data-const" class="header-anchor">#</a></h3><p>将指向包含对象的指针作为无法写入的通用 void* 返回。</p>
+<p><strong>另请参阅</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html">QMetaType</a>。</p>
+<h3><span id="int-qvariant-typeid-const">int QVariant::typeId() const</span><a href="#int-qvariant-typeid-const" class="header-anchor">#</a></h3><h3><span id="int-qvariant-usertype-const">int QVariant::userType() const</span><a href="#int-qvariant-usertype-const" class="header-anchor">#</a></h3><p> 返回变量中存储的值的存储类型。这与<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#metaType">metaType</a> ().id() 相同。 </p>
+<p><strong>另请参阅</strong><a href="#metaType">metaType</a>().</p>
+<h3><span id="since-5-2-qvariant-qvariant-qvariant-amp-amp-other"><code>[since 5.2]</code>QVariant::QVariant( &amp;&amp;<em>other</em>)</span><a href="#since-5-2-qvariant-qvariant-qvariant-amp-amp-other" class="header-anchor">#</a></h3><p>移动构造一个 QVariant 实例，使其指向与<em>other</em>指向的对象相同的对象。</p>
+<p>这个函数是在 Qt 5.2 中引入的。</p>
+<h3><span id="since-5-5-qvariant-qvariant-const-qpersistentmodelindex-amp-val"><code>[since 5.5]</code>QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#since-5-5-qvariant-qvariant-const-qpersistentmodelindex-amp-val" class="header-anchor">#</a></h3><p>构造一个具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpersistentmodelindex.html">QPersistentModelIndex</a>值<em>val</em>的新变量。</p>
+<p>此功能是在 Qt 5.5 中引入的。</p>
+<h3><span id="since-5-0-qvariant-qvariant-const-qmodelindex-amp-val"><code>[since 5.0]</code>QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#since-5-0-qvariant-qvariant-const-qmodelindex-amp-val" class="header-anchor">#</a></h3><p>构造一个具有 <a href="qmodelindex.html">QModelIndex</a> 值 <em>val</em> 的新变体。</p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<h3><span id="since-5-0-qvariant-qvariant-const-qjsondocument-amp-val"><code>[since 5.0]</code>QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#since-5-0-qvariant-qvariant-const-qjsondocument-amp-val" class="header-anchor">#</a></h3><p> 构造一个带有 json 文档值<em>val</em>的新变体。 </p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<h3><span id="since-5-0-qvariant-qvariant-const-qjsonarray-amp-val"><code>[since 5.0]</code>QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#since-5-0-qvariant-qvariant-const-qjsonarray-amp-val" class="header-anchor">#</a></h3><p> 构造一个带有 json 数组值<em>val</em>的新变体。 </p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<h3><span id="since-5-0-qvariant-qvariant-const-qjsonobject-amp-val"><code>[since 5.0]</code>QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#since-5-0-qvariant-qvariant-const-qjsonobject-amp-val" class="header-anchor">#</a></h3><p> 构造一个带有 json 对象值<em>val</em>的新变体。 </p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<h3><span id="since-5-0-qvariant-qvariant-const-qjsonvalue-amp-val"><code>[since 5.0]</code>QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#since-5-0-qvariant-qvariant-const-qjsonvalue-amp-val" class="header-anchor">#</a></h3><p> 构造一个带有 json 值<em>val</em>的新变体。 </p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<h3><span id="qvariant-qvariant-const-qurl-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qurl-amp-val" class="header-anchor">#</a></h3><p> 构造一个 url 值为<em>val</em>的新变体。 </p>
+<h3><span id="since-5-0-qvariant-qvariant-const-quuid-amp-val"><code>[since 5.0]</code>QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#since-5-0-qvariant-qvariant-const-quuid-amp-val" class="header-anchor">#</a></h3><p> 构造一个具有 uuid 值<em>val</em>的新变体。 </p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<h3><span id="qvariant-qvariant-const-qeasingcurve-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qeasingcurve-amp-val" class="header-anchor">#</a></h3><p> 构造一个具有缓动曲线值<em>val</em>的新变体。 </p>
+<h3><span id="since-5-0-qvariant-qvariant-const-qregularexpression-amp-re"><code>[since 5.0]</code>QVariant::QVariant(const  &amp;<em>re</em>)</span><a href="#since-5-0-qvariant-qvariant-const-qregularexpression-amp-re" class="header-anchor">#</a></h3><p> 使用正则表达式值<em>re</em>构造一个新变体。 </p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<h3><span id="qvariant-qvariant-const-qlocale-amp-l">QVariant::QVariant(const  &amp;<em>l</em>)</span><a href="#qvariant-qvariant-const-qlocale-amp-l" class="header-anchor">#</a></h3><p> 构造一个具有语言环境值<em>l</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qrectf-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qrectf-amp-val" class="header-anchor">#</a></h3><p> 构造一个 rect 值为<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qrect-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qrect-amp-val" class="header-anchor">#</a></h3><p> 构造一个 rect 值为<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qlinef-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qlinef-amp-val" class="header-anchor">#</a></h3><p> 构造一个行值为<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qline-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qline-amp-val" class="header-anchor">#</a></h3><p> 构造一个行值为<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qpointf-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qpointf-amp-val" class="header-anchor">#</a></h3><p> 构造一个点值为<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qpoint-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qpoint-amp-val" class="header-anchor">#</a></h3><p> 构造一个点值为<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qsizef-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qsizef-amp-val" class="header-anchor">#</a></h3><p> 构造一个大小值为<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qsize-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qsize-amp-val" class="header-anchor">#</a></h3><p> 构造一个大小值为<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qhash-lt-qstring-qvariant-gt-amp-val">QVariant::QVariant(const &lt;, &gt; &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qhash-lt-qstring-qvariant-gt-amp-val" class="header-anchor">#</a></h3><p> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">用QVariant</a> s的哈希值<em>val</em>构造一个新的变体。 </p>
+<h3><span id="qvariant-qvariant-const-qmap-lt-qstring-qvariant-gt-amp-val">QVariant::QVariant(const &lt;, &gt; &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qmap-lt-qstring-qvariant-gt-amp-val" class="header-anchor">#</a></h3><p> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">使用QVariant</a> s <em>val</em>的映射构造一个新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qlist-lt-qvariant-gt-amp-val">QVariant::QVariant(const &lt;&gt; &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qlist-lt-qvariant-gt-amp-val" class="header-anchor">#</a></h3><p> 构造一个具有列表值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qdatetime-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qdatetime-amp-val" class="header-anchor">#</a></h3><p> 构造具有日期/时间值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-qtime-val">QVariant::QVariant( <em>val</em>)</span><a href="#qvariant-qvariant-qtime-val" class="header-anchor">#</a></h3><p> 构造一个具有时间值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-qdate-val">QVariant::QVariant( <em>val</em>)</span><a href="#qvariant-qvariant-qdate-val" class="header-anchor">#</a></h3><p> 构造一个具有日期值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-qchar-c">QVariant::QVariant( <em>c</em>)</span><a href="#qvariant-qvariant-qchar-c" class="header-anchor">#</a></h3><p> 构造一个具有 char 值的新变体<em>c</em>。 </p>
+<h3><span id="qvariant-qvariant-const-qstringlist-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qstringlist-amp-val" class="header-anchor">#</a></h3><p> 构造一个带有字符串列表值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-qlatin1string-val">QVariant::QVariant( <em>val</em>)</span><a href="#qvariant-qvariant-qlatin1string-val" class="header-anchor">#</a></h3><p>构造一个带有字符串值val的新变体。</p>
+<h3><span id="qvariant-qvariant-const-qstring-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qstring-amp-val" class="header-anchor">#</a></h3><p>构造一个带有字符串值val的新变体。</p>
+<h3><span id="qvariant-qvariant-const-qbitarray-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qbitarray-amp-val" class="header-anchor">#</a></h3><p> 构造一个带有位数组值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qbytearray-amp-val">QVariant::QVariant(const  &amp;<em>val</em>)</span><a href="#qvariant-qvariant-const-qbytearray-amp-val" class="header-anchor">#</a></h3><p> 构造一个带有 bytearray 值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-char-val">QVariant::QVariant(const char *<em>val</em>)</span><a href="#qvariant-qvariant-const-char-val" class="header-anchor">#</a></h3><p>构造一个字符串值为<em>val</em>的新变体。<em>假设输入val</em>采用 UTF-8 编码，该变体将<em>val</em>的深层副本创建到<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a>中。</p>
+<p>请注意，<em>val</em>被转换为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a>以存储在变体中，并且<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">QVariant::userType</a> () 将为变体返回<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a>。</p>
+<p>您可以通过定义<code>QT_NO_CAST_FROM_ASCII</code>何时编译应用程序来禁用此运算符。</p>
+<h3><span id="qvariant-qvariant-float-val">QVariant::QVariant(float <em>val</em>)</span><a href="#qvariant-qvariant-float-val" class="header-anchor">#</a></h3><p> 构造一个带有浮点值的新变体<em>val</em>。 </p>
+<h3><span id="qvariant-qvariant-double-val">QVariant::QVariant(double <em>val</em>)</span><a href="#qvariant-qvariant-double-val" class="header-anchor">#</a></h3><p> 构造一个带有浮点值的新变体<em>val</em>。 </p>
+<h3><span id="qvariant-qvariant-bool-val">QVariant::QVariant(bool <em>val</em>)</span><a href="#qvariant-qvariant-bool-val" class="header-anchor">#</a></h3><p> 构造一个具有布尔值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-qulonglong-val">QVariant::QVariant( <em>val</em>)</span><a href="#qvariant-qvariant-qulonglong-val" class="header-anchor">#</a></h3><p> 构造一个具有无符号长整型值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-qlonglong-val">QVariant::QVariant( <em>val</em>)</span><a href="#qvariant-qvariant-qlonglong-val" class="header-anchor">#</a></h3><p> 构造一个具有 long long 整数值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-uint-val">QVariant::QVariant( <em>val</em>)</span><a href="#qvariant-qvariant-uint-val" class="header-anchor">#</a></h3><p> 构造一个具有无符号整数值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-int-val">QVariant::QVariant(int <em>val</em>)</span><a href="#qvariant-qvariant-int-val" class="header-anchor">#</a></h3><p> 构造一个具有整数值<em>val</em>的新变体。 </p>
+<h3><span id="qvariant-qvariant-const-qvariant-amp-p">QVariant::QVariant(const  &amp;<em>p</em>)</span><a href="#qvariant-qvariant-const-qvariant-amp-p" class="header-anchor">#</a></h3><p> 构造作为参数传递给此构造函数的变体<em>p</em>的副本。 </p>
+<h3><span id="qvariant-qvariant-qmetatype-type-const-void-copy-nullptr">QVariant::QVariant( <em>type</em>, const void *<em>copy</em> = nullptr)</span><a href="#qvariant-qvariant-qmetatype-type-const-void-copy-nullptr" class="header-anchor">#</a></h3><p>构造类型<em>type</em>的变体，如果<em>copy</em>不是，则使用<em>copy</em>初始化。<code>nullptr</code></p>
+<p>请注意，您必须传递要存储的变量的地址。</p>
+<p>通常，您不必使用此构造函数，而是使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#fromValue">QVariant::fromValue</a> () 来构造由<code>QMetaType::VoidStar</code>和表示的指针类型的变体<code>QMetaType::QObjectStar</code>。</p>
+<p><strong>另见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#fromValue">QVariant::fromValue</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Type</a>。</p>
+<h3><span id="qvariant-qvariant">QVariant::QVariant()</span><a href="#qvariant-qvariant" class="header-anchor">#</a></h3><p> 构造一个无效的变体。 </p>
+<h3><span id="since-5-2-qvariant-amp-qvariant-operator-qvariant-amp-amp-other"><code>[since 5.2]</code> &amp;QVariant::operator=( &amp;&amp;<em>other</em>)</span><a href="#since-5-2-qvariant-amp-qvariant-operator-qvariant-amp-amp-other" class="header-anchor">#</a></h3><p>将<em>other</em>移动分配给此<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>实例。</p>
+<p>这个函数是在 Qt 5.2 中引入的。</p>
+<h3><span id="qvariant-amp-qvariant-operator-const-qvariant-amp-variant"> &amp;QVariant::operator=(const  &amp;<em>variant</em>)</span><a href="#qvariant-amp-qvariant-operator-const-qvariant-amp-variant" class="header-anchor">#</a></h3><p> <em>将变体变体</em>的值分配给此变体。 </p>
+<h3><span id="qvariant-qvariant">QVariant::~QVariant()</span><a href="#qvariant-qvariant" class="header-anchor">#</a></h3><p>销毁<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>和包含的对象。</p>
+<p>请注意，重新实现<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#clear">clear</a> () 的子类应该重新实现析构函数以调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#clear">clear</a> ()。这个析构函数调用了<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#clear">clear</a> ()，但是因为是析构函数，所以调用的是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#clear">QVariant::clear</a> ()而不是子类的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#clear">clear</a> ()。</p>
+<h3><span id="since-6-0-bool-qvariant-canconvert-qmetatype-type-const"><code>[since 6.0]</code>bool QVariant::canConvert( <em>type</em>) const</span><a href="#since-6-0-bool-qvariant-canconvert-qmetatype-type-const" class="header-anchor">#</a></h3><p>返回<code>true</code>变体的类型是否可以转换为请求的类型<em>type</em>。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#toInt">当调用toInt</a> (), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#toBool">toBool</a> (), … 方法时，这种转换是自动完成的。</p>
+<p>此功能是在 Qt 6.0 中引入的。</p>
+<p><strong>另见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#canConvert">QMetaType::canConvert</a> ()。</p>
+<h3><span id="template-bool-qvariant-canconvert-const">template <typename t> bool QVariant::canConvert() const</typename></span><a href="#template-bool-qvariant-canconvert-const" class="header-anchor">#</a></h3><p>如果变体可以转换为模板类型<code>T</code>，则返回<code>true</code>，否则返回 false。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QVariant v = <span class="hljs-number">42</span>;
+
+v.<span class="hljs-built_in">canConvert</span>&lt;<span class="hljs-type">int</span>&gt;();              <span class="hljs-comment">// returns true</span>
+v.<span class="hljs-built_in">canConvert</span>&lt;QString&gt;();          <span class="hljs-comment">// returns true</span>
+
+MyCustomStruct s;
+v.<span class="hljs-built_in">setValue</span>(s);
+
+v.<span class="hljs-built_in">canConvert</span>&lt;<span class="hljs-type">int</span>&gt;();              <span class="hljs-comment">// returns false</span>
+v.<span class="hljs-built_in">canConvert</span>&lt;MyCustomStruct&gt;();   <span class="hljs-comment">// returns true</span></code></pre></div>
+
+<p> 如果对模板类型的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#qobject_cast-1">qobject_cast</a>成功，则包含指向从<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObject</a>派生的类型的指针的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>也将为该函数返回 true 。请注意，这只适用于使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#Q_OBJECT">Q_OBJECT</a>宏的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObject子类。</a><code>T</code> </p>
+<p><strong>See also</strong> <a href="#convert">convert</a>().</p>
+<h3><span id="template-bool-qvariant-canview-const">template <typename t> bool QVariant::canView() const</typename></span><a href="#template-bool-qvariant-canview-const" class="header-anchor">#</a></h3><p> 如果可以在此变体上创建模板类型的可变视图，则返回<code>true</code>，否则返回。<code>T``false</code> </p>
+<p><strong>See also</strong> <a href="#value">value</a>().</p>
+<h3><span id="void-qvariant-clear">void QVariant::clear()</span><a href="#void-qvariant-clear" class="header-anchor">#</a></h3><p> 将此变体转换为类型<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::UnknownType</a>并释放所有使用的资源。 </p>
+<h3><span id="static-since-6-0-qpartialordering-qvariant-compare-const-qvariant-amp-lhs-const-qvariant-amp-rhs"><code>[static, since 6.0]</code> QVariant::compare(const  &amp;<em>lhs</em>, const  &amp;<em>rhs</em>)</span><a href="#static-since-6-0-qpartialordering-qvariant-compare-const-qvariant-amp-lhs-const-qvariant-amp-rhs" class="header-anchor">#</a></h3><p>比较<em>lhs</em>和<em>rhs</em>处的对象以进行排序。</p>
+<p>如果不支持比较或值无序，则返回<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpartialordering.html#Unordered-var">QPartialOrdering::Unordered 。</a>否则，如果<em>lhs</em>分别小于、等于或大于<em>rhs ，则返回</em><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpartialordering.html#Less-var">QPartialOrdering::Less</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpartialordering.html#Equivalent-var">QPartialOrdering::Equivalent</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpartialordering.html#Greater-var">QPartialOrdering::Greater</a>。</p>
+<p>如果变体包含具有不同元类型的数据，则这些值被认为是无序的，除非它们都是数字或指针类型，其中将使用常规数字或指针比较规则。</p>
+<p><strong>注意：：</strong>如果进行了数值比较并且至少有一个值为 NaN，则返回<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpartialordering.html#Unordered-var">QPartialOrdering::Unordered</a>。</p>
+<p>如果两个变体都包含相同元类型的数据，该方法将使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#compare">QMetaType::compare</a>方法来确定两个变体的排序，这也可以表明它无法在两个值之间建立排序。</p>
+<p>此功能是在 Qt 6.0 中引入的。</p>
+<p><strong>另见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#compare">QMetaType::compare</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#isOrdered">QMetaType::isOrdered</a> ()。</p>
+<h3><span id="since-6-0-bool-qvariant-convert-qmetatype-targettype"><code>[since 6.0]</code>bool QVariant::convert( <em>targetType</em>)</span><a href="#since-6-0-bool-qvariant-convert-qmetatype-targettype" class="header-anchor">#</a></h3><p>将变体转换为请求的类型<em>targetType</em>。如果无法进行转换，则变体仍会更改为请求的类型，但会保持类似于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a> (Type) 构造的清空状态。</p>
+<p><code>true</code>如果变体的当前类型被成功转换，则返回；否则返回<code>false</code>。</p>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#qobject_cast-1">如果qobject_cast</a>到由<em>targetType</em>描述的类型成功，则包含指向从<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObject</a>派生的类型的指针的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>也将转换并为此函数返回 true 。请注意，这只适用于使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#Q_OBJECT">Q_OBJECT</a>宏的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObject子类。</a></p>
+<p><strong>注意：</strong>转换由于未初始化或先前转换失败而为 null 的 QVariants 将始终失败，更改类型，保持 null 并返回<code>false</code>。</p>
+<p>此功能是在 Qt 6.0 中引入的。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#clear">clear</a> ()。</p>
+<h3><span id="void-qvariant-data">void *QVariant::data()</span><a href="#void-qvariant-data" class="header-anchor">#</a></h3><p>将指向包含对象的指针作为可写入的通用 void* 返回。</p>
+<p>此函数分离<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>。在<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#isNull">null-QVariant</a>上调用时，调用后<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>不会为空。</p>
+<p><strong>另请参阅</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html">QMetaType</a>。</p>
+<h3><span id="static-since-5-11-template-qvariant-qvariant-fromstdvariant-const-std-variant-lt-types-gt-amp-value"><code>[static, since 5.11]</code>template <typename types> <a href="#QVariant">QVariant</a> QVariant::fromStdVariant(const std::variant&lt;Types…&gt; &amp;<em>value</em>)</typename></span><a href="#static-since-5-11-template-qvariant-qvariant-fromstdvariant-const-std-variant-lt-types-gt-amp-value" class="header-anchor">#</a></h3><p>返回具有value 的活动变体的类型和值<em>的</em><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>。如果活动类型是 std:: monostate ，则返回默认<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant 。</a></p>
+<p><strong>注意：</strong>使用此方法，您不需要将变体注册为 Qt 元类型，因为 std::variant 在存储之前已被解析。然而，组件类型应该被注册。</p>
+<p>这个函数是在 Qt 5.11 中引入的。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#fromValue">fromValue</a> ()。</p>
+<h3><span id="static-template-qvariant-qvariant-fromvalue-const-t-amp-value"><code>[static]</code>template <typename t> <a href="#QVariant">QVariant</a> QVariant::fromValue(const T &amp;<em>value</em>)</typename></span><a href="#static-template-qvariant-qvariant-fromvalue-const-t-amp-value" class="header-anchor">#</a></h3><p>返回包含<em>value副本的</em><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#setValue">其他方面的行为与setValue</a> ()完全相同。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">MyCustomStruct s;
+<span class="hljs-keyword">return</span> QVariant::<span class="hljs-built_in">fromValue</span>(s);</code></pre></div>
+
+<p><strong>注意：</strong>如果您使用自定义类型，您应该使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Q_DECLARE_METATYPE">Q_DECLARE_METATYPE</a> () 宏来注册您的自定义类型。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#setValue">setValue</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#value">value</a> ()。</p>
+<h3><span id="bool-qvariant-isnull-const">bool QVariant::isNull() const</span><a href="#bool-qvariant-isnull-const" class="header-anchor">#</a></h3><p>如果这是一个空变量，则返回<code>true</code>，否则返回 false。</p>
+<p>如果变量不包含初始化值或空指针，则认为变量为空。</p>
+<p><strong>注意：</strong>此行为已从 Qt 5 更改，其中 isNull() 也将返回 true 如果变体包含内置类型的对象，并且 isNull() 方法为该对象返回 true。</p>
+<p><strong>See also</strong> <a href="#convert">convert</a>().</p>
+<h3><span id="bool-qvariant-isvalid-const">bool QVariant::isValid() const</span><a href="#bool-qvariant-isvalid-const" class="header-anchor">#</a></h3><p>如果此变体的存储类型不是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::UnknownType</a> ，则返回 <code>true</code>；否则返回<code>false</code>。 </p>
+<h3><span id="since-6-0-qmetatype-qvariant-metatype-const"><code>[since 6.0]</code> QVariant::metaType() const</span><a href="#since-6-0-qmetatype-qvariant-metatype-const" class="header-anchor">#</a></h3><p>返回存储在变量中的值的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html">QMetaType 。</a></p>
+<p>此功能是在 Qt 6.0 中引入的。</p>
+<h3><span id="template-lt-typename-t-typename-gt-void-qvariant-setvalue-t-amp-amp-value">template &lt;typename T, typename&gt; void QVariant::setValue(T &amp;&amp;<em>value</em>)</span><a href="#template-lt-typename-t-typename-gt-void-qvariant-setvalue-t-amp-amp-value" class="header-anchor">#</a></h3><p>存储<em>value</em>的副本。如果<code>T</code>是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>不支持的类型，则使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html">QMetaType</a>来存储值。如果<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html">QMetaType</a>不处理该类型，则会发生编译错误。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QVariant v;
+
+v.<span class="hljs-built_in">setValue</span>(<span class="hljs-number">5</span>);
+<span class="hljs-type">int</span> i = v.<span class="hljs-built_in">toInt</span>();         <span class="hljs-comment">// i is now 5</span>
+QString s = v.<span class="hljs-built_in">toString</span>();  <span class="hljs-comment">// s is now "5"</span>
+
+MyCustomStruct c;
+v.<span class="hljs-built_in">setValue</span>(c);
+
+...
+
+MyCustomStruct c2 = v.<span class="hljs-built_in">value</span>&lt;MyCustomStruct&gt;();</code></pre></div>
+
+<p><strong>See also</strong> <a href="#value">value</a>(), <a href="#fromValue">fromValue</a>(), and <a href="#canConvert-2">canConvert</a>().</p>
+<h3><span id="void-qvariant-setvalue-const-qvariant-amp-value">void QVariant::setValue(const  &amp;<em>value</em>)</span><a href="#void-qvariant-setvalue-const-qvariant-amp-value" class="header-anchor">#</a></h3><p> 复制此<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant的</a><em>value</em>。它相当于简单地为这个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a><em>赋值</em>。 </p>
+<h3><span id="void-qvariant-setvalue-qvariant-amp-amp-value">void QVariant::setValue( &amp;&amp;<em>value</em>)</span><a href="#void-qvariant-setvalue-qvariant-amp-amp-value" class="header-anchor">#</a></h3><p>将<em>value</em>移动到此<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>上。这相当于简单地移动赋值<em>给</em>这个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>。 </p>
+<h3><span id="void-qvariant-swap-qvariant-amp-other">void QVariant::swap( &amp;<em>other</em>)</span><a href="#void-qvariant-swap-qvariant-amp-other" class="header-anchor">#</a></h3><p> 与此变体交换<em>other</em>变体。此操作非常快且永不失败。 </p>
+<h3><span id="qbitarray-qvariant-tobitarray-const"> QVariant::toBitArray() const</span><a href="#qbitarray-qvariant-tobitarray-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QBitArray</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbitarray.html">QBitArray</a>返回；否则返回一个空位数组。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="bool-qvariant-tobool-const">bool QVariant::toBool() const</span><a href="#bool-qvariant-tobool-const" class="header-anchor">#</a></h3><p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">如果变体具有userType</a> () Bool，则将变体作为布尔值返回。</p>
+<p>返回<code>true</code>变量是否具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Bool</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QChar</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Double</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Int</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::LongLong</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::UInt</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::ULongLong</a>并且值非零，或者如果变体的类型为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QByteArray</a>并且其小写内容不是以下之一：空、“0”或“false”；否则返回<code>false</code>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qbytearray-qvariant-tobytearray-const"> QVariant::toByteArray() const</span><a href="#qbytearray-qvariant-tobytearray-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QByteArray</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a>（使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html#fromUtf8">QString::fromUtf8</a> ()转换），则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbytearray.html">QByteArray返回；</a>否则返回一个空字节数组。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qchar-qvariant-tochar-const"> QVariant::toChar() const</span><a href="#qchar-qvariant-tochar-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QChar</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Int</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::UInt</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qchar.html">QChar</a>返回；否则返回无效的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qchar.html">QChar</a>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qdate-qvariant-todate-const"> QVariant::toDate() const</span><a href="#qdate-qvariant-todate-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QDate</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QDateTime</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdate.html">QDate</a>返回；否则返回无效日期。</p>
+<p>如果 type() 是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a>，如果字符串不能被解析为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#DateFormat-enum">Qt::ISODate</a>格式的日期，则会返回一个无效的日期。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qdatetime-qvariant-todatetime-const"> QVariant::toDateTime() const</span><a href="#qdatetime-qvariant-todatetime-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QDateTime</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QDate</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdatetime.html">QDateTime</a>返回；否则返回无效的日期/时间。</p>
+<p>如果 type() 是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a>，如果字符串不能被解析为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#DateFormat-enum">Qt::ISODate</a>格式的日期/时间，将返回一个无效的日期/时间。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="double-qvariant-todouble-bool-ok-nullptr-const">double QVariant::toDouble(bool *<em>ok</em> = nullptr) const</span><a href="#double-qvariant-todouble-bool-ok-nullptr-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Double</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Float</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Bool</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QByteArray</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Int</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::LongLong</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType: :UInt</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::ULongLong</a>；否则返回 0.0。</p>
+<p>如果<em>ok</em>不为空：如果值可以转换为双精度值，则<code>*</code><em>ok设置为 true；</em>否则<code>*</code><em>ok</em>设置为 false。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qeasingcurve-qvariant-toeasingcurve-const"> QVariant::toEasingCurve() const</span><a href="#qeasingcurve-qvariant-toeasingcurve-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QEasingCurve</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qeasingcurve.html">QEasingCurve</a>返回；否则返回默认的缓动曲线。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="float-qvariant-tofloat-bool-ok-nullptr-const">float QVariant::toFloat(bool *<em>ok</em> = nullptr) const</span><a href="#float-qvariant-tofloat-bool-ok-nullptr-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Double</a>，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Float</a>，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Bool</a>，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QByteArray</a>，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Int</a>，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::LongLong</a>，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a>，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType: :UInt</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::ULongLong</a>；否则返回 0.0。</p>
+<p>如果<em>ok</em>不为空：如果值可以转换为双精度值，则<code>*</code><em>ok设置为 true；</em>否则<code>*</code><em>ok</em>设置为 false。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qhash-lt-qstring-qvariant-gt-qvariant-tohash-const">&lt;, &gt; QVariant::toHash() const</span><a href="#qhash-lt-qstring-qvariant-gt-qvariant-tohash-const" class="header-anchor">#</a></h3><p>如果变体具有 type() <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QVariantHash</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhash.html#qhash">QHash</a> &lt; <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a> &gt; 返回；否则返回一个空地图。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="int-qvariant-toint-bool-ok-nullptr-const">int QVariant::toInt(bool *<em>ok</em> = nullptr) const</span><a href="#int-qvariant-toint-bool-ok-nullptr-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Int</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Bool</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QByteArray</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QChar</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Double</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::LongLong</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType: :UInt</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::ULongLong</a>；否则返回 0。</p>
+<p>如果<em>ok</em>为非 null：如果值可以转换为 int，则<code>*</code><em>ok设置为 true；</em>否则<code>*</code><em>ok</em>设置为 false。</p>
+<p><strong>警告：</strong>如果该值可转换为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::LongLong</a>但太大而无法用 int 表示，则产生的算术溢出将不会反映在<em>ok</em>中。一个简单的解决方法是使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html#toInt">QString::toInt</a> ()。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="since-5-0-qjsonarray-qvariant-tojsonarray-const"><code>[since 5.0]</code> QVariant::toJsonArray() const</span><a href="#since-5-0-qjsonarray-qvariant-tojsonarray-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsonarray.html">QJsonArray</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsonarray.html">QJsonArray</a>返回；否则返回默认构造的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsonarray.html">QJsonArray</a>。</p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="since-5-0-qjsondocument-qvariant-tojsondocument-const"><code>[since 5.0]</code> QVariant::toJsonDocument() const</span><a href="#since-5-0-qjsondocument-qvariant-tojsondocument-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsondocument.html">QJsonDocument</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsondocument.html">QJsonDocument</a>返回；否则返回默认构造的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsondocument.html">QJsonDocument</a>。</p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="since-5-0-qjsonobject-qvariant-tojsonobject-const"><code>[since 5.0]</code> QVariant::toJsonObject() const</span><a href="#since-5-0-qjsonobject-qvariant-tojsonobject-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsonobject.html">QJsonObject</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsonobject.html">QJsonObject</a>返回；否则返回默认构造的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsonobject.html">QJsonObject</a>。</p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="since-5-0-qjsonvalue-qvariant-tojsonvalue-const"><code>[since 5.0]</code> QVariant::toJsonValue() const</span><a href="#since-5-0-qjsonvalue-qvariant-tojsonvalue-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsonvalue.html">QJsonValue</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsonvalue.html">QJsonValue</a>返回；否则返回默认构造的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qjsonvalue.html">QJsonValue</a>。</p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qline-qvariant-toline-const"> QVariant::toLine() const</span><a href="#qline-qvariant-toline-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QLine</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qline.html">QLine</a>返回；否则返回无效的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qline.html">QLine</a>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qlinef-qvariant-tolinef-const"> QVariant::toLineF() const</span><a href="#qlinef-qvariant-tolinef-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QLineF</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlinef.html">QLineF</a>返回；否则返回无效的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlinef.html">QLineF</a>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qlist-lt-qvariant-gt-qvariant-tolist-const">&lt;&gt; QVariant::toList() const</span><a href="#qlist-lt-qvariant-gt-qvariant-tolist-const" class="header-anchor">#</a></h3><p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">如果变体具有userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QVariantList</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QStringList</a> ，则将变体作为 QVariantList 返回；否则返回一个空列表。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qlocale-qvariant-tolocale-const"> QVariant::toLocale() const</span><a href="#qlocale-qvariant-tolocale-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QLocale</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlocale.html">QLocale</a>返回；否则返回无效的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlocale.html">QLocale</a>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qlonglong-qvariant-tolonglong-bool-ok-nullptr-const"> QVariant:: toLongLong ( bool * <em>ok</em> = nullptr) const</span><a href="#qlonglong-qvariant-tolonglong-bool-ok-nullptr-const" class="header-anchor">#</a></h3><p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">如果变体具有userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::LongLong</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Bool</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QByteArray</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QChar</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Double</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Int</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a> ，则将变体返回为 long long int ，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::UInt</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::ULongLong</a>；否则返回 0。</p>
+<p>如果<em>ok</em>为非 null：<code>*``ok</code>如果值可以转换为 int，则设置为 true；否则<code>*``ok</code>设置为假。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qmap-lt-qstring-qvariant-gt-qvariant-tomap-const"> &lt; , &gt; QVariant:: toMap () const</span><a href="#qmap-lt-qstring-qvariant-gt-qvariant-tomap-const" class="header-anchor">#</a></h3><p>如果变体具有 type() <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QVariantMap</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmap.html">QMap</a> &lt; <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a> &gt; 返回；否则返回一个空地图。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="since-5-0-qmodelindex-qvariant-tomodelindex-const"><code>[since 5.0]</code> QVariant:: toModelIndex () const</span><a href="#since-5-0-qmodelindex-qvariant-tomodelindex-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmodelindex.html">QModelIndex</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmodelindex.html">QModelIndex</a>返回；否则返回默认构造的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmodelindex.html">QModelIndex</a>。</p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> ()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#toPersistentModelIndex">toPersistentModelIndex</a> ()。</p>
+<h3><span id="since-5-5-qpersistentmodelindex-qvariant-topersistentmodelindex-const"><code>[since 5.5]</code> QVariant:: toPersistentModelIndex () const</span><a href="#since-5-5-qpersistentmodelindex-qvariant-topersistentmodelindex-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpersistentmodelindex.html">QPersistentModelIndex</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpersistentmodelindex.html">QPersistentModelIndex</a>返回；否则返回默认构造的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpersistentmodelindex.html">QPersistentModelIndex</a>。</p>
+<p>此功能是在 Qt 5.5 中引入的。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> ()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#toModelIndex">toModelIndex</a> ()。</p>
+<h3><span id="qpoint-qvariant-topoint-const"> QVariant:: toPoint () const</span><a href="#qpoint-qvariant-topoint-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QPoint</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QPointF</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a>返回；否则返回一个空<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qpointf-qvariant-topointf-const"> QVariant:: toPointF () const</span><a href="#qpointf-qvariant-topointf-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QPoint</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QPointF</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a>返回；否则返回空<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qreal-qvariant-toreal-bool-ok-nullptr-const"> QVariant:: toReal ( bool * <em>ok</em> = nullptr) const</span><a href="#qreal-qvariant-toreal-bool-ok-nullptr-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Double</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Float</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Bool</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QByteArray</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Int</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::LongLong</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType: :UInt</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::ULongLong</a>；否则返回 0.0。</p>
+<p>如果<em>ok</em>不为空：如果值可以转换为双精度值，则<code>*</code><em>ok设置为 true；</em>否则<code>*</code><em>ok</em>设置为 false。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qrect-qvariant-torect-const"> QVariant :: toRect () const</span><a href="#qrect-qvariant-torect-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QRect</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrect.html">QRect</a>返回；否则返回无效的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrect.html">QRect</a>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qrectf-qvariant-torectf-const"> QVariant:: toRectF () const</span><a href="#qrectf-qvariant-torectf-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QRect</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QRectF</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a>返回；否则返回无效的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="since-5-0-qregularexpression-qvariant-toregularexpression-const"><code>[since 5.0]</code> QVariant:: toRegularExpression () const</span><a href="#since-5-0-qregularexpression-qvariant-toregularexpression-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qregularexpression.html">QRegularExpression</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qregularexpression.html">QRegularExpression</a>返回；否则返回一个空的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qregularexpression.html">QRegularExpression</a>。</p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qsize-qvariant-tosize-const"> QVariant:: toSize () const</span><a href="#qsize-qvariant-tosize-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QSize</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsize.html">QSize</a>返回；否则返回无效的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsize.html">QSize</a>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qsizef-qvariant-tosizef-const"> QVariant:: toSizeF () const</span><a href="#qsizef-qvariant-tosizef-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QSizeF</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsizef.html">QSizeF</a>返回；否则返回无效的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsizef.html">QSizeF</a>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qstring-qvariant-tostring-const"> QVariant:: toString () const</span><a href="#qstring-qvariant-tostring-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> ()，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a>返回，包括但不限于：</p>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Bool</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QByteArray</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QChar</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QDate</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QDateTime</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Double</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Int</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::LongLong</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QStringList</a> , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QTime</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::UInt</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::ULongLong</a>。</p>
+<p>在不受支持的变体上调用 QVariant::toString() 会返回一个空字符串。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qstringlist-qvariant-tostringlist-const"> QVariant:: toStringList () const</span><a href="#qstringlist-qvariant-tostringlist-const" class="header-anchor">#</a></h3><p>如果变体具有可以转换为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString的类型的</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QStringList</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QVariantList</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstringlist.html">QStringList</a>返回；否则返回一个空列表。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qtime-qvariant-totime-const"> QVariant:: toTime () const</span><a href="#qtime-qvariant-totime-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QTime</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType</a> ::QDateTime或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtime.html">QTime</a>返回；否则返回无效时间。</p>
+<p>如果 type() 是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a>，如果字符串无法解析为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#DateFormat-enum">Qt::ISODate</a>格式时间，则会返回无效时间。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="uint-qvariant-touint-bool-ok-nullptr-const"> QVariant:: toUInt ( bool * <em>ok</em> = nullptr) const</span><a href="#uint-qvariant-touint-bool-ok-nullptr-const" class="header-anchor">#</a></h3><p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">如果变体具有userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::UInt</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Bool</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QByteArray</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QChar</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Double</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Int</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::LongLong</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType</a> ，则将变体作为无符号整数返回<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">::QString</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::ULongLong</a>；否则返回 0。</p>
+<p>如果<em>ok</em>为非 null：如果值可以转换为无符号整数，则<code>*</code><em>ok设置为 true；</em>否则<code>*</code><em>ok</em>设置为 false。</p>
+<p><strong>警告：</strong>如果该值可转换为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::ULongLong</a>但太大而无法用 unsigned int 表示，则产生的算术溢出将不会反映在<em>ok</em>中。一个简单的解决方法是使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html#toUInt">QString::toUInt</a> ()。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qulonglong-qvariant-toulonglong-bool-ok-nullptr-const"> QVariant:: toULongLong ( bool * <em>ok</em> = nullptr) const</span><a href="#qulonglong-qvariant-toulonglong-bool-ok-nullptr-const" class="header-anchor">#</a></h3><p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">如果变体具有 type() QMetaType::ULongLong</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Bool</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QByteArray</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QChar</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Double</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::Int</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::LongLong</a> ，则将变体返回为 unsigned long long int , <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a> , 或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::UInt</a> ; 否则返回 0。</p>
+<p>如果<em>ok</em>为非 null：如果值可以转换为 int，则<code>*</code><em>ok设置为 true；</em>否则<code>*</code><em>ok</em>设置为 false。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="qurl-qvariant-tourl-const"> QVariant:: toUrl () const</span><a href="#qurl-qvariant-tourl-const" class="header-anchor">#</a></h3><p>如果变体具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#userType">userType</a> () <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QUrl</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qurl.html">QUrl</a>返回；否则返回无效的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qurl.html">QUrl</a>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="since-5-0-quuid-qvariant-touuid-const"><code>[since 5.0]</code> QVariant:: toUuid () const</span><a href="#since-5-0-quuid-qvariant-touuid-const" class="header-anchor">#</a></h3><p>如果变体具有 type() <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QUuid</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QByteArray</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Type-enum">QMetaType::QString</a> ，则将变体作为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/quuid.html">QUuid</a>返回；否则返回默认构造的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/quuid.html">Quuid</a>。</p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#convert">convert</a> ()。</p>
+<h3><span id="const-char-qvariant-typename-const">const char *QVariant:: typeName () const</span><a href="#const-char-qvariant-typename-const" class="header-anchor">#</a></h3><p>返回存储在变体中的类型的名称。返回的字符串描述了用于存储数据的 C++ 数据类型：例如，“ <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfont.html">QFont</a> ”、“ <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> ”或“QVariantList”。无效变体返回 0。</p>
+<h3><span id="template-t-qvariant-value-const">template <typename t> T QVariant:: value () const</typename></span><a href="#template-t-qvariant-value-const" class="header-anchor">#</a></h3><p>返回转换为模板类型的存储值<code>T</code>。调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 来判断一个类型是否可以转换。如果无法转换该值，则将返回一个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/containers.html#default-constructed-value">默认构造的值。</a></p>
+<p>如果<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a><code>T</code>支持该类型，则此函数的行为与<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#toString">toString</a> ()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#toInt">toInt</a> () 等完全相同。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QVariant v;
+
+MyCustomStruct c;
+<span class="hljs-keyword">if</span> (v.<span class="hljs-built_in">canConvert</span>&lt;MyCustomStruct&gt;())
+    c = v.<span class="hljs-built_in">value</span>&lt;MyCustomStruct&gt;();
+
+v = <span class="hljs-number">7</span>;
+<span class="hljs-type">int</span> i = v.<span class="hljs-built_in">value</span>&lt;<span class="hljs-type">int</span>&gt;();                        <span class="hljs-comment">// same as v.toInt()</span>
+QString s = v.<span class="hljs-built_in">value</span>&lt;QString&gt;();                <span class="hljs-comment">// same as v.toString(), s is now "7"</span>
+MyCustomStruct c2 = v.<span class="hljs-built_in">value</span>&lt;MyCustomStruct&gt;(); <span class="hljs-comment">// conversion failed, c2 is empty</span></code></pre></div>
+
+<p>如果<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>包含指向从<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObject</a>派生的类型的指针，则<code>T</code>可以是任何<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObject</a>类型。如果存储在<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>中的指针可以<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#qobject_cast-1">qobject_cast</a>到 T，则返回该结果。否则<code>nullptr</code>返回。请注意，这只适用于使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#Q_OBJECT">Q_OBJECT</a>宏的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObject子类。</a></p>
+<p>如果<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>包含顺序容器并且<code>T</code>是 QVariantList，则容器的元素将转换为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>并作为 QVariantList 返回。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QList&lt;<span class="hljs-type">int</span>&gt; intList = {<span class="hljs-number">7</span>, <span class="hljs-number">11</span>, <span class="hljs-number">42</span>};
+
+QVariant variant = QVariant::<span class="hljs-built_in">fromValue</span>(intList);
+<span class="hljs-keyword">if</span> (variant.<span class="hljs-built_in">canConvert</span>&lt;QVariantList&gt;()) {
+    QSequentialIterable iterable = variant.<span class="hljs-built_in">value</span>&lt;QSequentialIterable&gt;();
+    <span class="hljs-comment">// Can use foreach:</span>
+    foreach (<span class="hljs-type">const</span> QVariant &amp;v, iterable) {
+        <span class="hljs-built_in">qDebug</span>() &lt;&lt; v;
+    }
+    <span class="hljs-comment">// Can use C++11 range-for:</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> QVariant &amp;v : iterable) {
+        <span class="hljs-built_in">qDebug</span>() &lt;&lt; v;
+    }
+    <span class="hljs-comment">// Can use iterators:</span>
+    QSequentialIterable::const_iterator it = iterable.<span class="hljs-built_in">begin</span>();
+    <span class="hljs-type">const</span> QSequentialIterable::const_iterator end = iterable.<span class="hljs-built_in">end</span>();
+    <span class="hljs-keyword">for</span> ( ; it != end; ++it) {
+        <span class="hljs-built_in">qDebug</span>() &lt;&lt; *it;
+    }
+}</code></pre></div>
+
+<p><strong>See also</strong> <a href="#setValue">setValue</a>(), <a href="#fromValue">fromValue</a>(), <a href="#canConvert-2">canConvert</a>(), and <a href="qmetatype.html#Q_DECLARE_SEQUENTIAL_CONTAINER_METATYPE">Q_DECLARE_SEQUENTIAL_CONTAINER_METATYPE</a>().</p>
+<h3><span id="template-t-qvariant-view">template <typename t> T QVariant::view()</typename></span><a href="#template-t-qvariant-view" class="header-anchor">#</a></h3><p><code>T</code>返回存储值的模板类型的可变视图。调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canView-1">canView</a> () 查看是否支持这样的视图。如果无法创建这样的视图，则返回转换为模板类型的存储值<code>T</code>。调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canConvert-2">canConvert</a> () 来判断一个类型是否可以转换。如果该值既不能查看也不能转换，将返回一个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/containers.html#default-constructed-value">默认构造的值。</a></p>
+<p><strong>另见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#canView-1">canView</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetatype.html#Q_DECLARE_SEQUENTIAL_CONTAINER_METATYPE">Q_DECLARE_SEQUENTIAL_CONTAINER_METATYPE</a> ()。</p>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><h3><span id="alias-qvarianthash"><code>[alias]</code>QVariantHash</span><a href="#alias-qvarianthash" class="header-anchor">#</a></h3><p> 同义词  <a href="qhash.html#qhash">QHash</a>&lt;<a href="qstring.html">QString</a>, <a href>QVariant</a>&gt;.</p>
+<h3><span id="alias-qvariantlist"><code>[alias]</code>QVariantList</span><a href="#alias-qvariantlist" class="header-anchor">#</a></h3><p> 同义词  <a href="qlist.html">QList</a>&lt;<a href>QVariant</a>&gt;.</p>
+<h3><span id="alias-qvariantmap"><code>[alias]</code>QVariantMap</span><a href="#alias-qvariantmap" class="header-anchor">#</a></h3><p> 同义词  <a href="qmap.html">QMap</a>&lt;<a href="qstring.html">QString</a>, <a href>QVariant</a>&gt;.</p>
+<h3><span id="template-t-qvariant-cast-const-qvariant-amp-value">template <typename t> T qvariant_cast(const <a href="#QVariant">QVariant</a> &amp;<em>value</em>)</typename></span><a href="#template-t-qvariant-cast-const-qvariant-amp-value" class="header-anchor">#</a></h3><p>返回转换为模板类型的给定<em>值</em><code>T</code>。</p>
+<p>这个函数等价于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#value">QVariant::value</a> ()。</p>
+<p><strong>另见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#value">QVariant::value</a> ()。</p>
+<h3><span id="bool-operator-const-qvariant-amp-v1-const-qvariant-amp-v2">bool operator!=(const  &amp;<em>v1</em>, const  &amp;<em>v2</em>)</span><a href="#bool-operator-const-qvariant-amp-v1-const-qvariant-amp-v2" class="header-anchor">#</a></h3><p>如果<em>v1</em>和<em>v2</em>相等，则返回<code>false</code>；否则返回<code>true</code>。</p>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>使用包含的 type() 的相等运算符来检查相等性。</p>
+<p>不同类型的变体总是会比较为不相等，但有一些例外：</p>
+<ul>
+<li>如果这两种类型都是数字类型（整数和浮点数），Qt 将使用标准 C++ 类型提升规则比较这些类型。</li>
+<li>如果一种类型是数字，另一种是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a>，Qt 将尝试将<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a>转换为匹配的数字类型，如果成功则比较它们。</li>
+<li>如果两个变体都包含指向<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObject</a>派生类型的指针，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>将检查类型是否相关并指向同一个对象。</li>
+</ul>
+<h3><span id="bool-operator-const-qvariant-amp-v1-const-qvariant-amp-v2">bool operator==(const  &amp;<em>v1</em>, const  &amp;<em>v2</em>)</span><a href="#bool-operator-const-qvariant-amp-v1-const-qvariant-amp-v2" class="header-anchor">#</a></h3><p>如果<em>v1</em>和<em>v2</em>相等，则返回<code>true</code>；否则返回<code>false</code>。</p>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>使用包含的 type() 的相等运算符来检查相等性。</p>
+<p>不同类型的变体总是会比较为不相等，但有一些例外：</p>
+<ul>
+<li>如果这两种类型都是数字类型（整数和浮点数），Qt 将使用标准 C++ 类型提升规则比较这些类型。</li>
+<li>如果一种类型是数字，另一种是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a>，Qt 将尝试将<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a>转换为匹配的数字类型，如果成功则比较它们。</li>
+<li>如果两个变体都包含指向<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObject</a>派生类型的指针，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>将检查类型是否相关并指向同一个对象。</li>
+</ul>
+<p>该函数的结果不受<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html#isNull">QVariant::isNull</a>结果的影响，这意味着即使其中一个为空而另一个不为空，两个值也可以相等。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/V/">V</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/V/QVariantConstPointer/QVariantConstPointer/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QVariantConstPointer类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/V/QVariantPointer/QVariantPointer/">
+                        <span class="hidden-mobile">QVariantPointer类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

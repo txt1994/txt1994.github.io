@@ -1,0 +1,1287 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="std::array std::vector 非成员函数   std::deque std::forward_list std::list      顺序容器实现能按顺序访问的数据结构。 std::array#静态的连续数组  定义于头文件 &lt;array&gt;   std::array 是封装 固定大小数组 的容器。     隐式定义的成员函数     (构造函数)(隐式声明)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="顺序容器">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/19/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="std::array std::vector 非成员函数   std::deque std::forward_list std::list      顺序容器实现能按顺序访问的数据结构。 std::array#静态的连续数组  定义于头文件 &lt;array&gt;   std::array 是封装 固定大小数组 的容器。     隐式定义的成员函数     (构造函数)(隐式声明)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/EA508TC-56_IMG_WEB_OUT(01).jpg">
+<meta property="article:published_time" content="2022-01-19T08:52:52.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:31:15.700Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Sequence">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/EA508TC-56_IMG_WEB_OUT(01).jpg">
+  
+  
+  <title>顺序容器 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="顺序容器">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-19 16:52" pubdate>
+        2022年1月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      47 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">顺序容器</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#std-array">std::array</a></li>
+<li><a href="#std-vector">std::vector</a><ul>
+<li><a href="#fei-cheng-yuan-han-shu">非成员函数</a></li>
+</ul>
+</li>
+<li><a href="#std-deque">std::deque</a></li>
+<li><a href="#std-forward-list">std::forward_list</a></li>
+<li><a href="#std-list">std::list</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<p>顺序容器实现能按顺序访问的数据结构。</p>
+<h2><span id="std-array">std::array</span><a href="#std-array" class="header-anchor">#</a></h2><p>静态的连续数组</p>
+<blockquote>
+<p>定义于头文件 <code>&lt;array&gt;</code></p>
+</blockquote>
+<ul>
+<li><code>std::array</code> 是封装 <strong>固定大小数组</strong> 的容器。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>隐式定义的成员函数</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(构造函数)(隐式声明)</td>
+<td>遵循<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/language/aggregate_initialization">聚合初始化</a>的规则初始化 <code>array</code> （注意默认初始化可以导致非类的 <code>T</code> 的不确定值） (公开成员函数)</td>
+</tr>
+<tr>
+<td>(析构函数)(隐式声明)</td>
+<td>销毁 <code>array</code> 的每个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td>operator=(隐式声明)</td>
+<td>以来自另一 <code>array</code> 的每个元素重写 <code>array</code> 的对应元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td>元素访问</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/at">at</a>(C++11)</td>
+<td>访问指定的元素，同时进行越界检查 (公开成员函数)</td>
+</tr>
+<tr>
+<td>[operator<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/operator_at">]</a>(C++11)</td>
+<td>访问指定的元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/front">front</a>(C++11)</td>
+<td>访问第一个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/back">back</a>(C++11)</td>
+<td>访问最后一个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/data">data</a>(C++11)</td>
+<td>直接访问底层数组 (公开成员函数)</td>
+</tr>
+<tr>
+<td>迭代器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/begin">begincbegin</a>(C++11)</td>
+<td>返回指向起始的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/end">endcend</a>(C++11)</td>
+<td>返回指向末尾的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/rbegin">rbegincrbegin</a>(C++11)</td>
+<td>返回指向起始的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/rend">rendcrend</a>(C++11)</td>
+<td>返回指向末尾的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td>容量</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/empty">empty</a>(C++11)</td>
+<td>检查容器是否为空 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/size">size</a>(C++11)</td>
+<td>返回容纳的元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/max_size">max_size</a>(C++11)</td>
+<td>返回可容纳的最大元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td>操作</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/fill">fill</a>(C++11)</td>
+<td>以指定值填充容器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/array/swap">swap</a>(C++11)</td>
+<td>交换内容</td>
+</tr>
+</tbody></table>
+<h2><span id="std-vector">std::vector</span><a href="#std-vector" class="header-anchor">#</a></h2><p>定义于头文件 <code>&lt;vector&gt;</code></p>
+<ul>
+<li><code>std::vector</code> 是封装 <strong>动态数组</strong> 的顺序容器。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/at">at</a></th>
+<th>访问指定的元素，同时进行越界检查 (公开成员函数)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[operator<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/operator_at">]</a></td>
+<td>访问指定的元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/front">front</a></td>
+<td>访问第一个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/back">back</a></td>
+<td>访问最后一个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/data">data</a></td>
+<td>直接访问底层数组 (公开成员函数)</td>
+</tr>
+<tr>
+<td>迭代器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/begin">begincbegin</a>(C++11)</td>
+<td>返回指向起始的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/end">endcend</a>(C++11)</td>
+<td>返回指向末尾的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/rbegin">rbegincrbegin</a>(C++11)</td>
+<td>返回指向起始的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/rend">rendcrend</a>(C++11)</td>
+<td>返回指向末尾的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td>容量</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/empty">empty</a></td>
+<td>检查容器是否为空 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/size">size</a></td>
+<td>返回容纳的元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/max_size">max_size</a></td>
+<td>返回可容纳的最大元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/reserve">reserve</a></td>
+<td>预留存储空间 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/capacity">capacity</a></td>
+<td>返回当前存储空间能够容纳的元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/shrink_to_fit">shrink_to_fit</a>(C++11)</td>
+<td>通过释放未使用的内存减少内存的使用 (公开成员函数)</td>
+</tr>
+<tr>
+<td>修改器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/clear">clear</a></td>
+<td>清除内容 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/insert">insert</a></td>
+<td>插入元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/emplace">emplace</a>(C++11)</td>
+<td>原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/erase">erase</a></td>
+<td>擦除元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/push_back">push_back</a></td>
+<td>将元素添加到容器末尾 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/emplace_back">emplace_back</a>(C++11)</td>
+<td>在容器末尾就地构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/pop_back">pop_back</a></td>
+<td>移除末元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/resize">resize</a></td>
+<td>改变容器中可存储元素的个数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/swap">swap</a></td>
+<td>交换内容 (公开成员函数)</td>
+</tr>
+</tbody></table>
+<h3><span id="fei-cheng-yuan-han-shu">非成员函数</span><a href="#fei-cheng-yuan-han-shu" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/vector">(构造函数)</a></th>
+<th>构造 <code>vector</code> (公开成员函数)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/~vector">(析构函数)</a></td>
+<td>析构 <code>vector</code> (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/operator%3D">operator=</a></td>
+<td>赋值给容器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/assign">assign</a></td>
+<td>将值赋给容器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/get_allocator">get_allocator</a></td>
+<td>返回相关的分配器 (公开成员函数)</td>
+</tr>
+<tr>
+<td>元素访问</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/at">at</a></td>
+<td>访问指定的元素，同时进行越界检查 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/operator_at">operator[]</a></td>
+<td>访问指定的元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/front">front</a></td>
+<td>访问第一个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/back">back</a></td>
+<td>访问最后一个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/data">data</a></td>
+<td>直接访问底层数组 (公开成员函数)</td>
+</tr>
+<tr>
+<td>迭代器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/begin">begin cbegin</a>(C++11)</td>
+<td>返回指向起始的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/end">end cend</a>(C++11)</td>
+<td>返回指向末尾的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/rbegin">rbegin crbegin</a>(C++11)</td>
+<td>返回指向起始的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/rend">rend crend</a>(C++11)</td>
+<td>返回指向末尾的逆向迭代器 (公开成员函数)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>容量</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/empty">empty</a></td>
+<td>检查容器是否为空 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/size">size</a></td>
+<td>返回容纳的元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/max_size">max_size</a></td>
+<td>返回可容纳的最大元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/reserve">reserve</a></td>
+<td>预留存储空间 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/capacity">capacity</a></td>
+<td>返回当前存储空间能够容纳的元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/shrink_to_fit">shrink_to_fit</a>(C++11)</td>
+<td>通过释放未使用的内存减少内存的使用 (公开成员函数)</td>
+</tr>
+<tr>
+<td>修改器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/clear">clear</a></td>
+<td>清除内容 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/insert">insert</a></td>
+<td>插入元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/emplace">emplace</a>(C++11)</td>
+<td>原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/erase">erase</a></td>
+<td>擦除元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/push_back">push_back</a></td>
+<td>将元素添加到容器末尾 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/emplace_back">emplace_back</a>(C++11)</td>
+<td>在容器末尾就地构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/pop_back">pop_back</a></td>
+<td>移除末元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/resize">resize</a></td>
+<td>改变容器中可存储元素的个数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/swap">swap</a></td>
+<td>交换内容 (公开成员函数)</td>
+</tr>
+</tbody></table>
+<p><strong>非成员函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/swap2">std::swap(std::vector)</a>(C++20)</th>
+<th align="left">特化<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/algorithm/swap">std::swap</a> 算法 (函数模板)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector/erase2">erase(std::vector) erase_if(std::vector)</a>(C++20)</td>
+<td align="left">擦除所有满足特定判别标准的元素 (函数模板)</td>
+</tr>
+</tbody></table>
+<h2><span id="std-deque">std::deque</span><a href="#std-deque" class="header-anchor">#</a></h2><ul>
+<li>定义于头文件 <deque></deque></li>
+</ul>
+<blockquote>
+<p>双端队列</p>
+</blockquote>
+<p><code>std::deque</code> （ double-ended queue ，双端队列）是有 <strong>下标顺序容器</strong>，它允许在其首尾两端快速插入及删除。另外，在 deque 任一端插入或删除不会非法化指向其余元素的指针或引用。</p>
+<p>与 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector">std::vector</a> 相反， deque 的元素不是相接存储的：典型实现用单独分配的固定大小数组的序列，外加额外的登记，这表示下标访问必须进行二次指针解引用，与之相比 vector 的下标访问只进行一次。</p>
+<p>deque <strong>的存储按需自动扩展及收缩</strong>。扩张 deque 比扩张 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/vector">std::vector</a> 更优，因为它不涉及到复制既存元素到新内存位置。另一方面， deque 典型地拥有较大的最小内存开销；只保有一个元素的 deque 必须分配其整个内部数组（例如 64 位 libstdc++ 上为对象大小 8 倍； 64 位 libc++ 上为对象大小 16 倍或 4096 字节的较大者）。</p>
+<p>deque 上常见操作的复杂度（效率）如下：</p>
+<ul>
+<li>随机访问——常数 <em>O(1)</em></li>
+<li>在结尾或起始插入或移除元素——常数 <em>O(1)</em></li>
+<li>插入或移除元素——线性 <em>O(n)</em></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>元素访问</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/at">at</a></td>
+<td>访问指定的元素，同时进行越界检查 (公开成员函数)</td>
+</tr>
+<tr>
+<td>[operator<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/operator_at">]</a></td>
+<td>访问指定的元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/front">front</a></td>
+<td>访问第一个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/back">back</a></td>
+<td>访问最后一个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td>迭代器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/begin">begincbegin</a>(C++11)</td>
+<td>返回指向起始的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/end">endcend</a>(C++11)</td>
+<td>返回指向末尾的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/rbegin">rbegincrbegin</a>(C++11)</td>
+<td>返回指向起始的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/rend">rendcrend</a>(C++11)</td>
+<td>返回指向末尾的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td>容量</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/empty">empty</a></td>
+<td>检查容器是否为空 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/size">size</a></td>
+<td>返回容纳的元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/max_size">max_size</a></td>
+<td>返回可容纳的最大元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/shrink_to_fit">shrink_to_fit</a>(C++11)</td>
+<td>通过释放未使用的内存减少内存的使用 (公开成员函数)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>修改器</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/clear">clear</a></td>
+<td>清除内容 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/insert">insert</a></td>
+<td>插入元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/emplace">emplace</a>(C++11)</td>
+<td>原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/erase">erase</a></td>
+<td>擦除元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/push_back">push_back</a></td>
+<td>将元素添加到容器末尾 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/emplace_back">emplace_back</a>(C++11)</td>
+<td>在容器末尾就地构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/pop_back">pop_back</a></td>
+<td>移除末元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/push_front">push_front</a></td>
+<td>插入元素到容器起始 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/emplace_front">emplace_front</a>(C++11)</td>
+<td>在容器头部原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/pop_front">pop_front</a></td>
+<td>移除首元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/resize">resize</a></td>
+<td>改变容器中可存储元素的个数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/swap">swap</a></td>
+<td>交换内容 (公开成员函数)</td>
+</tr>
+</tbody></table>
+<p>非成员函数</p>
+<table>
+<thead>
+<tr>
+<th><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/swap2">std::swap(std::deque)</a></th>
+<th>特化 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/algorithm/swap">std::swap</a> 算法 (函数模板)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/deque/erase2">erase(std::deque) erase_if(std::deque)</a>(C++20)</td>
+<td>擦除所有满足特定判别标准的元素 (函数模板)</td>
+</tr>
+</tbody></table>
+<h2><span id="std-forward-list">std::forward_list</span><a href="#std-forward-list" class="header-anchor">#</a></h2><blockquote>
+<p>定义于头文件 <code>&lt;forward_list&gt;</code></p>
+</blockquote>
+<ul>
+<li>单链表</li>
+</ul>
+<p><code>std::forward_list</code> 是支持从容器中的任何位置快速插入和移除元素的容器。<strong>不支持快速随机访问</strong>。它实现为单链表，且实质上与其在 C 中实现相比无任何开销。与 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list">std::list</a> 相比，此容器在不需要双向迭代时提供更有效地利用空间的存储。</p>
+<p>在链表内或跨数个链表添加、移除和移动元素，不会非法化当前指代链表中其他元素的迭代器。然而，在从链表移除元素（通过 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/erase_after">erase_after</a> ）时，指代对应元素的迭代器或引用会被非法化。</p>
+<table>
+<thead>
+<tr>
+<th>元素访问</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/front">front</a>(C++11)</td>
+<td>访问第一个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td>迭代器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/before_begin">before_begincbefore_begin</a>(C++11)</td>
+<td>返回指向第一个元素之前迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/begin">begincbegin</a>(C++11)</td>
+<td>返回指向起始的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/end">endcend</a>(C++11)</td>
+<td>返回指向末尾的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td>容量</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/empty">empty</a>(C++11)</td>
+<td>检查容器是否为空 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/max_size">max_size</a>(C++11)</td>
+<td>返回可容纳的最大元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td>修改器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/clear">clear</a>(C++11)</td>
+<td>清除内容 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/insert_after">insert_after</a>(C++11)</td>
+<td>在某个元素后插入新元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/emplace_after">emplace_after</a>(C++11)</td>
+<td>在元素后原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/erase_after">erase_after</a>(C++11)</td>
+<td>擦除元素后的元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/push_front">push_front</a>(C++11)</td>
+<td>插入元素到容器起始 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/emplace_front">emplace_front</a>(C++11)</td>
+<td>在容器头部原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/pop_front">pop_front</a>(C++11)</td>
+<td>移除首元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/resize">resize</a>(C++11)</td>
+<td>改变容器中可存储元素的个数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/swap">swap</a>(C++11)</td>
+<td>交换内容 (公开成员函数)</td>
+</tr>
+<tr>
+<td>操作</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/merge">merge</a>(C++11)</td>
+<td>合并二个已排序列表 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/splice_after">splice_after</a>(C++11)</td>
+<td>从另一 <code>forward_list</code> 移动元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/remove">removeremove_if</a>(C++11)</td>
+<td>移除满足特定标准的元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/reverse">reverse</a>(C++11)</td>
+<td>将该链表的所有元素的顺序反转 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/unique">unique</a>(C++11)</td>
+<td>删除连续的重复元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/sort">sort</a>(C++11)</td>
+<td>对元素进行排序 (公开成员函数)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/swap2">std::swap(std::forward_list)</a>(C++11)</th>
+<th>特化 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/algorithm/swap">std::swap</a> 算法 (函数模板)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list/erase2">erase(std::forward_list) erase_if(std::forward_list)</a>(C++20)</td>
+<td>擦除所有满足特定判别标准的元素 (函数模板)</td>
+</tr>
+</tbody></table>
+<h2><span id="std-list">std::list</span><a href="#std-list" class="header-anchor">#</a></h2><blockquote>
+<p> 定义于头文件 <code>&lt;list&gt;</code></p>
+</blockquote>
+<p>双链表</p>
+<p><code>std::list</code> 是支持常数时间从容器任何位置插入和移除元素的容器。<strong>不支持快速随机访问</strong>。它通常实现为双向链表。与 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/forward_list">std::forward_list</a> 相比，此容器提供双向迭代但在空间上效率稍低。</p>
+<p>在 list 内或在数个 list 间添加、移除和移动元素不会非法化迭代器或引用。迭代器仅在对应元素被删除时非法化。</p>
+<table>
+<thead>
+<tr>
+<th>元素访问</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/front">front</a></td>
+<td>访问第一个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/back">back</a></td>
+<td>访问最后一个元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td>迭代器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/begin">begincbegin</a>(C++11)</td>
+<td>返回指向起始的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/end">endcend</a>(C++11)</td>
+<td>返回指向末尾的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/rbegin">rbegincrbegin</a>(C++11)</td>
+<td>返回指向起始的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/rend">rendcrend</a>(C++11)</td>
+<td>返回指向末尾的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td>容量</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/empty">empty</a></td>
+<td>检查容器是否为空 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/size">size</a></td>
+<td>返回容纳的元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/max_size">max_size</a></td>
+<td>返回可容纳的最大元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td>修改器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/clear">clear</a></td>
+<td>清除内容 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/insert">insert</a></td>
+<td>插入元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/emplace">emplace</a>(C++11)</td>
+<td>原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/erase">erase</a></td>
+<td>擦除元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/push_back">push_back</a></td>
+<td>将元素添加到容器末尾 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/emplace_back">emplace_back</a>(C++11)</td>
+<td>在容器末尾就地构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/pop_back">pop_back</a></td>
+<td>移除末元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/push_front">push_front</a></td>
+<td>插入元素到容器起始 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/emplace_front">emplace_front</a>(C++11)</td>
+<td>在容器头部原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/pop_front">pop_front</a></td>
+<td>移除首元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/resize">resize</a></td>
+<td>改变容器中可存储元素的个数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/swap">swap</a></td>
+<td>交换内容 (公开成员函数)</td>
+</tr>
+<tr>
+<td>操作</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/merge">merge</a></td>
+<td>合并二个已排序列表 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/splice">splice</a></td>
+<td>从另一个<code>list</code>中移动元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/remove">removeremove_if</a></td>
+<td>移除满足特定标准的元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/reverse">reverse</a></td>
+<td>将该链表的所有元素的顺序反转 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/unique">unique</a></td>
+<td>删除连续的重复元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/sort">sort</a></td>
+<td>对元素进行排序 (公开成员函数)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/swap2">std::swap(std::list)</a></th>
+<th>特化 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/algorithm/swap">std::swap</a> 算法 (函数模板)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/list/erase2">erase(std::list)erase_if(std::list)</a>(C++20)</td>
+<td>擦除所有满足特定判别标准的元素 (函数模板)</td>
+</tr>
+</tbody></table>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Sequence/">Sequence</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/19/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">关联容器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/18/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E5%B7%A5%E5%85%B7/">
+                        <span class="hidden-mobile">日期和时间工具</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

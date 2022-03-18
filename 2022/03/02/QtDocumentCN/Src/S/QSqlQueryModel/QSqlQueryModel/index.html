@@ -1,0 +1,767 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QSqlQueryModel Class 公共函数 重新被实现的公共函数 受保护的函数 详细描述 成员函数文档 QSqlQueryModel::QSqlQueryModel(QObject *parent &#x3D; nullptr) [virtual]QSqlQueryModel::~QSqlQueryModel() [override virtual]bool QSqlQueryModel:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QSqlQueryModel类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/QSqlQueryModel/QSqlQueryModel/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QSqlQueryModel Class 公共函数 重新被实现的公共函数 受保护的函数 详细描述 成员函数文档 QSqlQueryModel::QSqlQueryModel(QObject *parent &#x3D; nullptr) [virtual]QSqlQueryModel::~QSqlQueryModel() [override virtual]bool QSqlQueryModel:">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:53:54.502Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="S">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QSqlQueryModel类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QSqlQueryModel类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      78 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QSqlQueryModel类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qsqlquerymodel-class">QSqlQueryModel Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#chong-xin-bei-shi-xian-de-gong-gong-han-shu">重新被实现的公共函数</a></li>
+<li><a href="#shou-bao-hu-de-han-shu">受保护的函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qsqlquerymodel-qsqlquerymodel-qobject-qobject-html-qobject-parent-nullptr">QSqlQueryModel::QSqlQueryModel(</a><a href="qobject.html#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#virtual-qsqlquerymodel-qsqlquerymodel"><code>[virtual]</code>QSqlQueryModel::~QSqlQueryModel()</a></li>
+<li><a href="#override-virtual-bool-qsqlquerymodel-canfetchmore-const-qmodelindex-qmodelindex-html-parent-qmodelindex-const"><code>[override virtual]</code>bool QSqlQueryModel::canFetchMore(const </a><a href="qmodelindex.html">QModelIndex</a> &amp;<em>parent</em> = QModelIndex()) const</li>
+<li><a href="#virtual-void-qsqlquerymodel-clear"><code>[virtual]</code>void QSqlQueryModel::clear()</a></li>
+<li><a href="#override-virtual-int-qsqlquerymodel-columncount-const-qmodelindex-qmodelindex-html-index-qmodelindex-const"><code>[override virtual]</code>int QSqlQueryModel::columnCount(const </a><a href="qmodelindex.html">QModelIndex</a> &amp;<em>index</em> = QModelIndex()) const</li>
+<li><a href="#override-virtual-qvariant-qvariant-html-qsqlquerymodel-data-const-qmodelindex-qmodelindex-html-item-int-role-qt-displayrole-const"><code>[override virtual]</code></a><a href="qvariant.html">QVariant</a> QSqlQueryModel::data(const <a href="qmodelindex.html">QModelIndex</a> &amp;<em>item</em>, int <em>role</em> = Qt::DisplayRole) const</li>
+<li><a href="#override-virtual-void-qsqlquerymodel-fetchmore-const-qmodelindex-qmodelindex-html-parent-qmodelindex"><code>[override virtual]</code>void QSqlQueryModel::fetchMore(const </a><a href="qmodelindex.html">QModelIndex</a> &amp;<em>parent</em> = QModelIndex())</li>
+<li><a href="#override-virtual-qvariant-qvariant-html-qsqlquerymodel-headerdata-int-section-qt-orientation-qt-html-orientation-enum-orientation-int-role-qt-displayrole-const"><code>[override virtual]</code></a><a href="qvariant.html">QVariant</a> QSqlQueryModel::headerData(int <em>section</em>, <a href="qt.html#Orientation-enum">Qt::Orientation</a> <em>orientation</em>, int <em>role</em> = Qt::DisplayRole) const</li>
+<li><a href="#virtual-protected-qmodelindex-qmodelindex-html-qsqlquerymodel-indexinquery-const-qmodelindex-qmodelindex-html-item-const"><code>[virtual protected]</code></a><a href="qmodelindex.html">QModelIndex</a> QSqlQueryModel::indexInQuery(const <a href="qmodelindex.html">QModelIndex</a> &amp;<em>item</em>) const</li>
+<li><a href="#override-virtual-bool-qsqlquerymodel-insertcolumns-int-column-int-count-const-qmodelindex-qmodelindex-html-parent-qmodelindex"><code>[override virtual]</code>bool QSqlQueryModel::insertColumns(int <em>column</em>, int <em>count</em>, const </a><a href="qmodelindex.html">QModelIndex</a> &amp;<em>parent</em> = QModelIndex())</li>
+<li><a href="#qsqlerror-qsqlerror-html-qsqlquerymodel-lasterror-const">QSqlError</a></li>
+<li><a href="#qsqlquery-qsqlquery-html-qsqlquerymodel-query-const">QSqlQuery</a></li>
+<li><a href="#virtual-protected-void-qsqlquerymodel-querychange"><code>[virtual protected]</code>void QSqlQueryModel::queryChange()</a></li>
+<li><a href="#qsqlrecord-qsqlrecord-html-qsqlquerymodel-record-int-row-const">QSqlRecord</a></li>
+<li><a href="#qsqlrecord-qsqlrecord-html-qsqlquerymodel-record-const-1">QSqlRecord</a></li>
+<li><a href="#override-virtual-bool-qsqlquerymodel-removecolumns-int-column-int-count-const-qmodelindex-qmodelindex-html-parent-qmodelindex"><code>[override virtual]</code>bool QSqlQueryModel::removeColumns(int <em>column</em>, int <em>count</em>, const </a><a href="qmodelindex.html">QModelIndex</a> &amp;<em>parent</em> = QModelIndex())</li>
+<li><a href="#override-virtual-since-5-10-qhash-qhash-html-int-qbytearray-qbytearray-html-qsqlquerymodel-rolenames-const"><code>[override virtual, since 5.10]</code></a><a href="qhash.html">QHash</a>&lt;int, <a href="qbytearray.html">QByteArray</a>&gt; QSqlQueryModel::roleNames() const</li>
+<li><a href="#override-virtual-int-qsqlquerymodel-rowcount-const-qmodelindex-qmodelindex-html-parent-qmodelindex-const"><code>[override virtual]</code>int QSqlQueryModel::rowCount(const </a><a href="qmodelindex.html">QModelIndex</a> &amp;<em>parent</em> = QModelIndex()) const</li>
+<li><a href="#override-virtual-bool-qsqlquerymodel-setheaderdata-int-section-qt-orientation-qt-html-orientation-enum-orientation-const-qvariant-qvariant-html-value-int-role-qt-editrole"><code>[override virtual]</code>bool QSqlQueryModel::setHeaderData(int <em>section</em>, </a><a href="qt.html#Orientation-enum">Qt::Orientation</a> <em>orientation</em>, const <a href="qvariant.html">QVariant</a> &amp;* value*, int <em>role</em> = Qt::EditRole)</li>
+<li><a href="#protected-void-qsqlquerymodel-setlasterror-const-qsqlerror-qsqlerror-html-error"><code>[protected]</code>void QSqlQueryModel::setLastError(const </a><a href="qsqlerror.html">QSqlError</a> &amp;<em>error</em>)</li>
+<li><a href="#since-6-2-void-qsqlquerymodel-setquery-qsqlquery-qsqlquery-html-query"><code>[since 6.2]</code>void QSqlQueryModel::setQuery(</a><a href="qsqlquery.html">QSqlQuery</a> &amp;&amp;<em>query</em>)</li>
+<li><a href="#void-qsqlquerymodel-setquery-const-qstring-qstring-html-query-const-qsqldatabase-qsqldatabase-html-db-qsqldatabase">void QSqlQueryModel::setQuery(const </a><a href="qstring.html">QString</a> &amp;<em>query</em>, const <a href="qsqldatabase.html">QSqlDatabase</a> &amp;<em>db</em> = QSqlDatabase())</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QSqlQueryModel Class
+
+<p>QSqlQueryModel 类为 SQL 结果集提供只读数据模型。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qsqlquerymodel></qsqlquerymodel></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Sql REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Sql)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += sql</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a href="qabstracttablemodel.html">QAbstractTableModel</a></td>
+</tr>
+<tr>
+<td>Inherited By:</td>
+<td><a href="qsqltablemodel.html">QSqlTableModel</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qsqlquerymodel-members.html">List of all members, including inherited members</a></li>
+<li><a href="qsqlquerymodel-obsolete.html">Deprecated members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QSqlQueryModel">QSqlQueryModel</a></strong>(QObject *<em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QSqlQueryModel">~QSqlQueryModel</a></strong>()</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#clear">clear</a></strong>()</td>
+</tr>
+<tr>
+<td>QSqlError</td>
+<td><strong><a href="#lastError">lastError</a></strong>() const</td>
+</tr>
+<tr>
+<td>QSqlQuery</td>
+<td><strong><a href="#query">query</a></strong>() const</td>
+</tr>
+<tr>
+<td>QSqlRecord</td>
+<td><strong><a href="#record">record</a></strong>(int <em>row</em>) const</td>
+</tr>
+<tr>
+<td>QSqlRecord</td>
+<td><strong><a href="#record-1">record</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setQuery">setQuery</a></strong>(QSqlQuery &amp;&amp;<em>query</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setQuery-2">setQuery</a></strong>(const QString &amp;<em>query</em>, const QSqlDatabase &amp;<em>db</em> = QSqlDatabase())</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-xin-bei-shi-xian-de-gong-gong-han-shu">重新被实现的公共函数</span><a href="#chong-xin-bei-shi-xian-de-gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual bool</th>
+<th><strong><a href="#canFetchMore">canFetchMore</a></strong>(const QModelIndex &amp;<em>parent</em> = QModelIndex()) const override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual int</td>
+<td><strong><a href="#columnCount">columnCount</a></strong>(const QModelIndex &amp;<em>index</em> = QModelIndex()) const override</td>
+</tr>
+<tr>
+<td>virtual QVariant</td>
+<td><strong><a href="#data">data</a></strong>(const QModelIndex &amp;<em>item</em>, int <em>role</em> = Qt::DisplayRole) const override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#fetchMore">fetchMore</a></strong>(const QModelIndex &amp;<em>parent</em> = QModelIndex()) override</td>
+</tr>
+<tr>
+<td>virtual QVariant</td>
+<td><strong><a href="#headerData">headerData</a></strong>(int <em>section</em>, Qt::Orientation <em>orientation</em>, int <em>role</em> = Qt::DisplayRole) const override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#insertColumns">insertColumns</a></strong>(int <em>column</em>, int <em>count</em>, const QModelIndex &amp;<em>parent</em> = QModelIndex()) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#removeColumns">removeColumns</a></strong>(int <em>column</em>, int <em>count</em>, const QModelIndex &amp;<em>parent</em> = QModelIndex()) override</td>
+</tr>
+<tr>
+<td>virtual QHash&lt;int, QByteArray&gt;</td>
+<td><strong><a href="#roleNames">roleNames</a></strong>() const override</td>
+</tr>
+<tr>
+<td>virtual int</td>
+<td><strong><a href="#rowCount">rowCount</a></strong>(const QModelIndex &amp;<em>parent</em> = QModelIndex()) const override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#setHeaderData">setHeaderData</a></strong>(int <em>section</em>, Qt::Orientation <em>orientation</em>, const QVariant &amp;<em>value</em>, int <em>role</em> = Qt::EditRole) override</td>
+</tr>
+</tbody></table>
+<h2><span id="shou-bao-hu-de-han-shu">受保护的函数</span><a href="#shou-bao-hu-de-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual QModelIndex</th>
+<th><strong><a href="#indexInQuery">indexInQuery</a></strong>(const QModelIndex &amp;<em>item</em>) const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual void</td>
+<td><strong><a href="#queryChange">queryChange</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setLastError">setLastError</a></strong>(const QSqlError &amp;<em>error</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QSqlQueryModel 是用于执行 SQL 语句和遍历结果集的高级接口。 它建立在较低级别的 <a href="qsqlquery.html">QSqlQuery</a> 之上，可用于为视图类提供数据，例如 <a href="qtableview.html">QTableView</a>。 例如：</p>
+<div class="code-wrapper"><pre><code class="hljs C++">QSqlQueryModel *model = <span class="hljs-keyword">new</span> QSqlQueryModel;
+model-&gt;<span class="hljs-built_in">setQuery</span>(<span class="hljs-string">"SELECT name, salary FROM employee"</span>);
+model-&gt;<span class="hljs-built_in">setHeaderData</span>(<span class="hljs-number">0</span>, Qt::Horizontal, <span class="hljs-built_in">tr</span>(<span class="hljs-string">"Name"</span>));
+model-&gt;<span class="hljs-built_in">setHeaderData</span>(<span class="hljs-number">1</span>, Qt::Horizontal, <span class="hljs-built_in">tr</span>(<span class="hljs-string">"Salary"</span>));
+QTableView *view = <span class="hljs-keyword">new</span> QTableView;
+view-&gt;<span class="hljs-built_in">setModel</span>(model);
+view-&gt;<span class="hljs-built_in">show</span>();</code></pre></div>
+
+<p>我们设置模型的查询，然后设置视图标题中显示的标签。</p>
+<p>QSqlQueryModel 也可用于以编程方式访问数据库，而无需将其绑定到视图：</p>
+<div class="code-wrapper"><pre><code class="hljs C++">QSqlQueryModel model;
+model.<span class="hljs-built_in">setQuery</span>(<span class="hljs-string">"SELECT name, salary FROM employee"</span>);
+<span class="hljs-type">int</span> salary = model.<span class="hljs-built_in">record</span>(<span class="hljs-number">4</span>).<span class="hljs-built_in">value</span>(<span class="hljs-string">"salary"</span>).<span class="hljs-built_in">toInt</span>();</code></pre></div>
+
+<p>上面的代码片段从<code>SELECT</code>查询的结果集中的记录 4 中提取<code>salary</code>字段。 由于 <code>salary</code> 是第 2 列（或列索引 1），我们可以将最后一行重写如下：</p>
+<div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-type">int</span> salary = model.<span class="hljs-built_in">data</span>(model.<span class="hljs-built_in">index</span>(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>)).<span class="hljs-built_in">toInt</span>();</code></pre></div>
+
+<p>该模型默认为只读。 要使其可读写，您必须对其进行子类化并重新实现 <a href="qabstractitemmodel.html#setData">setData</a>() 和 <a href="qabstracttablemodel.html#flags">flags</a>()。 另一种选择是使用<a href="qsqltablemodel.html">QSqlTableModel</a>，它提供基于单个数据库表的读写模型。</p>
+<p><a href="qtsql-querymodel-example.html">querymodel</a> 示例说明了如何使用 QSqlQueryModel 显示查询结果。 它还展示了如何继承 QSqlQueryModel 以在向用户显示数据之前自定义数据的内容，以及如何创建基于 QSqlQueryModel 的读写模型。</p>
+<p>如果数据库未返回查询中选定行的数量，则模型将增量获取行。 有关详细信息，请参阅 <a href="#fetchMore">fetchMore</a>()。</p>
+<p><strong>See also</strong> <a href="qsqltablemodel.html">QSqlTableModel</a>, <a href="qsqlrelationaltablemodel.html">QSqlRelationalTableModel</a>, <a href="qsqlquery.html">QSqlQuery</a>, <a href="model-view-programming.html">Model/View Programming</a>, and <a href="qtsql-querymodel-example.html">Query Model Example</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qsqlquerymodel-qsqlquerymodel-qobject-parent-nullptr">QSqlQueryModel::QSqlQueryModel( *<em>parent</em> = nullptr)</span><a href="#qsqlquerymodel-qsqlquerymodel-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>使用给定的 <em>parent</em> 创建一个空的 QSqlQueryModel。</p>
+<h3><span id="virtual-qsqlquerymodel-qsqlquerymodel"><code>[virtual]</code>QSqlQueryModel::~QSqlQueryModel()</span><a href="#virtual-qsqlquerymodel-qsqlquerymodel" class="header-anchor">#</a></h3><p>销毁对象并释放所有分配的资源。</p>
+<p><strong>See also</strong> <a href="#clear">clear</a>().</p>
+<h3><span id="override-virtual-bool-qsqlquerymodel-canfetchmore-const-qmodelindex-amp-parent-qmodelindex-const"><code>[override virtual]</code>bool QSqlQueryModel::canFetchMore(const  &amp;<em>parent</em> = QModelIndex()) const</span><a href="#override-virtual-bool-qsqlquerymodel-canfetchmore-const-qmodelindex-amp-parent-qmodelindex-const" class="header-anchor">#</a></h3><p>重新实现: <a href="qabstractitemmodel.html#canFetchMore">QAbstractItemModel::canFetchMore(const QModelIndex &amp;parent) const</a>.</p>
+<p>如果可以从数据库中读取更多行，则返回 <code>true</code>。 这只会影响不报告查询大小的数据库（请参阅 <a href="qsqldriver.html#hasFeature">QSqlDriver::hasFeature</a>()）。</p>
+<p><em>parent</em> 应该始终是无效的 <a href="qmodelindex.html">QModelIndex</a>。</p>
+<p><strong>See also</strong> <a href="#fetchMore">fetchMore</a>().</p>
+<h3><span id="virtual-void-qsqlquerymodel-clear"><code>[virtual]</code>void QSqlQueryModel::clear()</span><a href="#virtual-void-qsqlquerymodel-clear" class="header-anchor">#</a></h3><p>清除模型并释放任何获取的资源。</p>
+<h3><span id="override-virtual-int-qsqlquerymodel-columncount-const-qmodelindex-amp-index-qmodelindex-const"><code>[override virtual]</code>int QSqlQueryModel::columnCount(const  &amp;<em>index</em> = QModelIndex()) const</span><a href="#override-virtual-int-qsqlquerymodel-columncount-const-qmodelindex-amp-index-qmodelindex-const" class="header-anchor">#</a></h3><p>重新实现: <a href="qabstractitemmodel.html#columnCount">QAbstractItemModel::columnCount(const QModelIndex &amp;parent) const</a>.</p>
+<h3><span id="override-virtual-qvariant-qsqlquerymodel-data-const-qmodelindex-amp-item-int-role-qt-displayrole-const"><code>[override virtual]</code> QSqlQueryModel::data(const  &amp;<em>item</em>, int <em>role</em> = Qt::DisplayRole) const</span><a href="#override-virtual-qvariant-qsqlquerymodel-data-const-qmodelindex-amp-item-int-role-qt-displayrole-const" class="header-anchor">#</a></h3><p>重新实现: <a href="qabstractitemmodel.html#data">QAbstractItemModel::data(const QModelIndex &amp;index, int role) const</a>.</p>
+<p>返回指定 <em>item</em> 和 <em>role</em> 的值。</p>
+<p>如果 <em>item</em> 超出范围或发生错误，则返回无效的 <a href="qvariant.html">QVariant</a>。</p>
+<p><strong>See also</strong> <a href="#lastError">lastError</a>().</p>
+<h3><span id="override-virtual-void-qsqlquerymodel-fetchmore-const-qmodelindex-amp-parent-qmodelindex"><code>[override virtual]</code>void QSqlQueryModel::fetchMore(const  &amp;<em>parent</em> = QModelIndex())</span><a href="#override-virtual-void-qsqlquerymodel-fetchmore-const-qmodelindex-amp-parent-qmodelindex" class="header-anchor">#</a></h3><p>重新实现：<a href="qabstractitemmodel.html#fetchMore">QAbstractItemModel::fetchMore</a>(const QModelIndex &amp;parent)。</p>
+<p>从数据库中获取更多行。 这只会影响不报告查询大小的数据库（请参阅 <a href="qsqldriver.html#hasFeature">QSqlDriver::hasFeature</a>()）。</p>
+<p>要强制获取整个结果集，您可以使用以下命令：</p>
+<div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">while</span> (myModel-&gt;<span class="hljs-built_in">canFetchMore</span>())
+    myModel-&gt;<span class="hljs-built_in">fetchMore</span>();</code></pre></div>
+
+<p><em>parent</em> 应该始终是无效的 <a href="qmodelindex.html">QModelIndex</a>。</p>
+<p><strong>See also</strong> <a href="#canFetchMore">canFetchMore</a>().</p>
+<h3><span id="override-virtual-qvariant-qsqlquerymodel-headerdata-int-section-qt-orientation-orientation-int-role-qt-displayrole-const"><code>[override virtual]</code> QSqlQueryModel::headerData(int <em>section</em>,  <em>orientation</em>, int <em>role</em> = Qt::DisplayRole) const</span><a href="#override-virtual-qvariant-qsqlquerymodel-headerdata-int-section-qt-orientation-orientation-int-role-qt-displayrole-const" class="header-anchor">#</a></h3><p>重新实现: <a href="qabstractitemmodel.html#headerData">QAbstractItemModel::headerData(int section, Qt::Orientation orientation, int role) const</a>.</p>
+<p>在具有指定 <em>orientation</em> 的标头的 <em>section</em> 中返回给定 <em>role</em> 的标头数据。</p>
+<p><strong>See also</strong> <a href="#setHeaderData">setHeaderData</a>().</p>
+<h3><span id="virtual-protected-qmodelindex-qsqlquerymodel-indexinquery-const-qmodelindex-amp-item-const"><code>[virtual protected]</code> QSqlQueryModel::indexInQuery(const  &amp;<em>item</em>) const</span><a href="#virtual-protected-qmodelindex-qsqlquerymodel-indexinquery-const-qmodelindex-amp-item-const" class="header-anchor">#</a></h3><p>返回模型中给定 <em>item</em> 的数据库结果集中值的索引。</p>
+<p>如果没有插入、删除或移动任何列或行，则返回值与 <em>item</em> 相同。</p>
+<p>如果 <em>item</em> 超出范围或 <em>item</em> 未指向结果集中的值，则返回无效的模型索引。</p>
+<p><strong>See also</strong> <a href="qsqltablemodel.html#indexInQuery">QSqlTableModel::indexInQuery</a>(), <a href="#insertColumns">insertColumns</a>(), and <a href="#removeColumns">removeColumns</a>().</p>
+<h3><span id="override-virtual-bool-qsqlquerymodel-insertcolumns-int-column-int-count-const-qmodelindex-amp-parent-qmodelindex"><code>[override virtual]</code>bool QSqlQueryModel::insertColumns(int <em>column</em>, int <em>count</em>, const  &amp;<em>parent</em> = QModelIndex())</span><a href="#override-virtual-bool-qsqlquerymodel-insertcolumns-int-column-int-count-const-qmodelindex-amp-parent-qmodelindex" class="header-anchor">#</a></h3><p>重新实现：<a href="qabstractitemmodel.html#insertColumns">QAbstractItemModel::insertColumns</a>(int column, int count, const QModelIndex &amp;parent)。</p>
+<p>将 <em>count</em> 列插入模型的位置 <em>column</em>。 <em>parent</em> 参数必须始终是无效的 <a href="qmodelindex.html">QModelIndex</a>，因为模型不支持父子关系。</p>
+<p>如果 <em>column</em> 在范围内，则返回 <code>true</code>； 否则返回“假”。</p>
+<p>默认情况下，插入的列是空的。 要用数据填充它们，请重新实现 <a href="#data">data</a>() 并分别处理任何插入的列：</p>
+<div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-function">QVariant <span class="hljs-title">MyModel::data</span><span class="hljs-params">(<span class="hljs-type">const</span> QModelIndex &amp;item, <span class="hljs-type">int</span> role)</span> <span class="hljs-type">const</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">if</span> (item.<span class="hljs-built_in">column</span>() == m_specialColumnNo) {
+        <span class="hljs-comment">// handle column separately</span>
+    }
+    <span class="hljs-keyword">return</span> QSqlQueryModel::<span class="hljs-built_in">data</span>(item, role);
+}</code></pre></div>
+
+<p><strong>See also</strong> <a href="#removeColumns">removeColumns</a>().</p>
+<h3><span id="qsqlerror-qsqlquerymodel-lasterror-const"> QSqlQueryModel::lastError() const</span><a href="#qsqlerror-qsqlquerymodel-lasterror-const" class="header-anchor">#</a></h3><p>返回有关数据库上发生的最后一个错误的信息。</p>
+<p><strong>See also</strong> <a href="#setLastError">setLastError</a>() and <a href="#query">query</a>().</p>
+<h3><span id="qsqlquery-qsqlquerymodel-query-const"> QSqlQueryModel::query() const</span><a href="#qsqlquery-qsqlquerymodel-query-const" class="header-anchor">#</a></h3><p>返回与此模型关联的 <a href="qsqlquery.html">QSqlQuery</a>。</p>
+<p><strong>See also</strong> <a href="#setQuery">setQuery</a>().</p>
+<h3><span id="virtual-protected-void-qsqlquerymodel-querychange"><code>[virtual protected]</code>void QSqlQueryModel::queryChange()</span><a href="#virtual-protected-void-qsqlquerymodel-querychange" class="header-anchor">#</a></h3><p>每当查询更改时，都会调用此虚函数。 默认实现什么也不做。</p>
+<p><a href="#query">query</a>() 返回新的查询。</p>
+<p><strong>See also</strong> <a href="#query">query</a>() and <a href="#setQuery">setQuery</a>().</p>
+<h3><span id="qsqlrecord-qsqlquerymodel-record-int-row-const"> QSqlQueryModel::record(int <em>row</em>) const</span><a href="#qsqlrecord-qsqlquerymodel-record-int-row-const" class="header-anchor">#</a></h3><p>返回包含有关当前查询的字段信息的记录。 如果 <em>row</em> 是有效行的索引，则记录将填充该行的值。</p>
+<p>如果模型未初始化，则返回空记录。</p>
+<p><strong>See also</strong> <a href="qsqlrecord.html#isEmpty">QSqlRecord::isEmpty</a>().</p>
+<h3><span id="qsqlrecord-qsqlquerymodel-record-const"> QSqlQueryModel::record() const</span><a href="#qsqlrecord-qsqlquerymodel-record-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>返回一个空记录，其中包含有关当前查询的字段的信息。</p>
+<p>如果模型未初始化，则返回空记录。</p>
+<p><strong>See also</strong> <a href="qsqlrecord.html#isEmpty">QSqlRecord::isEmpty</a>().</p>
+<h3><span id="override-virtual-bool-qsqlquerymodel-removecolumns-int-column-int-count-const-qmodelindex-amp-parent-qmodelindex"><code>[override virtual]</code>bool QSqlQueryModel::removeColumns(int <em>column</em>, int <em>count</em>, const  &amp;<em>parent</em> = QModelIndex())</span><a href="#override-virtual-bool-qsqlquerymodel-removecolumns-int-column-int-count-const-qmodelindex-amp-parent-qmodelindex" class="header-anchor">#</a></h3><p>重新实现：<a href="qabstractitemmodel.html#removeColumns">QAbstractItemModel::removeColumns</a>(int column, int count, const QModelIndex &amp;parent)。</p>
+<p>从位置 <em>column</em> 开始从模型中删除 <em>count</em> 列。 <em>parent</em> 参数必须始终是无效的 <a href="qmodelindex.html">QModelIndex</a>，因为模型不支持父子关系。</p>
+<p>删除列可以有效地隐藏它们。 它不影响底层的 <a href="qsqlquery.html">QSqlQuery</a>。</p>
+<p>如果列被删除，则返回 <code>true</code>； 否则返回“假”。</p>
+<h3><span id="override-virtual-since-5-10-qhash-lt-int-qbytearray-gt-qsqlquerymodel-rolenames-const"><code>[override virtual, since 5.10]</code>&lt;int, &gt; QSqlQueryModel::roleNames() const</span><a href="#override-virtual-since-5-10-qhash-lt-int-qbytearray-gt-qsqlquerymodel-rolenames-const" class="header-anchor">#</a></h3><p>重新实现：<a href="qabstractitemmodel.html#roleNames">QAbstractItemModel::roleNames() const</a>。</p>
+<p>返回模型的角色名称。</p>
+<p>Qt 只为 <a href>QSqlQueryModel</a> 定义了一个角色：</p>
+<table>
+<thead>
+<tr>
+<th align="center">Qt Role</th>
+<th align="center">QML Role Name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a href="qt.html#ItemDataRole-enum">Qt::DisplayRole</a></td>
+<td align="center">显示</td>
+</tr>
+</tbody></table>
+<p>这个函数是在 Qt 5.10 中引入的。</p>
+<h3><span id="override-virtual-int-qsqlquerymodel-rowcount-const-qmodelindex-amp-parent-qmodelindex-const"><code>[override virtual]</code>int QSqlQueryModel::rowCount(const  &amp;<em>parent</em> = QModelIndex()) const</span><a href="#override-virtual-int-qsqlquerymodel-rowcount-const-qmodelindex-amp-parent-qmodelindex-const" class="header-anchor">#</a></h3><p>重新实现：<a href="qabstractitemmodel.html#rowCount">QAbstractItemModel::rowCount(const QModelIndex &amp;parent) const</a>。</p>
+<p>如果数据库支持返回查询的大小（参见<a href="qsqldriver.html#hasFeature">QSqlDriver::hasFeature</a>()），则返回当前查询的行数。否则，返回客户端当前缓存的行数。</p>
+<p><em>parent</em> 应该始终是无效的 <a href="qmodelindex.html">QModelIndex</a>。</p>
+<p><strong>另请参阅</strong> <a href="#canFetchMore">canFetchMore</a>() 和 <a href="qsqldriver.html#hasFeature">QSqlDriver::hasFeature</a>()。</p>
+<h3><span id="override-virtual-bool-qsqlquerymodel-setheaderdata-int-section-qt-orientation-orientation-const-qvariant-amp-value-int-role-qt-editrole"><code>[override virtual]</code>bool QSqlQueryModel::setHeaderData(int <em>section</em>,  <em>orientation</em>, const  &amp;* value*, int <em>role</em> = Qt::EditRole)</span><a href="#override-virtual-bool-qsqlquerymodel-setheaderdata-int-section-qt-orientation-orientation-const-qvariant-amp-value-int-role-qt-editrole" class="header-anchor">#</a></h3><p>重新实现：<a href="qabstractitemmodel.html#setHeaderData">QAbstractItemModel::setHeaderData</a>(int section, Qt::Orientationorientation, const QVariant &amp;value, int role)。</p>
+<p>将指定 <em>role</em> 的水平标题的标题设置为 <em>value</em>。如果模型用于在视图中显示数据（例如，<a href="qtableview.html">QTableView</a>），这很有用。</p>
+<p>如果 <em>orientation</em> 是 <a href="qt.html#Orientation-enum">Qt::Horizontal</a> 并且 <em>section</em> 指的是有效部分，则返回 <code>true</code>；否则返回假。</p>
+<p>请注意，此函数不能用于修改数据库中的值，因为模型是只读的。</p>
+<p><strong>另请参阅</strong> <a href="#headerData">headerData</a>() 和 <a href="#data">data</a>()。</p>
+<h3><span id="protected-void-qsqlquerymodel-setlasterror-const-qsqlerror-amp-error"><code>[protected]</code>void QSqlQueryModel::setLastError(const  &amp;<em>error</em>)</span><a href="#protected-void-qsqlquerymodel-setlasterror-const-qsqlerror-amp-error" class="header-anchor">#</a></h3><p>受保护的函数，它允许派生类将数据库上发生的最后一个错误的值设置为 <em>error</em>。</p>
+<p><strong>See also</strong> <a href="#lastError">lastError</a>().</p>
+<h3><span id="since-6-2-void-qsqlquerymodel-setquery-qsqlquery-amp-amp-query"><code>[since 6.2]</code>void QSqlQueryModel::setQuery( &amp;&amp;<em>query</em>)</span><a href="#since-6-2-void-qsqlquerymodel-setquery-qsqlquery-amp-amp-query" class="header-anchor">#</a></h3><p>重置模型并将数据提供者设置为给定的<em>query</em>。 请注意，查询必须是活动的，并且不能是 isForwardOnly()。</p>
+<p>如果设置查询时出错，<a href="#lastError">lastError</a>() 可用于检索详细信息。</p>
+<p><strong>注意：</strong> 调用 setQuery() 将删除所有插入的列。</p>
+<p>这个函数是在 Qt 6.2 中引入的。</p>
+<p><strong>See also</strong> <a href="#query">query</a>(), <a href="qsqlquery.html#isActive">QSqlQuery::isActive</a>(), <a href="qsqlquery.html#setForwardOnly">QSqlQuery::setForwardOnly</a>(), and <a href="#lastError">lastError</a>().</p>
+<h3><span id="void-qsqlquerymodel-setquery-const-qstring-amp-query-const-qsqldatabase-amp-db-qsqldatabase">void QSqlQueryModel::setQuery(const  &amp;<em>query</em>, const  &amp;<em>db</em> = QSqlDatabase())</span><a href="#void-qsqlquerymodel-setquery-const-qstring-amp-query-const-qsqldatabase-amp-db-qsqldatabase" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>对给定的数据库连接 <em>db</em> 执行查询 <em>query</em>。 如果未指定数据库（或无效数据库），则使用默认连接。</p>
+<p>如果设置查询时出错，<a href="#lastError">lastError</a>() 可用于检索详细信息。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs C++">QSqlQueryModel model;
+model.<span class="hljs-built_in">setQuery</span>(<span class="hljs-string">"select * from MyTable"</span>);
+<span class="hljs-keyword">if</span> (model.<span class="hljs-built_in">lastError</span>().<span class="hljs-built_in">isValid</span>())
+    <span class="hljs-built_in">qDebug</span>() &lt;&lt; model.<span class="hljs-built_in">lastError</span>();</code></pre></div>
+
+<p><strong>See also</strong> <a href="#query">query</a>(), <a href="#queryChange">queryChange</a>(), and <a href="#lastError">lastError</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/S/">S</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSqlIndex/QSqlIndex/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QSqlIndex类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSqlQuery/QSqlQuery/">
+                        <span class="hidden-mobile">QSqlQuery类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

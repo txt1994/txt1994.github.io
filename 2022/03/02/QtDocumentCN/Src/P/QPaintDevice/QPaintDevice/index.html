@@ -1,0 +1,737 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QPaintDevice Class 公共类型 公共函数 受保护的函数 详细描述 成员类型文档 enum QPaintDevice::PaintDeviceMetric   成员函数文档 [protected]QPaintDevice::QPaintDevice() [virtual]QPaintDevice::~QPaintDevice() int QPaintDevice::colo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QPaintDevice类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/P/QPaintDevice/QPaintDevice/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QPaintDevice Class 公共类型 公共函数 受保护的函数 详细描述 成员类型文档 enum QPaintDevice::PaintDeviceMetric   成员函数文档 [protected]QPaintDevice::QPaintDevice() [virtual]QPaintDevice::~QPaintDevice() int QPaintDevice::colo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:50:10.369Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="P">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QPaintDevice类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QPaintDevice类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      46 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QPaintDevice类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qpaintdevice-class">QPaintDevice Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#shou-bao-hu-de-han-shu">受保护的函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qpaintdevice-paintdevicemetric">enum QPaintDevice::PaintDeviceMetric</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#protected-qpaintdevice-qpaintdevice"><code>[protected]</code>QPaintDevice::QPaintDevice()</a></li>
+<li><a href="#virtual-qpaintdevice-qpaintdevice"><code>[virtual]</code>QPaintDevice::~QPaintDevice()</a></li>
+<li><a href="#int-qpaintdevice-colorcount-const">int QPaintDevice::colorCount() const</a></li>
+<li><a href="#int-qpaintdevice-depth-const">int QPaintDevice::depth() const</a></li>
+<li><a href="#qreal-qtglobal-html-qreal-typedef-qpaintdevice-devicepixelratio-const">qreal</a></li>
+<li><a href="#since-5-6-qreal-qtglobal-html-qreal-typedef-qpaintdevice-devicepixelratiof-const"><code>[since 5.6]</code></a><a href="qtglobal.html#qreal-typedef">qreal</a> QPaintDevice::devicePixelRatioF() const</li>
+<li><a href="#int-qpaintdevice-height-const">int QPaintDevice::height() const</a></li>
+<li><a href="#int-qpaintdevice-heightmm-const">int QPaintDevice::heightMM() const</a></li>
+<li><a href="#int-qpaintdevice-logicaldpix-const">int QPaintDevice::logicalDpiX() const</a></li>
+<li><a href="#int-qpaintdevice-logicaldpiy-const">int QPaintDevice::logicalDpiY() const</a></li>
+<li><a href="#virtual-protected-int-qpaintdevice-metric-qpaintdevice-paintdevicemetric-paintdevicemetric-enum-metric-const"><code>[virtual protected]</code>int QPaintDevice::metric(</a><a href="#PaintDeviceMetric-enum">QPaintDevice::PaintDeviceMetric</a> <em>metric</em>) const</li>
+<li><a href="#pure-virtual-qpaintengine-qpaintengine-html-qpaintdevice-paintengine-const"><code>[pure virtual]</code></a><a href="qpaintengine.html">QPaintEngine</a> *QPaintDevice::paintEngine() const</li>
+<li><a href="#bool-qpaintdevice-paintingactive-const">bool QPaintDevice::paintingActive() const</a></li>
+<li><a href="#int-qpaintdevice-physicaldpix-const">int QPaintDevice::physicalDpiX() const</a></li>
+<li><a href="#int-qpaintdevice-physicaldpiy-const">int QPaintDevice::physicalDpiY() const</a></li>
+<li><a href="#int-qpaintdevice-width-const">int QPaintDevice::width() const</a></li>
+<li><a href="#int-qpaintdevice-widthmm-const">int QPaintDevice::widthMM() const</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QPaintDevice Class
+
+<p>QPaintDevice类是可以用<a href="qpainter.html">QPainter</a>进行绘画的对象的基类。<a href="#details">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qpaintdevice></qpaintdevice></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Gui REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Gui)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += gui</td>
+</tr>
+<tr>
+<td>继承者：</td>
+<td><a href="qimage.html">QImage</a>, <a href="qopenglpaintdevice.html">QOpenGLPaintDevice</a>, <a href="qpagedpaintdevice.html">QPagedPaintDevice</a>, <a href="qpaintdevicewindow.html">QPaintDeviceWindow</a>, <a href="qpicture.html">QPicture</a>, <a href="qpixmap.html">QPixmap</a>, <a href="qsvggenerator.html">QSvgGenerator</a>, and <a href="qwidget.html">QWidget</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qpaintdevice-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#PaintDeviceMetric-enum">PaintDeviceMetric</a></strong> { PdmWidth, PdmHeight, PdmWidthMM, PdmHeightMM, PdmNumColors, …, PdmDevicePixelRatioScaled }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual</th>
+<th><strong><a href="#dtor.QPaintDevice">~QPaintDevice</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td><strong><a href="#colorCount">colorCount</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#depth">depth</a></strong>() const</td>
+</tr>
+<tr>
+<td>qreal</td>
+<td><strong><a href="#devicePixelRatio">devicePixelRatio</a></strong>() const</td>
+</tr>
+<tr>
+<td>qreal</td>
+<td><strong><a href="#devicePixelRatioF">devicePixelRatioF</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#height">height</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#heightMM">heightMM</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#logicalDpiX">logicalDpiX</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#logicalDpiY">logicalDpiY</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual QPaintEngine *</td>
+<td><strong><a href="#paintEngine">paintEngine</a></strong>() const = 0</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#paintingActive">paintingActive</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#physicalDpiX">physicalDpiX</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#physicalDpiY">physicalDpiY</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#width">width</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#widthMM">widthMM</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="shou-bao-hu-de-han-shu">受保护的函数</span><a href="#shou-bao-hu-de-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QPaintDevice">QPaintDevice</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual int</td>
+<td><strong><a href="#metric">metric</a></strong>(QPaintDevice::PaintDeviceMetric <em>metric</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>绘画设备是一个二维空间的抽象，可以使用<a href="qpainter.html">QPainter</a>进行绘画。它的默认坐标系统的原点位于左上角的位置。X向右增加，Y向下增加。单位是一个像素。</p>
+<p>QPaintDevice的绘图功能目前由<a href="qwidget.html">QWidget</a>、<a href="qimage.html">QImage</a>、<a href="qpixmap.html">QPixmap</a>、<a href="qpicture.html">QPicture</a>和<a href="qprinter.html">QPrinter</a> 子类实现。</p>
+<p>要实现对一个新的后端的支持，你必须派生自QPaintDevice，并重新实现虚拟的<a href="#paintEngine">paintEngine</a>()函数来告诉<a href="qpainter.html">QPainter</a>应该使用哪个绘画引擎来在这个特定的设备上绘画。请注意，你也必须创建一个相应的绘画引擎，以便能够在设备上绘画，即从<a href="qpaintengine.html">QPaintEngine</a>派生出来并重新实现其虚拟函数。</p>
+<p><strong>警告：</strong> Qt要求在创建任何绘画设备之前存在一个<a href="qguiapplication.html">QGuiApplication</a> 对象。绘画设备会访问窗口系统资源，而这些资源在应用程序对象被创建之前不会被初始化。</p>
+<p>QPaintDevice类提供了几个返回各种设备指标的函数。<a href="#depth">depth</a>()函数返回其位深度（位平面的数量）。height](#height)()函数以默认的坐标系单位返回其高度（例如，<a href="qpixmap.html">QPixmap</a>和<a href="qwidget.html">QWidget</a>的像素），而<a href="#heightMM">heightMM</a>()返回设备的高度（毫米）。同样，<a href="#width">width</a>()和<a href="#widthMM">widthMM</a>()函数分别以默认坐标系单位和毫米为单位返回设备的宽度。另外，受保护的<a href="#metric">metric</a>()函数可以通过指定所需的<a href="#PaintDeviceMetric-enum">PaintDeviceMetric</a>作为参数来获取公制信息。</p>
+<p><a href="#logicalDpiX">logicalDpiX</a>()和<a href="#logicalDpiY">logicalDpiY</a>()函数返回设备的水平和垂直分辨率，单位为每英寸点数。<a href="#physicalDpiX">physicalDpiX</a>()和<a href="#physicalDpiY">physicalDpiY</a>()函数也返回设备的分辨率，单位是点/英寸，但要注意，如果逻辑和物理分辨率不同，相应的<a href="qpaintengine.html">QPaintEngine</a>必须处理这个映射关系。最后，<a href="#colorCount">colorCount</a>()函数返回绘画设备可用的不同颜色的数量。</p>
+<p><strong>See also</strong> <a href="qpaintengine.html">QPaintEngine</a>, <a href="qpainter.html">QPainter</a>, <a href="coordsys.html">Coordinate System</a>, and <a href="paintsystem.html">Paint System</a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qpaintdevice-paintdevicemetric">enum QPaintDevice::PaintDeviceMetric</span><a href="#enum-qpaintdevice-paintdevicemetric" class="header-anchor">#</a></h3><p>描述了涂装设备的各种指标。</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QPaintDevice::PdmWidth</code></td>
+<td><code>1</code></td>
+<td>绘画设备的宽度，以默认的坐标系单位（例如：<a href="qpixmap.html">QPixmap</a>和<a href="qwidget.html">QWidget</a>的像素）。也请参见<a href="#width">width</a>()。</td>
+</tr>
+<tr>
+<td><code>QPaintDevice::PdmHeight</code></td>
+<td><code>2</code></td>
+<td>绘画设备的高度，以默认的坐标系单位（例如，<a href="qpixmap.html">QPixmap</a>和<a href="qwidget.html">QWidget</a>的像素）。也请参见<a href="#height">height</a>()。</td>
+</tr>
+<tr>
+<td><code>QPaintDevice::PdmWidthMM</code></td>
+<td><code>3</code></td>
+<td>绘画设备的宽度，单位是毫米。参见<a href="#widthMM">widthMM</a>()。</td>
+</tr>
+<tr>
+<td><code>QPaintDevice::PdmHeightMM</code></td>
+<td><code>4</code></td>
+<td>涂装设备的高度，单位是毫米。参见<a href="#heightMM">heightMM</a>()。</td>
+</tr>
+<tr>
+<td><code>QPaintDevice::PdmNumColors</code></td>
+<td><code>5</code></td>
+<td>涂装设备可用的不同颜色的数量。参见<a href="#colorCount">colorCount</a>()。</td>
+</tr>
+<tr>
+<td><code>QPaintDevice::PdmDepth</code></td>
+<td><code>6</code></td>
+<td>绘图设备的位深度（位平面的数量）。参见<a href="#depth">depth</a>()。</td>
+</tr>
+<tr>
+<td><code>QPaintDevice::PdmDpiX</code></td>
+<td><code>7</code></td>
+<td>设备的水平分辨率，单位是每英寸点数。参见<a href="#logicalDpiX">logicalDpiX</a>()。</td>
+</tr>
+<tr>
+<td><code>QPaintDevice::PdmDpiY</code></td>
+<td><code>8</code></td>
+<td>设备的垂直分辨率，单位为每英寸点数。另请参阅<a href="#logicalDpiY">logicalDpiY</a>()。</td>
+</tr>
+<tr>
+<td><code>QPaintDevice::PdmPhysicalDpiX</code></td>
+<td><code>9</code></td>
+<td>设备的水平分辨率，单位为每英寸点数。另请参阅<a href="#physicalDpiX">physicalDpiX</a>()。</td>
+</tr>
+<tr>
+<td><code>QPaintDevice::PdmPhysicalDpiY</code></td>
+<td><code>10</code></td>
+<td>设备的垂直分辨率，单位为每英寸点数。参见<a href="#physicalDpiY">physicalDpiY</a>()。</td>
+</tr>
+<tr>
+<td><code>QPaintDevice::PdmDevicePixelRatio</code></td>
+<td><code>11</code></td>
+<td>设备的设备像素比。常见的值是普通dpi显示器为1，高dpi “视网膜 “显示器为2。</td>
+</tr>
+<tr>
+<td><code>QPaintDevice::PdmDevicePixelRatioScaled</code></td>
+<td><code>12</code></td>
+<td>设备的缩放设备像素比。这与PdmDevicePixelRatio相同，只是该值被一个恒定的因子缩放，以支持具有分数比例因子的绘画设备。使用的恒定缩放系数是devicePixelRatioFScale()。这个枚举值已在Qt 5.6中引入。</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#metric">metric</a>() and <a href="#devicePixelRatio">devicePixelRatio</a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="protected-qpaintdevice-qpaintdevice"><code>[protected]</code>QPaintDevice::QPaintDevice()</span><a href="#protected-qpaintdevice-qpaintdevice" class="header-anchor">#</a></h3><p>构建一个绘画设备。这个构造函数只能从QPaintDevice的子类中调用。</p>
+<h3><span id="virtual-qpaintdevice-qpaintdevice"><code>[virtual]</code>QPaintDevice::~QPaintDevice()</span><a href="#virtual-qpaintdevice-qpaintdevice" class="header-anchor">#</a></h3><p>销毁绘画设备并释放窗口系统资源。</p>
+<h3><span id="int-qpaintdevice-colorcount-const">int QPaintDevice::colorCount() const</span><a href="#int-qpaintdevice-colorcount-const" class="header-anchor">#</a></h3><p>返回该绘画设备可用的不同颜色的数量。如果可用的颜色数量太多，无法用int数据类型表示，那么将返回INT_MAX。</p>
+<h3><span id="int-qpaintdevice-depth-const">int QPaintDevice::depth() const</span><a href="#int-qpaintdevice-depth-const" class="header-anchor">#</a></h3><p>返回绘画设备的位深度（位平面的数量）。</p>
+<h3><span id="qreal-qpaintdevice-devicepixelratio-const"> QPaintDevice::devicePixelRatio() const</span><a href="#qreal-qpaintdevice-devicepixelratio-const" class="header-anchor">#</a></h3><p>返回设备的像素比。</p>
+<p>常见的值是普通dpi显示器为1，高dpi “retina “显示器为2。</p>
+<h3><span id="since-5-6-qreal-qpaintdevice-devicepixelratiof-const"><code>[since 5.6]</code> QPaintDevice::devicePixelRatioF() const</span><a href="#since-5-6-qreal-qpaintdevice-devicepixelratiof-const" class="header-anchor">#</a></h3><p>返回设备的设备像素比为一个浮点数。</p>
+<p>这个函数在Qt 5.6中引入。</p>
+<h3><span id="int-qpaintdevice-height-const">int QPaintDevice::height() const</span><a href="#int-qpaintdevice-height-const" class="header-anchor">#</a></h3><p>以默认的坐标系单位返回绘制设备的高度（例如，对于 <a href="qpixmap.html">QPixmap</a> 和 <a href="qwidget.html">QWidget</a> 的像素）。</p>
+<p><strong>See also</strong> <a href="#heightMM">heightMM</a>().</p>
+<h3><span id="int-qpaintdevice-heightmm-const">int QPaintDevice::heightMM() const</span><a href="#int-qpaintdevice-heightmm-const" class="header-anchor">#</a></h3><p>返回绘画设备的高度，单位是毫米。由于平台的限制，可能无法使用这个函数来确定屏幕上小部件的实际物理尺寸。</p>
+<p><strong>See also</strong> <a href="#height">height</a>().</p>
+<h3><span id="int-qpaintdevice-logicaldpix-const">int QPaintDevice::logicalDpiX() const</span><a href="#int-qpaintdevice-logicaldpix-const" class="header-anchor">#</a></h3><p>返回设备的水平分辨率，单位是点/英寸，这在计算字体大小时使用。对于X11来说，这通常与从<a href="#widthMM">widthMM</a>()计算出来的结果相同。</p>
+<p>注意，如果logicalDpiX()不等于<a href="#physicalDpiX">physicalDpiX</a>()，相应的<a href="qpaintengine.html">QPaintEngine</a>必须处理分辨率的映射。</p>
+<p><strong>See also</strong> <a href="#logicalDpiY">logicalDpiY</a>() and <a href="#physicalDpiX">physicalDpiX</a>().</p>
+<h3><span id="int-qpaintdevice-logicaldpiy-const">int QPaintDevice::logicalDpiY() const</span><a href="#int-qpaintdevice-logicaldpiy-const" class="header-anchor">#</a></h3><p>返回设备的垂直分辨率，单位是每英寸点数，在计算字体大小时使用。对于X11来说，这通常与从<a href="#heightMM">heightMM</a>()计算出来的结果相同。</p>
+<p>注意，如果logicalDpiY()不等于<a href="#physicalDpiY">physicalDpiY</a>()，相应的<a href="qpaintengine.html">QPaintEngine</a>必须处理这个分辨率映射。</p>
+<p><strong>See also</strong> <a href="#logicalDpiX">logicalDpiX</a>() and <a href="#physicalDpiY">physicalDpiY</a>().</p>
+<h3><span id="virtual-protected-int-qpaintdevice-metric-qpaintdevice-paintdevicemetric-metric-const"><code>[virtual protected]</code>int QPaintDevice::metric( <em>metric</em>) const</span><a href="#virtual-protected-int-qpaintdevice-metric-qpaintdevice-paintdevicemetric-metric-const" class="header-anchor">#</a></h3><p>返回给定绘画设备的度量信息 <em>metric</em>.</p>
+<p><strong>See also</strong> <a href="#PaintDeviceMetric-enum">PaintDeviceMetric</a>.</p>
+<h3><span id="pure-virtual-qpaintengine-qpaintdevice-paintengine-const"><code>[pure virtual]</code> *QPaintDevice::paintEngine() const</span><a href="#pure-virtual-qpaintengine-qpaintdevice-paintengine-const" class="header-anchor">#</a></h3><p>返回一个指向用于在设备上绘图的绘图引擎的指针。</p>
+<h3><span id="bool-qpaintdevice-paintingactive-const">bool QPaintDevice::paintingActive() const</span><a href="#bool-qpaintdevice-paintingactive-const" class="header-anchor">#</a></h3><p>如果该设备目前正在被绘制，即有人调用了<a href="qpainter.html#begin">QPainter::begin</a>()但还没有调用<a href="qpainter.html#end">QPainter::end</a>()，则返回<code>true</code>；否则返回<code>false</code>。</p>
+<p><strong>See also</strong> <a href="qpainter.html#isActive">QPainter::isActive</a>().</p>
+<h3><span id="int-qpaintdevice-physicaldpix-const">int QPaintDevice::physicalDpiX() const</span><a href="#int-qpaintdevice-physicaldpix-const" class="header-anchor">#</a></h3><p>返回设备的水平分辨率，单位是点/英寸。例如，在打印时，这个分辨率是指物理打印机的分辨率。另一方面，逻辑DPI是指实际绘画引擎使用的分辨率。</p>
+<p>注意，如果physicalDpiX()不等于<a href="#logicalDpiX">logicalDpiX</a>()，相应的<a href="qpaintengine.html">QPaintEngine</a>必须处理这个分辨率映射。</p>
+<p><strong>See also</strong> <a href="#physicalDpiY">physicalDpiY</a>() and <a href="#logicalDpiX">logicalDpiX</a>().</p>
+<h3><span id="int-qpaintdevice-physicaldpiy-const">int QPaintDevice::physicalDpiY() const</span><a href="#int-qpaintdevice-physicaldpiy-const" class="header-anchor">#</a></h3><p>返回设备的水平分辨率，单位是点/英寸。例如，在打印时，这个分辨率是指物理打印机的分辨率。另一方面，逻辑DPI是指实际绘画引擎所使用的分辨率。</p>
+<p>注意，如果physicalDpiY()不等于<a href="#logicalDpiY">logicalDpiY</a>()，相应的<a href="qpaintengine.html">QPaintEngine</a>必须处理这个分辨率映射。</p>
+<p><strong>See also</strong> <a href="#physicalDpiX">physicalDpiX</a>() and <a href="#logicalDpiY">logicalDpiY</a>().</p>
+<h3><span id="int-qpaintdevice-width-const">int QPaintDevice::width() const</span><a href="#int-qpaintdevice-width-const" class="header-anchor">#</a></h3><p>以默认的坐标系单位返回绘制设备的宽度（例如，对于<a href="qpixmap.html">QPixmap</a>和<a href="qwidget.html">QWidget</a>的像素）。</p>
+<p><strong>See also</strong> <a href="#widthMM">widthMM</a>().</p>
+<h3><span id="int-qpaintdevice-widthmm-const">int QPaintDevice::widthMM() const</span><a href="#int-qpaintdevice-widthmm-const" class="header-anchor">#</a></h3><p>返回绘画设备的宽度，单位是毫米。由于平台的限制，可能无法使用这个函数来确定屏幕上一个小部件的实际物理尺寸。</p>
+<p><strong>See also</strong> <a href="#width">width</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/P/">P</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/P/QPainter/QPainter/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QPainter类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/P/QPainterPath/QPainterPath/">
+                        <span class="hidden-mobile">QPainterPath类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

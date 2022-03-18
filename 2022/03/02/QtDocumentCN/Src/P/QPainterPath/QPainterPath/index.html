@@ -1,0 +1,1305 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QPainterPath Class 公共类型 公共函数 非相关成员 详细描述 构成一个QPainterPath QPainterPath信息 QPainterPath转换 例子   成员类型文档 enum QPainterPath::ElementType   成员函数文档 QPainterPath::QPainterPath(const QPainterPath &amp;path)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QPainterPath类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/P/QPainterPath/QPainterPath/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QPainterPath Class 公共类型 公共函数 非相关成员 详细描述 构成一个QPainterPath QPainterPath信息 QPainterPath转换 例子   成员类型文档 enum QPainterPath::ElementType   成员函数文档 QPainterPath::QPainterPath(const QPainterPath &amp;path)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpainterpath-construction.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qt-fillrule-oddeven.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qt-fillrule-winding.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpainterpath-example.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpainterpath-demo.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpainterpath-addellipse.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpainterpath-addpolygon.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpainterpath-addrectangle.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpainterpath-addtext.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpainterpath-arcto.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qpainterpath-cubicto.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qt-fillrule-oddeven.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qt-fillrule-winding.png">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:50:23.990Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="P">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://doc.qt.io/qt-6/images/qpainterpath-construction.png">
+  
+  
+  <title>QPainterPath类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QPainterPath类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      24k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      197 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QPainterPath类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qpainterpath-class">QPainterPath Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#fei-xiang-guan-cheng-yuan">非相关成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#gou-cheng-yi-ge-qpainterpath">构成一个QPainterPath</a></li>
+<li><a href="#qpainterpath-xin-xi">QPainterPath信息</a></li>
+<li><a href="#qpainterpath-zhuan-huan">QPainterPath转换</a></li>
+<li><a href="#li-zi">例子</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qpainterpath-elementtype">enum QPainterPath::ElementType</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qpainterpath-qpainterpath-const-qpainterpath-qpainterpath-path">QPainterPath::QPainterPath(const </a><a href="#QPainterPath">QPainterPath</a> &amp;<em>path</em>)</li>
+<li><a href="#qpainterpath-qpainterpath-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-startpoint">QPainterPath::QPainterPath(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>startPoint</em>)</li>
+<li><a href="#qpainterpath-qpainterpath">QPainterPath::QPainterPath()</a></li>
+<li><a href="#since-5-2-qpainterpath-qpainterpath-qpainterpath-operator-qpainterpath-qpainterpath-other"><code>[since 5.2]</code></a><a href="#QPainterPath">QPainterPath</a> &amp;QPainterPath::operator=(<a href="#QPainterPath">QPainterPath</a> &amp;&amp;<em>other</em>)</li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-operator-const-qpainterpath-qpainterpath-path">QPainterPath</a></li>
+<li><a href="#qpainterpath-qpainterpath">QPainterPath::~QPainterPath()</a></li>
+<li><a href="#void-qpainterpath-addellipse-const-qrectf-https-doc-qt-io-qt-6-qrectf-html-boundingrectangle">void QPainterPath::addEllipse(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a> &amp;<em>boundingRectangle</em>)</li>
+<li><a href="#void-qpainterpath-addellipse-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-x-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-y-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-width-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-height">void QPainterPath::addEllipse(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>x</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>y</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>width</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>height</em>)</li>
+<li><a href="#void-qpainterpath-addellipse-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-center-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-rx-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-ry">void QPainterPath::addEllipse(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>center</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>rx</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>ry</em>)</li>
+<li><a href="#void-qpainterpath-addpath-const-qpainterpath-qpainterpath-path">void QPainterPath::addPath(const </a><a href="#QPainterPath">QPainterPath</a> &amp;<em>path</em>)</li>
+<li><a href="#void-qpainterpath-addpolygon-const-qpolygonf-https-doc-qt-io-qt-6-qpolygonf-html-polygon">void QPainterPath::addPolygon(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpolygonf.html">QPolygonF</a> &amp;<em>polygon</em>)</li>
+<li><a href="#void-qpainterpath-addrect-const-qrectf-https-doc-qt-io-qt-6-qrectf-html-rectangle">void QPainterPath::addRect(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a> &amp;<em>rectangle</em>)</li>
+<li><a href="#void-qpainterpath-addrect-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-x-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-y-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-width-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-height">void QPainterPath::addRect(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>x</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>y</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>width</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>height</em>)</li>
+<li><a href="#void-qpainterpath-addregion-const-qregion-https-doc-qt-io-qt-6-qregion-html-region">void QPainterPath::addRegion(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qregion.html">QRegion</a> &amp;<em>region</em>)</li>
+<li><a href="#void-qpainterpath-addroundedrect-const-qrectf-https-doc-qt-io-qt-6-qrectf-html-rect-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-xradius-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-yradius-qt-sizemode-sizemode-enum-mode-qt-absolutesize">void QPainterPath::addRoundedRect(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a> &amp;<em>rect</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>xRadius</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>yRadius</em>, <a href="#SizeMode-enum">Qt::SizeMode</a> <em>mode</em> = Qt::AbsoluteSize)</li>
+<li><a href="#void-qpainterpath-addroundedrect-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-x-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-y-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-w-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-h-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-xradius-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-yradius-qt-sizemode-sizemode-enum-mode-qt-absolutesize">void QPainterPath::addRoundedRect(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>x</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>y</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>w</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>h</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>xRadius</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>yRadius</em>, <a href="#SizeMode-enum">Qt::SizeMode</a> <em>mode</em> = Qt::AbsoluteSize)</li>
+<li><a href="#void-qpainterpath-addtext-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-point-const-qfont-https-doc-qt-io-qt-6-qfont-html-font-const-qstring-https-doc-qt-io-qt-6-qstring-html-text">void QPainterPath::addText(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>point</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfont.html">QFont</a> &amp;<em>font</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>)</li>
+<li><a href="#void-qpainterpath-addtext-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-x-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-y-const-qfont-https-doc-qt-io-qt-6-qfont-html-font-const-qstring-https-doc-qt-io-qt-6-qstring-html-text">void QPainterPath::addText(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>x</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>y</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfont.html">QFont</a> &amp;<em>font</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>)</li>
+<li><a href="#qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-qpainterpath-angleatpercent-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-t-const">qreal</a></li>
+<li><a href="#void-qpainterpath-arcmoveto-const-qrectf-https-doc-qt-io-qt-6-qrectf-html-rectangle-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-angle">void QPainterPath::arcMoveTo(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a> &amp;<em>rectangle</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>angle</em>)</li>
+<li><a href="#void-qpainterpath-arcmoveto-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-x-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-y-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-width-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-height-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-angle">void QPainterPath::arcMoveTo(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>x</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>y</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>width</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>height</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>angle</em>)</li>
+<li><a href="#void-qpainterpath-arcto-const-qrectf-https-doc-qt-io-qt-6-qrectf-html-rectangle-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-startangle-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-sweeplength">void QPainterPath::arcTo(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a> &amp;<em>rectangle</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>startAngle</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>sweepLength</em>)</li>
+<li><a href="#void-qpainterpath-arcto-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-x-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-y-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-width-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-height-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-startangle-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-sweeplength">void QPainterPath::arcTo(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>x</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>y</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>width</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>height</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>startAngle</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>sweepLength</em>)</li>
+<li><a href="#qrectf-https-doc-qt-io-qt-6-qrectf-html-qpainterpath-boundingrect-const">QRectF</a></li>
+<li><a href="#since-5-13-int-qpainterpath-capacity-const"><code>[since 5.13]</code>int QPainterPath::capacity() const</a></li>
+<li><a href="#since-5-13-void-qpainterpath-clear"><code>[since 5.13]</code>void QPainterPath::clear()</a></li>
+<li><a href="#void-qpainterpath-closesubpath">void QPainterPath::closeSubpath()</a></li>
+<li><a href="#void-qpainterpath-connectpath-const-qpainterpath-qpainterpath-path">void QPainterPath::connectPath(const </a><a href="#QPainterPath">QPainterPath</a> &amp;<em>path</em>)</li>
+<li><a href="#bool-qpainterpath-contains-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-point-const">bool QPainterPath::contains(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>point</em>) const</li>
+<li><a href="#bool-qpainterpath-contains-const-qrectf-https-doc-qt-io-qt-6-qrectf-html-rectangle-const">bool QPainterPath::contains(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a> &amp;<em>rectangle</em>) const</li>
+<li><a href="#bool-qpainterpath-contains-const-qpainterpath-qpainterpath-p-const">bool QPainterPath::contains(const </a><a href="#QPainterPath">QPainterPath</a> &amp;<em>p</em>) const</li>
+<li><a href="#qrectf-https-doc-qt-io-qt-6-qrectf-html-qpainterpath-controlpointrect-const-1">QRectF</a></li>
+<li><a href="#void-qpainterpath-cubicto-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-c1-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-c2-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-endpoint">void QPainterPath::cubicTo(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>c1</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>c2</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>endPoint</em>)</li>
+<li><a href="#void-qpainterpath-cubicto-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-c1x-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-c1y-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-c2x-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-c2y-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-endpointx-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-endpointy">void QPainterPath::cubicTo(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>c1X</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>c1Y</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>c2X</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>c2Y</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>endPointX</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>endPointY</em>)</li>
+<li><a href="#qpointf-https-doc-qt-io-qt-6-qpointf-html-qpainterpath-currentposition-const">QPointF</a></li>
+<li><a href="#qpainterpath-element-https-doc-qt-io-qt-6-qpainterpath-element-html-qpainterpath-elementat-int-index-const">QPainterPath::Element</a></li>
+<li><a href="#int-qpainterpath-elementcount-const">int QPainterPath::elementCount() const</a></li>
+<li><a href="#qt-fillrule-fillrule-enum-qpainterpath-fillrule-const">Qt::FillRule</a></li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-intersected-const-qpainterpath-qpainterpath-p-const-1">QPainterPath</a></li>
+<li><a href="#bool-qpainterpath-intersects-const-qrectf-https-doc-qt-io-qt-6-qrectf-html-rectangle-const">bool QPainterPath::intersects(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a> &amp;<em>rectangle</em>) const</li>
+<li><a href="#bool-qpainterpath-intersects-const-qpainterpath-qpainterpath-p-const">bool QPainterPath::intersects(const </a><a href="#QPainterPath">QPainterPath</a> &amp;<em>p</em>) const</li>
+<li><a href="#bool-qpainterpath-isempty-const">bool QPainterPath::isEmpty() const</a></li>
+<li><a href="#qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-qpainterpath-length-const-1">qreal</a></li>
+<li><a href="#void-qpainterpath-lineto-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-endpoint">void QPainterPath::lineTo(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>endPoint</em>)</li>
+<li><a href="#void-qpainterpath-lineto-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-x-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-y">void QPainterPath::lineTo(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>x</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>y</em>)</li>
+<li><a href="#void-qpainterpath-moveto-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-point">void QPainterPath::moveTo(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>point</em>)</li>
+<li><a href="#void-qpainterpath-moveto-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-x-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-y">void QPainterPath::moveTo(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>x</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>y</em>)</li>
+<li><a href="#qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-qpainterpath-percentatlength-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-len-const-2">qreal</a></li>
+<li><a href="#qpointf-https-doc-qt-io-qt-6-qpointf-html-qpainterpath-pointatpercent-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-t-const-1">QPointF</a></li>
+<li><a href="#void-qpainterpath-quadto-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-c-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-endpoint">void QPainterPath::quadTo(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>c</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>endPoint</em>)</li>
+<li><a href="#void-qpainterpath-quadto-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-cx-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-cy-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-endpointx-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-endpointy">void QPainterPath::quadTo(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>cx</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>cy</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>endPointX</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>endPointY</em>)</li>
+<li><a href="#since-5-13-void-qpainterpath-reserve-int-size"><code>[since 5.13]</code>void QPainterPath::reserve(int <em>size</em>)</a></li>
+<li><a href="#void-qpainterpath-setelementpositionat-int-index-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-x-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-y">void QPainterPath::setElementPositionAt(int <em>index</em>, </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>x</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>y</em>)</li>
+<li><a href="#void-qpainterpath-setfillrule-qt-fillrule-fillrule-enum-fillrule">void QPainterPath::setFillRule(</a><a href="#FillRule-enum">Qt::FillRule</a> <em>fillRule</em>)</li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-simplified-const-2">QPainterPath</a></li>
+<li><a href="#qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-qpainterpath-slopeatpercent-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-t-const-3">qreal</a></li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-subtracted-const-qpainterpath-qpainterpath-p-const-3">QPainterPath</a></li>
+<li><a href="#void-qpainterpath-swap-qpainterpath-qpainterpath-other">void QPainterPath::swap(</a><a href="#QPainterPath">QPainterPath</a> &amp;<em>other</em>)</li>
+<li><a href="#qpolygonf-https-doc-qt-io-qt-6-qpolygonf-html-qpainterpath-tofillpolygon-const-qtransform-https-doc-qt-io-qt-6-qtransform-html-matrix-qtransform-const">QPolygonF</a></li>
+<li><a href="#qlist-https-doc-qt-io-qt-6-qlist-html-qpolygonf-https-doc-qt-io-qt-6-qpolygonf-html-qpainterpath-tofillpolygons-const-qtransform-https-doc-qt-io-qt-6-qtransform-html-matrix-qtransform-const">QList</a></li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-toreversed-const-4">QPainterPath</a></li>
+<li><a href="#qlist-https-doc-qt-io-qt-6-qlist-html-qpolygonf-https-doc-qt-io-qt-6-qpolygonf-html-qpainterpath-tosubpathpolygons-const-qtransform-https-doc-qt-io-qt-6-qtransform-html-matrix-qtransform-const-1">QList</a></li>
+<li><a href="#void-qpainterpath-translate-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-dx-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-dy">void QPainterPath::translate(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>dx</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#qreal-typedef">qreal</a> <em>dy</em>)</li>
+<li><a href="#void-qpainterpath-translate-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-offset">void QPainterPath::translate(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>offset</em>)</li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-translated-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-dx-qreal-https-doc-qt-io-qt-6-qtglobal-html-qreal-typedef-dy-const-5">QPainterPath</a></li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-translated-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-offset-const-6">QPainterPath</a></li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-united-const-qpainterpath-qpainterpath-p-const-7">QPainterPath</a></li>
+<li><a href="#bool-qpainterpath-operator-const-qpainterpath-qpainterpath-path-const">bool QPainterPath::operator!=(const </a><a href="#QPainterPath">QPainterPath</a> &amp;<em>path</em>) const</li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-operator-const-qpainterpath-qpainterpath-other-const-8">QPainterPath</a></li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-operator-const-qpainterpath-qpainterpath-other-9">QPainterPath</a></li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-operator-const-qpainterpath-qpainterpath-other-const-10">QPainterPath</a></li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-operator-const-qpainterpath-qpainterpath-other-11">QPainterPath</a></li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-operator-const-qpainterpath-qpainterpath-other-const-12">QPainterPath</a></li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-operator-const-qpainterpath-qpainterpath-other-13">QPainterPath</a></li>
+<li><a href="#bool-qpainterpath-operator-const-qpainterpath-qpainterpath-path-const">bool QPainterPath::operator==(const </a><a href="#QPainterPath">QPainterPath</a> &amp;<em>path</em>) const</li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-operator-const-qpainterpath-qpainterpath-other-const-14">QPainterPath</a></li>
+<li><a href="#qpainterpath-qpainterpath-qpainterpath-operator-const-qpainterpath-qpainterpath-other-15">QPainterPath</a></li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-cheng-yuan">相关非成员</a><ul>
+<li><a href="#qdatastream-https-doc-qt-io-qt-6-qdatastream-html-operator-qdatastream-https-doc-qt-io-qt-6-qdatastream-html-stream-const-qpainterpath-qpainterpath-path">QDataStream</a></li>
+<li><a href="#qdatastream-https-doc-qt-io-qt-6-qdatastream-html-operator-qdatastream-https-doc-qt-io-qt-6-qdatastream-html-stream-qpainterpath-qpainterpath-path-1">QDataStream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QPainterPath Class
+
+<p>QPainterPath类为绘画操作提供了一个容器，使得图形形状可以被构建和重复使用。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qpainterpath></qpainterpath></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Gui REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Gui)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += gui</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpainterpath-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>class</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpainterpath-element.html">Element</a></strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a href="#ElementType-enum">ElementType</a></strong> { MoveToElement, LineToElement, CurveToElement, CurveToDataElement }</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QPainterPath-2">QPainterPath</a></strong>(const QPainterPath &amp;<em>path</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QPainterPath-1">QPainterPath</a></strong>(const QPointF &amp;<em>startPoint</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QPainterPath">QPainterPath</a></strong>()</td>
+</tr>
+<tr>
+<td>QPainterPath &amp;</td>
+<td><strong><a href="#operator-eq-1">operator=</a></strong>(QPainterPath &amp;&amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QPainterPath &amp;</td>
+<td><strong><a href="#operator-eq">operator=</a></strong>(const QPainterPath &amp;<em>path</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QPainterPath">~QPainterPath</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addEllipse">addEllipse</a></strong>(const QRectF &amp;<em>boundingRectangle</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addEllipse-1">addEllipse</a></strong>(qreal <em>x</em>, qreal <em>y</em>, qreal <em>width</em>, qreal <em>height</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addEllipse-2">addEllipse</a></strong>(const QPointF &amp;<em>center</em>, qreal <em>rx</em>, qreal <em>ry</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addPath">addPath</a></strong>(const QPainterPath &amp;<em>path</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addPolygon">addPolygon</a></strong>(const QPolygonF &amp;<em>polygon</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addRect">addRect</a></strong>(const QRectF &amp;<em>rectangle</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addRect-1">addRect</a></strong>(qreal <em>x</em>, qreal <em>y</em>, qreal <em>width</em>, qreal <em>height</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addRegion">addRegion</a></strong>(const QRegion &amp;<em>region</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addRoundedRect">addRoundedRect</a></strong>(const QRectF &amp;<em>rect</em>, qreal <em>xRadius</em>, qreal <em>yRadius</em>, Qt::SizeMode <em>mode</em> = Qt::AbsoluteSize)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addRoundedRect-1">addRoundedRect</a></strong>(qreal <em>x</em>, qreal <em>y</em>, qreal <em>w</em>, qreal <em>h</em>, qreal <em>xRadius</em>, qreal <em>yRadius</em>, Qt::SizeMode <em>mode</em> = Qt::AbsoluteSize)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addText">addText</a></strong>(const QPointF &amp;<em>point</em>, const QFont &amp;<em>font</em>, const QString &amp;<em>text</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addText-1">addText</a></strong>(qreal <em>x</em>, qreal <em>y</em>, const QFont &amp;<em>font</em>, const QString &amp;<em>text</em>)</td>
+</tr>
+<tr>
+<td>qreal</td>
+<td><strong><a href="#angleAtPercent">angleAtPercent</a></strong>(qreal <em>t</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#arcMoveTo">arcMoveTo</a></strong>(const QRectF &amp;<em>rectangle</em>, qreal <em>angle</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#arcMoveTo-1">arcMoveTo</a></strong>(qreal <em>x</em>, qreal <em>y</em>, qreal <em>width</em>, qreal <em>height</em>, qreal <em>angle</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#arcTo">arcTo</a></strong>(const QRectF &amp;<em>rectangle</em>, qreal <em>startAngle</em>, qreal <em>sweepLength</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#arcTo-1">arcTo</a></strong>(qreal <em>x</em>, qreal <em>y</em>, qreal <em>width</em>, qreal <em>height</em>, qreal <em>startAngle</em>, qreal <em>sweepLength</em>)</td>
+</tr>
+<tr>
+<td>QRectF</td>
+<td><strong><a href="#boundingRect">boundingRect</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#capacity">capacity</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#clear">clear</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#closeSubpath">closeSubpath</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#connectPath">connectPath</a></strong>(const QPainterPath &amp;<em>path</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#contains">contains</a></strong>(const QPointF &amp;<em>point</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#contains-1">contains</a></strong>(const QRectF &amp;<em>rectangle</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#contains-2">contains</a></strong>(const QPainterPath &amp;<em>p</em>) const</td>
+</tr>
+<tr>
+<td>QRectF</td>
+<td><strong><a href="#controlPointRect">controlPointRect</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#cubicTo">cubicTo</a></strong>(const QPointF &amp;<em>c1</em>, const QPointF &amp;<em>c2</em>, const QPointF &amp;<em>endPoint</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#cubicTo-1">cubicTo</a></strong>(qreal <em>c1X</em>, qreal <em>c1Y</em>, qreal <em>c2X</em>, qreal <em>c2Y</em>, qreal <em>endPointX</em>, qreal <em>endPointY</em>)</td>
+</tr>
+<tr>
+<td>QPointF</td>
+<td><strong><a href="#currentPosition">currentPosition</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPainterPath::Element</td>
+<td><strong><a href="#elementAt">elementAt</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#elementCount">elementCount</a></strong>() const</td>
+</tr>
+<tr>
+<td>Qt::FillRule</td>
+<td><strong><a href="#fillRule">fillRule</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPainterPath</td>
+<td><strong><a href="#intersected">intersected</a></strong>(const QPainterPath &amp;<em>p</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#intersects">intersects</a></strong>(const QRectF &amp;<em>rectangle</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#intersects-1">intersects</a></strong>(const QPainterPath &amp;<em>p</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isEmpty">isEmpty</a></strong>() const</td>
+</tr>
+<tr>
+<td>qreal</td>
+<td><strong><a href="#length">length</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#lineTo">lineTo</a></strong>(const QPointF &amp;<em>endPoint</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#lineTo-1">lineTo</a></strong>(qreal <em>x</em>, qreal <em>y</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveTo">moveTo</a></strong>(const QPointF &amp;<em>point</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveTo-1">moveTo</a></strong>(qreal <em>x</em>, qreal <em>y</em>)</td>
+</tr>
+<tr>
+<td>qreal</td>
+<td><strong><a href="#percentAtLength">percentAtLength</a></strong>(qreal <em>len</em>) const</td>
+</tr>
+<tr>
+<td>QPointF</td>
+<td><strong><a href="#pointAtPercent">pointAtPercent</a></strong>(qreal <em>t</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#quadTo">quadTo</a></strong>(const QPointF &amp;<em>c</em>, const QPointF &amp;<em>endPoint</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#quadTo-1">quadTo</a></strong>(qreal <em>cx</em>, qreal <em>cy</em>, qreal <em>endPointX</em>, qreal <em>endPointY</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#reserve">reserve</a></strong>(int <em>size</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setElementPositionAt">setElementPositionAt</a></strong>(int <em>index</em>, qreal <em>x</em>, qreal <em>y</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setFillRule">setFillRule</a></strong>(Qt::FillRule <em>fillRule</em>)</td>
+</tr>
+<tr>
+<td>QPainterPath</td>
+<td><strong><a href="#simplified">simplified</a></strong>() const</td>
+</tr>
+<tr>
+<td>qreal</td>
+<td><strong><a href="#slopeAtPercent">slopeAtPercent</a></strong>(qreal <em>t</em>) const</td>
+</tr>
+<tr>
+<td>QPainterPath</td>
+<td><strong><a href="#subtracted">subtracted</a></strong>(const QPainterPath &amp;<em>p</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#swap">swap</a></strong>(QPainterPath &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QPolygonF</td>
+<td><strong><a href="#toFillPolygon">toFillPolygon</a></strong>(const QTransform &amp;<em>matrix</em> = QTransform()) const</td>
+</tr>
+<tr>
+<td>QList<qpolygonf></qpolygonf></td>
+<td><strong><a href="#toFillPolygons">toFillPolygons</a></strong>(const QTransform &amp;<em>matrix</em> = QTransform()) const</td>
+</tr>
+<tr>
+<td>QPainterPath</td>
+<td><strong><a href="#toReversed">toReversed</a></strong>() const</td>
+</tr>
+<tr>
+<td>QList<qpolygonf></qpolygonf></td>
+<td><strong><a href="#toSubpathPolygons">toSubpathPolygons</a></strong>(const QTransform &amp;<em>matrix</em> = QTransform()) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#translate">translate</a></strong>(qreal <em>dx</em>, qreal <em>dy</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#translate-1">translate</a></strong>(const QPointF &amp;<em>offset</em>)</td>
+</tr>
+<tr>
+<td>QPainterPath</td>
+<td><strong><a href="#translated">translated</a></strong>(qreal <em>dx</em>, qreal <em>dy</em>) const</td>
+</tr>
+<tr>
+<td>QPainterPath</td>
+<td><strong><a href="#translated-1">translated</a></strong>(const QPointF &amp;<em>offset</em>) const</td>
+</tr>
+<tr>
+<td>QPainterPath</td>
+<td><strong><a href="#united">united</a></strong>(const QPainterPath &amp;<em>p</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-not-eq">operator!=</a></strong>(const QPainterPath &amp;<em>path</em>) const</td>
+</tr>
+<tr>
+<td>QPainterPath</td>
+<td><strong><a href="#operator-and">operator&amp;</a></strong>(const QPainterPath &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>QPainterPath &amp;</td>
+<td><strong><a href="#operator-and-eq">operator&amp;=</a></strong>(const QPainterPath &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QPainterPath</td>
+<td><strong><a href="#operator-2b">operator+</a></strong>(const QPainterPath &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>QPainterPath &amp;</td>
+<td><strong><a href="#operator-2b-eq">operator+=</a></strong>(const QPainterPath &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QPainterPath</td>
+<td><strong><a href="#operator-">operator-</a></strong>(const QPainterPath &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>QPainterPath &amp;</td>
+<td><strong><a href="#operator--eq">operator-=</a></strong>(const QPainterPath &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-eq-eq">operator==</a></strong>(const QPainterPath &amp;<em>path</em>) const</td>
+</tr>
+<tr>
+<td>QPainterPath</td>
+<td><strong><a href="#operator-7c">operator|</a></strong>(const QPainterPath &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>QPainterPath &amp;</td>
+<td><strong><a href="#operator-7c-eq">operator|=</a></strong>(const QPainterPath &amp;<em>other</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="fei-xiang-guan-cheng-yuan">非相关成员</span><a href="#fei-xiang-guan-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QDataStream &amp;</th>
+<th><strong><a href="#operator-lt-lt-1">operator&lt;&lt;</a></strong>(QDataStream &amp;<em>stream</em>, const QPainterPath &amp;<em>path</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QDataStream &amp;</td>
+<td><strong><a href="#operator-gt-gt-1">operator&gt;&gt;</a></strong>(QDataStream &amp;<em>stream</em>, QPainterPath &amp;<em>path</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>画师路径是一个由若干图形构件组成的对象，如矩形、椭圆、直线和曲线。构件可以在封闭的子路径中被连接起来，例如，作为一个矩形或一个椭圆。一个封闭的路径有重合的起点和终点。或者它们可以作为非封闭的子路径独立存在，如直线和曲线。</p>
+<p>QPainterPath对象可以用于填充、勾勒和剪裁。要为一个给定的画师路径生成可填充的轮廓，请使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpainterpathstroker.html">QPainterPathStroker</a>类。与普通的绘图操作相比，绘图器路径的主要优势在于，复杂的形状只需要被创建一次；然后只需调用<a href="#drawPath">QPainter::drawPath</a>()函数就可以多次绘制。</p>
+<p>QPainterPath提供了一个函数集合，可以用来获取路径及其元素的信息。此外，还可以使用<a href="#toReversed">toReversed</a>()函数来反转元素的顺序。还有几个函数可以将这个绘画者路径对象转换为多边形表示。</p>
+<h3><span id="gou-cheng-yi-ge-qpainterpath">构成一个QPainterPath</span><a href="#gou-cheng-yi-ge-qpainterpath" class="header-anchor">#</a></h3><p>QPainterPath对象可以被构造成一个空的路径，有一个给定的起始点，或者是另一个QPainterPath对象的副本。创建后，可以使用<a href="#lineTo">lineTo</a>()、<a href="#arcTo">arcTo</a>()、<a href="#cubicTo">cubicTo</a>()和<a href="#quadTo">quadTo</a>()函数在路径上添加线条和曲线。线条和曲线从<a href="#currentPosition">currentPosition</a>()延伸到作为参数传递的位置。</p>
+<p>QPainterPath对象的<a href="#currentPosition">currentPosition</a>()总是被添加的最后一个子路径的结束位置（或初始起始点）。使用<a href="#moveTo">moveTo</a>()函数来移动<a href="#currentPosition">currentPosition</a>()，而不添加一个组件。<a href="#moveTo">moveTo</a>()函数隐含地启动一个新的子路径，并关闭前一个子路径。另一种启动新子路径的方法是调用<a href="#closeSubpath">closeSubpath</a>()函数，通过从<a href="#currentPosition">currentPosition</a>()添加一行到路径的起始位置来关闭当前路径。请注意，新路径的初始<a href="#currentPosition">currentPosition</a>()将是(0, 0)。</p>
+<p>QPainterPath类还提供了几个方便的函数，可以将封闭的子路径添加到画师路径中。<a href="#addEllipse">addEllipse</a>(), <a href="#addPath">addPath</a>(), <a href="#addRect">addRect</a>(), <a href="#addRegion">addRegion</a>() 和 <a href="#addText">addText</a>()。<a href="#addPolygon">addPolygon</a>()函数添加了一个<em>不封闭的</em>子路径。事实上，这些函数都是<a href="#moveTo">moveTo</a>()、<a href="#lineTo">lineTo</a>()和<a href="#cubicTo">cubicTo</a>() 操作的集合。</p>
+<p>此外，还可以用<a href="#connectPath">connectPath</a>()函数将一个路径添加到当前路径中。但要注意的是，这个函数将通过添加一条线将当前路径的最后一个元素与给定路径的第一个元素连接起来。</p>
+<p>下面是一个代码片段，展示了如何使用QPainterPath对象。</p>
+<img src="https://doc.qt.io/qt-6/images/qpainterpath-construction.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:100%;">
+
+<div class="code-wrapper"><pre><code class="hljs c++">QPainterPath path; 
+path.<span class="hljs-built_in">addRect</span>(<span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>); 
+path.<span class="hljs-built_in">moveTo</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>); 
+path.<span class="hljs-built_in">cubicTo</span>(<span class="hljs-number">99</span>, <span class="hljs-number">0</span>,  <span class="hljs-number">50</span>, <span class="hljs-number">50</span>,  <span class="hljs-number">99</span>, <span class="hljs-number">99</span>); 
+path.<span class="hljs-built_in">cubicTo</span>(<span class="hljs-number">0</span>, <span class="hljs-number">99</span>,  <span class="hljs-number">50</span>, <span class="hljs-number">50</span>,  <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+<span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>; 
+painter.<span class="hljs-built_in">fillRect</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>, Qt::white); 
+painter.<span class="hljs-built_in">setPen</span>(<span class="hljs-built_in">QPen</span>(<span class="hljs-built_in">QColor</span>(<span class="hljs-number">79</span>, <span class="hljs-number">106</span>, <span class="hljs-number">25</span>), <span class="hljs-number">1</span>, Qt::SolidLine,                    Qt::FlatCap, Qt::MiterJoin)); 
+painter.<span class="hljs-built_in">setBrush</span>(<span class="hljs-built_in">QColor</span>(<span class="hljs-number">122</span>, <span class="hljs-number">163</span>, <span class="hljs-number">39</span>));
+painter.<span class="hljs-built_in">drawPath</span>(path);</code></pre></div>
+
+<p>画家的路径在构建时最初是空的。我们首先添加一个矩形，它是一个封闭的子路径。然后我们添加两条贝塞尔曲线，它们共同构成了一个封闭的子路径，尽管它们并不是单独封闭的。最后，我们画出整个路径。路径是用默认的填充规则<a href="#FillRule-enum">Qt::OddEvenFill</a>来填充的。Qt提供了两种填充路径的方法。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><a href="#FillRule-enum">Qt::OddEvenFill</a></th>
+<th align="center"><a href="#FillRule-enum">Qt::WindingFill</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://doc.qt.io/qt-6/images/qt-fillrule-oddeven.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><img src="https://doc.qt.io/qt-6/images/qt-fillrule-winding.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+</tr>
+</tbody></table>
+<p>请参阅 <a href="#FillRule-enum">Qt::FillRule</a> 文档以了解规则的定义。画家路径当前设置的填充规则可以通过<a href="#fillRule">fillRule</a>()函数检索，并通过<a href="#setFillRule">setFillRule</a>()函数改变。</p>
+<h3><span id="qpainterpath-xin-xi">QPainterPath信息</span><a href="#qpainterpath-xin-xi" class="header-anchor">#</a></h3><p>QPainterPath类提供了一个函数集合，用于返回有关路径及其元素的信息。</p>
+<p><a href="#currentPosition">currentPosition</a>()函数返回最后添加的子路径的端点（或初始起始点）。<a href="#elementAt">elementAt</a>()函数可以用来检索各种子路径元素，元素的*数量可以用<a href="#elementCount">elementCount</a>()函数检索，<a href="#isEmpty">isEmpty</a>()函数告诉这个QPainterPath对象是否包含任何元素。</p>
+<p><a href="#controlPointRect">controlPointRect</a>()函数返回包含这个路径中所有点和控制点的矩形。这个函数的计算速度明显快于精确的<a href="#boundingRect">boundingRect</a>()，后者以浮点精度返回这个画师路径的边界矩形。</p>
+<p>最后，QPainterPath提供了<a href="#contains">contains</a>()函数，可以用来确定一个给定的点或矩形是否在路径内，以及<a href="#intersects">intersects</a>()函数，确定一个给定的矩形内的任何点是否也在这个路径内。</p>
+<h3><span id="qpainterpath-zhuan-huan">QPainterPath转换</span><a href="#qpainterpath-zhuan-huan" class="header-anchor">#</a></h3><p>由于兼容性的原因，可能需要简化绘画者路径的表示。QPainterPath提供了<a href="#toFillPolygon">toFillPolygon</a>()、<a href="#toFillPolygons">toFillPolygons</a>()和<a href="#toSubpathPolygons">toSubpathPolygons</a>()函数，将绘画者路径转换成多边形。<a href="#toFillPolygon">toFillPolygon</a>()将绘画者的路径作为一个单一的多边形返回，而后两个函数则返回一个多边形的列表。</p>
+<p>提供<a href="#toFillPolygons">toFillPolygons</a>()和<a href="#toSubpathPolygons">toSubpathPolygons</a>()函数是因为绘制几个小的多边形通常比绘制一个大的多边形要快，尽管绘制的总点数是一样的。两者之间的区别在于它们返回的多边形的*数量。<a href="#toSubpathPolygons">toSubpathPolygons</a>()为每个子路径创建一个多边形，而不考虑相交的子路径（即重叠的边界矩形），而<a href="#toFillPolygons">toFillPolygons</a>()函数对重叠的子路径只创建一个多边形。</p>
+<p><a href="#toFillPolygon">toFillPolygon</a>()和<a href="#toFillPolygons">toFillPolygons</a>()函数首先将所有子路径转换为多边形，然后使用回卷技术来确保重叠的子路径可以使用正确的填充规则进行填充。请注意，倒卷在多边形中插入了额外的线条，所以填充多边形的轮廓与路径的轮廓不一致。</p>
+<h3><span id="li-zi">例子</span><a href="#li-zi" class="header-anchor">#</a></h3><p>Qt提供了<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtwidgets-painting-painterpaths-example.html">Painter Paths Example</a>和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtwidgets-painting-deform-example.html">Vector Deformation example</a>，它们位于Qt的例子目录中。</p>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtwidgets-painting-painterpaths-example.html">Painter Paths Example</a>展示了如何使用painter paths来建立复杂的形状进行渲染，并让用户尝试填充和描边。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtwidgets-painting-deform-example.html">矢量变形实例</a>展示了如何使用QPainterPath来绘制文本。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtwidgets-painting-painterpaths-example.html">Painter Paths Example</a></th>
+<th align="center"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtwidgets-painting-deform-example.html">Vector Deformation Example</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://doc.qt.io/qt-6/images/qpainterpath-example.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><img src="https://doc.qt.io/qt-6/images/qpainterpath-demo.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpainterpathstroker.html">QPainterPathStroker</a>, <a href>QPainter</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qregion.html">QRegion</a>, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtwidgets-painting-painterpaths-example.html">Painter Paths Example</a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qpainterpath-elementtype">enum QPainterPath::ElementType</span><a href="#enum-qpainterpath-elementtype" class="header-anchor">#</a></h3><p>这个枚举描述了用于连接子路径中顶点的元素类型。</p>
+<p>请注意，使用<a href="#addEllipse">addEllipse</a>()、<a href="#addPath">addPath</a>()、<a href="#addPolygon">addPolygon</a>()、<a href="#addRect">addRect</a>()作为封闭子路径加入的元素。<a href="#addRegion">addRegion</a>()和<a href="#addText">addText</a>()等便利函数，实际上是使用<a href="#moveTo">moveTo</a>()、<a href="#lineTo">lineTo</a>()和<a href="#cubicTo">cubicTo</a>()函数作为独立元素的集合添加到路径。</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QPainterPath::MoveToElement</code></td>
+<td><code>0</code></td>
+<td>一个新的子路径。另见<a href="#moveTo">moveTo</a>()。</td>
+</tr>
+<tr>
+<td><code>QPainterPath::LineToElement</code></td>
+<td><code>1</code></td>
+<td>一条线。也见<a href="#lineTo">lineTo</a>()。</td>
+</tr>
+<tr>
+<td><code>QPainterPath::CurveToElement</code></td>
+<td><code>2</code></td>
+<td>一条曲线。参见<a href="#cubicTo">cubicTo</a>()和<a href="#quadTo">quadTo</a>()。</td>
+</tr>
+<tr>
+<td><code>QPainterPath::CurveToDataElement</code></td>
+<td><code>3</code></td>
+<td>在CurveToElement元素中描述一条曲线所需的额外数据。</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#elementAt">elementAt</a>() and <a href="#elementCount">elementCount</a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qpainterpath-qpainterpath-const-qpainterpath-amp-path">QPainterPath::QPainterPath(const  &amp;<em>path</em>)</span><a href="#qpainterpath-qpainterpath-const-qpainterpath-amp-path" class="header-anchor">#</a></h3><p>创建一个QPainterPath对象，它是给定<em>path</em>的副本。</p>
+<p><strong>See also</strong> <a href="#operator-eq">operator=</a>().</p>
+<h3><span id="qpainterpath-qpainterpath-const-qpointf-amp-startpoint">QPainterPath::QPainterPath(const  &amp;<em>startPoint</em>)</span><a href="#qpainterpath-qpainterpath-const-qpointf-amp-startpoint" class="header-anchor">#</a></h3><p>创建一个QPainterPath对象，将给定的<em>startPoint</em>作为其当前位置。</p>
+<h3><span id="qpainterpath-qpainterpath">QPainterPath::QPainterPath()</span><a href="#qpainterpath-qpainterpath" class="header-anchor">#</a></h3><p> 构造一个空的 QPainterPath 对象。 </p>
+<h3><span id="since-5-2-qpainterpath-amp-qpainterpath-operator-qpainterpath-amp-amp-other"><code>[since 5.2]</code> &amp;QPainterPath::operator=( &amp;&amp;<em>other</em>)</span><a href="#since-5-2-qpainterpath-amp-qpainterpath-operator-qpainterpath-amp-amp-other" class="header-anchor">#</a></h3><p> <em>将other</em>移动分配给此<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpainterpath.html">QPainterPath</a>实例。 </p>
+<p> 这个函数是在 Qt 5.2 中引入的。 </p>
+<h3><span id="qpainterpath-amp-qpainterpath-operator-const-qpainterpath-amp-path"> &amp;QPainterPath::operator=(const  &amp;<em>path</em>)</span><a href="#qpainterpath-amp-qpainterpath-operator-const-qpainterpath-amp-path" class="header-anchor">#</a></h3><p> 将给定<em>path</em>分配给此画家路径。 </p>
+<p><strong>See also</strong> <a href="#QPainterPath">QPainterPath</a>().</p>
+<h3><span id="qpainterpath-qpainterpath">QPainterPath::~QPainterPath()</span><a href="#qpainterpath-qpainterpath" class="header-anchor">#</a></h3><p>销毁这个 <a href>QPainterPath</a> 对象.</p>
+<h3><span id="void-qpainterpath-addellipse-const-qrectf-amp-boundingrectangle">void QPainterPath::addEllipse(const  &amp;<em>boundingRectangle</em>)</span><a href="#void-qpainterpath-addellipse-const-qrectf-amp-boundingrectangle" class="header-anchor">#</a></h3><p>在指定的<em>boundingRectangle</em>内创建一个椭圆并将其作为封闭子路径添加到画家路径。</p>
+<p>椭圆由一条顺时针曲线组成，从零度开始和结束（3 点钟位置）。</p>
+<img src="https://doc.qt.io/qt-6/images/qpainterpath-addellipse.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:100%;">
+
+<div class="code-wrapper"><pre><code class="hljs c++">QLinearGradient myGradient; 
+QPen myPen; 
+QRectF boundingRectangle; 
+QPainterPath myPath; 
+myPath.<span class="hljs-built_in">addEllipse</span>(boundingRectangle); 
+<span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>; 
+painter.<span class="hljs-built_in">setBrush</span>(myGradient); 
+painter.<span class="hljs-built_in">setPen</span>(myPen); 
+painter.<span class="hljs-built_in">drawPath</span>(myPath);</code></pre></div>
+
+<p><strong>See also</strong> <a href="#arcTo">arcTo</a>(), <a href="#drawEllipse">QPainter::drawEllipse</a>(), and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-addellipse-qreal-x-qreal-y-qreal-width-qreal-height">void QPainterPath::addEllipse( <em>x</em>,  <em>y</em>,  <em>width</em>,  <em>height</em>)</span><a href="#void-qpainterpath-addellipse-qreal-x-qreal-y-qreal-width-qreal-height" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p>在由其左上角定义的(<em>x</em>, <em>y</em>)、<em>width</em>和<em>height</em>的边界矩形内创建一个椭圆，并将其作为一个封闭的子路径添加到画师路径中。</p>
+<h3><span id="void-qpainterpath-addellipse-const-qpointf-amp-center-qreal-rx-qreal-ry">void QPainterPath::addEllipse(const  &amp;<em>center</em>,  <em>rx</em>,  <em>ry</em>)</span><a href="#void-qpainterpath-addellipse-const-qpointf-amp-center-qreal-rx-qreal-ry" class="header-anchor">#</a></h3><p> 这是一个重载函数。 </p>
+<p> 创建一个位于<em>center</em>的椭圆，半径为<em>rx</em>和<em>ry</em>，并将其作为封闭子路径添加到画家路径。 </p>
+<h3><span id="void-qpainterpath-addpath-const-qpainterpath-amp-path">void QPainterPath::addPath(const  &amp;<em>path</em>)</span><a href="#void-qpainterpath-addpath-const-qpainterpath-amp-path" class="header-anchor">#</a></h3><p> 将给定<em>path</em>添加到此路径作为封闭子路径。 </p>
+<p><strong>See also</strong> <a href="#connectPath">connectPath</a>() and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-addpolygon-const-qpolygonf-amp-polygon">void QPainterPath::addPolygon(const  &amp;<em>polygon</em>)</span><a href="#void-qpainterpath-addpolygon-const-qpolygonf-amp-polygon" class="header-anchor">#</a></h3><p>将给定的<em>polygon</em>作为（未闭合的）子路径添加到路径中。</p>
+<p>请注意，添加多边形后的当前位置是多边形中的最后一个<em>点</em>。要画一条线回到第一个点，请使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpainterpath.html#closeSubpath">closeSubpath</a> () 函数。</p>
+<img src="https://doc.qt.io/qt-6/images/qpainterpath-addpolygon.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:100%;">
+
+<div class="code-wrapper"><pre><code class="hljs c++">QLinearGradient myGradient; 
+QPen myPen; 
+QPolygonF myPolygon; 
+QPainterPath myPath; 
+myPath.<span class="hljs-built_in">addPolygon</span>(myPolygon); 
+<span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>; 
+painter.<span class="hljs-built_in">setBrush</span>(myGradient); 
+painter.<span class="hljs-built_in">setPen</span>(myPen); 
+painter.<span class="hljs-built_in">drawPath</span>(myPath);</code></pre></div>
+
+
+
+<p><strong>See also</strong> <a href="#lineTo">lineTo</a>() and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-addrect-const-qrectf-amp-rectangle">void QPainterPath::addRect(const  &amp;<em>rectangle</em>)</span><a href="#void-qpainterpath-addrect-const-qrectf-amp-rectangle" class="header-anchor">#</a></h3><p>将给定的<em>rectangle</em>作为封闭子路径添加到此路径。</p>
+<p><em>rectangle</em>被添加为一组顺时针的线。添加矩形后，画家路径的当前位置在<em>rectangle</em>的左上角。</p>
+<img src="https://doc.qt.io/qt-6/images/qpainterpath-addrectangle.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:100%;">
+
+<div class="code-wrapper"><pre><code class="hljs c++">QLinearGradient myGradient; 
+QPen myPen; 
+QRectF myRectangle; 
+QPainterPath myPath;
+myPath.<span class="hljs-built_in">addRect</span>(myRectangle); 
+<span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>; 
+painter.<span class="hljs-built_in">setBrush</span>(myGradient); 
+painter.<span class="hljs-built_in">setPen</span>(myPen); 
+painter.<span class="hljs-built_in">drawPath</span>(myPath);</code></pre></div>
+
+
+
+<p><strong>See also</strong> <a href="#addRegion">addRegion</a>(), <a href="#lineTo">lineTo</a>(), and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-addrect-qreal-x-qreal-y-qreal-width-qreal-height">void QPainterPath::addRect( <em>x</em>,  <em>y</em>,  <em>width</em>,  <em>height</em>)</span><a href="#void-qpainterpath-addrect-qreal-x-qreal-y-qreal-width-qreal-height" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p> 在位置 ( <em>x</em> , <em>y</em> ) 添加一个具有给定<em>width</em>和<em>height</em>的矩形作为封闭子路径。 </p>
+<h3><span id="void-qpainterpath-addregion-const-qregion-amp-region">void QPainterPath::addRegion(const  &amp;<em>region</em>)</span><a href="#void-qpainterpath-addregion-const-qregion-amp-region" class="header-anchor">#</a></h3><p> 通过将区域中的每个矩形添加为单独的封闭子路径，将给定<em>region</em>添加到路径中。 </p>
+<p><strong>See also</strong> <a href="#addRect">addRect</a>() and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-addroundedrect-const-qrectf-amp-rect-qreal-xradius-qreal-yradius-qt-sizemode-mode-qt-absolutesize">void QPainterPath::addRoundedRect(const  &amp;<em>rect</em>,  <em>xRadius</em>,  <em>yRadius</em>,  <em>mode</em> = Qt::AbsoluteSize)</span><a href="#void-qpainterpath-addroundedrect-const-qrectf-amp-rect-qreal-xradius-qreal-yradius-qt-sizemode-mode-qt-absolutesize" class="header-anchor">#</a></h3><p>将给定的带圆角的矩形<em>矩形添加到路径中。</em></p>
+<p><em>xRadius</em>和<em>yRadius</em>参数指定定义圆角矩形角的椭圆的半径。当<em>mode</em>为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#SizeMode-enum">Qt::RelativeSize</a>时，<em>xRadius</em>和<em>yRadius</em>分别以矩形宽度和高度的一半的百分比指定，并且应该在 0.0 到 100.0 的范围内。</p>
+<p><strong>See also</strong> <a href="#addRect">addRect</a>().</p>
+<h3><span id="void-qpainterpath-addroundedrect-qreal-x-qreal-y-qreal-w-qreal-h-qreal-xradius-qreal-yradius-qt-sizemode-mode-qt-absolutesize">void QPainterPath::addRoundedRect( <em>x</em>,  <em>y</em>,  <em>w</em>,  <em>h</em>,  <em>xRadius</em>,  <em>yRadius</em>,  <em>mode</em> = Qt::AbsoluteSize)</span><a href="#void-qpainterpath-addroundedrect-qreal-x-qreal-y-qreal-w-qreal-h-qreal-xradius-qreal-yradius-qt-sizemode-mode-qt-absolutesize" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p>将给定的矩形<em>x</em>、<em>y</em>、<em>w</em>、<em>h</em>的圆角添加到路径中。</p>
+<h3><span id="void-qpainterpath-addtext-const-qpointf-amp-point-const-qfont-amp-font-const-qstring-amp-text">void QPainterPath::addText(const  &amp;<em>point</em>, const  &amp;<em>font</em>, const  &amp;<em>text</em>)</span><a href="#void-qpainterpath-addtext-const-qpointf-amp-point-const-qfont-amp-font-const-qstring-amp-text" class="header-anchor">#</a></h3><p>将给定的<em>text</em>添加到这个路径中，作为一组由提供的<em>font</em>创建的封闭子路径。这些子路径的位置，使文本的基线的左端位于指定的<em>point</em>.</p>
+<p><img src="https://doc.qt.io/qt-6/images/qpainterpath-addtext.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs c++">QLinearGradient myGradient; 
+QPen myPen; QFont myFont; 
+<span class="hljs-function">QPointF <span class="hljs-title">baseline</span><span class="hljs-params">(x, y)</span></span>; 
+QPainterPath myPath; 
+myPath.<span class="hljs-built_in">addText</span>(baseline, myFont, <span class="hljs-built_in">tr</span>(<span class="hljs-string">"Qt"</span>)); 
+<span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>; 
+painter.<span class="hljs-built_in">setBrush</span>(myGradient); 
+painter.<span class="hljs-built_in">setPen</span>(myPen); 
+painter.<span class="hljs-built_in">drawPath</span>(myPath);</code></pre></div>
+
+<p><strong>See also</strong> <a href="#drawText">QPainter::drawText</a>() and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-addtext-qreal-x-qreal-y-const-qfont-amp-font-const-qstring-amp-text">void QPainterPath::addText( <em>x</em>,  <em>y</em>, const  &amp;<em>font</em>, const  &amp;<em>text</em>)</span><a href="#void-qpainterpath-addtext-qreal-x-qreal-y-const-qfont-amp-font-const-qstring-amp-text" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p>将给定的<em>text</em>添加到这个路径中，作为一组由提供的<em>font</em>创建的封闭子路径。这些子路径的位置，使文本基线的左端位于（<em>x</em>，<em>y</em>）所指定的点。</p>
+<h3><span id="qreal-qpainterpath-angleatpercent-qreal-t-const"> QPainterPath::angleAtPercent( <em>t</em>) const</span><a href="#qreal-qpainterpath-angleatpercent-qreal-t-const" class="header-anchor">#</a></h3><p>返回在百分比<em>t</em>处的路径切线的角度。参数<em>t</em>必须在0到1之间。</p>
+<p>角度的正值意味着逆时针方向，而负值意味着顺时针方向。零度是在3点钟的位置。</p>
+<p>请注意，与其他百分比方法类似，如果路径中存在曲线，百分比测量与长度的关系不是线性的。当曲线存在时，百分比参数被映射到贝塞尔方程的t参数上。</p>
+<h3><span id="void-qpainterpath-arcmoveto-const-qrectf-amp-rectangle-qreal-angle">void QPainterPath::arcMoveTo(const  &amp;<em>rectangle</em>,  <em>angle</em>)</span><a href="#void-qpainterpath-arcmoveto-const-qrectf-amp-rectangle-qreal-angle" class="header-anchor">#</a></h3><p>创建一个位于弧线上的移动，该弧线以<em>angle</em>占据给定的<em>rectangle</em>。</p>
+<p>角度的单位是度。顺时针方向的弧线可以用负的角度来指定。</p>
+<p><strong>See also</strong> <a href="#moveTo">moveTo</a>() and <a href="#arcTo">arcTo</a>().</p>
+<h3><span id="void-qpainterpath-arcmoveto-qreal-x-qreal-y-qreal-width-qreal-height-qreal-angle">void QPainterPath::arcMoveTo( <em>x</em>,  <em>y</em>,  <em>width</em>,  <em>height</em>,  <em>angle</em>)</span><a href="#void-qpainterpath-arcmoveto-qreal-x-qreal-y-qreal-width-qreal-height-qreal-angle" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p>创建一个位于弧线上的移动到，该弧线在<em>angle</em>处占据<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a>(<em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>)。</p>
+<h3><span id="void-qpainterpath-arcto-const-qrectf-amp-rectangle-qreal-startangle-qreal-sweeplength">void QPainterPath::arcTo(const  &amp;<em>rectangle</em>,  <em>startAngle</em>,  <em>sweepLength</em>)</span><a href="#void-qpainterpath-arcto-const-qrectf-amp-rectangle-qreal-startangle-qreal-sweeplength" class="header-anchor">#</a></h3><p>创建一个占据给定<em>rectangle</em>的弧，从指定的<em>startAngle</em>开始，逆时针延伸<em>sweepLength</em>度。</p>
+<p>角度的单位是度。顺时针方向的弧可以用负的角度来指定。</p>
+<p>请注意，如果弧的起点和当前位置还没有连接，这个函数会将它们连接起来。弧线被添加后，当前位置是弧线的最后一点。要画一条线回到第一个点，请使用<a href="#closeSubpath">closeSubpath</a>()函数。</p>
+<p><img src="https://doc.qt.io/qt-6/images/qpainterpath-arcto.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs c++">QPainterPath myPath; 
+myPath.<span class="hljs-built_in">moveTo</span>(center);
+myPath.<span class="hljs-built_in">arcTo</span>(boundingRect, startAngle,sweepLength);
+<span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>; 
+painter.<span class="hljs-built_in">setBrush</span>(myGradient); 
+painter.<span class="hljs-built_in">setPen</span>(myPen); 
+painter.<span class="hljs-built_in">drawPath</span>(myPath);</code></pre></div>
+
+<p><strong>See also</strong> <a href="#arcMoveTo">arcMoveTo</a>(), <a href="#addEllipse">addEllipse</a>(), <a href="#drawArc">QPainter::drawArc</a>(), <a href="#drawPie">QPainter::drawPie</a>(), and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-arcto-qreal-x-qreal-y-qreal-width-qreal-height-qreal-startangle-qreal-sweeplength">void QPainterPath::arcTo( <em>x</em>,  <em>y</em>,  <em>width</em>,  <em>height</em>,  <em>startAngle</em>,  <em>sweepLength</em>)</span><a href="#void-qpainterpath-arcto-qreal-x-qreal-y-qreal-width-qreal-height-qreal-startangle-qreal-sweeplength" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p>创建一个占据矩形<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a>(<em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>)的弧，从指定的<em>startAngle</em>开始，逆时针延伸<em>sweepLength</em>度。</p>
+<h3><span id="qrectf-qpainterpath-boundingrect-const"> QPainterPath::boundingRect() const</span><a href="#qrectf-qpainterpath-boundingrect-const" class="header-anchor">#</a></h3><p>返回这个画师路径的边界矩形，是一个浮点精度的矩形。</p>
+<p><strong>See also</strong> <a href="#controlPointRect">controlPointRect</a>().</p>
+<h3><span id="since-5-13-int-qpainterpath-capacity-const"><code>[since 5.13]</code>int QPainterPath::capacity() const</span><a href="#since-5-13-int-qpainterpath-capacity-const" class="header-anchor">#</a></h3><p>返回由<a href>QPainterPath</a>分配的元素数量。</p>
+<p> 这个函数是在 Qt 5.13 中引入的。 </p>
+<p><strong>See also</strong> <a href="#clear">clear</a>() and <a href="#reserve">reserve</a>().</p>
+<h3><span id="since-5-13-void-qpainterpath-clear"><code>[since 5.13]</code>void QPainterPath::clear()</span><a href="#since-5-13-void-qpainterpath-clear" class="header-anchor">#</a></h3><p>清除存储的路径元素。</p>
+<p>这使得路径可以重新使用以前的内存分配。</p>
+<p> 这个函数是在 Qt 5.13 中引入的。 </p>
+<p><strong>See also</strong> <a href="#reserve">reserve</a>() and <a href="#capacity">capacity</a>().</p>
+<h3><span id="void-qpainterpath-closesubpath">void QPainterPath::closeSubpath()</span><a href="#void-qpainterpath-closesubpath" class="header-anchor">#</a></h3><p>关闭当前的子路径，在子路径的起点画一条线，自动开始一个新的路径。新路径的当前点是（0，0）。</p>
+<p>如果子路径不包含任何元素，这个函数不做任何事情。</p>
+<p><strong>See also</strong> <a href="#moveTo">moveTo</a>() and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-connectpath-const-qpainterpath-amp-path">void QPainterPath::connectPath(const  &amp;<em>path</em>)</span><a href="#void-qpainterpath-connectpath-const-qpainterpath-amp-path" class="header-anchor">#</a></h3><p>将给定的<em>path</em>连接到<em>this</em>路径，从这个路径的最后一个元素到给定路径的第一个元素之间添加一条线。</p>
+<p><strong>See also</strong> <a href="#addPath">addPath</a>() and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="bool-qpainterpath-contains-const-qpointf-amp-point-const">bool QPainterPath::contains(const  &amp;<em>point</em>) const</span><a href="#bool-qpainterpath-contains-const-qpointf-amp-point-const" class="header-anchor">#</a></h3><p>如果给定的<em>point</em> 在路径内，返回 “true”，否则返回 “false”。</p>
+<p><strong>See also</strong> <a href="#intersects">intersects</a>().</p>
+<h3><span id="bool-qpainterpath-contains-const-qrectf-amp-rectangle-const">bool QPainterPath::contains(const  &amp;<em>rectangle</em>) const</span><a href="#bool-qpainterpath-contains-const-qrectf-amp-rectangle-const" class="header-anchor">#</a></h3><p>如果给定的<em>rectangle</em>在路径内，则返回<code>true</code>，否则返回<code>false</code>。</p>
+<h3><span id="bool-qpainterpath-contains-const-qpainterpath-amp-p-const">bool QPainterPath::contains(const  &amp;<em>p</em>) const</span><a href="#bool-qpainterpath-contains-const-qpainterpath-amp-p-const" class="header-anchor">#</a></h3><p>如果给定的路径<em>p</em>包含在当前的路径中，则返回<code>true</code>。如果当前路径的任何边与<em>p</em>相交，则返回<code>false</code>。</p>
+<p>对路径的设置操作将把路径视为区域。非封闭的路径将被视为隐式封闭。</p>
+<p><strong>See also</strong> <a href="#intersects">intersects</a>().</p>
+<h3><span id="qrectf-qpainterpath-controlpointrect-const"> QPainterPath::controlPointRect() const</span><a href="#qrectf-qpainterpath-controlpointrect-const" class="header-anchor">#</a></h3><p>返回包含此路径中所有点和控制点的矩形。</p>
+<p>这个函数的计算速度明显快于精确的<a href="#boundingRect">boundingRect</a>()，并且返回的矩形总是<a href="#boundingRect">boundingRect</a>()返回的矩形的超集。</p>
+<p><strong>See also</strong> <a href="#boundingRect">boundingRect</a>().</p>
+<h3><span id="void-qpainterpath-cubicto-const-qpointf-amp-c1-const-qpointf-amp-c2-const-qpointf-amp-endpoint">void QPainterPath::cubicTo(const  &amp;<em>c1</em>, const  &amp;<em>c2</em>, const  &amp;<em>endPoint</em>)</span><a href="#void-qpainterpath-cubicto-const-qpointf-amp-c1-const-qpointf-amp-c2-const-qpointf-amp-endpoint" class="header-anchor">#</a></h3><p>使用<em>c1</em>和<em>c2</em>指定的控制点，在当前位置和给定的<em>endPoint</em>之间添加一条立方贝塞尔曲线。</p>
+<p>曲线被添加后，当前位置会被更新到曲线的终点处。</p>
+<p><img src="https://doc.qt.io/qt-6/images/qpainterpath-cubicto.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs c++">QLinearGradient myGradient;
+QPen myPen; 
+QPainterPath myPath;
+myPath.<span class="hljs-built_in">cubicTo</span>(c1, c2, endPoint); 
+<span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>; 
+painter.<span class="hljs-built_in">setBrush</span>(myGradient); 
+painter.<span class="hljs-built_in">setPen</span>(myPen); 
+painter.<span class="hljs-built_in">drawPath</span>(myPath);</code></pre></div>
+
+<p><strong>See also</strong> <a href="#quadTo">quadTo</a>() and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-cubicto-qreal-c1x-qreal-c1y-qreal-c2x-qreal-c2y-qreal-endpointx-qreal-endpointy">void QPainterPath::cubicTo( <em>c1X</em>,  <em>c1Y</em>,  <em>c2X</em>,  <em>c2Y</em>,  <em>endPointX</em>,  <em>endPointY</em>)</span><a href="#void-qpainterpath-cubicto-qreal-c1x-qreal-c1y-qreal-c2x-qreal-c2y-qreal-endpointx-qreal-endpointy" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p>在当前位置和终点（<em>endPointX</em>，<em>endPointY</em>）之间添加一条立方贝塞尔曲线，控制点由（<em>c1X</em>，<em>c1Y</em>）和（<em>c2X</em>，<em>c2Y</em>）指定</p>
+<h3><span id="qpointf-qpainterpath-currentposition-const"> QPainterPath::currentPosition() const</span><a href="#qpointf-qpainterpath-currentposition-const" class="header-anchor">#</a></h3><p>返回路径的当前位置。</p>
+<h3><span id="qpainterpath-element-qpainterpath-elementat-int-index-const"> QPainterPath::elementAt(int <em>index</em>) const</span><a href="#qpainterpath-element-qpainterpath-elementat-int-index-const" class="header-anchor">#</a></h3><p>返回绘图者路径中给定的<em>index</em>处的元素。</p>
+<p><strong>See also</strong> <a href="#ElementType-enum">ElementType</a>, <a href="#elementCount">elementCount</a>(), and <a href="#isEmpty">isEmpty</a>().</p>
+<h3><span id="int-qpainterpath-elementcount-const">int QPainterPath::elementCount() const</span><a href="#int-qpainterpath-elementcount-const" class="header-anchor">#</a></h3><p>返回画师路径中的路径元素的数量。</p>
+<p><strong>See also</strong> <a href="#ElementType-enum">ElementType</a>, <a href="#elementAt">elementAt</a>(), and <a href="#isEmpty">isEmpty</a>().</p>
+<h3><span id="qt-fillrule-qpainterpath-fillrule-const"> QPainterPath::fillRule() const</span><a href="#qt-fillrule-qpainterpath-fillrule-const" class="header-anchor">#</a></h3><p>返回画师路径当前设置的填充规则。</p>
+<p><strong>See also</strong> <a href="#setFillRule">setFillRule</a>().</p>
+<h3><span id="qpainterpath-qpainterpath-intersected-const-qpainterpath-amp-p-const"> QPainterPath::intersected(const  &amp;<em>p</em>) const</span><a href="#qpainterpath-qpainterpath-intersected-const-qpainterpath-amp-p-const" class="header-anchor">#</a></h3><p>返回这个路径的填充区域和<em>p</em>的填充区域的交点。由于做贝塞尔曲线的交点在数值上的不稳定性，贝塞尔曲线可能会被压扁为线段。</p>
+<h3><span id="bool-qpainterpath-intersects-const-qrectf-amp-rectangle-const">bool QPainterPath::intersects(const  &amp;<em>rectangle</em>) const</span><a href="#bool-qpainterpath-intersects-const-qrectf-amp-rectangle-const" class="header-anchor">#</a></h3><p>如果给定的<em>rectangle</em>中的任何一点与路径相交，返回 “true”；否则返回 “false”。</p>
+<p>如果构成矩形的任何一条线与路径的一部分相交，或者矩形的任何一部分与路径所包围的任何区域重叠，就会出现相交。这个函数尊重当前的<a href="#fillRule">fillRule</a>，以确定什么被认为是在路径内。</p>
+<p><strong>See also</strong> <a href="#contains">contains</a>().</p>
+<h3><span id="bool-qpainterpath-intersects-const-qpainterpath-amp-p-const">bool QPainterPath::intersects(const  &amp;<em>p</em>) const</span><a href="#bool-qpainterpath-intersects-const-qpainterpath-amp-p-const" class="header-anchor">#</a></h3><p>如果当前路径与给定路径<em>p</em>的任何一点相交，则返回<code>true</code>。如果当前路径包含或被<em>p</em>的任何部分所包含，也会返回`true。</p>
+<p>对路径的设置操作将把路径视为区域。非封闭的路径将被视为隐式封闭。</p>
+<p><strong>See also</strong> <a href="#contains">contains</a>().</p>
+<h3><span id="bool-qpainterpath-isempty-const">bool QPainterPath::isEmpty() const</span><a href="#bool-qpainterpath-isempty-const" class="header-anchor">#</a></h3><p>如果这个路径中没有元素，或者唯一的元素是<a href="#ElementType-enum">MoveToElement</a>，则返回 “true”；否则返回 “false”。</p>
+<p><strong>See also</strong> <a href="#elementCount">elementCount</a>().</p>
+<h3><span id="qreal-qpainterpath-length-const"> QPainterPath::length() const</span><a href="#qreal-qpainterpath-length-const" class="header-anchor">#</a></h3><p>返回当前路径的长度。</p>
+<h3><span id="void-qpainterpath-lineto-const-qpointf-amp-endpoint">void QPainterPath::lineTo(const  &amp;<em>endPoint</em>)</span><a href="#void-qpainterpath-lineto-const-qpointf-amp-endpoint" class="header-anchor">#</a></h3><p>从当前位置到给定的<em>endPoint</em>添加一条直线。直线画完后，当前位置会被更新到直线的终点处。</p>
+<p><strong>See also</strong> <a href="#addPolygon">addPolygon</a>(), <a href="#addRect">addRect</a>(), and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-lineto-qreal-x-qreal-y">void QPainterPath::lineTo( <em>x</em>,  <em>y</em>)</span><a href="#void-qpainterpath-lineto-qreal-x-qreal-y" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p>从当前位置到点（<em>x</em>，<em>y</em>）画一条线。</p>
+<h3><span id="void-qpainterpath-moveto-const-qpointf-amp-point">void QPainterPath::moveTo(const  &amp;<em>point</em>)</span><a href="#void-qpainterpath-moveto-const-qpointf-amp-point" class="header-anchor">#</a></h3><p>将当前点移动到给定的<em>点</em>，隐含地开始一个新的子路径并关闭前一个子路径。</p>
+<p><strong>See also</strong> <a href="#closeSubpath">closeSubpath</a>() and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-moveto-qreal-x-qreal-y">void QPainterPath::moveTo( <em>x</em>,  <em>y</em>)</span><a href="#void-qpainterpath-moveto-qreal-x-qreal-y" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p>将当前位置移动到（<em>x</em>，<em>y</em>），并开始一个新的子路径，隐含地关闭前一个路径。</p>
+<h3><span id="qreal-qpainterpath-percentatlength-qreal-len-const"> QPainterPath::percentAtLength( <em>len</em>) const</span><a href="#qreal-qpainterpath-percentatlength-qreal-len-const" class="header-anchor">#</a></h3><p>返回指定长度<em>len</em>的整个路径的百分比。</p>
+<p>请注意，与其他百分比方法类似，如果路径中存在曲线，百分比的测量与长度的关系不是线性的。当曲线存在时，百分比参数被映射到贝塞尔方程的t参数上。</p>
+<h3><span id="qpointf-qpainterpath-pointatpercent-qreal-t-const"> QPainterPath::pointAtPercent( <em>t</em>) const</span><a href="#qpointf-qpainterpath-pointatpercent-qreal-t-const" class="header-anchor">#</a></h3><p>返回当前路径的百分比<em>t</em>处的点。参数<em>t</em>必须在0到1之间。</p>
+<p>请注意，与其他百分比方法类似，如果路径中存在曲线，百分比的测量与长度的关系不是线性的。当曲线存在时，百分比参数被映射到贝塞尔方程的t参数上。</p>
+<h3><span id="void-qpainterpath-quadto-const-qpointf-amp-c-const-qpointf-amp-endpoint">void QPainterPath::quadTo(const  &amp;<em>c</em>, const  &amp;<em>endPoint</em>)</span><a href="#void-qpainterpath-quadto-const-qpointf-amp-c-const-qpointf-amp-endpoint" class="header-anchor">#</a></h3><p>在当前位置和给定的<em>endPoint</em>之间添加一条二次Bezier曲线，控制点由<em>c</em>指定。</p>
+<p>曲线被添加后，当前点会被更新到曲线的终点处。</p>
+<p><strong>See also</strong> <a href="#cubicTo">cubicTo</a>() and <a href="#composing-a-qpainterpath">Composing a QPainterPath</a>.</p>
+<h3><span id="void-qpainterpath-quadto-qreal-cx-qreal-cy-qreal-endpointx-qreal-endpointy">void QPainterPath::quadTo( <em>cx</em>,  <em>cy</em>,  <em>endPointX</em>,  <em>endPointY</em>)</span><a href="#void-qpainterpath-quadto-qreal-cx-qreal-cy-qreal-endpointx-qreal-endpointy" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p>在当前点和端点（<em>endPointX</em>, <em>endPointY</em>）之间添加一条二次贝塞尔曲线，控制点由（<em>cx</em>, <em>cy</em>）指定。</p>
+<h3><span id="since-5-13-void-qpainterpath-reserve-int-size"><code>[since 5.13]</code>void QPainterPath::reserve(int <em>size</em>)</span><a href="#since-5-13-void-qpainterpath-reserve-int-size" class="header-anchor">#</a></h3><p>在<a href>QPainterPath</a>的内部内存中保留一定数量的元素。</p>
+<p>试图为至少<em>size</em>的元素分配内存。</p>
+<p> 这个函数是在 Qt 5.13 中引入的。 </p>
+<p><strong>See also</strong> <a href="#clear">clear</a>(), <a href="#capacity">capacity</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlist.html#reserve">QList::reserve</a>().</p>
+<h3><span id="void-qpainterpath-setelementpositionat-int-index-qreal-x-qreal-y">void QPainterPath::setElementPositionAt(int <em>index</em>,  <em>x</em>,  <em>y</em>)</span><a href="#void-qpainterpath-setelementpositionat-int-index-qreal-x-qreal-y" class="header-anchor">#</a></h3><p>将索引<em>index</em>处的元素的x和y坐标设置为<em>x</em>和<em>y</em>。</p>
+<h3><span id="void-qpainterpath-setfillrule-qt-fillrule-fillrule">void QPainterPath::setFillRule( <em>fillRule</em>)</span><a href="#void-qpainterpath-setfillrule-qt-fillrule-fillrule" class="header-anchor">#</a></h3><p>将绘画者路径的填充规则设置为给定的<em>fillRule</em>。Qt提供了两种填充路径的方法:</p>
+<table>
+<thead>
+<tr>
+<th align="center"><a href="#FillRule-enum">Qt::OddEvenFill</a> (default)</th>
+<th align="center"><a href="#FillRule-enum">Qt::WindingFill</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://doc.qt.io/qt-6/images/qt-fillrule-oddeven.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><img src="https://doc.qt.io/qt-6/images/qt-fillrule-winding.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#fillRule">fillRule</a>().</p>
+<h3><span id="qpainterpath-qpainterpath-simplified-const"> QPainterPath::simplified() const</span><a href="#qpainterpath-qpainterpath-simplified-const" class="header-anchor">#</a></h3><p>返回这个路径的简化版本。这意味着合并所有相交的子路径，并返回一个不包含相交边的路径。连续的平行线也将被合并。简化后的路径将始终使用默认的填充规则，<a href="#FillRule-enum">Qt::OddEvenFill</a>。由于做贝塞尔曲线交点的数值不稳定，贝塞尔曲线可能会被压扁成线段。</p>
+<h3><span id="qreal-qpainterpath-slopeatpercent-qreal-t-const"> QPainterPath::slopeAtPercent( <em>t</em>) const</span><a href="#qreal-qpainterpath-slopeatpercent-qreal-t-const" class="header-anchor">#</a></h3><p>返回百分比为<em>t</em>的路径的斜率。参数<em>t</em>必须在0到1之间。</p>
+<p>请注意，与其他百分比方法类似，如果路径中存在曲线，百分比的测量与长度的关系不是线性的。当曲线存在时，百分比参数被映射到贝塞尔方程的t参数上。</p>
+<h3><span id="qpainterpath-qpainterpath-subtracted-const-qpainterpath-amp-p-const"> QPainterPath::subtracted(const  &amp;<em>p</em>) const</span><a href="#qpainterpath-qpainterpath-subtracted-const-qpainterpath-amp-p-const" class="header-anchor">#</a></h3><p>返回一个路径，即<em>p</em>的填充面积减去这个路径的填充面积。</p>
+<p>对路径的设置操作将把路径视为区域。非封闭的路径将被视为隐含的封闭。由于做贝塞尔曲线交点的数值不稳定，贝塞尔曲线可能被压扁为线段。</p>
+<h3><span id="void-qpainterpath-swap-qpainterpath-amp-other">void QPainterPath::swap( &amp;<em>other</em>)</span><a href="#void-qpainterpath-swap-qpainterpath-amp-other" class="header-anchor">#</a></h3><p>将画师路径<em>other</em>与此画师路径交换。这个操作非常快，而且不会失败。</p>
+<h3><span id="qpolygonf-qpainterpath-tofillpolygon-const-qtransform-amp-matrix-qtransform-const"> QPainterPath::toFillPolygon(const  &amp;<em>matrix</em> = QTransform()) const</span><a href="#qpolygonf-qpainterpath-tofillpolygon-const-qtransform-amp-matrix-qtransform-const" class="header-anchor">#</a></h3><p>使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtransform.html">QTransform</a> <em>matrix</em>将路径转换为一个多边形，并返回多边形。</p>
+<p>创建多边形的方法是首先将所有子路径转换为多边形，然后使用回卷技术，确保重叠的子路径可以使用正确的填充规则进行填充。</p>
+<p>注意，倒卷在多边形中插入了加线，因此填充多边形的轮廓与路径的轮廓不一致。</p>
+<p><strong>See also</strong> <a href="#toSubpathPolygons">toSubpathPolygons</a>(), <a href="#toFillPolygons">toFillPolygons</a>(), and <a href="#qpainterpath-conversion">QPainterPath Conversion</a>.</p>
+<h3><span id="qlist-lt-qpolygonf-gt-qpainterpath-tofillpolygons-const-qtransform-amp-matrix-qtransform-const">&lt;&gt; QPainterPath::toFillPolygons(const  &amp;<em>matrix</em> = QTransform()) const</span><a href="#qlist-lt-qpolygonf-gt-qpainterpath-tofillpolygons-const-qtransform-amp-matrix-qtransform-const" class="header-anchor">#</a></h3><p>使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtransform.html">QTransform</a> <em>matrix</em>将路径转换为多边形的列表，并返回该列表。</p>
+<p>该函数与<a href="#toFillPolygon">toFillPolygon</a>()函数的不同之处在于，它创建了几个多边形。之所以提供这个函数，是因为绘制几个小的多边形通常比绘制一个大的多边形要快，尽管绘制的总点数是一样的。</p>
+<p>toFillPolygons()函数与<a href="#toSubpathPolygons">toSubpathPolygons</a>()函数不同的是，它只为有重叠边界矩形的子路径创建多边形。</p>
+<p>像<a href="#toFillPolygon">toFillPolygon</a>()函数一样，这个函数使用了一个回卷技术，以确保重叠的子路径可以使用正确的填充规则进行填充。注意，倒卷在多边形中插入了加线，所以填充多边形的轮廓与路径的轮廓不一致。</p>
+<p><strong>See also</strong> <a href="#toSubpathPolygons">toSubpathPolygons</a>(), <a href="#toFillPolygon">toFillPolygon</a>(), and <a href="#qpainterpath-conversion">QPainterPath Conversion</a>.</p>
+<h3><span id="qpainterpath-qpainterpath-toreversed-const"> QPainterPath::toReversed() const</span><a href="#qpainterpath-qpainterpath-toreversed-const" class="header-anchor">#</a></h3><p>创建并返回路径的反转副本。</p>
+<p>反转的是元素的顺序：如果一个<a href>QPainterPath</a>是按照指定的顺序调用<a href="#moveTo">moveTo</a>()、<a href="#lineTo">lineTo</a>()和<a href="#cubicTo">cubicTo</a>()函数组成的，反转的副本是按照调用<a href="#cubicTo">cubicTo</a>()、<a href="#lineTo">lineTo</a>()和<a href="#moveTo">moveTo</a>()组成。</p>
+<h3><span id="qlist-lt-qpolygonf-gt-qpainterpath-tosubpathpolygons-const-qtransform-amp-matrix-qtransform-const">&lt;&gt; QPainterPath::toSubpathPolygons(const  &amp;<em>matrix</em> = QTransform()) const</span><a href="#qlist-lt-qpolygonf-gt-qpainterpath-tosubpathpolygons-const-qtransform-amp-matrix-qtransform-const" class="header-anchor">#</a></h3><p>使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtransform.html">QTransform</a> <em>matrix</em>将路径转换为多边形列表，并返回该列表。</p>
+<p>这个函数为每个子路径创建一个多边形，而不考虑相交的子路径（即重叠的边界矩形）。为了确保这种重叠的子路径被正确填充，请使用<a href="#toFillPolygons">toFillPolygons</a>()函数代替。</p>
+<p><strong>See also</strong> <a href="#toFillPolygons">toFillPolygons</a>(), <a href="#toFillPolygon">toFillPolygon</a>(), and <a href="#qpainterpath-conversion">QPainterPath Conversion</a>.</p>
+<h3><span id="void-qpainterpath-translate-qreal-dx-qreal-dy">void QPainterPath::translate( <em>dx</em>,  <em>dy</em>)</span><a href="#void-qpainterpath-translate-qreal-dx-qreal-dy" class="header-anchor">#</a></h3><p>将路径中的所有元素按(<em>dx</em>, <em>dy</em>)平移。</p>
+<p><strong>See also</strong> <a href="#translated">translated</a>().</p>
+<h3><span id="void-qpainterpath-translate-const-qpointf-amp-offset">void QPainterPath::translate(const  &amp;<em>offset</em>)</span><a href="#void-qpainterpath-translate-const-qpointf-amp-offset" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p>将路径中的所有元素按给定的<em>offset</em>进行平移。</p>
+<p><strong>See also</strong> <a href="#translated">translated</a>().</p>
+<h3><span id="qpainterpath-qpainterpath-translated-qreal-dx-qreal-dy-const"> QPainterPath::translated( <em>dx</em>,  <em>dy</em>) const</span><a href="#qpainterpath-qpainterpath-translated-qreal-dx-qreal-dy-const" class="header-anchor">#</a></h3><p>返回经过(<em>dx</em>, <em>dy</em>)转换的路径的副本。</p>
+<p><strong>See also</strong> <a href="#translate">translate</a>().</p>
+<h3><span id="qpainterpath-qpainterpath-translated-const-qpointf-amp-offset-const"> QPainterPath::translated(const  &amp;<em>offset</em>) const</span><a href="#qpainterpath-qpainterpath-translated-const-qpointf-amp-offset-const" class="header-anchor">#</a></h3><p> 这是一个重载函数。</p>
+<p>返回由给定的<em>offset</em>转换的路径的副本。</p>
+<p><strong>See also</strong> <a href="#translate">translate</a>().</p>
+<h3><span id="qpainterpath-qpainterpath-united-const-qpainterpath-amp-p-const"> QPainterPath::united(const  &amp;<em>p</em>) const</span><a href="#qpainterpath-qpainterpath-united-const-qpainterpath-amp-p-const" class="header-anchor">#</a></h3><p>返回一个路径，它是这个路径的填充区域和<em>p</em>的填充区域的结合。</p>
+<p>对路径的设置操作将把路径视为区域。非封闭的路径将被视为隐式封闭。由于在做贝塞尔曲线的交叉点时数值不稳定，贝塞尔曲线可能会被压扁成线段。</p>
+<p><strong>See also</strong> <a href="#intersected">intersected</a>() and <a href="#subtracted">subtracted</a>().</p>
+<h3><span id="bool-qpainterpath-operator-const-qpainterpath-amp-path-const">bool QPainterPath::operator!=(const  &amp;<em>path</em>) const</span><a href="#bool-qpainterpath-operator-const-qpainterpath-amp-path-const" class="header-anchor">#</a></h3><p>如果这个画家的路径与给定的<em>path</em>不同，返回<code>true</code>。</p>
+<p>请注意，比较路径可能涉及到每个元素的比较，这对于复杂的路径来说可能会很慢。</p>
+<p><strong>See also</strong> <a href="#operator-eq-eq">operator==</a>().</p>
+<h3><span id="qpainterpath-qpainterpath-operator-amp-const-qpainterpath-amp-other-const"> QPainterPath::operator&amp;(const  &amp;<em>other</em>) const</span><a href="#qpainterpath-qpainterpath-operator-amp-const-qpainterpath-amp-other-const" class="header-anchor">#</a></h3><p>返回此路径与<em>other</em>路径的交点</p>
+<p><strong>See also</strong> <a href="#intersected">intersected</a>(), <a href="#operator-and-eq">operator&amp;=</a>(), <a href="#united">united</a>(), and <a href="#operator-7c">operator|</a>().</p>
+<h3><span id="qpainterpath-amp-qpainterpath-operator-amp-const-qpainterpath-amp-other"> &amp;QPainterPath::operator&amp;=(const  &amp;<em>other</em>)</span><a href="#qpainterpath-amp-qpainterpath-operator-amp-const-qpainterpath-amp-other" class="header-anchor">#</a></h3><p>将此路径与<em>other</em>相交，并返回此路径的引用。</p>
+<p><strong>See also</strong> <a href="#intersected">intersected</a>(), <a href="#operator-and">operator&amp;</a>(), and <a href="#operator-7c-eq">operator|=</a>().</p>
+<h3><span id="qpainterpath-qpainterpath-operator-const-qpainterpath-amp-other-const"> QPainterPath::operator+(const  &amp;<em>other</em>) const</span><a href="#qpainterpath-qpainterpath-operator-const-qpainterpath-amp-other-const" class="header-anchor">#</a></h3><p>返回此路径和<em>other</em>路径的联合。这个函数等同于operator|()。</p>
+<p><strong>See also</strong> <a href="#united">united</a>(), <a href="#operator-2b-eq">operator+=</a>(), and <a href="#operator-">operator-</a>().</p>
+<h3><span id="qpainterpath-amp-qpainterpath-operator-const-qpainterpath-amp-other"> &amp;QPainterPath::operator+=(const  &amp;<em>other</em>)</span><a href="#qpainterpath-amp-qpainterpath-operator-const-qpainterpath-amp-other" class="header-anchor">#</a></h3><p>将此路径与<em>other</em>路径合并，并返回此路径的引用。这个函数等同于operator|=()。</p>
+<p><strong>See also</strong> <a href="#united">united</a>(), <a href="#operator-2b">operator+</a>(), and <a href="#operator--eq">operator-=</a>().</p>
+<h3><span id="qpainterpath-qpainterpath-operator-const-qpainterpath-amp-other-const"> QPainterPath::operator-(const  &amp;<em>other</em>) const</span><a href="#qpainterpath-qpainterpath-operator-const-qpainterpath-amp-other-const" class="header-anchor">#</a></h3><p>从这个路径的一个副本中减去<em>other</em>路径，并返回该副本。</p>
+<p><strong>See also</strong> <a href="#subtracted">subtracted</a>(), <a href="#operator--eq">operator-=</a>(), and <a href="#operator-2b">operator+</a>().</p>
+<h3><span id="qpainterpath-amp-qpainterpath-operator-const-qpainterpath-amp-other"> &amp;QPainterPath::operator-=(const  &amp;<em>other</em>)</span><a href="#qpainterpath-amp-qpainterpath-operator-const-qpainterpath-amp-other" class="header-anchor">#</a></h3><p>从这个路径中减去<em>other</em>，并返回对这个路径的引用。</p>
+<p><strong>See also</strong> <a href="#subtracted">subtracted</a>(), <a href="#operator-">operator-</a>(), and <a href="#operator-2b-eq">operator+=</a>().</p>
+<h3><span id="bool-qpainterpath-operator-const-qpainterpath-amp-path-const">bool QPainterPath::operator==(const  &amp;<em>path</em>) const</span><a href="#bool-qpainterpath-operator-const-qpainterpath-amp-path-const" class="header-anchor">#</a></h3><p>如果这个painterpath等于给定的<em>path</em>，返回<code>true</code>。</p>
+<p>注意，比较路径可能涉及到每个元素的比较，这对于复杂的路径来说可能会很慢。</p>
+<p><strong>See also</strong> <a href="#operator-not-eq">operator!=</a>().</p>
+<h3><span id="qpainterpath-qpainterpath-operator-const-qpainterpath-amp-other-const"> QPainterPath::operator|(const  &amp;<em>other</em>) const</span><a href="#qpainterpath-qpainterpath-operator-const-qpainterpath-amp-other-const" class="header-anchor">#</a></h3><p>返回这个路径和<em>other</em>路径的联合。</p>
+<p><strong>See also</strong> <a href="#united">united</a>(), <a href="#operator-7c-eq">operator|=</a>(), <a href="#intersected">intersected</a>(), and <a href="#operator-and">operator&amp;</a>().</p>
+<h3><span id="qpainterpath-amp-qpainterpath-operator-const-qpainterpath-amp-other"> &amp;QPainterPath::operator|=(const  &amp;<em>other</em>)</span><a href="#qpainterpath-amp-qpainterpath-operator-const-qpainterpath-amp-other" class="header-anchor">#</a></h3><p>将此路径与<em>other</em>结合起来，并返回此路径的一个引用。</p>
+<p><strong>See also</strong> <a href="#united">united</a>(), <a href="#operator-7c">operator|</a>(), and <a href="#operator-and-eq">operator&amp;=</a>().</p>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><h3><span id="qdatastream-amp-operator-lt-lt-qdatastream-amp-stream-const-qpainterpath-amp-path"> &amp;operator&lt;&lt;( &amp;<em>stream</em>, const  &amp;<em>path</em>)</span><a href="#qdatastream-amp-operator-lt-lt-qdatastream-amp-stream-const-qpainterpath-amp-path" class="header-anchor">#</a></h3><p>将给定的绘图器<em>path</em>写入给定的<em>stream</em>，并返回对<em>stream</em>的引用。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/datastreamformat.html">Serializing Qt Data Types</a>.</p>
+<h3><span id="qdatastream-amp-operator-gt-gt-qdatastream-amp-stream-qpainterpath-amp-path"> &amp;operator&gt;&gt;( &amp;<em>stream</em>,  &amp;<em>path</em>)</span><a href="#qdatastream-amp-operator-gt-gt-qdatastream-amp-stream-qpainterpath-amp-path" class="header-anchor">#</a></h3><p>从给定的<em>stream</em>中读取一个绘画者路径到指定的<em>path</em>中，并返回对<em>stream</em>的引用。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/datastreamformat.html">Serializing Qt Data Types</a>.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/P/">P</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/P/QPaintDevice/QPaintDevice/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QPaintDevice类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/P/QPaintEngine/QPaintEngine/">
+                        <span class="hidden-mobile">QPaintEngine类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

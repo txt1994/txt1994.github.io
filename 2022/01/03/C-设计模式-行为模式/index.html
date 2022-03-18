@@ -1,0 +1,1922 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="观察者模式 访问者模式 责任链模式 命令模式 迭代器模式 中介者模式 备忘录模式 状态模式 策略模式 模板方法模式      推荐看👉常用设计模式有哪些？ (refactoringguru.cn) 观察者模式#观察者模式是一种行为设计模式， 允许你定义一种订阅机制， 可在对象事件发生时通知多个 “观察” 该对象的其他对象。 适用场景:  当一个对象状态的改变需要改变其他对象， 或实际对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++设计模式-行为模式">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/03/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A1%8C%E4%B8%BA%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="观察者模式 访问者模式 责任链模式 命令模式 迭代器模式 中介者模式 备忘录模式 状态模式 策略模式 模板方法模式      推荐看👉常用设计模式有哪些？ (refactoringguru.cn) 观察者模式#观察者模式是一种行为设计模式， 允许你定义一种订阅机制， 可在对象事件发生时通知多个 “观察” 该对象的其他对象。 适用场景:  当一个对象状态的改变需要改变其他对象， 或实际对">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/R-C.png">
+<meta property="article:published_time" content="2022-01-03T07:48:22.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:02:29.539Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/R-C.png">
+  
+  
+  <title>C++设计模式-行为模式 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++设计模式-行为模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-03 15:48" pubdate>
+        2022年1月3日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      35k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      295 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++设计模式-行为模式</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#guan-cha-zhe-mo-shi">观察者模式</a></li>
+<li><a href="#fang-wen-zhe-mo-shi">访问者模式</a></li>
+<li><a href="#ze-ren-lian-mo-shi">责任链模式</a></li>
+<li><a href="#ming-ling-mo-shi">命令模式</a></li>
+<li><a href="#die-dai-qi-mo-shi">迭代器模式</a></li>
+<li><a href="#zhong-jie-zhe-mo-shi">中介者模式</a></li>
+<li><a href="#bei-wang-lu-mo-shi">备忘录模式</a></li>
+<li><a href="#zhuang-tai-mo-shi">状态模式</a></li>
+<li><a href="#ce-lue-mo-shi">策略模式</a></li>
+<li><a href="#mo-ban-fang-fa-mo-shi">模板方法模式</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<p>推荐看👉<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns">常用设计模式有哪些？ (refactoringguru.cn)</a></p>
+<h1><span id="guan-cha-zhe-mo-shi">观察者模式</span><a href="#guan-cha-zhe-mo-shi" class="header-anchor">#</a></h1><p><strong>观察者模式</strong>是一种行为设计模式， 允许你定义一种订阅机制， 可在对象事件发生时通知多个 “观察” 该对象的其他对象。</p>
+<p>适用场景:</p>
+<ul>
+<li><p><strong>当一个对象状态的改变需要改变其他对象， 或实际对象是事先未知的或动态变化的时， 可使用观察者模式。</strong></p>
+</li>
+<li><p>当你使用图形用户界面类时通常会遇到一个问题。 比如， 你创建了自定义按钮类并允许客户端在按钮中注入自定义代码， 这样当用户按下按钮时就会触发这些代码。</p>
+</li>
+<li><p>观察者模式允许任何实现了订阅者接口的对象订阅发布者对象的事件通知。 你可在按钮中添加订阅机制， 允许客户端通过自定义订阅类注入自定义代码。</p>
+</li>
+<li><p><strong>当应用中的一些对象必须观察其他对象时， 可使用该模式。 但仅能在有限时间内或特定情况下使用。</strong></p>
+</li>
+<li><p>订阅列表是动态的， 因此订阅者可随时加入或离开该列表。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Observer Design Pattern</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * Intent: Lets you define a subscription mechanism to notify multiple objects</span>
+<span class="hljs-comment"> * about any events that happen to the object they're observing.</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * Note that there's a lot of different terms with similar meaning associated</span>
+<span class="hljs-comment"> * with this pattern. Just remember that the Subject is also called the</span>
+<span class="hljs-comment"> * Publisher and the Observer is often called the Subscriber and vice versa.</span>
+<span class="hljs-comment"> * Also the verbs "observe", "listen" or "track" usually mean the same thing.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;list&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">IObserver</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">IObserver</span>(){};
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Update</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string &amp;message_from_subject)</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ISubject</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">ISubject</span>(){};
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Attach</span><span class="hljs-params">(IObserver *observer)</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Detach</span><span class="hljs-params">(IObserver *observer)</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Notify</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Subject owns some important state and notifies observers when the state</span>
+<span class="hljs-comment"> * changes.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Subject</span> : <span class="hljs-keyword">public</span> ISubject {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Subject</span>() {
+        std::cout &lt;&lt; <span class="hljs-string">"Goodbye, I was the Subject.\n"</span>;
+    }
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * The subscription management methods.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Attach</span><span class="hljs-params">(IObserver *observer)</span> <span class="hljs-keyword">override</span> </span>{
+        list_observer_.<span class="hljs-built_in">push_back</span>(observer);
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Detach</span><span class="hljs-params">(IObserver *observer)</span> <span class="hljs-keyword">override</span> </span>{
+        list_observer_.<span class="hljs-built_in">remove</span>(observer);
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Notify</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+        std::list&lt;IObserver *&gt;::iterator iterator = list_observer_.<span class="hljs-built_in">begin</span>();
+        <span class="hljs-built_in">HowManyObserver</span>();
+        <span class="hljs-keyword">while</span> (iterator != list_observer_.<span class="hljs-built_in">end</span>()) {
+            (*iterator)-&gt;<span class="hljs-built_in">Update</span>(message_);
+            ++iterator;
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">CreateMessage</span><span class="hljs-params">(std::string message = <span class="hljs-string">"Empty"</span>)</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;message_ = message;
+        <span class="hljs-built_in">Notify</span>();
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">HowManyObserver</span><span class="hljs-params">()</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"There are "</span> &lt;&lt; list_observer_.<span class="hljs-built_in">size</span>() &lt;&lt; <span class="hljs-string">" observers in the list.\n"</span>;
+    }
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * Usually, the subscription logic is only a fraction of what a Subject can</span>
+<span class="hljs-comment">       * really do. Subjects commonly hold some important business logic, that</span>
+<span class="hljs-comment">       * triggers a notification method whenever something important is about to</span>
+<span class="hljs-comment">       * happen (or after it).</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SomeBusinessLogic</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;message_ = <span class="hljs-string">"change message message"</span>;
+        <span class="hljs-built_in">Notify</span>();
+        std::cout &lt;&lt; <span class="hljs-string">"I'm about to do some thing important\n"</span>;
+    }
+
+<span class="hljs-keyword">private</span>:
+    std::list&lt;IObserver *&gt; list_observer_;
+    std::string message_;
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Observer</span> : <span class="hljs-keyword">public</span> IObserver {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Observer</span>(Subject &amp;subject) : <span class="hljs-built_in">subject_</span>(subject) {
+        <span class="hljs-keyword">this</span>-&gt;subject_.<span class="hljs-built_in">Attach</span>(<span class="hljs-keyword">this</span>);
+        std::cout &lt;&lt; <span class="hljs-string">"Hi, I'm the Observer \""</span> &lt;&lt; ++Observer::static_number_ &lt;&lt; <span class="hljs-string">"\".\n"</span>;
+        <span class="hljs-keyword">this</span>-&gt;number_ = Observer::static_number_;
+    }
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Observer</span>() {
+        std::cout &lt;&lt; <span class="hljs-string">"Goodbye, I was the Observer \""</span> &lt;&lt; <span class="hljs-keyword">this</span>-&gt;number_ &lt;&lt; <span class="hljs-string">"\".\n"</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Update</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string &amp;message_from_subject)</span> <span class="hljs-keyword">override</span> </span>{
+        message_from_subject_ = message_from_subject;
+        <span class="hljs-built_in">PrintInfo</span>();
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">RemoveMeFromTheList</span><span class="hljs-params">()</span> </span>{
+        subject_.<span class="hljs-built_in">Detach</span>(<span class="hljs-keyword">this</span>);
+        std::cout &lt;&lt; <span class="hljs-string">"Observer \""</span> &lt;&lt; number_ &lt;&lt; <span class="hljs-string">"\" removed from the list.\n"</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">PrintInfo</span><span class="hljs-params">()</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Observer \""</span> &lt;&lt; <span class="hljs-keyword">this</span>-&gt;number_ &lt;&lt; <span class="hljs-string">"\": a new message is available --&gt; "</span> &lt;&lt; <span class="hljs-keyword">this</span>-&gt;message_from_subject_ &lt;&lt; <span class="hljs-string">"\n"</span>;
+    }
+
+<span class="hljs-keyword">private</span>:
+    std::string message_from_subject_;
+    Subject &amp;subject_;
+    <span class="hljs-type">static</span> <span class="hljs-type">int</span> static_number_;
+    <span class="hljs-type">int</span> number_;
+};
+
+<span class="hljs-type">int</span> Observer::static_number_ = <span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">()</span> </span>{
+    Subject *subject = <span class="hljs-keyword">new</span> Subject;
+    Observer *observer1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Observer</span>(*subject);
+    Observer *observer2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Observer</span>(*subject);
+    Observer *observer3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Observer</span>(*subject);
+    Observer *observer4;
+    Observer *observer5;
+
+    subject-&gt;<span class="hljs-built_in">CreateMessage</span>(<span class="hljs-string">"Hello World! :D"</span>);
+    observer3-&gt;<span class="hljs-built_in">RemoveMeFromTheList</span>();
+
+    subject-&gt;<span class="hljs-built_in">CreateMessage</span>(<span class="hljs-string">"The weather is hot today! :p"</span>);
+    observer4 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Observer</span>(*subject);
+
+    observer2-&gt;<span class="hljs-built_in">RemoveMeFromTheList</span>();
+    observer5 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Observer</span>(*subject);
+
+    subject-&gt;<span class="hljs-built_in">CreateMessage</span>(<span class="hljs-string">"My new car is great! ;)"</span>);
+    observer5-&gt;<span class="hljs-built_in">RemoveMeFromTheList</span>();
+
+    observer4-&gt;<span class="hljs-built_in">RemoveMeFromTheList</span>();
+    observer1-&gt;<span class="hljs-built_in">RemoveMeFromTheList</span>();
+
+    <span class="hljs-keyword">delete</span> observer5;
+    <span class="hljs-keyword">delete</span> observer4;
+    <span class="hljs-keyword">delete</span> observer3;
+    <span class="hljs-keyword">delete</span> observer2;
+    <span class="hljs-keyword">delete</span> observer1;
+    <span class="hljs-keyword">delete</span> subject;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">ClientCode</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="fang-wen-zhe-mo-shi">访问者模式</span><a href="#fang-wen-zhe-mo-shi" class="header-anchor">#</a></h1><p><strong>问者模式</strong>是一种行为设计模式， 它能将算法与其所作用的对象隔离开来。</p>
+<p>适用场景:</p>
+<ul>
+<li><p><strong>如果你需要对一个复杂对象结构 （例如对象树） 中的所有元素执行某些操作， 可使用访问者模式。</strong></p>
+</li>
+<li><p>访问者模式通过在访问者对象中为多个目标类提供相同操作的变体， 让你能在属于不同类的一组对象上执行同一操作。</p>
+</li>
+<li><p><strong>可使用访问者模式来清理辅助行为的业务逻辑。</strong></p>
+</li>
+<li><p>该模式会将所有非主要的行为抽取到一组访问者类中， 使得程序的主要类能更专注于主要的工作。</p>
+</li>
+<li><p><strong>当某个行为仅在类层次结构中的一些类中有意义， 而在其他类中没有意义时， 可使用该模式。</strong></p>
+</li>
+<li><p>你可将该行为抽取到单独的访问者类中， 只需实现接收相关类的对象作为参数的访问者方法并将其他方法留空即可。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Visitor Interface declares a set of visiting methods that correspond to</span>
+<span class="hljs-comment"> * component classes. The signature of a visiting method allows the visitor to</span>
+<span class="hljs-comment"> * identify the exact class of the component that it's dealing with.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteComponentA</span>;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteComponentB</span>;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Visitor</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">VisitConcreteComponentA</span><span class="hljs-params">(<span class="hljs-type">const</span> ConcreteComponentA *element)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">VisitConcreteComponentB</span><span class="hljs-params">(<span class="hljs-type">const</span> ConcreteComponentB *element)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Component interface declares an `accept` method that should take the base</span>
+<span class="hljs-comment"> * visitor interface as an argument.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Component</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Component</span>() {}
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Accept</span><span class="hljs-params">(Visitor *visitor)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Each Concrete Component must implement the `Accept` method in such a way that</span>
+<span class="hljs-comment"> * it calls the visitor's method corresponding to the component's class.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteComponentA</span> : <span class="hljs-keyword">public</span> Component {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * Note that we're calling `visitConcreteComponentA`, which matches the</span>
+<span class="hljs-comment">   * current class name. This way we let the visitor know the class of the</span>
+<span class="hljs-comment">   * component it works with.</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Accept</span><span class="hljs-params">(Visitor *visitor)</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        visitor-&gt;<span class="hljs-built_in">VisitConcreteComponentA</span>(<span class="hljs-keyword">this</span>);
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * Concrete Components may have special methods that don't exist in their base</span>
+<span class="hljs-comment">       * class or interface. The Visitor is still able to use these methods since</span>
+<span class="hljs-comment">       * it's aware of the component's concrete class.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function">std::string <span class="hljs-title">ExclusiveMethodOfConcreteComponentA</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"A"</span>;
+    }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteComponentB</span> : <span class="hljs-keyword">public</span> Component {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * Same here: visitConcreteComponentB =&gt; ConcreteComponentB</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Accept</span><span class="hljs-params">(Visitor *visitor)</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        visitor-&gt;<span class="hljs-built_in">VisitConcreteComponentB</span>(<span class="hljs-keyword">this</span>);
+    }
+    <span class="hljs-function">std::string <span class="hljs-title">SpecialMethodOfConcreteComponentB</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"B"</span>;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Concrete Visitors implement several versions of the same algorithm, which can</span>
+<span class="hljs-comment"> * work with all concrete component classes.</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * You can experience the biggest benefit of the Visitor pattern when using it</span>
+<span class="hljs-comment"> * with a complex object structure, such as a Composite tree. In this case, it</span>
+<span class="hljs-comment"> * might be helpful to store some intermediate state of the algorithm while</span>
+<span class="hljs-comment"> * executing visitor's methods over various objects of the structure.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteVisitor1</span> : <span class="hljs-keyword">public</span> Visitor {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">VisitConcreteComponentA</span><span class="hljs-params">(<span class="hljs-type">const</span> ConcreteComponentA *element)</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; element-&gt;<span class="hljs-built_in">ExclusiveMethodOfConcreteComponentA</span>() &lt;&lt; <span class="hljs-string">" + ConcreteVisitor1\n"</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">VisitConcreteComponentB</span><span class="hljs-params">(<span class="hljs-type">const</span> ConcreteComponentB *element)</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; element-&gt;<span class="hljs-built_in">SpecialMethodOfConcreteComponentB</span>() &lt;&lt; <span class="hljs-string">" + ConcreteVisitor1\n"</span>;
+    }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteVisitor2</span> : <span class="hljs-keyword">public</span> Visitor {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">VisitConcreteComponentA</span><span class="hljs-params">(<span class="hljs-type">const</span> ConcreteComponentA *element)</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; element-&gt;<span class="hljs-built_in">ExclusiveMethodOfConcreteComponentA</span>() &lt;&lt; <span class="hljs-string">" + ConcreteVisitor2\n"</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">VisitConcreteComponentB</span><span class="hljs-params">(<span class="hljs-type">const</span> ConcreteComponentB *element)</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; element-&gt;<span class="hljs-built_in">SpecialMethodOfConcreteComponentB</span>() &lt;&lt; <span class="hljs-string">" + ConcreteVisitor2\n"</span>;
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code can run visitor operations over any set of elements without</span>
+<span class="hljs-comment"> * figuring out their concrete classes. The accept operation directs a call to</span>
+<span class="hljs-comment"> * the appropriate operation in the visitor object.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">(std::array&lt;<span class="hljs-type">const</span> Component *, <span class="hljs-number">2</span>&gt; components, Visitor *visitor)</span> </span>{
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> Component *comp : components) {
+        comp-&gt;<span class="hljs-built_in">Accept</span>(visitor);
+    }
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    std::array&lt;<span class="hljs-type">const</span> Component *, 2&gt; components = {<span class="hljs-keyword">new</span> ConcreteComponentA, <span class="hljs-keyword">new</span> ConcreteComponentB};
+    std::cout &lt;&lt; <span class="hljs-string">"The client code works with all visitors via the base Visitor interface:\n"</span>;
+    ConcreteVisitor1 *visitor1 = <span class="hljs-keyword">new</span> ConcreteVisitor1;
+    <span class="hljs-built_in">ClientCode</span>(components, visitor1);
+    std::cout &lt;&lt; <span class="hljs-string">"\n"</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"It allows the same client code to work with different types of visitors:\n"</span>;
+    ConcreteVisitor2 *visitor2 = <span class="hljs-keyword">new</span> ConcreteVisitor2;
+    <span class="hljs-built_in">ClientCode</span>(components, visitor2);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> Component *comp : components) {
+        <span class="hljs-keyword">delete</span> comp;
+    }
+    <span class="hljs-keyword">delete</span> visitor1;
+    <span class="hljs-keyword">delete</span> visitor2;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="ze-ren-lian-mo-shi">责任链模式</span><a href="#ze-ren-lian-mo-shi" class="header-anchor">#</a></h1><p><strong>责任链模式</strong>是一种行为设计模式， 允许你将请求沿着处理者链进行发送。 收到请求后， 每个处理者均可对请求进行处理， 或将其传递给链上的下个处理者。</p>
+<p>适合应用场景:</p>
+<ul>
+<li><p><strong>当程序需要使用不同方式处理不同种类请求， 而且请求类型和顺序预先未知时， 可以使用责任链模式。</strong></p>
+</li>
+<li><p>该模式能将多个处理者连接成一条链。 接收到请求后， 它会 “询问” 每个处理者是否能够对其进行处理。 这样所有处理者都有机会来处理请求。</p>
+</li>
+<li><p><strong>当必须按顺序执行多个处理者时， 可以使用该模式。</strong></p>
+</li>
+<li><p>无论你以何种顺序将处理者连接成一条链， 所有请求都会严格按照顺序通过链上的处理者。</p>
+</li>
+<li><p>如<strong>果所需处理者及其顺序必须在运行时进行改变， 可以使用责任链模式。</strong></p>
+</li>
+<li><p>如果在处理者类中有对引用成员变量的设定方法， 你将能动态地插入和移除处理者， 或者改变其顺序。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Handler interface declares a method for building the chain of handlers.</span>
+<span class="hljs-comment"> * It also declares a method for executing a request.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Handler</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> Handler *<span class="hljs-title">SetNext</span><span class="hljs-params">(Handler *handler)</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">Handle</span><span class="hljs-params">(std::string request)</span> </span>= <span class="hljs-number">0</span>;
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The default chaining behavior can be implemented inside a base handler class.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">AbstractHandler</span> : <span class="hljs-keyword">public</span> Handler {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * @var Handler</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">private</span>:
+  	Handler *next_handler_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">AbstractHandler</span>() : <span class="hljs-built_in">next_handler_</span>(<span class="hljs-literal">nullptr</span>) {
+    }
+    <span class="hljs-function">Handler *<span class="hljs-title">SetNext</span><span class="hljs-params">(Handler *handler)</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;next_handler_ = handler;
+        <span class="hljs-comment">// Returning a handler from here will let us link handlers in a convenient</span>
+        <span class="hljs-comment">// way like this:</span>
+        <span class="hljs-comment">// $monkey-&gt;setNext($squirrel)-&gt;setNext($dog);</span>
+        <span class="hljs-keyword">return</span> handler;
+    }
+    <span class="hljs-function">std::string <span class="hljs-title">Handle</span><span class="hljs-params">(std::string request)</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;next_handler_) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;next_handler_-&gt;<span class="hljs-built_in">Handle</span>(request);
+        }
+
+        <span class="hljs-keyword">return</span> {};
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * All Concrete Handlers either handle a request or pass it to the next handler</span>
+<span class="hljs-comment"> * in the chain.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MonkeyHandler</span> : <span class="hljs-keyword">public</span> AbstractHandler {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">std::string <span class="hljs-title">Handle</span><span class="hljs-params">(std::string request)</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">if</span> (request == <span class="hljs-string">"Banana"</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"Monkey: I'll eat the "</span> + request + <span class="hljs-string">".\n"</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> AbstractHandler::<span class="hljs-built_in">Handle</span>(request);
+        }
+    }
+};
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SquirrelHandler</span> : <span class="hljs-keyword">public</span> AbstractHandler {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">std::string <span class="hljs-title">Handle</span><span class="hljs-params">(std::string request)</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">if</span> (request == <span class="hljs-string">"Nut"</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"Squirrel: I'll eat the "</span> + request + <span class="hljs-string">".\n"</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> AbstractHandler::<span class="hljs-built_in">Handle</span>(request);
+        }
+    }
+};
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">DogHandler</span> : <span class="hljs-keyword">public</span> AbstractHandler {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">std::string <span class="hljs-title">Handle</span><span class="hljs-params">(std::string request)</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">if</span> (request == <span class="hljs-string">"MeatBall"</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"Dog: I'll eat the "</span> + request + <span class="hljs-string">".\n"</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> AbstractHandler::<span class="hljs-built_in">Handle</span>(request);
+        }
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code is usually suited to work with a single handler. In most</span>
+<span class="hljs-comment"> * cases, it is not even aware that the handler is part of a chain.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">(Handler &amp;handler)</span> </span>{
+    std::vector&lt;std::string&gt; food = {<span class="hljs-string">"Nut"</span>, <span class="hljs-string">"Banana"</span>, <span class="hljs-string">"Cup of coffee"</span>};
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> std::string &amp;f : food) {
+        std::cout &lt;&lt; <span class="hljs-string">"Client: Who wants a "</span> &lt;&lt; f &lt;&lt; <span class="hljs-string">"?\n"</span>;
+        <span class="hljs-type">const</span> std::string result = handler.<span class="hljs-built_in">Handle</span>(f);
+        <span class="hljs-keyword">if</span> (!result.<span class="hljs-built_in">empty</span>()) {
+            std::cout &lt;&lt; <span class="hljs-string">"  "</span> &lt;&lt; result;
+        } <span class="hljs-keyword">else</span> {
+            std::cout &lt;&lt; <span class="hljs-string">"  "</span> &lt;&lt; f &lt;&lt; <span class="hljs-string">" was left untouched.\n"</span>;
+        }
+    }
+}
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The other part of the client code constructs the actual chain.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    MonkeyHandler *monkey = <span class="hljs-keyword">new</span> MonkeyHandler;
+    SquirrelHandler *squirrel = <span class="hljs-keyword">new</span> SquirrelHandler;
+    DogHandler *dog = <span class="hljs-keyword">new</span> DogHandler;
+    monkey-&gt;<span class="hljs-built_in">SetNext</span>(squirrel)-&gt;<span class="hljs-built_in">SetNext</span>(dog);
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * The client should be able to send a request to any handler, not just the</span>
+<span class="hljs-comment">       * first one in the chain.</span>
+<span class="hljs-comment">       */</span>
+    std::cout &lt;&lt; <span class="hljs-string">"Chain: Monkey &gt; Squirrel &gt; Dog\n\n"</span>;
+    <span class="hljs-built_in">ClientCode</span>(*monkey);
+    std::cout &lt;&lt; <span class="hljs-string">"\n"</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"Subchain: Squirrel &gt; Dog\n\n"</span>;
+    <span class="hljs-built_in">ClientCode</span>(*squirrel);
+
+    <span class="hljs-keyword">delete</span> monkey;
+    <span class="hljs-keyword">delete</span> squirrel;
+    <span class="hljs-keyword">delete</span> dog;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="ming-ling-mo-shi">命令模式</span><a href="#ming-ling-mo-shi" class="header-anchor">#</a></h1><p><strong>命令模式</strong>是一种行为设计模式， 它可将请求转换为一个包含与请求相关的所有信息的独立对象。 该转换让你能根据不同的请求将方法参数化、 延迟请求执行或将其放入队列中， 且能实现可撤销操作。</p>
+<p>适合应用场景:</p>
+<ul>
+<li><p><strong>如果你需要通过操作来参数化对象， 可使用命令模式。</strong></p>
+</li>
+<li><p>命令模式可将特定的方法调用转化为独立对象。 这一改变也带来了许多有趣的应用： 你可以将命令作为方法的参数进行传递、 将命令保存在其他对象中， 或者在运行时切换已连接的命令等。</p>
+</li>
+<li><p>举个例子： 你正在开发一个 GUI 组件 （例如上下文菜单）， 你希望用户能够配置菜单项， 并在点击菜单项时触发操作。</p>
+</li>
+</ul>
+<p> <strong>如果你想要将操作放入队列中、 操作的执行或者远程执行操作， 可使用命令模式。</strong></p>
+<ul>
+<li><p>同其他对象一样， 命令也可以实现序列化 （序列化的意思是转化为字符串）， 从而能方便地写入文件或数据库中。 一段时间后， 该字符串可被恢复成为最初的命令对象。 因此， 你可以延迟或计划命令的执行。 但其功能远不止如此！ 使用同样的方式， 你还可以将命令放入队列、 记录命令或者通过网络发送命令。</p>
+</li>
+<li><p><strong>如果你想要实现操作回滚功能， 可使用命令模式。</strong></p>
+</li>
+<li><p>尽管有很多方法可以实现撤销和恢复功能， 但命令模式可能是其中最常用的一种。</p>
+</li>
+<li><p>为了能够回滚操作， 你需要实现已执行操作的历史记录功能。 命令历史记录是一种包含所有已执行命令对象及其相关程序状态备份的栈结构。</p>
+</li>
+<li><p>这种方法有两个缺点。 首先， 程序状态的保存功能并不容易实现， 因为部分状态可能是私有的。 你可以使用<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/memento">备忘录</a>模式来在一定程度上解决这个问题。</p>
+</li>
+<li><p>其次， 备份状态可能会占用大量内存。 因此， 有时你需要借助另一种实现方式： 命令无需恢复原始状态， 而是执行反向操作。 反向操作也有代价： 它可能会很难甚至是无法实现。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Command interface declares a method for executing a command.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Command</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Command</span>() {
+    }
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Execute</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Some commands can implement simple operations on their own.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleCommand</span> : <span class="hljs-keyword">public</span> Command {
+<span class="hljs-keyword">private</span>:
+  	std::string pay_load_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">SimpleCommand</span><span class="hljs-params">(std::string pay_load)</span> : pay_load_(pay_load) {</span>
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Execute</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"SimpleCommand: See, I can do simple things like printing ("</span> &lt;&lt; <span class="hljs-keyword">this</span>-&gt;pay_load_ &lt;&lt; <span class="hljs-string">")\n"</span>;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Receiver classes contain some important business logic. They know how to</span>
+<span class="hljs-comment"> * perform all kinds of operations, associated with carrying out a request. In</span>
+<span class="hljs-comment"> * fact, any class may serve as a Receiver.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Receiver</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DoSomething</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string &amp;a)</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Receiver: Working on ("</span> &lt;&lt; a &lt;&lt; <span class="hljs-string">".)\n"</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DoSomethingElse</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string &amp;b)</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Receiver: Also working on ("</span> &lt;&lt; b &lt;&lt; <span class="hljs-string">".)\n"</span>;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * However, some commands can delegate more complex operations to other objects,</span>
+<span class="hljs-comment"> * called "receivers."</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ComplexCommand</span> : <span class="hljs-keyword">public</span> Command {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * @var Receiver</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">private</span>:
+    Receiver *receiver_;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * Context data, required for launching the receiver's methods.</span>
+<span class="hljs-comment">       */</span>
+    std::string a_;
+    std::string b_;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * Complex commands can accept one or several receiver objects along with any</span>
+<span class="hljs-comment">       * context data via the constructor.</span>
+<span class="hljs-comment">       */</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">ComplexCommand</span>(Receiver *receiver, std::string a, std::string b) : <span class="hljs-built_in">receiver_</span>(receiver), <span class="hljs-built_in">a_</span>(a), <span class="hljs-built_in">b_</span>(b) {
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * Commands can delegate to any methods of a receiver.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Execute</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"ComplexCommand: Complex stuff should be done by a receiver object.\n"</span>;
+        <span class="hljs-keyword">this</span>-&gt;receiver_-&gt;<span class="hljs-built_in">DoSomething</span>(<span class="hljs-keyword">this</span>-&gt;a_);
+        <span class="hljs-keyword">this</span>-&gt;receiver_-&gt;<span class="hljs-built_in">DoSomethingElse</span>(<span class="hljs-keyword">this</span>-&gt;b_);
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Invoker is associated with one or several commands. It sends a request to</span>
+<span class="hljs-comment"> * the command.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Invoker</span> {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * @var Command</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">private</span>:
+    Command *on_start_;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * @var Command</span>
+<span class="hljs-comment">       */</span>
+    Command *on_finish_;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * Initialize commands.</span>
+<span class="hljs-comment">       */</span>
+<span class="hljs-keyword">public</span>:
+    ~<span class="hljs-built_in">Invoker</span>() {
+        <span class="hljs-keyword">delete</span> on_start_;
+        <span class="hljs-keyword">delete</span> on_finish_;
+    }
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SetOnStart</span><span class="hljs-params">(Command *command)</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;on_start_ = command;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SetOnFinish</span><span class="hljs-params">(Command *command)</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;on_finish_ = command;
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * The Invoker does not depend on concrete command or receiver classes. The</span>
+<span class="hljs-comment">       * Invoker passes a request to a receiver indirectly, by executing a command.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DoSomethingImportant</span><span class="hljs-params">()</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Invoker: Does anybody want something done before I begin?\n"</span>;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;on_start_) {
+            <span class="hljs-keyword">this</span>-&gt;on_start_-&gt;<span class="hljs-built_in">Execute</span>();
+        }
+        std::cout &lt;&lt; <span class="hljs-string">"Invoker: ...doing something really important...\n"</span>;
+        std::cout &lt;&lt; <span class="hljs-string">"Invoker: Does anybody want something done after I finish?\n"</span>;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;on_finish_) {
+            <span class="hljs-keyword">this</span>-&gt;on_finish_-&gt;<span class="hljs-built_in">Execute</span>();
+        }
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code can parameterize an invoker with any commands.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    Invoker *invoker = <span class="hljs-keyword">new</span> Invoker;
+    invoker-&gt;<span class="hljs-built_in">SetOnStart</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">SimpleCommand</span>(<span class="hljs-string">"Say Hi!"</span>));
+    Receiver *receiver = <span class="hljs-keyword">new</span> Receiver;
+    invoker-&gt;<span class="hljs-built_in">SetOnFinish</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">ComplexCommand</span>(receiver, <span class="hljs-string">"Send email"</span>, <span class="hljs-string">"Save report"</span>));
+    invoker-&gt;<span class="hljs-built_in">DoSomethingImportant</span>();
+
+    <span class="hljs-keyword">delete</span> invoker;
+    <span class="hljs-keyword">delete</span> receiver;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="die-dai-qi-mo-shi">迭代器模式</span><a href="#die-dai-qi-mo-shi" class="header-anchor">#</a></h1><p><strong>迭代器模式</strong>是一种行为设计模式， 让你能在不暴露集合底层表现形式 （列表、 栈和树等） 的情况下遍历集合中所有的元素。</p>
+<p>适合应用场景:</p>
+<ul>
+<li><p><strong>当集合背后为复杂的数据结构， 且你希望对客户端隐藏其复杂性时 （出于使用便利性或安全性的考虑）， 可以使用迭代器模式。</strong></p>
+</li>
+<li><p>迭代器封装了与复杂数据结构进行交互的细节， 为客户端提供多个访问集合元素的简单方法。 这种方式不仅对客户端来说非常方便， 而且能避免客户端在直接与集合交互时执行错误或有害的操作， 从而起到保护集合的作用。</p>
+</li>
+<li><p><strong>使用该模式可以减少程序中重复的遍历代码。</strong></p>
+</li>
+<li><p>重要迭代算法的代码往往体积非常庞大。 当这些代码被放置在程序业务逻辑中时， 它会让原始代码的职责模糊不清， 降低其可维护性。 因此， 将遍历代码移到特定的迭代器中可使程序代码更加精炼和简洁。</p>
+</li>
+<li><p><strong>如果你希望代码能够遍历不同的甚至是无法预知的数据结构， 可以使用迭代器模式。</strong></p>
+</li>
+<li><p>该模式为集合和迭代器提供了一些通用接口。 如果你在代码中使用了这些接口， 那么将其他实现了这些接口的集合和迭代器传递给它时， 它仍将可以正常运行。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Iterator Design Pattern</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * Intent: Lets you traverse elements of a collection without exposing its</span>
+<span class="hljs-comment"> * underlying representation (list, stack, tree, etc.).</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * C++ has its own implementation of iterator that works with a different</span>
+<span class="hljs-comment"> * generics containers defined by the standard library.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T, <span class="hljs-keyword">typename</span> U&gt;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Iterator</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> std::vector&lt;T&gt;::iterator iter_type;
+    <span class="hljs-built_in">Iterator</span>(U *p_data, <span class="hljs-type">bool</span> reverse = <span class="hljs-literal">false</span>) : <span class="hljs-built_in">m_p_data_</span>(p_data) {
+        m_it_ = m_p_data_-&gt;m_data_.<span class="hljs-built_in">begin</span>();
+    }
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">First</span><span class="hljs-params">()</span> </span>{
+        m_it_ = m_p_data_-&gt;m_data_.<span class="hljs-built_in">begin</span>();
+    }
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Next</span><span class="hljs-params">()</span> </span>{
+        m_it_++;
+    }
+
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">IsDone</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> (m_it_ == m_p_data_-&gt;m_data_.<span class="hljs-built_in">end</span>());
+    }
+
+    <span class="hljs-function">iter_type <span class="hljs-title">Current</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> m_it_;
+    }
+
+<span class="hljs-keyword">private</span>:
+    U *m_p_data_;
+    iter_type m_it_;
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Generic Collections/Containers provides one or several methods for retrieving</span>
+<span class="hljs-comment"> * fresh iterator instances, compatible with the collection class.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Container</span> {
+  	<span class="hljs-keyword">friend</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Iterator</span>&lt;T, Container&gt;;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Add</span><span class="hljs-params">(T a)</span> </span>{
+        m_data_.<span class="hljs-built_in">push_back</span>(a);
+    }
+
+    <span class="hljs-function">Iterator&lt;T, Container&gt; *<span class="hljs-title">CreateIterator</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Iterator</span>&lt;T, Container&gt;(<span class="hljs-keyword">this</span>);
+    }
+
+<span class="hljs-keyword">private</span>:
+  	std::vector&lt;T&gt; m_data_;
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Data</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Data</span>(<span class="hljs-type">int</span> a = <span class="hljs-number">0</span>) : <span class="hljs-built_in">m_data_</span>(a) {}
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">set_data</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>{
+        m_data_ = a;
+    }
+
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">data</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> m_data_;
+    }
+
+<span class="hljs-keyword">private</span>:
+  	<span class="hljs-type">int</span> m_data_;
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code may or may not know about the Concrete Iterator or Collection</span>
+<span class="hljs-comment"> * classes, for this implementation the container is generic so you can used</span>
+<span class="hljs-comment"> * with an int or with a custom class.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">()</span> </span>{
+    std::cout &lt;&lt; <span class="hljs-string">"________________Iterator with int______________________________________"</span> &lt;&lt; std::endl;
+    Container&lt;<span class="hljs-type">int</span>&gt; cont;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+        cont.<span class="hljs-built_in">Add</span>(i);
+    }
+
+    Iterator&lt;<span class="hljs-type">int</span>, Container&lt;<span class="hljs-type">int</span>&gt;&gt; *it = cont.<span class="hljs-built_in">CreateIterator</span>();
+    <span class="hljs-keyword">for</span> (it-&gt;<span class="hljs-built_in">First</span>(); !it-&gt;<span class="hljs-built_in">IsDone</span>(); it-&gt;<span class="hljs-built_in">Next</span>()) {
+        std::cout &lt;&lt; *it-&gt;<span class="hljs-built_in">Current</span>() &lt;&lt; std::endl;
+    }
+
+    Container&lt;Data&gt; cont2;
+    <span class="hljs-function">Data <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">100</span>)</span>, <span class="hljs-title">b</span><span class="hljs-params">(<span class="hljs-number">1000</span>)</span>, <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-number">10000</span>)</span></span>;
+    cont2.<span class="hljs-built_in">Add</span>(a);
+    cont2.<span class="hljs-built_in">Add</span>(b);
+    cont2.<span class="hljs-built_in">Add</span>(c);
+
+    std::cout &lt;&lt; <span class="hljs-string">"________________Iterator with custom Class______________________________"</span> &lt;&lt; std::endl;
+    Iterator&lt;Data, Container&lt;Data&gt;&gt; *it2 = cont2.<span class="hljs-built_in">CreateIterator</span>();
+    <span class="hljs-keyword">for</span> (it2-&gt;<span class="hljs-built_in">First</span>(); !it2-&gt;<span class="hljs-built_in">IsDone</span>(); it2-&gt;<span class="hljs-built_in">Next</span>()) {
+        std::cout &lt;&lt; it2-&gt;<span class="hljs-built_in">Current</span>()-&gt;<span class="hljs-built_in">data</span>() &lt;&lt; std::endl;
+    }
+    <span class="hljs-keyword">delete</span> it;
+    <span class="hljs-keyword">delete</span> it2;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">ClientCode</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="zhong-jie-zhe-mo-shi">中介者模式</span><a href="#zhong-jie-zhe-mo-shi" class="header-anchor">#</a></h1><p><strong>中介者模式</strong>是一种行为设计模式， 能让你减少对象之间混乱无序的依赖关系。 该模式会限制对象之间的直接交互， 迫使它们通过一个中介者对象进行合作。</p>
+<p>适合应用场景:</p>
+<ul>
+<li><p><strong>当一些对象和其他对象紧密耦合以致难以对其进行修改时， 可使用中介者模式。</strong></p>
+</li>
+<li><p>该模式让你将对象间的所有关系抽取成为一个单独的类， 以使对于特定组件的修改工作独立于其他组件。</p>
+</li>
+<li><p><strong>当组件因过于依赖其他组件而无法在不同应用中复用时， 可使用中介者模式。</strong></p>
+</li>
+<li><p>应用中介者模式后， 每个组件不再知晓其他组件的情况。 尽管这些组件无法直接交流， 但它们仍可通过中介者对象进行间接交流。 如果你希望在不同应用中复用一个组件， 则需要为其提供一个新的中介者类。</p>
+</li>
+<li><p><strong>如果为了能在不同情景下复用一些基本行为， 导致你需要被迫创建大量组件子类时， 可使用中介者模式。</strong></p>
+</li>
+<li><p>由于所有组件间关系都被包含在中介者中， 因此你无需修改组件就能方便地新建中介者类以定义新的组件合作方式。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Mediator interface declares a method used by components to notify the</span>
+<span class="hljs-comment"> * mediator about various events. The Mediator may react to these events and</span>
+<span class="hljs-comment"> * pass the execution to other components.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseComponent</span>;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Mediator</span> {
+<span class="hljs-keyword">public</span>:
+  	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Notify</span><span class="hljs-params">(BaseComponent *sender, std::string event)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Base Component provides the basic functionality of storing a mediator's</span>
+<span class="hljs-comment"> * instance inside component objects.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseComponent</span> {
+<span class="hljs-keyword">protected</span>:
+  	Mediator *mediator_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">BaseComponent</span>(Mediator *mediator = <span class="hljs-literal">nullptr</span>) : <span class="hljs-built_in">mediator_</span>(mediator) {
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">set_mediator</span><span class="hljs-params">(Mediator *mediator)</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;mediator_ = mediator;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Concrete Components implement various functionality. They don't depend on</span>
+<span class="hljs-comment"> * other components. They also don't depend on any concrete mediator classes.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Component1</span> : <span class="hljs-keyword">public</span> BaseComponent {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DoA</span><span class="hljs-params">()</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Component 1 does A.\n"</span>;
+        <span class="hljs-keyword">this</span>-&gt;mediator_-&gt;<span class="hljs-built_in">Notify</span>(<span class="hljs-keyword">this</span>, <span class="hljs-string">"A"</span>);
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DoB</span><span class="hljs-params">()</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Component 1 does B.\n"</span>;
+        <span class="hljs-keyword">this</span>-&gt;mediator_-&gt;<span class="hljs-built_in">Notify</span>(<span class="hljs-keyword">this</span>, <span class="hljs-string">"B"</span>);
+    }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Component2</span> : <span class="hljs-keyword">public</span> BaseComponent {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DoC</span><span class="hljs-params">()</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Component 2 does C.\n"</span>;
+        <span class="hljs-keyword">this</span>-&gt;mediator_-&gt;<span class="hljs-built_in">Notify</span>(<span class="hljs-keyword">this</span>, <span class="hljs-string">"C"</span>);
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DoD</span><span class="hljs-params">()</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Component 2 does D.\n"</span>;
+        <span class="hljs-keyword">this</span>-&gt;mediator_-&gt;<span class="hljs-built_in">Notify</span>(<span class="hljs-keyword">this</span>, <span class="hljs-string">"D"</span>);
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Concrete Mediators implement cooperative behavior by coordinating several</span>
+<span class="hljs-comment"> * components.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteMediator</span> : <span class="hljs-keyword">public</span> Mediator {
+<span class="hljs-keyword">private</span>:
+    Component1 *component1_;
+    Component2 *component2_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">ConcreteMediator</span>(Component1 *c1, Component2 *c2) : <span class="hljs-built_in">component1_</span>(c1), <span class="hljs-built_in">component2_</span>(c2) {
+        <span class="hljs-keyword">this</span>-&gt;component1_-&gt;<span class="hljs-built_in">set_mediator</span>(<span class="hljs-keyword">this</span>);
+        <span class="hljs-keyword">this</span>-&gt;component2_-&gt;<span class="hljs-built_in">set_mediator</span>(<span class="hljs-keyword">this</span>);
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Notify</span><span class="hljs-params">(BaseComponent *sender, std::string event)</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">if</span> (event == <span class="hljs-string">"A"</span>) {
+            std::cout &lt;&lt; <span class="hljs-string">"Mediator reacts on A and triggers following operations:\n"</span>;
+            <span class="hljs-keyword">this</span>-&gt;component2_-&gt;<span class="hljs-built_in">DoC</span>();
+        }
+        <span class="hljs-keyword">if</span> (event == <span class="hljs-string">"D"</span>) {
+            std::cout &lt;&lt; <span class="hljs-string">"Mediator reacts on D and triggers following operations:\n"</span>;
+            <span class="hljs-keyword">this</span>-&gt;component1_-&gt;<span class="hljs-built_in">DoB</span>();
+            <span class="hljs-keyword">this</span>-&gt;component2_-&gt;<span class="hljs-built_in">DoC</span>();
+        }
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">()</span> </span>{
+    Component1 *c1 = <span class="hljs-keyword">new</span> Component1;
+    Component2 *c2 = <span class="hljs-keyword">new</span> Component2;
+    ConcreteMediator *mediator = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ConcreteMediator</span>(c1, c2);
+    std::cout &lt;&lt; <span class="hljs-string">"Client triggers operation A.\n"</span>;
+    c1-&gt;<span class="hljs-built_in">DoA</span>();
+    std::cout &lt;&lt; <span class="hljs-string">"\n"</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"Client triggers operation D.\n"</span>;
+    c2-&gt;<span class="hljs-built_in">DoD</span>();
+
+    <span class="hljs-keyword">delete</span> c1;
+    <span class="hljs-keyword">delete</span> c2;
+    <span class="hljs-keyword">delete</span> mediator;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">ClientCode</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="bei-wang-lu-mo-shi">备忘录模式</span><a href="#bei-wang-lu-mo-shi" class="header-anchor">#</a></h1><p><strong>备忘录模式</strong>是一种行为设计模式， 允许在不暴露对象实现细节的情况下保存和恢复对象之前的状态。</p>
+<p>适合应用场景：</p>
+<ul>
+<li><p><strong>当你需要创建对象状态快照来恢复其之前的状态时， 可以使用备忘录模式。</strong></p>
+</li>
+<li><p>备忘录模式允许你复制对象中的全部状态 （包括私有成员变量）， 并将其独立于对象进行保存。 尽管大部分人因为 “撤销” 这个用例才记得该模式， 但其实它在处理事务 （比如需要在出现错误时回滚一个操作） 的过程中也必不可少。</p>
+</li>
+<li><p><strong>当直接访问对象的成员变量、 获取器或设置器将导致封装被突破时， 可以使用该模式。</strong></p>
+</li>
+<li><p>备忘录让对象自行负责创建其状态的快照。 任何其他对象都不能读取快照， 这有效地保障了数据的安全性。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Memento interface provides a way to retrieve the memento's metadata, such</span>
+<span class="hljs-comment"> * as creation date or name. However, it doesn't expose the Originator's state.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Memento</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">GetName</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">date</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">state</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Concrete Memento contains the infrastructure for storing the Originator's</span>
+<span class="hljs-comment"> * state.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteMemento</span> : <span class="hljs-keyword">public</span> Memento {
+<span class="hljs-keyword">private</span>:
+    std::string state_;
+    std::string date_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">ConcreteMemento</span>(std::string state) : <span class="hljs-built_in">state_</span>(state) {
+        <span class="hljs-keyword">this</span>-&gt;state_ = state;
+        std::<span class="hljs-type">time_t</span> now = std::<span class="hljs-built_in">time</span>(<span class="hljs-number">0</span>);
+        <span class="hljs-keyword">this</span>-&gt;date_ = std::<span class="hljs-built_in">ctime</span>(&amp;now);
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * The Originator uses this method when restoring its state.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function">std::string <span class="hljs-title">state</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;state_;
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * The rest of the methods are used by the Caretaker to display metadata.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function">std::string <span class="hljs-title">GetName</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;date_ + <span class="hljs-string">" / ("</span> + <span class="hljs-keyword">this</span>-&gt;state_.<span class="hljs-built_in">substr</span>(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>) + <span class="hljs-string">"...)"</span>;
+    }
+    <span class="hljs-function">std::string <span class="hljs-title">date</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;date_;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Originator holds some important state that may change over time. It also</span>
+<span class="hljs-comment"> * defines a method for saving the state inside a memento and another method for</span>
+<span class="hljs-comment"> * restoring the state from it.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Originator</span> {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * @var string For the sake of simplicity, the originator's state is stored</span>
+<span class="hljs-comment">   * inside a single variable.</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">private</span>:
+    std::string state_;
+
+    <span class="hljs-function">std::string <span class="hljs-title">GenerateRandomString</span><span class="hljs-params">(<span class="hljs-type">int</span> length = <span class="hljs-number">10</span>)</span> </span>{
+        <span class="hljs-type">const</span> <span class="hljs-type">char</span> alphanum[] =
+            <span class="hljs-string">"0123456789"</span>
+            <span class="hljs-string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span>
+            <span class="hljs-string">"abcdefghijklmnopqrstuvwxyz"</span>;
+        <span class="hljs-type">int</span> stringLength = <span class="hljs-built_in">sizeof</span>(alphanum) - <span class="hljs-number">1</span>;
+
+        std::string random_string;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+            random_string += alphanum[std::<span class="hljs-built_in">rand</span>() % stringLength];
+        }
+        <span class="hljs-keyword">return</span> random_string;
+    }
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Originator</span>(std::string state) : <span class="hljs-built_in">state_</span>(state) {
+        std::cout &lt;&lt; <span class="hljs-string">"Originator: My initial state is: "</span> &lt;&lt; <span class="hljs-keyword">this</span>-&gt;state_ &lt;&lt; <span class="hljs-string">"\n"</span>;
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * The Originator's business logic may affect its internal state. Therefore,</span>
+<span class="hljs-comment">       * the client should backup the state before launching methods of the business</span>
+<span class="hljs-comment">       * logic via the save() method.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DoSomething</span><span class="hljs-params">()</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Originator: I'm doing something important.\n"</span>;
+        <span class="hljs-keyword">this</span>-&gt;state_ = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">GenerateRandomString</span>(<span class="hljs-number">30</span>);
+        std::cout &lt;&lt; <span class="hljs-string">"Originator: and my state has changed to: "</span> &lt;&lt; <span class="hljs-keyword">this</span>-&gt;state_ &lt;&lt; <span class="hljs-string">"\n"</span>;
+    }
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * Saves the current state inside a memento.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function">Memento *<span class="hljs-title">Save</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">ConcreteMemento</span>(<span class="hljs-keyword">this</span>-&gt;state_);
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * Restores the Originator's state from a memento object.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Restore</span><span class="hljs-params">(Memento *memento)</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;state_ = memento-&gt;<span class="hljs-built_in">state</span>();
+        std::cout &lt;&lt; <span class="hljs-string">"Originator: My state has changed to: "</span> &lt;&lt; <span class="hljs-keyword">this</span>-&gt;state_ &lt;&lt; <span class="hljs-string">"\n"</span>;
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Caretaker doesn't depend on the Concrete Memento class. Therefore, it</span>
+<span class="hljs-comment"> * doesn't have access to the originator's state, stored inside the memento. It</span>
+<span class="hljs-comment"> * works with all mementos via the base Memento interface.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Caretaker</span> {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * @var Memento[]</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">private</span>:
+    std::vector&lt;Memento *&gt; mementos_;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * @var Originator</span>
+<span class="hljs-comment">       */</span>
+    Originator *originator_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Caretaker</span>(Originator *originator) : <span class="hljs-built_in">originator_</span>(originator) {
+        <span class="hljs-keyword">this</span>-&gt;originator_ = originator;
+    }
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Backup</span><span class="hljs-params">()</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"\nCaretaker: Saving Originator's state...\n"</span>;
+        <span class="hljs-keyword">this</span>-&gt;mementos_.<span class="hljs-built_in">push_back</span>(<span class="hljs-keyword">this</span>-&gt;originator_-&gt;<span class="hljs-built_in">Save</span>());
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Undo</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>-&gt;mementos_.<span class="hljs-built_in">size</span>()) {
+            <span class="hljs-keyword">return</span>;
+        }
+        Memento *memento = <span class="hljs-keyword">this</span>-&gt;mementos_.<span class="hljs-built_in">back</span>();
+        <span class="hljs-keyword">this</span>-&gt;mementos_.<span class="hljs-built_in">pop_back</span>();
+        std::cout &lt;&lt; <span class="hljs-string">"Caretaker: Restoring state to: "</span> &lt;&lt; memento-&gt;<span class="hljs-built_in">GetName</span>() &lt;&lt; <span class="hljs-string">"\n"</span>;
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">this</span>-&gt;originator_-&gt;<span class="hljs-built_in">Restore</span>(memento);
+        } <span class="hljs-built_in">catch</span> (...) {
+            <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">Undo</span>();
+        }
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ShowHistory</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Caretaker: Here's the list of mementos:\n"</span>;
+        <span class="hljs-keyword">for</span> (Memento *memento : <span class="hljs-keyword">this</span>-&gt;mementos_) {
+            std::cout &lt;&lt; memento-&gt;<span class="hljs-built_in">GetName</span>() &lt;&lt; <span class="hljs-string">"\n"</span>;
+        }
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Client code.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">()</span> </span>{
+    Originator *originator = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Originator</span>(<span class="hljs-string">"Super-duper-super-puper-super."</span>);
+    Caretaker *caretaker = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Caretaker</span>(originator);
+    caretaker-&gt;<span class="hljs-built_in">Backup</span>();
+    originator-&gt;<span class="hljs-built_in">DoSomething</span>();
+    caretaker-&gt;<span class="hljs-built_in">Backup</span>();
+    originator-&gt;<span class="hljs-built_in">DoSomething</span>();
+    caretaker-&gt;<span class="hljs-built_in">Backup</span>();
+    originator-&gt;<span class="hljs-built_in">DoSomething</span>();
+    std::cout &lt;&lt; <span class="hljs-string">"\n"</span>;
+    caretaker-&gt;<span class="hljs-built_in">ShowHistory</span>();
+    std::cout &lt;&lt; <span class="hljs-string">"\nClient: Now, let's rollback!\n\n"</span>;
+    caretaker-&gt;<span class="hljs-built_in">Undo</span>();
+    std::cout &lt;&lt; <span class="hljs-string">"\nClient: Once more!\n\n"</span>;
+    caretaker-&gt;<span class="hljs-built_in">Undo</span>();
+
+    <span class="hljs-keyword">delete</span> originator;
+    <span class="hljs-keyword">delete</span> caretaker;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    std::<span class="hljs-built_in">srand</span>(<span class="hljs-built_in">static_cast</span>&lt;<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>&gt;(std::<span class="hljs-built_in">time</span>(<span class="hljs-literal">NULL</span>)));
+    <span class="hljs-built_in">ClientCode</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="zhuang-tai-mo-shi">状态模式</span><a href="#zhuang-tai-mo-shi" class="header-anchor">#</a></h1><p><strong>状态模式</strong>是一种行为设计模式， 让你能在一个对象的内部状态变化时改变其行为， 使其看上去就像改变了自身所属的类一样。</p>
+<p>适合应用场景:</p>
+<ul>
+<li><p><strong>如果对象需要根据自身当前状态进行不同行为， 同时状态的数量非常多且与状态相关的代码会频繁变更的话， 可使用状态模式。</strong></p>
+</li>
+<li><p>模式建议你将所有特定于状态的代码抽取到一组独立的类中。 这样一来， 你可以在独立于其他状态的情况下添加新状态或修改已有状态， 从而减少维护成本。</p>
+</li>
+<li><p><strong>如果某个类需要根据成员变量的当前值改变自身行为， 从而需要使用大量的条件语句时， 可使用该模式。</strong></p>
+</li>
+<li><p>状态模式会将这些条件语句的分支抽取到相应状态类的方法中。 同时， 你还可以清除主要类中与特定状态相关的临时成员变量和帮手方法代码。</p>
+</li>
+<li><p><strong>当相似状态和基于条件的状态机转换中存在许多重复代码时， 可使用状态模式。</strong></p>
+</li>
+<li><p>状态模式让你能够生成状态类层次结构， 通过将公用代码抽取到抽象基类中来<code>减少重复</code>。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;typeinfo&gt;</span></span>
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The base State class declares methods that all Concrete State should</span>
+<span class="hljs-comment"> * implement and also provides a backreference to the Context object, associated</span>
+<span class="hljs-comment"> * with the State. This backreference can be used by States to transition the</span>
+<span class="hljs-comment"> * Context to another State.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Context</span>;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">State</span> {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * @var Context</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">protected</span>:
+  	Context *context_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">State</span>() {
+    }
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">set_context</span><span class="hljs-params">(Context *context)</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;context_ = context;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Handle1</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Handle2</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Context defines the interface of interest to clients. It also maintains a</span>
+<span class="hljs-comment"> * reference to an instance of a State subclass, which represents the current</span>
+<span class="hljs-comment"> * state of the Context.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Context</span> {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * @var State A reference to the current state of the Context.</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">private</span>:
+  	State *state_;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Context</span>(State *state) : <span class="hljs-built_in">state_</span>(<span class="hljs-literal">nullptr</span>) {
+        <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">TransitionTo</span>(state);
+    }
+    ~<span class="hljs-built_in">Context</span>() {
+        <span class="hljs-keyword">delete</span> state_;
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * The Context allows changing the State object at runtime.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">TransitionTo</span><span class="hljs-params">(State *state)</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Context: Transition to "</span> &lt;&lt; <span class="hljs-built_in">typeid</span>(*state).<span class="hljs-built_in">name</span>() &lt;&lt; <span class="hljs-string">".\n"</span>;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;state_ != <span class="hljs-literal">nullptr</span>)
+            <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>-&gt;state_;
+        <span class="hljs-keyword">this</span>-&gt;state_ = state;
+        <span class="hljs-keyword">this</span>-&gt;state_-&gt;<span class="hljs-built_in">set_context</span>(<span class="hljs-keyword">this</span>);
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * The Context delegates part of its behavior to the current State object.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Request1</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;state_-&gt;<span class="hljs-built_in">Handle1</span>();
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Request2</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;state_-&gt;<span class="hljs-built_in">Handle2</span>();
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Concrete States implement various behaviors, associated with a state of the</span>
+<span class="hljs-comment"> * Context.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteStateA</span> : <span class="hljs-keyword">public</span> State {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Handle1</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span></span>;
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Handle2</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"ConcreteStateA handles request2.\n"</span>;
+    }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteStateB</span> : <span class="hljs-keyword">public</span> State {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Handle1</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"ConcreteStateB handles request1.\n"</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Handle2</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"ConcreteStateB handles request2.\n"</span>;
+        std::cout &lt;&lt; <span class="hljs-string">"ConcreteStateB wants to change the state of the context.\n"</span>;
+        <span class="hljs-keyword">this</span>-&gt;context_-&gt;<span class="hljs-built_in">TransitionTo</span>(<span class="hljs-keyword">new</span> ConcreteStateA);
+    }
+};
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ConcreteStateA::Handle1</span><span class="hljs-params">()</span> </span>{
+    std::cout &lt;&lt; <span class="hljs-string">"ConcreteStateA handles request1.\n"</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"ConcreteStateA wants to change the state of the context.\n"</span>;
+
+    <span class="hljs-keyword">this</span>-&gt;context_-&gt;<span class="hljs-built_in">TransitionTo</span>(<span class="hljs-keyword">new</span> ConcreteStateB);
+}
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">()</span> </span>{
+    Context *context = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Context</span>(<span class="hljs-keyword">new</span> ConcreteStateA);
+    context-&gt;<span class="hljs-built_in">Request1</span>();
+    context-&gt;<span class="hljs-built_in">Request2</span>();
+    <span class="hljs-keyword">delete</span> context;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">ClientCode</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="ce-lue-mo-shi">策略模式</span><a href="#ce-lue-mo-shi" class="header-anchor">#</a></h1><p><strong>策略模式</strong>是一种行为设计模式， 它能让你定义一系列算法， 并将每种算法分别放入独立的类中， 以使算法的对象能够相互替换。</p>
+<p>适合应用场景:</p>
+<ul>
+<li><p><strong>当你想使用对象中各种不同的算法变体， 并希望能在运行时切换算法时， 可使用策略模式。</strong></p>
+</li>
+<li><p>策略模式让你能够将对象关联至可以不同方式执行特定子任务的不同子对象， 从而以间接方式在运行时更改对象行为。</p>
+</li>
+<li><p><strong>当你有许多仅在执行某些行为时略有不同的相似类时， 可使用策略模式。</strong></p>
+</li>
+<li><p>策略模式让你能将不同行为抽取到一个独立类层次结构中， 并将原始类组合成同一个， 从而减少重复代码。</p>
+</li>
+<li><p><strong>如果算法在上下文的逻辑中不是特别重要， 使用该模式能将类的业务逻辑与其算法实现细节隔离开来。</strong></p>
+</li>
+<li><p>策略模式让你能将各种算法的代码、 内部数据和依赖关系与其他代码隔离开来。 不同客户端可通过一个简单接口执行算法， 并能在运行时进行切换。</p>
+</li>
+<li><p><strong>当类中使用了复杂条件运算符以在同一算法的不同变体中切换时， 可使用该模式。</strong></p>
+</li>
+<li><p>策略模式将所有继承自同样接口的算法抽取到独立类中， 因此不再需要条件语句。 原始对象并不实现所有算法的变体， 而是将执行工作委派给其中的一个独立算法对象。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Strategy interface declares operations common to all supported versions</span>
+<span class="hljs-comment"> * of some algorithm.</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * The Context uses this interface to call the algorithm defined by Concrete</span>
+<span class="hljs-comment"> * Strategies.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Strategy</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Strategy</span>() {}
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">DoAlgorithm</span><span class="hljs-params">(<span class="hljs-type">const</span> std::vector&lt;std::string&gt; &amp;data)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Context defines the interface of interest to clients.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Context</span>
+{
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * @var Strategy The Context maintains a reference to one of the Strategy</span>
+<span class="hljs-comment">     * objects. The Context does not know the concrete class of a strategy. It</span>
+<span class="hljs-comment">     * should work with all strategies via the Strategy interface.</span>
+<span class="hljs-comment">     */</span>
+<span class="hljs-keyword">private</span>:
+    Strategy *strategy_;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * Usually, the Context accepts a strategy through the constructor, but also</span>
+<span class="hljs-comment">     * provides a setter to change it at runtime.</span>
+<span class="hljs-comment">     */</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Context</span>(Strategy *strategy = <span class="hljs-literal">nullptr</span>) : <span class="hljs-built_in">strategy_</span>(strategy)
+    {
+    }
+    ~<span class="hljs-built_in">Context</span>()
+    {
+        <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>-&gt;strategy_;
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * Usually, the Context allows replacing a Strategy object at runtime.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">set_strategy</span><span class="hljs-params">(Strategy *strategy)</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>-&gt;strategy_;
+        <span class="hljs-keyword">this</span>-&gt;strategy_ = strategy;
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * The Context delegates some work to the Strategy object instead of</span>
+<span class="hljs-comment">     * implementing +multiple versions of the algorithm on its own.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DoSomeBusinessLogic</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-comment">// ...</span>
+        std::cout &lt;&lt; <span class="hljs-string">"Context: Sorting data using the strategy (not sure how it'll do it)\n"</span>;
+        std::string result = <span class="hljs-keyword">this</span>-&gt;strategy_-&gt;<span class="hljs-built_in">DoAlgorithm</span>(std::vector&lt;std::string&gt;{<span class="hljs-string">"a"</span>, <span class="hljs-string">"e"</span>, <span class="hljs-string">"c"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"d"</span>});
+        std::cout &lt;&lt; result &lt;&lt; <span class="hljs-string">"\n"</span>;
+        <span class="hljs-comment">// ...</span>
+    }
+};
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Concrete Strategies implement the algorithm while following the base Strategy</span>
+<span class="hljs-comment"> * interface. The interface makes them interchangeable in the Context.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteStrategyA</span> : <span class="hljs-keyword">public</span> Strategy
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">std::string <span class="hljs-title">DoAlgorithm</span><span class="hljs-params">(<span class="hljs-type">const</span> std::vector&lt;std::string&gt; &amp;data)</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span></span>
+<span class="hljs-function">    </span>{
+        std::string result;
+        std::for_each(std::<span class="hljs-built_in">begin</span>(data), std::<span class="hljs-built_in">end</span>(data), [&amp;result](<span class="hljs-type">const</span> std::string &amp;letter) {
+            result += letter;
+        });
+        std::<span class="hljs-built_in">sort</span>(std::<span class="hljs-built_in">begin</span>(result), std::<span class="hljs-built_in">end</span>(result));
+
+        <span class="hljs-keyword">return</span> result;
+    }
+};
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteStrategyB</span> : <span class="hljs-keyword">public</span> Strategy
+{
+    <span class="hljs-function">std::string <span class="hljs-title">DoAlgorithm</span><span class="hljs-params">(<span class="hljs-type">const</span> std::vector&lt;std::string&gt; &amp;data)</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span></span>
+<span class="hljs-function">    </span>{
+        std::string result;
+        std::for_each(std::<span class="hljs-built_in">begin</span>(data), std::<span class="hljs-built_in">end</span>(data), [&amp;result](<span class="hljs-type">const</span> std::string &amp;letter) {
+            result += letter;
+        });
+        std::<span class="hljs-built_in">sort</span>(std::<span class="hljs-built_in">begin</span>(result), std::<span class="hljs-built_in">end</span>(result));
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; result.<span class="hljs-built_in">size</span>() / <span class="hljs-number">2</span>; i++)
+        {
+            std::<span class="hljs-built_in">swap</span>(result[i], result[result.<span class="hljs-built_in">size</span>() - i - <span class="hljs-number">1</span>]);
+        }
+
+        <span class="hljs-keyword">return</span> result;
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code picks a concrete strategy and passes it to the context. The</span>
+<span class="hljs-comment"> * client should be aware of the differences between strategies in order to make</span>
+<span class="hljs-comment"> * the right choice.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    Context *context = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Context</span>(<span class="hljs-keyword">new</span> ConcreteStrategyA);
+    std::cout &lt;&lt; <span class="hljs-string">"Client: Strategy is set to normal sorting.\n"</span>;
+    context-&gt;<span class="hljs-built_in">DoSomeBusinessLogic</span>();
+    std::cout &lt;&lt; <span class="hljs-string">"\n"</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"Client: Strategy is set to reverse sorting.\n"</span>;
+    context-&gt;<span class="hljs-built_in">set_strategy</span>(<span class="hljs-keyword">new</span> ConcreteStrategyB);
+    context-&gt;<span class="hljs-built_in">DoSomeBusinessLogic</span>();
+    <span class="hljs-keyword">delete</span> context;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-built_in">ClientCode</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h1><span id="mo-ban-fang-fa-mo-shi">模板方法模式</span><a href="#mo-ban-fang-fa-mo-shi" class="header-anchor">#</a></h1><p><strong>模板方法模式</strong>是一种行为设计模式， 它在超类中定义了一个算法的框架， 允许子类在不修改结构的情况下重写算法的特定步骤。</p>
+<p>适合应用场景:</p>
+<ul>
+<li><p><strong>当你只希望客户端扩展某个特定算法步骤， 而不是整个算法或其结构时， 可使用模板方法模式。</strong></p>
+</li>
+<li><p>模板方法将整个算法转换为一系列独立的步骤， 以便子类能对其进行扩展， 同时还可让超类中所定义的结构保持完整。</p>
+</li>
+<li><p><strong>当多个类的算法除一些细微不同之外几乎完全一样时， 你可使用该模式。 但其后果就是， 只要算法发生变化， 你就可能需要修改所有的类。</strong></p>
+</li>
+<li><p>在将算法转换为模板方法时， 你可将相似的实现步骤提取到超类中以去除重复代码。 子类间各不同的代码可继续保留在子类中。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The Abstract Class defines a template method that contains a skeleton of some</span>
+<span class="hljs-comment"> * algorithm, composed of calls to (usually) abstract primitive operations.</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * Concrete subclasses should implement these operations, but leave the template</span>
+<span class="hljs-comment"> * method itself intact.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">AbstractClass</span> {
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * The template method defines the skeleton of an algorithm.</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">TemplateMethod</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">BaseOperation1</span>();
+        <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">RequiredOperations1</span>();
+        <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">BaseOperation2</span>();
+        <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">Hook1</span>();
+        <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">RequiredOperation2</span>();
+        <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">BaseOperation3</span>();
+        <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">Hook2</span>();
+    }
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * These operations already have implementations.</span>
+<span class="hljs-comment">   */</span>
+<span class="hljs-keyword">protected</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BaseOperation1</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"AbstractClass says: I am doing the bulk of the work\n"</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BaseOperation2</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"AbstractClass says: But I let subclasses override some operations\n"</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BaseOperation3</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"AbstractClass says: But I am doing the bulk of the work anyway\n"</span>;
+    }
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * These operations have to be implemented in subclasses.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">RequiredOperations1</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">RequiredOperation2</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">       * These are "hooks." Subclasses may override them, but it's not mandatory</span>
+<span class="hljs-comment">       * since the hooks already have default (but empty) implementation. Hooks</span>
+<span class="hljs-comment">       * provide additional extension points in some crucial places of the</span>
+<span class="hljs-comment">       * algorithm.</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Hook1</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{}
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">Hook2</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{}
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Concrete classes have to implement all abstract operations of the base class.</span>
+<span class="hljs-comment"> * They can also override some operations with a default implementation.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteClass1</span> : <span class="hljs-keyword">public</span> AbstractClass {
+<span class="hljs-keyword">protected</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">RequiredOperations1</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"ConcreteClass1 says: Implemented Operation1\n"</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">RequiredOperation2</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"ConcreteClass1 says: Implemented Operation2\n"</span>;
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Usually, concrete classes override only a fraction of base class' operations.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteClass2</span> : <span class="hljs-keyword">public</span> AbstractClass {
+<span class="hljs-keyword">protected</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">RequiredOperations1</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"ConcreteClass2 says: Implemented Operation1\n"</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">RequiredOperation2</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"ConcreteClass2 says: Implemented Operation2\n"</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Hook1</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">override</span> </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"ConcreteClass2 says: Overridden Hook1\n"</span>;
+    }
+};
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * The client code calls the template method to execute the algorithm. Client</span>
+<span class="hljs-comment"> * code does not have to know the concrete class of an object it works with, as</span>
+<span class="hljs-comment"> * long as it works with objects through the interface of their base class.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ClientCode</span><span class="hljs-params">(AbstractClass *class_)</span> </span>{
+    <span class="hljs-comment">// ...</span>
+    class_-&gt;<span class="hljs-built_in">TemplateMethod</span>();
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    std::cout &lt;&lt; <span class="hljs-string">"Same client code can work with different subclasses:\n"</span>;
+    ConcreteClass1 *concreteClass1 = <span class="hljs-keyword">new</span> ConcreteClass1;
+    <span class="hljs-built_in">ClientCode</span>(concreteClass1);
+    std::cout &lt;&lt; <span class="hljs-string">"\n"</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"Same client code can work with different subclasses:\n"</span>;
+    ConcreteClass2 *concreteClass2 = <span class="hljs-keyword">new</span> ConcreteClass2;
+    <span class="hljs-built_in">ClientCode</span>(concreteClass2);
+    <span class="hljs-keyword">delete</span> concreteClass1;
+    <span class="hljs-keyword">delete</span> concreteClass2;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/03/Cmake%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8ECMakeLists-txt%E7%9A%84%E7%BC%96%E5%86%99/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Cmake的安装与CMakeLists.txt的编写</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/03/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+                        <span class="hidden-mobile">C++设计模式-结构型模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

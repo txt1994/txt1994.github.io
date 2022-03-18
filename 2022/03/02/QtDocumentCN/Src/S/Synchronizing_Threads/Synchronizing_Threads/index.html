@@ -1,0 +1,515 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="同步线程 低级同步原语 风险 提供便利的类   高级事件队列       # 同步线程  尽管线程的初衷是让代码并行运行，仍然有许多时候，线程必须停下来等待其他线程。例如，若有两个线程尝试同时写入同一个变量，则结果是不确定的。让线程强制等待另外线程，这样的机制被称为互斥，是一种保护共享资源（如数据）的常用技术。 Qt 在为线程同步提供高级机制的同时，也提供了低级原语。 低级同步原语#QM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同步线程">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/Synchronizing_Threads/Synchronizing_Threads/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="同步线程 低级同步原语 风险 提供便利的类   高级事件队列       # 同步线程  尽管线程的初衷是让代码并行运行，仍然有许多时候，线程必须停下来等待其他线程。例如，若有两个线程尝试同时写入同一个变量，则结果是不确定的。让线程强制等待另外线程，这样的机制被称为互斥，是一种保护共享资源（如数据）的常用技术。 Qt 在为线程同步提供高级机制的同时，也提供了低级原语。 低级同步原语#QM">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:52:10.408Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="同步线程">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>同步线程 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="同步线程">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">同步线程</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#tong-bu-xian-cheng">同步线程</a><ul>
+<li><a href="#di-ji-tong-bu-yuan-yu">低级同步原语</a><ul>
+<li><a href="#feng-xian">风险</a></li>
+<li><a href="#ti-gong-bian-li-de-lei">提供便利的类</a></li>
+</ul>
+</li>
+<li><a href="#gao-ji-shi-jian-dui-lie">高级事件队列</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# 同步线程
+
+<p>尽管线程的初衷是让代码并行运行，仍然有许多时候，线程必须停下来等待其他线程。例如，若有两个线程尝试同时写入同一个变量，则结果是不确定的。让线程强制等待另外线程，这样的机制被称为<em>互斥</em>，是一种保护共享资源（如数据）的常用技术。</p>
+<p>Qt 在为线程同步提供高级机制的同时，也提供了低级原语。</p>
+<h2><span id="di-ji-tong-bu-yuan-yu">低级同步原语</span><a href="#di-ji-tong-bu-yuan-yu" class="header-anchor">#</a></h2><p><a href>QMutex</a> 是能够进行强制互斥的基础类。为了获取对一个共享资源的访问权，线程会锁住一个互斥锁。若此时，另一个线程尝试再次加锁，则导致后者进入睡眠状态，直到第一个线程完成任务并解开互斥锁。</p>
+<p><a href>QReadWriteLock</a> 类似 <a href>QMutex</a> ，只是前者区分了“读”与“写”的访问权限。当一段数据未处于写入过程中时，多个线程可以安全地同时读取它。 <a href>QMutex</a> 能强制多个线程轮流访问共享数据，而 <a href>QReadWriteLock</a> 允许同时读取，提高了并行性。</p>
+<p><a href>QSemaphore</a> 是 <a href>QMutex</a> 的泛化，它保护一定数量的同类资源。<a href>QMutex</a> 则与之相反，仅保护一个资源。<a href>信号量示例</a> 是 <a href>QSemaphore</a> 的一个使用典例：同步访问在生产者和使用者之间的循环缓冲区。</p>
+<p><a href>QWaitCondition</a> 不同于强制互斥，它提供一个 <em>条件变量</em> 来同步线程。不同于其他原语令线程等待至资源解锁，<a href>QWaitCondition</a> 可以让线程在符合特定条件时退出等待。为了让等待中的线程继续执行，调用 <a href>wakeOne()</a> 来随机唤醒一个线程，或者调用 <a href>wakeAll()</a> 来同时唤醒所有线程。<a href>等待条件示例</a> 将告诉您如何使用 <a href>QWaitCondition</a> 取代 <a href>QSemaphore</a> 来解决生产者-消费者问题。</p>
+<p><strong>注意</strong>：Qt 的同步类依赖于使用正确对齐的指针。例如，您不能在 MSVC 中使用打包类。（<code>译者注：即使用 #pragma pack 或 alignas 等方式非常规对齐地存储同步类对象</code>)</p>
+<p>这些线程同步类能让一个方法做到线程安全。不过，这会导致性能损失，因此大多数 Qt 的方法都不保障线程安全。</p>
+<hr>
+<h3><span id="feng-xian">风险</span><a href="#feng-xian" class="header-anchor">#</a></h3><p>如果一个线程锁定了一个资源，却在没有使用完毕后解锁它，则可能会导致程序冻结，因为其他线程将永远无法访问该资源。这很容易出现在，例如，有异常抛出，并强制当前函数返回，而没有释放锁的场景中。（<code>译者注：异常抛出时，当前函数会被强制就地返回，本地栈变量会被释放。因此在引发异常的代码之后的 unlock() 不会被执行</code>)</p>
+<p>另一个类似的场景是 <em>死锁</em> 。例如，假设线程 A 正在等待线程 B 解锁一个资源。若此时线程 B 也在等待线程 A 解锁另一个资源，那么两个线程持续相互等待，这将造成程序冻结。</p>
+<hr>
+<h3><span id="ti-gong-bian-li-de-lei">提供便利的类</span><a href="#ti-gong-bian-li-de-lei" class="header-anchor">#</a></h3><p><a href>QMutexLocker</a>、<a href>QReadLocker</a> 与 <a href>QWriteLocker</a> 使得 <a href>QMutex</a> 与 <a href>QReadWriteLock</a> 使用起来更加简单。这些类会在它们构造时锁定资源，在析构时自动解锁资源。设计它们的初衷是简化使用 <a href>QMutex</a> 与 <a href>QReadWriteLock</a> 的代码，降低资源被意外永久锁定的可能性。(<code>译者注：此方式可以保证线程安全，即在抛出异常，导致函数强制返回时，锁会因为本地的 locker 栈对象析构而被自动解锁</code>)</p>
+<h2><span id="gao-ji-shi-jian-dui-lie">高级事件队列</span><a href="#gao-ji-shi-jian-dui-lie" class="header-anchor">#</a></h2><p>Qt 的 <a href>事件系统</a> 在跨线程通信中非常有用。每个线程都有自己的事件循环。要令槽函数（或任何可动态调用的方法）在另一个线程中被调用，可将该调用目标置入目标线程的事件循环中。这可让目标线程完成当前任务后再执行槽函数，而原始线程继续并行运行。</p>
+<p>若要将调用代码置于事件循环中，可创建一个队列 <a href>信号槽</a> 连接。每当发出信号时，事件系统将记录它的参数。该信号接收者 <a href>所属</a> 的线程将会执行对应的槽函数。此外，也可以使用 <a href>QMetaObject::invokeMethod</a>() 以达到同样效果，同时无需发射信号。在这两种情况下，都必须使用 <a href>队列连接</a>，因为 <a href>直接连接</a> 会绕过事件系统，在当前线程中立刻执行该方法。</p>
+<p>不同于使用低级原语，使用事件系统进行线程同步没有死锁的风险。不过，事件系统不会强制执行互斥。如果可动态调用的方法访问共享数据，则依然需要使用低级原语对其进行保护。</p>
+<p>即便如此，Qt 的事件系统以及 <a href>隐式共享</a> 的数据结构依然提供了传统线程锁定的替代方案。如果仅使用信号槽，而且线程间无共享变量，多线程程序完全可以不使用低级原语。</p>
+<p><strong>另请参阅</strong>： <a href>QThread::exec</a>() 以及 <a href>线程与 QObject </a>。</p>
+<p>
+<a style="float:left" href="threads-technologies.html">&lt; Qt 中的多线程技术</a>
+<a style="float:right" href="threads-reentrancy.html">可重入性与线程安全 &gt;</a>
+</p>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%90%8C%E6%AD%A5%E7%BA%BF%E7%A8%8B/">同步线程</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QStringConverter/QStringConverter/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QStringConverter类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QStringView/QStringView/">
+                        <span class="hidden-mobile">QStringView类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

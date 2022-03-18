@@ -1,0 +1,901 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QImageWriter Class 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 enum QImageWriter:: ImageWriterError   成员函数文档编制 QImageWriter:: QImageWriter (const QString &amp; fileName , const QByteArray &amp; format &#x3D; QByte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QImageWriter类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/I/QImageWriter/QImageWriter/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QImageWriter Class 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 enum QImageWriter:: ImageWriterError   成员函数文档编制 QImageWriter:: QImageWriter (const QString &amp; fileName , const QByteArray &amp; format &#x3D; QByte">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:31:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:42:14.280Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="I">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QImageWriter类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QImageWriter类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:31" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      10k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      85 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QImageWriter类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qimagewriter-class">QImageWriter Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#enum-qimagewriter-imagewritererror">enum QImageWriter:: ImageWriterError</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qimagewriter-qimagewriter-const-qstring-qstring-html-filename-const-qbytearray-qbytearray-html-format-qbytearray">QImageWriter:: QImageWriter (const </a><a href="qstring.html">QString </a>&amp; <em>fileName</em> , const <a href="qbytearray.html">QByteArray </a>&amp; <em>format</em> = QByteArray())</li>
+<li><a href="#qimagewriter-qimagewriter-qiodevice-device-const-qbytearray-qbytearray-html-format">QImageWriter:: QImageWriter ( </a><a href>QIODevice </a>* <em>device</em> , const <a href="qbytearray.html">QByteArray </a>&amp; <em>format</em> )</li>
+<li><a href="#qimagewriter-qimagewriter">QImageWriter:: QImageWriter ()</a></li>
+<li><a href="#qimagewriter-qimagewriter">QImageWriter:: ~QImageWriter ()</a></li>
+<li><a href="#bool-qimagewriter-canwrite-const">bool QImageWriter:: canWrite () const</a></li>
+<li><a href="#int-qimagewriter-compression-const">int QImageWriter:: compression() const</a></li>
+<li><a href="#qiodevice-qimagewriter-device-const">QIODevice </a></li>
+<li><a href="#qimagewriter-imagewritererror-imagewritererror-enum-qimagewriter-error-const">QImageWriter::ImageWriterError </a></li>
+<li><a href="#qstring-qstring-html-qimagewriter-errorstring-const">QString </a></li>
+<li><a href="#qstring-qstring-html-qimagewriter-filename-const-1">QString </a></li>
+<li><a href="#qbytearray-qbytearray-html-qimagewriter-format-const">QByteArray </a></li>
+<li><a href="#static-since-5-12-qlist-qlist-html-qbytearray-qbytearray-html-qimagewriter-imageformatsformimetype-const-qbytearray-qbytearray-html-mimetype"><code>[static, since 5.12] </code></a><a href="qlist.html">QList </a>&lt; <a href="qbytearray.html">QByteArray </a>&gt; QImageWriter:: imageFormatsForMimeType (const <a href="qbytearray.html">QByteArray </a>&amp; <em>mimeType</em> )</li>
+<li><a href="#since-5-5-bool-qimagewriter-optimizedwrite-const"><code>[since 5.5] </code>bool QImageWriter:: optimizedWrite () const</a></li>
+<li><a href="#since-5-5-bool-qimagewriter-progressivescanwrite-const"><code>[since 5.5] </code>bool QImageWriter:: progressiveScanWrite () const</a></li>
+<li><a href="#int-qimagewriter-quality-const">int QImageWriter:: quality () const</a></li>
+<li><a href="#void-qimagewriter-setcompression-int-compression">void QImageWriter:: setCompression ( int <em>compression</em> )</a></li>
+<li><a href="#void-qimagewriter-setdevice-qiodevice-device">void QImageWriter:: setDevice ( </a><a href>QIODevice </a>* <em>device</em> )</li>
+<li><a href="#void-qimagewriter-setfilename-const-qstring-qstring-html-filename">void QImageWriter:: setFileName (const </a><a href="qstring.html">QString </a>&amp; <em>fileName</em> )</li>
+<li><a href="#void-qimagewriter-setformat-const-qbytearray-qbytearray-html-format">void QImageWriter:: setFormat (const </a><a href="qbytearray.html">QByteArray </a>&amp; <em>format</em> )</li>
+<li><a href="#since-5-5-void-qimagewriter-setoptimizedwrite-bool-optimize"><code>[since 5.5] </code>void QImageWriter:: setOptimizedWrite ( bool <em>optimize</em> )</a></li>
+<li><a href="#since-5-5-void-qimagewriter-setprogressivescanwrite-bool-progressive"><code>[since 5.5] </code>void QImageWriter:: setProgressiveScanWrite ( bool <em>progressive</em> )</a></li>
+<li><a href="#void-qimagewriter-setquality-int-quality">void QImageWriter:: setQuality ( int <em>quality</em> )</a></li>
+<li><a href="#since-5-4-void-qimagewriter-setsubtype-const-qbytearray-qbytearray-html-type"><code>[since 5.4] </code>void QImageWriter:: setSubType (const </a><a href="qbytearray.html">QByteArray </a>&amp; <em>type</em> )</li>
+<li><a href="#void-qimagewriter-settext-const-qstring-qstring-html-key-const-qstring-qstring-html-text">void QImageWriter:: setText (const </a><a href="qstring.html">QString </a>&amp; <em>key</em> , const <a href="qstring.html">QString </a>&amp; <em>text</em> )</li>
+<li><a href="#since-5-5-void-qimagewriter-settransformation-qimageiohandler-transformations-qimageiohandler-html-transformation-enum-transform"><code>[since 5.5] </code>void QImageWriter:: setTransformation ( </a><a href="qimageiohandler.html#Transformation-enum">QImageIOHandler::Transformations </a><em>transform</em> )</li>
+<li><a href="#since-5-4-qbytearray-qbytearray-html-qimagewriter-subtype-const"><code>[since 5.4] </code></a><a href="qbytearray.html">QByteArray </a>QImageWriter:: subType () const</li>
+<li><a href="#static-qlist-qlist-html-qbytearray-qbytearray-html-qimagewriter-supportedimageformats"><code>[static] </code></a><a href="qlist.html">QList </a>&lt; <a href="qbytearray.html">QByteArray </a>&gt; QImageWriter:: supportedImageFormats ()</li>
+<li><a href="#static-qlist-qlist-html-qbytearray-qbytearray-html-qimagewriter-supportedmimetypes"><code>[static] </code></a><a href="qlist.html">QList </a>&lt; <a href="qbytearray.html">QByteArray </a>&gt; QImageWriter:: supportedMimeTypes ()</li>
+<li><a href="#since-5-4-qlist-qlist-html-qbytearray-qbytearray-html-qimagewriter-supportedsubtypes-const"><code>[since 5.4] </code></a><a href="qlist.html">QList </a>&lt; <a href="qbytearray.html">QByteArray </a>&gt; QImageWriter:: supportedSubTypes () const</li>
+<li><a href="#bool-qimagewriter-supportsoption-qimageiohandler-imageoption-qimageiohandler-html-imageoption-enum-option-const">bool QImageWriter:: supportsOption ( </a><a href="qimageiohandler.html#ImageOption-enum">QImageIOHandler::ImageOption </a><em>option</em> ) const</li>
+<li><a href="#since-5-5-qimageiohandler-transformations-qimageiohandler-html-transformation-enum-qimagewriter-transformation-const"><code>[since 5.5] </code></a><a href="qimageiohandler.html#Transformation-enum">QImageIOHandler::Transformations </a>QImageWriter:: transformation () const</li>
+<li><a href="#bool-qimagewriter-write-const-qimage-qimage-html-image">bool QImageWriter:: write (const </a><a href="qimage.html">QImage </a>&amp; <em>image</em> )</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QImageWriter Class
+
+<p>QImageWriter类提供了一个独立于格式的接口，用于将图像写入文件或其他设备。. <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更 多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qimagewriter></qimagewriter></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Gui REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Gui)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += gui</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qimagewriter-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<p><strong>注意：</strong> 此类的所有函数 <a href="threads-reentrancy.html">可重入 </a>.</p>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#ImageWriterError-enum">ImageWriterError </a></strong>{ DeviceError, UnsupportedFormatError, InvalidImageError, UnknownError }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QImageWriter-2">QImageWriter </a></strong>(const QString &amp; <em>fileName</em> , const QByteArray &amp; <em>format</em> = QByteArray())</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QImageWriter-1">QImageWriter </a></strong>(QIODevice * <em>device</em> , const QByteArray &amp; <em>format</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QImageWriter">QImageWriter </a></strong>()</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QImageWriter">~QImageWriter </a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#canWrite">canWrite </a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#compression">压缩 </a></strong>() const</td>
+</tr>
+<tr>
+<td>QIODevice *</td>
+<td><strong><a href="#device">device </a></strong>() const</td>
+</tr>
+<tr>
+<td>QImageWriter::ImageWriterError</td>
+<td><strong><a href="#error">error </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#errorString">errorString </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#fileName">fileName </a></strong>() const</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#format">format </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#optimizedWrite">optimizedWrite </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#progressiveScanWrite">progressiveScanWrite </a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#quality">quality </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setCompression">setCompression </a></strong>(int <em>压缩</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setDevice">setDevice </a></strong>(QIODevice * <em>device</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setFileName">setFileName </a></strong>(const QString &amp; <em>fileName</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setFormat">setFormat </a></strong>(const QByteArray &amp; <em>format</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setOptimizedWrite">setOptimizedWrite </a></strong>(bool <em>optimize</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setProgressiveScanWrite">setProgressiveScanWrite </a></strong>(bool <em>progressive</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setQuality">setQuality </a></strong>(int <em>quality</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setSubType">setSubType </a></strong>(const QByteArray &amp; <em>type</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setText">setText </a></strong>(const QString &amp; <em>key</em> , const QString &amp; <em>text</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setTransformation">setTransformation </a></strong>(QImageIOHandler::Transformations <em>transform</em> )</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#subType">subType </a></strong>() const</td>
+</tr>
+<tr>
+<td>QList<qbytearray></qbytearray></td>
+<td><strong><a href="#supportedSubTypes">supportedSubTypes </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#supportsOption">supportsOption </a></strong>(QImageIOHandler::ImageOption <em>option</em> ) const</td>
+</tr>
+<tr>
+<td>QImageIOHandler::Transformations</td>
+<td><strong><a href="#transformation">transformation </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#write">write </a></strong>(const QImage &amp; <em>image</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QList<qbytearray></qbytearray></th>
+<th><strong><a href="#imageFormatsForMimeType">imageFormatsForMimeType </a></strong>(const QByteArray &amp; <em>mimeType</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QList<qbytearray></qbytearray></td>
+<td><strong><a href="#supportedImageFormats">supportedImageFormats </a></strong>()</td>
+</tr>
+<tr>
+<td>QList<qbytearray></qbytearray></td>
+<td><strong><a href="#supportedMimeTypes">supportedMimeTypes </a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QImageWriter支持在存储图像之前设置特定格式的选项，如压缩级别和质量。如果你不需要这些选项，你可以使用 <a href="qimage.html#save">QImage::save </a>() 或 <a href="qpixmap.html#save">QPixmap::save </a> () 代替。</p>
+<p>要存储一个图像，你首先要构造一个QImageWriter对象。将文件名或设备指针以及图像格式传给QImageWriter的构造函数。然后你可以设置几个选项，比如质量（通过调用<a href="#setQuality">setQuality</a>()）。<a href="#canWrite">canWrite </a>() 返回 <code>true </code>如果QImageWriter可以写入图像（即，图像格式被支持，并且设备为写入而开放）。调用<a href="#write">write</a>()将图像写到设备上。</p>
+<p>如果在写入图像时发生任何错误，<a href="#write">write </a>()将返回false。然后你可以调用<a href="#error">error </a>()来查找发生的错误类型，或者调用<a href="#errorString">errorString </a>()来获得对出错原因的可读描述。</p>
+<p>调用 <a href="#supportedImageFormats">supportedImageFormats </a>() 获取QImageWriter可以写入的格式列表。QImageWriter支持所有内置的图像格式，此外还有任何支持写入的图像格式插件。</p>
+<p><strong>注意：</strong> QImageWriter假定对被分配的文件或设备具有排他性的控制。在QImageWriter对象的生命周期内，任何试图修改分配的文件或设备的行为都将产生未定义的结果。如果需要立即访问一个资源，建议使用一个范围。</p>
+<p>例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QString <span class="hljs-title">imagePath</span><span class="hljs-params">(QStringLiteral(<span class="hljs-string">"path/image.jpeg"</span>))</span></span>;
+<span class="hljs-function">QImage <span class="hljs-title">image</span><span class="hljs-params">(<span class="hljs-number">64</span>, <span class="hljs-number">64</span>, QImage::Format_RGB32)</span></span>;
+image.<span class="hljs-built_in">fill</span>(Qt::red);
+{
+    <span class="hljs-function">QImageWriter <span class="hljs-title">writer</span><span class="hljs-params">(imagePath)</span></span>;
+    writer.<span class="hljs-built_in">write</span>(image);
+}
+QFile::<span class="hljs-built_in">rename</span>(imagePath,
+              <span class="hljs-built_in">QStringLiteral</span>(<span class="hljs-string">"path/other_image.jpeg"</span>));</code></pre></div>
+
+<p><strong>另请参阅</strong> <a href="qimagereader.html">QImageReader </a>, <a href="qimageiohandler.html">QImageIOHandler </a>, <a href="qimageioplugin.html">QImageIOPlugin </a>，和 <a href="qcolorspace.html">QColorSpace </a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="enum-qimagewriter-imagewritererror">enum QImageWriter:: ImageWriterError</span><a href="#enum-qimagewriter-imagewritererror" class="header-anchor">#</a></h3><p>这个枚举描述了用<a href>QImageWriter</a>写入图像时可能发生的错误。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QImageWriter::DeviceError</code></td>
+<td align="left"><code>1</code></td>
+<td align="left"><a href>QImageWriter</a>在写入图像数据时遇到了一个设备错误。请咨询你的设备，了解更多关于出错的细节。</td>
+</tr>
+<tr>
+<td align="left"><code>QImageWriter::UnsupportedFormatError</code></td>
+<td align="left"><code>2</code></td>
+<td align="left">Qt 不支持请求的图像格式。</td>
+</tr>
+<tr>
+<td align="left"><code>QImageWriter::InvalidImageError</code></td>
+<td align="left"><code>3</code></td>
+<td align="left">有人试图写入一个无效的<a href="qimage.html">QImage</a>。无效图像的一个例子是一个空的<a href="qimage.html">QImage</a>。</td>
+</tr>
+<tr>
+<td align="left"><code>QImageWriter::UnknownError</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">发生了一个未知的错误。如果你在调用<a href="#write">write</a>()后得到这个值，很可能是由<a href>QImageWriter</a>的一个错误引起的。</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qimagewriter-qimagewriter-const-qstring-amp-filename-const-qbytearray-amp-format-qbytearray">QImageWriter:: QImageWriter (const &amp; <em>fileName</em> , const &amp; <em>format</em> = QByteArray())</span><a href="#qimagewriter-qimagewriter-const-qstring-amp-filename-const-qbytearray-amp-format-qbytearray" class="header-anchor">#</a></h3><p>构建一个QImageWriter对象，该对象将写入一个名称为<em>fileName</em>的文件，使用图像格式<em>format</em>。如果没有提供<em>format</em>，QImageWriter将通过检查<em>fileName</em>的扩展名检测图像格式。</p>
+<h3><span id="qimagewriter-qimagewriter-qiodevice-device-const-qbytearray-amp-format">QImageWriter:: QImageWriter ( * <em>device</em> , const &amp; <em>format</em> )</span><a href="#qimagewriter-qimagewriter-qiodevice-device-const-qbytearray-amp-format" class="header-anchor">#</a></h3><p>使用设备 <em>device</em> 和图像格式 <em>format</em> 构造一个 QImageWriter 对象。</p>
+<h3><span id="qimagewriter-qimagewriter">QImageWriter:: QImageWriter ()</span><a href="#qimagewriter-qimagewriter" class="header-anchor">#</a></h3><p>构建一个空的QImageWriter对象。在写之前，你必须调用<a href="#setFormat">setFormat</a>()来设置图像格式，然后再调用<a href="#setDevice">setDevice</a>() 或 <a href="#setFileName">setFileName</a>()。</p>
+<h3><span id="qimagewriter-qimagewriter">QImageWriter:: ~QImageWriter ()</span><a href="#qimagewriter-qimagewriter" class="header-anchor">#</a></h3><p>销毁 <a href>QImageWriter </a>对象。</p>
+<h3><span id="bool-qimagewriter-canwrite-const">bool QImageWriter:: canWrite () const</span><a href="#bool-qimagewriter-canwrite-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果 <a href>QImageWriter </a>可以写入图像；也就是说，图像格式被支持，并且指定的设备被打开供读取。</p>
+<p><strong>另请参阅</strong> <a href="#write">write </a>(), <a href="#setDevice">setDevice </a>()，和 <a href="#setFormat">setFormat </a>().</p>
+<h3><span id="int-qimagewriter-compression-const">int QImageWriter:: compression() const</span><a href="#int-qimagewriter-compression-const" class="header-anchor">#</a></h3><p>返回图像的压缩率。</p>
+<p><strong>另请参阅</strong> <a href="#setCompression">setCompression </a>().</p>
+<h3><span id="qiodevice-qimagewriter-device-const">*QImageWriter:: device () const</span><a href="#qiodevice-qimagewriter-device-const" class="header-anchor">#</a></h3><p>返回当前分配给[QImageWriter]的设备()，或 <code>nullptr </code>若没有设备被赋值。</p>
+<p><strong>另请参阅</strong> <a href="#setDevice">setDevice </a>().</p>
+<h3><span id="qimagewriter-imagewritererror-qimagewriter-error-const">QImageWriter:: error () const</span><a href="#qimagewriter-imagewritererror-qimagewriter-error-const" class="header-anchor">#</a></h3><p>返回最后发生的错误类型。</p>
+<p><strong>另请参阅</strong> <a href="#ImageWriterError-enum">ImageWriterError </a>and <a href="#errorString">errorString </a>().</p>
+<h3><span id="qstring-qimagewriter-errorstring-const">QImageWriter:: errorString () const</span><a href="#qstring-qimagewriter-errorstring-const" class="header-anchor">#</a></h3><p>返回最近发生错误的人类可读描述。</p>
+<p><strong>另请参阅</strong> <a href="#error">error </a>().</p>
+<h3><span id="qstring-qimagewriter-filename-const">QImageWriter:: fileName () const</span><a href="#qstring-qimagewriter-filename-const" class="header-anchor">#</a></h3><p>如果当前分配的设备是一个文件，或者如果<a href="#setFileName">setFileName</a>()已经被调用，这个函数返回<a href>QImageWriter</a>写入的文件的名称。否则（即，如果没有分配设备或设备不是一个文件），一个空的<a href="qstring.html">QString</a>被返回。</p>
+<p><strong>另请参阅</strong> <a href="#setFileName">setFileName </a>() 和 <a href="#setDevice">setDevice </a>().</p>
+<h3><span id="qbytearray-qimagewriter-format-const">QImageWriter:: format () const</span><a href="#qbytearray-qimagewriter-format-const" class="header-anchor">#</a></h3><p>返回格式 <a href>QImageWriter</a>用于写入图像。</p>
+<p><strong>另请参阅</strong> <a href="#setFormat">setFormat </a>().</p>
+<h3><span id="static-since-5-12-qlist-lt-qbytearray-gt-qimagewriter-imageformatsformimetype-const-qbytearray-amp-mimetype"><code>[static, since 5.12] </code>&lt; &gt; QImageWriter:: imageFormatsForMimeType (const &amp; <em>mimeType</em> )</span><a href="#static-since-5-12-qlist-lt-qbytearray-gt-qimagewriter-imageformatsformimetype-const-qbytearray-amp-mimetype" class="header-anchor">#</a></h3><p>返回对应于<em>mimeType</em>的图像格式列表。</p>
+<p>注意， <a href="qguiapplication.html">QGuiApplication </a>实例必须被创建在调用此函数之前。</p>
+<p>该函数在 Qt 5.12 引入。</p>
+<p><strong>另请参阅</strong> <a href="#supportedImageFormats">supportedImageFormats </a>() 和 <a href="#supportedMimeTypes">supportedMimeTypes </a>().</p>
+<h3><span id="since-5-5-bool-qimagewriter-optimizedwrite-const"><code>[since 5.5] </code>bool QImageWriter:: optimizedWrite () const</span><a href="#since-5-5-bool-qimagewriter-optimizedwrite-const" class="header-anchor">#</a></h3><p>返回是否已经打开了写入图像的优化。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+<p><strong>另请参阅</strong> <a href="#setOptimizedWrite">setOptimizedWrite </a>().</p>
+<h3><span id="since-5-5-bool-qimagewriter-progressivescanwrite-const"><code>[since 5.5] </code>bool QImageWriter:: progressiveScanWrite () const</span><a href="#since-5-5-bool-qimagewriter-progressivescanwrite-const" class="header-anchor">#</a></h3><p>返回该图像是否应被写成渐进式图像。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+<p><strong>另请参阅</strong> <a href="#setProgressiveScanWrite">setProgressiveScanWrite </a>().</p>
+<h3><span id="int-qimagewriter-quality-const">int QImageWriter:: quality () const</span><a href="#int-qimagewriter-quality-const" class="header-anchor">#</a></h3><p>返回图像格式的品质设置。</p>
+<p><strong>另请参阅</strong> <a href="#setQuality">setQuality </a>().</p>
+<h3><span id="void-qimagewriter-setcompression-int-compression">void QImageWriter:: setCompression ( int <em>compression</em> )</span><a href="#void-qimagewriter-setcompression-int-compression" class="header-anchor">#</a></h3><p>这是一个针对图像格式的函数，用于设置图像的压缩。对于不支持设置压缩的图像格式，这个值会被忽略。</p>
+<p><em>compression</em> 的值范围取决于图像格式。例如，”tiff “格式支持两个值，0（无压缩）和1（LZW-压缩）。</p>
+<p><strong>另请参阅</strong> <a href="#compression">压缩 </a>().</p>
+<h3><span id="void-qimagewriter-setdevice-qiodevice-device">void QImageWriter:: setDevice ( * <em>device</em> )</span><a href="#void-qimagewriter-setdevice-qiodevice-device" class="header-anchor">#</a></h3><p>设置<a href>QImageWriter</a>的设备为<em>device</em>。如果设备已被设置，旧的设备将从<a href>QImageWriter</a>中移除，否则将保持不变。</p>
+<p>如果设备尚未打开，<a href>QImageWriter</a>将试图通过调用open()在<a href="qiodevicebase.html#OpenModeFlag-enum">QIODevice::WriteOnly</a>模式下打开该设备。请注意，这对某些设备不起作用，比如<a href="qprocess.html">QProcess</a>、<a href="qtcpsocket.html">QTcpSocket</a>和<a href="qudpsocket.html">QUdpSocket</a>，这些设备需要更多逻辑来打开。</p>
+<p><strong>另请参阅</strong> <a href="#device">device </a>() 和 <a href="#setFileName">setFileName </a>().</p>
+<h3><span id="void-qimagewriter-setfilename-const-qstring-amp-filename">void QImageWriter:: setFileName (const &amp; <em>fileName</em> )</span><a href="#void-qimagewriter-setfilename-const-qstring-amp-filename" class="header-anchor">#</a></h3><p>设置<a href>QImageWriter</a>的文件名为<em>fileName</em>。在内部，<a href>QImageWriter</a>将创建一个<a href="qfile.html">QFile</a>并在<a href="qiodevicebase.html#OpenModeFlag-enum">QIODevice::WriteOnly</a>模式下打开它，并在写入图像时使用该文件。</p>
+<p><strong>另请参阅</strong> <a href="#fileName">fileName </a>() 和 <a href="#setDevice">setDevice </a>().</p>
+<h3><span id="void-qimagewriter-setformat-const-qbytearray-amp-format">void QImageWriter:: setFormat (const &amp; <em>format</em> )</span><a href="#void-qimagewriter-setformat-const-qbytearray-amp-format" class="header-anchor">#</a></h3><p>设置格式 <a href>QImageWriter </a>将在写图像时使用，以<em>format</em>。<em>format</em>是一个不区分大小写的文本字符串。</p>
+<p>例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QImageWriter writer;
+writer.<span class="hljs-built_in">setFormat</span>(<span class="hljs-string">"png"</span>); <span class="hljs-comment">// same as writer.setFormat("PNG");	</span></code></pre></div>
+
+<p>可以调用 <a href="#supportedImageFormats">supportedImageFormats</a>() 获得完整的格式列表 <a href>QImageWriter</a>支持。</p>
+<p><strong>另请参阅</strong> <a href="#format">format </a>().</p>
+<h3><span id="since-5-5-void-qimagewriter-setoptimizedwrite-bool-optimize"><code>[since 5.5] </code>void QImageWriter:: setOptimizedWrite ( bool <em>optimize</em> )</span><a href="#since-5-5-void-qimagewriter-setoptimizedwrite-bool-optimize" class="header-anchor">#</a></h3><p>这是一个针对图像格式的函数，在写图像时设置<em>optimize</em> 标志。对于不支持设置<em>optimize</em> 标志的图像格式，此值被忽略。</p>
+<p>默认为 false。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+<p><strong>另请参阅</strong> <a href="#optimizedWrite">optimizedWrite </a>().</p>
+<h3><span id="since-5-5-void-qimagewriter-setprogressivescanwrite-bool-progressive"><code>[since 5.5] </code>void QImageWriter:: setProgressiveScanWrite ( bool <em>progressive</em> )</span><a href="#since-5-5-void-qimagewriter-setprogressivescanwrite-bool-progressive" class="header-anchor">#</a></h3><p>这是一个特定于图像格式的函数，在写入图像时开启<em>progressive</em> 扫描。对于不支持设置<em>progressive</em> 扫描标志的图像格式，此值被忽略。</p>
+<p>默认为 false。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+<p><strong>另请参阅</strong> <a href="#progressiveScanWrite">progressiveScanWrite </a>().</p>
+<h3><span id="void-qimagewriter-setquality-int-quality">void QImageWriter:: setQuality ( int <em>quality</em> )</span><a href="#void-qimagewriter-setquality-int-quality" class="header-anchor">#</a></h3><p>将图像格式的品质设置设为 <em>quality</em> .</p>
+<p>一些图像格式，特别是有损的图像格式，需要在a）生成的图像的视觉质量和b）编码执行时间和压缩水平之间进行权衡。这个函数为支持它的图像格式设置该权衡的水平。对于其他格式，这个值被忽略。</p>
+<p><em>quality</em> 的值范围取决于图像格式。例如，”jpeg “格式支持的质量范围从0（低视觉质量，高压缩）到100（高视觉质量，低压缩）。</p>
+<p><strong>另请参阅</strong> <a href="#quality">quality </a>().</p>
+<h3><span id="since-5-4-void-qimagewriter-setsubtype-const-qbytearray-amp-type"><code>[since 5.4] </code>void QImageWriter:: setSubType (const &amp; <em>type</em> )</span><a href="#since-5-4-void-qimagewriter-setsubtype-const-qbytearray-amp-type" class="header-anchor">#</a></h3><p>这是一个针对图像格式的函数，将图像的子类型设置为<em>type</em>。子类型可以被处理程序用来确定它在保存图像时应该使用哪种格式。</p>
+<p>例如，用A8R8G8R8子类型保存一个DDS格式的图像:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QImageWriter <span class="hljs-title">writer</span><span class="hljs-params">(<span class="hljs-string">"some/image.dds"</span>)</span></span>;
+<span class="hljs-keyword">if</span> (writer.<span class="hljs-built_in">supportsOption</span>(QImageIOHandler::SubType))
+    writer.<span class="hljs-built_in">setSubType</span>(<span class="hljs-string">"A8R8G8B8"</span>);
+writer.<span class="hljs-built_in">write</span>(image);</code></pre></div>
+
+<p>该函数在 Qt 5.4 引入。</p>
+<p><strong>另请参阅</strong> <a href="#subType">subType </a>().</p>
+<h3><span id="void-qimagewriter-settext-const-qstring-amp-key-const-qstring-amp-text">void QImageWriter:: setText (const &amp; <em>key</em> , const &amp; <em>text</em> )</span><a href="#void-qimagewriter-settext-const-qstring-amp-key-const-qstring-amp-text" class="header-anchor">#</a></h3><p>将与键<em>key</em>相关的图像文本设置为<em>text</em>。这对于存储版权信息或其他有关图像的信息很有用。</p>
+<p>例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QImage <span class="hljs-title">image</span><span class="hljs-params">(<span class="hljs-string">"some/image.jpeg"</span>)</span></span>;
+<span class="hljs-function">QImageWriter <span class="hljs-title">writer</span><span class="hljs-params">(<span class="hljs-string">"images/outimage.png"</span>, <span class="hljs-string">"png"</span>)</span></span>;
+writer.<span class="hljs-built_in">setText</span>(<span class="hljs-string">"Author"</span>, <span class="hljs-string">"John Smith"</span>);
+writer.<span class="hljs-built_in">write</span>(image);</code></pre></div>
+
+<p>如果你想存储一个单一的数据块（例如，一个评论），你可以传递一个空的键，或者使用一个通用的键，如 “描述”。</p>
+<p>在调用<a href="#write">write</a>()后，键和文本将被嵌入图像数据中。</p>
+<p>支持此选项的实现是透过 <a href="qimageiohandler.html#ImageOption-enum">QImageIOHandler::Description </a>.</p>
+<p><strong>另请参阅</strong> <a href="qimage.html#setText">QImage::setText </a>() 和 <a href="qimagereader.html#text">QImageReader::text </a>().</p>
+<h3><span id="since-5-5-void-qimagewriter-settransformation-qimageiohandler-transformations-transform"><code>[since 5.5] </code>void QImageWriter:: setTransformation ( <em>transform</em> )</span><a href="#since-5-5-void-qimagewriter-settransformation-qimageiohandler-transformations-transform" class="header-anchor">#</a></h3><p>设置图像转换元数据，包括方向到<em>transform</em>。</p>
+<p>如果图像格式不支持变换元数据，则在写入前会应用变换。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+<p><strong>另请参阅</strong> <a href="#transformation">transformation </a>() 和 <a href="#write">write </a>().</p>
+<h3><span id="since-5-4-qbytearray-qimagewriter-subtype-const"><code>[since 5.4] </code>QImageWriter:: subType () const</span><a href="#since-5-4-qbytearray-qimagewriter-subtype-const" class="header-anchor">#</a></h3><p>返回图像的子类型。</p>
+<p>该函数在 Qt 5.4 引入。</p>
+<p><strong>另请参阅</strong> <a href="#setSubType">setSubType </a>().</p>
+<h3><span id="static-qlist-lt-qbytearray-gt-qimagewriter-supportedimageformats"><code>[static] </code>&lt; &gt; QImageWriter:: supportedImageFormats ()</span><a href="#static-qlist-lt-qbytearray-gt-qimagewriter-supportedimageformats" class="header-anchor">#</a></h3><p>返回 <a href>QImageWriter </a> 支持的图像格式列表。</p>
+<p>默认情况下，Qt可以写入以下格式:</p>
+<table>
+<thead>
+<tr>
+<th align="left">格式</th>
+<th align="left">MIME 类型</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">BMP</td>
+<td align="left">image/bmp</td>
+<td align="left">Windows 位图</td>
+</tr>
+<tr>
+<td align="left">JPG</td>
+<td align="left">image/jpeg</td>
+<td align="left">JPEG (联合摄影专家组)</td>
+</tr>
+<tr>
+<td align="left">PNG</td>
+<td align="left">image/png</td>
+<td align="left">PNG (便携式网络图形)</td>
+</tr>
+<tr>
+<td align="left">PBM</td>
+<td align="left">image/x-portable-bitmap</td>
+<td align="left">PBM (便携式位图)</td>
+</tr>
+<tr>
+<td align="left">PGM</td>
+<td align="left">image/x-portable-graymap</td>
+<td align="left">PGM (便携式灰度图)</td>
+</tr>
+<tr>
+<td align="left">PPM</td>
+<td align="left">image/x-portable-pixmap</td>
+<td align="left">Portable Pixmap (便携式像素图)</td>
+</tr>
+<tr>
+<td align="left">XBM</td>
+<td align="left">image/x-xbitmap</td>
+<td align="left">X11 Bitmap (X11 位图)</td>
+</tr>
+<tr>
+<td align="left">XPM</td>
+<td align="left">image/x-xpixmap</td>
+<td align="left">X11 Pixmap (X11 像素图)</td>
+</tr>
+</tbody></table>
+<p>通过<a href="qtsvg-index.html">Qt SVG</a>模块支持读写SVG文件。<a href="qtimageformats-index.html">Qt Image Formats</a>模块提供对其他图像格式的支持。</p>
+<p>注意， <a href="qapplication.html">QApplication </a>实例必须被创建在调用此函数之前。</p>
+<p><strong>另请参阅</strong> <a href="#setFormat">setFormat </a>(), <a href="supportedImageFormats">QImageReader::supportedImageFormats </a>()，和 <a href="qimageioplugin.html">QImageIOPlugin </a>.</p>
+<h3><span id="static-qlist-lt-qbytearray-gt-qimagewriter-supportedmimetypes"><code>[static] </code>&lt; &gt; QImageWriter:: supportedMimeTypes ()</span><a href="#static-qlist-lt-qbytearray-gt-qimagewriter-supportedmimetypes" class="header-anchor">#</a></h3><p>返回<a href>QImageWriter</a>所支持的MIME类型列表。</p>
+<p>注意， <a href="qapplication.html">QApplication </a>实例必须被创建在调用此函数之前。</p>
+<p><strong>另请参阅</strong> <a href="#supportedImageFormats">supportedImageFormats </a>() 和 <a href="qimagereader.html#supportedMimeTypes">QImageReader::supportedMimeTypes </a>().</p>
+<h3><span id="since-5-4-qlist-lt-qbytearray-gt-qimagewriter-supportedsubtypes-const"><code>[since 5.4] </code>&lt; &gt; QImageWriter:: supportedSubTypes () const</span><a href="#since-5-4-qlist-lt-qbytearray-gt-qimagewriter-supportedsubtypes-const" class="header-anchor">#</a></h3><p>返回由图像所支持的子类型列表。</p>
+<p>该函数在 Qt 5.4 引入。</p>
+<h3><span id="bool-qimagewriter-supportsoption-qimageiohandler-imageoption-option-const">bool QImageWriter:: supportsOption ( <em>option</em> ) const</span><a href="#bool-qimagewriter-supportsoption-qimageiohandler-imageoption-option-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果作者支持<em>option</em> ；否则返回 false。</p>
+<p>不同的图像格式支持不同的选项。调用此函数以确定当前格式是否支持某个选项。例如，PNG格式允许你将文本嵌入到图像的元数据中（见text()）。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QImageWriter <span class="hljs-title">writer</span><span class="hljs-params">(fileName)</span></span>;
+<span class="hljs-keyword">if</span> (writer.<span class="hljs-built_in">supportsOption</span>(QImageIOHandler::Description))
+    writer.<span class="hljs-built_in">setText</span>(<span class="hljs-string">"Author"</span>, <span class="hljs-string">"John Smith"</span>);</code></pre></div>
+
+<p>选项可以在写作者与格式关联后进行测试。</p>
+<p><strong>另请参阅</strong> <a href="qimagereader.html#supportsOption">QImageReader::supportsOption </a>() 和 <a href="#setFormat">setFormat </a>().</p>
+<h3><span id="since-5-5-qimageiohandler-transformations-qimagewriter-transformation-const"><code>[since 5.5] </code>QImageWriter:: transformation () const</span><a href="#since-5-5-qimageiohandler-transformations-qimagewriter-transformation-const" class="header-anchor">#</a></h3><p>返回图像被设置为写入的变换和方向。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+<p><strong>另请参阅</strong> <a href="#setTransformation">setTransformation </a>().</p>
+<h3><span id="bool-qimagewriter-write-const-qimage-amp-image">bool QImageWriter:: write (const &amp; <em>image</em> )</span><a href="#bool-qimagewriter-write-const-qimage-amp-image" class="header-anchor">#</a></h3><p>写入图像 <em>image</em>到指定的设备或文件名。返回 <code>true </code>当成功时；否则返回 <code>false </code>。如果操作失败，你可以调用<a href="#error">error</a>()来查找发生的错误类型，或者调用<a href="#errorString">errorString</a>()来获得对错误的可读描述。</p>
+<p><strong>另请参阅</strong> <a href="#canWrite">canWrite </a>(), <a href="#error">error </a>()，和 <a href="#errorString">errorString </a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/I/">I</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/I/QImageIOPlugin/QImageIOPlugin/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QImageIOPlugin类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/I/QImageReader/QImageReader/">
+                        <span class="hidden-mobile">QImageReader类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="此文来自于👉 C++ &#x2F; typeinfo — DevDocs ，并整理 判断数据是哪种数据类型#头文件&lt;typeinfo&gt; std::type_info::name()#例子： #include &lt;iostream&gt; #include &lt;typeinfo&gt;   struct Base { virtual ~Base() &#x3D; default; }; struc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="获取C++中数据的类型的方法">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/28/%E8%8E%B7%E5%8F%96C-%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%9A%84%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="此文来自于👉 C++ &#x2F; typeinfo — DevDocs ，并整理 判断数据是哪种数据类型#头文件&lt;typeinfo&gt; std::type_info::name()#例子： #include &lt;iostream&gt; #include &lt;typeinfo&gt;   struct Base { virtual ~Base() &#x3D; default; }; struc">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/data_type.png">
+<meta property="article:published_time" content="2022-01-28T09:51:19.000Z">
+<meta property="article:modified_time" content="2022-01-28T14:28:34.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Type">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/data_type.png">
+  
+  
+  <title>获取C++中数据的类型的方法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="获取C++中数据的类型的方法">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-28 17:51" pubdate>
+        2022年1月28日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      67 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">获取C++中数据的类型的方法</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年1月28日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>此文来自于👉 <a target="_blank" rel="noopener" href="https://devdocs.io/cpp/header/typeinfo">C++ / typeinfo — DevDocs</a> ，并整理</p>
+<h1><span id="pan-duan-shu-ju-shi-na-chong-shu-ju-lei-xing">判断数据是哪种数据类型</span><a href="#pan-duan-shu-ju-shi-na-chong-shu-ju-lei-xing" class="header-anchor">#</a></h1><p>头文件<code>&lt;typeinfo&gt;</code></p>
+<h2><span id="std-type-info-name">std::type_info::name()</span><a href="#std-type-info-name" class="header-anchor">#</a></h2><p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;typeinfo&gt;</span></span>
+ 
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Base</span> { <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Base</span>() = <span class="hljs-keyword">default</span>; };
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Derived</span> : Base {};
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    Base b1;
+    Derived d1;
+
+    <span class="hljs-type">const</span> Base *pb = &amp;b1;
+    std::cout &lt;&lt; <span class="hljs-built_in">typeid</span>(*pb).<span class="hljs-built_in">name</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+    pb = &amp;d1;
+    std::cout &lt;&lt; <span class="hljs-built_in">typeid</span>(*pb).<span class="hljs-built_in">name</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+
+    <span class="hljs-type">int</span> i;
+    <span class="hljs-type">int</span> * pi;
+    std::cout &lt;&lt; <span class="hljs-string">"int is: "</span> &lt;&lt; <span class="hljs-built_in">typeid</span>(<span class="hljs-type">int</span>).<span class="hljs-built_in">name</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"  i is: "</span> &lt;&lt; <span class="hljs-built_in">typeid</span>(i).<span class="hljs-built_in">name</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+    std::cout &lt;&lt; <span class="hljs-string">" pi is: "</span> &lt;&lt; <span class="hljs-built_in">typeid</span>(pi).<span class="hljs-built_in">name</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"*pi is: "</span> &lt;&lt; <span class="hljs-built_in">typeid</span>(*pi).<span class="hljs-built_in">name</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+
+}</code></pre></div>
+
+<p>结果：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">4Base
+7Derived
+
+int is: int
+  i is: int
+ pi is: int *
+*pi is: int</code></pre></div>
+
+<h1><span id="pan-duan-shu-ju-shi-fou-shi-dui-ying-de-shu-ju-lei-xing">判断数据是否是对应的数据类型</span><a href="#pan-duan-shu-ju-shi-fou-shi-dui-ying-de-shu-ju-lei-xing" class="header-anchor">#</a></h1><p>头文件<code>&lt;type_traits&gt;</code></p>
+<h4><span id="zhu-yao-lei-xing-lei-bie-primary-type-categories">主要类型类别 Primary type categories</span><a href="#zhu-yao-lei-xing-lei-bie-primary-type-categories" class="header-anchor">#</a></h4><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_array/"><strong>is_array</strong></a></p>
+<p>Is array (class template )</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// is_array example</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;array&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;type_traits&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    std::cout &lt;&lt; std::boolalpha;
+    std::cout &lt;&lt; <span class="hljs-string">"is_array:"</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"int: "</span> &lt;&lt; std::is_array&lt;<span class="hljs-type">int</span>&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"int[3]: "</span> &lt;&lt; std::is_array&lt;<span class="hljs-type">int</span>[<span class="hljs-number">3</span>]&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"array&lt;int,3&gt;: "</span> &lt;&lt; std::is_array&lt;std::array&lt;<span class="hljs-type">int</span>,3&gt;&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"string: "</span> &lt;&lt; std::is_array&lt;std::string&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"string[3]: "</span> &lt;&lt; std::is_array&lt;std::string[<span class="hljs-number">3</span>]&gt;::value &lt;&lt; std::endl;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+<p>结果：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">is_array:
+int: <span class="hljs-literal">false</span>
+int[3]: <span class="hljs-literal">true</span>
+array&lt;int,3&gt;: <span class="hljs-literal">false</span>
+string: <span class="hljs-literal">false</span>
+string[3]: <span class="hljs-literal">true</span></code></pre></div>
+
+
+
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_class/"><strong>is_class</strong></a></p>
+<p>Is non-union class (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_enum/"><strong>is_enum</strong></a></p>
+<p>Is enum (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_floating_point/"><strong>is_floating_point</strong></a></p>
+<p>Is floating point (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_function/"><strong>is_function</strong></a></p>
+<p>Is function (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_integral/"><strong>is_integral</strong></a></p>
+<p>Is integral (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_lvalue_reference/"><strong>is_lvalue_reference</strong></a></p>
+<p>Is lvalue reference (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_member_function_pointer/"><strong>is_member_function_pointer</strong></a></p>
+<p>Is member function pointer (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_member_object_pointer/"><strong>is_member_object_pointer</strong></a></p>
+<p>Is member object pointer (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_pointer/"><strong>is_pointer</strong></a></p>
+<p>Is pointer (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_rvalue_reference/"><strong>is_rvalue_reference</strong></a></p>
+<p>Is rvalue reference (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_union/"><strong>is_union</strong></a></p>
+<p>Is union (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_void/"><strong>is_void</strong></a></p>
+<p>Is void (class template )</p>
+</li>
+</ul>
+<h4><span id="fu-he-lei-xing-fan-chou-composite-type-categories">复合类型范畴 Composite type categories</span><a href="#fu-he-lei-xing-fan-chou-composite-type-categories" class="header-anchor">#</a></h4><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_arithmetic/"><strong>is_arithmetic</strong></a></p>
+<p>Is arithmetic type (class template )</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// is_arithmetic example</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;type_traits&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;complex&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    std::cout &lt;&lt; std::boolalpha;
+    std::cout &lt;&lt; <span class="hljs-string">"is_arithmetic:"</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"char: "</span> &lt;&lt; std::is_arithmetic&lt;<span class="hljs-type">char</span>&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"float: "</span> &lt;&lt; std::is_arithmetic&lt;<span class="hljs-type">float</span>&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"float*: "</span> &lt;&lt; std::is_arithmetic&lt;<span class="hljs-type">float</span>*&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"complex&lt;double&gt;: "</span> &lt;&lt; std::is_arithmetic&lt;std::complex&lt;<span class="hljs-type">double</span>&gt;&gt;::value &lt;&lt; std::endl;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div></li>
+</ul>
+<p>Output:<br>    </p><div class="code-wrapper"><pre><code class="hljs bash">is_arithmetic:
+char: <span class="hljs-literal">true</span>
+<span class="hljs-built_in">float</span>: <span class="hljs-literal">true</span>
+<span class="hljs-built_in">float</span>*: <span class="hljs-literal">false</span>
+complex&lt;double&gt;: <span class="hljs-literal">false</span></code></pre></div><p></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_compound/"><strong>is_compound</strong></a></p>
+<p>Is compound type (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_fundamental/"><strong>is_fundamental</strong></a></p>
+<p>Is fundamental type (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_member_pointer/"><strong>is_member_pointer</strong></a></p>
+<p>Is member pointer type (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_object/"><strong>is_object</strong></a></p>
+<p>Is object type (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_reference/"><strong>is_reference</strong></a></p>
+<p>Is reference type (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_scalar/"><strong>is_scalar</strong></a></p>
+<p>Is scalar type (class template )</p>
+</li>
+</ul>
+<h4><span id="lei-xing-shu-xing-type-properties">类型属性 Type properties</span><a href="#lei-xing-shu-xing-type-properties" class="header-anchor">#</a></h4><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_abstract/"><strong>is_abstract</strong></a></p>
+<p>Is abstract class (class template )</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// is_abstract example</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;type_traits&gt;</span></span>
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">A</span> { };
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">B</span> {
+  	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">fn</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;  <span class="hljs-comment">// pure virtual function</span>
+};
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">C</span> : B { };
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">D</span> : C { <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">fn</span><span class="hljs-params">()</span></span>{} };
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    std::cout &lt;&lt; std::boolalpha;
+    std::cout &lt;&lt; <span class="hljs-string">"is_abstract:"</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"A: "</span> &lt;&lt; std::is_abstract&lt;A&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"B: "</span> &lt;&lt; std::is_abstract&lt;B&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"C: "</span> &lt;&lt; std::is_abstract&lt;C&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"D: "</span> &lt;&lt; std::is_abstract&lt;D&gt;::value &lt;&lt; std::endl;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div></li>
+</ul>
+<p>结果：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">is_abstract:
+A: <span class="hljs-literal">false</span>
+B: <span class="hljs-literal">true</span>
+C: <span class="hljs-literal">true</span>
+D: <span class="hljs-literal">false</span></code></pre></div>
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_const/"><strong>is_const</strong></a></p>
+<p>Is const-qualified (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_empty/"><strong>is_empty</strong></a></p>
+<p>Is empty class (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_literal_type/"><strong>is_literal_type</strong></a></p>
+<p>Is literal type (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_pod/"><strong>is_pod</strong></a></p>
+<p>Is POD type (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_polymorphic/"><strong>is_polymorphic</strong></a></p>
+<p>Is polymorphic (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_signed/"><strong>is_signed</strong></a></p>
+<p>Is signed type (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_standard_layout/"><strong>is_standard_layout</strong></a></p>
+<p>Is standard-layout type (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_trivial/"><strong>is_trivial</strong></a></p>
+<p>Is trivial type (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_trivially_copyable/"><strong>is_trivially_copyable</strong></a></p>
+<p>Is trivially copyable (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_unsigned/"><strong>is_unsigned</strong></a></p>
+<p>Is unsigned type (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_volatile/"><strong>is_volatile</strong></a></p>
+<p>Is volatile-qualified (class template )</p>
+</li>
+</ul>
+<h4><span id="lei-xing-te-zheng-type-features">类型特征 Type features</span><a href="#lei-xing-te-zheng-type-features" class="header-anchor">#</a></h4><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/has_virtual_destructor/"><strong>has_virtual_destructor</strong></a></p>
+<p>Has virtual destructor (class template )</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// has_virtual_destructor example</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;type_traits&gt;</span></span>
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">A</span> { };
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">B</span> { <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">B</span>(){} };
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">C</span> : B { };
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    std::cout &lt;&lt; std::boolalpha;
+    std::cout &lt;&lt; <span class="hljs-string">"has_virtual_destructor:"</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"int: "</span> &lt;&lt; std::has_virtual_destructor&lt;<span class="hljs-type">int</span>&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"A: "</span> &lt;&lt; std::has_virtual_destructor&lt;A&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"B: "</span> &lt;&lt; std::has_virtual_destructor&lt;B&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"C: "</span> &lt;&lt; std::has_virtual_destructor&lt;C&gt;::value &lt;&lt; std::endl;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div></li>
+</ul>
+<p>Output:</p>
+<div class="code-wrapper"><pre><code class="hljs bash">has_virtual_destructor:
+int: <span class="hljs-literal">false</span>
+A: <span class="hljs-literal">false</span>
+B: <span class="hljs-literal">true</span>
+C: <span class="hljs-literal">true</span></code></pre></div>
+
+
+
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_assignable/"><strong>is_assignable</strong></a></p>
+<p>Is assignable (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_constructible/"><strong>is_constructible</strong></a></p>
+<p>Is constructible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_copy_assignable/"><strong>is_copy_assignable</strong></a></p>
+<p>Is copy assignable (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_copy_constructible/"><strong>is_copy_constructible</strong></a></p>
+<p>Is copy constructible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_destructible/"><strong>is_destructible</strong></a></p>
+<p>Is destructible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_default_constructible/"><strong>is_default_constructible</strong></a></p>
+<p>Is default constructible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_move_assignable/"><strong>is_move_assignable</strong></a></p>
+<p>Is move assignable (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_move_constructible/"><strong>is_move_constructible</strong></a></p>
+<p>Is move constructible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_trivially_assignable/"><strong>is_trivially_assignable</strong></a></p>
+<p>Is trivially assignable (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_trivially_constructible/"><strong>is_trivially_constructible</strong></a></p>
+<p>Is trivially constructible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_trivially_copy_assignable/"><strong>is_trivially_copy_assignable</strong></a></p>
+<p>Is trivially copy assignable (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_trivially_copy_constructible/"><strong>is_trivially_copy_constructible</strong></a></p>
+<p>Is trivially copy constructible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_trivially_destructible/"><strong>is_trivially_destructible</strong></a></p>
+<p>Is trivially destructible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_trivially_default_constructible/"><strong>is_trivially_default_constructible</strong></a></p>
+<p>Is trivially default constructible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_trivially_move_assignable/"><strong>is_trivially_move_assignable</strong></a></p>
+<p>Is trivially move assignable (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_trivially_move_constructible/"><strong>is_trivially_move_constructible</strong></a></p>
+<p>Is trivially move constructible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_nothrow_assignable/"><strong>is_nothrow_assignable</strong></a></p>
+<p>Is assignable throwing no exceptions (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_nothrow_constructible/"><strong>is_nothrow_constructible</strong></a></p>
+<p>Is constructible throwing no exceptions (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_nothrow_copy_assignable/"><strong>is_nothrow_copy_assignable</strong></a></p>
+<p>Is copy assignable throwing no exceptions (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_nothrow_copy_constructible/"><strong>is_nothrow_copy_constructible</strong></a></p>
+<p>Is copy constructible throwing no exceptions (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_nothrow_destructible/"><strong>is_nothrow_destructible</strong></a></p>
+<p>Is nothrow destructible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_nothrow_default_constructible/"><strong>is_nothrow_default_constructible</strong></a></p>
+<p>Is default constructible throwing no exceptions (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_nothrow_move_assignable/"><strong>is_nothrow_move_assignable</strong></a></p>
+<p>Is move assignable throwing no exception (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_nothrow_move_constructible/"><strong>is_nothrow_move_constructible</strong></a></p>
+<p>Is move constructible throwing no exceptions (class template )</p>
+</li>
+</ul>
+<h4><span id="lei-xing-guan-xi-type-relationships">类型关系 Type relationships</span><a href="#lei-xing-guan-xi-type-relationships" class="header-anchor">#</a></h4><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_base_of/"><strong>is_base_of</strong></a></p>
+<p>Is base class of (class template )</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// is_base_of example</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;type_traits&gt;</span></span>
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">A</span> {};
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">B</span> : A {};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    std::cout &lt;&lt; std::boolalpha;
+    std::cout &lt;&lt; <span class="hljs-string">"is_base_of:"</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"int, int: "</span> &lt;&lt; std::is_base_of&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"A, A: "</span> &lt;&lt; std::is_base_of&lt;A,A&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"A, B: "</span> &lt;&lt; std::is_base_of&lt;A,B&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"A, const B: "</span> &lt;&lt; std::is_base_of&lt;A,<span class="hljs-type">const</span> B&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"A&amp;, B&amp;: "</span> &lt;&lt; std::is_base_of&lt;A&amp;,B&amp;&gt;::value &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"B, A: "</span> &lt;&lt; std::is_base_of&lt;B,A&gt;::value &lt;&lt; std::endl;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div></li>
+</ul>
+<p>Output:</p>
+<div class="code-wrapper"><pre><code class="hljs bash">is_base_of:
+int, int: <span class="hljs-literal">false</span>
+A, A: <span class="hljs-literal">true</span>
+A, B: <span class="hljs-literal">true</span>
+A, const B: <span class="hljs-literal">true</span>
+A&amp;, B&amp;: <span class="hljs-literal">false</span>
+B, A: <span class="hljs-literal">false</span></code></pre></div>
+
+
+
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_convertible/"><strong>is_convertible</strong></a></p>
+<p>Is convertible (class template )</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/type_traits/is_same/"><strong>is_same</strong></a></p>
+<p>Is same type (class template )</p>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Type/">Type</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/29/C-%E7%BB%93%E6%9E%84%E5%8C%96%E7%BB%91%E5%AE%9A/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++结构化绑定</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/28/%E6%9C%AC%E4%BA%BA%E4%BD%BF%E7%94%A8%E7%9A%84hexo%E6%8F%92%E4%BB%B6%E5%88%97%E8%A1%A8/">
+                        <span class="hidden-mobile">本人使用的hexo插件列表</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

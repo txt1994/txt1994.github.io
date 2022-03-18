@@ -1,0 +1,1041 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QAbstractAnimation 类 公共成员类型 属性 公共成员函数 公共槽 信号 保护成员函数 重写保护成员函数 详细介绍 成员变量文档 enum QAbstractAnimation::DeletionPolicy enum QAbstractAnimation::Direction enum QAbstractAnimation::State   属性文档 currentLo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QAbstractAnimation">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/01/QtDocumentCN/Src/A/QAbstractAnimation/QAbstractAnimation/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QAbstractAnimation 类 公共成员类型 属性 公共成员函数 公共槽 信号 保护成员函数 重写保护成员函数 详细介绍 成员变量文档 enum QAbstractAnimation::DeletionPolicy enum QAbstractAnimation::Direction enum QAbstractAnimation::State   属性文档 currentLo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-01T14:54:34.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:32:54.463Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="A">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QAbstractAnimation - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QAbstractAnimation">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-01 22:54" pubdate>
+        2022年3月1日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      75 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QAbstractAnimation</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qabstractanimation-lei">QAbstractAnimation 类</a><ul>
+<li><a href="#gong-gong-cheng-yuan-lei-xing">公共成员类型</a></li>
+<li><a href="#shu-xing">属性</a></li>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#gong-gong-cao">公共槽</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#bao-hu-cheng-yuan-han-shu">保护成员函数</a></li>
+<li><a href="#chong-xie-bao-hu-cheng-yuan-han-shu">重写保护成员函数</a></li>
+<li><a href="#xiang-xi-jie-shao">详细介绍</a></li>
+<li><a href="#cheng-yuan-bian-liang-wen-dang">成员变量文档</a><ul>
+<li><a href="#enum-qabstractanimation-deletionpolicy">enum QAbstractAnimation::DeletionPolicy</a></li>
+<li><a href="#enum-qabstractanimation-direction">enum QAbstractAnimation::Direction</a></li>
+<li><a href="#enum-qabstractanimation-state">enum QAbstractAnimation::State</a></li>
+</ul>
+</li>
+<li><a href="#shu-xing-wen-dang">属性文档</a><ul>
+<li><a href="#currentloop-const-int">currentLoop : const int</a></li>
+<li><a href="#currenttime-int">currentTime : int</a></li>
+<li><a href="#direction-direction">direction : Direction</a></li>
+<li><a href="#duration-const-int">duration : const int</a></li>
+<li><a href="#loopcount-int">loopCount : int</a></li>
+<li><a href="#state-const-state">state : const State</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qabstractanimation-qabstractanimation-qobject-o-qobject-qobject-md-parent-q-nullptr">QAbstractAnimation::<strong>QAbstractAnimation</strong>(</a><a href="../../O/QObject/QObject.md">QObject</a> <em>*parent</em> = Q_NULLPTR)</li>
+<li><a href="#signal-void-qabstractanimation-currentloopchanged-int-currentloop"><strong>[signal]</strong> void QAbstractAnimation::<strong>currentLoopChanged</strong>(int <em>currentLoop</em>)</a></li>
+<li><a href="#signal-void-qabstractanimation-directionchanged-qabstractanimation-direction-enum-qabstractanimationdirection-newdirection"><strong>[signal]</strong> void QAbstractAnimation::<strong>directionChanged</strong>(</a><a href="#enum-qabstractanimationdirection">QAbstractAnimation::Direction</a> <em>newDirection</em>)</li>
+<li><a href="#signal-void-qabstractanimation-finished"><strong>[signal]</strong> void QAbstractAnimation::<strong>finished</strong>()</a></li>
+<li><a href="#slot-void-qabstractanimation-pause"><strong>[slot]</strong> void QAbstractAnimation::<strong>pause</strong>()</a></li>
+<li><a href="#slot-void-qabstractanimation-resume"><strong>[slot]</strong> void QAbstractAnimation::<strong>resume</strong>()</a></li>
+<li><a href="#slot-void-qabstractanimation-setpaused-bool-paused"><strong>[slot]</strong> void QAbstractAnimation::<strong>setPaused</strong>(bool <em>paused</em>)</a></li>
+<li><a href="#slot-void-qabstractanimation-start-qabstractanimation-deletionpolicy-enum-qabstractanimationdeletionpolicy-policy-keepwhenstopped"><strong>[slot]</strong> void QAbstractAnimation::<strong>start</strong>(</a><a href="#enum-qabstractanimationdeletionpolicy">QAbstractAnimation::DeletionPolicy</a> <em>policy</em> = KeepWhenStopped)</li>
+<li><a href="#signal-void-qabstractanimation-statechanged-qabstractanimation-state-enum-qabstractanimationstate-newstate-qabstractanimation-state-enum-qabstractanimationstate-oldstate"><strong>[signal]</strong> void QAbstractAnimation::<strong>stateChanged</strong>(</a><a href="#enum-qabstractanimationstate">QAbstractAnimation::State</a> <em>newState</em>, <a href="#enum-qabstractanimationstate">QAbstractAnimation::State</a> <em>oldState</em>)</li>
+<li><a href="#slot-void-qabstractanimation-stop"><strong>[slot]</strong> void QAbstractAnimation::<strong>stop</strong>()</a></li>
+<li><a href="#virtual-qabstractanimation-qabstractanimation"><strong>[virtual]</strong> QAbstractAnimation::<strong>~QAbstractAnimation</strong>()</a></li>
+<li><a href="#int-qabstractanimation-currentlooptime-const">int QAbstractAnimation::<strong>currentLoopTime</strong>() const</a></li>
+<li><a href="#pure-virtual-int-qabstractanimation-duration-const"><strong>[pure virtual]</strong> int QAbstractAnimation::<strong>duration</strong>() const</a></li>
+<li><a href="#virtual-protected-bool-qabstractanimation-event-qevent-e-qevent-qevent-md-event"><strong>[virtual protected]</strong> bool QAbstractAnimation::<strong>event</strong>(</a><a href="../../E/QEvent/QEvent.md">QEvent</a> *<em>event</em>)</li>
+<li><a href="#qanimationgroup-qanimationgroup-qanimationgroup-md-qabstractanimation-group-const">QAnimationGroup</a></li>
+<li><a href="#int-qabstractanimation-totalduration-const">int QAbstractAnimation::<strong>totalDuration</strong>() const</a></li>
+<li><a href="#pure-virtual-protected-void-qabstractanimation-updatecurrenttime-int-currenttime"><strong>[pure virtual protected]</strong> void QAbstractAnimation::<strong>updateCurrentTime</strong>(int <em>currentTime</em>)</a></li>
+<li><a href="#virtual-protected-void-qabstractanimation-updatedirection-qabstractanimation-direction-enum-qabstractanimationdirection-direction"><strong>[virtual protected]</strong> void QAbstractAnimation::<strong>updateDirection</strong>(</a><a href="#enum-qabstractanimationdirection">QAbstractAnimation::Direction</a> <em>direction</em>)</li>
+<li><a href="#virtual-protected-void-qabstractanimation-updatestate-qabstractanimation-state-enum-qabstractanimationstate-newstate-qabstractanimation-state-enum-qabstractanimationstate-oldstate"><strong>[virtual protected]</strong> void QAbstractAnimation::<strong>updateState</strong>(</a><a href="#enum-qabstractanimationstate">QAbstractAnimation::State</a> <em>newState</em>, <a href="#enum-qabstractanimationstate">QAbstractAnimation::State</a> <em>oldState</em>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QAbstractAnimation 类
+QAbstractAnimation 是所有的动画相关的基类。
+
+<p>QAbstractAnimation 定义了所有动画类相关的基础功能，通过继承该类，您可以实现动画的其它功能，或者添加自定义的特效。</p>
+<table>
+<thead>
+<tr>
+<th align="right">属性</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">头文件</td>
+<td align="left"><code>#include&lt;QAbstractAnimation&gt;</code></td>
+</tr>
+<tr>
+<td align="right">qmake</td>
+<td align="left"><code>QT+=core</code></td>
+</tr>
+<tr>
+<td align="right">自从</td>
+<td align="left">Qt 4.6</td>
+</tr>
+<tr>
+<td align="right">继承</td>
+<td align="left"><a href="../../O/QObject/QObject.md">QObject</a></td>
+</tr>
+<tr>
+<td align="right">派生</td>
+<td align="left"><a href="../QAnimationGroup/QAnimationGroup.md">QAnimationGroup</a>，<a href="../../P/QPauseAnimation/QPauseAnimation.md">QPauseAnimation</a>，<a href="../../V/QVariantAnimation/QVariantAnimation.md">QVariantAnimation</a></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cheng-yuan-lei-xing">公共成员类型</span><a href="#gong-gong-cheng-yuan-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">enum</td>
+<td align="left"><a href="#enum-qabstractanimationdeletionpolicy">DeletionPolicy</a> { KeepWhenStopped, DeleteWhenStopped }</td>
+</tr>
+<tr>
+<td align="center">enum</td>
+<td align="left"><a href="#enum-qabstractanimationdirection">Direction</a> { Forward, Backward }</td>
+</tr>
+<tr>
+<td align="center">enum</td>
+<td align="left"><a href="#enum-qabstractanimationstate">State</a> { Stopped, Paused, Running }</td>
+</tr>
+</tbody></table>
+<h2><span id="shu-xing">属性</span><a href="#shu-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th>类型</th>
+<th>属性</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a href="#currentloop--const-int">currentLoop</a></td>
+<td>const int</td>
+<td><a href="#duration--const-int">duration</a></td>
+<td>const int</td>
+</tr>
+<tr>
+<td align="left"><a href="#currenttime--int">currentTime</a></td>
+<td>int</td>
+<td><a href="#loopcount--int">loopCount</a></td>
+<td>int</td>
+</tr>
+<tr>
+<td align="left"><a href="#direction--direction">direction</a></td>
+<td>Direction</td>
+<td><a href="#state--const-state">state</a></td>
+<td>const State</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right"></td>
+<td align="left"><a href="#qabstractanimationqabstractanimationqobject-parent--qnullptr">QAbstractAnimation</a>(QObject *<em>parent</em> = Q_NULLPTR)</td>
+</tr>
+<tr>
+<td align="right">virtual</td>
+<td align="left">~<a href="#virtual-qabstractanimationqabstractanimation">QAbstractAnimation</a>()</td>
+</tr>
+<tr>
+<td align="right">int</td>
+<td align="left"><a href="#currentloop--const-int">currentLoop</a>() const</td>
+</tr>
+<tr>
+<td align="right">int</td>
+<td align="left"><a href="#int-qabstractanimationcurrentlooptime-const">currentLoopTime</a>() const</td>
+</tr>
+<tr>
+<td align="right">int</td>
+<td align="left"><a href="#currenttime--int">currentTime</a>() const</td>
+</tr>
+<tr>
+<td align="right">Direction</td>
+<td align="left"><a href="#direction--direction">direction</a>() const</td>
+</tr>
+<tr>
+<td align="right">virtual int</td>
+<td align="left"><a href="#pure-virtual-int-qabstractanimationduration-const">duration</a>() const = 0</td>
+</tr>
+<tr>
+<td align="right">QAnimationGroup *</td>
+<td align="left"><a href="#qanimationgroup-qabstractanimationgroup-const">group</a>() const</td>
+</tr>
+<tr>
+<td align="right">int</td>
+<td align="left"><a href="#loopcount--int">loopCount</a>() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="#direction--direction">setDirection</a>(Direction <em>direction</em>)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="#loopcount--int">setLoopCount</a>(int <em>loopCount</em>)</td>
+</tr>
+<tr>
+<td align="right">State</td>
+<td align="left"><a href="#state--const-state">state</a>() const</td>
+</tr>
+<tr>
+<td align="right">int</td>
+<td align="left"><a href="#int-qabstractanimationtotalduration-const">totalDuration</a>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cao">公共槽</span><a href="#gong-gong-cao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void</td>
+<td align="left"><a href="#slot-void-qabstractanimationpause">pause</a>()</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><a href="#slot-void-qabstractanimationresume">resume</a>()</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><a href="#currenttime--int">setCurrentTime</a>(int <em>msecs</em>)</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><a href="#slot-void-qabstractanimationsetpausedbool-paused">setPaused</a>(bool <em>paused</em>)</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><a href="#slot-void-qabstractanimationstartqabstractanimationdeletionpolicy-policy--keepwhenstopped">start</a>(QAbstractAnimation::DeletionPolicy <em>policy</em> = KeepWhenStopped)</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><a href="#slot-void-qabstractanimationstop">stop</a>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void</td>
+<td align="left"><a href="#signal-void-qabstractanimationcurrentloopchangedint-currentloop">currentLoopChanged</a>(int <em>currentLoop</em>)</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><a href="#signal-void-qabstractanimationdirectionchangedqabstractanimationdirection-newdirection">directionChanged</a>(QAbstractAnimation::Direction <em>newDirection</em>)</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><a href="#signal-void-qabstractanimationfinished">finished</a>()</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><a href="#signal-void-qabstractanimationstatechangedqabstractanimationstate-newstate-qabstractanimationstate-oldstate">stateChanged</a>(QAbstractAnimation::State <em>newState</em>, QAbstractAnimation::State <em>oldState</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="bao-hu-cheng-yuan-han-shu">保护成员函数</span><a href="#bao-hu-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">virtual void</td>
+<td align="left"><a href="#pure-virtual-protected-void-qabstractanimationupdatecurrenttimeint-currenttime">updateCurrentTime</a>(int <em>currentTime</em>) = 0</td>
+</tr>
+<tr>
+<td align="center">virtual void</td>
+<td align="left"><a href="#virtual-protected-void-qabstractanimationupdatedirectionqabstractanimationdirectionenum-qabstractanimationdirection-direction">updateDirection</a>(QAbstractAnimation::Direction <em>direction</em>)</td>
+</tr>
+<tr>
+<td align="center">virtual void</td>
+<td align="left"><a href="#virtual-protected-void-qabstractanimationupdatestateqabstractanimationstateenum-qabstractanimationstate-newstate-qabstractanimationstateenum-qabstractanimationstate-oldstate">updateState</a>(QAbstractAnimation::State <em>newState</em>, QAbstractAnimation::State <em>oldState</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-xie-bao-hu-cheng-yuan-han-shu">重写保护成员函数</span><a href="#chong-xie-bao-hu-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">virtual bool</td>
+<td align="left"><a href="#virtual-protected-bool-qabstractanimationeventqevent-event">event</a>(QEvent *<em>event</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-jie-shao">详细介绍</span><a href="#xiang-xi-jie-shao" class="header-anchor">#</a></h2><p>QAbstractAnimation 定义了所有动画共享的功能。通过继承这个类，您可以创建自定义的动画，并将其插入到动画框架中。</p>
+<p>动画的进度的当前时间由当前时间(<a href="int-qabstractanimationcurrentlooptime-const">currentLoopTime</a>())控制，数值从0毫秒开始到其最后的持续时间(<a href="#pure-virtual-int-qabstractanimationduration-const">duration</a>())。该值在动画运行时会自动更新，也可以直接由 <a href>setCurrentTime</a>() 来设置。</p>
+<p>在任何时候，动画的状态都只有三种：<a href="#enum-qabstractanimationstate">Running</a>、<a href="#enum-qabstractanimationstate">Stopped</a> 或 <a href="#enum-qabstractanimationstate">Paused</a>——由枚举变量 <a href="#enum-qabstractanimationstate">State</a>定义。可以通过函数 <a href="#slot-void-qabstractanimationstartqabstractanimationdeletionpolicy-policy--keepwhenstopped">start</a>()、<a href="#slot-void-qabstractanimationstop">stop</a>() 、<a href="#slot-void-qabstractanimationpause">pause</a>() 或 <a href="#slot-void-qabstractanimationresume">resume</a>() 来改变当前动画的状态。动画开始时总会重置它的<a href>当前时间</a>。若被暂停，则继续播放后会从相同的“当前时间”继续。若动画停止，则无法继续，但会保留“当前时间”（直到再次开始）。QAbstractAnimation 在状态改变时将会发出信号 <a href="#signal-void-qabstractanimationstatechangedqabstractanimationstate-newstate-qabstractanimationstate-oldstate">stateChanged</a>()。</p>
+<p>通过设置 <a href="#loopcount--int">loopCount</a> 属性，动画可以循环任意次数。当动画的时间到达 <a href="#pure-virtual-int-qabstractanimationduration-const">duration</a>() 时，它将重置当前时间并继续运行。循环数为1（默认值）意味着动画只会播放一次。注意，若 <code>duration</code> 为-1，动画将无限播放，直到主动停止；当前时间会无限增长。当当前时间等于 <a href="#pure-virtual-int-qabstractanimationduration-const">duration</a>() ，并且正在处理最后一次循环时，动画将进入 <a href="#enum-qabstractanimationstate">Stopped</a> 状态，并发送 <a href>finished</a>() 信号。</p>
+<p>QAbstractAnimation 为子类提供了纯虚函数来跟踪动画的进度：<a href="#pure-virtual-int-qabstractanimationduration-const">duration</a>() 和 <a href="#pure-virtual-protected-void-qabstractanimationupdatecurrenttimeint-currenttime">updateCurrentTime</a>()。<a href="#pure-virtual-int-qabstractanimationduration-const">duration</a>() 函数用于提供动画的持续时间（如上文所述）。当动画时间变化时，动画框架会调用 <a href="#pure-virtual-protected-void-qabstractanimationupdatecurrenttimeint-currenttime">updateCurrentTime</a>()。通过重新实现该函数，您可以追踪动画进度。注意：此函数的调用间隔和调用次数均未定义，虽然通常每秒会更新60次。</p>
+<p>通过重新实现 <a href="#virtual-protected-void-qabstractanimationupdatestateqabstractanimationstateenum-qabstractanimationstate-newstate-qabstractanimationstateenum-qabstractanimationstate-oldstate">updateState</a>()，您可以追踪动画状态的改变，这对于不受时间驱动的动画特别有用。</p>
+<p><strong>另请参阅：</strong><a href="../../V/QVariantAnimation/QVariantAnimation.md">QVariantAnimation</a>，<a href="../../P/QPropertyAnimation/QPropertyAnimation.md">QPropertyAnimation</a>，<a href="../QAnimationGroup/QAnimationGroup.md">QAnimationGroup</a> 和 <a href="../The_Animation_Framework/The_Animation_Framework.md">The Animation Framework</a>。</p>
+<h2><span id="cheng-yuan-bian-liang-wen-dang">成员变量文档</span><a href="#cheng-yuan-bian-liang-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qabstractanimation-deletionpolicy">enum QAbstractAnimation::DeletionPolicy</span><a href="#enum-qabstractanimation-deletionpolicy" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">QAbstractAnimation::KeepWhenStopped</td>
+<td align="center">0</td>
+<td align="left">动画停止时不会被删除</td>
+</tr>
+<tr>
+<td align="center">QAbstractAnimation::DeleteWhenStopped</td>
+<td align="center">1</td>
+<td align="left">动画停止时会被自动删除</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="enum-qabstractanimation-direction">enum QAbstractAnimation::Direction</span><a href="#enum-qabstractanimation-direction" class="header-anchor">#</a></h3><p>该枚举描述了动画在 <a href="#enum-qabstractanimationstate">Running</a> 状态时的运行的方向。</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">QAbstractAnimation::Forward</td>
+<td align="center">0</td>
+<td align="left">“当前时间”随时间递增（即从0向终点/duration 移动）</td>
+</tr>
+<tr>
+<td align="center">QAbstractAnimation::Backward</td>
+<td align="center">1</td>
+<td align="left">”当前时间“随时间递减（即从终点/duration 向0移动）</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="enum-qabstractanimation-state">enum QAbstractAnimation::State</span><a href="#enum-qabstractanimation-state" class="header-anchor">#</a></h3><p>该枚举描述了动画的状态。</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">QAbstractAnimation::Stopped</td>
+<td align="center">0</td>
+<td align="left">动画未运行。这是 <a href="QAbstractAnimation.md">QAbstractAnimation</a> 的初始状态，也是 <a href="QAbstractAnimation.md">[QAbstractAnimation]</a> 结束后的状态。除非 <a href>setCurrentTime</a>() 被调用，或者调用 <a href="#slot-void-qabstractanimationstartqabstractanimationdeletionpolicy-policy--keepwhenstopped">start</a>() 来启动动画，否则”当前时间“不会改变。</td>
+</tr>
+<tr>
+<td align="center">QAbstractAnimation::Paused</td>
+<td align="center">1</td>
+<td align="left">动画暂停（即使暂时挂起）。调用 <a href="#slot-void-qabstractanimationresume">resume</a>() 将恢复动画。</td>
+</tr>
+<tr>
+<td align="center">QAbstractAnimation::Running</td>
+<td align="center">2</td>
+<td align="left">动画运行中。当控制权处于事件循环中时，<a href="QAbstractAnimation.md">QAbstractAnimation</a> 将会有规律地更新”当前时间“，并在适合地时机调用 <a href="#pure-virtual-protected-void-qabstractanimationupdatecurrenttimeint-currenttime">updateCurrentTime</a>()。</td>
+</tr>
+</tbody></table>
+<h2><span id="shu-xing-wen-dang">属性文档</span><a href="#shu-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="currentloop-const-int">currentLoop : const int</span><a href="#currentloop-const-int" class="header-anchor">#</a></h3><p>此属性存储动画当前的循环数。</p>
+<p>此属性描述了动画当前的循环数。默认的循环次数为1，所以当前的循环次数永远为0。若循环总数2的，当动画运行超过其 duration 时将重新开始，并将当前时间重置为0，当前循环数置为1，以此类推。</p>
+<p>当当前循环变化时，<a href="QAbstractAnimation.md">QAbstractAnimation</a> 会发出 <a href="#signal-void-qabstractanimationcurrentloopchangedint-currentloop">currentLoopChanged</a>() 信号。</p>
+<p><strong>存取函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int</td>
+<td align="left"><strong>currentLoop</strong>() const</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void</td>
+<td align="left"><a href="#signal-void-qabstractanimationcurrentloopchangedint-currentloop">currentLoopChanged</a>(int <em>currentLoop</em>)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="currenttime-int">currentTime : int</span><a href="#currenttime-int" class="header-anchor">#</a></h3><p>此属性存储动画当前的时间与进度。</p>
+<p>此属性描述了动画当前的时间。您可以通过 <code>setCurrentTime</code> 函数来修改当前时间，也可以调用 <a href="#slot-void-qabstractanimationstartqabstractanimationdeletionpolicy-policy--keepwhenstopped">start</a>() 让动画运行，当前时间会随动画播放进度自动设置。</p>
+<p>动画的当前时间从0开始，在 <a href="#int-qabstractanimationtotalduration-const">totalDuration</a>() 结束。</p>
+<p><strong>存取函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int</td>
+<td align="left"><strong>currentTime</strong>() const</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><strong>setCurrentTime</strong>(int msecs)</td>
+</tr>
+</tbody></table>
+<p> <strong>另请参阅：</strong><a href="#loopcount--int">loopCount</a> 和 <a href="int-qabstractanimationcurrentlooptime-const">currentLoopTime</a>()。</p>
+<hr>
+<h3><span id="direction-direction">direction : Direction</span><a href="#direction-direction" class="header-anchor">#</a></h3><p>该属性存储动画在 <a href="#enum-qabstractanimationstate">Running</a> 状态时的运行方向。</p>
+<p>该方向表明了在 <a href="#slot-void-qabstractanimationstartqabstractanimationdeletionpolicy-policy--keepwhenstopped">start</a>() 被调用后，时间是从0向动画时长移动，还是从持续时间向0移动。</p>
+<p>默认方向为 <a href="#enum-qabstractanimationdirection">Forward</a>。</p>
+<p><strong>存取函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Direction</td>
+<td align="left"><strong>direction</strong>() const</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><strong>setDirection</strong>(Direction <em>direction</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void</td>
+<td align="left"><a href="#signal-void-qabstractanimationdirectionchangedqabstractanimationdirection-newdirection">directionChanged</a>(QAbstractAnimation::Direction <em>newDirection</em>)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="duration-const-int">duration : const int</span><a href="#duration-const-int" class="header-anchor">#</a></h3><p>该属性存储动画的持续时间。</p>
+<p>如果 <code>duration</code> 为-1，则表示 <code>duration</code> 未定义，此时动画将会忽略 <code>loopCount</code> 属性。</p>
+<p><strong>存取函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">virtual int</td>
+<td align="left"><a href="#pure-virtual-int-qabstractanimationduration-const">duration</a>() const = 0</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="loopcount-int">loopCount : int</span><a href="#loopcount-int" class="header-anchor">#</a></h3><p>该属性存储动画的循环次数。</p>
+<p>此属性用整形描述了动画的循环次数。默认值为1，表示该动画只播放一次，然后停止。通过修改其值，动画会改变循环的次数。当值为0时，动画完全不会运行；当值为-1时，动画将会永远循环直到主动停止。如果动画未设置 <code>duration</code> 属性则无法循环，即只会播放一次。<br><strong>存取函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int</td>
+<td align="left"><strong>loopCount</strong>() const</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><strong>setLoopCount</strong>(int <em>loopCount</em>)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="state-const-state">state : const State</span><a href="#state-const-state" class="header-anchor">#</a></h3><p>动画状态。<br>此属性描述了动画的当前状态。当动画状态改变时，<a href="QAbstractAnimation.md">QAbstractAnimation</a> 会发射 <a href="#signal-void-qabstractanimationstatechangedqabstractanimationstate-newstate-qabstractanimationstate-oldstate">stateChanged</a>() 信号。</p>
+<p><strong>存取函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">State</td>
+<td align="left"><strong>state</strong>() const</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void</td>
+<td align="left"><a href="#signal-void-qabstractanimationstatechangedqabstractanimationstate-newstate-qabstractanimationstate-oldstate">stateChanged</a>(QAbstractAnimation::State <em>newState</em>, QAbstractAnimation::State <em>oldState</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qabstractanimation-qabstractanimation-qobject-parent-q-nullptr">QAbstractAnimation::<strong>QAbstractAnimation</strong>( <em>*parent</em> = Q_NULLPTR)</span><a href="#qabstractanimation-qabstractanimation-qobject-parent-q-nullptr" class="header-anchor">#</a></h3><p>构造 QAbstractAnimation 基类，并将 <code>parent</code> 参数传递给 <a href="../../O/QObject/QObject.md">QObject</a> 的构造函数。</p>
+<p><strong>另请参阅：</strong><a href="../../V/QVariantAnimation/QVariantAnimation.md">QVariantAnimation</a> 和 <a href="../QAnimationGroup/QAnimationGroup.md">QAnimationGroup</a></p>
+<hr>
+<h3><span id="signal-void-qabstractanimation-currentloopchanged-int-currentloop"><strong>[signal]</strong> void QAbstractAnimation::<strong>currentLoopChanged</strong>(int <em>currentLoop</em>)</span><a href="#signal-void-qabstractanimation-currentloopchanged-int-currentloop" class="header-anchor">#</a></h3><p>每当当前循环发生变化时，<a href="QAbstractAnimation.md">QAbstractAnimation</a> 会发射该信号。<code>currentLoop</code> 为当前循环。</p>
+<p><strong>注意：</strong> 属性 <code>currentLoop</code> 的通知信号。</p>
+<p><strong>另请参阅：</strong><a href="#currentloop--const-int">currentLoop</a>() 和 <a href="#loopcount--int">loopCount</a>()。</p>
+<hr>
+<h3><span id="signal-void-qabstractanimation-directionchanged-qabstractanimation-direction-newdirection"><strong>[signal]</strong> void QAbstractAnimation::<strong>directionChanged</strong>( <em>newDirection</em>)</span><a href="#signal-void-qabstractanimation-directionchanged-qabstractanimation-direction-newdirection" class="header-anchor">#</a></h3><p>每当方向改变时，<a href="QAbstractAnimation.md">QAbstractAnimation</a> 会发射该信号。<code>newDirection</code> 为新方向。</p>
+<p><strong>注意：</strong> 属性 <code>direction</code> 的通知信号。</p>
+<p><strong>另请参阅：</strong><a href="#direction--direction">direction</a>()。</p>
+<hr>
+<h3><span id="signal-void-qabstractanimation-finished"><strong>[signal]</strong> void QAbstractAnimation::<strong>finished</strong>()</span><a href="#signal-void-qabstractanimation-finished" class="header-anchor">#</a></h3><p> 在动画停止并到达终点之后发送此信号。</p>
+<p>该信号在 <a href="#signal-void-qabstractanimationstatechangedqabstractanimationstate-newstate-qabstractanimationstate-oldstate">stateChanged</a>() 之后发射。</p>
+<p><strong>另请参阅：</strong><a href="#signal-void-qabstractanimationstatechangedqabstractanimationstate-newstate-qabstractanimationstate-oldstate">stateChanged</a>()。</p>
+<hr>
+<h3><span id="slot-void-qabstractanimation-pause"><strong>[slot]</strong> void QAbstractAnimation::<strong>pause</strong>()</span><a href="#slot-void-qabstractanimation-pause" class="header-anchor">#</a></h3><p>暂停动画。当动画暂停时，<a href="#state--const-state">state</a>() 返回 <a href="#enum-qabstractanimationstate">Paused</a>。在调用 <a href="#slot-void-qabstractanimationresume">resume</a>() 或 <a href="#slot-void-qabstractanimationstartqabstractanimationdeletionpolicy-policy--keepwhenstopped">start</a>() 前，<a href="#currenttime--int">currentTime</a>() 的值将会保持不变。若想从当前时间继续，则调用 <a href="#slot-void-qabstractanimationresume">resume</a>()函数。</p>
+<p><strong>另请参阅：</strong><a href="#slot-void-qabstractanimationstartqabstractanimationdeletionpolicy-policy--keepwhenstopped">start</a>()，<a href="#state--const-state">state</a>() 和 <a href="#slot-void-qabstractanimationresume">resume</a>()。</p>
+<hr>
+<h3><span id="slot-void-qabstractanimation-resume"><strong>[slot]</strong> void QAbstractAnimation::<strong>resume</strong>()</span><a href="#slot-void-qabstractanimation-resume" class="header-anchor">#</a></h3><p>暂停后恢复动画。当动画恢复时，会发射会发出 resumed() 信号和 <a href="#signal-void-qabstractanimationstatechangedqabstractanimationstate-newstate-qabstractanimationstate-oldstate">stateChanged</a>() 信号。当前时间不会变化。</p>
+<p><strong>另请参阅：</strong><a href="#slot-void-qabstractanimationstartqabstractanimationdeletionpolicy-policy--keepwhenstopped">start</a>，<a href="#slot-void-qabstractanimationpause">pause</a>() 和 <a href="#state--const-state">state</a>()。</p>
+<hr>
+<h3><span id="slot-void-qabstractanimation-setpaused-bool-paused"><strong>[slot]</strong> void QAbstractAnimation::<strong>setPaused</strong>(bool <em>paused</em>)</span><a href="#slot-void-qabstractanimation-setpaused-bool-paused" class="header-anchor">#</a></h3><p>若 <code>paused</code> 为 <code>true</code>，则暂停动画。若 <code>pause</code> 为 <code>false</code>，则恢复动画播放。</p>
+<p><strong>另请参阅：</strong><a href="#state--const-state">state</a>()，<a href="#slot-void-qabstractanimationpause">pause</a>() 和 <a href="#slot-void-qabstractanimationresume">resume</a>()。</p>
+<hr>
+<h3><span id="slot-void-qabstractanimation-start-qabstractanimation-deletionpolicy-policy-keepwhenstopped"><strong>[slot]</strong> void QAbstractAnimation::<strong>start</strong>( <em>policy</em> = KeepWhenStopped)</span><a href="#slot-void-qabstractanimation-start-qabstractanimation-deletionpolicy-policy-keepwhenstopped" class="header-anchor">#</a></h3><p>开始动画。<code>policy</code> 参数表示动画在结束后是否会被删除。动画启动时，会发射 <a href="#signal-void-qabstractanimationstatechangedqabstractanimationstate-newstate-qabstractanimationstate-oldstate">stateChanged</a>() 信号，<a href="#state--const-state">state</a>() 会返回 <code>Running</code>。当控制权回到事件循环时，动画会自动播放，并随播放进度周期性调用 <a href="#pure-virtual-protected-void-qabstractanimationupdatecurrenttimeint-currenttime">updateCurrentTime</a>()，</p>
+<p>若动画当前已被停止或者已经结束，调用 <code>start()</code> 将会充值动画并从头开始。当动画到达终点时，动画将会停止；或者当其循环次数大于1，则会从头开始。</p>
+<p>若动画已经在运行中，此函数不会有任何操作。</p>
+<p><strong>另请参阅：</strong><a href="#slot-void-qabstractanimationstop">stop</a>() 和 <a href="#state--const-state">state</a>()。</p>
+<hr>
+<h3><span id="signal-void-qabstractanimation-statechanged-qabstractanimation-state-newstate-qabstractanimation-state-oldstate"><strong>[signal]</strong> void QAbstractAnimation::<strong>stateChanged</strong>( <em>newState</em>,  <em>oldState</em>)</span><a href="#signal-void-qabstractanimation-statechanged-qabstractanimation-state-newstate-qabstractanimation-state-oldstate" class="header-anchor">#</a></h3><p>每当动画的状态从 <code>oldState</code> 变为 <code>newState</code> 时，<a href="QAbstractAnimation.md">QAbstractAnimation</a> 会发射此信号。此信号会在虚函数 <a href="#virtual-protected-void-qabstractanimationupdatestateqabstractanimationstateenum-qabstractanimationstate-newstate-qabstractanimationstateenum-qabstractanimationstate-oldstate">updateState</a>()被调用后发射。</p>
+<p><strong>注意：</strong> 属性 <a href="#state--const-state">state</a> 的通知信号。</p>
+<p><strong>另请参阅：</strong><a href="#virtual-protected-void-qabstractanimationupdatestateqabstractanimationstateenum-qabstractanimationstate-newstate-qabstractanimationstateenum-qabstractanimationstate-oldstate">updateState</a>()。</p>
+<hr>
+<h3><span id="slot-void-qabstractanimation-stop"><strong>[slot]</strong> void QAbstractAnimation::<strong>stop</strong>()</span><a href="#slot-void-qabstractanimation-stop" class="header-anchor">#</a></h3><p>停止动画。当动画停止时，会发射 <a href="#signal-void-qabstractanimationstatechangedqabstractanimationstate-newstate-qabstractanimationstate-oldstate">stateChanged</a>() 信号，<a href="#state--const-state">state</a>() 返回 <code>Stopped</code>。当前时间不会变化。</p>
+<p>若动画到达终点后自动结束（比如 <a href="int-qabstractanimationcurrentlooptime-const">currentLoopTime</a>() == <a href="#pure-virtual-int-qabstractanimationduration-const">duration</a>()  或者 <a href="#currentloop--const-int">currentLoop</a>() &gt; <a href="#loopcount--int">loopCount</a>() - 1）,则会发射 <a href="#signal-void-qabstractanimationfinished">finished</a>() 信号。</p>
+<p><strong>另请参阅：</strong><a href="#slot-void-qabstractanimationstartqabstractanimationdeletionpolicy-policy--keepwhenstopped">start</a>() 和 <a href="#state--const-state">state</a>()。</p>
+<hr>
+<h3><span id="virtual-qabstractanimation-qabstractanimation"><strong>[virtual]</strong> QAbstractAnimation::<strong>~QAbstractAnimation</strong>()</span><a href="#virtual-qabstractanimation-qabstractanimation" class="header-anchor">#</a></h3><p>若在运行中则停止动画，然后销毁 <a href="QAbstractAnimation.md">QAbstractAnimation</a>。若当前动画是 <a href="../QAbstractAnimation/QAnimationGroup.md">QAnimationGroup</a> 的一部分，则会在销毁前被自动移除。</p>
+<hr>
+<h3><span id="int-qabstractanimation-currentlooptime-const">int QAbstractAnimation::<strong>currentLoopTime</strong>() const</span><a href="#int-qabstractanimation-currentlooptime-const" class="header-anchor">#</a></h3><p>返回当前循环中的当前时间。它的范围为0到 <a href="#pure-virtual-int-qabstractanimationduration-const">duration</a>()。</p>
+<p><strong>另请参阅：</strong> <a href="#pure-virtual-int-qabstractanimationduration-const">duration</a>() 和 <a href="#currenttime--int">currentTime</a>()。</p>
+<hr>
+<h3><span id="pure-virtual-int-qabstractanimation-duration-const"><strong>[pure virtual]</strong> int QAbstractAnimation::<strong>duration</strong>() const</span><a href="#pure-virtual-int-qabstractanimation-duration-const" class="header-anchor">#</a></h3><p>此纯虚函数返回动画持续时间，并定义 <a href="QAbstractAnimation.md">QAbstractAnimation</a> 应该多久更新一次当前时间。持续时间是本地的，并且不包括循环总数。</p>
+<p>返回值-1表示动画没有定义持续时间，动画将永远运行下去，直到被主动停止。这对于非时间驱动的动画或者无法预测其持续时间的动画（例如游戏中事件驱动的音频回放）十分有用。</p>
+<p>若该动画是并行的 <a href="../QAbstractAnimation/QAbstractAnimation.md">QAbstractAnimation</a> 是并行的，则持续时间是所有动画中最长的。若此动画是顺序的 <a href="../QAnimationGroup/QAnimationGroup.md">QAnimationGroup</a>，则持续时间是所有动画的总和。</p>
+<p><strong>注意：</strong><code>duration</code> 属性的获取函数。</p>
+<p><strong>另请参阅：</strong><a href="#loopcount--int">loopCount</a>()。</p>
+<hr>
+<h3><span id="virtual-protected-bool-qabstractanimation-event-qevent-event"><strong>[virtual protected]</strong> bool QAbstractAnimation::<strong>event</strong>( *<em>event</em>)</span><a href="#virtual-protected-bool-qabstractanimation-event-qevent-event" class="header-anchor">#</a></h3><p><a href="../../O/QObject/QObject.md#event">QObject::event</a>(QEvent *e) 的重新实现。</p>
+<hr>
+<h3><span id="qanimationgroup-qabstractanimation-group-const"> *QAbstractAnimation::<strong>group</strong>() const</span><a href="#qanimationgroup-qabstractanimation-group-const" class="header-anchor">#</a></h3><p>若此动画是 <a href="../QAnimationGroup/QAnimationGroup.md">QAnimationGroup</a> 的一部分，则会返回该动画组的指针，否则返回<code>nullptr</code>。</p>
+<p><strong>另请参阅：</strong><a href="../QAnimationGroup/QAnimationGroup.md#addAnimation">QAnimationGroup::addAnimation</a>()。</p>
+<hr>
+<h3><span id="int-qabstractanimation-totalduration-const">int QAbstractAnimation::<strong>totalDuration</strong>() const</span><a href="#int-qabstractanimation-totalduration-const" class="header-anchor">#</a></h3><p>返回动画的有效持续时间的综合，包含循环次数。<br><strong>另请参阅：</strong><a href="#pure-virtual-int-qabstractanimationduration-const">duration</a>() 和 <a href="#currenttime--int">currentTime</a>()。</p>
+<hr>
+<h3><span id="pure-virtual-protected-void-qabstractanimation-updatecurrenttime-int-currenttime"><strong>[pure virtual protected]</strong> void QAbstractAnimation::<strong>updateCurrentTime</strong>(int <em>currentTime</em>)</span><a href="#pure-virtual-protected-void-qabstractanimation-updatecurrenttime-int-currenttime" class="header-anchor">#</a></h3><p>此虚函数会当动画的 <code>currentTime</code> 每次发生变化时被调用。</p>
+<p><strong>另请参阅：</strong><a href="#virtual-protected-void-qabstractanimationupdatestateqabstractanimationstateenum-qabstractanimationstate-newstate-qabstractanimationstateenum-qabstractanimationstate-oldstate">updateState</a>()。</p>
+<hr>
+<h3><span id="virtual-protected-void-qabstractanimation-updatedirection-qabstractanimation-direction-direction"><strong>[virtual protected]</strong> void QAbstractAnimation::<strong>updateDirection</strong>( <em>direction</em>)</span><a href="#virtual-protected-void-qabstractanimation-updatedirection-qabstractanimation-direction-direction" class="header-anchor">#</a></h3><p>此虚函数会在 <a href="QAbstractAnimation.md">QAbstractAnimation</a> 的播放方向改变时被调用。参数 <code>direction</code> 表示新的方向。</p>
+<p><strong>另请参阅：</strong><a href>setDirection</a>()，<a href="#direction--direction">direction</a>()。</p>
+<hr>
+<h3><span id="virtual-protected-void-qabstractanimation-updatestate-qabstractanimation-state-newstate-qabstractanimation-state-oldstate"><strong>[virtual protected]</strong> void QAbstractAnimation::<strong>updateState</strong>( <em>newState</em>,  <em>oldState</em>)</span><a href="#virtual-protected-void-qabstractanimation-updatestate-qabstractanimation-state-newstate-qabstractanimation-state-oldstate" class="header-anchor">#</a></h3><p>此虚函数会在动画的状态改变从 <code>oldState</code> 切换为 <code>newState</code> 时被调用。</p>
+<p><strong>另请参阅：</strong><a href="#slot-void-qabstractanimationstartqabstractanimationdeletionpolicy-policy--keepwhenstopped">start</a>()，<a href="#slot-void-qabstractanimationstop">stop</a>()，<a href="#slot-void-qabstractanimationpause">pause</a>() 和 <a href="#slot-void-qabstractanimationresume">resume</a>()。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/A/">A</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/01/QtDocumentCN/Src/A/API_Design_Principles/API_Design_Principles/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">API_Design_Principles</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/23/QT%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91/">
+                        <span class="hidden-mobile">QT文档翻译</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="C++线程池 任务类 线程池类 测试        C++线程池#任务类##pragma once #include &lt;mutex&gt; #include &lt;queue&gt;  &#x2F;&#x2F; 定义任务结构体 using callback &#x3D; void (*)(void *); struct Task {     Task() {         this-&gt;function">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++线程池">
+<meta property="og:url" content="https://txt1994.github.io/2021/12/24/C-%E7%BA%BF%E7%A8%8B%E6%B1%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C++线程池 任务类 线程池类 测试        C++线程池#任务类##pragma once #include &lt;mutex&gt; #include &lt;queue&gt;  &#x2F;&#x2F; 定义任务结构体 using callback &#x3D; void (*)(void *); struct Task {     Task() {         this-&gt;function">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/WindowsTerminal_aslj5wqMXb.png">
+<meta property="article:published_time" content="2021-12-24T09:01:29.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:03:06.408Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++11">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/WindowsTerminal_aslj5wqMXb.png">
+  
+  
+  <title>C++线程池 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++线程池">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-24 17:01" pubdate>
+        2021年12月24日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      56 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++线程池</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#c-xian-cheng-chi">C++线程池</a><ul>
+<li><a href="#ren-wu-lei"><strong>任务类</strong></a></li>
+<li><a href="#xian-cheng-chi-lei"><strong>线程池类</strong></a></li>
+<li><a href="#ce-shi"><strong>测试</strong></a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="c-xian-cheng-chi">C++线程池</span><a href="#c-xian-cheng-chi" class="header-anchor">#</a></h1><h2><span id="ren-wu-lei"><strong>任务类</strong></span><a href="#ren-wu-lei" class="header-anchor">#</a></h2><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> once</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;queue&gt;</span></span>
+
+<span class="hljs-comment">// 定义任务结构体</span>
+<span class="hljs-keyword">using</span> callback = <span class="hljs-built_in">void</span> (*)(<span class="hljs-type">void</span> *);
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Task</span> {
+    <span class="hljs-built_in">Task</span>() {
+        <span class="hljs-keyword">this</span>-&gt;function = <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">this</span>-&gt;arg = <span class="hljs-literal">nullptr</span>;
+    }
+    <span class="hljs-built_in">Task</span>(callback f, <span class="hljs-type">void</span> *arg) {
+        <span class="hljs-keyword">this</span>-&gt;function = f;
+        <span class="hljs-keyword">this</span>-&gt;arg = arg;
+    }
+    callback function;
+    <span class="hljs-type">void</span> *arg;
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">TaskQueue</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">TaskQueue</span>();
+
+    ~<span class="hljs-built_in">TaskQueue</span>();
+
+    <span class="hljs-comment">// 添加任务</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">addTask</span><span class="hljs-params">(Task task)</span></span>;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">addTask</span><span class="hljs-params">(callback f, <span class="hljs-type">void</span> *arg)</span></span>;
+
+    <span class="hljs-comment">// 取出一个任务</span>
+    <span class="hljs-function">Task <span class="hljs-title">getTask</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-comment">// 判断队列任务是否为空</span>
+    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">bool</span> <span class="hljs-title">empty</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> m_taskQ.<span class="hljs-built_in">empty</span>(); }
+
+    <span class="hljs-comment">// 当前任务个数</span>
+    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">gettaskNumber</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> m_taskQ.<span class="hljs-built_in">size</span>(); }
+
+<span class="hljs-keyword">private</span>:
+    std::queue&lt;Task&gt; m_taskQ;
+    std::mutex m_mutex;
+};
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"TaskQueue.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">TaskQueue::addTask</span><span class="hljs-params">(Task task)</span> </span>{
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(m_mutex)</span></span>;
+    m_taskQ.<span class="hljs-built_in">push</span>(task);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">TaskQueue::addTask</span><span class="hljs-params">(callback f, <span class="hljs-type">void</span> *arg)</span> </span>{
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(m_mutex)</span></span>;
+    m_taskQ.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">Task</span>(f, arg));
+}
+
+<span class="hljs-function">Task <span class="hljs-title">TaskQueue::getTask</span><span class="hljs-params">()</span> </span>{
+    Task task;
+    <span class="hljs-keyword">if</span> (!m_taskQ.<span class="hljs-built_in">empty</span>()) {
+        <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(m_mutex)</span></span>;
+        task = m_taskQ.<span class="hljs-built_in">front</span>();
+        m_taskQ.<span class="hljs-built_in">pop</span>();
+    }
+    <span class="hljs-keyword">return</span> task;
+}
+
+TaskQueue::<span class="hljs-built_in">TaskQueue</span>() {}
+
+TaskQueue::~<span class="hljs-built_in">TaskQueue</span>() {}
+</code></pre></div>
+
+<h2><span id="xian-cheng-chi-lei"><strong>线程池类</strong></span><a href="#xian-cheng-chi-lei" class="header-anchor">#</a></h2><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> once</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"TaskQueue.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;atomic&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;condition_variable&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadPool</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">// 创建线程池并初始化</span>
+    <span class="hljs-built_in">ThreadPool</span>(<span class="hljs-type">int</span> min, <span class="hljs-type">int</span> max);
+
+    <span class="hljs-comment">// 给线程池添加任务</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">addTask</span><span class="hljs-params">(Task task)</span></span>;
+
+    <span class="hljs-comment">// 获取线程池中工作的线程的个数</span>
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getBusyNumber</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-comment">// 获取线程池中活着的线程的个数</span>
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getAliveNumber</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-comment">// static ThreadPool *instance();</span>
+    <span class="hljs-comment">// static ThreadPool &amp;Instance();</span>
+
+    <span class="hljs-comment">// 销毁线程池</span>
+    ~<span class="hljs-built_in">ThreadPool</span>();
+
+    <span class="hljs-built_in">ThreadPool</span>();
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-comment">//////////////////////</span>
+    <span class="hljs-comment">// 工作的线程(消费者线程)任务函数</span>
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> *<span class="hljs-title">worker</span><span class="hljs-params">(<span class="hljs-type">void</span> *arg)</span></span>;
+    <span class="hljs-comment">// 管理者线程任务函数</span>
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> *<span class="hljs-title">manager</span><span class="hljs-params">(<span class="hljs-type">void</span> *arg)</span></span>;
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-comment">// 任务队列</span>
+    TaskQueue *taskQ;
+
+    <span class="hljs-type">int</span> minNum;              <span class="hljs-comment">// 最小线程数量</span>
+    <span class="hljs-type">int</span> maxNum;              <span class="hljs-comment">// 最大线程数量</span>
+    <span class="hljs-type">int</span> busyNum;             <span class="hljs-comment">// 忙的线程的个数</span>
+    <span class="hljs-type">int</span> liveNum;             <span class="hljs-comment">// 存活的线程的个数</span>
+    std::atomic_int exitNum; <span class="hljs-comment">// 要销毁的线程个数</span>
+    std::condition_variable m_notEmpty;
+    std::mutex m_mutex;
+    <span class="hljs-type">static</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> NUMBER = <span class="hljs-number">2</span>;
+
+    <span class="hljs-type">int</span> shutdown; <span class="hljs-comment">// 是不是要销毁线程池, 销毁为1, 不销毁为0</span>
+};
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"ThreadPool.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+
+<span class="hljs-comment">// 创建线程池并初始化</span>
+ThreadPool::<span class="hljs-built_in">ThreadPool</span>(<span class="hljs-type">int</span> min, <span class="hljs-type">int</span> max) {
+    <span class="hljs-keyword">do</span> {
+        taskQ = <span class="hljs-keyword">new</span> TaskQueue;
+        <span class="hljs-keyword">if</span> (<span class="hljs-literal">nullptr</span> == taskQ) {
+            std::cout &lt;&lt; <span class="hljs-string">"malloc taskQ fail..."</span> &lt;&lt; std::endl;
+            <span class="hljs-keyword">break</span>;
+        }
+
+        minNum = min;
+        maxNum = max;
+        busyNum = <span class="hljs-number">0</span>;
+        liveNum = min; <span class="hljs-comment">// 和最小个数相等</span>
+        exitNum = <span class="hljs-number">0</span>;
+        shutdown = <span class="hljs-literal">false</span>;
+
+        <span class="hljs-comment">// 管理者线程</span>
+        <span class="hljs-function">std::thread <span class="hljs-title">manager_thread</span><span class="hljs-params">(manager, <span class="hljs-keyword">this</span>)</span></span>;
+        std::cout &lt;&lt; <span class="hljs-string">"manager_thread created id: "</span> &lt;&lt; manager_thread.<span class="hljs-built_in">get_id</span>()
+            &lt;&lt; <span class="hljs-string">'\n'</span>;
+        manager_thread.<span class="hljs-built_in">detach</span>();
+
+        <span class="hljs-comment">// 工作者线程</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; min; ++i) {
+            <span class="hljs-function">std::thread <span class="hljs-title">worker_thread</span><span class="hljs-params">(worker, <span class="hljs-keyword">this</span>)</span></span>;
+            std::cout &lt;&lt; <span class="hljs-string">"worker_thread created "</span> &lt;&lt; worker_thread.<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+            worker_thread.<span class="hljs-built_in">detach</span>();
+        }
+
+        <span class="hljs-keyword">return</span>;
+    } <span class="hljs-keyword">while</span> (<span class="hljs-number">0</span>);
+
+    <span class="hljs-comment">// 释放资源</span>
+    <span class="hljs-keyword">if</span> (taskQ) {
+        <span class="hljs-keyword">delete</span> taskQ;
+        taskQ = <span class="hljs-literal">nullptr</span>;
+    }
+}
+
+ThreadPool::~<span class="hljs-built_in">ThreadPool</span>() {
+
+    <span class="hljs-comment">// 关闭线程池</span>
+    shutdown = <span class="hljs-literal">true</span>;
+    <span class="hljs-comment">// 唤醒阻塞的线程</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; liveNum; ++i) {
+        m_notEmpty.<span class="hljs-built_in">notify_all</span>();
+    }
+    <span class="hljs-comment">// 释放堆内存</span>
+    <span class="hljs-keyword">if</span> (taskQ) {
+        <span class="hljs-keyword">delete</span> taskQ;
+        taskQ = <span class="hljs-literal">nullptr</span>;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ThreadPool::addTask</span><span class="hljs-params">(Task task)</span> </span>{
+    <span class="hljs-keyword">if</span> (shutdown) {
+        <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-comment">// 添加任务</span>
+    taskQ-&gt;<span class="hljs-built_in">addTask</span>(task);
+
+    <span class="hljs-comment">// 唤醒一个工作者线程</span>
+    m_notEmpty.<span class="hljs-built_in">notify_one</span>();
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ThreadPool::getBusyNumber</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(m_mutex)</span></span>;
+    <span class="hljs-type">int</span> busyNum_1 = <span class="hljs-keyword">this</span>-&gt;busyNum;
+    <span class="hljs-keyword">return</span> busyNum_1;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ThreadPool::getAliveNumber</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(m_mutex)</span></span>;
+
+    <span class="hljs-type">int</span> aliveNum = <span class="hljs-keyword">this</span>-&gt;liveNum;
+    <span class="hljs-keyword">return</span> aliveNum;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> *<span class="hljs-title">ThreadPool::worker</span><span class="hljs-params">(<span class="hljs-type">void</span> *arg)</span> </span>{
+    ThreadPool *pool = <span class="hljs-built_in">static_cast</span>&lt;ThreadPool *&gt;(arg);
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+        <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(pool-&gt;m_mutex)</span></span>;
+        <span class="hljs-comment">// 当前任务队列是否为空</span>
+        <span class="hljs-keyword">if</span> (pool-&gt;taskQ-&gt;<span class="hljs-built_in">gettaskNumber</span>() == <span class="hljs-number">0</span> &amp;&amp; !pool-&gt;shutdown) {
+            <span class="hljs-comment">// 阻塞工作线程</span>
+            pool-&gt;m_notEmpty.<span class="hljs-built_in">wait</span>(lk, [&amp;] {
+                <span class="hljs-keyword">return</span> pool-&gt;exitNum || pool-&gt;shutdown || !pool-&gt;taskQ-&gt;<span class="hljs-built_in">empty</span>();
+            });
+        }
+
+        lk.<span class="hljs-built_in">unlock</span>();
+
+        <span class="hljs-comment">// 判断线程池是否被关闭了</span>
+        <span class="hljs-keyword">if</span> (pool-&gt;shutdown || pool-&gt;exitNum &gt; <span class="hljs-number">0</span>) {
+            pool-&gt;exitNum--;
+            std::cout &lt;&lt; <span class="hljs-string">"thread "</span> &lt;&lt; std::this_thread::<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">" exiting..."</span>
+                &lt;&lt; <span class="hljs-string">'\n'</span>;
+            <span class="hljs-keyword">break</span>;
+        }
+
+        <span class="hljs-comment">// 从任务队列中取出一个任务</span>
+        <span class="hljs-keyword">auto</span> task = std::<span class="hljs-built_in">move</span>(pool-&gt;taskQ-&gt;<span class="hljs-built_in">getTask</span>());
+        <span class="hljs-comment">// 解锁</span>
+        lk.<span class="hljs-built_in">lock</span>();
+        pool-&gt;busyNum++;
+        lk.<span class="hljs-built_in">unlock</span>();
+        std::cout &lt;&lt; <span class="hljs-string">"thread "</span> &lt;&lt; std::this_thread::<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">" start working..."</span>
+            &lt;&lt; <span class="hljs-string">'\n'</span>;
+
+        <span class="hljs-comment">// 消费任务</span>
+        task.<span class="hljs-built_in">function</span>(task.arg);
+        <span class="hljs-keyword">delete</span> task.arg;
+        task.arg = <span class="hljs-literal">nullptr</span>;
+
+        lk.<span class="hljs-built_in">lock</span>();
+        pool-&gt;busyNum--;
+        lk.<span class="hljs-built_in">unlock</span>();
+        std::cout &lt;&lt; <span class="hljs-string">"thread "</span> &lt;&lt; std::this_thread::<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">" end working..."</span>
+            &lt;&lt; <span class="hljs-string">'\n'</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> *<span class="hljs-title">ThreadPool::manager</span><span class="hljs-params">(<span class="hljs-type">void</span> *arg)</span> </span>{
+    ThreadPool *pool = <span class="hljs-built_in">static_cast</span>&lt;ThreadPool *&gt;(arg);
+    <span class="hljs-keyword">while</span> (!pool-&gt;shutdown) {
+        <span class="hljs-comment">// 每隔3s检测一次</span>
+        std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+
+        <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(pool-&gt;m_mutex)</span></span>;
+        <span class="hljs-comment">// 取出线程池中任务的数量和当前线程的数量</span>
+        <span class="hljs-type">int</span> queueSize = pool-&gt;taskQ-&gt;<span class="hljs-built_in">gettaskNumber</span>();
+
+        <span class="hljs-comment">// 取出忙的线程的数量</span>
+        <span class="hljs-type">int</span> busyNum = pool-&gt;busyNum;
+        <span class="hljs-type">int</span> liveNum = pool-&gt;liveNum;
+        lk.<span class="hljs-built_in">unlock</span>();
+        <span class="hljs-comment">// 添加线程</span>
+        <span class="hljs-comment">// 任务的个数&gt;存活的线程个数 &amp;&amp; 存活的线程数&lt;最大线程数</span>
+        <span class="hljs-keyword">if</span> (queueSize &gt; liveNum &amp;&amp; liveNum &lt; pool-&gt;maxNum) {
+            lk.<span class="hljs-built_in">lock</span>();
+            <span class="hljs-type">int</span> counter = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;
+                 i &lt; pool-&gt;maxNum &amp;&amp; counter &lt; NUMBER &amp;&amp; pool-&gt;liveNum &lt; pool-&gt;maxNum;
+                 ++i) {
+                <span class="hljs-function">std::thread <span class="hljs-title">worker_thread</span><span class="hljs-params">(worker, pool)</span></span>;
+                std::cout &lt;&lt; <span class="hljs-string">"worker_thread created "</span> &lt;&lt; worker_thread.<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+                worker_thread.<span class="hljs-built_in">detach</span>();
+                pool-&gt;liveNum++;
+                counter++;
+            }
+            lk.<span class="hljs-built_in">unlock</span>();
+        }
+
+        <span class="hljs-comment">// 销毁线程</span>
+        <span class="hljs-comment">// 忙的线程*2 &lt; 存活的线程数 &amp;&amp; 存活的线程&gt;最小线程数</span>
+        <span class="hljs-keyword">if</span> (busyNum * <span class="hljs-number">2</span> &lt; liveNum &amp;&amp; liveNum &gt; pool-&gt;minNum) {
+            pool-&gt;exitNum = NUMBER;
+            <span class="hljs-comment">// 让工作的线程自杀</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; NUMBER; ++i) {
+                pool-&gt;m_notEmpty.<span class="hljs-built_in">notify_one</span>();
+            }
+        }
+    }
+    std::cout &lt;&lt; <span class="hljs-string">"manager_thread exiting..."</span> &lt;&lt; <span class="hljs-string">'\n'</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+}
+</code></pre></div>
+
+<h2><span id="ce-shi"><strong>测试</strong></span><a href="#ce-shi" class="header-anchor">#</a></h2><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/*************************************************************************</span>
+<span class="hljs-comment">  &gt; File Name: main.cpp</span>
+<span class="hljs-comment">  &gt; Author: txt1994</span>
+<span class="hljs-comment">  &gt; Mail: txt1994s@163.com</span>
+<span class="hljs-comment">  &gt; Created Time: Mon 08 Nov 2021 05:58:32 PM CST</span>
+<span class="hljs-comment"> ************************************************************************/</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"ThreadPool.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">taskFunc</span><span class="hljs-params">(<span class="hljs-type">void</span> *arg)</span> </span>{
+    <span class="hljs-type">int</span> num = *(<span class="hljs-type">int</span> *)arg;
+    std::cout &lt;&lt; <span class="hljs-string">"thread id = "</span> &lt;&lt; std::this_thread::<span class="hljs-built_in">get_id</span>()
+        &lt;&lt; <span class="hljs-string">" number = "</span> &lt;&lt; num &lt;&lt; <span class="hljs-string">'\n'</span>;
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+
+    <span class="hljs-comment">// 初始化线程池</span>
+    ThreadPool *pool = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ThreadPool</span>(<span class="hljs-number">4</span>, <span class="hljs-number">10</span>);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; ++i) {
+
+        <span class="hljs-type">int</span> *num = <span class="hljs-keyword">new</span> <span class="hljs-type">int</span>;
+        *num = i + <span class="hljs-number">100</span>;
+
+        Task task;
+        task.arg = num;
+        task.function = taskFunc;
+        pool-&gt;<span class="hljs-built_in">addTask</span>(task);
+    }
+
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">30</span>));
+    <span class="hljs-keyword">delete</span> pool;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C-11/">C++11</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/24/Arch%E5%AE%89%E8%A3%85/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Arch安装</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

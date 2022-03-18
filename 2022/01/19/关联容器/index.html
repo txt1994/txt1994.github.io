@@ -1,0 +1,883 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="此文整理与👉容器库 - cppreference.com   关联容器实现能快速查找（ O(log n) 复杂度）的数据结构。  std::set#定义于头文件 &lt;set&gt;  std::set 是关联容器，含有 Key 类型对象的已排序集并去重。用比较函数 比较 (Compare) 进行排序。搜索、移除和插入拥有对数复杂度。 set 通常以红黑树实现。   返回指向 set 首元素的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关联容器">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/19/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="此文整理与👉容器库 - cppreference.com   关联容器实现能快速查找（ O(log n) 复杂度）的数据结构。  std::set#定义于头文件 &lt;set&gt;  std::set 是关联容器，含有 Key 类型对象的已排序集并去重。用比较函数 比较 (Compare) 进行排序。搜索、移除和插入拥有对数复杂度。 set 通常以红黑树实现。   返回指向 set 首元素的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/S-PT_m.jpg">
+<meta property="article:published_time" content="2022-01-19T08:53:07.000Z">
+<meta property="article:modified_time" content="2022-01-27T09:20:16.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Associative">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/S-PT_m.jpg">
+  
+  
+  <title>关联容器 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="关联容器">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-19 16:53" pubdate>
+        2022年1月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      42 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">关联容器</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年1月27日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>此文整理与👉<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container">容器库 - cppreference.com</a></p>
+<blockquote>
+<p> 关联容器实现能快速查找（ <em>O(log n)</em> 复杂度）的数据结构。</p>
+</blockquote>
+<h2><span id="std-set">std::set</span><a href="#std-set" class="header-anchor">#</a></h2><p><strong>定义于头文件 <code>&lt;set&gt;</code></strong></p>
+<blockquote>
+<p>std::set 是关联容器，含有 Key 类型对象的<strong>已排序集</strong>并<strong>去重</strong>。用比较函数 比较 (Compare) 进行排序。搜索、移除和插入拥有对数复杂度。 set 通常以<strong>红黑树</strong>实现。</p>
+</blockquote>
+<ul>
+<li><p>返回指向 <code>set</code> 首元素的迭代器。</p>
+</li>
+<li><p>若 <code>set</code> 为空，则返回的迭代器将等于 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/set/end">end()</a> 。</p>
+</li>
+<li><p>返回值</p>
+</li>
+</ul>
+<p>指向首元素的迭代器。</p>
+<ul>
+<li>复杂度</li>
+</ul>
+<p>常数。</p>
+<h3><span id="std-set-lt-gt-begin-std-set-lt-gt-cbegin">std::set&lt;&gt;::begin,std::set&lt;&gt;::cbegin</span><a href="#std-set-lt-gt-begin-std-set-lt-gt-cbegin" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;set&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    std::set&lt;<span class="hljs-type">int</span>&gt; set = { <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span> };
+    std::for_each(set.<span class="hljs-built_in">cbegin</span>(), set.<span class="hljs-built_in">cend</span>(), [](<span class="hljs-type">int</span> x) {
+        std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">' '</span>;
+    });
+    std::cout &lt;&lt; <span class="hljs-string">'\n'</span>;
+}</code></pre></div>
+
+<h3><span id="std-set-lt-key-compare-allocator-gt-empty">std::set&lt;Key,Compare,Allocator&gt;::empty</span><a href="#std-set-lt-key-compare-allocator-gt-empty" class="header-anchor">#</a></h3><blockquote>
+<p>检查容器是否无元素</p>
+</blockquote>
+<h3><span id="std-set-lt-key-compare-allocator-gt-size">std::set&lt;Key,Compare,Allocator&gt;::size</span><a href="#std-set-lt-key-compare-allocator-gt-size" class="header-anchor">#</a></h3><blockquote>
+<p>返回容器中的元素数</p>
+</blockquote>
+<h3><span id="std-set-lt-key-compare-allocator-gt-clear">std::set&lt;Key,Compare,Allocator&gt;::clear</span><a href="#std-set-lt-key-compare-allocator-gt-clear" class="header-anchor">#</a></h3><blockquote>
+<p>从容器擦除所有元素。此调用后 size() 返回零</p>
+</blockquote>
+<h3><span id="std-set-lt-key-compare-allocator-gt-insert">std::set&lt;Key,Compare,Allocator&gt;::insert</span><a href="#std-set-lt-key-compare-allocator-gt-insert" class="header-anchor">#</a></h3><blockquote>
+<p>插入元素到容器，若容器未含拥有等价关键的元素。</p>
+</blockquote>
+<h3><span id="std-set-lt-key-compare-allocator-gt-emplace">std::set&lt;Key,Compare,Allocator&gt;::emplace</span><a href="#std-set-lt-key-compare-allocator-gt-emplace" class="header-anchor">#</a></h3><blockquote>
+<p>若容器中无拥有该关键的元素，则插入以给定的 args 原位构造的新元素到容器。</p>
+</blockquote>
+<blockquote>
+<p>细心地使用 emplace 允许在构造新元素的同时<strong>避免不必要的复制或移动操作</strong></p>
+</blockquote>
+<h3><span id="std-set-lt-key-compare-allocator-gt-erase">std::set&lt;Key,Compare,Allocator&gt;::erase</span><a href="#std-set-lt-key-compare-allocator-gt-erase" class="header-anchor">#</a></h3><blockquote>
+<p>擦除元素</p>
+</blockquote>
+<h3><span id="std-set-lt-key-compare-allocator-gt-find">std::set&lt;Key,Compare,Allocator&gt;::find</span><a href="#std-set-lt-key-compare-allocator-gt-find" class="header-anchor">#</a></h3><blockquote>
+<p>寻找键等于 key 的的元素。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;set&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::set&lt;<span class="hljs-type">int</span>&gt; numbers;
+    std::cout &lt;&lt; <span class="hljs-string">"Initially, numbers.empty(): "</span> &lt;&lt; numbers.<span class="hljs-built_in">empty</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+ 
+    numbers.<span class="hljs-built_in">insert</span>(<span class="hljs-number">13317</span>); 
+    numbers.<span class="hljs-built_in">insert</span>(<span class="hljs-number">3</span>);
+    numbers.<span class="hljs-built_in">insert</span>(<span class="hljs-number">2</span>);
+    std::cout &lt;&lt; <span class="hljs-string">"After adding elements, numbers.empty(): "</span> &lt;&lt; numbers.<span class="hljs-built_in">empty</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+    
+    std::for_each(numbers.<span class="hljs-built_in">cbegin</span>(), numbers.<span class="hljs-built_in">cend</span>(), [](<span class="hljs-type">int</span> x) {
+    std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">' '</span>;
+  	});
+    
+    numbers.<span class="hljs-built_in">emplace</span>(<span class="hljs-number">1</span>);
+    
+    numbers.<span class="hljs-built_in">erase</span>(<span class="hljs-number">1</span>);
+    
+    <span class="hljs-type">uint32_t</span> size = numbers.<span class="hljs-built_in">size</span>();
+    std::cout &lt;&lt; <span class="hljs-string">"nums contains "</span> &lt;&lt; size &lt;&lt; <span class="hljs-string">" elements.\n"</span>;
+    
+    <span class="hljs-keyword">auto</span> search = numbers.<span class="hljs-built_in">find</span>(<span class="hljs-number">2</span>);
+    <span class="hljs-keyword">if</span> (search != numbers.<span class="hljs-built_in">end</span>()) {
+        std::cout &lt;&lt; <span class="hljs-string">"Found "</span> &lt;&lt; (*search) &lt;&lt; <span class="hljs-string">'\n'</span>;
+    } <span class="hljs-keyword">else</span> {
+        std::cout &lt;&lt; <span class="hljs-string">"Not found\n"</span>;
+    }
+    
+    numbers.<span class="hljs-built_in">clear</span>();
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h2><span id="std-map">std::map</span><a href="#std-map" class="header-anchor">#</a></h2><blockquote>
+<p>键值对的集合，按照键排序，键是唯一的</p>
+</blockquote>
+<ul>
+<li><p>std::map 是有序键值对容器，它的元素的键是唯一的。</p>
+</li>
+<li><p>用比较函数 Compare 排序键。搜索、移除和插入操作拥有对数复杂度。</p>
+</li>
+<li><p>map 通常实现为红黑树。</p>
+</li>
+</ul>
+<p><strong>元素访问</strong></p>
+<h3><span id="std-map-lt-key-t-compare-allocator-gt-at">std::map&lt;Key,T,Compare,Allocator&gt;::at</span><a href="#std-map-lt-key-t-compare-allocator-gt-at" class="header-anchor">#</a></h3><blockquote>
+<p>返回到拥有等于 key 的关键的元素被映射值的引用。</p>
+</blockquote>
+<h3><span id="std-map-lt-key-t-compare-allocator-gt-empty">std::map&lt;Key,T,Compare,Allocator&gt;::empty</span><a href="#std-map-lt-key-t-compare-allocator-gt-empty" class="header-anchor">#</a></h3><blockquote>
+<p>检查容器是否为空</p>
+</blockquote>
+<h3><span id="std-map-lt-key-t-compare-allocator-gt-size">std::map&lt;Key,T,Compare,Allocator&gt;::size</span><a href="#std-map-lt-key-t-compare-allocator-gt-size" class="header-anchor">#</a></h3><blockquote>
+<p>返回容纳的元素数</p>
+</blockquote>
+<h3><span id="std-map-lt-key-t-compare-allocator-gt-clear">std::map&lt;Key,T,Compare,Allocator&gt;::clear</span><a href="#std-map-lt-key-t-compare-allocator-gt-clear" class="header-anchor">#</a></h3><blockquote>
+<p>清除内容</p>
+</blockquote>
+<h3><span id="std-map-lt-key-t-compare-allocator-gt-insert">std::map&lt;Key,T,Compare,Allocator&gt;::insert</span><a href="#std-map-lt-key-t-compare-allocator-gt-insert" class="header-anchor">#</a></h3><blockquote>
+<p>插入元素或结点 (C++17 起)</p>
+</blockquote>
+<h3><span id="std-map-lt-key-t-compare-allocator-gt-insert-or-assign">std::map&lt;Key,T,Compare,Allocator&gt;::insert_or_assign</span><a href="#std-map-lt-key-t-compare-allocator-gt-insert-or-assign" class="header-anchor">#</a></h3><blockquote>
+<p>插入元素，或若键已存在则赋值给当前元素</p>
+</blockquote>
+<h3><span id="std-map-lt-key-t-compare-allocator-gt-emplace">std::map&lt;Key,T,Compare,Allocator&gt;::emplace</span><a href="#std-map-lt-key-t-compare-allocator-gt-emplace" class="header-anchor">#</a></h3><blockquote>
+<p>原位构造元素</p>
+</blockquote>
+<h3><span id="std-map-lt-key-t-compare-allocator-gt-emplace-hint">std::map&lt;Key,T,Compare,Allocator&gt;::emplace_hint</span><a href="#std-map-lt-key-t-compare-allocator-gt-emplace-hint" class="header-anchor">#</a></h3><blockquote>
+<p>使用提示原位构造元素</p>
+</blockquote>
+<h3><span id="std-map-lt-key-t-compare-allocator-gt-try-emplace">std::map&lt;Key,T,Compare,Allocator&gt;::try_emplace</span><a href="#std-map-lt-key-t-compare-allocator-gt-try-emplace" class="header-anchor">#</a></h3><blockquote>
+<p>若键不存在则原位插入，若键存在则不做任何事</p>
+</blockquote>
+<h3><span id="std-map-lt-key-t-compare-allocator-gt-erase">std::map&lt;Key,T,Compare,Allocator&gt;::erase</span><a href="#std-map-lt-key-t-compare-allocator-gt-erase" class="header-anchor">#</a></h3><blockquote>
+<p>擦除元素</p>
+</blockquote>
+<h3><span id="std-map-lt-key-t-compare-allocator-gt-find">std::map&lt;Key,T,Compare,Allocator&gt;::find</span><a href="#std-map-lt-key-t-compare-allocator-gt-find" class="header-anchor">#</a></h3><blockquote>
+<p>寻找带有特定键的元素</p>
+</blockquote>
+<h3><span id="std-erase-if-std-map">std::erase_if (std::map)</span><a href="#std-erase-if-std-map" class="header-anchor">#</a></h3><blockquote>
+<p>擦除所有满足特定判别标准的元素</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>
+<span class="hljs-function"></span>{
+    std::map&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; numbers;
+    
+    numbers.<span class="hljs-built_in">emplace</span>(<span class="hljs-number">42</span>, <span class="hljs-number">13</span>);
+    numbers.<span class="hljs-built_in">emplace_hint</span>(<span class="hljs-number">41</span>, <span class="hljs-number">12</span>);
+    numbers.<span class="hljs-built_in">insert</span>(std::<span class="hljs-built_in">make_pair</span>(<span class="hljs-number">13317</span>, <span class="hljs-number">123</span>)); 
+    std::cout &lt;&lt; <span class="hljs-string">"After adding elements, numbers.empty(): "</span> &lt;&lt; numbers.<span class="hljs-built_in">empty</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+    
+    std::cout &lt;&lt; <span class="hljs-string">"After elements, numbers.size(): "</span> &lt;&lt; numbers.<span class="hljs-built_in">size</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+    
+    numbers.<span class="hljs-built_in">try_emplace</span>(<span class="hljs-number">40</span>, <span class="hljs-number">10</span>);
+
+	numbers.<span class="hljs-built_in">erase</span>(<span class="hljs-number">40</span>);
+	
+    <span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> count = std::<span class="hljs-built_in">erase_if</span>(data, [](<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; item) {
+        <span class="hljs-keyword">auto</span> <span class="hljs-type">const</span>&amp; [key, value] = item;
+        <span class="hljs-built_in">return</span> (key &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">1</span>;
+    });
+    std::cout &lt;&lt; <span class="hljs-string">"Erase items with odd keys:\n"</span> &lt;&lt; data &lt;&lt; <span class="hljs-string">'\n'</span>
+              &lt;&lt; count &lt;&lt; <span class="hljs-string">" items removed.\n"</span>;
+    
+    myMap.<span class="hljs-built_in">insert_or_assign</span>(<span class="hljs-string">"a"</span>, <span class="hljs-string">"apple"</span>);
+    
+	numbers.<span class="hljs-built_in">find</span>(<span class="hljs-number">42</span>);
+	std::cout &lt;&lt; <span class="hljs-string">"After elements, numbers.clear(): "</span> &lt;&lt; numbers.<span class="hljs-built_in">clear</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+
+
+<h2><span id="std-multiset">std::multiset</span><a href="#std-multiset" class="header-anchor">#</a></h2><blockquote>
+<p>键的集合，按照键排序</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>迭代器</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/begin">begin cbegin</a>(C++11)</td>
+<td>返回指向起始的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/end">end cend</a>(C++11)</td>
+<td>返回指向末尾的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/rbegin">rbegin crbegin</a>(C++11)</td>
+<td>返回指向起始的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/rend">rend crend</a>(C++11)</td>
+<td>返回指向末尾的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td>容量</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/empty">empty</a></td>
+<td>检查容器是否为空 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/size">size</a></td>
+<td>返回容纳的元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/max_size">max_size</a></td>
+<td>返回可容纳的最大元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td>修改器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/clear">clear</a></td>
+<td>清除内容 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/insert">insert</a></td>
+<td>插入元素或结点 (C++17 起) (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/emplace">emplace</a>(C++11)</td>
+<td>原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/emplace_hint">emplace_hint</a>(C++11)</td>
+<td>使用提示原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/erase">erase</a></td>
+<td>擦除元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/swap">swap</a></td>
+<td>交换内容 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/extract">extract</a>(C++17)</td>
+<td>从另一容器释出结点 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/merge">merge</a>(C++17)</td>
+<td>从另一容器接合结点 (公开成员函数)</td>
+</tr>
+<tr>
+<td>查找</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/count">count</a></td>
+<td>返回匹配特定键的元素数量 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/find">find</a></td>
+<td>寻找带有特定键的元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/contains">contains</a>(C++20)</td>
+<td>检查容器是否含有带特定键的元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/equal_range">equal_range</a></td>
+<td>返回匹配特定键的元素范围 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/lower_bound">lower_bound</a></td>
+<td>返回指向首个<em>不小于</em>给定键的元素的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/upper_bound">upper_bound</a></td>
+<td>返回指向首个<em>大于</em>给定键的元素的迭代器</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multiset/erase_if">erase_if(std::multiset)</a>(C++20)</td>
+<td>擦除所有满足特定判别标准的元素</td>
+</tr>
+</tbody></table>
+<h2><span id="std-multimap">std::multimap</span><a href="#std-multimap" class="header-anchor">#</a></h2><blockquote>
+<p>键值对的集合，按照键排序</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>迭代器</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/begin">begincbegin</a>(C++11)</td>
+<td>返回指向起始的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/end">endcend</a>(C++11)</td>
+<td>返回指向末尾的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/rbegin">rbegincrbegin</a>(C++11)</td>
+<td>返回指向起始的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/rend">rendcrend</a>(C++11)</td>
+<td>返回指向末尾的逆向迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td>容量</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/empty">empty</a></td>
+<td>检查容器是否为空 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/size">size</a></td>
+<td>返回容纳的元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/max_size">max_size</a></td>
+<td>返回可容纳的最大元素数 (公开成员函数)</td>
+</tr>
+<tr>
+<td>修改器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/clear">clear</a></td>
+<td>清除内容 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/insert">insert</a></td>
+<td>插入元素或结点 (C++17 起) (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/emplace">emplace</a>(C++11)</td>
+<td>原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/emplace_hint">emplace_hint</a>(C++11)</td>
+<td>使用提示原位构造元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/erase">erase</a></td>
+<td>擦除元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/swap">swap</a></td>
+<td>交换内容 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/extract">extract</a>(C++17)</td>
+<td>从另一容器释出结点 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/merge">merge</a>(C++17)</td>
+<td>从另一容器接合结点 (公开成员函数)</td>
+</tr>
+<tr>
+<td>查找</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/count">count</a></td>
+<td>返回匹配特定键的元素数量 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/find">find</a></td>
+<td>寻找带有特定键的元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/contains">contains</a>(C++20)</td>
+<td>检查容器是否含有带特定键的元素 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/equal_range">equal_range</a></td>
+<td>返回匹配特定键的元素范围 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/lower_bound">lower_bound</a></td>
+<td>返回指向首个<em>不小于</em>给定键的元素的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/upper_bound">upper_bound</a></td>
+<td>返回指向首个<em>大于</em>给定键的元素的迭代器 (公开成员函数)</td>
+</tr>
+<tr>
+<td>观察器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/key_comp">key_comp</a></td>
+<td>返回用于比较键的函数 (公开成员函数)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/value_comp">value_comp</a></td>
+<td>返回用于在value_type类型的对象中比较键的函数。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/container/multimap/erase_if">erase_if(std::multimap)</a>(C++20)</td>
+<td>擦除所有满足特定判别标准的元素</td>
+</tr>
+</tbody></table>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Associative/">Associative</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/19/%E5%AE%B9%E5%99%A8%E9%80%82%E9%85%8D%E5%99%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">容器适配器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/19/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8/">
+                        <span class="hidden-mobile">顺序容器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

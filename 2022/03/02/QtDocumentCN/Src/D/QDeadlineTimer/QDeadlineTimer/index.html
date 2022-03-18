@@ -1,0 +1,917 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QDeadlineTimer 类 公共类型 公共函数 静态公共成员 相关非成员 详细描述 参考时钟 计时器类型 std::chrono 兼容性   成员类型文档编制 enum QDeadlineTimer:: ForeverConstant   成员函数文档编制 template &lt;typename Rep, typename Period&gt; QDeadlineTimer::">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QDeadlineTimer类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/D/QDeadlineTimer/QDeadlineTimer/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QDeadlineTimer 类 公共类型 公共函数 静态公共成员 相关非成员 详细描述 参考时钟 计时器类型 std::chrono 兼容性   成员类型文档编制 enum QDeadlineTimer:: ForeverConstant   成员函数文档编制 template &lt;typename Rep, typename Period&gt; QDeadlineTimer::">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:12:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:38:58.803Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="D">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QDeadlineTimer类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QDeadlineTimer类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:12" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      17k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      142 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QDeadlineTimer类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qdeadlinetimer-lei">QDeadlineTimer 类</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-guan-fei-cheng-yuan">相关非成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#can-kao-shi-zhong">参考时钟</a></li>
+<li><a href="#ji-shi-qi-lei-xing">计时器类型</a></li>
+<li><a href="#std-chrono-jian-rong-xing"><code>std::chrono </code>兼容性</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#enum-qdeadlinetimer-foreverconstant">enum QDeadlineTimer:: ForeverConstant</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#template-typename-rep-typename-period-qdeadlinetimer-qdeadlinetimer-std-chrono-duration-rep-period-remaining-qt-timertype-qt-html-timertype-enum-type-qt-coarsetimer">template &lt;typename Rep, typename Period&gt; QDeadlineTimer:: QDeadlineTimer ( std::chrono::duration &lt; Rep , Period &gt; <em>remaining</em> , </a><a href="qt.html#TimerType-enum">Qt::TimerType </a><em>type</em> = Qt::CoarseTimer)</li>
+<li><a href="#template-typename-clock-typename-duration-qdeadlinetimer-qdeadlinetimer-std-chrono-time-point-clock-duration-deadline-qt-timertype-qt-html-timertype-enum-type-qt-coarsetimer">template &lt;typename Clock, typename Duration&gt; QDeadlineTimer:: QDeadlineTimer ( std::chrono::time_point &lt; Clock , Duration &gt; <em>deadline</em> , </a><a href="qt.html#TimerType-enum">Qt::TimerType </a><em>type</em> = Qt::CoarseTimer)</li>
+<li><a href="#qdeadlinetimer-qdeadlinetimer-qint64-qtglobal-html-qint64-typedef-msecs-qt-timertype-qt-html-timertype-enum-type-qt-coarsetimer">QDeadlineTimer:: QDeadlineTimer ( </a><a href="qtglobal.html#qint64-typedef">qint64 </a><em>msecs</em> , <a href="qt.html#TimerType-enum">Qt::TimerType </a><em>type</em> = Qt::CoarseTimer)</li>
+<li><a href="#qdeadlinetimer-qdeadlinetimer-qdeadlinetimer-foreverconstant-foreverconstant-enum-qt-timertype-qt-html-timertype-enum-timertype-qt-coarsetimer">QDeadlineTimer:: QDeadlineTimer ( </a><a href="#ForeverConstant-enum">QDeadlineTimer::ForeverConstant </a>, <a href="qt.html#TimerType-enum">Qt::TimerType </a><em>timerType</em> = Qt::CoarseTimer)</li>
+<li><a href="#qdeadlinetimer-qdeadlinetimer-qt-timertype-qt-html-timertype-enum-timertype-qt-coarsetimer">QDeadlineTimer:: QDeadlineTimer ( </a><a href="qt.html#TimerType-enum">Qt::TimerType </a><em>timerType</em> = Qt::CoarseTimer)</li>
+<li><a href="#static-qdeadlinetimer-qdeadlinetimer-qdeadlinetimer-addnsecs-qdeadlinetimer-qdeadlinetimer-dt-qint64-qtglobal-html-qint64-typedef-nsecs"><code>[static] </code></a><a href="#QDeadlineTimer">QDeadlineTimer </a>QDeadlineTimer:: addNSecs ( <a href="#QDeadlineTimer">QDeadlineTimer </a><em>dt</em> , <a href="qtglobal.html#qint64-typedef">qint64 </a><em>nsecs</em> )</li>
+<li><a href="#static-qdeadlinetimer-qdeadlinetimer-qdeadlinetimer-current-qt-timertype-qt-html-timertype-enum-timertype-qt-coarsetimer"><code>[static] </code></a><a href="#QDeadlineTimer">QDeadlineTimer </a>QDeadlineTimer:: current ( <a href="qt.html#TimerType-enum">Qt::TimerType </a><em>timerType</em> = Qt::CoarseTimer)</li>
+<li><a href="#qint64-qtglobal-html-qint64-typedef-qdeadlinetimer-deadline-const">qint64 </a></li>
+<li><a href="#qint64-qtglobal-html-qint64-typedef-qdeadlinetimer-deadlinensecs-const-1">qint64 </a></li>
+<li><a href="#bool-qdeadlinetimer-hasexpired-const">bool QDeadlineTimer:: hasExpired () const</a></li>
+<li><a href="#bool-qdeadlinetimer-isforever-const">bool QDeadlineTimer:: isForever () const</a></li>
+<li><a href="#qint64-qtglobal-html-qint64-typedef-qdeadlinetimer-remainingtime-const-2">qint64 </a></li>
+<li><a href="#std-chrono-nanoseconds-qdeadlinetimer-remainingtimeasduration-const">std::chrono::nanoseconds QDeadlineTimer:: remainingTimeAsDuration () const</a></li>
+<li><a href="#qint64-qtglobal-html-qint64-typedef-qdeadlinetimer-remainingtimensecs-const-3">qint64 </a></li>
+<li><a href="#void-qdeadlinetimer-setdeadline-qint64-qtglobal-html-qint64-typedef-msecs-qt-timertype-qt-html-timertype-enum-timertype-qt-coarsetimer">void QDeadlineTimer:: setDeadline ( </a><a href="qtglobal.html#qint64-typedef">qint64 </a><em>msecs</em> , <a href="qt.html#TimerType-enum">Qt::TimerType </a><em>timerType</em> = Qt::CoarseTimer)</li>
+<li><a href="#template-typename-clock-typename-duration-void-qdeadlinetimer-setdeadline-std-chrono-time-point-clock-duration-deadline-qt-timertype-qt-html-timertype-enum-type-qt-coarsetimer">template &lt;typename Clock, typename Duration&gt; void QDeadlineTimer:: setDeadline ( std::chrono::time_point &lt; Clock , Duration &gt; <em>deadline</em> , </a><a href="qt.html#TimerType-enum">Qt::TimerType </a><em>type</em> = Qt::CoarseTimer)</li>
+<li><a href="#void-qdeadlinetimer-setprecisedeadline-qint64-qtglobal-html-qint64-typedef-secs-qint64-qtglobal-html-qint64-typedef-nsecs-0-qt-timertype-qt-html-timertype-enum-timertype-qt-coarsetimer">void QDeadlineTimer:: setPreciseDeadline ( </a><a href="qtglobal.html#qint64-typedef">qint64 </a><em>secs</em> , <a href="qtglobal.html#qint64-typedef">qint64 </a><em>nsecs</em> = 0, <a href="qt.html#TimerType-enum">Qt::TimerType </a><em>timerType</em> = Qt::CoarseTimer)</li>
+<li><a href="#void-qdeadlinetimer-setpreciseremainingtime-qint64-qtglobal-html-qint64-typedef-secs-qint64-qtglobal-html-qint64-typedef-nsecs-0-qt-timertype-qt-html-timertype-enum-timertype-qt-coarsetimer">void QDeadlineTimer:: setPreciseRemainingTime ( </a><a href="qtglobal.html#qint64-typedef">qint64 </a><em>secs</em> , <a href="qtglobal.html#qint64-typedef">qint64 </a><em>nsecs</em> = 0, <a href="qt.html#TimerType-enum">Qt::TimerType </a><em>timerType</em> = Qt::CoarseTimer)</li>
+<li><a href="#void-qdeadlinetimer-setremainingtime-qint64-qtglobal-html-qint64-typedef-msecs-qt-timertype-qt-html-timertype-enum-timertype-qt-coarsetimer">void QDeadlineTimer:: setRemainingTime ( </a><a href="qtglobal.html#qint64-typedef">qint64 </a><em>msecs</em> , <a href="qt.html#TimerType-enum">Qt::TimerType </a><em>timerType</em> = Qt::CoarseTimer)</li>
+<li><a href="#template-typename-rep-typename-period-void-qdeadlinetimer-setremainingtime-std-chrono-duration-rep-period-remaining-qt-timertype-qt-html-timertype-enum-type-qt-coarsetimer">template &lt;typename Rep, typename Period&gt; void QDeadlineTimer:: setRemainingTime ( std::chrono::duration &lt; Rep , Period &gt; <em>remaining</em> , </a><a href="qt.html#TimerType-enum">Qt::TimerType </a><em>type</em> = Qt::CoarseTimer)</li>
+<li><a href="#void-qdeadlinetimer-settimertype-qt-timertype-qt-html-timertype-enum-timertype">void QDeadlineTimer:: setTimerType ( </a><a href="qt.html#TimerType-enum">Qt::TimerType </a><em>timerType</em> )</li>
+<li><a href="#void-qdeadlinetimer-swap-qdeadlinetimer-qdeadlinetimer-other">void QDeadlineTimer:: swap ( </a><a href="#QDeadlineTimer">QDeadlineTimer </a>&amp; <em>other</em> )</li>
+<li><a href="#qt-timertype-qt-html-timertype-enum-qdeadlinetimer-timertype-const">Qt::TimerType </a></li>
+<li><a href="#qdeadlinetimer-qdeadlinetimer-qdeadlinetimer-operator-qint64-qtglobal-html-qint64-typedef-msecs">QDeadlineTimer </a></li>
+<li><a href="#qdeadlinetimer-qdeadlinetimer-qdeadlinetimer-operator-qint64-qtglobal-html-qint64-typedef-msecs-1">QDeadlineTimer </a></li>
+<li><a href="#template-typename-clock-typename-duration-qdeadlinetimer-qdeadlinetimer-qdeadlinetimer-operator-std-chrono-time-point-clock-duration-deadline">template &lt;typename Clock, typename Duration&gt; </a><a href="#QDeadlineTimer">QDeadlineTimer </a>&amp;QDeadlineTimer:: operator= ( std::chrono::time_point &lt; Clock , Duration &gt; <em>deadline_</em> )</li>
+<li><a href="#template-typename-rep-typename-period-qdeadlinetimer-qdeadlinetimer-qdeadlinetimer-operator-std-chrono-duration-rep-period-remaining">template &lt;typename Rep, typename Period&gt; </a><a href="#QDeadlineTimer">QDeadlineTimer </a>&amp;QDeadlineTimer:: operator= ( std::chrono::duration &lt; Rep , Period &gt; <em>remaining</em> )</li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-cheng-yuan-1">相关非成员</a><ul>
+<li><a href="#bool-operator-qdeadlinetimer-qdeadlinetimer-d1-qdeadlinetimer-qdeadlinetimer-d2">bool operator!= ( </a><a href="#QDeadlineTimer">QDeadlineTimer </a><em>d1</em> , <a href="#QDeadlineTimer">QDeadlineTimer </a><em>d2</em> )</li>
+<li><a href="#qdeadlinetimer-qdeadlinetimer-operator-qdeadlinetimer-qdeadlinetimer-dt-qint64-qtglobal-html-qint64-typedef-msecs-2">QDeadlineTimer </a></li>
+<li><a href="#qdeadlinetimer-qdeadlinetimer-operator-qint64-qtglobal-html-qint64-typedef-msecs-qdeadlinetimer-qdeadlinetimer-dt-3">QDeadlineTimer </a></li>
+<li><a href="#qdeadlinetimer-qdeadlinetimer-operator-qdeadlinetimer-qdeadlinetimer-dt-qint64-qtglobal-html-qint64-typedef-msecs-4">QDeadlineTimer </a></li>
+<li><a href="#bool-operator-qdeadlinetimer-qdeadlinetimer-d1-qdeadlinetimer-qdeadlinetimer-d2">bool operator&lt; ( </a><a href="#QDeadlineTimer">QDeadlineTimer </a><em>d1</em> , <a href="#QDeadlineTimer">QDeadlineTimer </a><em>d2</em> )</li>
+<li><a href="#bool-operator-qdeadlinetimer-qdeadlinetimer-d1-qdeadlinetimer-qdeadlinetimer-d2">bool operator&lt;= ( </a><a href="#QDeadlineTimer">QDeadlineTimer </a><em>d1</em> , <a href="#QDeadlineTimer">QDeadlineTimer </a><em>d2</em> )</li>
+<li><a href="#bool-operator-qdeadlinetimer-qdeadlinetimer-d1-qdeadlinetimer-qdeadlinetimer-d2">bool operator== ( </a><a href="#QDeadlineTimer">QDeadlineTimer </a><em>d1</em> , <a href="#QDeadlineTimer">QDeadlineTimer </a><em>d2</em> )</li>
+<li><a href="#bool-operator-qdeadlinetimer-qdeadlinetimer-d1-qdeadlinetimer-qdeadlinetimer-d2">bool operator&gt; ( </a><a href="#QDeadlineTimer">QDeadlineTimer </a><em>d1</em> , <a href="#QDeadlineTimer">QDeadlineTimer </a><em>d2</em> )</li>
+<li><a href="#bool-operator-qdeadlinetimer-qdeadlinetimer-d1-qdeadlinetimer-qdeadlinetimer-d2">bool operator&gt;= ( </a><a href="#QDeadlineTimer">QDeadlineTimer </a><em>d1</em> , <a href="#QDeadlineTimer">QDeadlineTimer </a><em>d2</em> )</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QDeadlineTimer 类
+
+<p>QDeadlineTimer 类标记未来最后期限。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qdeadlinetimer></qdeadlinetimer></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 5.8</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qdeadlinetimer-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<p><strong>注意：</strong> 此类的所有函数 <a href="17-qdoc-commands-thread.html#reentrant">可重入 </a>.</p>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#ForeverConstant-enum">ForeverConstant </a></strong>{ Forever }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QDeadlineTimer-4">QDeadlineTimer </a></strong>(std::chrono::duration&lt;Rep, Period&gt; <em>remaining</em> , Qt::TimerType <em>type</em> = Qt::CoarseTimer)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QDeadlineTimer-3">QDeadlineTimer </a></strong>(std::chrono::time_point&lt;Clock, Duration&gt; <em>deadline</em> , Qt::TimerType <em>type</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QDeadlineTimer-2">QDeadlineTimer </a></strong>(qint64 <em>msecs</em> , Qt::TimerType <em>type</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QDeadlineTimer-1">QDeadlineTimer </a></strong>(QDeadlineTimer::ForeverConstant, Qt::TimerType <em>timerType</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QDeadlineTimer">QDeadlineTimer </a></strong>(Qt::TimerType <em>timerType</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="#deadline">deadline </a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="#deadlineNSecs">deadlineNSecs </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasExpired">hasExpired </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isForever">isForever </a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="#remainingTime">remainingTime </a></strong>() const</td>
+</tr>
+<tr>
+<td>std::chrono::nanoseconds</td>
+<td><strong><a href="#remainingTimeAsDuration">remainingTimeAsDuration </a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="#remainingTimeNSecs">remainingTimeNSecs </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setDeadline">setDeadline </a></strong>(qint64 <em>msecs</em> , Qt::TimerType <em>timerType</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setDeadline-1">setDeadline </a></strong>(std::chrono::time_point&lt;Clock, Duration&gt; <em>deadline</em> , Qt::TimerType <em>type</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setPreciseDeadline">setPreciseDeadline </a></strong>(qint64 <em>secs</em> , qint64 <em>nsecs</em> = 0, Qt::TimerType <em>timerType</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setPreciseRemainingTime">setPreciseRemainingTime </a></strong>(qint64 <em>secs</em> , qint64 <em>nsecs</em> = 0, Qt::TimerType <em>timerType</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setRemainingTime">setRemainingTime </a></strong>(qint64 <em>msecs</em> , Qt::TimerType <em>timerType</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setRemainingTime-1">setRemainingTime </a></strong>(std::chrono::duration&lt;Rep, Period&gt; <em>remaining</em> , Qt::TimerType <em>type</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setTimerType">setTimerType </a></strong>(Qt::TimerType <em>timerType</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#swap">swap </a></strong>(QDeadlineTimer &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td>Qt::TimerType</td>
+<td><strong><a href="#timerType">timerType </a></strong>() const</td>
+</tr>
+<tr>
+<td>QDeadlineTimer &amp;</td>
+<td><strong><a href="#operator-2b-eq">operator+= </a></strong>(qint64 <em>msecs</em> )</td>
+</tr>
+<tr>
+<td>QDeadlineTimer &amp;</td>
+<td><strong><a href="#operator--eq">operator-= </a></strong>(qint64 <em>msecs</em> )</td>
+</tr>
+<tr>
+<td>QDeadlineTimer &amp;</td>
+<td><strong><a href="#operator-eq">operator= </a></strong>(std::chrono::time_point&lt;Clock, Duration&gt; <em>deadline_</em> )</td>
+</tr>
+<tr>
+<td>QDeadlineTimer &amp;</td>
+<td><strong><a href="#operator-eq-1">operator= </a></strong>(std::chrono::duration&lt;Rep, Period&gt; <em>remaining</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QDeadlineTimer</th>
+<th><strong><a href="#addNSecs">addNSecs </a></strong>(QDeadlineTimer <em>dt</em> , qint64 <em>nsecs</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QDeadlineTimer</td>
+<td><strong><a href="#current">current </a></strong>(Qt::TimerType <em>timerType</em> = Qt::CoarseTimer)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong><a href="#operator-not-eq">operator!= </a></strong>(QDeadlineTimer <em>d1</em> , QDeadlineTimer <em>d2</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QDeadlineTimer</td>
+<td><strong><a href="#operator-2b">operator+ </a></strong>(QDeadlineTimer <em>dt</em> , qint64 <em>msecs</em> )</td>
+</tr>
+<tr>
+<td>QDeadlineTimer</td>
+<td><strong><a href="#operator-2b-1">operator+ </a></strong>(qint64 <em>msecs</em> , QDeadlineTimer <em>dt</em> )</td>
+</tr>
+<tr>
+<td>QDeadlineTimer</td>
+<td><strong><a href="#operator-">operator- </a></strong>(QDeadlineTimer <em>dt</em> , qint64 <em>msecs</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-lt">operator&lt; </a></strong>(QDeadlineTimer <em>d1</em> , QDeadlineTimer <em>d2</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-lt-eq">operator&lt;= </a></strong>(QDeadlineTimer <em>d1</em> , QDeadlineTimer <em>d2</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-eq-eq">operator== </a></strong>(QDeadlineTimer <em>d1</em> , QDeadlineTimer <em>d2</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-gt">operator&gt; </a></strong>(QDeadlineTimer <em>d1</em> , QDeadlineTimer <em>d2</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-gt-eq">operator&gt;= </a></strong>(QDeadlineTimer <em>d1</em> , QDeadlineTimer <em>d2</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QDeadlineTimer 类通常用于计算未来截止日期并验证截止日期是否已过期。QDeadlineTimer 也可以用于没有过期 forever 的截止日期。它搭档 <a href="qelapsedtimer.html">QElapsedTimer </a>，计算已消耗多少时间从 <a href="qelapsedtimer.html#start">QElapsedTimer::start </a>() 被调用。</p>
+<p>QDeadlineTimer 提供更方便 API 相比 <a href="qelapsedtimer.html#hasExpired">QElapsedTimer::hasExpired </a>().</p>
+<p>类的典型用例是在有问题操作开始之前创建 QDeadlineTimer，然后使用 <a href="#remainingTime">remainingTime </a>() 或 <a href="#hasExpired">hasExpired </a>() 以确定是否继续试着操作。可以把 QDeadlineTimer 对象传递给执行此操作的调用函数，以便它们知道仍要运转多久。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">executeOperation</span><span class="hljs-params">(<span class="hljs-type">int</span> msecs)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">QDeadlineTimer <span class="hljs-title">deadline</span><span class="hljs-params">(msecs)</span></span>;
+    <span class="hljs-keyword">do</span> {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">readFromDevice</span>(deadline.<span class="hljs-built_in">remainingTime</span>()))
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-built_in">waitForReadyRead</span>(deadline);
+    } <span class="hljs-keyword">while</span> (!deadline.<span class="hljs-built_in">hasExpired</span>());
+}</code></pre></div>
+
+<p>许多 QDeadlineTimer 函数处理超时值，均以毫秒为单位度量。有 2 个特殊值，如同许多其它 Qt 函数 <code>waitFor </code>或类似：</p>
+<ul>
+<li>0：没有剩余时间，过期</li>
+<li>-1：无限剩余时间，定时器从不过期</li>
+</ul>
+<h3><span id="can-kao-shi-zhong">参考时钟</span><a href="#can-kao-shi-zhong" class="header-anchor">#</a></h3><p>QDeadlineTimer 将使用相同时钟如 <a href="qelapsedtimer.html">QElapsedTimer </a>(见 <a href="qelapsedtimer.html#clockType">QElapsedTimer::clockType </a>() 和 <a href="qelapsedtimer.html#isMonotonic">QElapsedTimer::isMonotonic </a>()).</p>
+<h3><span id="ji-shi-qi-lei-xing">计时器类型</span><a href="#ji-shi-qi-lei-xing" class="header-anchor">#</a></h3><p>像 <a href="qtimer.html">QTimer </a>, QDeadlineTimer可以在不同级别的定时器上选择不同的粗糙度。你可以通过传递 <a href="qt.html#TimerType-enum">Qt::PreciseTimer </a>给设置或改变定时器的函数来选择精确的定时，或者你可以通过传递 <a href="qt.html#TimerType-enum">Qt::CoarseTimer </a> 来选择粗糙的定时。<a href="qt.html#TimerType-enum">Qt::VeryCoarseTimer </a>目前与 <a href="qt.html#TimerType-enum">Qt::CoarseTimer </a> 的解释方式相同。</p>
+<p>这个特性取决于操作系统的支持：如果操作系统不支持粗略的定时器功能，那么 QDeadlineTimer 将表现得像 <a href="qt.html#TimerType-enum">Qt::PreciseTimer </a> 被传递。</p>
+<p>QDeadlineTimer 默认为 <a href="qt.html#TimerType-enum">Qt::CoarseTimer </a>，因为在支持粗略计时的操作系统上，对该时钟源进行计时调用通常会更有效。粗糙程度取决于操作系统，但应该是在几毫秒的范围内。</p>
+<h3><span id="std-chrono-jian-rong-xing"><code>std::chrono </code>兼容性</span><a href="#std-chrono-jian-rong-xing" class="header-anchor">#</a></h3><p>QDeadlineTimer 从 C++11 <code>std::o </code>API 可以从<code>std::chrono::duration 和</code>std::chrono::timepoint`对象构造或比较。 此外，它与 C++14 中的时间文字完全兼容，允许将代码编写为：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+<span class="hljs-function">QDeadlineTimer <span class="hljs-title">deadline</span><span class="hljs-params">(<span class="hljs-number">30</span>s)</span></span>;
+device-&gt;<span class="hljs-built_in">waitForReadyRead</span>(deadline);
+<span class="hljs-keyword">if</span> (deadline.<span class="hljs-built_in">remainingTime</span>&lt;nanoseconds&gt;() &gt; <span class="hljs-number">300</span>ms)
+    <span class="hljs-built_in">cleanup</span>();</code></pre></div>
+
+<p>从上面的例子可以看出，QDeadlineTimer 提供了 <a href="#remainingTime">remainingTime </a>() 和 <a href="#deadline">deadline </a>() 的模板版本，可以用来返回 <code>std::chrono </code>对象。</p>
+<p>注意，比较<code>time_point</code>不如比较<code>duration</code>有效，因为QDeadlineTimer可能需要从它自己的内部时钟源转换为<code>time_point</code>对象使用的时钟源。 另请注意，由于这种转换，截止日期将不准确，因此预计以下代码不会进行同等比较：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+<span class="hljs-keyword">auto</span> now = steady_clock::<span class="hljs-built_in">now</span>();
+<span class="hljs-function">QDeadlineTimer <span class="hljs-title">deadline</span><span class="hljs-params">(now + <span class="hljs-number">1</span>s)</span></span>;
+<span class="hljs-built_in">Q_ASSERT</span>(deadline == now + <span class="hljs-number">1</span>s);</code></pre></div>
+
+<p><strong>另请参阅</strong> <a href="qtime.html">QTime </a>, <a href="qtimer.html">QTimer </a>, <a href>QDeadlineTimer </a>，和 <a href="qt.html#TimerType-enum">Qt::TimerType </a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="enum-qdeadlinetimer-foreverconstant">enum QDeadlineTimer:: ForeverConstant</span><a href="#enum-qdeadlinetimer-foreverconstant" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QDeadlineTimer::Forever</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">使用当创建 <a href>QDeadlineTimer </a>以指示截止日期不应该过期</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="template-lt-typename-rep-typename-period-gt-qdeadlinetimer-qdeadlinetimer-std-chrono-duration-lt-rep-period-gt-remaining-qt-timertype-type-qt-coarsetimer">template &lt;typename Rep, typename Period&gt; QDeadlineTimer:: QDeadlineTimer ( std::chrono::duration &lt; Rep , Period &gt; <em>remaining</em> , <em>type</em> = Qt::CoarseTimer)</span><a href="#template-lt-typename-rep-typename-period-gt-qdeadlinetimer-qdeadlinetimer-std-chrono-duration-lt-rep-period-gt-remaining-qt-timertype-type-qt-coarsetimer" class="header-anchor">#</a></h3><p>构造 QDeadlineTimer 对象采用剩余时间 <em>remaining</em> 。若 <em>remaining</em> 为零或负数，该 QDeadlineTimer 对象将被标记为过期，而若 <em>remaining</em> 等于 <code>duration::max() </code>，该对象将被设置为永不过期。</p>
+<p>QDeadlineTimer 对象将被构造采用指定计时器 <em>type</em> .</p>
+<p>此构造函数可以用于 C++ 14 的用户定义时间文字，譬如在：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+<span class="hljs-function">QDeadlineTimer <span class="hljs-title">deadline</span><span class="hljs-params">(<span class="hljs-number">250</span>ms)</span></span>;</code></pre></div>
+
+<p>出于优化目的，如果 <em>remaining</em> 为零或负数，此函数可能会跳过获取当前时间，而可能会使用已知过去的值。 如果发生这种情况，<a href="#deadline">deadline</a>() 可能会返回一个意外的值，并且该对象不能用于计算过期多长时间。 如果需要该功能，请使用 <a href="#current">QDeadlineTimer::current </a>() 并为其添加时间。</p>
+<p><strong>另请参阅</strong> <a href="#hasExpired">hasExpired </a>(), <a href="#isForever">isForever </a>(), <a href="#remainingTime">remainingTime </a>()，和 <a href="#setRemainingTime">setRemainingTime </a>().</p>
+<h3><span id="template-lt-typename-clock-typename-duration-gt-qdeadlinetimer-qdeadlinetimer-std-chrono-time-point-lt-clock-duration-gt-deadline-qt-timertype-type-qt-coarsetimer">template &lt;typename Clock, typename Duration&gt; QDeadlineTimer:: QDeadlineTimer ( std::chrono::time_point &lt; Clock , Duration &gt; <em>deadline</em> , <em>type</em> = Qt::CoarseTimer)</span><a href="#template-lt-typename-clock-typename-duration-gt-qdeadlinetimer-qdeadlinetimer-std-chrono-time-point-lt-clock-duration-gt-deadline-qt-timertype-type-qt-coarsetimer" class="header-anchor">#</a></h3><p>构造一个 QDeadlineTimer 对象，其截止日期在 <em>deadline</em> 时间点，从时钟源“Clock”转换为 Qt 的内部时钟源（参见 <a href="qelapsedtimer.html#clockType">QElapsedTimer::clockType</a>()）。</p>
+<p>若 <em>deadline</em> 过去，此 QadlineTimer 对象设置为过期，而如果 <em>deadline</em> 图像是<code>Duration::max() </code>，则此对象设置为永不过期。</p>
+<p>QDeadlineTimer 对象将被构造采用指定计时器 <em>type</em> .</p>
+<p><strong>另请参阅</strong> <a href="#hasExpired">hasExpired </a>(), <a href="#isForever">isForever </a>(), <a href="#remainingTime">remainingTime </a>()，和 <a href="#setDeadline">setDeadline </a>().</p>
+<h3><span id="qdeadlinetimer-qdeadlinetimer-qint64-msecs-qt-timertype-type-qt-coarsetimer">QDeadlineTimer:: QDeadlineTimer ( <em>msecs</em> , <em>type</em> = Qt::CoarseTimer)</span><a href="#qdeadlinetimer-qdeadlinetimer-qint64-msecs-qt-timertype-type-qt-coarsetimer" class="header-anchor">#</a></h3><p>构造一个 QDeadlineTimer 对象，如果 msecs 为正，则从创建此对象的那一刻起，到期时间为 <em>msecs</em> msecs。 如果 <em>msecs</em> 为零，则此 QDeadlineTimer 将被标记为过期，导致 <a href="#remainingTime">remainingTime </a>() 返回零，而 <a href="#deadline">deadline </a>() 返回过去不确定的时间点。 如果 <em>msecs</em> 为 -1，则计时器将设置为永不过期，导致 <a href="#remainingTime">remainingTime </a>() 返回 -1， <a href="#deadline">deadline </a>() 返回最大值。</p>
+<p>QDeadlineTimer 对象将被构造采用指定的截取 <em>type</em> 。</p>
+<p>出于优化目的，如果 <em>msecs</em> 为零，则此函数可能会跳过获取当前时间，而可能会使用已知过去的值。 如果发生这种情况，<a href="#deadline">deadline</a>() 可能会返回一个意外的值，并且该对象不能用于计算过期多长时间。 如果需要该功能，请使用 <a href="#current">QDeadlineTimer::current </a>() 并为其添加时间。</p>
+<p><strong>另请参阅</strong> <a href="#hasExpired">hasExpired </a>(), <a href="#isForever">isForever </a>(), <a href="#remainingTime">remainingTime </a>()，和 <a href="#setRemainingTime">setRemainingTime </a>().</p>
+<h3><span id="qdeadlinetimer-qdeadlinetimer-qdeadlinetimer-foreverconstant-qt-timertype-timertype-qt-coarsetimer">QDeadlineTimer:: QDeadlineTimer ( , <em>timerType</em> = Qt::CoarseTimer)</span><a href="#qdeadlinetimer-qdeadlinetimer-qdeadlinetimer-foreverconstant-qt-timertype-timertype-qt-coarsetimer" class="header-anchor">#</a></h3><p>使用 <a href="#ForeverConstant-enum">ForeverConstant </a> 创建的 QDeadlineTimer 对象永不过期。 对于此类对象，<a href="#remainingTime">remainingTime</a>() 将返回 -1，<a href="#deadline">deadline</a>() 将返回最大值，<a href="#isForever">isForever</a>() 将返回 true。</p>
+<p>定时器类型 <em>timerType</em> 可以被忽略，因为定时器永远不会过期。</p>
+<p><strong>另请参阅</strong> <a href="#ForeverConstant-enum">ForeverConstant </a>, <a href="#hasExpired">hasExpired </a>(), <a href="#isForever">isForever </a>(), <a href="#remainingTime">remainingTime </a>()，和 <a href="#timerType">timerType </a>().</p>
+<h3><span id="qdeadlinetimer-qdeadlinetimer-qt-timertype-timertype-qt-coarsetimer">QDeadlineTimer:: QDeadlineTimer ( <em>timerType</em> = Qt::CoarseTimer)</span><a href="#qdeadlinetimer-qdeadlinetimer-qt-timertype-timertype-qt-coarsetimer" class="header-anchor">#</a></h3><p>构造一个过期的 QDeadlineTimer 对象。 对于此对象，<a href="#remainingTime">remainingTime</a>() 将返回 0。</p>
+<p>定时器类型 <em>timerType</em> 可以被忽略，因为定时器已经过期。 同样，出于优化目的，此函数不会尝试获取当前时间，而是使用已知的过去值。 因此，<a href="#deadline">deadline </a>() 可能会返回一个意外的值，并且该对象不能用于计算过期多长时间。 如果需要该功能，请使用 <a href="#current">QDeadlineTimer::current</a>()。</p>
+<p><strong>另请参阅</strong> <a href="#hasExpired">hasExpired </a>(), <a href="#remainingTime">remainingTime </a>(), <a href="qt.html#TimerType-enum">Qt::TimerType </a>，和 <a href="#current">current </a>().</p>
+<h3><span id="static-qdeadlinetimer-qdeadlinetimer-addnsecs-qdeadlinetimer-dt-qint64-nsecs"><code>[static] </code>QDeadlineTimer:: addNSecs ( <em>dt</em> , <em>nsecs</em> )</span><a href="#static-qdeadlinetimer-qdeadlinetimer-addnsecs-qdeadlinetimer-dt-qint64-nsecs" class="header-anchor">#</a></h3><p>返回 <a href>QDeadlineTimer </a> 对象，其期限从 <em>dt</em> 的期限延长 <em>nsecs</em> 纳秒。 如果 <em>dt</em> 设置为永不过期，则此函数返回一个也不会过期的 <a href>QDeadlineTimer </a>。</p>
+<p><strong>注意：</strong> 如果 <em>dt</em> 被创建为过期，它的截止日期是不确定的，增加时间量可能会也可能不会导致它变得未过期。</p>
+<h3><span id="static-qdeadlinetimer-qdeadlinetimer-current-qt-timertype-timertype-qt-coarsetimer"><code>[static] </code>QDeadlineTimer:: current ( <em>timerType</em> = Qt::CoarseTimer)</span><a href="#static-qdeadlinetimer-qdeadlinetimer-current-qt-timertype-timertype-qt-coarsetimer" class="header-anchor">#</a></h3><p>返回 <a href>QDeadlineTimer </a> 已过期但保证包含当前时间。 由这个函数创建的对象可以参与计算一个定时器过期的时间，使用<a href="#deadline">deadline</a>()函数。</p>
+<p><a href>QDeadlineTimer </a> 对象将使用指定的 <em>timerType</em> 构造。</p>
+<h3><span id="qint64-qdeadlinetimer-deadline-const">QDeadlineTimer:: deadline () const</span><a href="#qint64-qdeadlinetimer-deadline-const" class="header-anchor">#</a></h3><p>返回存储在 <a href>QDeadlineTimer </a> 对象中的截止日期的绝对时间点，以相对于参考时钟的毫秒数计算，与 <a href="qelapsedtimer.html#msecsSinceReference">QElapsedTimer::msecsSinceReference </a>() 相同。 如果此 <a href>QDeadlineTimer </a> 已过期，则该值将是过去的值。</p>
+<p>若此 <a href>QDeadlineTimer </a> 永不过期，此函数返回 <code>std::numeric_limits::max() </code>。</p>
+<p>此函数可用于计算计时器过期的时间量，方法是减去 <a href="#current">QDeadlineTimer::current</a>() 或 <a href="qelapsedtimer.html#msecsSinceReference">QElapsedTimer::msecsSinceReference </a>()，如 以下示例：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">qint64 realTimeLeft = deadline.<span class="hljs-built_in">deadline</span>();
+<span class="hljs-keyword">if</span> (realTimeLeft != (std::numeric_limits&lt;qint64&gt;::max)()) {
+    realTimeLeft -= QDeadlineTimer::<span class="hljs-built_in">current</span>().<span class="hljs-built_in">deadline</span>();
+    <span class="hljs-comment">// or:</span>
+    <span class="hljs-comment">//QElapsedTimer timer;</span>
+    <span class="hljs-comment">//timer.start();</span>
+    <span class="hljs-comment">//realTimeLeft -= timer.msecsSinceReference();</span>
+}</code></pre></div>
+
+<p><strong>注意：</strong> 创建为过期的计时器在过去有一个不确定的时间点作为其截止日期，因此上述计算可能不起作用。</p>
+<p><strong>另请参阅</strong> <a href="#remainingTime">remainingTime </a>(), <a href="#deadlineNSecs">deadlineNSecs </a>()，和 <a href="#setDeadline">setDeadline </a>().</p>
+<h3><span id="qint64-qdeadlinetimer-deadlinensecs-const">QDeadlineTimer:: deadlineNSecs () const</span><a href="#qint64-qdeadlinetimer-deadlinensecs-const" class="header-anchor">#</a></h3><p>返回存储在 <a href>QDeadlineTimer </a> 对象中的截止日期的绝对时间点，以相对于参考时钟的纳秒计算，与 <a href="qelapsedtimer.html#msecsSinceReference">QElapsedTimer::msecsSinceReference </a>() 相同。 如果此 <a href>QDeadlineTimer </a> 已过期，则该值将是过去的值。</p>
+<p>若此 <a href>QDeadlineTimer </a> 永不过期或直到最后期限的纳秒数不能包含在返回类型中，此函数返回 <code>std::numeric_limits::max() </code>。</p>
+<p>此函数可用于计算计时器过期的时间，方法是减去 <a href="#current">QDeadlineTimer::current</a>()，如下例所示：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">qint64 realTimeLeft = deadline.<span class="hljs-built_in">deadlineNSecs</span>();
+<span class="hljs-keyword">if</span> (realTimeLeft != std::numeric_limits&lt;qint64&gt;::<span class="hljs-built_in">max</span>())
+    realTimeLeft -= QDeadlineTimer::<span class="hljs-built_in">current</span>().<span class="hljs-built_in">deadlineNSecs</span>();</code></pre></div>
+
+<p><strong>注意：</strong> 创建为过期的计时器在过去有一个不确定的时间点作为其截止日期，因此上述计算可能不起作用。</p>
+<p><strong>另请参阅</strong> <a href="#remainingTime">remainingTime </a>() and deadlineNSecs().</p>
+<h3><span id="bool-qdeadlinetimer-hasexpired-const">bool QDeadlineTimer:: hasExpired () const</span><a href="#bool-qdeadlinetimer-hasexpired-const" class="header-anchor">#</a></h3><p>返回 true，若此 <a href>QDeadlineTimer </a> 对象已过期，如果剩余时间为 false。 对于已过期的对象，<a href="#remainingTime">remainingTime</a>() 将返回零，<a href="#deadline">deadline</a>() 将返回过去的时间点。</p>
+<p><a href>QDeadlineTimer </a> 使用 <a href="#ForeverConstant-enum">ForeverConstant </a> 创建的对象永不过期，并且此函数始终为它们返回 false。</p>
+<p><strong>另请参阅</strong> <a href="#isForever">isForever </a>() 和 <a href="#remainingTime">remainingTime </a>().</p>
+<h3><span id="bool-qdeadlinetimer-isforever-const">bool QDeadlineTimer:: isForever () const</span><a href="#bool-qdeadlinetimer-isforever-const" class="header-anchor">#</a></h3><p>返回 true，若此 <a href>QDeadlineTimer </a> 对象永不过期，否则为 false。 对于永不过期的计时器，<a href="#remainingTime">remainingTime</a>() 始终返回 -1，<a href="#deadline">deadline</a>() 返回最大值。</p>
+<p><strong>另请参阅</strong> <a href="#ForeverConstant-enum">ForeverConstant </a>, <a href="#hasExpired">hasExpired </a>()，和 <a href="#remainingTime">remainingTime </a>().</p>
+<h3><span id="qint64-qdeadlinetimer-remainingtime-const">QDeadlineTimer:: remainingTime () const</span><a href="#qint64-qdeadlinetimer-remainingtime-const" class="header-anchor">#</a></h3><p>返回剩余时间在此 <a href>QDeadlineTimer </a> 对象，以毫秒为单位。 如果计时器已经过期，则此函数将返回零，并且无法使用此函数获取逾期的时间量（为此，请参阅 <a href="#deadline">deadline</a>()）。 如果计时器设置为永不过期，则此函数返回 -1。</p>
+<p>该函数适用于需要毫秒超时的Qt API，例如许多<a href="qiodevice.html">QIODevice</a><code>waitFor</code>函数或<a href="qmutex.html">QMutex</a>、<a href="qwaitcondition.html">QWaitCondition</a>, <a href="qsemaphore.html">QSemaphore </a>，或 <a href="qreadwritelock.html">QReadWriteLock </a>。例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">mutex.<span class="hljs-built_in">tryLock</span>(deadline.<span class="hljs-built_in">remainingTime</span>());</code></pre></div>
+
+<p><strong>另请参阅</strong> <a href="#setRemainingTime">setRemainingTime </a>(), <a href="#remainingTimeNSecs">remainingTimeNSecs </a>(), <a href="#isForever">isForever </a>()，和 <a href="#hasExpired">hasExpired </a>().</p>
+<h3><span id="std-chrono-nanoseconds-qdeadlinetimer-remainingtimeasduration-const">std::chrono::nanoseconds QDeadlineTimer:: remainingTimeAsDuration () const</span><a href="#std-chrono-nanoseconds-qdeadlinetimer-remainingtimeasduration-const" class="header-anchor">#</a></h3><p>返回截止日期之前的剩余时间。</p>
+<h3><span id="qint64-qdeadlinetimer-remainingtimensecs-const">QDeadlineTimer:: remainingTimeNSecs () const</span><a href="#qint64-qdeadlinetimer-remainingtimensecs-const" class="header-anchor">#</a></h3><p>返回剩余时间在此 <a href>QDeadlineTimer </a> 对象，以纳秒为单位。 如果计时器已经过期，则此函数将返回零，并且无法通过此函数获取逾期时间。 如果计时器设置为永不过期，则此函数返回 -1。</p>
+<p><strong>另请参阅</strong> <a href="#remainingTime">remainingTime </a>(), <a href="#isForever">isForever </a>()，和 <a href="#hasExpired">hasExpired </a>().</p>
+<h3><span id="void-qdeadlinetimer-setdeadline-qint64-msecs-qt-timertype-timertype-qt-coarsetimer">void QDeadlineTimer:: setDeadline ( <em>msecs</em> , <em>timerType</em> = Qt::CoarseTimer)</span><a href="#void-qdeadlinetimer-setdeadline-qint64-msecs-qt-timertype-timertype-qt-coarsetimer" class="header-anchor">#</a></h3><p>设置截止日期为 <a href>QDeadlineTimer </a> 对象为 <em>msecs</em> 的绝对时间点，以毫秒为单位从参考时钟开始计算（与 <a href="qelapsedTimer.html#msecsSinceReference">QElapsedTimer::msecsSinceReference </a>() 相同），以及 定时器类型为 <em>timerType</em> 。 如果该值是过去的，则此 <a href>QDeadlineTimer </a> 将被标记为过期。</p>
+<p>若 <em>msecs</em> 为 <code>std::numeric_limits::max() </code>或截止日期超出未来可表示的点，此 <a href>QDeadlineTimer </a> 将设置为永不过期。</p>
+<p><strong>另请参阅</strong> <a href="#setPreciseDeadline">setPreciseDeadline </a>(), <a href="#deadline">deadline </a>(), <a href="#deadlineNSecs">deadlineNSecs </a>()，和 <a href="#setRemainingTime">setRemainingTime </a>().</p>
+<h3><span id="template-lt-typename-clock-typename-duration-gt-void-qdeadlinetimer-setdeadline-std-chrono-time-point-lt-clock-duration-gt-deadline-qt-timertype-type-qt-coarsetimer">template &lt;typename Clock, typename Duration&gt; void QDeadlineTimer:: setDeadline ( std::chrono::time_point &lt; Clock , Duration &gt; <em>deadline</em> , <em>type</em> = Qt::CoarseTimer)</span><a href="#template-lt-typename-clock-typename-duration-gt-void-qdeadlinetimer-setdeadline-std-chrono-time-point-lt-clock-duration-gt-deadline-qt-timertype-type-qt-coarsetimer" class="header-anchor">#</a></h3><p>将此<a href>QDeadlineTimer</a>设置为<em>deadline</em>时间点标记的截止日期，从时钟源<code>Clock</code>转换为Qt的内部时钟源（参见<a href="qelapsedtimer.html#clockType">QElapsedTimer::clockType</a>()）。</p>
+<p>若 <em>deadline</em> 过去，thisDeadlineTimer ]() 对象设置为过期，而如果 <em>deadline</em> 图像Q 为 <code>Duration::max() </code>，则此对象设置为永不过期。</p>
+<p>此 <a href>QDeadlineTimer </a> 对象的计时器类型将设置为指定的 <em>type</em> 。</p>
+<p><strong>另请参阅</strong> <a href="#hasExpired">hasExpired </a>(), <a href="#isForever">isForever </a>()，和 <a href="#remainingTime">remainingTime </a>().</p>
+<h3><span id="void-qdeadlinetimer-setprecisedeadline-qint64-secs-qint64-nsecs-0-qt-timertype-timertype-qt-coarsetimer">void QDeadlineTimer:: setPreciseDeadline ( <em>secs</em> , <em>nsecs</em> = 0, <em>timerType</em> = Qt::CoarseTimer)</span><a href="#void-qdeadlinetimer-setprecisedeadline-qint64-secs-qint64-nsecs-0-qt-timertype-timertype-qt-coarsetimer" class="header-anchor">#</a></h3><p>设置截止日期目标 <a href>QDeadlineTimer </a> 对象是自参考时钟 ep 后 <em>secs</em> 秒和 <em>nsecs</em> 纳秒(与 [QElapsedTimer::msecsSinceReference ](qElapsedTimer::msecsSinceReference ](qedtimer.html#msecsSinceReference)())相同，并且 计时器类型为 <em>timerType</em> 。 如果该值是过去的，则此 <a href>QDeadlineTimer </a> 将被标记为过期。</p>
+<p>若 <em>secs</em> 或 <em>nsecs</em> 为 <code>std::numeric_limits::max() </code>，则此 <a href>QDeadlineTimer </a> 将设置为永不过期。 如果 <em>nsecs</em> 超过 10 亿纳秒（1 秒），则 <em>secs</em> 将相应调整。</p>
+<p><strong>另请参阅</strong> <a href="#setDeadline">setDeadline </a>(), <a href="#deadline">deadline </a>(), <a href="#deadlineNSecs">deadlineNSecs </a>()，和 <a href="#setRemainingTime">setRemainingTime </a>().</p>
+<h3><span id="void-qdeadlinetimer-setpreciseremainingtime-qint64-secs-qint64-nsecs-0-qt-timertype-timertype-qt-coarsetimer">void QDeadlineTimer:: setPreciseRemainingTime ( <em>secs</em> , <em>nsecs</em> = 0, <em>timerType</em> = Qt::CoarseTimer)</span><a href="#void-qdeadlinetimer-setpreciseremainingtime-qint64-secs-qint64-nsecs-0-qt-timertype-timertype-qt-coarsetimer" class="header-anchor">#</a></h3><p>如果 <em>secs</em> 具有正值，则剩余设置时间为 <a href>QDeadline </a> 对象到 <em>secs</em> 秒加上 <em>secs</em> 纳秒后。 如果 <em>secs</em> 是 -1，这个 <a href>QDeadlineTimer </a> 将被设置为永不过期。 如果两个参数都为零，则此 <a href>QDeadlineTimer </a> 将被标记为过期。</p>
+<p>此 <a href>QDeadlineTimer </a> 对象的计时器类型将设置为指定的 <em>timerType</em> 。</p>
+<p><strong>另请参阅</strong> <a href="#setRemainingTime">setRemainingTime </a>(), <a href="#hasExpired">hasExpired </a>(), <a href="#isForever">isForever </a>()，和 <a href="#remainingTime">remainingTime </a>().</p>
+<h3><span id="void-qdeadlinetimer-setremainingtime-qint64-msecs-qt-timertype-timertype-qt-coarsetimer">void QDeadlineTimer:: setRemainingTime ( <em>msecs</em> , <em>timerType</em> = Qt::CoarseTimer)</span><a href="#void-qdeadlinetimer-setremainingtime-qint64-msecs-qt-timertype-timertype-qt-coarsetimer" class="header-anchor">#</a></h3><p>如果 <em>msecs</em> 具有正值，则剩余设置时间为 <a href>QDeadline </a> 对象到 <em>msecs</em> 从现在开始的毫秒数。 如果 <em>msecs</em> 为零，则此 <a href>QDeadlineTimer </a> 对象将被标记为过期，而值 -1 会将其设置为永不过期。</p>
+<p>此 <a href>QDeadlineTimer </a> 对象的计时器类型将设置为指定的 <em>timerType</em> 。</p>
+<p><strong>另请参阅</strong> <a href="#setPreciseRemainingTime">setPreciseRemainingTime </a>(), <a href="#hasExpired">hasExpired </a>(), <a href="#isForever">isForever </a>()，和 <a href="#remainingTime">remainingTime </a>().</p>
+<h3><span id="template-lt-typename-rep-typename-period-gt-void-qdeadlinetimer-setremainingtime-std-chrono-duration-lt-rep-period-gt-remaining-qt-timertype-type-qt-coarsetimer">template &lt;typename Rep, typename Period&gt; void QDeadlineTimer:: setRemainingTime ( std::chrono::duration &lt; Rep , Period &gt; <em>remaining</em> , <em>type</em> = Qt::CoarseTimer)</span><a href="#template-lt-typename-rep-typename-period-gt-void-qdeadlinetimer-setremainingtime-std-chrono-duration-lt-rep-period-gt-remaining-qt-timertype-type-qt-coarsetimer" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>剩余设置时间对象到用于为对象设置的时间到<em>剩余时间</em>。如果<em>剩余时间</em>为零或负数，则此<a href>QDeadlineTimer</a>对象将被标记为过期，而如果<em>剩余时间</em>表示QDeadline()::max( ) `，对象将被设置为永不过期。</p>
+<p>此 <a href>QDeadlineTimer </a> 对象的计时器类型将设置为指定的 <em>type</em> 。</p>
+<p>此函数可以与 C++14 的用户定义的时间文字一起使用，例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+deadline.<span class="hljs-built_in">setRemainingTime</span>(<span class="hljs-number">250</span>ms);</code></pre></div>
+
+<p><strong>注意：</strong> Qt 检测必要 C++ 14 编译器支持，通过特征测试推荐从 <a target="_blank" rel="noopener" href="https://isocpp.org/std/standing-documents/sd-6-sg10-feature-test-recommendations">C++ 委员会标准文档 6 </a>.</p>
+<p><strong>另请参阅</strong> <a href="#setDeadline">setDeadline </a>(), <a href="#remainingTime">remainingTime </a>(), <a href="#hasExpired">hasExpired </a>()，和 <a href="#isForever">isForever </a>().</p>
+<h3><span id="void-qdeadlinetimer-settimertype-qt-timertype-timertype">void QDeadlineTimer:: setTimerType ( <em>timerType</em> )</span><a href="#void-qdeadlinetimer-settimertype-qt-timertype-timertype" class="header-anchor">#</a></h3><p>将此对象的计时器类型更改为 <em>timerType</em> 。</p>
+<p><em>timerType</em> 的每个可能值的行为取决于操作系统。 <a href="qt.html#TimerType-enum">Qt::PreciseTimer </a> 将使用 Qt 可以找到的最精确的计时器，分辨率为 1 毫秒或更好，而 <a href>QDeadlineTimer </a> 将尝试使用更粗略的计时器来 <a href="qt.html#TimerType-enum"> Qt::CoarseTimer </a> 和 <a href="qt.html#TimerType-enum">Qt::VeryCoarseTimer </a>。</p>
+<p><strong>另请参阅</strong> <a href="#timerType">timerType </a>() 和 <a href="qt.html#TimerType-enum">Qt::TimerType </a>.</p>
+<h3><span id="void-qdeadlinetimer-swap-qdeadlinetimer-amp-other">void QDeadlineTimer:: swap ( &amp; <em>other</em> )</span><a href="#void-qdeadlinetimer-swap-qdeadlinetimer-amp-other" class="header-anchor">#</a></h3><p>将此截止时间计时器与 <em>other</em> 截止时间计时器交换。</p>
+<h3><span id="qt-timertype-qdeadlinetimer-timertype-const">QDeadlineTimer:: timerType () const</span><a href="#qt-timertype-qdeadlinetimer-timertype-const" class="header-anchor">#</a></h3><p>返回此对象的活动定时器类型。</p>
+<p><strong>另请参阅</strong> <a href="#setTimerType">setTimerType </a>().</p>
+<h3><span id="qdeadlinetimer-amp-qdeadlinetimer-operator-qint64-msecs">&amp;QDeadlineTimer:: operator+= ( <em>msecs</em> )</span><a href="#qdeadlinetimer-amp-qdeadlinetimer-operator-qint64-msecs" class="header-anchor">#</a></h3><p>将此 <a href>QDeadlineTimer </a> 对象扩展 <em>msecs</em> 毫秒并返回自身。 如果此对象设置为永不过期，则此函数不执行任何操作。</p>
+<p>要添加大于 1 毫秒的精度时间，请使用 <a href="#addNSecs">addNSecs </a>()。</p>
+<h3><span id="qdeadlinetimer-amp-qdeadlinetimer-operator-qint64-msecs">&amp;QDeadlineTimer:: operator-= ( <em>msecs</em> )</span><a href="#qdeadlinetimer-amp-qdeadlinetimer-operator-qint64-msecs" class="header-anchor">#</a></h3><p>将此 <a href>QDeadlineTimer </a> 对象缩短 <em>msecs</em> 毫秒并返回自身。 如果此对象设置为永不过期，则此函数不执行任何操作。</p>
+<p>要减去大于 1 毫秒的精度时间，请使用 <a href="#addNSecs">addNSecs </a>()。</p>
+<h3><span id="template-lt-typename-clock-typename-duration-gt-qdeadlinetimer-amp-qdeadlinetimer-operator-std-chrono-time-point-lt-clock-duration-gt-deadline">template &lt;typename Clock, typename Duration&gt; &amp;QDeadlineTimer:: operator= ( std::chrono::time_point &lt; Clock , Duration &gt; <em>deadline_</em> )</span><a href="#template-lt-typename-clock-typename-duration-gt-qdeadlinetimer-amp-qdeadlinetimer-operator-std-chrono-time-point-lt-clock-duration-gt-deadline" class="header-anchor">#</a></h3><p>赋值 <em>deadline_</em> 到此截止日期计时器。</p>
+<h3><span id="template-lt-typename-rep-typename-period-gt-qdeadlinetimer-amp-qdeadlinetimer-operator-std-chrono-duration-lt-rep-period-gt-remaining">template &lt;typename Rep, typename Period&gt; &amp;QDeadlineTimer:: operator= ( std::chrono::duration &lt; Rep , Period &gt; <em>remaining</em> )</span><a href="#template-lt-typename-rep-typename-period-gt-qdeadlinetimer-amp-qdeadlinetimer-operator-std-chrono-duration-lt-rep-period-gt-remaining" class="header-anchor">#</a></h3><p>将此截止时间计时器设置为 <em>remaining</em> 时间。</p>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><h3><span id="bool-operator-qdeadlinetimer-d1-qdeadlinetimer-d2">bool operator!= ( <em>d1</em> , <em>d2</em> )</span><a href="#bool-operator-qdeadlinetimer-d1-qdeadlinetimer-d2" class="header-anchor">#</a></h3><p>如果 <em>d1</em> 的截止日期和 <em>d2</em> 的截止日期不同，则返回 true，否则返回 false。 用于创建两个期限的计时器类型将被忽略。 这个函数等价于：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">return</span> d1.<span class="hljs-built_in">deadlineNSecs</span>() != d2.<span class="hljs-built_in">deadlineNSecs</span>();</code></pre></div>
+
+<p><strong>注意：</strong> 比较不支持具有不同计时器类型的 <a href>QDeadlineTimer </a> 对象，这可能导致不可预知的行为。</p>
+<h3><span id="qdeadlinetimer-operator-qdeadlinetimer-dt-qint64-msecs">operator+ ( <em>dt</em> , <em>msecs</em> )</span><a href="#qdeadlinetimer-operator-qdeadlinetimer-dt-qint64-msecs" class="header-anchor">#</a></h3><p>返回 <a href>QDeadlineTimer </a> 对象，其截止时间比 <em>dt</em> 中存储的截止时间晚 <em>msecs</em>。如果 <em>dt</em> 设置为永不过期，该函数返回一个也不会过期的 <a href>QDeadlineTimer </a>。</p>
+<p>要添加大于 1 毫秒的精度时间，请使用 <a href="#addNSecs">addNSecs </a>()。</p>
+<h3><span id="qdeadlinetimer-operator-qint64-msecs-qdeadlinetimer-dt">operator+ ( <em>msecs</em> , <em>dt</em> )</span><a href="#qdeadlinetimer-operator-qint64-msecs-qdeadlinetimer-dt" class="header-anchor">#</a></h3><p>返回 <a href>QDeadlineTimer </a> 对象，其截止时间比 <em>dt</em> 中存储的截止时间晚 <em>msecs</em>。如果 <em>dt</em> 设置为永不过期，该函数返回一个也不会过期的 <a href>QDeadlineTimer </a>。</p>
+<p>要添加大于 1 毫秒的精度时间，请使用 <a href="#addNSecs">addNSecs </a>()。</p>
+<h3><span id="qdeadlinetimer-operator-qdeadlinetimer-dt-qint64-msecs">operator- ( <em>dt</em> , <em>msecs</em> )</span><a href="#qdeadlinetimer-operator-qdeadlinetimer-dt-qint64-msecs" class="header-anchor">#</a></h3><p>返回 <a href>QDeadlineTimer </a> 对象，其截止时间为 <em>dt</em> 中存储的截止日期前 <em>msecs</em>。如果 <em>dt</em> 设置为永不过期，该函数返回一个也不会过期的 <a href>QDeadlineTimer </a>。</p>
+<p>要减去大于 1 毫秒的精度时间，请使用 <a href="#addNSecs">addNSecs </a>()。</p>
+<h3><span id="bool-operator-lt-qdeadlinetimer-d1-qdeadlinetimer-d2">bool operator&lt; ( <em>d1</em> , <em>d2</em> )</span><a href="#bool-operator-lt-qdeadlinetimer-d1-qdeadlinetimer-d2" class="header-anchor">#</a></h3><p>如果 <em>d1</em> 的截止日期早于 <em>d2</em> 的截止日期，则返回 true，否则返回 false。 用于创建两个期限的计时器类型将被忽略。 这个函数等价于：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">return</span> d1.<span class="hljs-built_in">deadlineNSecs</span>() &lt; d2.<span class="hljs-built_in">deadlineNSecs</span>();</code></pre></div>
+
+<p><strong>注意：</strong> 比较不支持具有不同计时器类型的 <a href>QDeadlineTimer </a> 对象，这可能导致不可预知的行为。</p>
+<h3><span id="bool-operator-lt-qdeadlinetimer-d1-qdeadlinetimer-d2">bool operator&lt;= ( <em>d1</em> , <em>d2</em> )</span><a href="#bool-operator-lt-qdeadlinetimer-d1-qdeadlinetimer-d2" class="header-anchor">#</a></h3><p>如果 <em>d1</em> 的截止日期早于或等于 <em>d2</em> 的截止日期，则返回 true，否则返回 false。 用于创建两个期限的计时器类型将被忽略。 这个函数等价于：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">return</span> d1.<span class="hljs-built_in">deadlineNSecs</span>() &lt;= d2.<span class="hljs-built_in">deadlineNSecs</span>();</code></pre></div>
+
+<p><strong>注意：</strong> 比较不支持具有不同计时器类型的 <a href>QDeadlineTimer </a> 对象，这可能导致不可预知的行为。</p>
+<h3><span id="bool-operator-qdeadlinetimer-d1-qdeadlinetimer-d2">bool operator== ( <em>d1</em> , <em>d2</em> )</span><a href="#bool-operator-qdeadlinetimer-d1-qdeadlinetimer-d2" class="header-anchor">#</a></h3><p>如果 <em>d1</em> 的截止日期和 <em>d2</em> 的截止日期相同，则返回 true，否则返回 false。 用于创建两个期限的计时器类型将被忽略。 这个函数等价于：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">return</span> d1.<span class="hljs-built_in">deadlineNSecs</span>() == d2.<span class="hljs-built_in">deadlineNSecs</span>();</code></pre></div>
+
+<p><strong>注意：</strong> 比较不支持具有不同计时器类型的 <a href>QDeadlineTimer </a> 对象，这可能导致不可预知的行为。</p>
+<h3><span id="bool-operator-gt-qdeadlinetimer-d1-qdeadlinetimer-d2">bool operator&gt; ( <em>d1</em> , <em>d2</em> )</span><a href="#bool-operator-gt-qdeadlinetimer-d1-qdeadlinetimer-d2" class="header-anchor">#</a></h3><p>如果<em>d1</em>的最后期限比<em>d2</em>的最后期限晚，返回true，否则返回false。用于创建这两个最后期限的计时器类型被忽略。这个函数等同于:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">return</span> d1.<span class="hljs-built_in">deadlineNSecs</span>() &gt; d2.<span class="hljs-built_in">deadlineNSecs</span>();</code></pre></div>
+
+<p><strong>注意：</strong> 不支持<a href>QDeadlineTimer</a>对象具有不同的定时器类型，这可能导致不可预测的行为。</p>
+<h3><span id="bool-operator-gt-qdeadlinetimer-d1-qdeadlinetimer-d2">bool operator&gt;= ( <em>d1</em> , <em>d2</em> )</span><a href="#bool-operator-gt-qdeadlinetimer-d1-qdeadlinetimer-d2" class="header-anchor">#</a></h3><p>如果 <em>d1</em> 的截止日期晚于或等于 <em>d2</em> 的截止日期，则返回 true，否则返回 false。 用于创建两个期限的计时器类型将被忽略。 这个函数等价于：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">return</span> d1.<span class="hljs-built_in">deadlineNSecs</span>() &gt;= d2.<span class="hljs-built_in">deadlineNSecs</span>();</code></pre></div>
+
+<p><strong>注意：</strong>比较不支持具有不同计时器类型的 <a href>QDeadlineTimer </a> 对象，这可能导致不可预知的行为。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/D/">D</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusUnixFileDescriptor/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QDBusUnixFileDescriptor类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDateTime/QDateTime/">
+                        <span class="hidden-mobile">QDateTime类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

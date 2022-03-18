@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QAbstractAudioOutput类 QAbstractAudioOutput类是音频后端的基类 简述 public函数 信号   详细描述 成员函数        QAbstractAudioOutput类# QAbstractAudioOutput类是音频后端的基类#   属性 方法    头文件包含:     #include &lt;QAbstractAudioOutput">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QAbstractAudioOutput类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractAudioOutput/QAbstractAudioOutput/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QAbstractAudioOutput类 QAbstractAudioOutput类是音频后端的基类 简述 public函数 信号   详细描述 成员函数        QAbstractAudioOutput类# QAbstractAudioOutput类是音频后端的基类#   属性 方法    头文件包含:     #include &lt;QAbstractAudioOutput">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T04:52:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:33:22.260Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="A">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QAbstractAudioOutput类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QAbstractAudioOutput类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 12:52" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QAbstractAudioOutput类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qabstractaudiooutput-lei"><strong>QAbstractAudioOutput类</strong></a><ul>
+<li><a href="#qabstractaudiooutput-lei-shi-yin-pin-hou-duan-de-ji-lei"><strong>QAbstractAudioOutput类是音频后端的基类</strong></a></li>
+<li><a href="#jian-shu"><strong>简述</strong></a><ul>
+<li><a href="#public-han-shu"><strong>public函数</strong></a></li>
+<li><a href="#xin-hao"><strong>信号</strong></a></li>
+</ul>
+</li>
+<li><a href="#xiang-xi-miao-shu"><strong>详细描述</strong></a></li>
+<li><a href="#cheng-yuan-han-shu"><strong>成员函数</strong></a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="qabstractaudiooutput-lei"><strong>QAbstractAudioOutput类</strong></span><a href="#qabstractaudiooutput-lei" class="header-anchor">#</a></h1><hr>
+<h2><span id="qabstractaudiooutput-lei-shi-yin-pin-hou-duan-de-ji-lei"><strong>QAbstractAudioOutput类是音频后端的基类</strong></span><a href="#qabstractaudiooutput-lei-shi-yin-pin-hou-duan-de-ji-lei" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="right">属性</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">头文件包含:</td>
+<td align="left"><code>    #include &lt;QAbstractAudioOutput&gt;</code></td>
+</tr>
+<tr>
+<td align="right">qmake写法:</td>
+<td align="left">QT += multimedia</td>
+</tr>
+<tr>
+<td align="right">继承:</td>
+<td align="left">QObject</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><span id="jian-shu"><strong>简述</strong></span><a href="#jian-shu" class="header-anchor">#</a></h2><h3><span id="public-han-shu"><strong>public函数</strong></span><a href="#public-han-shu" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">virtual int</td>
+<td align="left">bufferSize() const = 0</td>
+</tr>
+<tr>
+<td align="right">virtual int</td>
+<td align="left">bytesFree() const = 0</td>
+</tr>
+<tr>
+<td align="right">virtual QString</td>
+<td align="left">category() const</td>
+</tr>
+<tr>
+<td align="right">virtual qint64</td>
+<td align="left">elapsedUSecs() const = 0</td>
+</tr>
+<tr>
+<td align="right">virtual QAudio::Error</td>
+<td align="left">error() const = 0</td>
+</tr>
+<tr>
+<td align="right">virtual QAudioFormat</td>
+<td align="left">format() const = 0</td>
+</tr>
+<tr>
+<td align="right">virtual int</td>
+<td align="left">notifyInterval() const = 0</td>
+</tr>
+<tr>
+<td align="right">virtual int</td>
+<td align="left">periodSize() const = 0</td>
+</tr>
+<tr>
+<td align="right">virtual qint64</td>
+<td align="left">processedUSecs() const = 0</td>
+</tr>
+<tr>
+<td align="right">virtual void</td>
+<td align="left">reset() = 0</td>
+</tr>
+<tr>
+<td align="right">virtual void</td>
+<td align="left">resume() = 0</td>
+</tr>
+<tr>
+<td align="right">virtual void</td>
+<td align="left">setBufferSize(int value) = 0</td>
+</tr>
+<tr>
+<td align="right">virtual void</td>
+<td align="left">setCategory(const QString &amp;)</td>
+</tr>
+<tr>
+<td align="right">virtual void</td>
+<td align="left">setFormat(const QAudioFormat &amp;fmt) = 0</td>
+</tr>
+<tr>
+<td align="right">virtual void</td>
+<td align="left">setNotifyInterval(int ms) = 0</td>
+</tr>
+<tr>
+<td align="right">virtual void</td>
+<td align="left">setVolume(qreal volume)</td>
+</tr>
+<tr>
+<td align="right">virtual void</td>
+<td align="left">start(QIODevice *device) = 0</td>
+</tr>
+<tr>
+<td align="right">virtual QIODevice *</td>
+<td align="left">start() = 0</td>
+</tr>
+<tr>
+<td align="right">virtual QAudio::State</td>
+<td align="left">state() const = 0</td>
+</tr>
+<tr>
+<td align="right">virtual void</td>
+<td align="left">stop() = 0</td>
+</tr>
+<tr>
+<td align="right">virtual void</td>
+<td align="left">suspend() = 0</td>
+</tr>
+<tr>
+<td align="right">virtual qreal</td>
+<td align="left">volume() const</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="xin-hao"><strong>信号</strong></span><a href="#xin-hao" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">errorChanged(QAudio::Error error)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">notify()</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">stateChanged(QAudio::State state)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><span id="xiang-xi-miao-shu"><strong>详细描述</strong></span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QAbstractAudioOutput类是音频后端的基类。<br>QAbstractAudioOutput类是QAudioOutput类的实现类。QAudioOutput的实现实际上是调用的QAbstractAudioOutput类，有关实现相关的功能，请参考QAudioOutput()类中的函数说明。</p>
+<hr>
+<h2><span id="cheng-yuan-han-shu"><strong>成员函数</strong></span><a href="#cheng-yuan-han-shu" class="header-anchor">#</a></h2><hr>
+<p><strong>int QAbstractAudioOutput::bufferSize() const [纯虚函数]</strong><br>以字节为单位，返回音频缓冲区的大小。</p>
+<p><em>另见setBufferSize()函数</em></p>
+<hr>
+<p><strong>int QAbstractAudioOutput :: bytesFree ()const [纯虚函数]</strong><br>返回音频缓冲区的可用空间(以字节为单位)</p>
+<hr>
+<p><strong>QString QAbstractAudioOutput::category() const [虚函数 virtual]</strong><br>音频缓冲区的类别（官方文档没有，这是我个人经验，当然可能有误，望指正）<br><em>另见setCategory()</em></p>
+<hr>
+<p><strong>qint64 QAbstractAudioOutput::elapsedUSecs() const [纯虚函数 pure virtual]</strong><br>返回调用start()函数之后的毫秒数，包括处于空闲状态的时间和挂起状态的时间。</p>
+<hr>
+<p><strong>QAudio::Error QAbstractAudioOutput::error() const [纯虚函数 pure virtual]</strong><br>返回错误状态。</p>
+<hr>
+<p><strong>void QAbstractAudioOutput::errorChanged(QAudio::Error error) [信号 signal]</strong><br>当错误状态改变时，该信号被发射。</p>
+<hr>
+<p><strong>QAudioFormat QAbstractAudioOutput :: format （）const [纯虚函数 pure virtual]</strong><br>返回正在使用的QAudioFormat()类<br><em>另见setFormat()</em></p>
+<hr>
+<p><strong>void QAbstractAudioOutput::notify() [信号 signal]</strong><br>当函数setNotifyInterval(x)函数已经调用，即音频数据的时间间隔已经被设置时。该信号被发射。（就是调用setNotifyInterval(x)后，这个信号会被发射。官方文档讲的好详细啊=。=）</p>
+<hr>
+<p><strong>int QAbstractAudioOutput::notifyInterval() const [纯虚函数 pure virtual]</strong><br>以毫秒为单位，返回时间间隔<br><em>另见函数setNotifyInterval()</em></p>
+<hr>
+<p><strong>int QAbstractAudioOutput::periodSize() const [纯虚函数 pure virtual]</strong><br>以字节为单位返回周期大小。</p>
+<hr>
+<p><strong>qint64 QAbstractAudioOutput::processedUSecs() const [纯虚函数 pure virtual]</strong><br>返回自调用start()函数后处理的音频数据量(单位为毫秒)</p>
+<hr>
+<p><strong>void QAbstractAudioOutput::reset() [纯虚函数 pure virtual]</strong><br>将所有音频数据放入缓冲区，并将缓冲区重置为零。</p>
+<hr>
+<p><strong>void QAbstractAudioOutput::resume() [纯虚函数 pure virtual]</strong><br>继续处理暂停后的音频数据 (也就是暂停后继续的意思呗)</p>
+<hr>
+<p><strong>void QAbstractAudioOutput::setBufferSize(int value) [纯虚函数 pure virtual]</strong><br>重新设置音频缓冲区的大小（以字节为单位 即输入参数value）<br><em>另见bufferSize()函数</em></p>
+<hr>
+<p><strong>void QAbstractAudioOutput::setCategory(const QString &amp;) [虚函数 virtual]</strong><br><em>参见函数category()</em></p>
+<hr>
+<p><strong>void QAbstractAudioOutput::setFormat(const QAudioFormat &amp;fmt) [纯虚函数 pure virtual]</strong><br>QAbstractAudioOutput设置QAudioFormat类，只有当QAudio状态为QAudio::StoppedState时，音频格式才会被设置成功。<br><em>另见函数format()</em></p>
+<hr>
+<p><strong>void QAbstractAudioOutput::setNotifyInterval(int ms) [纯虚函数 pure virtual]</strong><br>设置发送notify()信号的时间间隔。这个ms并不是实时处理的音频数据中的ms数。这个时间间隔是平台相关的。<br><em>另见notifyInterval()</em></p>
+<hr>
+<p><strong>void QAbstractAudioOutput::setVolume(qreal volume) [虚函数 virtual]</strong><br>设置音量。音量的范围为[0.0 - 1.0]。<br><em>另见函数volume()</em></p>
+<hr>
+<p>*<em>void QAbstractAudioOutput::start(QIODevice <em>device) [纯虚函数 pure virtual]</em></em><br>调用start()函数时，输入参数QIODevice*类型的变量device，用于音频后端处理数据传输。</p>
+<hr>
+<p>*<em>QIODevice <em>QAbstractAudioOutput::start() [纯虚函数 pure virtual]</em></em><br>返回一个指向正在处理数据传输的QIODevice类型的指针，这个指针是可以被写入的，用于处理音频数据。(参考上边的函数是咋写入的）</p>
+<hr>
+<p><strong>QAudio::State QAbstractAudioOutput::state() const [纯虚函数 pure virtual]</strong><br>返回音频处理的状态。</p>
+<hr>
+<p><strong>void QAbstractAudioOutput::stateChanged(QAudio::State state) [信号 signal]</strong><br>当音频状态变化的时候，该信号被发射</p>
+<hr>
+<p><strong>void QAbstractAudioOutput::stop() [纯虚函数 pure virtual]</strong><br>停止音频输出</p>
+<hr>
+<p><strong>void QAbstractAudioOutput::suspend() [纯虚函数 pure virtual]</strong><br>停止处理音频数据，保存处理的音频数据。（就是暂停的意思啊=。=）</p>
+<hr>
+<p><strong>qreal QAbstractAudioOutput::volume() const [虚函数 virtual]</strong><br>返回音量。音量范围为[0.0 - 1.0]<br><em>另参阅函数setVolume()</em></p>
+<hr>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/A/">A</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/A/QAbstractAudioInput/QAbstractAudioInput/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QAbstractAudioInput类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/A/QAbstractBarSeries/QAbstractBarSeries/">
+                        <span class="hidden-mobile">QAbstractBarSeries类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

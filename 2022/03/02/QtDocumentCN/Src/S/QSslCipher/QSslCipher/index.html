@@ -1,0 +1,656 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QSslCipher Class 公共成员函数 详细描述 成员函数文档 QSslCipher::QSslCipher(const QSslCipher &amp;other) QSslCipher::QSslCipher(const QString &amp;name, QSsl::SslProtocol protocol) QSslCipher::QSslCipher(const QS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QSslCipher类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/QSslCipher/QSslCipher/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QSslCipher Class 公共成员函数 详细描述 成员函数文档 QSslCipher::QSslCipher(const QSslCipher &amp;other) QSslCipher::QSslCipher(const QString &amp;name, QSsl::SslProtocol protocol) QSslCipher::QSslCipher(const QS">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:54:36.039Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="S">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QSslCipher类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QSslCipher类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QSslCipher类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qsslcipher-class">QSslCipher Class</a><ul>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qsslcipher-qsslcipher-const-qsslcipher-qthelp-org-qt-project-qtnetwork-5150-qtnetwork-qsslcipher-html-qsslcipher-other">QSslCipher::<strong>QSslCipher</strong>(const </a><a href="qthelp://org.qt-project.qtnetwork.5150/qtnetwork/qsslcipher.html#QSslCipher">QSslCipher</a> &amp;<em>other</em>)</li>
+<li><a href="#qsslcipher-qsslcipher-const-qstring-qthelp-org-qt-project-qtnetwork-5150-qtcore-qstring-html-name-qssl-sslprotocol-qssl-qssl-md-enum-qsslsslprotocol-protocol">QSslCipher::<strong>QSslCipher</strong>(const </a><a href="qthelp://org.qt-project.qtnetwork.5150/qtcore/qstring.html">QString</a> &amp;<em>name</em>, <a href="../QSsl/QSsl.md#enum-qsslsslprotocol">QSsl::SslProtocol</a> <em>protocol</em>)</li>
+<li><a href="#qsslcipher-qsslcipher-const-qstring-qthelp-org-qt-project-qtnetwork-5150-qtcore-qstring-html-name">QSslCipher::<strong>QSslCipher</strong>(const </a><a href="qthelp://org.qt-project.qtnetwork.5150/qtcore/qstring.html">QString</a> &amp;<em>name</em>)</li>
+<li><a href="#qsslcipher-qsslcipher">QSslCipher::<strong>QSslCipher</strong>()</a></li>
+<li><a href="#qsslcipher-qthelp-org-qt-project-qtnetwork-5150-qtnetwork-qsslcipher-html-qsslcipher-qsslcipher-operator-const-qsslcipher-qthelp-org-qt-project-qtnetwork-5150-qtnetwork-qsslcipher-html-qsslcipher-other">QSslCipher</a></li>
+<li><a href="#qsslcipher-qsslcipher">QSslCipher::~<strong>QSslCipher</strong>()</a></li>
+<li><a href="#qstring-qthelp-org-qt-project-qtnetwork-5150-qtcore-qstring-html-qsslcipher-authenticationmethod-const">QString</a></li>
+<li><a href="#qstring-qthelp-org-qt-project-qtnetwork-5150-qtcore-qstring-html-qsslcipher-encryptionmethod-const-1">QString</a></li>
+<li><a href="#bool-qsslcipher-isnull-const">bool QSslCipher::<strong>isNull</strong>() const</a></li>
+<li><a href="#qstring-qthelp-org-qt-project-qtnetwork-5150-qtcore-qstring-html-qsslcipher-keyexchangemethod-const-2">QString</a></li>
+<li><a href="#qstring-qthelp-org-qt-project-qtnetwork-5150-qtcore-qstring-html-qsslcipher-name-const-3">QString</a></li>
+<li><a href="#qssl-sslprotocol-qssl-qssl-md-enum-qsslsslprotocol-qsslcipher-protocol-const">QSsl::SslProtocol</a></li>
+<li><a href="#qstring-qthelp-org-qt-project-qtnetwork-5150-qtcore-qstring-html-qsslcipher-protocolstring-const-4">QString</a></li>
+<li><a href="#int-qsslcipher-supportedbits-const">int QSslCipher::<strong>supportedBits</strong>() const</a></li>
+<li><a href="#void-qsslcipher-swap-qsslcipher-qthelp-org-qt-project-qtnetwork-5150-qtnetwork-qsslcipher-html-qsslcipher-other">void QSslCipher::<strong>swap</strong>(</a><a href="qthelp://org.qt-project.qtnetwork.5150/qtnetwork/qsslcipher.html#QSslCipher">QSslCipher</a> &amp;<em>other</em>)</li>
+<li><a href="#int-qsslcipher-usedbits-const">int QSslCipher::<strong>usedBits</strong>() const</a></li>
+<li><a href="#bool-qsslcipher-operator-const-qsslcipher-other-const">bool QSslCipher::<strong>operator!=</strong>(const QSslCipher &amp;<em>other</em>) const</a></li>
+<li><a href="#bool-qsslcipher-operator-const-qsslcipher-other-const">bool QSslCipher::<strong>operator==</strong>(const QSslCipher &amp;<em>other</em>) const</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="qsslcipher-class">QSslCipher Class</span><a href="#qsslcipher-class" class="header-anchor">#</a></h1><p>QSslCipher 类提供了 SSL 密钥的支持。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件</td>
+<td><code>#include &lt;QSslCipher&gt;</code></td>
+</tr>
+<tr>
+<td>qmake</td>
+<td>QT += network</td>
+</tr>
+<tr>
+<td>引入</td>
+<td>Qt 4.3</td>
+</tr>
+</tbody></table>
+<p>该类最早在 Qt 4.3版本引入。</p>
+<p><strong>注意：</strong> 所有的函数都是可重入的。</p>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#qsslcipherqsslcipherconst-qsslcipher-other">QSslCipher</a></strong>(const QSslCipher &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qsslcipherqsslcipherconst-qstring-name-qsslsslprotocol-protocol">QSslCipher</a></strong>(const QString &amp;<em>name</em>, QSsl::SslProtocol <em>protocol</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qsslcipherqsslcipherconst-qstring-name">QSslCipher</a></strong>(const QString &amp;<em>name</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qsslcipherqsslcipher">QSslCipher</a></strong>()</td>
+</tr>
+<tr>
+<td>QSslCipher &amp;</td>
+<td><strong><a href="#qsslcipher-qsslcipheroperatorconst-qsslcipher-other">operator=</a></strong>(const QSslCipher &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qsslcipherqsslcipher-1">~QSslCipher</a></strong>()</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qsslcipherauthenticationmethod-const">authenticationMethod</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qsslcipherencryptionmethod-const">encryptionMethod</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qsslcipherisnull-const">isNull</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qsslcipherkeyexchangemethod-const">keyExchangeMethod</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qsslciphername-const">name</a></strong>() const</td>
+</tr>
+<tr>
+<td>QSsl::SslProtocol</td>
+<td><strong><a href="#qsslsslprotocol-qsslcipherprotocol-const">protocol</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qsslcipherprotocolstring-const">protocolString</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qsslciphersupportedbits-const">supportedBits</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#void-qsslcipherswapqsslcipher-other">swap</a></strong>(QSslCipher &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qsslcipherusedbits-const">usedBits</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qsslcipheroperatorconst-qsslcipher-other-const">operator!=</a></strong>(const QSslCipher &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qsslcipheroperatorconst-qsslcipher-other-const-1">operator==</a></strong>(const QSslCipher &amp;<em>other</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QSslCipher 储存着一个密钥的信息。该类型的对象通常被 <a href="../QSslSocket/QSslSocket.md">QSslSocket</a> 用来指定某套接字可以使用哪种密钥或者展现某套接字所使用的密钥。</p>
+<p>另外您也可以在 <a href="../QSslSocket/QSslSocket.md">QSslSocket</a> 和 <a href="../QSslKey/QSslKey.md">QSslKey</a> 类文档中找到相关信息。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qsslcipher-qsslcipher-const-qsslcipher-amp-other">QSslCipher::<strong>QSslCipher</strong>(const  &amp;<em>other</em>)</span><a href="#qsslcipher-qsslcipher-const-qsslcipher-amp-other" class="header-anchor">#</a></h3><p>拷贝构造函数。由 <em>other</em> 拷贝出一个相同的 QSslCipher 对象。</p>
+<hr>
+<h3><span id="qsslcipher-qsslcipher-const-qstring-amp-name-qssl-sslprotocol-protocol">QSslCipher::<strong>QSslCipher</strong>(const  &amp;<em>name</em>,  <em>protocol</em>)</span><a href="#qsslcipher-qsslcipher-const-qstring-amp-name-qssl-sslprotocol-protocol" class="header-anchor">#</a></h3><p>构造函数。通过鉴定 <em>name</em> 和 <em>protocol</em> 来构造一个 QSslCipher 对象来储存密钥信息。该构造函数仅接受受支持的密钥（即您指定的 <em>name</em> 和 <em>protocol</em> 所鉴定出的密钥必须位于 QSslSocket::supportedCiphers() 函数返回的列表中）。</p>
+<p>构造后，您可以调用 <a href="#bool-qsslcipherisnull-const">isNull</a>() 函数检查 <em>name</em> 和 <em>protocol</em> 是否能正确地鉴定出一个支持的密钥。</p>
+<hr>
+<h3><span id="qsslcipher-qsslcipher-const-qstring-amp-name">QSslCipher::<strong>QSslCipher</strong>(const  &amp;<em>name</em>)</span><a href="#qsslcipher-qsslcipher-const-qstring-amp-name" class="header-anchor">#</a></h3><p>构造函数。通过判断 <em>name</em> 参数构造一个 QSslCipher 对象储存密钥信息。该构造函数仅接受受支持的密钥（即您指定的 <em>name</em> 所鉴定出的密钥必须位于 QSslSocket::supportedCiphers() 函数返回的列表中）。</p>
+<p>构造后，可以调用 <a href="#bool-qsslcipherisnull-const">isNull</a>() 函数检查 <em>name</em> 是否正确标识了受支持的密码。</p>
+<p>该函数最初在 Qt 5.3 版本中引入。</p>
+<hr>
+<h3><span id="qsslcipher-qsslcipher">QSslCipher::<strong>QSslCipher</strong>()</span><a href="#qsslcipher-qsslcipher" class="header-anchor">#</a></h3><p>构造函数。构造一个空的 QSslCipher 对象。</p>
+<hr>
+<h3><span id="qsslcipher-amp-qsslcipher-operator-const-qsslcipher-amp-other"> &amp;QSslCipher::<strong>operator=</strong>(const  &amp;<em>other</em>)</span><a href="#qsslcipher-amp-qsslcipher-operator-const-qsslcipher-amp-other" class="header-anchor">#</a></h3><p>将 <em>other</em> 的内容拷贝到等式左值，是两个密钥相同。</p>
+<hr>
+<h3><span id="qsslcipher-qsslcipher">QSslCipher::~<strong>QSslCipher</strong>()</span><a href="#qsslcipher-qsslcipher" class="header-anchor">#</a></h3><p>析构函数。销毁 QSslCipher 对象。</p>
+<hr>
+<h3><span id="qstring-qsslcipher-authenticationmethod-const"> QSslCipher::<strong>authenticationMethod</strong>() const</span><a href="#qstring-qsslcipher-authenticationmethod-const" class="header-anchor">#</a></h3><p>以 QString 格式返回密钥的身份验证方式。</p>
+<hr>
+<h3><span id="qstring-qsslcipher-encryptionmethod-const"> QSslCipher::<strong>encryptionMethod</strong>() const</span><a href="#qstring-qsslcipher-encryptionmethod-const" class="header-anchor">#</a></h3><p>以 QString 格式返回密钥的加密方式。</p>
+<hr>
+<h3><span id="bool-qsslcipher-isnull-const">bool QSslCipher::<strong>isNull</strong>() const</span><a href="#bool-qsslcipher-isnull-const" class="header-anchor">#</a></h3><p>如果该密钥未空，函数返回 <em>true</em> ，否则返回 <em>false</em> 。</p>
+<hr>
+<h3><span id="qstring-qsslcipher-keyexchangemethod-const"> QSslCipher::<strong>keyExchangeMethod</strong>() const</span><a href="#qstring-qsslcipher-keyexchangemethod-const" class="header-anchor">#</a></h3><p>以 QString 格式返回该密钥的密钥交换方法。</p>
+<hr>
+<h3><span id="qstring-qsslcipher-name-const"> QSslCipher::<strong>name</strong>() const</span><a href="#qstring-qsslcipher-name-const" class="header-anchor">#</a></h3><p>返回该密钥的名称。如果密钥未空，函数将返回一个空的 QString 对象。</p>
+<p>另外您也可以在 <a href="#bool-qsslcipherisnull-const">isNull</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qssl-sslprotocol-qsslcipher-protocol-const"> QSslCipher::<strong>protocol</strong>() const</span><a href="#qssl-sslprotocol-qsslcipher-protocol-const" class="header-anchor">#</a></h3><p>返回该协议使用的密钥。如果不能判断 QSslCipher 使用的协议，函数将返回 <a href="../QSsl/QSsl.md#enum-qsslsslprotocol">QSsl::UnknownProtocol</a> （您可以使用 <a href="#qstring-qsslcipherprotocolstring-const">protocolString</a>() 函数来获取更多的信息）。</p>
+<p>另外您也可以在 <a href="#qstring-qsslcipherprotocolstring-const">protocolString</a>() 函数介绍中找到相关信息。</p>
+<h3><span id="qstring-qsslcipher-protocolstring-const"> QSslCipher::<strong>protocolString</strong>() const</span><a href="#qstring-qsslcipher-protocolstring-const" class="header-anchor">#</a></h3><p>以 QString 的形式返回该密钥使用的协议。</p>
+<p>另外您也可以在 <a href="#qsslsslprotocol-qsslcipherprotocol-const">protocol</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="int-qsslcipher-supportedbits-const">int QSslCipher::<strong>supportedBits</strong>() const</span><a href="#int-qsslcipher-supportedbits-const" class="header-anchor">#</a></h3><p>返回该密钥支持的字节数。</p>
+<p>另外您也可以在 <a href="#int-qsslcipherusedbits-const">usedBits</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="void-qsslcipher-swap-qsslcipher-amp-other">void QSslCipher::<strong>swap</strong>( &amp;<em>other</em>)</span><a href="#void-qsslcipher-swap-qsslcipher-amp-other" class="header-anchor">#</a></h3><p>与 <em>other</em> 快速交换密钥信息。该函数操作速度飞快并保证操作成功。</p>
+<p>该函数最初在 Qt 5.0 版本引入。</p>
+<hr>
+<h3><span id="int-qsslcipher-usedbits-const">int QSslCipher::<strong>usedBits</strong>() const</span><a href="#int-qsslcipher-usedbits-const" class="header-anchor">#</a></h3><p>返回密钥所用的字节数。</p>
+<p>另外您也可以在 <a href="#int-qsslciphersupportedbits-const">supportedBits</a>() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qsslcipher-operator-const-qsslcipher-amp-other-const">bool QSslCipher::<strong>operator!=</strong>(const QSslCipher &amp;<em>other</em>) const</span><a href="#bool-qsslcipher-operator-const-qsslcipher-amp-other-const" class="header-anchor">#</a></h3><p>如果当前密钥与 <em>other</em> 不同则返回 <em>true</em> ，否则返回 <em>false</em> 。</p>
+<hr>
+<h3><span id="bool-qsslcipher-operator-const-qsslcipher-amp-other-const">bool QSslCipher::<strong>operator==</strong>(const QSslCipher &amp;<em>other</em>) const</span><a href="#bool-qsslcipher-operator-const-qsslcipher-amp-other-const" class="header-anchor">#</a></h3><p>如果当前密钥与 <em>other</em> 相同则返回 <em>true</em> ，否则返回 <em>false</em> 。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/S/">S</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSslCertificate_Obsolete/QSslCertificate_Obsolete/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QSslCertificate Obsolete废弃</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSslCertificateExtension/QSslCertificateExtension/">
+                        <span class="hidden-mobile">QSslCertificateExtension类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

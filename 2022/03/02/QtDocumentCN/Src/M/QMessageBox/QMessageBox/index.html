@@ -1,0 +1,1476 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QMessageBox Class 公共类型 属性 公共函数 公共槽函数 信号 静态公共成员 重新实现的受保护函数 详细描述 基于属性的API 静态函数API 高级用法 默认键和逃逸键   成员类型文档 enum QMessageBox::ButtonRole enum QMessageBox::Icon enum QMessageBox::StandardButton flags QM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QMessageBox类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/M/QMessageBox/QMessageBox/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QMessageBox Class 公共类型 属性 公共函数 公共槽函数 信号 静态公共成员 重新实现的受保护函数 详细描述 基于属性的API 静态函数API 高级用法 默认键和逃逸键   成员类型文档 enum QMessageBox::ButtonRole enum QMessageBox::Icon enum QMessageBox::StandardButton flags QM">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/msgbox1.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/msgbox2.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/msgbox3.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/msgbox4.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qmessagebox-quest.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qmessagebox-info.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qmessagebox-warn.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qmessagebox-crit.png">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:47:00.200Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="M">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://doc.qt.io/qt-6/images/msgbox1.png">
+  
+  
+  <title>QMessageBox类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QMessageBox类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      23k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      190 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QMessageBox类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qmessagebox-class">QMessageBox Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#shu-xing">属性</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#gong-gong-cao-han-shu">公共槽函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#chong-xin-shi-xian-de-shou-bao-hu-han-shu">重新实现的受保护函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#ji-yu-shu-xing-de-api">基于属性的API</a></li>
+<li><a href="#jing-tai-han-shu-api">静态函数API</a></li>
+<li><a href="#gao-ji-yong-fa">高级用法</a></li>
+<li><a href="#mo-ren-jian-he-tao-yi-jian">默认键和逃逸键</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qmessagebox-buttonrole">enum QMessageBox::ButtonRole</a></li>
+<li><a href="#enum-qmessagebox-icon">enum QMessageBox::Icon</a></li>
+<li><a href="#enum-qmessagebox-standardbutton-flags-qmessagebox-standardbuttons">enum QMessageBox::StandardButton flags QMessageBox::StandardButtons</a></li>
+</ul>
+</li>
+<li><a href="#te-xing-wen-dang">特性文档</a><ul>
+<li><a href="#detailedtext-qstring-qstring-html">detailedText : </a><a href="qstring.html">QString</a></li>
+<li><a href="#icon-icon-icon-enum">icon : </a><a href="#Icon-enum">Icon</a></li>
+<li><a href="#iconpixmap-qpixmap-qpixmap-html">iconPixmap : </a><a href="qpixmap.html">QPixmap</a></li>
+<li><a href="#informativetext-qstring-qstring-html">informativeText : </a><a href="qstring.html">QString</a></li>
+<li><a href="#standardbuttons-standardbuttons-standardbutton-enum">standardButtons : </a><a href="#StandardButton-enum">StandardButtons</a></li>
+<li><a href="#text-qstring-qstring-html">text : </a><a href="qstring.html">QString</a></li>
+<li><a href="#textformat-qt-textformat-textformat-enum">textFormat : </a><a href="#TextFormat-enum">Qt::TextFormat</a></li>
+<li><a href="#since-5-1-textinteractionflags-qt-textinteractionflags-textinteractionflag-enum"><code>[since 5.1]</code>textInteractionFlags : </a><a href="#TextInteractionFlag-enum">Qt::TextInteractionFlags</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qmessagebox-qmessagebox-qmessagebox-icon-icon-enum-icon-const-qstring-qstring-html-title-const-qstring-qstring-html-text-qmessagebox-standardbuttons-standardbutton-enum-buttons-nobutton-qwidget-qwidget-html-qwidget-parent-nullptr-qt-windowflags-windowtype-enum-f-qt-dialog-qt-mswindowsfixedsizedialoghint">QMessageBox::QMessageBox(</a><a href="#Icon-enum">QMessageBox::Icon</a> <em>icon</em>, const <a href="qstring.html">QString</a> &amp;<em>title</em>, const <a href="qstring.html">QString</a> &amp;<em>text</em>, <a href="#StandardButton-enum">QMessageBox::StandardButtons</a> <em>buttons</em> = NoButton, <a href="qwidget.html#QWidget">QWidget</a> *<em>parent</em> = nullptr, <a href="#WindowType-enum">Qt::WindowFlags</a> <em>f</em> = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint)</li>
+<li><a href="#qmessagebox-qmessagebox-qwidget-qwidget-html-qwidget-parent-nullptr">QMessageBox::QMessageBox(</a><a href="qwidget.html#QWidget">QWidget</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#signal-void-qmessagebox-buttonclicked-qabstractbutton-qabstractbutton-html-button"><code>[signal]</code>void QMessageBox::buttonClicked(</a><a href="qabstractbutton.html">QAbstractButton</a> *<em>button</em>)</li>
+<li><a href="#override-virtual-slot-int-qmessagebox-exec"><code>[override virtual slot]</code>int QMessageBox::exec()</a></li>
+<li><a href="#virtual-qmessagebox-qmessagebox"><code>[virtual]</code>QMessageBox::~QMessageBox()</a></li>
+<li><a href="#static-void-qmessagebox-about-qwidget-qwidget-html-qwidget-parent-const-qstring-qstring-html-title-const-qstring-qstring-html-text"><code>[static]</code>void QMessageBox::about(</a><a href="qwidget.html#QWidget">QWidget</a> *<em>parent</em>, const <a href="qstring.html">QString</a> &amp;<em>title</em>, const <a href="qstring.html">QString</a> &amp;<em>text</em>)</li>
+<li><a href="#static-void-qmessagebox-aboutqt-qwidget-qwidget-html-qwidget-parent-const-qstring-qstring-html-title-qstring"><code>[static]</code>void QMessageBox::aboutQt(</a><a href="qwidget.html#QWidget">QWidget</a> *<em>parent</em>, const <a href="qstring.html">QString</a> &amp;<em>title</em> = QString())</li>
+<li><a href="#void-qmessagebox-addbutton-qabstractbutton-qabstractbutton-html-button-qmessagebox-buttonrole-buttonrole-enum-role">void QMessageBox::addButton(</a><a href="qabstractbutton.html">QAbstractButton</a> *<em>button</em>, <a href="#ButtonRole-enum">QMessageBox::ButtonRole</a> <em>role</em>)</li>
+<li><a href="#qpushbutton-qpushbutton-html-qmessagebox-addbutton-const-qstring-qstring-html-text-qmessagebox-buttonrole-buttonrole-enum-role">QPushButton</a></li>
+<li><a href="#qpushbutton-qpushbutton-html-qmessagebox-addbutton-qmessagebox-standardbutton-standardbutton-enum-button-1">QPushButton</a></li>
+<li><a href="#qabstractbutton-qabstractbutton-html-qmessagebox-button-qmessagebox-standardbutton-standardbutton-enum-which-const">QAbstractButton</a></li>
+<li><a href="#qmessagebox-buttonrole-buttonrole-enum-qmessagebox-buttonrole-qabstractbutton-qabstractbutton-html-button-const">QMessageBox::ButtonRole</a></li>
+<li><a href="#qlist-qlist-html-qabstractbutton-qabstractbutton-html-qmessagebox-buttons-const">QList</a></li>
+<li><a href="#override-virtual-protected-void-qmessagebox-changeevent-qevent-qevent-html-ev"><code>[override virtual protected]</code>void QMessageBox::changeEvent(</a><a href="qevent.html">QEvent</a> *<em>ev</em>)</li>
+<li><a href="#since-5-2-qcheckbox-qcheckbox-html-qmessagebox-checkbox-const"><code>[since 5.2]</code></a><a href="qcheckbox.html">QCheckBox</a> *QMessageBox::checkBox() const</li>
+<li><a href="#qabstractbutton-qabstractbutton-html-qmessagebox-clickedbutton-const-1">QAbstractButton</a></li>
+<li><a href="#override-virtual-protected-void-qmessagebox-closeevent-qcloseevent-qcloseevent-html-e"><code>[override virtual protected]</code>void QMessageBox::closeEvent(</a><a href="qcloseevent.html">QCloseEvent</a> *<em>e</em>)</li>
+<li><a href="#static-qmessagebox-standardbutton-standardbutton-enum-qmessagebox-critical-qwidget-qwidget-html-qwidget-parent-const-qstring-qstring-html-title-const-qstring-qstring-html-text-qmessagebox-standardbuttons-standardbutton-enum-buttons-ok-qmessagebox-standardbutton-standardbutton-enum-defaultbutton-nobutton"><code>[static]</code></a><a href="#StandardButton-enum">QMessageBox::StandardButton</a> QMessageBox::critical(<a href="qwidget.html#QWidget">QWidget</a> *<em>parent</em>, const <a href="qstring.html">QString</a> &amp;<em>title</em>, const <a href="qstring.html">QString</a> &amp;<em>text</em>, <a href="#StandardButton-enum">QMessageBox::StandardButtons</a> <em>buttons</em> = Ok, <a href="#StandardButton-enum">QMessageBox::StandardButton</a> <em>defaultButton</em> = NoButton)</li>
+<li><a href="#qpushbutton-qpushbutton-html-qmessagebox-defaultbutton-const-2">QPushButton</a></li>
+<li><a href="#qabstractbutton-qabstractbutton-html-qmessagebox-escapebutton-const-2">QAbstractButton</a></li>
+<li><a href="#override-virtual-protected-bool-qmessagebox-event-qevent-qevent-html-e"><code>[override virtual protected]</code>bool QMessageBox::event(</a><a href="qevent.html">QEvent</a> *<em>e</em>)</li>
+<li><a href="#static-qmessagebox-standardbutton-standardbutton-enum-qmessagebox-information-qwidget-qwidget-html-qwidget-parent-const-qstring-qstring-html-title-const-qstring-qstring-html-text-qmessagebox-standardbuttons-standardbutton-enum-buttons-ok-qmessagebox-standardbutton-standardbutton-enum-defaultbutton-nobutton"><code>[static]</code></a><a href="#StandardButton-enum">QMessageBox::StandardButton</a> QMessageBox::information(<a href="qwidget.html#QWidget">QWidget</a> *<em>parent</em>, const <a href="qstring.html">QString</a> &amp;<em>title</em>, const <a href="qstring.html">QString</a> &amp;<em>text</em>, <a href="#StandardButton-enum">QMessageBox::StandardButtons</a> <em>buttons</em> = Ok, <a href="#StandardButton-enum">QMessageBox::StandardButton</a> <em>defaultButton</em> = NoButton)</li>
+<li><a href="#override-virtual-protected-void-qmessagebox-keypressevent-qkeyevent-qkeyevent-html-e"><code>[override virtual protected]</code>void QMessageBox::keyPressEvent(</a><a href="qkeyevent.html">QKeyEvent</a> *<em>e</em>)</li>
+<li><a href="#void-qmessagebox-open-qobject-qobject-html-qobject-receiver-const-char-member">void QMessageBox::open(</a><a href="qobject.html#QObject">QObject</a> *<em>receiver</em>, const char *<em>member</em>)</li>
+<li><a href="#static-qmessagebox-standardbutton-standardbutton-enum-qmessagebox-question-qwidget-qwidget-html-qwidget-parent-const-qstring-qstring-html-title-const-qstring-qstring-html-text-qmessagebox-standardbuttons-standardbutton-enum-buttons-standardbuttons-yes-no-qmessagebox-standardbutton-standardbutton-enum-defaultbutton-nobutton"><code>[static]</code></a><a href="#StandardButton-enum">QMessageBox::StandardButton</a> QMessageBox::question(<a href="qwidget.html#QWidget">QWidget</a> *<em>parent</em>, const <a href="qstring.html">QString</a> &amp;<em>title</em>, const <a href="qstring.html">QString</a> &amp;<em>text</em>, <a href="#StandardButton-enum">QMessageBox::StandardButtons</a> <em>buttons</em> = StandardButtons(Yes | No), <a href="#StandardButton-enum">QMessageBox::StandardButton</a> <em>defaultButton</em> = NoButton)</li>
+<li><a href="#void-qmessagebox-removebutton-qabstractbutton-qabstractbutton-html-button">void QMessageBox::removeButton(</a><a href="qabstractbutton.html">QAbstractButton</a> *<em>button</em>)</li>
+<li><a href="#override-virtual-protected-void-qmessagebox-resizeevent-qresizeevent-qresizeevent-html-event"><code>[override virtual protected]</code>void QMessageBox::resizeEvent(</a><a href="qresizeevent.html">QResizeEvent</a> *<em>event</em>)</li>
+<li><a href="#since-5-2-void-qmessagebox-setcheckbox-qcheckbox-qcheckbox-html-cb"><code>[since 5.2]</code>void QMessageBox::setCheckBox(</a><a href="qcheckbox.html">QCheckBox</a> *<em>cb</em>)</li>
+<li><a href="#void-qmessagebox-setdefaultbutton-qpushbutton-qpushbutton-html-button">void QMessageBox::setDefaultButton(</a><a href="qpushbutton.html">QPushButton</a> *<em>button</em>)</li>
+<li><a href="#void-qmessagebox-setdefaultbutton-qmessagebox-standardbutton-standardbutton-enum-button">void QMessageBox::setDefaultButton(</a><a href="#StandardButton-enum">QMessageBox::StandardButton</a> <em>button</em>)</li>
+<li><a href="#void-qmessagebox-setescapebutton-qabstractbutton-qabstractbutton-html-button">void QMessageBox::setEscapeButton(</a><a href="qabstractbutton.html">QAbstractButton</a> *<em>button</em>)</li>
+<li><a href="#void-qmessagebox-setescapebutton-qmessagebox-standardbutton-standardbutton-enum-button">void QMessageBox::setEscapeButton(</a><a href="#StandardButton-enum">QMessageBox::StandardButton</a> <em>button</em>)</li>
+<li><a href="#void-qmessagebox-setwindowmodality-qt-windowmodality-windowmodality-enum-windowmodality">void QMessageBox::setWindowModality(</a><a href="#WindowModality-enum">Qt::WindowModality</a> <em>windowModality</em>)</li>
+<li><a href="#void-qmessagebox-setwindowtitle-const-qstring-qstring-html-title">void QMessageBox::setWindowTitle(const </a><a href="qstring.html">QString</a> &amp;<em>title</em>)</li>
+<li><a href="#override-virtual-protected-void-qmessagebox-showevent-qshowevent-qshowevent-html-e"><code>[override virtual protected]</code>void QMessageBox::showEvent(</a><a href="qshowevent.html">QShowEvent</a> *<em>e</em>)</li>
+<li><a href="#qmessagebox-standardbutton-standardbutton-enum-qmessagebox-standardbutton-qabstractbutton-qabstractbutton-html-button-const">QMessageBox::StandardButton</a></li>
+<li><a href="#static-qmessagebox-standardbutton-standardbutton-enum-qmessagebox-warning-qwidget-qwidget-html-qwidget-parent-const-qstring-qstring-html-title-const-qstring-qstring-html-text-qmessagebox-standardbuttons-standardbutton-enum-buttons-ok-qmessagebox-standardbutton-standardbutton-enum-defaultbutton-nobutton"><code>[static]</code></a><a href="#StandardButton-enum">QMessageBox::StandardButton</a> QMessageBox::warning(<a href="qwidget.html#QWidget">QWidget</a> *<em>parent</em>, const <a href="qstring.html">QString</a> &amp;<em>title</em>, const <a href="qstring.html">QString</a> &amp;<em>text</em>, <a href="#StandardButton-enum">QMessageBox::StandardButtons</a> <em>buttons</em> = Ok, <a href="#StandardButton-enum">QMessageBox::StandardButton</a> <em>defaultButton</em> = NoButton)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QMessageBox Class
+
+<p>QMessageBox类提供了一个模式化的对话框，用于通知用户或向用户提出问题并接受回答。 <a href="#details">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qmessagebox></qmessagebox></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Widgets REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Widgets)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += widgets</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a href>QDialog</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qmessagebox-members.html">List of all members, including inherited members</a></li>
+<li><a href="qmessagebox-obsolete.html">Deprecated members</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#ButtonRole-enum">ButtonRole</a></strong> { InvalidRole, AcceptRole, RejectRole, DestructiveRole, ActionRole, …, ResetRole }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a href="#Icon-enum">Icon</a></strong> { NoIcon, Question, Information, Warning, Critical }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#StandardButton-enum">StandardButton</a></strong> { Ok, Open, Save, Cancel, Close, …, ButtonMask }</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><strong><a href="#StandardButton-enum">StandardButtons</a></strong></td>
+</tr>
+</tbody></table>
+<h2><span id="shu-xing">属性</span><a href="#shu-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th><strong><a href="#detailedText-prop">detailedText</a></strong> : QString**<a href="#icon-prop">icon</a>** : Icon**<a href="#iconPixmap-prop">iconPixmap</a>** : QPixmap**<a href="#informativeText-prop">informativeText</a>** : QString</th>
+<th><strong><a href="#standardButtons-prop">standardButtons</a></strong> : StandardButtons**<a href="#text-prop">text</a>** : QString**<a href="#textFormat-prop">textFormat</a>** : Qt::TextFormat**<a href="#textInteractionFlags-prop">textInteractionFlags</a>** : Qt::TextInteractionFlags</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QMessageBox-1">QMessageBox</a></strong>(QMessageBox::Icon <em>icon</em>, const QString &amp;<em>title</em>, const QString &amp;<em>text</em>, QMessageBox::StandardButtons <em>buttons</em> = NoButton, QWidget *<em>parent</em> = nullptr, Qt::WindowFlags <em>f</em> = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QMessageBox">QMessageBox</a></strong>(QWidget *<em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QMessageBox">~QMessageBox</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addButton">addButton</a></strong>(QAbstractButton *<em>button</em>, QMessageBox::ButtonRole <em>role</em>)</td>
+</tr>
+<tr>
+<td>QPushButton *</td>
+<td><strong><a href="#addButton-1">addButton</a></strong>(const QString &amp;<em>text</em>, QMessageBox::ButtonRole <em>role</em>)</td>
+</tr>
+<tr>
+<td>QPushButton *</td>
+<td><strong><a href="#addButton-2">addButton</a></strong>(QMessageBox::StandardButton <em>button</em>)</td>
+</tr>
+<tr>
+<td>QAbstractButton *</td>
+<td><strong><a href="#button">button</a></strong>(QMessageBox::StandardButton <em>which</em>) const</td>
+</tr>
+<tr>
+<td>QMessageBox::ButtonRole</td>
+<td><strong><a href="#buttonRole">buttonRole</a></strong>(QAbstractButton *<em>button</em>) const</td>
+</tr>
+<tr>
+<td>QList&lt;QAbstractButton *&gt;</td>
+<td><strong><a href="#buttons">buttons</a></strong>() const</td>
+</tr>
+<tr>
+<td>QCheckBox *</td>
+<td><strong><a href="#checkBox">checkBox</a></strong>() const</td>
+</tr>
+<tr>
+<td>QAbstractButton *</td>
+<td><strong><a href="#clickedButton">clickedButton</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPushButton *</td>
+<td><strong><a href="#defaultButton">defaultButton</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#detailedText-prop">detailedText</a></strong>() const</td>
+</tr>
+<tr>
+<td>QAbstractButton *</td>
+<td><strong><a href="#escapeButton">escapeButton</a></strong>() const</td>
+</tr>
+<tr>
+<td>QMessageBox::Icon</td>
+<td><strong><a href="#icon-prop">icon</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPixmap</td>
+<td><strong><a href="#iconPixmap-prop">iconPixmap</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#informativeText-prop">informativeText</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#open">open</a></strong>(QObject *<em>receiver</em>, const char *<em>member</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#removeButton">removeButton</a></strong>(QAbstractButton *<em>button</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setCheckBox">setCheckBox</a></strong>(QCheckBox *<em>cb</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setDefaultButton">setDefaultButton</a></strong>(QPushButton *<em>button</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setDefaultButton-1">setDefaultButton</a></strong>(QMessageBox::StandardButton <em>button</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#detailedText-prop">setDetailedText</a></strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setEscapeButton">setEscapeButton</a></strong>(QAbstractButton *<em>button</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setEscapeButton-1">setEscapeButton</a></strong>(QMessageBox::StandardButton <em>button</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#icon-prop">setIcon</a></strong>(QMessageBox::Icon)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#iconPixmap-prop">setIconPixmap</a></strong>(const QPixmap &amp;<em>pixmap</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#informativeText-prop">setInformativeText</a></strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#standardButtons-prop">setStandardButtons</a></strong>(QMessageBox::StandardButtons <em>buttons</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#text-prop">setText</a></strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#textFormat-prop">setTextFormat</a></strong>(Qt::TextFormat <em>format</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#textInteractionFlags-prop">setTextInteractionFlags</a></strong>(Qt::TextInteractionFlags <em>flags</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setWindowModality">setWindowModality</a></strong>(Qt::WindowModality <em>windowModality</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setWindowTitle">setWindowTitle</a></strong>(const QString &amp;<em>title</em>)</td>
+</tr>
+<tr>
+<td>QMessageBox::StandardButton</td>
+<td><strong><a href="#standardButton">standardButton</a></strong>(QAbstractButton *<em>button</em>) const</td>
+</tr>
+<tr>
+<td>QMessageBox::StandardButtons</td>
+<td><strong><a href="#standardButtons-prop">standardButtons</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#text-prop">text</a></strong>() const</td>
+</tr>
+<tr>
+<td>Qt::TextFormat</td>
+<td><strong><a href="#textFormat-prop">textFormat</a></strong>() const</td>
+</tr>
+<tr>
+<td>Qt::TextInteractionFlags</td>
+<td><strong><a href="#textInteractionFlags-prop">textInteractionFlags</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cao-han-shu">公共槽函数</span><a href="#gong-gong-cao-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual int</th>
+<th><strong><a href="#exec">exec</a></strong>() override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#buttonClicked">buttonClicked</a></strong>(QAbstractButton *<em>button</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#about">about</a></strong>(QWidget *<em>parent</em>, const QString &amp;<em>title</em>, const QString &amp;<em>text</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#aboutQt">aboutQt</a></strong>(QWidget *<em>parent</em>, const QString &amp;<em>title</em> = QString())</td>
+</tr>
+<tr>
+<td>QMessageBox::StandardButton</td>
+<td><strong><a href="#critical">critical</a></strong>(QWidget *<em>parent</em>, const QString &amp;<em>title</em>, const QString &amp;<em>text</em>, QMessageBox::StandardButtons <em>buttons</em> = Ok, QMessageBox::StandardButton <em>defaultButton</em> = NoButton)</td>
+</tr>
+<tr>
+<td>QMessageBox::StandardButton</td>
+<td><strong><a href="#information">information</a></strong>(QWidget *<em>parent</em>, const QString &amp;<em>title</em>, const QString &amp;<em>text</em>, QMessageBox::StandardButtons <em>buttons</em> = Ok, QMessageBox::StandardButton <em>defaultButton</em> = NoButton)</td>
+</tr>
+<tr>
+<td>QMessageBox::StandardButton</td>
+<td><strong><a href="#question">question</a></strong>(QWidget *<em>parent</em>, const QString &amp;<em>title</em>, const QString &amp;<em>text</em>, QMessageBox::StandardButtons <em>buttons</em> = StandardButtons(Yes | No), QMessageBox::StandardButton <em>defaultButton</em> = NoButton)</td>
+</tr>
+<tr>
+<td>QMessageBox::StandardButton</td>
+<td><strong><a href="#warning">warning</a></strong>(QWidget *<em>parent</em>, const QString &amp;<em>title</em>, const QString &amp;<em>text</em>, QMessageBox::StandardButtons <em>buttons</em> = Ok, QMessageBox::StandardButton <em>defaultButton</em> = NoButton)</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-xin-shi-xian-de-shou-bao-hu-han-shu">重新实现的受保护函数</span><a href="#chong-xin-shi-xian-de-shou-bao-hu-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual void</th>
+<th><strong><a href="#changeEvent">changeEvent</a></strong>(QEvent *<em>ev</em>) override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual void</td>
+<td><strong><a href="#closeEvent">closeEvent</a></strong>(QCloseEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#event">event</a></strong>(QEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#keyPressEvent">keyPressEvent</a></strong>(QKeyEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#resizeEvent">resizeEvent</a></strong>(QResizeEvent *<em>event</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#showEvent">showEvent</a></strong>(QShowEvent *<em>e</em>) override</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>一个消息框显示一个主要的<a href="#text-prop">文本</a>来提醒用户注意某个情况，一个<a href="#informativeText-prop">信息文本</a>来进一步解释这个提醒或向用户提问，以及一个可选的<a href="#detailedText-prop">详细文本</a>来提供更多的数据，如果用户要求的话。消息框也可以显示一个<a href="#icon-prop">图标</a>和<a href="#standardButtons-prop">标准按钮</a>来接受用户的回应。</p>
+<p>提供了两个使用QMessageBox的API，即基于属性的API，和静态函数。调用一个静态函数是比较简单的方法，但它不如使用基于属性的API灵活，而且结果的信息量较小。建议使用基于属性的API。</p>
+<h3><span id="ji-yu-shu-xing-de-api">基于属性的API</span><a href="#ji-yu-shu-xing-de-api" class="header-anchor">#</a></h3><p>要使用基于属性的API，构建一个QMessageBox的实例，设置所需的属性，并调用<a href="#exec">exec</a>()来显示消息。最简单的配置是只设置<a href="#text-prop">消息文本</a>属性。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QMessageBox msgBox;
+msgBox.<span class="hljs-built_in">setText</span>(<span class="hljs-string">"The document has been modified."</span>);
+msgBox.<span class="hljs-built_in">exec</span>();</code></pre></div>
+
+<p>用户必须点击<strong>OK</strong>按钮来解除消息框。GUI的其他部分会被封锁，直到消息框被取消。</p>
+<p><img src="https://doc.qt.io/qt-6/images/msgbox1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>比起仅仅提醒用户一个事件，一个更好的方法是同时询问用户该如何处理。将问题存储在<a href="#informativeText-prop">informative text</a>属性中，并将<a href="#standardButtons-prop">standard buttons</a>属性设置为你想作为用户响应的按钮集。这些按钮是由<a href="#StandardButton-enum">StandardButtons</a>的值通过使用位数OR操作符组合而成的。按钮的显示顺序是与平台有关的。例如，在Windows上，<strong>保存</strong>显示在<strong>取消</strong>的左边，而在Mac OS上，这个顺序是相反的。</p>
+<p>将你的一个标准按钮标记为你的<a href="#defaultButton">默认按钮</a>。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QMessageBox msgBox;
+msgBox.<span class="hljs-built_in">setText</span>(<span class="hljs-string">"The document has been modified."</span>);
+msgBox.<span class="hljs-built_in">setInformativeText</span>(<span class="hljs-string">"Do you want to save your changes?"</span>);
+msgBox.<span class="hljs-built_in">setStandardButtons</span>(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+msgBox.<span class="hljs-built_in">setDefaultButton</span>(QMessageBox::Save);
+<span class="hljs-type">int</span> ret = msgBox.<span class="hljs-built_in">exec</span>();</code></pre></div>
+
+<p>这是<a target="_blank" rel="noopener" href="http://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/AppleHIGuidelines/Windows/Windows.html#//apple_ref/doc/uid/20000961-BABCAJID">macOS指南</a>中推荐的方法。类似的指南适用于其他平台，但要注意不同平台对<a href="#informativeText-prop">信息文本</a>的不同处理方式。</p>
+<p><img src="https://doc.qt.io/qt-6/images/msgbox2.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><a href="#exec">exec</a>()槽返回被点击的按钮的<a href="#StandardButton-enum">StandardButtons</a> 值。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">switch</span> (ret) {
+    <span class="hljs-keyword">case</span> QMessageBox::Save:
+        <span class="hljs-comment">// Save was clicked</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> QMessageBox::Discard:
+        <span class="hljs-comment">// Don't Save was clicked</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> QMessageBox::Cancel:
+        <span class="hljs-comment">// Cancel was clicked</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        <span class="hljs-comment">// should never be reached</span>
+        <span class="hljs-keyword">break</span>;
+}</code></pre></div>
+
+<p>为了给用户提供更多的信息以帮助他回答问题，可以设置<a href="#detailedText-prop">详细文本</a>属性。如果设置了<a href="#detailedText-prop">详细文本</a>属性，将显示**显示细节…**按钮。</p>
+<p><img src="https://doc.qt.io/qt-6/images/msgbox3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>点击**显示细节……**按钮显示详细的文本。</p>
+<p><img src="https://doc.qt.io/qt-6/images/msgbox4.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4><span id="fu-wen-ben-he-wen-ben-ge-shi-shu-xing">富文本和文本格式属性</span><a href="#fu-wen-ben-he-wen-ben-ge-shi-shu-xing" class="header-anchor">#</a></h4><p><a href="#detailedText-prop">详细文本</a>属性总是被解释为纯文本。<a href="#text-prop">主要文本</a>和<a href="#informativeText-prop">信息文本</a>属性可以是纯文本或富文本。这些字符串会根据<a href="#textFormat-prop">text format</a>属性的设置进行解释。默认设置是<a href="#TextFormat-enum">auto-text</a>。</p>
+<p>请注意，对于一些包含XML元字符的纯文本字符串，自动文本<a href="qt-sub-qtgui.html#mightBeRichText">富文本检测测试</a>可能会失败，导致你的纯文本字符串被错误地解释为富文本。在这些罕见的情况下，使用<a href="qt-sub-qtgui.html#convertFromPlainText">Qt::convertFromPlainText</a>()将你的纯文本字符串转换为视觉上等同的富文本字符串，或者使用<a href="#textFormat-prop">setTextFormat</a>()明确设置<a href="#textFormat-prop">text format</a> 属性。</p>
+<h4><span id="yan-chong-cheng-du-yi-ji-tu-biao-he-pixmap-shu-xing">严重程度以及图标和Pixmap属性</span><a href="#yan-chong-cheng-du-yi-ji-tu-biao-he-pixmap-shu-xing" class="header-anchor">#</a></h4><p>QMessageBox支持四种预定义的消息严重程度，或者说消息类型，它们实际上只在各自显示的预定义图标上有所不同。通过将<a href="#icon-prop">图标</a>属性设置为<a href="#Icon-enum">预定义图标</a>之一来指定四个预定义消息类型之一。以下规则是指导方针:</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://doc.qt.io/qt-6/images/qmessagebox-quest.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+<th><a href="#Icon-enum">Question</a></th>
+<th>因为在正常操作过程中提出了一个问题。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="https://doc.qt.io/qt-6/images/qmessagebox-info.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td><a href="#Icon-enum">Information</a></td>
+<td>有关正常操作的报告信息。</td>
+</tr>
+<tr>
+<td><img src="https://doc.qt.io/qt-6/images/qmessagebox-warn.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td><a href="#Icon-enum">Warning</a></td>
+<td>用于报告非关键性的错误。</td>
+</tr>
+<tr>
+<td><img src="https://doc.qt.io/qt-6/images/qmessagebox-crit.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td><a href="#Icon-enum">Critical</a></td>
+<td>用于报告关键错误。</td>
+</tr>
+</tbody></table>
+<p><a href="#Icon-enum">预定义图标</a>不是由QMessageBox定义的，而是由样式提供的。默认值是<a href="#Icon-enum">No Icon</a>。其他情况下，消息框都是一样的。当使用标准图标时，请使用表格中推荐的图标，或者使用你的平台的样式指南推荐的图标。如果没有一个标准图标适合你的消息框，你可以通过设置<a href="#iconPixmap-prop">icon pixmap</a>属性而不是设置<a href="#icon-prop">icon</a>属性来使用一个自定义图标。</p>
+<p>总之，要设置一个图标，可以使用**<a href="#icon-prop">setIcon</a>()来设置一个标准图标，或者**<a href="#iconPixmap-prop">setIconPixmap</a>()来设置一个自定义图标。</p>
+<h3><span id="jing-tai-han-shu-api">静态函数API</span><a href="#jing-tai-han-shu-api" class="header-anchor">#</a></h3><p>使用静态函数API构建消息框，虽然很方便，但不如使用基于属性的API灵活，因为静态函数签名缺乏设置<a href="#informativeText-prop">信息文本</a>和<a href="#detailedText-prop">详细文本</a> 属性的参数。一个解决方法是使用<code>title</code>参数作为消息框的主文本，<code>text</code>参数作为消息框的信息文本。因为这有一个明显的缺点，就是使消息框的可读性降低，平台指南不推荐这样做。微软视窗用户界面指南*推荐使用<a href="qcoreapplication.html#applicationName-prop">应用程序名称</a>作为<a href="#setWindowTitle">窗口的标题</a>，这意味着如果你在主文本之外有一个信息文本，你必须将其连接到<code>text</code>参数。</p>
+<p>注意，静态函数签名在其按钮参数方面有所改变，现在用于设置<a href="#standardButtons-prop">标准按钮</a>和<a href="#defaultButton">默认按钮</a>。</p>
+<p>静态函数可用于创建<a href="#information">信息</a>()、<a href="#question">问题</a>()、<a href="#warning">警告</a>()和<a href="#critical">关键</a>()消息框。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> ret = QMessageBox::<span class="hljs-built_in">warning</span>(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">tr</span>(<span class="hljs-string">"My Application"</span>),
+                               <span class="hljs-built_in">tr</span>(<span class="hljs-string">"The document has been modified.\n"</span>
+                                  <span class="hljs-string">"Do you want to save your changes?"</span>),
+                               QMessageBox::Save | QMessageBox::Discard
+                               | QMessageBox::Cancel,
+                               QMessageBox::Save);</code></pre></div>
+
+<p>标准对话框](qtwidgets-dialogs-standarddialogs-example.html) 示例展示了如何使用QMessageBox和其他内置的Qt对话框。</p>
+<h3><span id="gao-ji-yong-fa">高级用法</span><a href="#gao-ji-yong-fa" class="header-anchor">#</a></h3><p>如果<a href="#StandardButton-enum">标准按钮</a>对你的消息框来说不够灵活，你可以使用<a href="#addButton">addButton</a>()重载，它接受一个文本和一个<a href="#ButtonRole-enum">ButtonRole</a>来添加自定义按钮。<a href="#ButtonRole-enum">ButtonRole</a>被QMessageBox用来决定屏幕上的按钮的顺序（根据平台的不同而不同）。你可以在调用<a href="#exec">exec</a>()后测试<a href="#clickedButton">clickedButton</a>的值。比如说：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QMessageBox msgBox;
+QPushButton *connectButton = msgBox.<span class="hljs-built_in">addButton</span>(<span class="hljs-built_in">tr</span>(<span class="hljs-string">"Connect"</span>), QMessageBox::ActionRole);
+QPushButton *abortButton = msgBox.<span class="hljs-built_in">addButton</span>(QMessageBox::Abort);
+
+msgBox.<span class="hljs-built_in">exec</span>();
+
+<span class="hljs-keyword">if</span> (msgBox.<span class="hljs-built_in">clickedButton</span>() == connectButton) {
+    <span class="hljs-comment">// connect</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (msgBox.<span class="hljs-built_in">clickedButton</span>() == abortButton) {
+    <span class="hljs-comment">// abort</span>
+}</code></pre></div>
+
+<h3><span id="mo-ren-jian-he-tao-yi-jian">默认键和逃逸键</span><a href="#mo-ren-jian-he-tao-yi-jian" class="header-anchor">#</a></h3><p>默认按钮（即在按下<strong>Enter</strong>时激活的按钮）可以用<a href="#setDefaultButton">setDefaultButton</a>()指定。如果没有指定默认按钮，QMessageBox会尝试根据消息框中使用的按钮的<a href="#ButtonRole-enum">button roles</a>来找到一个。</p>
+<p>可以使用<a href="#setEscapeButton">setEscapeButton</a>()来指定逃生按钮（当<strong>Esc</strong>被按下时激活的按钮）。如果没有指定逃生按钮，QMessageBox会尝试用这些规则找到一个。</p>
+<ol>
+<li>如果只有一个按钮，那么它就是<strong>Esc</strong>被按下时激活的按钮。</li>
+<li>2.如果有一个<a href="#StandardButton-enum">Cancel</a>按钮，它就是在按下<strong>Esc</strong>时激活的按钮。</li>
+<li><ol start="3">
+<li>如果正好有一个按钮具有<a href="#ButtonRole-enum">拒绝角色</a>或<a href="#ButtonRole-enum">否角色</a>，它就是在按下<strong>Esc</strong>时激活的按钮。</li>
+</ol>
+</li>
+</ol>
+<p>当使用这些规则无法确定逃生按钮时，按下<strong>Esc</strong>没有任何效果。</p>
+<p><strong>See also</strong> <a href="qdialogbuttonbox.html">QDialogButtonBox</a>, <a href="guibooks.html#fowler">GUI Design Handbook: Message Box</a>, <a href="qtwidgets-dialogs-standarddialogs-example.html">Standard Dialogs Example</a>, and <a href="qtwidgets-mainwindows-application-example.html">Qt Widgets - Application Example</a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qmessagebox-buttonrole">enum QMessageBox::ButtonRole</span><a href="#enum-qmessagebox-buttonrole" class="header-anchor">#</a></h3><p>这个枚举描述了可以用来描述按钮盒中的按钮的角色。这些角色的组合就像旗帜一样，用来描述其行为的不同方面。</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QMessageBox::InvalidRole</code></td>
+<td><code>-1</code></td>
+<td>该按钮是无效的。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::AcceptRole</code></td>
+<td><code>0</code></td>
+<td>点击该按钮将导致接受该对话框（如确定）。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::RejectRole</code></td>
+<td><code>1</code></td>
+<td>点击该按钮会导致对话框被拒绝（如取消）。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::DestructiveRole</code></td>
+<td><code>2</code></td>
+<td>点击该按钮会导致破坏性的改变（例如，放弃改变），并关闭对话框。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::ActionRole</code></td>
+<td><code>3</code></td>
+<td>点击按钮会使对话框内的元素发生变化。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::HelpRole</code></td>
+<td><code>4</code></td>
+<td>可以点击该按钮来请求帮助。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::YesRole</code></td>
+<td><code>5</code></td>
+<td>该按钮是一个类似 “是 “的按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::NoRole</code></td>
+<td><code>6</code></td>
+<td>该按钮是一个类似 “不 “的按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::ApplyRole</code></td>
+<td><code>8</code></td>
+<td>该按钮应用当前的变化。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::ResetRole</code></td>
+<td><code>7</code></td>
+<td>该按钮将对话框的字段重置为默认值。</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#StandardButton-enum">StandardButton</a>.</p>
+<h3><span id="enum-qmessagebox-icon">enum QMessageBox::Icon</span><a href="#enum-qmessagebox-icon" class="header-anchor">#</a></h3><p>这个枚举有以下值:</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QMessageBox::NoIcon</code></td>
+<td><code>0</code></td>
+<td>信息框没有任何图标。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Question</code></td>
+<td><code>4</code></td>
+<td>图标，表示该信息是在问问题。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Information</code></td>
+<td><code>1</code></td>
+<td>一个图标，表明该信息没有什么不正常的地方。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Warning</code></td>
+<td><code>2</code></td>
+<td>一个图标，表示该信息是一个警告，但可以处理。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Critical</code></td>
+<td><code>3</code></td>
+<td>图标，表明该信息代表一个关键问题。</td>
+</tr>
+</tbody></table>
+<h3><span id="enum-qmessagebox-standardbutton-flags-qmessagebox-standardbuttons">enum QMessageBox::StandardButton flags QMessageBox::StandardButtons</span><a href="#enum-qmessagebox-standardbutton-flags-qmessagebox-standardbuttons" class="header-anchor">#</a></h3><p>这些枚举描述了标准按钮的标志。每个按钮都有一个定义的<a href="#ButtonRole-enum">ButtonRole</a>。</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QMessageBox::Ok</code></td>
+<td><code>0x00000400</code></td>
+<td>一个用<a href="#ButtonRole-enum">AcceptRole</a>定义的 “确定 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Open</code></td>
+<td><code>0x00002000</code></td>
+<td>一个用<a href="#ButtonRole-enum">AcceptRole</a>定义的 “打开 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Save</code></td>
+<td><code>0x00000800</code></td>
+<td>一个用<a href="#ButtonRole-enum">AcceptRole</a>定义的 “保存 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Cancel</code></td>
+<td><code>0x00400000</code></td>
+<td>一个用<a href="#ButtonRole-enum">RejectRole</a>定义的 “取消 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Close</code></td>
+<td><code>0x00200000</code></td>
+<td>一个用<a href="#ButtonRole-enum">RejectRole</a>定义的 “关闭 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Discard</code></td>
+<td><code>0x00800000</code></td>
+<td>一个 “丢弃 “或 “不保存 “的按钮，取决于平台，用<a href="#ButtonRole-enum">DestructiveRole</a>定义。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Apply</code></td>
+<td><code>0x02000000</code></td>
+<td>一个用<a href="#ButtonRole-enum">ApplyRole</a>定义的 “应用 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Reset</code></td>
+<td><code>0x04000000</code></td>
+<td>一个用<a href="#ButtonRole-enum">ResetRole</a>定义的 “复位 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::RestoreDefaults</code></td>
+<td><code>0x08000000</code></td>
+<td>一个用<a href="#ButtonRole-enum">ResetRole</a>定义的 “恢复默认值 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Help</code></td>
+<td><code>0x01000000</code></td>
+<td>一个用<a href="#ButtonRole-enum">HelpRole</a>定义的 “帮助 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::SaveAll</code></td>
+<td><code>0x00001000</code></td>
+<td>一个用<a href="#ButtonRole-enum">AcceptRole</a>定义的 “全部保存 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Yes</code></td>
+<td><code>0x00004000</code></td>
+<td>一个用<a href="#ButtonRole-enum">YesRole</a>定义的 “是 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::YesToAll</code></td>
+<td><code>0x00008000</code></td>
+<td>一个用<a href="#ButtonRole-enum">YesRole</a>定义的 “是全部 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::No</code></td>
+<td><code>0x00010000</code></td>
+<td>一个用<a href="#ButtonRole-enum">NoRole</a>定义的 “No “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::NoToAll</code></td>
+<td><code>0x00020000</code></td>
+<td>一个用<a href="#ButtonRole-enum">NoRole</a>定义的 “拒绝所有 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Abort</code></td>
+<td><code>0x00040000</code></td>
+<td>一个用<a href="#ButtonRole-enum">RejectRole</a>定义的 “Abort “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Retry</code></td>
+<td><code>0x00080000</code></td>
+<td>一个用<a href="#ButtonRole-enum">AcceptRole</a>定义的 “重试 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Ignore</code></td>
+<td><code>0x00100000</code></td>
+<td>一个用<a href="#ButtonRole-enum">AcceptRole</a>定义的 “忽略 “按钮。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::NoButton</code></td>
+<td><code>0x00000000</code></td>
+<td>一个无效的按钮。</td>
+</tr>
+</tbody></table>
+<p>The following values are obsolete:</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QMessageBox::YesAll</code></td>
+<td><code>YesToAll</code></td>
+<td>用YesToAll代替。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::NoAll</code></td>
+<td><code>NoToAll</code></td>
+<td>使用NoToAll代替。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Default</code></td>
+<td><code>0x00000100</code></td>
+<td>使用<a href="#information">information</a>(), <a href="#warning">warning</a>()等的<code>defaultButton</code>参数来代替，或者调用<a href="#setDefaultButton">setDefaultButton</a>()。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::Escape</code></td>
+<td><code>0x00000200</code></td>
+<td>调用<a href="#setEscapeButton">setEscapeButton</a>()代替。</td>
+</tr>
+<tr>
+<td><code>QMessageBox::FlagMask</code></td>
+<td><code>0x00000300</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>QMessageBox::ButtonMask</code></td>
+<td><code>~FlagMask</code></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>StandardButtons类型是<a href="qflags.html">QFlags</a><standardbutton>的一个类型定义。它存储了StandardButton值的一个OR组合。</standardbutton></p>
+<p><strong>See also</strong> <a href="#ButtonRole-enum">ButtonRole</a> and <a href="#standardButtons-prop">standardButtons</a>.</p>
+<h2><span id="te-xing-wen-dang">特性文档</span><a href="#te-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="detailedtext-qstring">detailedText : </span><a href="#detailedtext-qstring" class="header-anchor">#</a></h3><p>此属性持有要在详情区显示的文本。</p>
+<p>该文本将被解释为纯文本。  </p>
+<p>默认情况下，此属性包含一个空字符串。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>detailedText</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setDetailedText</strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#text-prop">QMessageBox::text</a> and <a href="#informativeText-prop">QMessageBox::informativeText</a>.</p>
+<h3><span id="icon-icon">icon : </span><a href="#icon-icon" class="header-anchor">#</a></h3><p>此属性持有消息框的图标</p>
+<p>消息框的图标可以用其中一个值来指定:</p>
+<ul>
+<li><a href="#Icon-enum">QMessageBox::NoIcon</a></li>
+<li><a href="#Icon-enum">QMessageBox::Question</a></li>
+<li><a href="#Icon-enum">QMessageBox::Information</a></li>
+<li><a href="#Icon-enum">QMessageBox::Warning</a></li>
+<li><a href="#Icon-enum">QMessageBox::Critical</a></li>
+</ul>
+<p>默认是<a href="#Icon-enum">QMessageBox::NoIcon</a>。</p>
+<p>用来显示实际图标的像素图取决于当前的<a href="qwidget.html#style">GUI风格</a>。你也可以通过设置<a href="#iconPixmap-prop">icon pixmap</a>属性为图标设置一个自定义的像素图。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>QMessageBox::Icon</th>
+<th><strong>icon</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setIcon</strong>(QMessageBox::Icon)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#iconPixmap-prop">iconPixmap</a>.</p>
+<h3><span id="iconpixmap-qpixmap">iconPixmap : </span><a href="#iconpixmap-qpixmap" class="header-anchor">#</a></h3><p>此属性持有当前图标</p>
+<p>消息框当前使用的图标。请注意，通常很难绘制一个在所有GUI风格中看起来都合适的像素图；你可能想为每个平台提供一个不同的像素图。</p>
+<p>默认情况下，这个属性是未定义的。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>QPixmap</th>
+<th><strong>iconPixmap</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setIconPixmap</strong>(const QPixmap &amp;<em>pixmap</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="stylesheet-reference.html#icon">icon</a>.</p>
+<h3><span id="informativetext-qstring">informativeText : </span><a href="#informativetext-qstring" class="header-anchor">#</a></h3><p>此属性持有信息性文本，为信息提供更全面的描述。</p>
+<p>信息性文本可用于扩展<a href="#text-prop">text</a>()，以向用户提供更多信息。在Mac上，这个文本以小的系统字体出现在<a href="#text-prop">text</a>()下面。在其他平台上，它只是被附加到现有的文本中。</p>
+<p>默认情况下，这个属性包含一个空字符串。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>informativeText</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setInformativeText</strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#text-prop">QMessageBox::text</a> and <a href="#detailedText-prop">QMessageBox::detailedText</a>.</p>
+<h3><span id="standardbuttons-standardbuttons">standardButtons : </span><a href="#standardbuttons-standardbuttons" class="header-anchor">#</a></h3><p>消息框中标准按钮的集合</p>
+<p>此属性控制了哪些标准按钮被消息框使用。</p>
+<p>默认情况下，此属性不包含任何标准按钮。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>QMessageBox::StandardButtons</th>
+<th><strong>standardButtons</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setStandardButtons</strong>(QMessageBox::StandardButtons <em>buttons</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#addButton">addButton</a>().</p>
+<h3><span id="text-qstring">text : </span><a href="#text-qstring" class="header-anchor">#</a></h3><p>这个属性持有要显示的消息框文本。</p>
+<p>该文本将被解释为纯文本或富文本，这取决于文本格式设置（<a href="#textFormat-prop">QMessageBox::textFormat</a>）。默认设置是<a href="#TextFormat-enum">Qt::AutoText</a>，也就是说，消息框将尝试自动检测文本的格式。</p>
+<p>这个属性的默认值是一个空字符串。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>text</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setText</strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#textFormat-prop">textFormat</a>, <a href="#informativeText-prop">QMessageBox::informativeText</a>, and <a href="#detailedText-prop">QMessageBox::detailedText</a>.</p>
+<h3><span id="textformat-qt-textformat">textFormat : </span><a href="#textformat-qt-textformat" class="header-anchor">#</a></h3><p>此属性持有消息框所显示的文本的格式</p>
+<p>消息框当前使用的文本格式。请参阅 <a href="#TextFormat-enum">Qt::TextFormat</a> 枚举，了解可能的选项的解释。</p>
+<p>默认格式是<a href="#TextFormat-enum">Qt::AutoText</a>。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Qt::TextFormat</th>
+<th><strong>textFormat</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setTextFormat</strong>(Qt::TextFormat <em>format</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#text-prop">setText</a>().</p>
+<h3><span id="since-5-1-textinteractionflags-qt-textinteractionflags"><code>[since 5.1]</code>textInteractionFlags : </span><a href="#since-5-1-textinteractionflags-qt-textinteractionflags" class="header-anchor">#</a></h3><p>指定消息框的标签应如何与用户输入交互。</p>
+<p>默认值取决于样式。</p>
+<p>这个函数是在Qt 5.1中引入的。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Qt::TextInteractionFlags</th>
+<th><strong>textInteractionFlags</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setTextInteractionFlags</strong>(Qt::TextInteractionFlags <em>flags</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="qstyle.html#StyleHint-enum">QStyle::SH_MessageBox_TextInteractionFlags</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qmessagebox-qmessagebox-qmessagebox-icon-icon-const-qstring-amp-title-const-qstring-amp-text-qmessagebox-standardbuttons-buttons-nobutton-qwidget-parent-nullptr-qt-windowflags-f-qt-dialog-qt-mswindowsfixedsizedialoghint">QMessageBox::QMessageBox( <em>icon</em>, const  &amp;<em>title</em>, const  &amp;<em>text</em>,  <em>buttons</em> = NoButton,  *<em>parent</em> = nullptr,  <em>f</em> = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint)</span><a href="#qmessagebox-qmessagebox-qmessagebox-icon-icon-const-qstring-amp-title-const-qstring-amp-text-qmessagebox-standardbuttons-buttons-nobutton-qwidget-parent-nullptr-qt-windowflags-f-qt-dialog-qt-mswindowsfixedsizedialoghint" class="header-anchor">#</a></h3><p>用给定的<em>icon</em>、<em>title</em>、<em>text</em>和标准的<em>buttons</em>构建一个消息框。可以在任何时候使用<a href="#addButton">addButton</a>()添加标准或自定义按钮。<em>parent</em>和<em>f</em>参数被传递给<a href>QDialog</a>构造函数。</p>
+<p>消息框是一个<a href="#WindowModality-enum">application modal</a>对话框。</p>
+<p>在macOS上，如果<em>parent</em>不是<code>nullptr</code>，并且你希望你的消息框作为该父级的<a href="#WindowType-enum">Qt::Sheet</a>出现，请将消息框的<a href="#setWindowModality">window modality</a>设置为<a href="#WindowModality-enum">Qt::WindowModal</a>（默认）。否则，该消息框将是一个标准的对话框。</p>
+<p><strong>See also</strong> <a href="#setWindowTitle">setWindowTitle</a>(), <a href="#text-prop">setText</a>(), <a href="#icon-prop">setIcon</a>(), and <a href="#standardButtons-prop">setStandardButtons</a>().</p>
+<h3><span id="qmessagebox-qmessagebox-qwidget-parent-nullptr">QMessageBox::QMessageBox( *<em>parent</em> = nullptr)</span><a href="#qmessagebox-qmessagebox-qwidget-parent-nullptr" class="header-anchor">#</a></h3><p>构建一个没有文本和按钮的消息框。<em>parent</em>被传递给<a href>QDialog</a>构造函数。</p>
+<p>在macOS上，如果你想让你的消息框作为其<em>parent</em>的<a href="#WindowType-enum">Qt::Sheet</a>出现，请将消息框的<a href="#setWindowModality">window modality</a>设置为<a href="#WindowModality-enum">Qt::WindowModal</a> 或使用<a href="#open">open</a>()。否则，该消息框将是一个标准的对话框。</p>
+<h3><span id="signal-void-qmessagebox-buttonclicked-qabstractbutton-button"><code>[signal]</code>void QMessageBox::buttonClicked( *<em>button</em>)</span><a href="#signal-void-qmessagebox-buttonclicked-qabstractbutton-button" class="header-anchor">#</a></h3><p>每当<a href>QMessageBox</a>中的一个按钮被点击时，这个信号就会被发出。被点击的按钮在<em>button</em>中返回。</p>
+<h3><span id="override-virtual-slot-int-qmessagebox-exec"><code>[override virtual slot]</code>int QMessageBox::exec()</span><a href="#override-virtual-slot-int-qmessagebox-exec" class="header-anchor">#</a></h3><p>重新实现: <a href="#exec">QDialog::exec</a>()。</p>
+<p>将消息框显示为一个<a href="#modal-dialogs">modal dialog</a>，阻塞直到用户关闭它。</p>
+<p>当使用带有标准按钮的<a href>QMessageBox</a>时，这个函数返回一个<a href="#StandardButton-enum">StandardButton</a>值，表示被点击的标准按钮。当使用带有自定义按钮的<a href>QMessageBox</a>时，该函数返回一个不透明的值；使用<a href="#clickedButton">clickedButton</a>()来确定哪个按钮被点击了。</p>
+<p><strong>注意：</strong> <a href="#result">result</a>()函数还返回<a href="#StandardButton-enum">StandardButton</a>值，而不是<a href="#DialogCode-enum">QDialog::DialogCode</a>。</p>
+<p>用户不能与同一应用程序中的任何其他窗口进行交互，直到他们通过点击按钮或使用窗口系统提供的机制来关闭该对话框。</p>
+<p><strong>See also</strong> <a href="qwidget.html#show">show</a>() and <a href="#result">result</a>().</p>
+<h3><span id="virtual-qmessagebox-qmessagebox"><code>[virtual]</code>QMessageBox::~QMessageBox()</span><a href="#virtual-qmessagebox-qmessagebox" class="header-anchor">#</a></h3><p>Destroys the message box.</p>
+<h3><span id="static-void-qmessagebox-about-qwidget-parent-const-qstring-amp-title-const-qstring-amp-text"><code>[static]</code>void QMessageBox::about( *<em>parent</em>, const  &amp;<em>title</em>, const  &amp;<em>text</em>)</span><a href="#static-void-qmessagebox-about-qwidget-parent-const-qstring-amp-title-const-qstring-amp-text" class="header-anchor">#</a></h3><p>显示一个简单的关于框，标题为<em>title</em>，文本为<em>text</em>。about框的父级是<em>parent</em>。</p>
+<p>about()在四个地方寻找一个合适的图标。</p>
+<ol>
+<li>如果存在的话，它更倾向于<a href="qwidget.html#windowIcon-prop">parent-&gt;icon</a>()。</li>
+<li>2.如果没有，它将尝试包含<em>parent</em>的顶级widget。</li>
+<li>如果失败了，它会尝试<a href="qapplication.html#activeWindow">活动窗口</a>。</li>
+<li>作为最后的手段，它使用信息图标。</li>
+</ol>
+<p>关于框有一个标有 “OK “的按钮。在macOS上，关于框是作为一个无模式窗口弹出的；在其他平台上，它目前是应用模式。</p>
+<p><strong>See also</strong> <a href="qwidget.html#windowIcon-prop">QWidget::windowIcon</a>() and <a href="qapplication.html#activeWindow">QApplication::activeWindow</a>().</p>
+<h3><span id="static-void-qmessagebox-aboutqt-qwidget-parent-const-qstring-amp-title-qstring"><code>[static]</code>void QMessageBox::aboutQt( *<em>parent</em>, const  &amp;<em>title</em> = QString())</span><a href="#static-void-qmessagebox-aboutqt-qwidget-parent-const-qstring-amp-title-qstring" class="header-anchor">#</a></h3><p>显示一个关于Qt的简单消息框，带有给定的<em>title</em>，并在<em>parent</em>上居中（如果<em>parent</em>不是<code>nullptr</code>）。消息包括应用程序所使用的Qt的版本号。</p>
+<p>这对于包含在应用程序的<strong>帮助</strong>菜单中很有用，如<a href="qtwidgets-mainwindows-menus-example.html">Menus</a>例子所示。</p>
+<p><a href="qapplication.html">QApplication</a>提供了这个功能的插槽。</p>
+<p>在macOS上，关于框是作为一个无模式窗口弹出的；在其他平台上，它目前是应用模式。  </p>
+<p><strong>See also</strong> <a href="qapplication.html#aboutQt">QApplication::aboutQt</a>().</p>
+<h3><span id="void-qmessagebox-addbutton-qabstractbutton-button-qmessagebox-buttonrole-role">void QMessageBox::addButton( *<em>button</em>,  <em>role</em>)</span><a href="#void-qmessagebox-addbutton-qabstractbutton-button-qmessagebox-buttonrole-role" class="header-anchor">#</a></h3><p>将给定的<em>button</em>添加到具有指定<em>role</em>的消息框中。</p>
+<p><strong>See also</strong> <a href="#removeButton">removeButton</a>(), <a href="#button">button</a>(), and <a href="#standardButtons-prop">setStandardButtons</a>().</p>
+<h3><span id="qpushbutton-qmessagebox-addbutton-const-qstring-amp-text-qmessagebox-buttonrole-role"> *QMessageBox::addButton(const  &amp;<em>text</em>,  <em>role</em>)</span><a href="#qpushbutton-qmessagebox-addbutton-const-qstring-amp-text-qmessagebox-buttonrole-role" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>用给定的<em>text</em>创建一个按钮，将其添加到指定的<em>role</em>的消息框中，并返回它。</p>
+<h3><span id="qpushbutton-qmessagebox-addbutton-qmessagebox-standardbutton-button"> *QMessageBox::addButton( <em>button</em>)</span><a href="#qpushbutton-qmessagebox-addbutton-qmessagebox-standardbutton-button" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>如果有效的话，在消息框中添加一个标准<em>button</em>，并返回按钮。</p>
+<p><strong>See also</strong> <a href="#standardButtons-prop">setStandardButtons</a>().</p>
+<h3><span id="qabstractbutton-qmessagebox-button-qmessagebox-standardbutton-which-const"> *QMessageBox::button( <em>which</em>) const</span><a href="#qabstractbutton-qmessagebox-button-qmessagebox-standardbutton-which-const" class="header-anchor">#</a></h3><p>返回一个与标准按钮<em>which</em>相对应的指针，如果标准按钮在这个消息框中不存在，则返回<code>nullptr</code>。</p>
+<p><strong>See also</strong> <a href="#standardButtons-prop">standardButtons</a> and <a href="#standardButton">standardButton</a>().</p>
+<h3><span id="qmessagebox-buttonrole-qmessagebox-buttonrole-qabstractbutton-button-const"> QMessageBox::buttonRole( *<em>button</em>) const</span><a href="#qmessagebox-buttonrole-qmessagebox-buttonrole-qabstractbutton-button-const" class="header-anchor">#</a></h3><p>返回指定的<em>button</em>的按钮角色。如果<em>button</em>是 “nullptr “或者没有被添加到消息框中，此函数返回<a href="#ButtonRole-enum">InvalidRole</a>。</p>
+<p><strong>See also</strong> <a href="#buttons">buttons</a>() and <a href="#addButton">addButton</a>().</p>
+<h3><span id="qlist-lt-qabstractbutton-gt-qmessagebox-buttons-const">&lt; *&gt; QMessageBox::buttons() const</span><a href="#qlist-lt-qabstractbutton-gt-qmessagebox-buttons-const" class="header-anchor">#</a></h3><p>返回所有已经被添加到消息框中的按钮的列表。</p>
+<p><strong>See also</strong> <a href="#buttonRole">buttonRole</a>(), <a href="#addButton">addButton</a>(), and <a href="#removeButton">removeButton</a>().</p>
+<h3><span id="override-virtual-protected-void-qmessagebox-changeevent-qevent-ev"><code>[override virtual protected]</code>void QMessageBox::changeEvent( *<em>ev</em>)</span><a href="#override-virtual-protected-void-qmessagebox-changeevent-qevent-ev" class="header-anchor">#</a></h3><p>重新实现: <a href="qwidget.html#changeEvent">QWidget::changeEvent</a>(QEvent *event).</p>
+<h3><span id="since-5-2-qcheckbox-qmessagebox-checkbox-const"><code>[since 5.2]</code> *QMessageBox::checkBox() const</span><a href="#since-5-2-qcheckbox-qmessagebox-checkbox-const" class="header-anchor">#</a></h3><p>返回对话框上显示的复选框。如果没有设置复选框，则为`nullptr’。</p>
+<p>这个函数是在Qt 5.2中引入的。</p>
+<p><strong>See also</strong> <a href="#setCheckBox">setCheckBox</a>().</p>
+<h3><span id="qabstractbutton-qmessagebox-clickedbutton-const"> *QMessageBox::clickedButton() const</span><a href="#qabstractbutton-qmessagebox-clickedbutton-const" class="header-anchor">#</a></h3><p>返回被用户点击的按钮，如果用户点击了<strong>Esc</strong>键而没有设置<a href="#setEscapeButton">逃生按钮</a>，则返回`nullptr’。</p>
+<p>如果<a href="#exec">exec</a>()还没有被调用，返回nullptr。</p>
+<p>例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QMessageBox <span class="hljs-title">messageBox</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>;
+QAbstractButton *disconnectButton =
+    messageBox.<span class="hljs-built_in">addButton</span>(<span class="hljs-built_in">tr</span>(<span class="hljs-string">"Disconnect"</span>), QMessageBox::ActionRole);
+...
+    messageBox.<span class="hljs-built_in">exec</span>();
+<span class="hljs-keyword">if</span> (messageBox.<span class="hljs-built_in">clickedButton</span>() == disconnectButton) {
+    ...
+}</code></pre></div>
+
+<p><strong>See also</strong> <a href="#standardButton">standardButton</a>() and <a href="#button">button</a>().</p>
+<h3><span id="override-virtual-protected-void-qmessagebox-closeevent-qcloseevent-e"><code>[override virtual protected]</code>void QMessageBox::closeEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qmessagebox-closeevent-qcloseevent-e" class="header-anchor">#</a></h3><p>重新实现: <a href="#closeEvent">QDialog::closeEvent</a>(QCloseEvent *e).</p>
+<h3><span id="static-qmessagebox-standardbutton-qmessagebox-critical-qwidget-parent-const-qstring-amp-title-const-qstring-amp-text-qmessagebox-standardbuttons-buttons-ok-qmessagebox-standardbutton-defaultbutton-nobutton"><code>[static]</code> QMessageBox::critical( *<em>parent</em>, const  &amp;<em>title</em>, const  &amp;<em>text</em>,  <em>buttons</em> = Ok,  <em>defaultButton</em> = NoButton)</span><a href="#static-qmessagebox-standardbutton-qmessagebox-critical-qwidget-parent-const-qstring-amp-title-const-qstring-amp-text-qmessagebox-standardbuttons-buttons-ok-qmessagebox-standardbutton-defaultbutton-nobutton" class="header-anchor">#</a></h3><p>在指定的<em>parent</em> widget前面打开一个带有给定的<em>title</em>和<em>text</em>的关键消息框。</p>
+<p>标准的<em>按钮</em>被添加到消息框中。<em>defaultButton</em>指定了在按下*<em>Enter</em>时使用的按钮。<em>defaultButton</em>必须是指在<em>buttons</em>中给出的一个按钮。如果<em>defaultButton</em>是<a href="#StandardButton-enum">QMessageBox::NoButton</a>，<a href>QMessageBox</a>会自动选择一个合适的默认值。</p>
+<p>返回被点击的标准按钮的身份。如果<strong>Esc</strong>被按下，则返回<a href="#default-and-escape-keys">逃生按钮</a>。</p>
+<p>消息框是一个<a href="#WindowModality-enum">应用模式</a>对话框。</p>
+<p><strong>警告：</strong>在执行对话框的过程中不要删除<em>parent</em>。如果你想这样做，你应该使用<a href>QMessageBox</a>构造函数之一自己创建对话框。</p>
+<p><strong>See also</strong> <a href="#question">question</a>(), <a href="#warning">warning</a>(), and <a href="#information">information</a>().</p>
+<h3><span id="qpushbutton-qmessagebox-defaultbutton-const"> *QMessageBox::defaultButton() const</span><a href="#qpushbutton-qmessagebox-defaultbutton-const" class="header-anchor">#</a></h3><p>返回应该成为消息框[默认按钮]的按钮（qpushbutton.html#default-prop）。如果没有设置默认按钮，则返回nullptr。</p>
+<p><strong>See also</strong> <a href="#setDefaultButton">setDefaultButton</a>(), <a href="#addButton">addButton</a>(), and <a href="qpushbutton.html#default-prop">QPushButton::setDefault</a>().</p>
+<h3><span id="qabstractbutton-qmessagebox-escapebutton-const"> *QMessageBox::escapeButton() const</span><a href="#qabstractbutton-qmessagebox-escapebutton-const" class="header-anchor">#</a></h3><p>返回当escape被按下时被激活的按钮。</p>
+<p>默认情况下，<a href>QMessageBox</a>会尝试自动检测一个转义按钮，如下所示。</p>
+<ol>
+<li>如果只有一个按钮，它将被作为逃生按钮。</li>
+<li>如果有一个<a href="#StandardButton-enum">Cancel</a>按钮，就把它作为逃生按钮。</li>
+<li>仅在macOS上，如果正好有一个具有<a href="#ButtonRole-enum">QMessageBox::RejectRole</a>角色的按钮，它就会成为逃生按钮。</li>
+</ol>
+<p>当逃生按钮不能被自动检测到时，按<strong>Esc</strong>没有效果。</p>
+<p><strong>See also</strong> <a href="#setEscapeButton">setEscapeButton</a>() and <a href="#addButton">addButton</a>().</p>
+<h3><span id="override-virtual-protected-bool-qmessagebox-event-qevent-e"><code>[override virtual protected]</code>bool QMessageBox::event( *<em>e</em>)</span><a href="#override-virtual-protected-bool-qmessagebox-event-qevent-e" class="header-anchor">#</a></h3><p>重新实现: <a href="qwidget.html#event">QWidget::event</a>(QEvent *event).</p>
+<h3><span id="static-qmessagebox-standardbutton-qmessagebox-information-qwidget-parent-const-qstring-amp-title-const-qstring-amp-text-qmessagebox-standardbuttons-buttons-ok-qmessagebox-standardbutton-defaultbutton-nobutton"><code>[static]</code> QMessageBox::information( *<em>parent</em>, const  &amp;<em>title</em>, const  &amp;<em>text</em>,  <em>buttons</em> = Ok,  <em>defaultButton</em> = NoButton)</span><a href="#static-qmessagebox-standardbutton-qmessagebox-information-qwidget-parent-const-qstring-amp-title-const-qstring-amp-text-qmessagebox-standardbuttons-buttons-ok-qmessagebox-standardbutton-defaultbutton-nobutton" class="header-anchor">#</a></h3><p>在指定的<em>parent</em> widget前面打开一个带有给定的<em>title</em>和<em>text</em>的信息框。</p>
+<p>标准的<em>按钮</em>被添加到消息框中。<em>defaultButton</em>指定了当<strong>Enter</strong>被按下时使用的按钮。<em>defaultButton</em>必须是指在<em>buttons</em>中给出的一个按钮。如果<em>defaultButton</em>是<a href="#StandardButton-enum">QMessageBox::NoButton</a>，<a href>QMessageBox</a>会自动选择一个合适的默认值。</p>
+<p>返回被点击的标准按钮的身份。如果<strong>Esc</strong>被按下，则返回<a href="#default-and-escape-keys">逃生按钮</a>。</p>
+<p>消息框是一个<a href="#WindowModality-enum">应用模式</a>对话框。</p>
+<p><strong>警告：</strong>在执行对话框的过程中不要删除<em>parent</em>。如果你想这样做，你应该使用<a href>QMessageBox</a>构造函数之一自己创建对话框。</p>
+<p><strong>See also</strong> <a href="#question">question</a>(), <a href="#warning">warning</a>(), and <a href="#critical">critical</a>().</p>
+<h3><span id="override-virtual-protected-void-qmessagebox-keypressevent-qkeyevent-e"><code>[override virtual protected]</code>void QMessageBox::keyPressEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qmessagebox-keypressevent-qkeyevent-e" class="header-anchor">#</a></h3><p>重新实现: <a href="#keyPressEvent">QDialog::keyPressEvent</a>(QKeyEvent *e).</p>
+<h3><span id="void-qmessagebox-open-qobject-receiver-const-char-member">void QMessageBox::open( *<em>receiver</em>, const char *<em>member</em>)</span><a href="#void-qmessagebox-open-qobject-receiver-const-char-member" class="header-anchor">#</a></h3><p>打开对话框并将其<a href="#finished">finished</a>()或<a href="#buttonClicked">buttonClicked</a>()信号连接到<em>receiver</em>和<em>member</em>指定的槽。如果<em>member</em>中的槽的第一个参数有一个指针，那么连接到<a href="#buttonClicked">buttonClicked</a>()，否则连接到<a href="#finished">finished</a>()。</p>
+<p>当对话框关闭时，该信号将与槽断开连接。</p>
+<h3><span id="static-qmessagebox-standardbutton-qmessagebox-question-qwidget-parent-const-qstring-amp-title-const-qstring-amp-text-qmessagebox-standardbuttons-buttons-standardbuttons-yes-no-qmessagebox-standardbutton-defaultbutton-nobutton"><code>[static]</code> QMessageBox::question( *<em>parent</em>, const  &amp;<em>title</em>, const  &amp;<em>text</em>,  <em>buttons</em> = StandardButtons(Yes | No),  <em>defaultButton</em> = NoButton)</span><a href="#static-qmessagebox-standardbutton-qmessagebox-question-qwidget-parent-const-qstring-amp-title-const-qstring-amp-text-qmessagebox-standardbuttons-buttons-standardbuttons-yes-no-qmessagebox-standardbutton-defaultbutton-nobutton" class="header-anchor">#</a></h3><p>打开一个带有给定的<em>标题</em>和<em>文本</em>的问题消息框，在指定的<em>parent</em>部件前面。</p>
+<p>标准的<em>按钮</em>被添加到消息框中。<em>defaultButton</em>指定了当<strong>Enter</strong>被按下时使用的按钮。<em>defaultButton</em>必须是指在<em>buttons</em>中给出的一个按钮。如果<em>defaultButton</em>是<a href="#StandardButton-enum">QMessageBox::NoButton</a>，<a href>QMessageBox</a>会自动选择一个合适的默认值。</p>
+<p>返回被点击的标准按钮的身份。如果<strong>Esc</strong>被按下，则返回<a href="#default-and-escape-keys">逃生按钮</a>。</p>
+<p>消息框是一个<a href="#WindowModality-enum">应用模式</a>对话框。</p>
+<p><strong>警告：</strong>在执行对话框的过程中不要删除<em>parent</em>。如果你想这样做，你应该使用<a href>QMessageBox</a>构造函数之一自己创建对话框。</p>
+<p><strong>See also</strong> <a href="#information">information</a>(), <a href="#warning">warning</a>(), and <a href="#critical">critical</a>().</p>
+<h3><span id="void-qmessagebox-removebutton-qabstractbutton-button">void QMessageBox::removeButton( *<em>button</em>)</span><a href="#void-qmessagebox-removebutton-qabstractbutton-button" class="header-anchor">#</a></h3><p>从按钮盒中删除<em>button</em>而不删除它。</p>
+<p><strong>See also</strong> <a href="#addButton">addButton</a>() and <a href="#standardButtons-prop">setStandardButtons</a>().</p>
+<h3><span id="override-virtual-protected-void-qmessagebox-resizeevent-qresizeevent-event"><code>[override virtual protected]</code>void QMessageBox::resizeEvent( *<em>event</em>)</span><a href="#override-virtual-protected-void-qmessagebox-resizeevent-qresizeevent-event" class="header-anchor">#</a></h3><p>重新实现: <a href="#resizeEvent">QDialog::resizeEvent</a>(QResizeEvent *).</p>
+<h3><span id="since-5-2-void-qmessagebox-setcheckbox-qcheckbox-cb"><code>[since 5.2]</code>void QMessageBox::setCheckBox( *<em>cb</em>)</span><a href="#since-5-2-void-qmessagebox-setcheckbox-qcheckbox-cb" class="header-anchor">#</a></h3><p>设置消息对话框上的复选框<em>cb</em>。消息框对该复选框拥有所有权。参数<em>cb</em>可以是<code>nullptr</code>，以从消息框中删除一个现有的复选框。</p>
+<p>这个函数是在Qt 5.2中引入的。</p>
+<p><strong>See also</strong> <a href="#checkBox">checkBox</a>().</p>
+<h3><span id="void-qmessagebox-setdefaultbutton-qpushbutton-button">void QMessageBox::setDefaultButton( *<em>button</em>)</span><a href="#void-qmessagebox-setdefaultbutton-qpushbutton-button" class="header-anchor">#</a></h3><p>设置消息框的<a href="qpushbutton.html#default-prop">默认按钮</a>为<em>button</em>。</p>
+<p><strong>See also</strong> <a href="#defaultButton">defaultButton</a>(), <a href="#addButton">addButton</a>(), and <a href="qpushbutton.html#default-prop">QPushButton::setDefault</a>().</p>
+<h3><span id="void-qmessagebox-setdefaultbutton-qmessagebox-standardbutton-button">void QMessageBox::setDefaultButton( <em>button</em>)</span><a href="#void-qmessagebox-setdefaultbutton-qmessagebox-standardbutton-button" class="header-anchor">#</a></h3><p>设置消息框的<a href="qpushbutton.html#default-prop">默认按钮</a>为<em>button</em>。</p>
+<p><strong>See also</strong> <a href="#addButton">addButton</a>() and <a href="qpushbutton.html#default-prop">QPushButton::setDefault</a>().</p>
+<h3><span id="void-qmessagebox-setescapebutton-qabstractbutton-button">void QMessageBox::setEscapeButton( *<em>button</em>)</span><a href="#void-qmessagebox-setescapebutton-qabstractbutton-button" class="header-anchor">#</a></h3><p>设置当<strong>Escape</strong>键被按下时被激活的按钮为<em>button</em>。</p>
+<p><strong>See also</strong> <a href="#escapeButton">escapeButton</a>(), <a href="#addButton">addButton</a>(), and <a href="#clickedButton">clickedButton</a>().</p>
+<h3><span id="void-qmessagebox-setescapebutton-qmessagebox-standardbutton-button">void QMessageBox::setEscapeButton( <em>button</em>)</span><a href="#void-qmessagebox-setescapebutton-qmessagebox-standardbutton-button" class="header-anchor">#</a></h3><p>设置当<strong>Escape</strong>键被按下时被激活的按钮为<em>button</em>。</p>
+<p><strong>See also</strong> <a href="#addButton">addButton</a>() and <a href="#clickedButton">clickedButton</a>().</p>
+<h3><span id="void-qmessagebox-setwindowmodality-qt-windowmodality-windowmodality">void QMessageBox::setWindowModality( <em>windowModality</em>)</span><a href="#void-qmessagebox-setwindowmodality-qt-windowmodality-windowmodality" class="header-anchor">#</a></h3><p>此函数影射<a href="qwidget.html#windowModality-prop">QWidget::setWindowModality</a>()。</p>
+<p>将消息框的模态设置为<em>windowModality</em>。</p>
+<p>在macOS上，如果模态被设置为<a href="#WindowModality-enum">Qt::WindowModal</a>并且消息框有一个父级，那么消息框将是一个<a href="#WindowType-enum">Qt::Sheet</a>，否则消息框将是一个标准对话框。</p>
+<h3><span id="void-qmessagebox-setwindowtitle-const-qstring-amp-title">void QMessageBox::setWindowTitle(const  &amp;<em>title</em>)</span><a href="#void-qmessagebox-setwindowtitle-const-qstring-amp-title" class="header-anchor">#</a></h3><p>此函数影射<a href="qwidget.html#windowTitle-prop">QWidget::setWindowTitle</a>()。</p>
+<p>将消息框的标题设置为<em>title</em>。在macOS上，窗口标题会被忽略（根据macOS指南的要求）。</p>
+<h3><span id="override-virtual-protected-void-qmessagebox-showevent-qshowevent-e"><code>[override virtual protected]</code>void QMessageBox::showEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qmessagebox-showevent-qshowevent-e" class="header-anchor">#</a></h3><p>重新实现: <a href="#showEvent">QDialog::showEvent</a>(QShowEvent *event).</p>
+<h3><span id="qmessagebox-standardbutton-qmessagebox-standardbutton-qabstractbutton-button-const"> QMessageBox::standardButton( *<em>button</em>) const</span><a href="#qmessagebox-standardbutton-qmessagebox-standardbutton-qabstractbutton-button-const" class="header-anchor">#</a></h3><p>返回与给定的<em>button</em>对应的标准按钮枚举值，如果给定的<em>button</em>不是一个标准按钮，则返回<a href="#StandardButton-enum">NoButton</a>。</p>
+<p><strong>See also</strong> <a href="#button">button</a>() and <a href="#standardButtons-prop">standardButtons</a>().</p>
+<h3><span id="static-qmessagebox-standardbutton-qmessagebox-warning-qwidget-parent-const-qstring-amp-title-const-qstring-amp-text-qmessagebox-standardbuttons-buttons-ok-qmessagebox-standardbutton-defaultbutton-nobutton"><code>[static]</code> QMessageBox::warning( *<em>parent</em>, const  &amp;<em>title</em>, const  &amp;<em>text</em>,  <em>buttons</em> = Ok,  <em>defaultButton</em> = NoButton)</span><a href="#static-qmessagebox-standardbutton-qmessagebox-warning-qwidget-parent-const-qstring-amp-title-const-qstring-amp-text-qmessagebox-standardbuttons-buttons-ok-qmessagebox-standardbutton-defaultbutton-nobutton" class="header-anchor">#</a></h3><p>在指定的<em>parent</em> widget前面打开一个带有给定<em>title</em>和<em>text</em>的警告信息框。</p>
+<p>标准的<em>按钮</em>被添加到消息框中。<em>defaultButton</em>指定了当<strong>Enter</strong>被按下时使用的按钮。<em>defaultButton</em>必须是指在<em>buttons</em>中给出的一个按钮。如果<em>defaultButton</em>是<a href="#StandardButton-enum">QMessageBox::NoButton</a>，<a href>QMessageBox</a>会自动选择一个合适的默认值。</p>
+<p>返回被点击的标准按钮的身份。如果<strong>Esc</strong>被按下，则返回<a href="#default-and-escape-keys">逃生按钮</a>。</p>
+<p>消息框是一个<a href="#WindowModality-enum">应用模式</a>对话框。</p>
+<p><strong>警告：</strong>在执行对话框的过程中不要删除<em>parent</em>。如果你想这样做，你应该使用<a href>QMessageBox</a>构造函数之一自己创建对话框。</p>
+<p><strong>See also</strong> <a href="#question">question</a>(), <a href="#information">information</a>(), and <a href="#critical">critical</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/M/">M</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/M/QMap/QMap/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QMap类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/M/QMetaClassInfo/QMetaClassInfo/">
+                        <span class="hidden-mobile">QMetaClassInfo类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,764 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QJsonDocument 类 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 [since 5.1] enum QJsonDocument:: JsonFormat   成员函数文档编制 [since 5.10] QJsonDocument:: QJsonDocument ( QJsonDocument &amp;&amp; other ) QJsonDocument::">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QJsonDocument类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/J/QJsonDocument/QJsonDocument/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QJsonDocument 类 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 [since 5.1] enum QJsonDocument:: JsonFormat   成员函数文档编制 [since 5.10] QJsonDocument:: QJsonDocument ( QJsonDocument &amp;&amp; other ) QJsonDocument::">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:44:38.405Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="J">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QJsonDocument类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QJsonDocument类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      57 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QJsonDocument类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qjsondocument-lei">QJsonDocument 类</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#since-5-1-enum-qjsondocument-jsonformat"><code>[since 5.1] </code>enum QJsonDocument:: JsonFormat</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#since-5-10-qjsondocument-qjsondocument-qjsondocument-qjsondocument-other"><code>[since 5.10] </code>QJsonDocument:: QJsonDocument ( </a><a href="#QJsonDocument">QJsonDocument </a>&amp;&amp; <em>other</em> )</li>
+<li><a href="#qjsondocument-qjsondocument-const-qjsondocument-qjsondocument-other">QJsonDocument:: QJsonDocument (const </a><a href="#QJsonDocument">QJsonDocument </a>&amp; <em>other</em> )</li>
+<li><a href="#qjsondocument-qjsondocument-const-qjsonarray-qjsonarray-html-array">QJsonDocument:: QJsonDocument (const </a><a href="qjsonarray.html">QJsonArray </a>&amp; <em>array</em> )</li>
+<li><a href="#qjsondocument-qjsondocument-const-qjsonobject-qjsonobject-html-object">QJsonDocument:: QJsonDocument (const </a><a href="qjsonobject.html">QJsonObject </a>&amp; <em>object</em> )</li>
+<li><a href="#qjsondocument-qjsondocument">QJsonDocument:: QJsonDocument ()</a></li>
+<li><a href="#since-5-10-qjsondocument-qjsondocument-qjsondocument-operator-qjsondocument-qjsondocument-other"><code>[since 5.10] </code></a><a href="#QJsonDocument">QJsonDocument </a>&amp;QJsonDocument:: operator= ( <a href="#QJsonDocument">QJsonDocument </a>&amp;&amp; <em>other</em> )</li>
+<li><a href="#qjsondocument-qjsondocument-qjsondocument-operator-const-qjsondocument-qjsondocument-other">QJsonDocument </a></li>
+<li><a href="#qjsondocument-qjsondocument">QJsonDocument:: ~QJsonDocument ()</a></li>
+<li><a href="#qjsonarray-qjsonarray-html-qjsondocument-array-const">QJsonArray </a></li>
+<li><a href="#static-qjsondocument-qjsondocument-qjsondocument-fromjson-const-qbytearray-qbytearray-html-json-qjsonparseerror-qjsonparseerror-html-error-nullptr"><code>[static] </code></a><a href="#QJsonDocument">QJsonDocument </a>QJsonDocument:: fromJson (const <a href="qbytearray.html">QByteArray </a>&amp; <em>json</em> , <a href="qjsonparseerror.html">QJsonParseError </a>* <em>error</em> = nullptr)</li>
+<li><a href="#static-qjsondocument-qjsondocument-qjsondocument-fromvariant-const-qvariant-qvariant-html-variant"><code>[static] </code></a><a href="#QJsonDocument">QJsonDocument </a>QJsonDocument:: fromVariant (const <a href="qvariant.html">QVariant </a>&amp; <em>variant</em> )</li>
+<li><a href="#bool-qjsondocument-isarray-const">bool QJsonDocument:: isArray () const</a></li>
+<li><a href="#bool-qjsondocument-isempty-const">bool QJsonDocument:: isEmpty () const</a></li>
+<li><a href="#bool-qjsondocument-isnull-const">bool QJsonDocument:: isNull () const</a></li>
+<li><a href="#bool-qjsondocument-isobject-const">bool QJsonDocument:: isObject () const</a></li>
+<li><a href="#qjsonobject-qjsonobject-html-qjsondocument-object-const">QJsonObject </a></li>
+<li><a href="#void-qjsondocument-setarray-const-qjsonarray-qjsonarray-html-array">void QJsonDocument:: setArray (const </a><a href="qjsonarray.html">QJsonArray </a>&amp; <em>array</em> )</li>
+<li><a href="#void-qjsondocument-setobject-const-qjsonobject-qjsonobject-html-object">void QJsonDocument:: setObject (const </a><a href="qjsonobject.html">QJsonObject </a>&amp; <em>object</em> )</li>
+<li><a href="#since-5-10-void-qjsondocument-swap-qjsondocument-qjsondocument-other"><code>[since 5.10] </code>void QJsonDocument:: swap ( </a><a href="#QJsonDocument">QJsonDocument </a>&amp; <em>other</em> )</li>
+<li><a href="#since-5-1-qbytearray-qbytearray-html-qjsondocument-tojson-qjsondocument-jsonformat-jsonformat-enum-format-indented-const"><code>[since 5.1] </code></a><a href="qbytearray.html">QByteArray </a>QJsonDocument:: toJson ( <a href="#JsonFormat-enum">QJsonDocument::JsonFormat </a><em>format</em> = Indented) const</li>
+<li><a href="#qvariant-qvariant-html-qjsondocument-tovariant-const">QVariant </a></li>
+<li><a href="#bool-qjsondocument-operator-const-qjsondocument-qjsondocument-other-const">bool QJsonDocument:: operator!= (const </a><a href="#QJsonDocument">QJsonDocument </a>&amp; <em>other</em> ) const</li>
+<li><a href="#bool-qjsondocument-operator-const-qjsondocument-qjsondocument-other-const">bool QJsonDocument:: operator== (const </a><a href="#QJsonDocument">QJsonDocument </a>&amp; <em>other</em> ) const</li>
+<li><a href="#since-5-10-const-qjsonvalue-qjsonvalue-html-qjsondocument-operator-const-qstring-qstring-html-key-const"><code>[since 5.10] </code>const </a><a href="qjsonvalue.html">QJsonValue </a>QJsonDocument:: operator[] (const <a href="qstring.html">QString </a>&amp; <em>key</em> ) const</li>
+<li><a href="#since-5-14-const-qjsonvalue-qjsonvalue-html-qjsondocument-operator-qstringview-qstringview-html-key-const"><code>[since 5.14] </code>const </a><a href="qjsonvalue.html">QJsonValue </a>QJsonDocument:: operator[] ( <a href="qstringview.html">QStringView </a><em>key</em> ) const</li>
+<li><a href="#since-5-10-const-qjsonvalue-qjsonvalue-html-qjsondocument-operator-qlatin1string-qlatin1string-html-key-const"><code>[since 5.10] </code>const </a><a href="qjsonvalue.html">QJsonValue </a>QJsonDocument:: operator[] ( <a href="qlatin1string.html">QLatin1String </a><em>key</em> ) const</li>
+<li><a href="#since-5-10-const-qjsonvalue-qjsonvalue-html-qjsondocument-operator-qsizetype-i-const"><code>[since 5.10] </code>const </a><a href="qjsonvalue.html">QJsonValue </a>QJsonDocument:: operator[] ( qsizetype <em>i</em> ) const</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QJsonDocument 类
+
+<p>QJsonDocument 类提供读写 JSON 文档的办法。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qjsondocument></qjsondocument></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 5.0</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qjsondocument-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<p><strong>注意：</strong> 此类的所有函数 <a href="17-qdoc-commands-thread.html#reentrant">可重入 </a>.</p>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#JsonFormat-enum">JsonFormat </a></strong>{ Indented, Compact }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QJsonDocument-4">QJsonDocument </a></strong>(QJsonDocument &amp;&amp; <em>other</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QJsonDocument-3">QJsonDocument </a></strong>(const QJsonDocument &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJsonDocument-2">QJsonDocument </a></strong>(const QJsonArray &amp; <em>array</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJsonDocument-1">QJsonDocument </a></strong>(const QJsonObject &amp; <em>object</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJsonDocument">QJsonDocument </a></strong>()</td>
+</tr>
+<tr>
+<td>QJsonDocument &amp;</td>
+<td><strong><a href="#operator-eq-1">operator= </a></strong>(QJsonDocument &amp;&amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td>QJsonDocument &amp;</td>
+<td><strong><a href="#operator-eq">operator= </a></strong>(const QJsonDocument &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QJsonDocument">~QJsonDocument </a></strong>()</td>
+</tr>
+<tr>
+<td>QJsonArray</td>
+<td><strong><a href="#array">array </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isArray">isArray </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isEmpty">isEmpty </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNull">isNull </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isObject">isObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJsonObject</td>
+<td><strong><a href="#object">object </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setArray">setArray </a></strong>(const QJsonArray &amp; <em>array</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setObject">setObject </a></strong>(const QJsonObject &amp; <em>object</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#swap">swap </a></strong>(QJsonDocument &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#toJson">toJson </a></strong>(QJsonDocument::JsonFormat <em>format</em> = Indented) const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#toVariant">toVariant </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-not-eq">operator!= </a></strong>(const QJsonDocument &amp; <em>other</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-eq-eq">operator== </a></strong>(const QJsonDocument &amp; <em>other</em> ) const</td>
+</tr>
+<tr>
+<td>const QJsonValue</td>
+<td><strong>[operator<a href="#operator-5b-5d">] </a></strong>(const QString &amp; <em>key</em> ) const</td>
+</tr>
+<tr>
+<td>const QJsonValue</td>
+<td><strong>[operator<a href="#operator-5b-5d-1">] </a></strong>(QStringView <em>key</em> ) const</td>
+</tr>
+<tr>
+<td>const QJsonValue</td>
+<td><strong>[operator<a href="#operator-5b-5d-2">] </a></strong>(QLatin1String <em>key</em> ) const</td>
+</tr>
+<tr>
+<td>const QJsonValue</td>
+<td><strong>[operator<a href="#operator-5b-5d-3">] </a></strong>(qsizetype <em>i</em> ) const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QJsonDocument</th>
+<th><strong><a href="#fromJson">fromJson </a></strong>(const QByteArray &amp; <em>json</em> , QJsonParseError * <em>error</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QJsonDocument</td>
+<td><strong><a href="#fromVariant">fromVariant </a></strong>(const QVariant &amp; <em>variant</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QJsonDocument是一个包裹完整的JSON文档的类，它可以从UTF-8编码的文本表示法中读取该文档，并将其写入。</p>
+<p>一个JSON文档可以通过<a href="#fromJson">QJsonDocument::fromJson </a>()从其基于文本的表示方式转换为QJsonDocument。<a href="#toJson">toJson </a>()将其转换回文本。这个解析器非常快速和高效，可以将JSON转换为Qt使用的二进制表示。</p>
+<p>解析后的文档的有效性可以用 ! <a href="#isNull">isNull</a>()</p>
+<p>可以用<a href="#isArray">isArray </a>()和<a href="#isObject">isObject </a>()来查询一个文档是否包含一个数组或一个对象。文档中包含的数组或对象可以用<a href="#array">array </a>() 或 <a href="#object">object </a>()来检索，然后进行读取或操作。</p>
+<p><strong>另请参阅</strong> <a href="json.html">在 Qt 中支持 JSON </a>and <a href="qtcore-serialization-savegame-example.html">JSON 保存游戏范例 </a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="since-5-1-enum-qjsondocument-jsonformat"><code>[since 5.1] </code>enum QJsonDocument:: JsonFormat</span><a href="#since-5-1-enum-qjsondocument-jsonformat" class="header-anchor">#</a></h3><p>这个值定义了转换为<a href>QJsonDocument</a>使用<a href="#toJson">toJson</a>()时产生的JSON字节数的格式。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QJsonDocument::Indented</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">定义人类可读的输出如下：<code>   { "Array" : [  true  ,  999  ,  "string"  ]  ,  "Key" : "Value"  ,  "null" : null }                                    </code></td>
+</tr>
+<tr>
+<td align="left"><code>QJsonDocument::Compact</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">定义了一个紧凑的输出，如下所示:<code>   {"Array":[true,999,"string"],"Key":"Value","null":null}                                    </code></td>
+</tr>
+</tbody></table>
+<p>该枚举在 Qt 5.1 引入或被修改。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="since-5-10-qjsondocument-qjsondocument-qjsondocument-amp-amp-other"><code>[since 5.10] </code>QJsonDocument:: QJsonDocument ( &amp;&amp; <em>other</em> )</span><a href="#since-5-10-qjsondocument-qjsondocument-qjsondocument-amp-amp-other" class="header-anchor">#</a></h3><p>移动构造 QJsonDocument 从 <em>other</em> .</p>
+<p>该函数在 Qt 5.10 引入。</p>
+<h3><span id="qjsondocument-qjsondocument-const-qjsondocument-amp-other">QJsonDocument:: QJsonDocument (const &amp; <em>other</em> )</span><a href="#qjsondocument-qjsondocument-const-qjsondocument-amp-other" class="header-anchor">#</a></h3><p>创建副本为 <em>other</em> 文档。</p>
+<h3><span id="qjsondocument-qjsondocument-const-qjsonarray-amp-array">QJsonDocument:: QJsonDocument (const &amp; <em>array</em> )</span><a href="#qjsondocument-qjsondocument-const-qjsonarray-amp-array" class="header-anchor">#</a></h3><p>构造 QJsonDocument 从 <em>array</em> .</p>
+<h3><span id="qjsondocument-qjsondocument-const-qjsonobject-amp-object">QJsonDocument:: QJsonDocument (const &amp; <em>object</em> )</span><a href="#qjsondocument-qjsondocument-const-qjsonobject-amp-object" class="header-anchor">#</a></h3><p>创建 QJsonDocument 从 <em>object</em> .</p>
+<h3><span id="qjsondocument-qjsondocument">QJsonDocument:: QJsonDocument ()</span><a href="#qjsondocument-qjsondocument" class="header-anchor">#</a></h3><p>构造空的无效文档。</p>
+<h3><span id="since-5-10-qjsondocument-amp-qjsondocument-operator-qjsondocument-amp-amp-other"><code>[since 5.10] </code>&amp;QJsonDocument:: operator= ( &amp;&amp; <em>other</em> )</span><a href="#since-5-10-qjsondocument-amp-qjsondocument-operator-qjsondocument-amp-amp-other" class="header-anchor">#</a></h3><p>移动赋值 <em>other</em> 到此文档。</p>
+<p>该函数在 Qt 5.10 引入。</p>
+<h3><span id="qjsondocument-amp-qjsondocument-operator-const-qjsondocument-amp-other">&amp;QJsonDocument:: operator= (const &amp; <em>other</em> )</span><a href="#qjsondocument-amp-qjsondocument-operator-const-qjsondocument-amp-other" class="header-anchor">#</a></h3><p>赋值 <em>other</em> 文档到此 <a href>QJsonDocument </a>。返回此对象的引用。</p>
+<h3><span id="qjsondocument-qjsondocument">QJsonDocument:: ~QJsonDocument ()</span><a href="#qjsondocument-qjsondocument" class="header-anchor">#</a></h3><p>删除文档。</p>
+<p>采用 fromRawData 设置的二进制数据不被释放。</p>
+<h3><span id="qjsonarray-qjsondocument-array-const">QJsonDocument:: array () const</span><a href="#qjsonarray-qjsondocument-array-const" class="header-anchor">#</a></h3><p>返回 <a href="qjsonarray.html">QJsonArray </a>包含在文档中。</p>
+<p>返回空数组若文档包含对象。</p>
+<p><strong>另请参阅</strong> <a href="#isArray">isArray </a>(), <a href="#object">object </a>()，和 <a href="#setArray">setArray </a>().</p>
+<h3><span id="static-qjsondocument-qjsondocument-fromjson-const-qbytearray-amp-json-qjsonparseerror-error-nullptr"><code>[static] </code>QJsonDocument:: fromJson (const &amp; <em>json</em> , * <em>error</em> = nullptr)</span><a href="#static-qjsondocument-qjsondocument-fromjson-const-qbytearray-amp-json-qjsonparseerror-error-nullptr" class="header-anchor">#</a></h3><p>剖析 <em>json</em> 作为 UTF-8 编码 JSON 文档，并创建 <a href>QJsonDocument </a>从它。</p>
+<p>返回有效 (非 null) <a href>QJsonDocument </a>若剖析成功。若它失败，返回文档将为 null，且可选 <em>error</em> 变量将包含有关错误的进一步细节。</p>
+<p><strong>另请参阅</strong> <a href="#toJson">toJson </a>(), <a href="qjsonparseerror.html">QJsonParseError </a>，和 <a href="#isNull">isNull </a>().</p>
+<h3><span id="static-qjsondocument-qjsondocument-fromvariant-const-qvariant-amp-variant"><code>[static] </code>QJsonDocument:: fromVariant (const &amp; <em>variant</em> )</span><a href="#static-qjsondocument-qjsondocument-fromvariant-const-qvariant-amp-variant" class="header-anchor">#</a></h3><p>创建 <a href>QJsonDocument </a>从 <a href="qvariant.html">QVariant </a><em>variant</em> .</p>
+<p>若<em>variant</em> 包含任何其他类型，而不是 a QVariantMap, QVariantHash, QVariantList or <a href="qstringlist.html">QStringList </a>，返回的文档无效。</p>
+<p><strong>另请参阅</strong> <a href="#toVariant">toVariant </a>().</p>
+<h3><span id="bool-qjsondocument-isarray-const">bool QJsonDocument:: isArray () const</span><a href="#bool-qjsondocument-isarray-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若文档包含数组。</p>
+<p><strong>另请参阅</strong> <a href="#array">array </a>() 和 <a href="#isObject">isObject </a>().</p>
+<h3><span id="bool-qjsondocument-isempty-const">bool QJsonDocument:: isEmpty () const</span><a href="#bool-qjsondocument-isempty-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若文档未包含任何数据。</p>
+<h3><span id="bool-qjsondocument-isnull-const">bool QJsonDocument:: isNull () const</span><a href="#bool-qjsondocument-isnull-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若此文档为 null。</p>
+<p>null 是透过默认构造函数创建文档。</p>
+<p>从UTF-8编码的文本或二进制格式创建的文件在解析过程中被验证。如果验证失败，返回的文件也将是空的。</p>
+<h3><span id="bool-qjsondocument-isobject-const">bool QJsonDocument:: isObject () const</span><a href="#bool-qjsondocument-isobject-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若文档包含对象。</p>
+<p><strong>另请参阅</strong> <a href="#object">object </a>() 和 <a href="#isArray">isArray </a>().</p>
+<h3><span id="qjsonobject-qjsondocument-object-const">QJsonDocument:: object () const</span><a href="#qjsonobject-qjsondocument-object-const" class="header-anchor">#</a></h3><p>返回 <a href="qjsonobject.html">QJsonObject </a>包含在文档中。</p>
+<p>返回空对象若文档包含数组。</p>
+<p><strong>另请参阅</strong> <a href="#isObject">isObject </a>(), <a href="#array">array </a>()，和 <a href="#setObject">setObject </a>().</p>
+<h3><span id="void-qjsondocument-setarray-const-qjsonarray-amp-array">void QJsonDocument:: setArray (const &amp; <em>array</em> )</span><a href="#void-qjsondocument-setarray-const-qjsonarray-amp-array" class="header-anchor">#</a></h3><p>设置 <em>array</em> 作为此文档的 main 对象。</p>
+<p><strong>另请参阅</strong> <a href="#setObject">setObject </a>() 和 <a href="#array">array </a>().</p>
+<h3><span id="void-qjsondocument-setobject-const-qjsonobject-amp-object">void QJsonDocument:: setObject (const &amp; <em>object</em> )</span><a href="#void-qjsondocument-setobject-const-qjsonobject-amp-object" class="header-anchor">#</a></h3><p>设置 <em>object</em> 作为此文档的 main 对象。</p>
+<p><strong>另请参阅</strong> <a href="#setArray">setArray </a>() 和 <a href="#object">object </a>().</p>
+<h3><span id="since-5-10-void-qjsondocument-swap-qjsondocument-amp-other"><code>[since 5.10] </code>void QJsonDocument:: swap ( &amp; <em>other</em> )</span><a href="#since-5-10-void-qjsondocument-swap-qjsondocument-amp-other" class="header-anchor">#</a></h3><p>将文件<em>other</em> 与这个交换。这个操作非常快，而且从不失败。</p>
+<p>该函数在 Qt 5.10 引入。</p>
+<h3><span id="since-5-1-qbytearray-qjsondocument-tojson-qjsondocument-jsonformat-format-indented-const"><code>[since 5.1] </code>QJsonDocument:: toJson ( <em>format</em> = Indented) const</span><a href="#since-5-1-qbytearray-qjsondocument-tojson-qjsondocument-jsonformat-format-indented-const" class="header-anchor">#</a></h3><p>转换 <a href>QJsonDocument </a>成 UTF-8 编码 JSON 文档在提供 <em>format</em> .</p>
+<p>该函数在 Qt 5.1 引入。</p>
+<p><strong>另请参阅</strong> <a href="#fromJson">fromJson </a>() 和 <a href="#JsonFormat-enum">JsonFormat </a>.</p>
+<h3><span id="qvariant-qjsondocument-tovariant-const">QJsonDocument:: toVariant () const</span><a href="#qvariant-qjsondocument-tovariant-const" class="header-anchor">#</a></h3><p>返回 <a href="qvariant.html">QVariant </a>表示 Json 文档。</p>
+<p>如果文档是一个<a href="qjsonarray.html">QJsonArray </a>，返回的变量将是一个QVariantList；如果文档是一个<a href="qjsonobject.html">QJsonObject </a>，则是一个QVariantMap。</p>
+<p><strong>另请参阅</strong> <a href="#fromVariant">fromVariant </a>() 和 <a href="qjsonvalue.html#toVariant">QJsonValue::toVariant </a>().</p>
+<h3><span id="bool-qjsondocument-operator-const-qjsondocument-amp-other-const">bool QJsonDocument:: operator!= (const &amp; <em>other</em> ) const</span><a href="#bool-qjsondocument-operator-const-qjsondocument-amp-other-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>if <em>other</em> 不等于此文档</p>
+<h3><span id="bool-qjsondocument-operator-const-qjsondocument-amp-other-const">bool QJsonDocument:: operator== (const &amp; <em>other</em> ) const</span><a href="#bool-qjsondocument-operator-const-qjsondocument-amp-other-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若<em>其他</em>文件等于此文件。</p>
+<h3><span id="since-5-10-const-qjsonvalue-qjsondocument-operator-const-qstring-amp-key-const"><code>[since 5.10] </code>const QJsonDocument:: operator[] (const &amp; <em>key</em> ) const</span><a href="#since-5-10-const-qjsonvalue-qjsondocument-operator-const-qstring-amp-key-const" class="header-anchor">#</a></h3><p>返回 <a href="qjsonvalue.html">QJsonValue </a>表示值为键 <em>key</em> .</p>
+<p>相当于调用 <a href="#object">object </a>().value(key).</p>
+<p>返回的 <a href="qjsonvalue.html">QJsonValue</a>是<a href="qjsonvalue.html#Type-enum">QJsonValue::Undefined</a>，如果键不存在，或者<a href="#isObject">isObject</a>()为假。</p>
+<p>该函数在 Qt 5.10 引入。</p>
+<p><strong>另请参阅</strong> <a href="qjsonvalue.html">QJsonValue </a>, <a href="qjsonvalue.html#isUndefined">QJsonValue::isUndefined </a>()，和 <a href="qjsonobject.html">QJsonObject </a>.</p>
+<h3><span id="since-5-14-const-qjsonvalue-qjsondocument-operator-qstringview-key-const"><code>[since 5.14] </code>const QJsonDocument:: operator[] ( <em>key</em> ) const</span><a href="#since-5-14-const-qjsonvalue-qjsondocument-operator-qstringview-key-const" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>该函数在 Qt 5.14 引入。</p>
+<h3><span id="since-5-10-const-qjsonvalue-qjsondocument-operator-qlatin1string-key-const"><code>[since 5.10] </code>const QJsonDocument:: operator[] ( <em>key</em> ) const</span><a href="#since-5-10-const-qjsonvalue-qjsondocument-operator-qlatin1string-key-const" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>该函数在 Qt 5.10 引入。</p>
+<h3><span id="since-5-10-const-qjsonvalue-qjsondocument-operator-qsizetype-i-const"><code>[since 5.10] </code>const QJsonDocument:: operator[] ( qsizetype <em>i</em> ) const</span><a href="#since-5-10-const-qjsonvalue-qjsondocument-operator-qsizetype-i-const" class="header-anchor">#</a></h3><p>返回 <a href="qjsonvalue.html">QJsonValue</a>代表索引<em>i</em>的值。</p>
+<p>相当于调用 <a href="#array">array </a>().at(i).</p>
+<p>返回的 <a href="qjsonvalue.html">QJsonValue </a>is <a href="qjsonvalue.html#Type-enum">QJsonValue::Undefined </a>, 如果<em>i</em>出界，或者<a href="#isArray">isArray</a>()为假。</p>
+<p>该函数在 Qt 5.10 引入。</p>
+<p><strong>另请参阅</strong> <a href="qjsonvalue.html">QJsonValue </a>, <a href="qjsonvalue.html#isUndefined">QJsonValue::isUndefined </a>()，和 <a href="qjsonarray.html">QJsonArray </a>.</p>
+<p>版权所有  © 2014-2022 <a target="_blank" rel="noopener" href="http://dt.digitser.cn/en-US.html">乐数软件 </a>  </p>
+<p><a target="_blank" rel="noopener" href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action">工业和信息化部： </a><a target="_blank" rel="noopener" href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action">粤ICP备14079481号-1</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/J/">J</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/J/QJsonParseError/QJsonParseError/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QJsonParseError类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/J/QJsonObject/QJsonObject/">
+                        <span class="hidden-mobile">QJsonObject类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

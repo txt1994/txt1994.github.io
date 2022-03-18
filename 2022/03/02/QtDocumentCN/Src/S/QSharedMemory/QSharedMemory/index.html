@@ -1,0 +1,776 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QSharedMemory Class 公共类型 公共函数 详细描述 成员类型文档 enum QSharedMemory::AccessMode enum QSharedMemory::SharedMemoryError   成员函数文档 QSharedMemory::QSharedMemory(const QString &amp;key, QObject *parent &#x3D; null">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QSharedMemory类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/QSharedMemory/QSharedMemory/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QSharedMemory Class 公共类型 公共函数 详细描述 成员类型文档 enum QSharedMemory::AccessMode enum QSharedMemory::SharedMemoryError   成员函数文档 QSharedMemory::QSharedMemory(const QString &amp;key, QObject *parent &#x3D; null">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:53:09.036Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="S">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QSharedMemory类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QSharedMemory类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      58 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QSharedMemory类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qsharedmemory-class">QSharedMemory Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qsharedmemory-accessmode">enum QSharedMemory::AccessMode</a></li>
+<li><a href="#enum-qsharedmemory-sharedmemoryerror">enum QSharedMemory::SharedMemoryError</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qsharedmemory-qsharedmemory-const-qstring-qstring-html-key-qobject-qobject-html-qobject-parent-nullptr">QSharedMemory::QSharedMemory(const </a><a href="qstring.html">QString</a> &amp;<em>key</em>, <a href="qobject.html#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#qsharedmemory-qsharedmemory-qobject-qobject-html-qobject-parent-nullptr">QSharedMemory::QSharedMemory(</a><a href="qobject.html#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#virtual-qsharedmemory-qsharedmemory"><code>[virtual]</code>QSharedMemory::~QSharedMemory()</a></li>
+<li><a href="#bool-qsharedmemory-attach-qsharedmemory-accessmode-accessmode-enum-mode-readwrite">bool QSharedMemory::attach(</a><a href="#AccessMode-enum">QSharedMemory::AccessMode</a> <em>mode</em> = ReadWrite)</li>
+<li><a href="#const-void-qsharedmemory-constdata-const">const void *QSharedMemory::constData() const</a></li>
+<li><a href="#bool-qsharedmemory-create-qsizetype-size-qsharedmemory-accessmode-accessmod-enum-mode-readwrite">bool QSharedMemory::create(qsizetype <em>size</em>, </a><a href="#AccessMod-enum">QSharedMemory::AccessMode</a> <em>mode</em> = ReadWrite)</li>
+<li><a href="#void-qsharedmemory-data">void *QSharedMemory::data()</a></li>
+<li><a href="#const-void-qsharedmemory-data-const">const void *QSharedMemory::data() const</a></li>
+<li><a href="#bool-qsharedmemory-detach">bool QSharedMemory::detach()</a></li>
+<li><a href="#qsharedmemory-sharedmemoryerror-sharedmemoryerror-enum-qsharedmemory-error-const">QSharedMemory::SharedMemoryError</a></li>
+<li><a href="#qstring-qstring-html-qsharedmemory-errorstring-const">QString</a></li>
+<li><a href="#bool-qsharedmemory-isattached-const">bool QSharedMemory::isAttached() const</a></li>
+<li><a href="#qstring-qstring-html-qsharedmemory-key-const-1">QString</a></li>
+<li><a href="#bool-qsharedmemory-lock">bool QSharedMemory::lock()</a></li>
+<li><a href="#qstring-qstring-html-qsharedmemory-nativekey-const-2">QString</a></li>
+<li><a href="#void-qsharedmemory-setkey-const-qstring-qstring-html-key">void QSharedMemory::setKey(const </a><a href="qstring.html">QString</a> &amp;<em>key</em>)</li>
+<li><a href="#void-qsharedmemory-setnativekey-const-qstring-qstring-html-key">void QSharedMemory::setNativeKey(const </a><a href="qstring.html">QString</a> &amp;<em>key</em>)</li>
+<li><a href="#qsizetype-qsharedmemory-size-const">qsizetype QSharedMemory::size() const</a></li>
+<li><a href="#bool-qsharedmemory-unlock">bool QSharedMemory::unlock()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QSharedMemory Class
+
+<p>QSharedMemory类提供了对一个共享内存段的访问。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qsharedmemory></qsharedmemory></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a href="qobject.html">QObject</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qsharedmemory-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#AccessMode-enum">AccessMode</a></strong> { ReadOnly, ReadWrite }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a href="#SharedMemoryError-enum">SharedMemoryError</a></strong> { NoError, PermissionDenied, InvalidSize, KeyError, AlreadyExists, …, UnknownError }</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QSharedMemory">QSharedMemory</a></strong>(const QString &amp;<em>key</em>, QObject *<em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QSharedMemory-1">QSharedMemory</a></strong>(QObject *<em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QSharedMemory">~QSharedMemory</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#attach">attach</a></strong>(QSharedMemory::AccessMode <em>mode</em> = ReadWrite)</td>
+</tr>
+<tr>
+<td>const void *</td>
+<td><strong><a href="#constData">constData</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#create">create</a></strong>(qsizetype <em>size</em>, QSharedMemory::AccessMode <em>mode</em> = ReadWrite)</td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong><a href="#data">data</a></strong>()</td>
+</tr>
+<tr>
+<td>const void *</td>
+<td><strong><a href="#data-1">data</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#detach">detach</a></strong>()</td>
+</tr>
+<tr>
+<td>QSharedMemory::SharedMemoryError</td>
+<td><strong><a href="#error">error</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#errorString">errorString</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isAttached">isAttached</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#key">key</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#lock">lock</a></strong>()</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#nativeKey">nativeKey</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setKey">setKey</a></strong>(const QString &amp;<em>key</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setNativeKey">setNativeKey</a></strong>(const QString &amp;<em>key</em>)</td>
+</tr>
+<tr>
+<td>qsizetype</td>
+<td><strong><a href="#size">size</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#unlock">unlock</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QSharedMemory提供了多个线程和进程对一个共享内存段的访问。它还提供了一种方法，使单个线程或进程能够锁定内存，以便独占访问。</p>
+<p>在使用这个类时，要注意以下平台的差异。</p>
+<ul>
+<li><p>Windows。QSharedMemory并不 “拥有 “共享内存段。当所有拥有QSharedMemory实例的线程或进程连接到一个特定的共享内存段时，要么销毁其QSharedMemory实例，要么退出，Windows内核会自动释放共享内存段。</p>
+</li>
+<li><p>Unix。QSharedMemory “拥有 “该共享内存段。当最后一个拥有QSharedMemory实例的线程或进程连接到一个特定的共享内存段时，通过销毁其QSharedMemory实例从该内存段中分离，Unix内核会释放该共享内存段。但如果最后一个线程或进程在没有运行QSharedMemory析构器的情况下崩溃了，共享内存段就会在崩溃后存活下来。</p>
+</li>
+<li><p>HP-UX：每个进程只允许附加到一个共享内存段。这意味着在HP-UX中，QSharedMemory不应该在同一进程的多个线程中使用。</p>
+</li>
+<li><p>苹果平台。沙盒应用程序（包括通过苹果应用商店发货的应用程序）需要使用POSIX共享内存（而不是System V共享内存），这增加了一些限制，包括。</p>
+<ul>
+<li><p>密钥必须是<code>/</code>的形式，如<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AppSandboxInDepth/AppSandboxInDepth.html#//apple_ref/doc/uid/TP40011183-CH3-SW24">这里</a>和<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups">这里</a>所记载的。</p>
+</li>
+<li><p>密钥的长度被限制在30个字符。</p>
+</li>
+<li><p>在进程退出时，命名的共享内存条目没有被清理，所以重新启动应用程序并以相同的名称重新创建共享内存将会失败。为了解决这个问题，可以退回到附加到现有的共享内存条目。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QSharedMemory <span class="hljs-title">shm</span><span class="hljs-params">(<span class="hljs-string">"DEVTEAMID.app-group/shared"</span>)</span>。</span>
+<span class="hljs-function">    <span class="hljs-title">if</span> <span class="hljs-params">(!shm.create(<span class="hljs-number">42</span>) &amp;&amp; shm.error() == QSharedMemory::AlreadyExists)</span></span>
+<span class="hljs-function">        shm.<span class="hljs-title">attach</span><span class="hljs-params">()</span>。</span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<p>在读取或写入共享内存之前，记得用<a href="#lock">lock</a>()锁定共享内存，并在完成后记得用<a href="#unlock">unlock</a>()释放该锁。</p>
+<p>当QSharedMemory的最后一个实例从共享内存段中分离出来时，QSharedMemory会自动销毁该共享内存段，并且没有对该段的引用。</p>
+<p><strong>警告：</strong> QSharedMemory以Qt特有的方式改变键，除非另有规定。通过首先用QSharedMemory()创建一个默认的共享内存，然后用<a href="#setNativeKey">setNativeKey</a>()设置一个本地键来实现与非Qt应用程序的互操作。当使用本地密钥时，共享内存不会被保护，以防止对其进行多重访问（例如，无法<a href="#lock">lock</a>()），应使用用户定义的机制来实现这种保护。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qsharedmemory-accessmode">enum QSharedMemory::AccessMode</span><a href="#enum-qsharedmemory-accessmode" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QSharedMemory::ReadOnly</code></td>
+<td><code>0</code></td>
+<td>共享内存段是只读的。不允许对共享内存段进行写入。试图向以ReadOnly创建的共享内存段写入会导致程序中止。</td>
+</tr>
+<tr>
+<td><code>QSharedMemory::ReadWrite</code></td>
+<td><code>1</code></td>
+<td>读取和写入共享内存段都是允许的。</td>
+</tr>
+</tbody></table>
+<h3><span id="enum-qsharedmemory-sharedmemoryerror">enum QSharedMemory::SharedMemoryError</span><a href="#enum-qsharedmemory-sharedmemoryerror" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QSharedMemory::NoError</code></td>
+<td><code>0</code></td>
+<td>没有发生错误。</td>
+</tr>
+<tr>
+<td><code>QSharedMemory::PermissionDenied</code></td>
+<td><code>1</code></td>
+<td>操作失败，因为调用者没有必要的权限。</td>
+</tr>
+<tr>
+<td><code>QSharedMemory::InvalidSize</code></td>
+<td><code>2</code></td>
+<td>创建操作失败，因为请求的大小无效。</td>
+</tr>
+<tr>
+<td><code>QSharedMemory::KeyError</code></td>
+<td><code>3</code></td>
+<td>操作失败是因为一个无效的密钥。</td>
+</tr>
+<tr>
+<td><code>QSharedMemory::AlreadyExists</code></td>
+<td><code>4</code></td>
+<td><a href="#create">create</a>()操作失败，因为一个具有指定键的共享内存段已经存在。</td>
+</tr>
+<tr>
+<td><code>QSharedMemory::NotFound</code></td>
+<td><code>5</code></td>
+<td>一个<a href="#attach">attach</a>()失败了，因为找不到一个具有指定键的共享内存段。</td>
+</tr>
+<tr>
+<td><code>QSharedMemory::LockError</code></td>
+<td><code>6</code></td>
+<td>由于<a href="#create">create</a>()或<a href="#attach">attach</a>()失败并返回错误，或者由于<a href="qsystemsemaphore.html#acquire">QSystemSemaphore::acquisition</a>()中发生系统错误，因此<a href="#lock">lock</a>()共享内存段的尝试失败。</td>
+</tr>
+<tr>
+<td><code>QSharedMemory::OutOfResources</code></td>
+<td><code>7</code></td>
+<td>一个<a href="#create">create</a>()操作失败了，因为没有足够的内存来满足请求。</td>
+</tr>
+<tr>
+<td><code>QSharedMemory::UnknownError</code></td>
+<td><code>8</code></td>
+<td>还发生了一些事情，而且很糟糕。</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qsharedmemory-qsharedmemory-const-qstring-amp-key-qobject-parent-nullptr">QSharedMemory::QSharedMemory(const  &amp;<em>key</em>,  *<em>parent</em> = nullptr)</span><a href="#qsharedmemory-qsharedmemory-const-qstring-amp-key-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>用给定的<em>parent</em>构建一个共享内存对象，并将其键值设置为<em>key</em>。因为它的键被设置了，它的<a href="#create">create</a>()和<a href="#attach">attach</a>()函数可以被调用。</p>
+<p><strong>See also</strong> <a href="#setKey">setKey</a>(), <a href="#create">create</a>(), and <a href="#attach">attach</a>().</p>
+<h3><span id="qsharedmemory-qsharedmemory-qobject-parent-nullptr">QSharedMemory::QSharedMemory( *<em>parent</em> = nullptr)</span><a href="#qsharedmemory-qsharedmemory-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>这个函数重载了QSharedMemory()。</p>
+<p>用给定的<em>parent</em>构造一个共享内存对象。该共享内存对象的键没有被构造函数设置，所以该共享内存对象没有附加一个底层的共享内存段。在使用<a href="#create">create</a>()或<a href="#attach">attach</a>()之前，必须用<a href="#setKey">setKey</a>()来设置密钥。</p>
+<p><strong>See also</strong> <a href="#setKey">setKey</a>().</p>
+<h3><span id="virtual-qsharedmemory-qsharedmemory"><code>[virtual]</code>QSharedMemory::~QSharedMemory()</span><a href="#virtual-qsharedmemory-qsharedmemory" class="header-anchor">#</a></h3><p>解构器清除了键，这迫使共享内存对象从它的底层共享内存段<a href="#detach">detach</a>。如果这个共享内存对象是连接到共享内存段的最后一个对象，那么<a href="#detach">detach</a>()操作将销毁共享内存段。</p>
+<p><strong>See also</strong> <a href="#detach">detach</a>() and <a href="#isAttached">isAttached</a>().</p>
+<h3><span id="bool-qsharedmemory-attach-qsharedmemory-accessmode-mode-readwrite">bool QSharedMemory::attach( <em>mode</em> = ReadWrite)</span><a href="#bool-qsharedmemory-attach-qsharedmemory-accessmode-mode-readwrite" class="header-anchor">#</a></h3><p>试图将进程附加到由传递给构造函数或调用<a href="#setKey">setKey</a>()或<a href="#setNativeKey">setNativeKey</a>()的键标识的共享内存段。访问<em>mode</em>默认为<a href="#AccessMod-enum">ReadWrite</a>。它也可以是<a href="#AccessMode-enum">ReadOnly</a>。如果附加操作成功，返回 “true”。如果返回false，则调用<a href="#error">error</a>()来确定发生了哪种错误。附加共享内存段后，可以通过调用<a href="#data">data</a>()获得共享内存的指针。</p>
+<p><strong>参见</strong> <a href="#isAttached">isAttached</a>(), <a href="#detach">detach</a>(), 和 <a href="#create">create</a>()。</p>
+<h3><span id="const-void-qsharedmemory-constdata-const">const void *QSharedMemory::constData() const</span><a href="#const-void-qsharedmemory-constdata-const" class="header-anchor">#</a></h3><p>如果有共享内存段，返回一个指向共享内存段内容的常量指针。否则，它返回null。在从共享内存读取或写入共享内存之前，记得用<a href="#lock">lock</a>()锁定共享内存，并在完成后记得用<a href="#unlock">unlock</a>()释放锁。</p>
+<p><strong>参见</strong> <a href="#attach">attach</a>() 和 <a href="#create">create</a>()。</p>
+<h3><span id="bool-qsharedmemory-create-qsizetype-size-qsharedmemory-accessmode-mode-readwrite">bool QSharedMemory::create(qsizetype <em>size</em>,  <em>mode</em> = ReadWrite)</span><a href="#bool-qsharedmemory-create-qsizetype-size-qsharedmemory-accessmode-mode-readwrite" class="header-anchor">#</a></h3><p>创建一个<em>size</em>字节的共享内存段，密钥传递给构造函数，用<a href="#setKey">setKey</a>()设置或用<a href="#setNativeKey">setNativeKey</a>()设置，然后用给定的访问<em>mode</em>附加到新的共享内存段，并返回<code>true</code>。如果键识别的共享内存段已经存在，则不执行附加操作，返回<code>false</code>。当返回值为 “false “时，调用<a href="#error">error</a>()来确定发生了哪种错误。</p>
+<p><strong>也见</strong> <a href="#error">error</a>()。</p>
+<h3><span id="void-qsharedmemory-data">void *QSharedMemory::data()</span><a href="#void-qsharedmemory-data" class="header-anchor">#</a></h3><p>如果有共享内存段的话，返回一个指向共享内存段内容的指针。否则，它返回null。在从共享内存读取或写入共享内存之前，记得用<a href="#lock">lock</a>()锁定共享内存，并在完成后记得用<a href="#unlock">unlock</a>()释放锁。</p>
+<p><strong>参见</strong> <a href="#attach">attach</a>()。</p>
+<h3><span id="const-void-qsharedmemory-data-const">const void *QSharedMemory::data() const</span><a href="#const-void-qsharedmemory-data-const" class="header-anchor">#</a></h3><p>这个函数重载了data()。</p>
+<h3><span id="bool-qsharedmemory-detach">bool QSharedMemory::detach()</span><a href="#bool-qsharedmemory-detach" class="header-anchor">#</a></h3><p>将进程从共享内存段中分离出来。如果这是连接到共享内存段的最后一个进程，那么共享内存段被系统释放，也就是说，内容被销毁。如果该函数分离了共享内存段，则返回 “true”。如果它返回 “false”，这通常意味着该段没有被连接，或者被其他进程锁定。</p>
+<p><strong>参见</strong> <a href="#attach">attach</a>() 和 <a href="#isAttached">isAttached</a>() 。</p>
+<h3><span id="qsharedmemory-sharedmemoryerror-qsharedmemory-error-const"> QSharedMemory::error() const</span><a href="#qsharedmemory-sharedmemoryerror-qsharedmemory-error-const" class="header-anchor">#</a></h3><p>返回一个值，表明是否发生了错误，如果是的话，是哪个错误。</p>
+<p><strong>也见</strong> <a href="#errorString">errorString</a>()。</p>
+<h3><span id="qstring-qsharedmemory-errorstring-const"> QSharedMemory::errorString() const</span><a href="#qstring-qsharedmemory-errorstring-const" class="header-anchor">#</a></h3><p>返回最后发生的错误的文本描述。如果<a href="#error">error</a>()返回一个<a href="#SharedMemoryError-enum">error值</a>，调用这个函数来得到一个描述错误的文本字符串。</p>
+<p><strong>参见</strong> <a href="#error">error</a>()。</p>
+<h3><span id="bool-qsharedmemory-isattached-const">bool QSharedMemory::isAttached() const</span><a href="#bool-qsharedmemory-isattached-const" class="header-anchor">#</a></h3><p>如果该进程连接到共享内存段，则返回 “true”。</p>
+<p><strong>参见</strong> <a href="#attach">attach</a>() 和 <a href="#detach">detach</a>()。</p>
+<h3><span id="qstring-qsharedmemory-key-const"> QSharedMemory::key() const</span><a href="#qstring-qsharedmemory-key-const" class="header-anchor">#</a></h3><p>返回用<a href="#setKey">setKey</a>()分配给这个共享内存的键，如果没有分配键，或者段使用的是<a href="#nativeKey">nativeKey</a>()，则为空键。键是Qt应用程序用来识别共享内存段的标识符。</p>
+<p>你可以通过调用<a href="#nativeKey">nativeKey</a>()找到操作系统所使用的本地的、特定平台的键。</p>
+<p><strong>参见</strong> <a href="#setKey">setKey</a>() 和 <a href="#setNativeKey">setNativeKey</a>()。</p>
+<h3><span id="bool-qsharedmemory-lock">bool QSharedMemory::lock()</span><a href="#bool-qsharedmemory-lock" class="header-anchor">#</a></h3><p>这是一个信号，锁定共享内存段，供本进程访问，并返回 “true”。如果另一个进程锁定了该段，该函数就会阻塞，直到该锁被释放。然后它获得锁并返回<code>true</code>。如果该函数返回 “false”，意味着你忽略了<a href="#create">create</a>()或<a href="#attach">attach</a>()的错误返回，你用<a href="#setNativeKey">setNativeKey</a>()设置了密钥，或者由于未知的系统错误，<a href="qsystemsemaphore.html#acquire">QSystemSemaphore::acquire</a> ()失败。</p>
+<p><strong>See also</strong> <a href="#unlock">unlock</a>(), <a href="#data">data</a>(), and <a href="qsystemsemaphore.html#acquire">QSystemSemaphore::acquire</a>().</p>
+<h3><span id="qstring-qsharedmemory-nativekey-const"> QSharedMemory::nativeKey() const</span><a href="#qstring-qsharedmemory-nativekey-const" class="header-anchor">#</a></h3><p>返回这个共享内存对象的本地、平台特定的键。本机键是操作系统用来识别共享内存段的标识符。</p>
+<p>你可以使用本地键来访问未被Qt创建的共享内存段，或授予非Qt应用程序共享内存访问权。</p>
+<p><strong>参见</strong> <a href="#setKey">setKey</a>() 和 <a href="#setNativeKey">setNativeKey</a>()。</p>
+<h3><span id="void-qsharedmemory-setkey-const-qstring-amp-key">void QSharedMemory::setKey(const  &amp;<em>key</em>)</span><a href="#void-qsharedmemory-setkey-const-qstring-amp-key" class="header-anchor">#</a></h3><p>为这个共享内存对象设置独立于平台的<em>key</em>。如果<em>key</em>与当前的key相同，该函数不做任何事情就返回。</p>
+<p>你可以调用<a href="#key">key</a>()来找回独立于平台的键。在内部，<a href>QSharedMemory</a>会将这个键转换为一个平台特定的键。如果你调用<a href="#nativeKey">nativeKey</a>()，你将得到平台特定的、转换后的密钥。</p>
+<p>如果共享内存对象被附加到一个底层的共享内存段，在设置新的键之前，它将<a href="#detach">detach</a>与之分离。这个函数不做<a href="#attach">attach</a>()。</p>
+<p><strong>参见</strong> <a href="#key">key</a>(), <a href="#nativeKey">nativeKey</a>(), 以及 <a href="#isAttached">isAttached</a>()。</p>
+<h3><span id="void-qsharedmemory-setnativekey-const-qstring-amp-key">void QSharedMemory::setNativeKey(const  &amp;<em>key</em>)</span><a href="#void-qsharedmemory-setnativekey-const-qstring-amp-key" class="header-anchor">#</a></h3><p>为这个共享内存对象设置本地的、平台特定的<em>key</em>。如果<em>key</em>与当前的本地键相同，该函数将返回而不做任何事情。如果你只是想给一个段分配一个键，你应该调用<a href="#setKey">setKey</a>()来代替。</p>
+<p>你可以调用<a href="#nativeKey">nativeKey</a>()来检索本地键。如果已经分配了一个本地密钥，调用<a href="#key">key</a>()将返回一个空字符串。</p>
+<p>如果共享内存对象被附加到一个底层共享内存段，在设置新的键之前，它将<a href="#detach">detach</a>从它那里。这个函数不做<a href="#attach">attach</a>()。</p>
+<p>如果你设置了一个本地密钥，应用程序将不能被移植。</p>
+<p><strong>参见</strong> <a href="#nativeKey">nativeKey</a>(), <a href="#key">key</a>(), 以及 <a href="#isAttached">isAttached</a>()。</p>
+<h3><span id="qsizetype-qsharedmemory-size-const">qsizetype QSharedMemory::size() const</span><a href="#qsizetype-qsharedmemory-size-const" class="header-anchor">#</a></h3><p>返回附加的共享内存段的大小。如果没有附加共享内存段，则返回0。</p>
+<p><strong>注意：</strong>段的大小可能大于传递给<a href="#create">create</a>()的请求大小。</p>
+<p><strong>参见</strong> <a href="#create">create</a>() 和 <a href="#attach">attach</a>()。</p>
+<h3><span id="bool-qsharedmemory-unlock">bool QSharedMemory::unlock()</span><a href="#bool-qsharedmemory-unlock" class="header-anchor">#</a></h3><p>释放共享内存段上的锁，如果该锁目前由该进程持有，则返回<code>true</code>。如果该段没有被锁定，或者该锁被其他进程持有，则不会发生任何事情，返回false。</p>
+<p><strong>See also</strong> <a href="#lock">lock</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/S/">S</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSerialPortInfo/QSerialPortInfo/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QSerialPortInfo类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSql/QSql/">
+                        <span class="hidden-mobile">QSql类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

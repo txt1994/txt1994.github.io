@@ -1,0 +1,1916 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1 MySQL基础知识 1.1 MySQL版本及下载 1.2 下载安装包   2 MySQL服务器安装和启动 2.1 查询服务器上已经安装的mysql 2.2 卸载旧的版本 2.3 安装 2.3.1 安装服务器 2.3.2 安装客户端： 2.4 查看mysql服务器是否已经启动   2.5 登录Mysql 1.查看文件寻找密码 2.以root用户身份登陆MySQL 3.修改密码 4.查看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql数据库">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/05/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1 MySQL基础知识 1.1 MySQL版本及下载 1.2 下载安装包   2 MySQL服务器安装和启动 2.1 查询服务器上已经安装的mysql 2.2 卸载旧的版本 2.3 安装 2.3.1 安装服务器 2.3.2 安装客户端： 2.4 查看mysql服务器是否已经启动   2.5 登录Mysql 1.查看文件寻找密码 2.以root用户身份登陆MySQL 3.修改密码 4.查看">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/mysql_logo.jpg">
+<meta property="article:published_time" content="2022-01-05T04:57:29.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:04:35.566Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="DataBase">
+<meta property="article:tag" content="Mysql">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/mysql_logo.jpg">
+  
+  
+  <title>Mysql数据库 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Mysql数据库">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-05 12:57" pubdate>
+        2022年1月5日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      25k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      209 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Mysql数据库</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#1-mysql-ji-chu-zhi-shi">1 MySQL基础知识</a><ul>
+<li><a href="#1-1-mysql-ban-ben-ji-xia-zai">1.1 MySQL版本及下载</a></li>
+<li><a href="#1-2-xia-zai-an-zhuang-bao">1.2 下载安装包</a></li>
+</ul>
+</li>
+<li><a href="#2-mysql-fu-wu-qi-an-zhuang-he-qi-dong">2 MySQL服务器安装和启动</a><ul>
+<li><a href="#2-1-cha-xun-fu-wu-qi-shang-yi-jing-an-zhuang-de-mysql">2.1 查询服务器上已经安装的mysql</a></li>
+<li><a href="#2-2-xie-zai-jiu-de-ban-ben">2.2 卸载旧的版本</a></li>
+<li><a href="#2-3-an-zhuang">2.3 安装</a><ul>
+<li><a href="#2-3-1-an-zhuang-fu-wu-qi">2.3.1 安装服务器</a></li>
+<li><a href="#2-3-2-an-zhuang-ke-hu-duan">2.3.2 安装客户端：</a></li>
+<li><a href="#2-4-cha-kan-mysql-fu-wu-qi-shi-fou-yi-jing-qi-dong">2.4 查看mysql服务器是否已经启动</a></li>
+</ul>
+</li>
+<li><a href="#2-5-deng-lu-mysql">2.5 登录Mysql</a><ul>
+<li><a href="#1-cha-kan-wen-jian-xun-zhao-mi-ma">1.查看文件寻找密码</a></li>
+<li><a href="#2-yi-root-yong-hu-shen-fen-deng-lu-mysql">2.以root用户身份登陆MySQL</a></li>
+<li><a href="#3-xiu-gai-mi-ma">3.修改密码</a></li>
+<li><a href="#4-cha-kan-shu-ju-ku">4.查看数据库</a></li>
+<li><a href="#5-yuan-cheng-root-deng-lu-mysql">5.远程root登录mysql</a></li>
+<li><a href="#5-2-6-cha-kan-root-yong-hu-de-host">5.2.6查看 root 用户的 host</a></li>
+</ul>
+</li>
+<li><a href="#6-shu-ju-ku-de-curd">6. 数据库的CURD</a><ul>
+<li><a href="#6-1-cha-kan-shu-ju-ku">6.1查看数据库</a></li>
+<li><a href="#6-2-chuang-jian-shu-ju-ku">6.2创建数据库</a></li>
+<li><a href="#6-3-xiu-gai-shu-ju-ku">6.3修改数据库</a></li>
+<li><a href="#6-4-shan-chu-shu-ju-ku">6.4删除数据库</a></li>
+</ul>
+</li>
+<li><a href="#7-biao-de-curd">7. 表的CURD</a><ul>
+<li><a href="#7-1-cha-kan-biao">7.1 查看表</a></li>
+<li><a href="#7-2-chuang-jian-biao">7.2创建表</a></li>
+<li><a href="#7-3-xiu-gai-biao">7.3修改表</a></li>
+<li><a href="#7-4-shan-chu-biao">7.4 删除表</a></li>
+</ul>
+</li>
+<li><a href="#8-biao-shu-ju-de-curd">8. 表数据的CURD</a></li>
+<li><a href="#9-mysql-han-shu-de-shi-yong">9. mysql函数的使用</a><ul>
+<li><a href="#9-1-ri-qi-han-shu">9.1 日期函数</a></li>
+<li><a href="#9-2-zi-fu-chuan-han-shu">9.2 字符串函数</a></li>
+<li><a href="#9-3-shu-xue-han-shu">9.3 数学函数</a></li>
+<li><a href="#9-4-ri-qi-zhuan-huan">9.4 日期转换</a></li>
+</ul>
+</li>
+<li><a href="#10-duo-biao-cha-xun">10. 多表查询</a><ul>
+<li><a href="#10-1-nei-lian-jie-inner-join">10.1 内连接 – inner join</a></li>
+<li><a href="#10-2-wai-lian-jie-outer-join">10.2 外连接 – outer join</a></li>
+<li><a href="#10-3-zi-lian-jie">10.3 自连接</a></li>
+</ul>
+</li>
+<li><a href="#11-biao-de-yue-shu">11. 表的约束</a><ul>
+<li><a href="#11-1-yue-shu-chong-lei">11.1 约束种类</a></li>
+<li><a href="#11-2-yue-shu-de-shi-yong">11.2 约束的使用</a></li>
+</ul>
+</li>
+<li><a href="#12-shi-wu">12. 事务</a></li>
+<li><a href="#13-mysql-api">13. mysql API</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="1-mysql-ji-chu-zhi-shi">1  MySQL基础知识</span><a href="#1-mysql-ji-chu-zhi-shi" class="header-anchor">#</a></h1><p>瑞典MySQL AB公司开发，由SUN收购，而后SUN被甲骨文并购，目前属于Oracle公司。</p>
+<p>MySQL是一种关联数据库管理系统 由于其体积小、速度快、总体拥有成本低、MySQL软件采用了双授权政策，分为社区版和企业版。</p>
+<h2><span id="1-1-mysql-ban-ben-ji-xia-zai">1.1 MySQL版本及下载</span><a href="#1-1-mysql-ban-ben-ji-xia-zai" class="header-anchor">#</a></h2><p>MySQL数据库版本相对比较繁杂。常见的有：Community社区版、Enterprise企业版。</p>
+<p>MySQL Community Server 版是开源免费的，这也是我们通常用的MySQL的版本。可以满足绝大多数用户需求。</p>
+<p>MySQL Enterprise Edition 企业版收费的，官方指出提供30天免费试用期。可进一步划分为MySQL标准版、MySQL企业版、MySQL集群版。官方提供付费服务。</p>
+<p>其中Community Server 可以直接从mysql 的官网下载。但Enterprice Edition只能从Oracle edelivery上下载，而Edelivery有时会屏蔽中国IP。</p>
+<p>MySQL各版本区别参见：</p>
+<p><a target="_blank" rel="noopener" href="http://www.admin10000.com/Document/62.html">http://www.admin10000.com/Document/62.html</a></p>
+<p>下载mysql时注意区分版本细节及所应用的系统平台：<code>linux(32/64)</code> 、<code>win(32/64)</code></p>
+<p>举例：</p>
+<p><strong>win版本：</strong></p>
+<p>mysql-installer-community-8.0.26.0.msi版本</p>
+<p>​    GA 是指软件的通用版本，一般指正式发布的版本 (Generally Available (GA) Release)</p>
+<p>​    mysql-essential-5.1.60-win32.msi精简版，如果只需要mysql服务，就选择此版本。</p>
+<p>​    mysql-5.1.60-win32.msi          是完    是整版，包含安装程序和配置向导，有MySQL文档。</p>
+<p>mysql-noinstall-5.1.60-win32.zip 是非安装的zip压缩包，没有自动安装程序和配置向导，无安装向导</p>
+<p>​    mysql-5.1.60.zip 是用于windows的Mysql源码压缩包</p>
+<p><strong>linux版本</strong></p>
+<p>​    在<a target="_blank" rel="noopener" href="http://www.mysql.com/downloads/%E7%BD%91%E7%AB%99%E4%B8%8A%E4%B8%8B%E8%BD%BD%E4%B8%8D%E4%BA%86">http://www.mysql.com/downloads/网站上下载不了</a></p>
+<p>​    在 <a target="_blank" rel="noopener" href="http://www.oracle.com/downloads">www.oracle.com/downloads</a> 找mysql 注册用户, 选择操作系统平台和mysql版本 进行下载</p>
+<p>官方文档上有关MySQL安装，介绍了3种类型及其对应安装方式来安装MySQL数据库：</p>
+<p>　　Linux supports a number of different solutions for installing MySQL. The recommended method is to use one of the distributions from Oracle. If you choose this method, there are three options available:</p>
+<p>(1)  Installing from a generic binary package in .tar.gz format. See Section 2.2,“Installing MySQL from Generic Binaries on Unix/Linux”for more information.</p>
+<p>(2)  Extracting and compiling MySQL from a source distribution. For detailed instructions, see Section 2.9, “Installing MySQL from Source”.</p>
+<p>(3)  Installing using a pre-compiled RPM package. For more information on using the RPM solution, see Section 2.5.1,“Installing MySQL from RPM Packages on Linux”</p>
+<p>我们选用较简单的RPM 包来安装。</p>
+<h2><span id="1-2-xia-zai-an-zhuang-bao">1.2 下载安装包</span><a href="#1-2-xia-zai-an-zhuang-bao" class="header-anchor">#</a></h2><p><strong>Community Server</strong> 下载地址：<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">https://dev.mysql.com/downloads/mysql/</a></p>
+<p>MySQL Community Server.          mysql社区版，开源、免费</p>
+<p>MySQL Enterprise Edition.        mysql企业版，非免费</p>
+<p>MySQL Cluster.                   mysql集群版，开源、免费</p>
+<h1><span id="2-mysql-fu-wu-qi-an-zhuang-he-qi-dong">2   MySQL服务器安装和启动</span><a href="#2-mysql-fu-wu-qi-an-zhuang-he-qi-dong" class="header-anchor">#</a></h1><h2><span id="2-1-cha-xun-fu-wu-qi-shang-yi-jing-an-zhuang-de-mysql">2.1 查询服务器上已经安装的mysql</span><a href="#2-1-cha-xun-fu-wu-qi-shang-yi-jing-an-zhuang-de-mysql" class="header-anchor">#</a></h2><p>​    在终端提示符输入：<code>rpm -aq | grep mysql</code>    命令。查询结果如下显示：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">qt-mysql-4.6.2-25.el6.x86_64
+
+mysql-connector-odbc-5.1.5r1144-7.el6.x86_64
+
+mysql-bench-5.1.66-2.el6_3.x86_64
+
+mysql-devel-5.1.66-2.el6_3.x86_64
+
+libdbi-dbd-mysql-0.8.3-5.1.el6.x86_64
+
+mysql-test-5.1.66-2.el6_3.x86_64
+
+mysql-libs-5.1.66-2.el6_3.x86_64
+
+mysql-5.1.66-2.el6_3.x86_64
+
+mysql-connector-java-5.1.17-6.el6.noarch
+
+mysql-server-5.1.66-2.el6_3.x86_64</code></pre></div>
+
+
+<p>​    注：各机器有可能不相同，软件列表视实际情况。</p>
+<h2><span id="2-2-xie-zai-jiu-de-ban-ben">2.2 卸载旧的版本</span><a href="#2-2-xie-zai-jiu-de-ban-ben" class="header-anchor">#</a></h2><p>rpm -e 软件包名 –nodeps –allmatches (不理会依赖关系，删除所有上一步查出来的相同的mysql)</p>
+<div class="code-wrapper"><pre><code class="hljs shell">[root@localhost home]# rpm -e mysql-connector-odbc-3.51.26r1127-1.el5 --nodeps --allmatches
+    
+[root@localhost home]# rpm -e libdbi-dbd-mysql-0.8.1a-1.2.2 --nodeps --allmatches
+    
+[root@localhost home]# rpm -e mysql-server-5.0.77-3.el5 --nodeps --allmatches
+    
+[root@localhost home]# rpm -aq | grep mysql
+    
+[root@localhost home]#</code></pre></div>
+
+
+<p>​    <strong>将老版本的几个文件手动删除</strong></p>
+<div class="code-wrapper"><pre><code class="hljs shell">rm -f /etc/my.cnf
+    
+rm -rf /var/lib/mysql
+    
+rm -rf /var/share/mysql
+    
+rm -rf /usr/bin/mysql*</code></pre></div>
+
+<h2><span id="2-3-an-zhuang">2.3 安装</span><a href="#2-3-an-zhuang" class="header-anchor">#</a></h2><p>解压.zip安装包</p>
+<div class="code-wrapper"><pre><code class="hljs shell">unzip V46610-01-MySQL Database 5.6.20 RPM for Oracle Linux RHEL 6 x86 (64bit).zip</code></pre></div>
+
+
+<p><strong>得到如下软件包</strong>：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">MySQL-client-advanced-5.6.20-1.el6.x86_64.rpm
+  
+MySQL-devil-advanced-5.6.20-1.el6.x86_64.rpm
+    
+MySQL-server-advanced-5.6.20-1.el6.x86_64.rpm
+    
+MySQL-embedded-advanced-5.6.20-1.el6.x86_64.rpm
+  
+MySQL-shared-advanced-5.6.20-1.el6.x86_64.rpm
+    
+MySQL-shared-compal-advanced-5.6.20-1.el6.x86_64.rpm
+   
+MySQL-test-advanced-5.6.20-1.el6.x86_64.rpm
+    
+README.txt</code></pre></div>
+
+<h3><span id="2-3-1-an-zhuang-fu-wu-qi">2.3.1 安装服务器</span><a href="#2-3-1-an-zhuang-fu-wu-qi" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs shell">rpm -ivh MySQL-server-advanced-5.6.****-1.el6.x86_64.rpm
+    
+A RANDOM PASSWORD HAS BEEN SET FOR THE MySQL root USER !
+    
+You will find that password in '/root/.mysql_secret'.
+    
+You must change that password on your first connect,
+    
+no other statement but 'SET PASSWORD' will be accepted.
+    
+See the manual for the semantics of the 'password expired' flag.
+    
+Also, the account for the anonymous user has been removed.
+    
+In addition, you can run:
+    
+    /usr/bin/mysql_secure_installation
+    
+which will also give you the option of removing the test database.
+    
+This is strongly recommended for production servers.
+    
+See the manual for more instructions.
+    
+Please report any problems at http://bugs.mysql.com/
+    
+The latest information about MySQL is available on the web at
+    
+http://www.mysql.com
+    
+Support MySQL by buying support/licenses at http://shop.mysql.com
+    
+New default config file was created as /usr/my.cnf and
+    
+will be used by default by the server when you start it.
+    
+You may edit this file to change server settings</code></pre></div>
+
+<h3><span id="2-3-2-an-zhuang-ke-hu-duan">2.3.2 安装客户端：</span><a href="#2-3-2-an-zhuang-ke-hu-duan" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs shell">rpm -ivh MySQL-client-advanced-5.6.****-1.el6.x86_64.rpm</code></pre></div>
+<p><strong>说明</strong>:不安装mysql-client是不能使用mysql工具登陆到mysql数据库</p>
+<p>​    其他软件包选择性安装：<br><code>rpm -ivh MySQL-devel-advanced-5.6.20-1.el6.x86_64.rpm</code></p>
+<h3><span id="2-4-cha-kan-mysql-fu-wu-qi-shi-fou-yi-jing-qi-dong">2.4 查看mysql服务器是否已经启动</span><a href="#2-4-cha-kan-mysql-fu-wu-qi-shi-fou-yi-jing-qi-dong" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">查看状态</span>
+systemctl status mysqld 
+<span class="hljs-meta prompt_"># </span><span class="language-bash">启动mysql</span>
+systemctl start mysqld 
+<span class="hljs-meta prompt_"># </span><span class="language-bash">关闭mysql</span>
+systemctl stop mysqld 
+<span class="hljs-meta prompt_"># </span><span class="language-bash">重新启动mysql</span>
+systemctl restart mysqld 
+<span class="hljs-meta prompt_"># </span><span class="language-bash">开机启动mysql</span>
+systemctl enable mysqld 
+<span class="hljs-meta prompt_"># </span><span class="language-bash">关闭开机启动mysql</span>
+systemctl disable mysqld
+<span class="hljs-meta prompt_"># </span><span class="language-bash">另外一种操作方式</span>
+service mysqld status</code></pre></div>
+
+<h2><span id="2-5-deng-lu-mysql">2.5 登录Mysql</span><a href="#2-5-deng-lu-mysql" class="header-anchor">#</a></h2><p>oracle收购Mysql后, 新版的mysql刚安装完mysql后不能直接输入mysql登录数据库, 而是设置了默认free password密码, 默认密码放在了/root/.mysql_secret文件中, 登陆后需要修改密码。</p>
+<h3><span id="1-cha-kan-wen-jian-xun-zhao-mi-ma">1.查看文件寻找密码</span><a href="#1-cha-kan-wen-jian-xun-zhao-mi-ma" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs shell">cat /root/.mysql_secret</code></pre></div>
+
+<h3><span id="2-yi-root-yong-hu-shen-fen-deng-lu-mysql">2.以root用户身份登陆MySQL</span><a href="#2-yi-root-yong-hu-shen-fen-deng-lu-mysql" class="header-anchor">#</a></h3><p>服务启动和关闭：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">service mysql start
+
+service mysql stop</code></pre></div>
+<p><code>ps -u mysql</code> #可以查看mysql用户（安装MySQL时，系统自动创建该用户）的进程</p>
+<div class="code-wrapper"><pre><code class="hljs shell">PID TTY     TIME CMD
+
+7586 ?         00:00:50 mysqld     守护进程</code></pre></div>
+<p><strong>登陆服务器</strong>：</p>
+<p><code>mysql -uroot –p 密码</code></p>
+<p>输入从.mysql_secret中读到的密码登录。</p>
+<p>如果登录期间发生异常，无法登陆：</p>
+<p>使用root将mysql的后台进程kill -9 PID</p>
+<h3><span id="3-xiu-gai-mi-ma">3.修改密码</span><a href="#3-xiu-gai-mi-ma" class="header-anchor">#</a></h3><p><code>mysql&gt; set password=password('123456');    将密码设置为：123456</code></p>
+<p>密码修改成后，再次登录使用：</p>
+<p>$mysql -uroot -p123456   即可。</p>
+<h3><span id="4-cha-kan-shu-ju-ku">4.查看数据库</span><a href="#4-cha-kan-shu-ju-ku" class="header-anchor">#</a></h3><p><code>mysql&gt; show databases;</code><br><img src="https://gitee.com/txt1994/images/raw/master/img/2021/08/clip_image002.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3><span id="5-yuan-cheng-root-deng-lu-mysql">5.远程root登录mysql</span><a href="#5-yuan-cheng-root-deng-lu-mysql" class="header-anchor">#</a></h3><h4><span id="5-1mysql8-0-chuang-jian-yong-hu-he-shou-quan">5.1Mysql8.0创建用户和授权</span><a href="#5-1mysql8-0-chuang-jian-yong-hu-he-shou-quan" class="header-anchor">#</a></h4><p>mysql8.0需要先创建用户和设置密码,然后才能授权.</p>
+<div class="code-wrapper"><pre><code class="hljs sql">#先创建一个用户
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">user</span> <span class="hljs-string">'tone'</span>@<span class="hljs-string">'%'</span> identified <span class="hljs-keyword">by</span> <span class="hljs-string">'123123'</span>;
+ 
+#再进行授权
+<span class="hljs-keyword">grant</span> <span class="hljs-keyword">all</span> privileges <span class="hljs-keyword">on</span> <span class="hljs-operator">*</span>.<span class="hljs-operator">*</span> <span class="hljs-keyword">to</span> <span class="hljs-string">'tone'</span>@<span class="hljs-string">'%'</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">grant</span> option;</code></pre></div>
+
+
+<h4><span id="5-2mysql8-0-de-yuan-cheng-lian-jie">5.2MySQL8.0 的远程链接</span><a href="#5-2mysql8-0-de-yuan-cheng-lian-jie" class="header-anchor">#</a></h4><p>MySQL 安装完成后只支持 localhost 访问，我们必须设置一下才可以远程访问，另外还有一些 MySQL 8.0 连接时的一些问题.</p>
+<h5><span id="5-2-1-deng-lu-mysql">5.2.1登录MySQL</span><a href="#5-2-1-deng-lu-mysql" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs shell">mysql -u root -p
+<span class="hljs-meta prompt_">#</span><span class="language-bash">然后输入您的密码</span></code></pre></div>
+
+<h5><span id="5-2-2-xuan-ze-mysql-shu-ju-ku">5.2.2选择 mysql 数据库</span><a href="#5-2-2-xuan-ze-mysql-shu-ju-ku" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs sql">use mysql;
+<span class="hljs-comment">--因为 mysql 数据库中存储了用户信息的 user 表。   </span></code></pre></div>
+
+
+<h5><span id="5-2-3-zai-mysql-shu-ju-ku-de-user-biao-zhong-cha-kan-dang-qian-root-yong-hu-de-xiang-guan-xin-xi">5.2.3在 mysql 数据库的 user 表中查看当前 root 用户的相关信息</span><a href="#5-2-3-zai-mysql-shu-ju-ku-de-user-biao-zhong-cha-kan-dang-qian-root-yong-hu-de-xiang-guan-xin-xi" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> host, <span class="hljs-keyword">user</span>, authentication_string, plugin <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span>; 
+<span class="hljs-comment">--执行完上面的命令后会显示一个表格</span>
+<span class="hljs-comment">--查看表格中 root 用户的 host，默认应该显示的 localhost，只支持本地访问，不允许远程访问。</span></code></pre></div>
+
+<h5><span id="5-2-4-shou-quan-root-yong-hu-de-suo-you-quan-xian-bing-she-zhi-yuan-cheng-fang-wen">5.2.4授权 root 用户的所有权限并设置远程访问</span><a href="#5-2-4-shou-quan-root-yong-hu-de-suo-you-quan-xian-bing-she-zhi-yuan-cheng-fang-wen" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">ALL</span> <span class="hljs-keyword">ON</span> <span class="hljs-operator">*</span>.<span class="hljs-operator">*</span> <span class="hljs-keyword">TO</span> <span class="hljs-string">'root'</span>@<span class="hljs-string">'%'</span>;
+<span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">ALL</span> <span class="hljs-keyword">ON</span> 表示所有权限，<span class="hljs-operator">%</span> 表示通配所有 host，可以访问远程。
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">'root'</span>@<span class="hljs-string">'%'</span> IDENTIFIED <span class="hljs-keyword">WITH</span> mysql_native_password <span class="hljs-keyword">BY</span> <span class="hljs-string">'你自己的密码'</span>;</code></pre></div>
+
+
+<h5><span id="5-2-5-shua-xin-quan-xian">5.2.5刷新权限</span><a href="#5-2-5-shua-xin-quan-xian" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">--所有操作后，应执行    </span>
+flush privileges;</code></pre></div>
+
+<h3><span id="5-2-6-cha-kan-root-yong-hu-de-host">5.2.6查看 root 用户的 host</span><a href="#5-2-6-cha-kan-root-yong-hu-de-host" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs">use mysql;
+select host, user, authentication_string, plugin from user;
+--会发现 root 用户的 host 已经变成 %，说明我们的修改已经成功，可以远程访问了。
+</code></pre></div>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/2021/08/mysql8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5.bmp" srcset="/img/loading.gif" lazyload></p>
+<h4><span id="5-3-fang-wen-shu-ju-ku">5.3访问数据库</span><a href="#5-3-fang-wen-shu-ju-ku" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">--输入访问的 host 和密码，报 2059 错误，这是因为 MySql8.0 版本 和 5.7 的加密规则不一样，而现在的可视化工具只支持旧的加密方式。</span>
+
+<span class="hljs-comment">--出现这个原因是mysql8 之前的版本中加密规则是mysql_native_password,而在mysql8之后,加密规则是caching_sha2_password.</span>
+<span class="hljs-comment">--解决问题方法有两种,一种是升级navicat驱动,一种是把mysql用户登录密码加密规则还原成mysql_native_password.</span>
+
+<span class="hljs-comment">--这里采用第二种方式 ：</span>
+    
+    <span class="hljs-comment">--修改加密规则:</span>
+    <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">'root'</span>@<span class="hljs-string">'%'</span> IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-string">'password'</span> PASSWORD EXPIRE NEVER; 
+    password 为你当前密码。
+
+    <span class="hljs-comment">--更新 root 用户密码:</span>
+    <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">'root'</span>@<span class="hljs-string">'%'</span> IDENTIFIED <span class="hljs-keyword">WITH</span> mysql_native_password <span class="hljs-keyword">BY</span> <span class="hljs-string">'password'</span>; 
+    password 为你新设置的密码。
+
+    <span class="hljs-comment">--刷新权限:</span>
+    FLUSH PRIVILEGES; 
+    <span class="hljs-comment">--OK，设置完成，再次使用 Navicat 连接数据库</span></code></pre></div>
+
+
+<h2><span id="6-shu-ju-ku-de-curd">6.  数据库的CURD</span><a href="#6-shu-ju-ku-de-curd" class="header-anchor">#</a></h2><blockquote>
+<p>  对数据库进行增(Create)、改(Update) 、查(Retrieve) 、删(Delete)操作。</p>
+</blockquote>
+<h3><span id="6-1-cha-kan-shu-ju-ku">6.1查看数据库</span><a href="#6-1-cha-kan-shu-ju-ku" class="header-anchor">#</a></h3><ul>
+<li><p>显示所有数据库</p>
+<div class="code-wrapper"><pre><code class="hljs sql">
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> databases;
+<span class="hljs-operator">+</span><span class="hljs-comment">--------------------+</span>
+<span class="hljs-operator">|</span> Database           <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">--------------------+</span>
+<span class="hljs-operator">|</span> information_schema <span class="hljs-operator">|</span>
+<span class="hljs-operator">|</span> itcast             <span class="hljs-operator">|</span>
+<span class="hljs-operator">|</span> itcast1            <span class="hljs-operator">|</span>
+<span class="hljs-operator">|</span> itcast2            <span class="hljs-operator">|</span>
+<span class="hljs-operator">|</span> mysql              <span class="hljs-operator">|</span>
+<span class="hljs-operator">|</span> performance_schema <span class="hljs-operator">|</span>
+<span class="hljs-operator">|</span> sys                <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">--------------------+</span>
+<span class="hljs-number">7</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)</code></pre></div>
+</li>
+<li><p>显示创建数据库的语句信息</p>
+<div class="code-wrapper"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> <span class="hljs-keyword">create</span> database itcast;
+<span class="hljs-operator">+</span><span class="hljs-comment">----------+-----------------------------------------------------------------+</span>
+<span class="hljs-operator">|</span> Database <span class="hljs-operator">|</span> <span class="hljs-keyword">Create</span> Database                                              <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">----------+-----------------------------------------------------------------+</span>
+<span class="hljs-operator">|</span> itcast   <span class="hljs-operator">|</span> <span class="hljs-keyword">CREATE</span> DATABASE `itcast` <span class="hljs-comment">/*!40100 DEFAULT CHARACTER SET utf8 */</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">----------+-----------------------------------------------------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+  
+<span class="hljs-comment">/* `itcast` 两端是反单引号, esc下的键, 使用``包含数据库的名字是区分大小写的 */</span></code></pre></div>
+</li>
+<li><p>使用数据库</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">/* 我们以root用户登录, 用户下有很多数据库, 需要指定, 当前使用哪一个数据库, 操作的就是那个数据库中的数据 */</span>
+mysql<span class="hljs-operator">&gt;</span> use itcast1;
+Database changed
+mysql<span class="hljs-operator">&gt;</span> use itcast2;
+Database changed</code></pre></div></li>
+</ul>
+<h3><span id="6-2-chuang-jian-shu-ju-ku">6.2创建数据库</span><a href="#6-2-chuang-jian-shu-ju-ku" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs">-- IF NOT EXISTS 表示只有数据库不存在的时候才创建，如果存在同名就不再执行该语句
+-- create_specification是建库的一些选项
+-- 关键字不区分大小写
+CREATE {DATABASE} [IF NOT EXISTS] db_name
+  [create_specification [, create_specification] ...]
+</code></pre></div>
+<ul>
+<li><p>创建一名为itcast的数据库</p>
+<div class="code-wrapper"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">create</span> database itheima;                          <span class="hljs-comment">/* utf8 */</span></code></pre></div>
+</li>
+<li><p>创建一个使用 latin1 字符集的数据库</p>
+<div class="code-wrapper"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">create</span> database itheima <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> latin1;</code></pre></div></li>
+</ul>
+<h3><span id="6-3-xiu-gai-shu-ju-ku">6.3修改数据库</span><a href="#6-3-xiu-gai-shu-ju-ku" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 修改字符集, 不能改名</span>
+<span class="hljs-keyword">alter</span> database itcast <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8;</code></pre></div>
+
+<h3><span id="6-4-shan-chu-shu-ju-ku">6.4删除数据库</span><a href="#6-4-shan-chu-shu-ju-ku" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">drop</span> database itcast;</code></pre></div>
+
+<h2><span id="7-biao-de-curd">7. 表的CURD</span><a href="#7-biao-de-curd" class="header-anchor">#</a></h2><blockquote>
+<p>  对表本身进行操作：创建，查看，修改，删除</p>
+</blockquote>
+<h3><span id="7-1-cha-kan-biao">7.1 查看表</span><a href="#7-1-cha-kan-biao" class="header-anchor">#</a></h3><ul>
+<li><p>查看当前数据库下的数据库表</p>
+<p>  – 当前使用的数据库下的表<br>  mysql&gt; show tables;</p>
+</li>
+<li><p>查看指定表的创建语句</p>
+<p>  mysql&gt; show create table 表名;</p>
+</li>
+<li><p>查看表结构</p>
+<p>  mysql&gt; desc 表名;</p>
+</li>
+</ul>
+<h3><span id="7-2-chuang-jian-biao">7.2创建表</span><a href="#7-2-chuang-jian-biao" class="header-anchor">#</a></h3><blockquote>
+<p>  mysql中表名区分大小写, 列名不区分大小写</p>
+</blockquote>
+<ul>
+<li>数据类型</li>
+</ul>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/2021/07/20180606134721859.png" srcset="/img/loading.gif" lazyload><br><img src="https://gitee.com/txt1994/images/raw/master/img/2021/07/20180606134730934.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>float/double: 指定精确到小数点以后第几位, 比如: 精确到后3位</li>
+<li>通过计算得到一个数据: 12.345678</li>
+<li>这个数的678会被抹掉</li>
+<li>decimal</li>
+<li>完整的保存精度, 最少有小数后有两位</li>
+<li>12.3 保存为: 12.30</li>
+</ul>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/2021/07/20180606133023230.png" srcset="/img/loading.gif" lazyload><br><img src="https://gitee.com/txt1994/images/raw/master/img/2021/07/20180606133307614.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>创建表  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> 表名(
+  列名 text [<span class="hljs-keyword">default</span> <span class="hljs-string">'xxx'</span>],
+  列名 类型 [<span class="hljs-keyword">default</span> <span class="hljs-keyword">value</span>],
+  类名 类型 [<span class="hljs-keyword">default</span> <span class="hljs-keyword">value</span>],
+  ......
+);</code></pre></div></li>
+</ul>
+<h3><span id="7-3-xiu-gai-biao">7.3修改表</span><a href="#7-3-xiu-gai-biao" class="header-anchor">#</a></h3><ul>
+<li><p>修改表名</p>
+  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- oracle和mysql相同</span>
+rename <span class="hljs-keyword">table</span> oldN <span class="hljs-keyword">to</span> newN;</code></pre></div>
+</li>
+<li><p>添加一个字段</p>
+  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- oracle</span>
+<span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 <span class="hljs-keyword">add</span> 列名 列的类型;
+
+<span class="hljs-comment">-- mysql</span>
+<span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 <span class="hljs-keyword">add</span> <span class="hljs-keyword">column</span> 列名 列的类型;</code></pre></div>
+</li>
+<li><p>修改一个字段</p>
+  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- oracle</span>
+<span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 modify 列名 列的类型;
+
+<span class="hljs-comment">-- mysql</span>
+<span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 modify <span class="hljs-keyword">column</span> 列名 列的类型;</code></pre></div>
+</li>
+<li><p>删除一个字段</p>
+  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- mysql和oracle相同</span>
+<span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 <span class="hljs-keyword">drop</span> <span class="hljs-keyword">column</span> 列;
+
+
+<span class="hljs-comment">-- mysql中没有对对字段的rename操作</span></code></pre></div>
+</li>
+<li><p>修改表的字符集</p>
+  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8;</code></pre></div></li>
+</ul>
+<h3><span id="7-4-shan-chu-biao">7.4 删除表</span><a href="#7-4-shan-chu-biao" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> 表名;
+<span class="hljs-comment">-- oracle中可以这么做, mysql中不行</span>
+<span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> 表名 purge</code></pre></div>
+
+
+<h2><span id="8-biao-shu-ju-de-curd">8. 表数据的CURD</span><a href="#8-biao-shu-ju-de-curd" class="header-anchor">#</a></h2><ul>
+<li><p>插入数据</p>
+<ul>
+<li>表名后的列名什么时候可以省略? </li>
+<li>在values(列的值, 列的值, ….)中将表有的字段值都指定出来的时候, 列名可以省略  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> 表名[(列名, 列名, ...)] <span class="hljs-keyword">values</span>(列的值, 列的值, ....);</code></pre></div></li>
+</ul>
+</li>
+<li><p>更新数据</p>
+  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">update</span> 表名 <span class="hljs-keyword">set</span> 列名<span class="hljs-operator">=</span>新值 <span class="hljs-keyword">where</span> 列名<span class="hljs-operator">=</span>值;</code></pre></div>
+</li>
+<li><p>删除数据</p>
+  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> 表名; <span class="hljs-comment">-- 删除所有行</span>
+<span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> 表名 <span class="hljs-keyword">where</span> 列名<span class="hljs-operator">=</span>值; <span class="hljs-comment">-- 删除满足条件的行</span></code></pre></div>
+</li>
+<li><p>查询数据</p>
+  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span><span class="hljs-operator">|</span>列名<span class="hljs-operator">|</span>表达式 <span class="hljs-keyword">from</span> 表名 <span class="hljs-keyword">where</span> 条件 <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> 列名 <span class="hljs-keyword">having</span> 条件 <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">asc</span><span class="hljs-operator">|</span><span class="hljs-keyword">desc</span>;</code></pre></div>
+</li>
+<li><p>练习</p>
+<ul>
+<li>创建数据库 student 表<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> student(
+  id <span class="hljs-type">int</span>,
+  name <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>),
+  chinese <span class="hljs-type">int</span>,
+  english <span class="hljs-type">int</span>,
+  math <span class="hljs-type">int</span>
+);</code></pre></div></li>
+<li>插入数据<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student(id,name,chinese,english,math) <span class="hljs-keyword">values</span>(<span class="hljs-number">1</span>, <span class="hljs-string">'范建'</span>,<span class="hljs-number">80</span>,<span class="hljs-number">85</span>,<span class="hljs-number">90</span>);
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student(id,name,chinese,english,math) <span class="hljs-keyword">values</span>(<span class="hljs-number">2</span>,<span class="hljs-string">'罗况'</span>,<span class="hljs-number">90</span>,<span class="hljs-number">95</span>,<span class="hljs-number">95</span>);
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student(id,name,chinese,english,math) <span class="hljs-keyword">values</span>(<span class="hljs-number">3</span>,<span class="hljs-string">'杜子腾'</span>,<span class="hljs-number">80</span>,<span class="hljs-number">96</span>,<span class="hljs-number">96</span>);
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student(id,name,chinese,english,math) <span class="hljs-keyword">values</span>(<span class="hljs-number">4</span>,<span class="hljs-string">'范冰'</span>,<span class="hljs-number">81</span>,<span class="hljs-number">97</span>,<span class="hljs-number">85</span>);
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student(id,name,chinese,english,math) <span class="hljs-keyword">values</span>(<span class="hljs-number">5</span>,<span class="hljs-string">'申晶冰'</span>,<span class="hljs-number">85</span>,<span class="hljs-number">84</span>,<span class="hljs-number">90</span>);
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student(id,name,chinese,english,math) <span class="hljs-keyword">values</span>(<span class="hljs-number">6</span>,<span class="hljs-string">'郝丽海'</span>,<span class="hljs-number">92</span>,<span class="hljs-number">85</span>,<span class="hljs-number">87</span>);
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student(id,name,chinese,english,math) <span class="hljs-keyword">values</span>(<span class="hljs-number">7</span>,<span class="hljs-string">'郭迪辉'</span>,<span class="hljs-number">75</span>,<span class="hljs-number">81</span>,<span class="hljs-number">80</span>);
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student(id,name,chinese,english,math) <span class="hljs-keyword">values</span>(<span class="hljs-number">8</span>,<span class="hljs-string">'拎壶冲'</span>,<span class="hljs-number">77</span>,<span class="hljs-number">80</span>,<span class="hljs-number">79</span>);
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student(id,name,chinese,english,math) <span class="hljs-keyword">values</span>(<span class="hljs-number">9</span>,<span class="hljs-string">'任我行'</span>,<span class="hljs-number">95</span>,<span class="hljs-number">85</span>,<span class="hljs-number">85</span>);
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student(id,name,chinese,english,math) <span class="hljs-keyword">values</span>(<span class="hljs-number">10</span>,<span class="hljs-string">'史泰香'</span>,<span class="hljs-number">94</span>,<span class="hljs-number">85</span>,<span class="hljs-number">84</span>);</code></pre></div></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><p>查询表中所有学生的信息。</p>
+</li>
+<li><p>查询表中所有学生的姓名和对应的英语成绩。</p>
+</li>
+<li><p>将第二步查询结果中的重复成绩过滤掉。</p>
+</li>
+<li><p>在所有学生英语分数上加10分特长分。</p>
+</li>
+<li><p>统计每个学生的总分。</p>
+</li>
+<li><p>使用别名表示学生分数</p>
+</li>
+<li><p>查询姓名为何东的学生成绩</p>
+</li>
+<li><p>查询英语成绩大于90分的同学</p>
+</li>
+<li><p>查询总分大于250分的所有同学</p>
+</li>
+<li><p>查询英语分数在 85－95之间的同学。</p>
+</li>
+<li><p>查询数学分数为84,90,91的同学。</p>
+</li>
+<li><p>查询所有姓何的学生成绩。</p>
+</li>
+<li><p>查询数学分&gt;85，语文分&gt;90的同学。</p>
+</li>
+<li><p>对数学成绩排序后输出。</p>
+</li>
+<li><p>对总分排序后输出，然后再按从高到低的顺序输出</p>
+</li>
+<li><p>对姓何的学生成绩排序输出</p>
+</li>
+<li><p>统计一个班级共有多少学生？</p>
+</li>
+<li><p>统计数学成绩大于90的学生有多少个？</p>
+</li>
+<li><p>统计总分大于250的人数有多少？</p>
+</li>
+<li><p>统计一个班级数学总成绩？</p>
+</li>
+<li><p>统计一个班级语文、英语、数学各科的总成绩</p>
+</li>
+<li><p>统计一个班级语文、英语、数学的成绩总和</p>
+</li>
+<li><p>求一个班级数学平均分？</p>
+</li>
+<li><p>求一个班级总分平均分</p>
+</li>
+<li><p>求班级最高分和最低分</p>
+</li>
+</ul>
+</blockquote>
+<h2><span id="9-mysql-han-shu-de-shi-yong">9. mysql函数的使用</span><a href="#9-mysql-han-shu-de-shi-yong" class="header-anchor">#</a></h2><h3><span id="9-1-ri-qi-han-shu">9.1 日期函数</span><a href="#9-1-ri-qi-han-shu" class="header-anchor">#</a></h3><blockquote>
+<p>MySQL里面时间分为三类：时间、日期、时间戳(含有时分秒的sysdate)。</p>
+</blockquote>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/2021/07/image-20191130180806388.png" srcset="/img/loading.gif" lazyload></p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 当前时间: now() == sysdate()</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> sysdate() <span class="hljs-keyword">from</span> dual;
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+<span class="hljs-operator">|</span> sysdate()           <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">2019</span><span class="hljs-number">-12</span><span class="hljs-number">-02</span> <span class="hljs-number">09</span>:<span class="hljs-number">03</span>:<span class="hljs-number">42</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> now() <span class="hljs-keyword">from</span> dual;
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+<span class="hljs-operator">|</span> now()               <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">2019</span><span class="hljs-number">-12</span><span class="hljs-number">-02</span> <span class="hljs-number">09</span>:<span class="hljs-number">04</span>:<span class="hljs-number">35</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+<span class="hljs-comment">-- addtime(time, s) 给当前实际, 添加对应的秒数</span>
+<span class="hljs-keyword">select</span> addtime(<span class="hljs-string">'09:04:35'</span>,<span class="hljs-number">20</span>) <span class="hljs-keyword">from</span> dual; 
+<span class="hljs-operator">+</span><span class="hljs-comment">------------------------+</span>
+<span class="hljs-operator">|</span> addtime(<span class="hljs-string">'09:04:35'</span>,<span class="hljs-number">20</span>) <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">------------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">09</span>:<span class="hljs-number">04</span>:<span class="hljs-number">55</span>               <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">------------------------+</span>
+
+<span class="hljs-comment">-- 当前日期: 年, 月, 日</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-built_in">current_date</span>() <span class="hljs-keyword">from</span> dual;
+<span class="hljs-operator">+</span><span class="hljs-comment">----------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-built_in">current_date</span>() <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">----------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">2019</span><span class="hljs-number">-12</span><span class="hljs-number">-02</span>     <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">----------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+
+<span class="hljs-comment">-- 当前时间: 时, 分, 秒</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-built_in">current_time</span>() <span class="hljs-keyword">from</span> dual;    
+<span class="hljs-operator">+</span><span class="hljs-comment">----------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-built_in">current_time</span>() <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">----------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">09</span>:<span class="hljs-number">08</span>:<span class="hljs-number">10</span>       <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">----------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+
+<span class="hljs-comment">-- 时间戳</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-built_in">current_timestamp</span>() <span class="hljs-keyword">from</span> dual;    
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-built_in">current_timestamp</span>() <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">2019</span><span class="hljs-number">-12</span><span class="hljs-number">-02</span> <span class="hljs-number">09</span>:<span class="hljs-number">09</span>:<span class="hljs-number">47</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+
+<span class="hljs-comment">-- 将给定时间的日期取出</span>
+<span class="hljs-keyword">select</span> <span class="hljs-type">date</span>(now()) <span class="hljs-keyword">from</span> dual;                 
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-type">date</span>(now()) <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">2019</span><span class="hljs-number">-12</span><span class="hljs-number">-02</span>  <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+
+<span class="hljs-comment">-- date_add(), 第二个参数的type: 天: day, 月:month, 年: year</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> date_add(now(), <span class="hljs-type">interval</span> <span class="hljs-number">1</span> <span class="hljs-keyword">day</span>) <span class="hljs-keyword">from</span> dual;               
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------------------+</span>
+<span class="hljs-operator">|</span> date_add(now(), <span class="hljs-type">interval</span> <span class="hljs-number">1</span> <span class="hljs-keyword">day</span>) <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">2019</span><span class="hljs-number">-12</span><span class="hljs-number">-03</span> <span class="hljs-number">09</span>:<span class="hljs-number">14</span>:<span class="hljs-number">57</span>             <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> date_add(now(), <span class="hljs-type">interval</span> <span class="hljs-number">1</span> <span class="hljs-keyword">month</span>) <span class="hljs-keyword">from</span> dual;   
+<span class="hljs-operator">+</span><span class="hljs-comment">-----------------------------------+</span>
+<span class="hljs-operator">|</span> date_add(now(), <span class="hljs-type">interval</span> <span class="hljs-number">1</span> <span class="hljs-keyword">month</span>) <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-----------------------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">2020</span><span class="hljs-number">-01</span><span class="hljs-number">-02</span> <span class="hljs-number">09</span>:<span class="hljs-number">15</span>:<span class="hljs-number">27</span>               <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-----------------------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> date_add(now(), <span class="hljs-type">interval</span> <span class="hljs-number">1</span> <span class="hljs-keyword">year</span>) <span class="hljs-keyword">from</span> dual;     
+<span class="hljs-operator">+</span><span class="hljs-comment">----------------------------------+</span>
+<span class="hljs-operator">|</span> date_add(now(), <span class="hljs-type">interval</span> <span class="hljs-number">1</span> <span class="hljs-keyword">year</span>) <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">----------------------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">2020</span><span class="hljs-number">-12</span><span class="hljs-number">-02</span> <span class="hljs-number">09</span>:<span class="hljs-number">15</span>:<span class="hljs-number">37</span>              <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">----------------------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+
+<span class="hljs-comment">-- 计算两个日期的差值</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> datediff(<span class="hljs-string">'2019-12-01 09:18:06'</span>, <span class="hljs-string">'2019-1-02 09:18:06'</span>); 
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------------------------------------------+</span>
+<span class="hljs-operator">|</span> datediff(<span class="hljs-string">'2019-12-01 09:18:06'</span>, <span class="hljs-string">'2019-1-02 09:18:06'</span>) <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------------------------------------------+</span>
+<span class="hljs-operator">|</span>                                                   <span class="hljs-number">333</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------------------------------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> datediff(<span class="hljs-string">'2018-12-01 09:18:06'</span>, <span class="hljs-string">'2019-1-02 09:18:06'</span>); 
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------------------------------------------+</span>
+<span class="hljs-operator">|</span> datediff(<span class="hljs-string">'2018-12-01 09:18:06'</span>, <span class="hljs-string">'2019-1-02 09:18:06'</span>) <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------------------------------------------+</span>
+<span class="hljs-operator">|</span>                                                   <span class="hljs-number">-32</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------------------------------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+<span class="hljs-comment">-- 单独显示当前年, 月, 日</span>
+<span class="hljs-keyword">select</span> <span class="hljs-keyword">year</span>(now()) "年", <span class="hljs-keyword">month</span>(now()) "月", <span class="hljs-keyword">day</span>(now()) "日" <span class="hljs-keyword">from</span> dual;
+<span class="hljs-comment">-- 单独显示当前日期, 时间, 时间戳</span>
+<span class="hljs-comment">-- 显示昨天, 今天, 明天</span>
+<span class="hljs-keyword">select</span>  date_sub(now(), <span class="hljs-type">interval</span> <span class="hljs-number">1</span> <span class="hljs-keyword">day</span>), now(), date_add(now(), <span class="hljs-type">interval</span> <span class="hljs-number">1</span> <span class="hljs-keyword">day</span>) <span class="hljs-keyword">from</span> dual;</code></pre></div>
+
+<h3><span id="9-2-zi-fu-chuan-han-shu">9.2 字符串函数</span><a href="#9-2-zi-fu-chuan-han-shu" class="header-anchor">#</a></h3><p><img src="https://gitee.com/txt1994/images/raw/master/img/2021/07/image-20191130182700039.png" srcset="/img/loading.gif" lazyload></p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 字符串连接</span>
+    <span class="hljs-comment">-- mydql中可以连接多个字符串, oracle中只能连接两个字符串</span>
+    mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> concat("hello", " world", " 你好,", "世界") <span class="hljs-keyword">from</span> dual;
+    <span class="hljs-operator">+</span><span class="hljs-comment">-------------------------------------------------+</span>
+    <span class="hljs-operator">|</span> concat("hello", " world", " 你好,", "世界")     <span class="hljs-operator">|</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">-------------------------------------------------+</span>
+    <span class="hljs-operator">|</span> hello world 你好,世界                           <span class="hljs-operator">|</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">-------------------------------------------------+</span>
+    
+<span class="hljs-comment">-- 大小写转换</span>
+    mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> ucase("hello"), lcase("WORLD") <span class="hljs-keyword">from</span> dual;
+    <span class="hljs-operator">+</span><span class="hljs-comment">----------------+----------------+</span>
+    <span class="hljs-operator">|</span> ucase("hello") <span class="hljs-operator">|</span> lcase("WORLD") <span class="hljs-operator">|</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">----------------+----------------+</span>
+    <span class="hljs-operator">|</span> HELLO          <span class="hljs-operator">|</span> world          <span class="hljs-operator">|</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">----------------+----------------+</span>
+    <span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+    
+<span class="hljs-comment">-- 字符串截取, 从左侧开始</span>
+    mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-keyword">left</span>("hello,world", <span class="hljs-number">5</span>) <span class="hljs-keyword">from</span> dual;                      
+    <span class="hljs-operator">+</span><span class="hljs-comment">------------------------+</span>
+    <span class="hljs-operator">|</span> <span class="hljs-keyword">left</span>("hello,world", <span class="hljs-number">5</span>) <span class="hljs-operator">|</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">------------------------+</span>
+    <span class="hljs-operator">|</span> hello                  <span class="hljs-operator">|</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">------------------------+</span>
+    <span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+    
+    
+<span class="hljs-comment">-- 字符串比较</span>
+    mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> strcmp("abc", "bca") <span class="hljs-keyword">from</span> dual;
+    <span class="hljs-operator">+</span><span class="hljs-comment">----------------------+</span>
+    <span class="hljs-operator">|</span> strcmp("abc", "bca") <span class="hljs-operator">|</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">----------------------+</span>
+    <span class="hljs-operator">|</span>                   <span class="hljs-number">-1</span> <span class="hljs-operator">|</span>  <span class="hljs-comment">-- 小于</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">----------------------+</span>
+    <span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+    
+    mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> strcmp("aaa", "aa") <span class="hljs-keyword">from</span> dual;     
+    <span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+    <span class="hljs-operator">|</span> strcmp("aaa", "aa") <span class="hljs-operator">|</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+    <span class="hljs-operator">|</span>                   <span class="hljs-number">1</span> <span class="hljs-operator">|</span> <span class="hljs-comment">-- 大于</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span>
+    <span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+    
+    mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> strcmp("aaa", "aaa") <span class="hljs-keyword">from</span> dual;
+    <span class="hljs-operator">+</span><span class="hljs-comment">----------------------+</span>
+    <span class="hljs-operator">|</span> strcmp("aaa", "aaa") <span class="hljs-operator">|</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">----------------------+</span>
+    <span class="hljs-operator">|</span>                    <span class="hljs-number">0</span> <span class="hljs-operator">|</span> <span class="hljs-comment">-- 等于</span>
+    <span class="hljs-operator">+</span><span class="hljs-comment">----------------------+</span>
+    <span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)</code></pre></div>
+
+<h3><span id="9-3-shu-xue-han-shu">9.3 数学函数</span><a href="#9-3-shu-xue-han-shu" class="header-anchor">#</a></h3><p><img src="https://gitee.com/txt1994/images/raw/master/img/2021/07/image-20191130183602147.png" srcset="/img/loading.gif" lazyload><br>    – 向上取整<br>    – mysql<br>    ceiling(小数)<br>    – oracle<br>    ceil(小数)</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 进制转换</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> conv(<span class="hljs-number">100</span>, <span class="hljs-number">10</span>, <span class="hljs-number">16</span>) <span class="hljs-keyword">from</span> dual; 
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------+</span>
+<span class="hljs-operator">|</span> conv(<span class="hljs-number">100</span>, <span class="hljs-number">10</span>, <span class="hljs-number">16</span>) <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">64</span>                <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------+</span>
+
+<span class="hljs-comment">-- 保留指定的小数位数, 可以四舍五入</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> format(<span class="hljs-number">12.345</span>, <span class="hljs-number">2</span>) <span class="hljs-keyword">from</span> dual;
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------+</span>
+<span class="hljs-operator">|</span> format(<span class="hljs-number">12.345</span>, <span class="hljs-number">2</span>) <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">12.35</span>             <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+
+<span class="hljs-comment">-- 取集合中的最小值</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> least(<span class="hljs-number">12</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">0</span>) <span class="hljs-keyword">from</span> dual;
+<span class="hljs-operator">+</span><span class="hljs-comment">-----------------------+</span>
+<span class="hljs-operator">|</span> least(<span class="hljs-number">12</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">0</span>) <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-----------------------+</span>
+<span class="hljs-operator">|</span>                     <span class="hljs-number">0</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-----------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+
+<span class="hljs-comment">-- 生成随机数</span>
+<span class="hljs-comment">-- 生成的随机数范围: 0-1</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> rand(now()) <span class="hljs-keyword">from</span> dual;
+<span class="hljs-operator">+</span><span class="hljs-comment">--------------------+</span>
+<span class="hljs-operator">|</span> rand(now())        <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">--------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">0.8633374812671333</span> <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">--------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)</code></pre></div>
+
+<h3><span id="9-4-ri-qi-zhuan-huan">9.4 日期转换</span><a href="#9-4-ri-qi-zhuan-huan" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- oracle 日期格式: yyyy-mm-dd hh24:mi:ss 不区分大小写</span>
+to_char()  日期转字符串
+to_date()  字符串转日期
+
+<span class="hljs-comment">-- mysql 日期格式: %Y-%m-%d %H:%i:%s    区分大小写</span>
+date_format() 日期转字符串
+str_to_date() 字符串转日期</code></pre></div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>值</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>秒</td>
+<td>%S、%s</td>
+<td align="center">两位数字形式的秒（ 00,01, …, 59）</td>
+</tr>
+<tr>
+<td>分</td>
+<td>%i</td>
+<td align="center">两位数字形式的分（ 00,01, …, 59）</td>
+</tr>
+<tr>
+<td>小时</td>
+<td>%H</td>
+<td align="center">24小时制，两位数形式小时（00,01, …,23）</td>
+</tr>
+<tr>
+<td></td>
+<td>%h</td>
+<td align="center">12小时制，两位数形式小时（00,01, …,12）</td>
+</tr>
+<tr>
+<td></td>
+<td>%k</td>
+<td align="center">24小时制，数形式小时（0,1, …,23）</td>
+</tr>
+<tr>
+<td></td>
+<td>%l</td>
+<td align="center">12小时制，数形式小时（0,1, …,12）</td>
+</tr>
+<tr>
+<td></td>
+<td>%T</td>
+<td align="center">24小时制，时间形式（HH:mm:ss）</td>
+</tr>
+<tr>
+<td></td>
+<td>%r</td>
+<td align="center">12小时制，时间形式（hh:mm:ss AM 或 PM）</td>
+</tr>
+<tr>
+<td></td>
+<td>%p</td>
+<td align="center">AM上午或PM下午</td>
+</tr>
+<tr>
+<td>周</td>
+<td>%W</td>
+<td align="center">一周中每一天的名称（Sunday,Monday, …,Saturday）</td>
+</tr>
+<tr>
+<td></td>
+<td>%a</td>
+<td align="center">一周中每一天名称的缩写（Sun,Mon, …,Sat）</td>
+</tr>
+<tr>
+<td></td>
+<td>%w</td>
+<td align="center">以数字形式标识周（0=Sunday,1=Monday, …,6=Saturday）</td>
+</tr>
+<tr>
+<td></td>
+<td>%U</td>
+<td align="center">数字表示周数，星期天为周中第一天</td>
+</tr>
+<tr>
+<td></td>
+<td>%u</td>
+<td align="center">数字表示周数，星期一为周中第一天</td>
+</tr>
+<tr>
+<td>天</td>
+<td>%d</td>
+<td align="center">两位数字表示月中天数（01,02, …,31）</td>
+</tr>
+<tr>
+<td></td>
+<td>%e</td>
+<td align="center">数字表示月中天数（1,2, …,31）</td>
+</tr>
+<tr>
+<td></td>
+<td>%D</td>
+<td align="center">英文后缀表示月中天数（1st,2nd,3rd …）</td>
+</tr>
+<tr>
+<td></td>
+<td>%j</td>
+<td align="center">以三位数字表示年中天数（001,002, …,366）</td>
+</tr>
+<tr>
+<td></td>
+<td>%M</td>
+<td align="center">英文月名（January,February, …,December）</td>
+</tr>
+<tr>
+<td></td>
+<td>%b</td>
+<td align="center">英文缩写月名（Jan,Feb, …,Dec）</td>
+</tr>
+<tr>
+<td></td>
+<td>%m</td>
+<td align="center">两位数字表示月份（01,02, …,12）</td>
+</tr>
+<tr>
+<td></td>
+<td>%c</td>
+<td align="center">数字表示月份（1,2, …,12）</td>
+</tr>
+<tr>
+<td>年</td>
+<td>%Y</td>
+<td align="center">四位数字表示的年份（2015,2016…）</td>
+</tr>
+<tr>
+<td></td>
+<td>%y</td>
+<td align="center">两位数字表示的年份（15,16…）</td>
+</tr>
+<tr>
+<td>文字输出</td>
+<td>%文字</td>
+<td align="center">直接输出文字内容</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>date类型装换为varchar类型</p>
+  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- date_format(日期, fmt)</span>
+
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> date_format(now(), <span class="hljs-string">'%Y/%m/%d %H:%i:%s'</span>) <span class="hljs-keyword">from</span> dual;   
+<span class="hljs-operator">+</span><span class="hljs-comment">-----------------------------------------+</span>
+<span class="hljs-operator">|</span> date_format(now(), <span class="hljs-string">'%Y/%m/%d %H:%i:%s'</span>) <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-----------------------------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">2019</span><span class="hljs-operator">/</span><span class="hljs-number">12</span><span class="hljs-operator">/</span><span class="hljs-number">02</span> <span class="hljs-number">10</span>:<span class="hljs-number">07</span>:<span class="hljs-number">37</span>                     <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">-----------------------------------------+</span></code></pre></div>
+</li>
+<li><p>varchar类型转换为date类型</p>
+  <div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 参数fmt的个数应该和日期字符串的形式一致</span>
+<span class="hljs-comment">-- str_to_date(日期字符串, fmt)</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> str_to_date("2019/12/02 10:07:37", "%Y/%m/%d %H:%i:%s") <span class="hljs-keyword">from</span> dual;  
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------------------------------------------+</span>
+<span class="hljs-operator">|</span> str_to_date("2019/12/02 10:07:37", "%Y/%m/%d %H:%i:%s") <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------------------------------------------+</span>
+<span class="hljs-operator">|</span> <span class="hljs-number">2019</span><span class="hljs-number">-12</span><span class="hljs-number">-02</span> <span class="hljs-number">10</span>:<span class="hljs-number">07</span>:<span class="hljs-number">37</span>                                     <span class="hljs-operator">|</span>
+<span class="hljs-operator">+</span><span class="hljs-comment">---------------------------------------------------------+</span>
+<span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)</code></pre></div></li>
+</ul>
+<h2><span id="10-duo-biao-cha-xun">10. 多表查询</span><a href="#10-duo-biao-cha-xun" class="header-anchor">#</a></h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 分组函数</span>
+<span class="hljs-built_in">count</span>(); <span class="hljs-comment">-- 求总数</span>
+<span class="hljs-built_in">avg</span>();     <span class="hljs-comment">-- 求平均值</span>
+<span class="hljs-built_in">sum</span>();       <span class="hljs-comment">-- 求和</span>
+<span class="hljs-built_in">min</span>();       <span class="hljs-comment">-- 最小值</span>
+<span class="hljs-built_in">max</span>();     <span class="hljs-comment">-- 最大值</span>
+
+<span class="hljs-comment">-- having 必须出现在group by 后边, 不能写where</span>
+<span class="hljs-comment">-- where 写在 from 的后边</span>
+<span class="hljs-comment">-- order by: 默认升序 asc, 降序 desc</span>
+<span class="hljs-keyword">select</span> 列名<span class="hljs-operator">|</span>表达式 <span class="hljs-keyword">as</span> "别名" <span class="hljs-keyword">from</span> 表名 "表的别名" <span class="hljs-keyword">where</span> 表达式 <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> 列名 <span class="hljs-keyword">having</span> 条件 <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">asc</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">desc</span>
+<span class="hljs-comment">-- 求两个表的笛卡尔积 cross join</span>
+<span class="hljs-comment">-- 最简单的两个表查询</span>
+<span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> dept, emp;
+<span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> dept <span class="hljs-keyword">cross</span> <span class="hljs-keyword">join</span> emp;</code></pre></div>
+
+<h3><span id="10-1-nei-lian-jie-inner-join">10.1 内连接 – inner join</span><a href="#10-1-nei-lian-jie-inner-join" class="header-anchor">#</a></h3><blockquote>
+<p>  显示部门名称, 部门编号, 员工编号,和员工姓名</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- mysql+oracle</span>
+<span class="hljs-keyword">select</span> d.deptno, d.dname, e.empno, e.ename <span class="hljs-keyword">from</span> dept d, emp e <span class="hljs-keyword">where</span> d.deptno<span class="hljs-operator">=</span>e.deptno;
+    
+<span class="hljs-comment">-- mysql+oracle</span>
+<span class="hljs-comment">-- 将表之间的逗号替换为 inner join --&gt; 简写为 join</span>
+<span class="hljs-comment">-- 将 where 替换为 on</span>
+<span class="hljs-keyword">select</span> d.deptno, d.dname, e.empno, e.ename <span class="hljs-keyword">from</span> dept d  <span class="hljs-keyword">join</span> emp e <span class="hljs-keyword">on</span> d.deptno<span class="hljs-operator">=</span>e.deptno;</code></pre></div>
+
+<h3><span id="10-2-wai-lian-jie-outer-join">10.2 外连接 – outer join</span><a href="#10-2-wai-lian-jie-outer-join" class="header-anchor">#</a></h3><blockquote>
+<p>  外连接: 在多表查询的时候, 要通过where进行过滤, 有些表中的字段值不满足条件, 被过滤掉了, 不会显示在最终的结果集中, 必须使用外连接的方式, 才能够使其显示在结果集中.</p>
+<p>  按部门统计员工人数，显示如下信息：部门号，部门名称，人数(所有部门的人数都统计)</p>
+</blockquote>
+<ul>
+<li><p>左外连接 – left outer join</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- oracle</span>
+<span class="hljs-keyword">select</span> d.deptno, d.dname, <span class="hljs-built_in">count</span>(e.empno) <span class="hljs-keyword">from</span> dept d, emp e <span class="hljs-keyword">where</span> d.deptno<span class="hljs-operator">=</span>e.deptno(<span class="hljs-operator">+</span>) <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> d.deptno, d.dname;
+  
+  <span class="hljs-comment">-- mysql + oracle</span>
+  <span class="hljs-comment">-- 表之间的逗号替换为:   left outer join -&gt; outer 可以省略 -&gt; left join</span>
+  <span class="hljs-comment">-- where -&gt; on</span>
+  <span class="hljs-keyword">select</span> d.deptno, d.dname, <span class="hljs-built_in">count</span>(e.empno) <span class="hljs-keyword">from</span> dept d <span class="hljs-keyword">left</span> <span class="hljs-keyword">outer</span> <span class="hljs-keyword">join</span> emp e <span class="hljs-keyword">on</span> d.deptno<span class="hljs-operator">=</span>e.deptno <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> d.deptno, d.dname;</code></pre></div>
+</li>
+<li><p>右外连接 – right outer join</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- oracle</span>
+<span class="hljs-keyword">select</span> d.deptno, d.dname, <span class="hljs-built_in">count</span>(e.empno) <span class="hljs-keyword">from</span> dept d, emp e <span class="hljs-keyword">where</span> e.deptno(<span class="hljs-operator">+</span>)<span class="hljs-operator">=</span>d.deptno <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> d.deptno, d.dname;
+
+<span class="hljs-comment">-- mysql + oracle</span>
+<span class="hljs-comment">-- 表之间的逗号替换为:   right outer join -&gt; outer 可以省略 -&gt; right join</span>
+<span class="hljs-comment">-- where -&gt; on</span>
+<span class="hljs-keyword">select</span> d.deptno, d.dname, <span class="hljs-built_in">count</span>(e.empno) <span class="hljs-keyword">from</span> emp e <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> dept d <span class="hljs-keyword">on</span> e.deptno<span class="hljs-operator">=</span>d.deptno <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> d.deptno, d.dname;</code></pre></div>
+</li>
+<li><p>全外连接 – full outer join</p>
+</li>
+</ul>
+<blockquote>
+<p>  在多表查询的时候, 要通过where进行过滤, 有些表中的字段值不满足条件, 被过滤掉了, 不会显示在最终的结果集中, 不知道的那个表的字段不满足条件或者是左侧不满足条件或右侧表不满足条件, 需要将这些不满条件对数据全部显示到结果集中, 可以使用全外连接.</p>
+<ul>
+<li>两个表互相补充</li>
+</ul>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 在mysql中不支持全外连接, oracle中是支持的</span>
+    
+<span class="hljs-comment">-- full outer join -&gt; 简写: full join</span>
+<span class="hljs-comment">-- 有可能emp表给dept提供补充, 也有可能dept给emp提供补充</span>
+<span class="hljs-keyword">select</span> d.deptno, d.dname, <span class="hljs-built_in">count</span>(e.empno) <span class="hljs-keyword">from</span> emp e <span class="hljs-keyword">full</span> <span class="hljs-keyword">join</span> dept d <span class="hljs-keyword">on</span> e.deptno<span class="hljs-operator">=</span>d.deptno <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> d.deptno, d.dname;</code></pre></div>
+
+<h3><span id="10-3-zi-lian-jie">10.3 自连接</span><a href="#10-3-zi-lian-jie" class="header-anchor">#</a></h3><blockquote>
+<p>查询员工、老板信息，显示: xxx的老板是xxx</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- oracle</span>
+<span class="hljs-keyword">select</span> e.ename "员工", nvl(b.ename, <span class="hljs-string">'jump'</span>) "领导"  <span class="hljs-keyword">from</span> emp e, emp b <span class="hljs-keyword">where</span> e.mgr<span class="hljs-operator">=</span>b.empno(<span class="hljs-operator">+</span>); 
+ 
+<span class="hljs-comment">-- mysql</span>
+<span class="hljs-comment">-- mysql 中的ifnull 等价于 oracle 中的 nvl</span>
+<span class="hljs-keyword">select</span> e.ename "员工", ifnull(b.ename, <span class="hljs-string">'jump'</span>) "领导"  <span class="hljs-keyword">from</span> emp e <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> emp b <span class="hljs-keyword">on</span> e.mgr<span class="hljs-operator">=</span>b.empno;</code></pre></div>
+
+
+<h2><span id="11-biao-de-yue-shu">11. 表的约束</span><a href="#11-biao-de-yue-shu" class="header-anchor">#</a></h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> 表名(
+    列名 列的类型 <span class="hljs-keyword">default</span> 默认值,
+    列名 列的类型,
+    列名 列的类型
+);</code></pre></div>
+
+<h3><span id="11-1-yue-shu-chong-lei">11.1 约束种类</span><a href="#11-1-yue-shu-chong-lei" class="header-anchor">#</a></h3><p>mysql中常用的约束有五种:</p>
+<ul>
+<li><p>主键约束　<strong>primary key</strong></p>
+<ul>
+<li>非空 + 唯一</li>
+</ul>
+</li>
+<li><p>主键自动增长　<strong>auto_increment</strong></p>
+<ul>
+<li>给主键用的, 只有列是主键才能加这个约束</li>
+<li>主键是数字的时候使用</li>
+</ul>
+</li>
+<li><p>唯一约束　 <strong>unique</strong></p>
+</li>
+<li><p>非空约束　 <strong>not null</strong></p>
+</li>
+<li><p>外键约束　 <strong>foreign key</strong></p>
+</li>
+<li><p>检查约束 check (在MySQL中语法保留，但没有效果)</p>
+</li>
+</ul>
+<h3><span id="11-2-yue-shu-de-shi-yong">11.2 约束的使用</span><a href="#11-2-yue-shu-de-shi-yong" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> persion(
+    id <span class="hljs-type">int</span>,            <span class="hljs-comment">-- 主键, 自动增长</span>
+    age <span class="hljs-type">int</span>,            <span class="hljs-comment">-- 非空</span>
+    name <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>),    <span class="hljs-comment">-- 唯一</span>
+    deptno <span class="hljs-type">int</span>        <span class="hljs-comment">-- 外键</span>
+);</code></pre></div>
+
+<ul>
+<li><p>表级别的约束</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- auto_increment只能放到列的位置</span>
+<span class="hljs-comment">-- not null 非空只能在列上添加约束</span>
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> persion(
+    id <span class="hljs-type">int</span> auto_increment,            <span class="hljs-comment">-- 主键, 自动增长</span>
+    age <span class="hljs-type">int</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,            <span class="hljs-comment">-- 非空</span>
+    name <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>),    <span class="hljs-comment">-- 唯一</span>
+    deptno <span class="hljs-type">int</span>,        <span class="hljs-comment">-- 外键</span>
+    <span class="hljs-keyword">constraint</span> pk_id_xxx <span class="hljs-keyword">primary</span> key(id) ,
+    <span class="hljs-keyword">constraint</span> un_name_xxx <span class="hljs-keyword">unique</span>(name),
+    <span class="hljs-keyword">constraint</span> fk_deptno_xx <span class="hljs-keyword">foreign</span> key(deptno) <span class="hljs-keyword">references</span> dept(deptno)
+);</code></pre></div>
+</li>
+<li><p>列级别的约束</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> persion1(
+    id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key auto_increment,            <span class="hljs-comment">-- 主键, 自动增长</span>
+    age <span class="hljs-type">int</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,            <span class="hljs-comment">-- 非空</span>
+    name <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">unique</span>,    <span class="hljs-comment">-- 唯一</span>
+    deptno <span class="hljs-type">int</span> <span class="hljs-keyword">references</span> dept(deptno)    <span class="hljs-comment">-- 外键</span>
+);</code></pre></div></li>
+</ul>
+<h2><span id="12-shi-wu">12. 事务</span><a href="#12-shi-wu" class="header-anchor">#</a></h2><blockquote>
+<p>  在mysql中事务默认是自动提交的，oracle中默认是手动提交的。</p>
+<ul>
+<li>原子性</li>
+<li>一致性</li>
+<li>隔离性</li>
+<li>永久性</li>
+</ul>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 修改事务提交方式</span>
+ 
+<span class="hljs-comment">-- 手动提交</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">set</span> autocommit<span class="hljs-operator">=</span><span class="hljs-number">0</span>;
+Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)
+ 
+<span class="hljs-comment">-- 提交数据</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">commit</span>;
+Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)
+ 
+<span class="hljs-comment">-- 数据回滚</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">rollback</span>;
+Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)
+ 
+<span class="hljs-comment">-- 自动提交</span>
+mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">set</span> autocommit<span class="hljs-operator">=</span><span class="hljs-number">1</span>;
+Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)</code></pre></div>
+
+<h2><span id="13-mysql-api">13. mysql API</span><a href="#13-mysql-api" class="header-anchor">#</a></h2><blockquote>
+<ol>
+<li>初始化连接环境</li>
+<li>连接mysql的服务器</li>
+<li>执行sql语句</li>
+</ol>
+<ul>
+<li>查询</li>
+<li>插入</li>
+<li>更新</li>
+<li>删除</li>
+<li>创建/删除/修改数据库表</li>
+</ul>
+<ol start="4">
+<li>如果是插入/删除/修改数据等操作只能看到状态</li>
+</ol>
+<ul>
+<li>成功</li>
+<li>失败</li>
+</ul>
+<ol start="5">
+<li>如果sql语句是查询, 得到结果集</li>
+<li>遍历结果集</li>
+<li>释放资源</li>
+</ol>
+</blockquote>
+<ul>
+<li><p>初始化连接环境</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// 参数: NULL</span>
+<span class="hljs-comment">// 返回值: 返回函数申请的内存的地址</span>
+<span class="hljs-function">MYSQL *<span class="hljs-title">mysql_init</span><span class="hljs-params">(MYSQL *mysql)</span>  </span></code></pre></div>
+</li>
+<li><p>连接mysql服务器</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"> <span class="hljs-comment">// 返回值: 失败-&gt; NULL, 成功了-&gt; 返回值和第一个参数的地址相同</span>
+<span class="hljs-function">MYSQL *<span class="hljs-title">mysql_real_connect</span><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">                MYSQL *mysql,     <span class="hljs-comment">// mysql_init函数的返回值</span></span></span>
+<span class="hljs-params"><span class="hljs-function">                <span class="hljs-comment">// 本地: localhost, 远程连接:192.168.xx.xx;</span></span></span>
+<span class="hljs-params"><span class="hljs-function">                <span class="hljs-type">const</span> <span class="hljs-type">char</span> *host,     <span class="hljs-comment">// mysql服务器地址, IP/主机名      </span></span></span>
+<span class="hljs-params"><span class="hljs-function">                <span class="hljs-type">const</span> <span class="hljs-type">char</span> *user,     <span class="hljs-comment">// mysql数据用户名, root       </span></span></span>
+<span class="hljs-params"><span class="hljs-function">                <span class="hljs-type">const</span> <span class="hljs-type">char</span> *passwd,   <span class="hljs-comment">// root用户的密码</span></span></span>
+<span class="hljs-params"><span class="hljs-function">                <span class="hljs-type">const</span> <span class="hljs-type">char</span> *db,       <span class="hljs-comment">// 数据库的名字       </span></span></span>
+<span class="hljs-params"><span class="hljs-function">                <span class="hljs-comment">// 如果port==0, 使用默认端口, !=0是使用指定的端口</span></span></span>
+<span class="hljs-params"><span class="hljs-function">                <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> port,    <span class="hljs-comment">// 数据库的端口, 默认3306    </span></span></span>
+<span class="hljs-params"><span class="hljs-function">                <span class="hljs-type">const</span> <span class="hljs-type">char</span> *unix_socket,   <span class="hljs-comment">// NULL  </span></span></span>
+<span class="hljs-params"><span class="hljs-function">                <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> client_flag  <span class="hljs-comment">// 0</span></span></span>
+<span class="hljs-params"><span class="hljs-function">)</span></span>;</code></pre></div>
+</li>
+<li><p>执行sql语句</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// 添删查改的sql语句都是可以执行的</span>
+<span class="hljs-comment">// 参数:</span>
+<span class="hljs-comment">//         mysql: mysql_real_connect()函数的返回值</span>
+<span class="hljs-comment">//      query: sql语句, 语句的结尾不要加 ;</span>
+<span class="hljs-comment">// 返回值: 成功-&gt; 0, 失败-&gt;非0</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">mysql_query</span><span class="hljs-params">(MYSQL *mysql, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *query)</span></span>;</code></pre></div>
+
+<ul>
+<li><p>获取结果集</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// 将结果集保存到本地内存中</span>
+<span class="hljs-comment">// 返回值: 错误-&gt;null, 成功-&gt;非空</span>
+<span class="hljs-comment">// 参数 mysql: mysql_real_connect() 返回值</span>
+<span class="hljs-comment">// 结果集中保存了多条记录, 每条记录中有若干个字段</span>
+<span class="hljs-function">MYSQL_RES *<span class="hljs-title">mysql_store_result</span><span class="hljs-params">(MYSQL *mysql)</span></span>;</code></pre></div>
+
+</li>
+<li><p>得到结果集的列数</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> <span class="hljs-title">mysql_num_fields</span><span class="hljs-params">(MYSQL_RES *result)</span></span></code></pre></div>
+</li>
+<li><p>获取表头 -&gt; 列名(字段名)</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs cpp">/ mysql.h
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">st_mysql_field</span> {
+  <span class="hljs-type">char</span> *name;                 <span class="hljs-comment">/* Name of column */</span>
+  <span class="hljs-type">char</span> *org_name;             <span class="hljs-comment">/* Original column name, if an alias */</span>
+  <span class="hljs-type">char</span> *table;                <span class="hljs-comment">/* Table of column if column was a field */</span>
+  <span class="hljs-type">char</span> *org_table;            <span class="hljs-comment">/* Org table name, if table was an alias */</span>
+  <span class="hljs-type">char</span> *db;                   <span class="hljs-comment">/* Database for table */</span>
+  <span class="hljs-type">char</span> *catalog;          <span class="hljs-comment">/* Catalog for table */</span>
+  <span class="hljs-type">char</span> *def;                  <span class="hljs-comment">/* Default value (set by mysql_list_fields) */</span>
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> length;       <span class="hljs-comment">/* Width of column (create length) */</span>
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> max_length;   <span class="hljs-comment">/* Max width for selected set */</span>
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> name_length;
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> org_name_length;                                                                                        
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> table_length;
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> org_table_length;
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> db_length;
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> catalog_length;
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> def_length;
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> flags;         <span class="hljs-comment">/* Div flags */</span>
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> decimals;      <span class="hljs-comment">/* Number of decimals in field */</span>
+  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> charsetnr;     <span class="hljs-comment">/* Character set */</span>
+  <span class="hljs-keyword">enum</span> <span class="hljs-title class_">enum_field_types</span> type; <span class="hljs-comment">/* Type of field. See mysql_com.h for types */</span>
+  <span class="hljs-type">void</span> *extension;
+} MYSQL_FIELD;
+ 
+<span class="hljs-comment">// 返回值 中保存了所有的字段名, 返回值是一个数组</span>
+<span class="hljs-function">MYSQL_FIELD *<span class="hljs-title">mysql_fetch_fields</span><span class="hljs-params">(MYSQL_RES *result)</span></span>;
+ 
+MYSQL_FIELD *fields = <span class="hljs-built_in">mysql_fetch_fields</span>(result);
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;num; ++i)
+{
+    fields[i].name
+}</code></pre></div>
+
+<ul>
+<li>遍历结果集</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-type">char</span>** MYSQL_ROW;
+<span class="hljs-comment">// 函数每调用一次, 从结果集中取出一条记录(行)</span>
+<span class="hljs-comment">// 参数: 结果集, mysql_store_result()返回值</span>
+<span class="hljs-comment">// 返回值: char* row[], char**执向一个指针数组, 数组中的每一个元素都是一个字符串, 字符串就是字段值</span>
+<span class="hljs-comment">//        不管字段原来是什么类型, 结果集中都是以字符串形式保存的</span>
+<span class="hljs-comment">// 如果还有下一行返回非空, 没有下一行, 或者失败了返回NULL</span>
+MYSQL_ROW <span class="hljs-title function_">mysql_fetch_row</span><span class="hljs-params">(MYSQL_RES *result)</span>;</code></pre></div>
+
+
+<ul>
+<li><p>资源回收</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-comment">// 参数是 mysql_store_result() 函数的返回值</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">mysql_free_result</span><span class="hljs-params">(MYSQL_RES *result)</span>;
+ 
+<span class="hljs-comment">// 参数是: mysql_init() 函数的返回值</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">mysql_close</span><span class="hljs-params">(MYSQL *mysql)</span>;</code></pre></div>
+</li>
+<li><p>字符编码</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// 获取字节编码</span>
+<span class="hljs-function"><span class="hljs-type">const</span> <span class="hljs-type">char</span> *<span class="hljs-title">mysql_character_set_name</span><span class="hljs-params">(MYSQL *mysql)</span></span>;
+<span class="hljs-comment">// 设置字节编码</span>
+<span class="hljs-comment">// csname: 编码的名字, utf8</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">mysql_set_character_set</span><span class="hljs-params">(MYSQL *mysql, <span class="hljs-type">char</span> *csname)</span></span>;</code></pre></div>
+
+<ul>
+<li>事务操作</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// mode==0 -&gt; 手动提交, mode1 -&gt; 自动提交事务</span>
+<span class="hljs-function">my_bool <span class="hljs-title">mysql_autocommit</span><span class="hljs-params">(MYSQL *mysql, my_bool mode)</span></span>;
+<span class="hljs-function">my_bool <span class="hljs-title">mysql_commit</span><span class="hljs-params">(MYSQL *mysql)</span></span>;
+<span class="hljs-function">my_bool <span class="hljs-title">mysql_rollback</span><span class="hljs-params">(MYSQL *mysql)</span></span>;</code></pre></div>
+
+
+<ul>
+<li>打印错误信息</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// 返回错误的描述</span>
+<span class="hljs-function"><span class="hljs-type">const</span> <span class="hljs-type">char</span> *<span class="hljs-title">mysql_error</span><span class="hljs-params">(MYSQL *mysql)</span></span>;
+<span class="hljs-comment">// 返回错误的编号</span>
+<span class="hljs-function"><span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> <span class="hljs-title">mysql_errno</span><span class="hljs-params">(MYSQL *mysql)</span></span>;</code></pre></div>
+
+<ul>
+<li>需要的头文件</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mysql.h&gt;</span></span>
+ 
+<span class="hljs-comment">// 动态库名: libmysqlclient.so</span>
+<span class="hljs-comment">// 静态库名: libmysqlclient.a</span></code></pre></div>
+
+<ul>
+<li><p>搜索文件</p>
+<div class="code-wrapper"><pre><code class="hljs shell">find 路径 -name 文件名
+locate 文件名  
+    
+<span class="hljs-meta prompt_"># </span><span class="language-bash">centos</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">切换到root下安装</span>
+yum install mlocate
+updatedb    # 只需要做一次, 安装完成之后做</code></pre></div>
+</li>
+<li><p>完整实例</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mysql.h&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    MYSQL *mysql = <span class="hljs-built_in">mysql_init</span>(<span class="hljs-literal">NULL</span>);
+    <span class="hljs-keyword">if</span> (mysql == <span class="hljs-literal">nullptr</span>)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"mysql_init() failed\n"</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    }
+    
+    <span class="hljs-built_in">mysql_real_connect</span>(mysql, <span class="hljs-string">"192.168.213.128"</span>, <span class="hljs-string">"root"</span>, <span class="hljs-string">"zzc123"</span>, <span class="hljs-string">"scott"</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>);
+    <span class="hljs-keyword">if</span> (mysql == <span class="hljs-literal">NULL</span>)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"mysql_real_connect() failed\n"</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"服务器连接成功!\n"</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"原字符编码: %s\n"</span>, <span class="hljs-built_in">mysql_character_set_name</span>(mysql));
+    <span class="hljs-built_in">mysql_set_character_set</span>(mysql, <span class="hljs-string">"utf8"</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"现字符编码: %s\n"</span>, <span class="hljs-built_in">mysql_character_set_name</span>(mysql));
+    
+    <span class="hljs-type">int</span> ret = <span class="hljs-built_in">mysql_query</span>(mysql, <span class="hljs-string">"select * from emp"</span>);
+    
+    <span class="hljs-keyword">if</span> (ret != <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"mysql_query(select) failed: %s\n"</span>, <span class="hljs-built_in">mysql_error</span>(mysql));
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    }
+    
+    MYSQL_RES *res = <span class="hljs-built_in">mysql_store_result</span>(mysql);
+    <span class="hljs-type">int</span> colNum = <span class="hljs-built_in">mysql_num_fields</span>(res);
+    <span class="hljs-comment">//fields是一个结构体数组</span>
+    MYSQL_FIELD *fields = <span class="hljs-built_in">mysql_fetch_fields</span>(res);
+    
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; colNum; i ++)
+    {
+        <span class="hljs-comment">//遍历结构体内名字字段</span>
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%s\t"</span>, fields[i].name);
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);
+    
+    <span class="hljs-comment">//读取每一行</span>
+    <span class="hljs-comment">//二级指针</span>
+    MYSQL_ROW row;
+    <span class="hljs-keyword">while</span> ((row = <span class="hljs-built_in">mysql_fetch_row</span>(res)) != <span class="hljs-literal">NULL</span>)
+    {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; colNum; i ++)
+        {
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%s\t"</span>, row[i]);
+        }
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);
+    }
+    
+    <span class="hljs-comment">//释放结果集</span>
+    <span class="hljs-built_in">mysql_free_result</span>(res);
+    
+    <span class="hljs-comment">//设置事务手动提交</span>
+    <span class="hljs-built_in">mysql_autocommit</span>(mysql, <span class="hljs-number">0</span>);
+    
+    <span class="hljs-comment">//将下面的四个操作设置为事务</span>
+    <span class="hljs-comment">//插入数据</span>
+    <span class="hljs-type">int</span> fl1 = <span class="hljs-built_in">mysql_query</span>(mysql, <span class="hljs-string">"insert into dept values(11, '海军', 'china')"</span>);
+    <span class="hljs-type">int</span> fl2 = <span class="hljs-built_in">mysql_query</span>(mysql, <span class="hljs-string">"insert into dept values(12, '革命军', 'china')"</span>);
+    <span class="hljs-type">int</span> fl3 = <span class="hljs-built_in">mysql_query</span>(mysql, <span class="hljs-string">"insert into dept values(13, '马戏团', 'china')"</span>);
+    <span class="hljs-comment">//更新数据</span>
+    <span class="hljs-type">int</span> fl4 = <span class="hljs-built_in">mysql_query</span>(mysql, <span class="hljs-string">"update dept set dname='群众' where loc='china'"</span>);
+    
+    <span class="hljs-comment">//全部成功</span>
+    <span class="hljs-keyword">if</span> (!fl1 &amp;&amp; !fl2 &amp;&amp; !fl3 &amp;&amp; !fl4)
+    {
+        <span class="hljs-comment">//提交事务</span>
+        <span class="hljs-built_in">mysql_commit</span>(mysql);
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">//事务回滚</span>
+        <span class="hljs-built_in">mysql_roolback</span>(mysql);
+    }
+    
+    <span class="hljs-comment">//释放资源</span>
+    <span class="hljs-built_in">mysql_close</span>(mysql);
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+</li>
+<li><p>mysql和oracle区别</p>
+<ul>
+<li><p>结构不同</p>
+<ul>
+<li><p>msyql 基于数据库</p>
+<ul>
+<li>表存储在数据库中</li>
+</ul>
+</li>
+<li><p>oracle 基于用户的</p>
+<ul>
+<li>表属于用户</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>mysql没有表空间, oracle有表空间</p>
+</li>
+<li><p>管理员</p>
+<ul>
+<li><p>mysql</p>
+<ul>
+<li>root</li>
+</ul>
+</li>
+<li><p>oralce</p>
+<ul>
+<li>sys -&gt; 管理员, 身份 sysdba</li>
+<li>system -&gt; 管理员, 登录的时候需要使用normal身份登录</li>
+<li>其他的普通用户</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>事务</p>
+<ul>
+<li><p>oracle默认手动提交</p>
+<ul>
+<li>occi接口 (C++接口), 这个接口中是自动提交事务的</li>
+</ul>
+</li>
+<li><p>mysql中默认是自动提交</p>
+</li>
+</ul>
+</li>
+<li><p>sql语句</p>
+<ul>
+<li><p>外连接</p>
+<ul>
+<li>oralce中可以使用 (+)</li>
+<li>mysql中必须使用 , 不支持(+)<ul>
+<li>right outer join -&gt; oracle也支持这种写法</li>
+<li>left outer join</li>
+</ul>
+</li>
+<li>mysql不支持全外连接, oracle支持的<ul>
+<li>full outer join</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>函数:</p>
+<ul>
+<li><p>nvl -&gt; oralce</p>
+</li>
+<li><p>ifnull -&gt; mysql</p>
+</li>
+<li><p>日期</p>
+</li>
+<li><p>字符串</p>
+</li>
+<li><p>数学函数</p>
+</li>
+</ul>
+</li>
+<li><p>建表的时候的约束指定</p>
+<ul>
+<li><p>都有:</p>
+<ul>
+<li>主键 -&gt; primary key</li>
+<li>非空: not null</li>
+<li>唯一性: unique</li>
+<li>外键约束: foreign key</li>
+</ul>
+</li>
+<li><p>不同:</p>
+<ul>
+<li>oralce:<ul>
+<li>check, 在mysql中也有, 但是不起作用</li>
+</ul>
+</li>
+<li>mysql<ul>
+<li><p>主键自动增长: auto_increment</p>
+<ul>
+<li>需要和主键约束一起使用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>删除表</p>
+<ul>
+<li><p>oracle</p>
+<ul>
+<li>drop talbe 表名 purge;</li>
+</ul>
+</li>
+<li><p>msyql</p>
+<ul>
+<li>drop talbe 表名; –&gt; 不能使用 purge</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>字段的修改</p>
+<ul>
+<li><p>oralce</p>
+<ul>
+<li>列的添加<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 <span class="hljs-keyword">add</span> 列名 列的属性;
+<span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 modify 列名 列的属性;</code></pre></div></li>
+</ul>
+</li>
+<li><p>mysql</p>
+<ul>
+<li>列的添加修改<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 <span class="hljs-keyword">add</span> <span class="hljs-keyword">column</span> 列名 列的属性;
+<span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 modify <span class="hljs-keyword">column</span> 列名 列的属性;</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/DataBase/">DataBase</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Mysql/">Mysql</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/05/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93API%E5%BA%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL数据库API库</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/04/Json%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <span class="hidden-mobile">Json的使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

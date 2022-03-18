@@ -1,0 +1,1431 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QEvent Class Public Types Properties Public Functions Static Public Members 详细描述 成员类型文档 enum QEvent::Type   Property Documentation accepted : bool   成员函数文档 QEvent::QEvent(QEvent::Type type) [virt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QEvent类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/E/QEvent/QEvent/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QEvent Class Public Types Properties Public Functions Static Public Members 详细描述 成员类型文档 enum QEvent::Type   Property Documentation accepted : bool   成员函数文档 QEvent::QEvent(QEvent::Type type) [virt">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:16:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:39:08.723Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="E">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QEvent类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QEvent类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:16" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      12k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      97 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QEvent类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qevent-class">QEvent Class</a><ul>
+<li><a href="#public-types">Public Types</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#public-functions">Public Functions</a></li>
+<li><a href="#static-public-members">Static Public Members</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qevent-type">enum QEvent::Type</a></li>
+</ul>
+</li>
+<li><a href="#property-documentation">Property Documentation</a><ul>
+<li><a href="#accepted-bool">accepted : bool</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qevent-qevent-qevent-type-https-doc-qt-io-qt-6-qevent-html-type-enum-type">QEvent::QEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::Type</a> <em>type</em>)</li>
+<li><a href="#virtual-qevent-qevent"><code>[virtual]</code>QEvent::~QEvent()</a></li>
+<li><a href="#void-qevent-accept">void QEvent::accept()</a></li>
+<li><a href="#virtual-since-6-0-qevent-qevent-clone-const"><code>[virtual, since 6.0]</code>QEvent *QEvent::clone() const</a></li>
+<li><a href="#void-qevent-ignore">void QEvent::ignore()</a></li>
+<li><a href="#since-6-0-bool-qevent-isinputevent-const"><code>[since 6.0]</code>bool QEvent::isInputEvent() const</a></li>
+<li><a href="#since-6-0-bool-qevent-ispointerevent-const"><code>[since 6.0]</code>bool QEvent::isPointerEvent() const</a></li>
+<li><a href="#since-6-0-bool-qevent-issinglepointevent-const"><code>[since 6.0]</code>bool QEvent::isSinglePointEvent() const</a></li>
+<li><a href="#static-int-qevent-registereventtype-int-hint-1"><code>[static]</code>int QEvent::registerEventType(int <em>hint</em> = -1)</a></li>
+<li><a href="#bool-qevent-spontan-eous-const">bool QEvent::spontan eous() const</a></li>
+<li><a href="#qevent-type-https-doc-qt-io-qt-6-qevent-html-type-enum-qevent-type-const">QEvent::Type</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QEvent Class
+
+<p>QEvent类是所有事件类的基类。事件对象包含事件参数. <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qevent></qevent></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Inherited By:</td>
+<td><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qactionevent.html">QActionEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qchildevent.html">QChildEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcloseevent.html">QCloseEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdragleaveevent.html">QDragLeaveEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdropevent.html">QDropEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdynamicpropertychangeevent.html">QDynamicPropertyChangeEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qexposeevent.html">QExposeEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfileopenevent.html">QFileOpenEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfocusevent.html">QFocusEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgestureevent.html">QGestureEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicssceneevent.html">QGraphicsSceneEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhelpevent.html">QHelpEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhideevent.html">QHideEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qicondragevent.html">QIconDragEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qinputevent.html">QInputEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qinputmethodevent.html">QInputMethodEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qinputmethodqueryevent.html">QInputMethodQueryEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmoveevent.html">QMoveEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpaintevent.html">QPaintEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qplatformsurfaceevent.html">QPlatformSurfaceEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qresizeevent.html">QResizeEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qscrollevent.html">QScrollEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qscrollprepareevent.html">QScrollPrepareEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qshortcutevent.html">QShortcutEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qshowevent.html">QShowEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstatemachine-signalevent.html">QStateMachine::SignalEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstatemachine-wrappedevent.html">QStateMachine::WrappedEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstatustipevent.html">QStatusTipEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtimerevent.html">QTimerEvent</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwhatsthisclickedevent.html">QWhatsThisClickedEvent</a>, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwindowstatechangeevent.html">QWindowStateChangeEvent</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="public-types">Public Types</span><a href="#public-types" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">Type</a></strong> { None, ActionAdded, ActionChanged, ActionRemoved, ActivationChange, …, MaxUser }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="properties">Properties</span><a href="#properties" class="header-anchor">#</a></h2><ul>
+<li><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#accepted-prop">accepted</a></strong> : bool</li>
+</ul>
+<h2><span id="public-functions">Public Functions</span><a href="#public-functions" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#QEvent-2">QEvent</a></strong>(QEvent::Type <em>type</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#dtor.QEvent">~QEvent</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#accept">accept</a></strong>()</td>
+</tr>
+<tr>
+<td>virtual QEvent *</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#clone">clone</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#ignore">ignore</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#accepted-prop">isAccepted</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#isInputEvent">isInputEvent</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#isPointerEvent">isPointerEvent</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#isSinglePointEvent">isSinglePointEvent</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#accepted-prop">setAccepted</a></strong>(bool <em>accepted</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#spontaneous">spontaneous</a></strong>() const</td>
+</tr>
+<tr>
+<td>QEvent::Type</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#type">type</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="static-public-members">Static Public Members</span><a href="#static-public-members" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>int</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#registerEventType">registerEventType</a></strong>(int <em>hint</em> = -1)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>Qt的主事件循环（<a href="../C/QCoreApplication/QCoreApplication.md">QCoreApplication::exec</a>()）从事件队列中获取本地窗口系统事件，将其翻译成QEvents，并将翻译好的事件发送到<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObject</a>s。</p>
+<p>一般来说，事件来自底层窗口系统（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#spontaneous">自发</a>()返回<code>true</code>），但也可以使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcoreapplication.html#sendEvent">QCoreApplication::sendEvent</a>()和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcoreapplication.html#postEvent">QCoreApplication::postEvent</a>()手动发送事件（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#spontaneous">自发</a>() 返回<code>false</code>）。</p>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObjects</a>通过调用其<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#event">QObject::event</a>()函数来接收事件。该函数可以在子类中被重新实现，以定制事件处理并添加额外的事件类型；<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#event">QWidget::event</a>()是一个明显的例子。默认情况下，事件被派发到事件处理程序中，比如 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#timerEvent">QObject::timerEvent</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#mouseMoveEvent">QWidget::mouseMoveEvent</a>()。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#installEventFilter">QObject::installEventFilter</a>()允许一个对象拦截为另一个对象准备的事件。</p>
+<p>基本的QEvent只包含一个事件类型参数和一个 “接受 “标志。接受标志通过<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#accept">accept</a>()设置，并通过<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#ignore">ignore</a>()清除。它是默认设置的，但不要依赖它，因为子类可以选择在它们的构造函数中清除它。</p>
+<p>QEvent的子类包含描述特定事件的额外参数。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#event">QObject::event</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#installEventFilter">QObject::installEventFilter</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcoreapplication.html#sendEvent">QCoreApplication::sendEvent</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcoreapplication.html#postEvent">QCoreApplication::postEvent</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcoreapplication.html#processEvents">QCoreApplication::processEvents</a>().</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qevent-type">enum QEvent::Type</span><a href="#enum-qevent-type" class="header-anchor">#</a></h3><p>这个枚举类型定义了Qt中有效的事件类型。事件类型和每种类型的专用类如下：</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QEvent::None</code></td>
+<td><code>0</code></td>
+<td>不是一个事件。</td>
+</tr>
+<tr>
+<td><code>QEvent::ActionAdded</code></td>
+<td><code>114</code></td>
+<td>增加了一个新的动作（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qactionevent.html">QActionEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ActionChanged</code></td>
+<td><code>113</code></td>
+<td>一个动作被改变了（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qactionevent.html">QActionEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ActionRemoved</code></td>
+<td><code>115</code></td>
+<td>一个行动已经被删除（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qactionevent.html">QActionEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ActivationChange</code></td>
+<td><code>99</code></td>
+<td>一个小组件的顶层窗口激活状态已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::ApplicationActivate</code></td>
+<td><code>121</code></td>
+<td>这个枚举已经被弃用。请使用ApplicationStateChange代替。</td>
+</tr>
+<tr>
+<td><code>QEvent::ApplicationActivated</code></td>
+<td><code>ApplicationActivate</code></td>
+<td>这个枚举已经被弃用。使用ApplicationStateChange代替。</td>
+</tr>
+<tr>
+<td><code>QEvent::ApplicationDeactivate</code></td>
+<td><code>122</code></td>
+<td>这个枚举已经被弃用。请使用ApplicationStateChange代替。</td>
+</tr>
+<tr>
+<td><code>QEvent::ApplicationFontChange</code></td>
+<td><code>36</code></td>
+<td>默认的应用程序字体已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::ApplicationLayoutDirectionChange</code></td>
+<td><code>37</code></td>
+<td>默认的应用程序布局方向已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::ApplicationPaletteChange</code></td>
+<td><code>38</code></td>
+<td>默认的应用程序调色板已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::ApplicationStateChange</code></td>
+<td><code>214</code></td>
+<td>应用程序的状态已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::ApplicationWindowIconChange</code></td>
+<td><code>35</code></td>
+<td>应用程序的图标已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::ChildAdded</code></td>
+<td><code>68</code></td>
+<td>一个对象得到一个孩子（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qchildevent.html">QChildEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ChildPolished</code></td>
+<td><code>69</code></td>
+<td>一个小组件的孩子被擦亮了（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qchildevent.html">QChildEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ChildRemoved</code></td>
+<td><code>71</code></td>
+<td>一个对象失去了一个孩子（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qchildevent.html">QChildEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::Clipboard</code></td>
+<td><code>40</code></td>
+<td>剪贴板的内容发生了变化。</td>
+</tr>
+<tr>
+<td><code>QEvent::Close</code></td>
+<td><code>19</code></td>
+<td>小工具被关闭（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcloseevent.html">QCloseEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::CloseSoftwareInputPanel</code></td>
+<td><code>200</code></td>
+<td>一个小部件想关闭软件输入面板（SIP）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ContentsRectChange</code></td>
+<td><code>178</code></td>
+<td>小部件的内容的边距发生了变化。</td>
+</tr>
+<tr>
+<td><code>QEvent::ContextMenu</code></td>
+<td><code>82</code></td>
+<td>上下文弹出菜单（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcontextmenuevent.html">QContextMenuEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::CursorChange</code></td>
+<td><code>183</code></td>
+<td>小部件的光标发生了变化。</td>
+</tr>
+<tr>
+<td><code>QEvent::DeferredDelete</code></td>
+<td><code>52</code></td>
+<td>该对象在清理后将被删除（QDeferredDeleteEvent)</td>
+</tr>
+<tr>
+<td><code>QEvent::DragEnter</code></td>
+<td><code>60</code></td>
+<td>在一个拖放操作中，光标进入了一个小部件（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdragenterevent.html">QDragEnterEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::DragLeave</code></td>
+<td><code>62</code></td>
+<td>光标在拖放操作中离开一个小组件（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdragleaveevent.html">QDragLeaveEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::DragMove</code></td>
+<td><code>61</code></td>
+<td>一个拖放操作正在进行（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdragmoveevent.html">QDragMoveEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::Drop</code></td>
+<td><code>63</code></td>
+<td>一个拖放操作已经完成（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdropevent.html">QDropEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::DynamicPropertyChange</code></td>
+<td><code>170</code></td>
+<td>一个拖放操作已经完成（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdropevent.html">QDropEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::EnabledChange</code></td>
+<td><code>98</code></td>
+<td>小工具的启用状态已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::Enter</code></td>
+<td><code>10</code></td>
+<td>鼠标进入小部件的边界（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qenterevent.html">QEnterEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::EnterEditFocus</code></td>
+<td><code>150</code></td>
+<td>编辑器小部件获得了编辑的焦点。<code>QT_KEYPAD_NAVIGATION</code>必须被定义。</td>
+</tr>
+<tr>
+<td><code>QEvent::EnterWhatsThisMode</code></td>
+<td><code>124</code></td>
+<td>当应用程序进入 “这是什么？”模式时发送至顶层部件。</td>
+</tr>
+<tr>
+<td><code>QEvent::Expose</code></td>
+<td><code>206</code></td>
+<td>当一个窗口的屏幕内容失效，需要从后备存储中刷新时，发送给该窗口。</td>
+</tr>
+<tr>
+<td><code>QEvent::FileOpen</code></td>
+<td><code>116</code></td>
+<td>文件打开请求（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfileopenevent.html">QFileOpenEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::FocusIn</code></td>
+<td><code>8</code></td>
+<td>小工具或窗口获得键盘焦点（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfocusevent.html">QFocusEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::FocusOut</code></td>
+<td><code>9</code></td>
+<td>小工具或窗口失去了键盘焦点(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfocusevent.html">QFocusEvent</a>)。</td>
+</tr>
+<tr>
+<td><code>QEvent::FocusAboutToChange</code></td>
+<td><code>23</code></td>
+<td>小工具或窗口的焦点即将改变(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfocusevent.html">QFocusEvent</a>)</td>
+</tr>
+<tr>
+<td><code>QEvent::FontChange</code></td>
+<td><code>97</code></td>
+<td>小工具的字体已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::Gesture</code></td>
+<td><code>198</code></td>
+<td>一个手势被触发（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgestureevent.html">QGestureEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GestureOverride</code></td>
+<td><code>202</code></td>
+<td>触发了一个手势覆盖(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgestureevent.html">QGestureEvent</a>)。</td>
+</tr>
+<tr>
+<td><code>QEvent::GrabKeyboard</code></td>
+<td><code>188</code></td>
+<td>项目获得了键盘抓取（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsitem.html">QGraphicsItem</a> only）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GrabMouse</code></td>
+<td><code>186</code></td>
+<td>项目获得了鼠标抓取(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsitem.html">QGraphicsItem</a> only)。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneContextMenu</code></td>
+<td><code>159</code></td>
+<td>在一个图形场景上的上下文弹出菜单（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenecontextmenuevent.html">QGraphicsSceneContextMenuEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneDragEnter</code></td>
+<td><code>164</code></td>
+<td>在一个拖放操作中光标进入一个图形场景（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenedragdropevent.html">QGraphicsSceneDragDropEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneDragLeave</code></td>
+<td><code>166</code></td>
+<td>在拖放操作中光标离开图形场景（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenedragdropevent.html">QGraphicsSceneDragDropEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneDragMove</code></td>
+<td><code>165</code></td>
+<td>在一个场景上的拖放操作正在进行（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenedragdropevent.html">QGraphicsSceneDragDropEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneDrop</code></td>
+<td><code>167</code></td>
+<td>在一个场景上的拖放操作已经完成（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenedragdropevent.html">QGraphicsSceneDragDropEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneHelp</code></td>
+<td><code>163</code></td>
+<td>用户请求对一个图形场景的帮助（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhelpevent.html">QHelpEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneHoverEnter</code></td>
+<td><code>160</code></td>
+<td>鼠标光标进入一个图形场景中的悬停项（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenehoverevent.html">QGraphicsSceneHoverEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneHoverLeave</code></td>
+<td><code>162</code></td>
+<td>鼠标光标离开图形场景中的一个悬停项（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenehoverevent.html">QGraphicsSceneHoverEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneHoverMove</code></td>
+<td><code>161</code></td>
+<td>鼠标光标在图形场景中的一个悬停项内移动（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenehoverevent.html">QGraphicsSceneHoverEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneMouseDoubleClick</code></td>
+<td><code>158</code></td>
+<td>在一个图形场景中再次按下鼠标（双击）（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenemouseevent.html">QGraphicsSceneMouseEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneMouseMove</code></td>
+<td><code>155</code></td>
+<td>在一个图形场景中移动鼠标（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenemouseevent.html">QGraphicsSceneMouseEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneMousePress</code></td>
+<td><code>156</code></td>
+<td>在一个图形场景中按下鼠标（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenemouseevent.html">QGraphicsSceneMouseEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneMouseRelease</code></td>
+<td><code>157</code></td>
+<td>在一个图形场景中释放鼠标(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenemouseevent.html">QGraphicsSceneMouseEvent</a>)。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneMove</code></td>
+<td><code>182</code></td>
+<td>小工具被移动（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenemoveevent.html">QGraphicsSceneMoveEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneResize</code></td>
+<td><code>181</code></td>
+<td>小工具被调整大小(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicssceneresizeevent.html">QGraphicsSceneResizeEvent</a>)。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneWheel</code></td>
+<td><code>168</code></td>
+<td>鼠标滚轮在一个图形场景中滚动（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenewheelevent.html">QGraphicsSceneWheelEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::GraphicsSceneLeave</code></td>
+<td><code>220</code></td>
+<td>光标离开了一个图形场景（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsscenewheelevent.html">QGraphicsSceneWheelEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::Hide</code></td>
+<td><code>18</code></td>
+<td>小部件被隐藏（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhideevent.html">QHideEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::HideToParent</code></td>
+<td><code>27</code></td>
+<td>一个子小部件被隐藏了。</td>
+</tr>
+<tr>
+<td><code>QEvent::HoverEnter</code></td>
+<td><code>127</code></td>
+<td>鼠标光标进入一个悬停小部件（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhoverevent.html">QHoverEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::HoverLeave</code></td>
+<td><code>128</code></td>
+<td>鼠标光标离开一个悬停部件（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhoverevent.html">QHoverEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::HoverMove</code></td>
+<td><code>129</code></td>
+<td>鼠标光标在一个悬停部件内移动（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhoverevent.html">QHoverEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::IconDrag</code></td>
+<td><code>96</code></td>
+<td>窗口的主图标被拖走了（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qicondragevent.html">QIconDragEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::IconTextChange</code></td>
+<td><code>101</code></td>
+<td>小工具的图标文本已被改变。(已废弃)</td>
+</tr>
+<tr>
+<td><code>QEvent::InputMethod</code></td>
+<td><code>83</code></td>
+<td>一个输入法正在被使用（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qinputmethodevent.html">QInputMethodEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::InputMethodQuery</code></td>
+<td><code>207</code></td>
+<td>一个输入法查询事件(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qinputmethodqueryevent.html">QInputMethodQueryEvent</a>)</td>
+</tr>
+<tr>
+<td><code>QEvent::KeyboardLayoutChange</code></td>
+<td><code>169</code></td>
+<td>键盘布局已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::KeyPress</code></td>
+<td><code>6</code></td>
+<td>按键按下（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qkeyevent.html">QKeyEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::KeyRelease</code></td>
+<td><code>7</code></td>
+<td>按键释放(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qkeyevent.html">QKeyEvent</a>)。</td>
+</tr>
+<tr>
+<td><code>QEvent::LanguageChange</code></td>
+<td><code>89</code></td>
+<td>应用程序的翻译改变了。</td>
+</tr>
+<tr>
+<td><code>QEvent::LayoutDirectionChange</code></td>
+<td><code>90</code></td>
+<td>布局的方向改变了。</td>
+</tr>
+<tr>
+<td><code>QEvent::LayoutRequest</code></td>
+<td><code>76</code></td>
+<td>小工具的布局需要重做。</td>
+</tr>
+<tr>
+<td><code>QEvent::Leave</code></td>
+<td><code>11</code></td>
+<td>鼠标离开小部件的边界。</td>
+</tr>
+<tr>
+<td><code>QEvent::LeaveEditFocus</code></td>
+<td><code>151</code></td>
+<td>一个编辑器部件在编辑时失去焦点。必须定义QT_KEYPAD_NAVIGATION。</td>
+</tr>
+<tr>
+<td><code>QEvent::LeaveWhatsThisMode</code></td>
+<td><code>125</code></td>
+<td>当应用程序离开 “这是什么？”模式时发送至顶层部件。</td>
+</tr>
+<tr>
+<td><code>QEvent::LocaleChange</code></td>
+<td><code>88</code></td>
+<td>系统区域设置已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::NonClientAreaMouseButtonDblClick</code></td>
+<td><code>176</code></td>
+<td>一个鼠标双击发生在客户端区域之外（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmouseevent.html">QMouseEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::NonClientAreaMouseButtonPress</code></td>
+<td><code>174</code></td>
+<td>在客户端区域外发生了一次鼠标按钮的按压（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmouseevent.html">QMouseEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::NonClientAreaMouseButtonRelease</code></td>
+<td><code>175</code></td>
+<td>一个鼠标按钮的释放发生在客户端区域之外（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmouseevent.html">QMouseEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::NonClientAreaMouseMove</code></td>
+<td><code>173</code></td>
+<td>在客户端区域外发生了一个鼠标移动（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmouseevent.html">QMouseEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::MacSizeChange</code></td>
+<td><code>177</code></td>
+<td>用户改变了他的小部件的大小（仅在macOS）。</td>
+</tr>
+<tr>
+<td><code>QEvent::MetaCall</code></td>
+<td><code>43</code></td>
+<td>通过<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmetaobject.html#invokeMethod">QMetaObject::invokeMethod</a>()进行了一次异步方法调用。</td>
+</tr>
+<tr>
+<td><code>QEvent::ModifiedChange</code></td>
+<td><code>102</code></td>
+<td>小部件的修改状态被改变了。</td>
+</tr>
+<tr>
+<td><code>QEvent::MouseButtonDblClick</code></td>
+<td><code>4</code></td>
+<td>鼠标再次按下（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmouseevent.html">QMouseEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::MouseButtonPress</code></td>
+<td><code>2</code></td>
+<td>鼠标按下(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmouseevent.html">QMouseEvent</a>)。</td>
+</tr>
+<tr>
+<td><code>QEvent::MouseButtonRelease</code></td>
+<td><code>3</code></td>
+<td>鼠标释放(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmouseevent.html">QMouseEvent</a>)。</td>
+</tr>
+<tr>
+<td><code>QEvent::MouseMove</code></td>
+<td><code>5</code></td>
+<td>鼠标移动(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmouseevent.html">QMouseEvent</a>)。</td>
+</tr>
+<tr>
+<td><code>QEvent::MouseTrackingChange</code></td>
+<td><code>109</code></td>
+<td>鼠标跟踪状态发生了变化。</td>
+</tr>
+<tr>
+<td><code>QEvent::Move</code></td>
+<td><code>13</code></td>
+<td>小工具的位置改变了（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmoveevent.html">QMoveEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::NativeGesture</code></td>
+<td><code>197</code></td>
+<td>系统检测到了一个手势（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnativegestureevent.html">QNativeGestureEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::OrientationChange</code></td>
+<td><code>208</code></td>
+<td>屏幕的方向发生了变化（QScreenOrientationChangeEvent）。</td>
+</tr>
+<tr>
+<td><code>QEvent::Paint</code></td>
+<td><code>12</code></td>
+<td>屏幕需要更新（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpaintevent.html">QPaintEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::PaletteChange</code></td>
+<td><code>39</code></td>
+<td>Palette of the widget changed.</td>
+</tr>
+<tr>
+<td><code>QEvent::ParentAboutToChange</code></td>
+<td><code>131</code></td>
+<td>小工具的父母即将改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::ParentChange</code></td>
+<td><code>21</code></td>
+<td>小组件的父代已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::PlatformPanel</code></td>
+<td><code>212</code></td>
+<td>已要求成立一个特定平台的小组。</td>
+</tr>
+<tr>
+<td><code>QEvent::PlatformSurface</code></td>
+<td><code>217</code></td>
+<td>一个本地平台表面已经被创建或即将被销毁（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qplatformsurfaceevent.html">QPlatformSurfaceEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::Polish</code></td>
+<td><code>75</code></td>
+<td>小部件被打磨得很好。</td>
+</tr>
+<tr>
+<td><code>QEvent::PolishRequest</code></td>
+<td><code>74</code></td>
+<td>小部件应该被打磨。</td>
+</tr>
+<tr>
+<td><code>QEvent::QueryWhatsThis</code></td>
+<td><code>123</code></td>
+<td>如果小部件有 “这是什么？”的帮助（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhelpevent.html">QHelpEvent</a>），它应该接受这个事件。</td>
+</tr>
+<tr>
+<td><code>QEvent::ReadOnlyChange</code></td>
+<td><code>106</code></td>
+<td>小工具的只读状态已经改变（从Qt 5.4开始）。</td>
+</tr>
+<tr>
+<td><code>QEvent::RequestSoftwareInputPanel</code></td>
+<td><code>199</code></td>
+<td>一个小组件想打开一个软件输入面板（SIP）。</td>
+</tr>
+<tr>
+<td><code>QEvent::Resize</code></td>
+<td><code>14</code></td>
+<td>小工具的尺寸改变了（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qresizeevent.html">QResizeEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ScrollPrepare</code></td>
+<td><code>204</code></td>
+<td>该对象需要填写其几何信息（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qscrollprepareevent.html">QScrollPrepareEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::Scroll</code></td>
+<td><code>205</code></td>
+<td>该对象需要滚动到提供的位置（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qscrollevent.html">QScrollEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::Shortcut</code></td>
+<td><code>117</code></td>
+<td>在儿童中按下快捷键处理（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qshortcutevent.html">QShortcutEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ShortcutOverride</code></td>
+<td><code>51</code></td>
+<td>按键在孩子身上，用于覆盖快捷键处理（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qkeyevent.html">QKeyEvent</a>）。当一个快捷键即将触发时，<code>ShortcutOverride</code>被发送到活动窗口。这允许客户端（例如部件）发出信号，表示他们将通过接受该事件来自行处理该快捷键。如果接受了快捷方式覆盖，该事件将作为一个正常的按键被传递给焦点部件。否则，它会触发快捷方式的动作，如果存在的话。</td>
+</tr>
+<tr>
+<td><code>QEvent::Show</code></td>
+<td><code>17</code></td>
+<td>小工具被显示在屏幕上（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qshowevent.html">QShowEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ShowToParent</code></td>
+<td><code>26</code></td>
+<td>已经显示了一个儿童小部件。</td>
+</tr>
+<tr>
+<td><code>QEvent::SockAct</code></td>
+<td><code>50</code></td>
+<td>Socket被激活，用于实现<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsocketnotifier.html">QSocketNotifier</a>。</td>
+</tr>
+<tr>
+<td><code>QEvent::StateMachineSignal</code></td>
+<td><code>192</code></td>
+<td>一个传递给状态机的信号（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstatemachine-signalevent.html">QStateMachine::SignalEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::StateMachineWrapped</code></td>
+<td><code>193</code></td>
+<td>该事件是一个包装器，即包含另一个事件（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstatemachine-wrappedevent.html">QStateMachine::WrappedEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::StatusTip</code></td>
+<td><code>112</code></td>
+<td>请求一个状态提示（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstatustipevent.html">QStatusTipEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::StyleChange</code></td>
+<td><code>100</code></td>
+<td>小工具的风格已被改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::TabletMove</code></td>
+<td><code>87</code></td>
+<td>Wacom平板电脑移动（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtabletevent.html">QTabletEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::TabletPress</code></td>
+<td><code>92</code></td>
+<td>Wacom平板电脑按下（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtabletevent.html">QTabletEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::TabletRelease</code></td>
+<td><code>93</code></td>
+<td>Wacom平板电脑释放（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtabletevent.html">QTabletEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::TabletEnterProximity</code></td>
+<td><code>171</code></td>
+<td>Wacom平板电脑进入接近事件（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtabletevent.html">QTabletEvent</a>），发送到<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qapplication.html">QApplication</a>。</td>
+</tr>
+<tr>
+<td><code>QEvent::TabletLeaveProximity</code></td>
+<td><code>172</code></td>
+<td>Wacom平板电脑离开接近事件（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtabletevent.html">QTabletEvent</a>），发送到<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qapplication.html">QApplication</a>。</td>
+</tr>
+<tr>
+<td><code>QEvent::TabletTrackingChange</code></td>
+<td><code>219</code></td>
+<td>Wacom平板电脑的跟踪状态已经改变（自Qt 5.9起）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ThreadChange</code></td>
+<td><code>22</code></td>
+<td>该对象被转移到另一个线程。这是在前一个线程中向这个对象发送的最后一个事件。参见<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#moveToThread">QObject::moveToThread</a>()。</td>
+</tr>
+<tr>
+<td><code>QEvent::Timer</code></td>
+<td><code>1</code></td>
+<td>常规的定时器事件（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtimerevent.html">QTimerEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ToolBarChange</code></td>
+<td><code>120</code></td>
+<td>工具栏按钮在macOS上是可以切换的。</td>
+</tr>
+<tr>
+<td><code>QEvent::ToolTip</code></td>
+<td><code>110</code></td>
+<td>要求提供工具提示（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhelpevent.html">QHelpEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::ToolTipChange</code></td>
+<td><code>184</code></td>
+<td>该小组件的工具提示已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::TouchBegin</code></td>
+<td><code>194</code></td>
+<td>一系列触摸屏或轨迹板事件的开始（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtouchevent.html">QTouchEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::TouchCancel</code></td>
+<td><code>209</code></td>
+<td>取消触摸事件序列（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtouchevent.html">QTouchEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::TouchEnd</code></td>
+<td><code>196</code></td>
+<td>触摸事件序列的结束（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtouchevent.html">QTouchEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::TouchUpdate</code></td>
+<td><code>195</code></td>
+<td>触摸屏事件（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtouchevent.html">QTouchEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::UngrabKeyboard</code></td>
+<td><code>189</code></td>
+<td>项目失去了键盘抓取（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsitem.html">QGraphicsItem</a> only）。</td>
+</tr>
+<tr>
+<td><code>QEvent::UngrabMouse</code></td>
+<td><code>187</code></td>
+<td>项目失去鼠标抓取（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qgraphicsitem.html">QGraphicsItem</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qquickitem.html">QQuickItem</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::UpdateLater</code></td>
+<td><code>78</code></td>
+<td>小部件应该被排队，以便在稍后的时间重新绘制。</td>
+</tr>
+<tr>
+<td><code>QEvent::UpdateRequest</code></td>
+<td><code>77</code></td>
+<td>该小组件应该被重新绘制。</td>
+</tr>
+<tr>
+<td><code>QEvent::WhatsThis</code></td>
+<td><code>111</code></td>
+<td>该小组件应该显示 “这是什么？”帮助（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhelpevent.html">QHelpEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::WhatsThisClicked</code></td>
+<td><code>118</code></td>
+<td>小工具的 “这是什么？”帮助中的一个链接被点击了。</td>
+</tr>
+<tr>
+<td><code>QEvent::Wheel</code></td>
+<td><code>31</code></td>
+<td>鼠标滚轮（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwheelevent.html">QWheelEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::WinEventAct</code></td>
+<td><code>132</code></td>
+<td>发生了一个Windows特有的激活事件。</td>
+</tr>
+<tr>
+<td><code>QEvent::WindowActivate</code></td>
+<td><code>24</code></td>
+<td>窗口被激活。</td>
+</tr>
+<tr>
+<td><code>QEvent::WindowBlocked</code></td>
+<td><code>103</code></td>
+<td>该窗口被一个模式化的对话框所阻挡。</td>
+</tr>
+<tr>
+<td><code>QEvent::WindowDeactivate</code></td>
+<td><code>25</code></td>
+<td>窗口已停用。</td>
+</tr>
+<tr>
+<td><code>QEvent::WindowIconChange</code></td>
+<td><code>34</code></td>
+<td>窗口的图标已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::WindowStateChange</code></td>
+<td><code>105</code></td>
+<td><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwindow.html#windowState">窗口的状态</a>（最小化、最大化或全屏）已经改变（<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwindowstatechangeevent.html">QWindowStateChangeEvent</a>）。</td>
+</tr>
+<tr>
+<td><code>QEvent::WindowTitleChange</code></td>
+<td><code>33</code></td>
+<td>窗口的标题已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::WindowUnblocked</code></td>
+<td><code>104</code></td>
+<td>在一个模态对话框退出后，窗口被解封。</td>
+</tr>
+<tr>
+<td><code>QEvent::WinIdChange</code></td>
+<td><code>203</code></td>
+<td>这个本地小部件的窗口系统标识符已经改变。</td>
+</tr>
+<tr>
+<td><code>QEvent::ZOrderChange</code></td>
+<td><code>126</code></td>
+<td>小组件的Z-order已经改变。这个事件永远不会被发送到顶层窗口。</td>
+</tr>
+</tbody></table>
+<p>User events should have values between <code>User</code> and <code>MaxUser</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QEvent::User</code></td>
+<td><code>1000</code></td>
+<td>用户定义的事件。</td>
+</tr>
+<tr>
+<td><code>QEvent::MaxUser</code></td>
+<td><code>65535</code></td>
+<td>最后的用户事件ID。</td>
+</tr>
+</tbody></table>
+<p>为了方便起见，你可以使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#registerEventType">registerEventType</a>()函数来为你的应用程序注册和保留一个自定义事件类型。这样做将允许你避免意外地重复使用已经在你的应用程序中其他地方使用的自定义事件类型。</p>
+<h2><span id="property-documentation">Property Documentation</span><a href="#property-documentation" class="header-anchor">#</a></h2><h3><span id="accepted-bool">accepted : bool</span><a href="#accepted-bool" class="header-anchor">#</a></h3><p>此属性持有事件对象的接受标志。</p>
+<p>设置接受参数表示事件接收器想要这个事件。不需要的事件可能会被传播到父部件。默认情况下，isAccepted()被设置为真，但不要依赖这个，因为子类可以选择在他们的构造函数中清除它。</p>
+<p>为了方便，接受标志也可以用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#accept">accept</a>()来设置，用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#ignore">ignore</a>()来清除。</p>
+<p><strong>注意：</strong>接受一个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointerevent.html">QPointerEvent</a>隐含地<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qeventpoint.html#accepted-prop">接受</a>了该事件携带的所有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointerevent.html#points">点</a>。</p>
+<p><strong>Access functions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>isAccepted</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual void</td>
+<td><strong>setAccepted</strong>(bool <em>accepted</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qevent-qevent-qevent-type-type">QEvent::QEvent( <em>type</em>)</span><a href="#qevent-qevent-qevent-type-type" class="header-anchor">#</a></h3><p>构建一个类型为<em>type</em>的事件对象。</p>
+<h3><span id="virtual-qevent-qevent"><code>[virtual]</code>QEvent::~QEvent()</span><a href="#virtual-qevent-qevent" class="header-anchor">#</a></h3><p>销毁该事件。如果它被<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcoreapplication.html#postEvent">张贴</a>，它将被从要张贴的事件列表中删除。</p>
+<h3><span id="void-qevent-accept">void QEvent::accept()</span><a href="#void-qevent-accept" class="header-anchor">#</a></h3><p>设置事件对象的接受标志，相当于调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#accepted-prop">setAccepted</a>(true)。</p>
+<p>设置接受参数表明事件接收者想要这个事件。不需要的事件可能会被传播到父部件。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#ignore">ignore</a>().</p>
+<h3><span id="virtual-since-6-0-qevent-qevent-clone-const"><code>[virtual, since 6.0]</code>QEvent *QEvent::clone() const</span><a href="#virtual-since-6-0-qevent-qevent-clone-const" class="header-anchor">#</a></h3><p>创建并返回此事件的一个相同的副本。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<h3><span id="void-qevent-ignore">void QEvent::ignore()</span><a href="#void-qevent-ignore" class="header-anchor">#</a></h3><p>清除事件对象的接受标志参数，相当于调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#accepted-prop">setAccepted</a>(false)。</p>
+<p>清除接受参数表示事件接收器不想要这个事件。不需要的事件可能会被传播到父部件。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#accept">accept</a>().</p>
+<h3><span id="since-6-0-bool-qevent-isinputevent-const"><code>[since 6.0]</code>bool QEvent::isInputEvent() const</span><a href="#since-6-0-bool-qevent-isinputevent-const" class="header-anchor">#</a></h3><p>如果事件对象是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qinputevent.html">QInputEvent</a> 或其子类之一，则返回<code>true</code>。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<h3><span id="since-6-0-bool-qevent-ispointerevent-const"><code>[since 6.0]</code>bool QEvent::isPointerEvent() const</span><a href="#since-6-0-bool-qevent-ispointerevent-const" class="header-anchor">#</a></h3><p>如果事件对象是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointerevent.html">QPointerEvent</a>或其子类之一，则返回<code>true</code>。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<h3><span id="since-6-0-bool-qevent-issinglepointevent-const"><code>[since 6.0]</code>bool QEvent::isSinglePointEvent() const</span><a href="#since-6-0-bool-qevent-issinglepointevent-const" class="header-anchor">#</a></h3><p>如果事件对象是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsinglepointevent.html">QSinglePointEvent</a>的子类，则返回<code>true</code>。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<h3><span id="static-int-qevent-registereventtype-int-hint-1"><code>[static]</code>int QEvent::registerEventType(int <em>hint</em> = -1)</span><a href="#static-int-qevent-registereventtype-int-hint-1" class="header-anchor">#</a></h3><p>注册并返回一个自定义的事件类型。如果所提供的<em>hint</em>可用，它将被使用，否则它将返回一个介于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::User</a>和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::MaxUser</a>之间、尚未被注册的值。如果<em>提示</em>的值不在<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::User</a>和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::MaxUser</a>之间，则被忽略。</p>
+<p>如果所有可用的值已经被占用或程序正在关闭，则返回-1。</p>
+<p><strong>Note:</strong> 这个函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/threads-reentrancy.html">thread-safe</a>.</p>
+<h3><span id="bool-qevent-spontan-eous-const">bool QEvent::spontan eous() const</span><a href="#bool-qevent-spontan-eous-const" class="header-anchor">#</a></h3><p>如果事件发生在应用程序之外（系统事件），返回 “true”；否则返回 “false”。</p>
+<h3><span id="qevent-type-qevent-type-const"> QEvent::type() const</span><a href="#qevent-type-qevent-type-const" class="header-anchor">#</a></h3><p>返回事件类型。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/E/">E</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/F/QFileInfo/qfileinfo-members/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">qfileinfo-members类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/E/QEventLoopLocker/QEventLoopLocker/">
+                        <span class="hidden-mobile">QEventLoopLocker类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

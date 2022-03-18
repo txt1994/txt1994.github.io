@@ -1,0 +1,1148 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QLabel Class 特性 公共函数 重新实现的公共函数 公共槽函数 信号 重新实现的受保护函数 详细描述 特性文档 alignment : Qt::Alignment [read-only]hasSelectedText : const bool indent : int margin : int openExternalLinks : bool pixmap : QPixmap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QLabel类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/L/QLabel/QLabel/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QLabel Class 特性 公共函数 重新实现的公共函数 公共槽函数 信号 重新实现的受保护函数 详细描述 特性文档 alignment : Qt::Alignment [read-only]hasSelectedText : const bool indent : int margin : int openExternalLinks : bool pixmap : QPixmap">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/windows-label.png">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:45:43.526Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="L">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://doc.qt.io/qt-6/images/windows-label.png">
+  
+  
+  <title>QLabel类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QLabel类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      13k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      109 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QLabel类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qlabel-class">QLabel Class</a><ul>
+<li><a href="#te-xing">特性</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#chong-xin-shi-xian-de-gong-gong-han-shu">重新实现的公共函数</a></li>
+<li><a href="#gong-gong-cao-han-shu">公共槽函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#chong-xin-shi-xian-de-shou-bao-hu-han-shu">重新实现的受保护函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#te-xing-wen-dang">特性文档</a><ul>
+<li><a href="#alignment-qt-alignment-qt-html-alignmentflag-enum">alignment : </a><a href="qt.html#AlignmentFlag-enum">Qt::Alignment</a></li>
+<li><a href="#read-only-hasselectedtext-const-bool"><code>[read-only]</code>hasSelectedText : const bool</a></li>
+<li><a href="#indent-int">indent : int</a></li>
+<li><a href="#margin-int">margin : int</a></li>
+<li><a href="#openexternallinks-bool">openExternalLinks : bool</a></li>
+<li><a href="#pixmap-qpixmap-qpixmap-html">pixmap : </a><a href="qpixmap.html">QPixmap</a></li>
+<li><a href="#scaledcontents-bool">scaledContents : bool</a></li>
+<li><a href="#read-only-selectedtext-const-qstring-qstring-html"><code>[read-only]</code>selectedText : const </a><a href="qstring.html">QString</a></li>
+<li><a href="#text-qstring-qstring-html">text : </a><a href="qstring.html">QString</a></li>
+<li><a href="#textformat-qt-textformat-qt-html-textformat-enum">textFormat : </a><a href="qt.html#TextFormat-enum">Qt::TextFormat</a></li>
+<li><a href="#textinteractionflags-qt-textinteractionflags-qt-html-textinteractionflag-enum">textInteractionFlags : </a><a href="qt.html#TextInteractionFlag-enum">Qt::TextInteractionFlags</a></li>
+<li><a href="#wordwrap-bool">wordWrap : bool</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qlabel-qlabel-const-qstring-qstring-html-text-qwidget-qwidget-html-qwidget-parent-nullptr-qt-windowflags-qt-html-windowtype-enum-f-qt-windowflags">QLabel::QLabel(const </a><a href="qstring.html">QString</a> &amp;<em>text</em>, <a href="qwidget.html#QWidget">QWidget</a> *<em>parent</em> = nullptr, <a href="qt.html#WindowType-enum">Qt::WindowFlags</a> <em>f</em> = Qt::WindowFlags())</li>
+<li><a href="#qlabel-qlabel-qwidget-qwidget-html-qwidget-parent-nullptr-qt-windowflags-qt-html-windowtype-enum-f-qt-windowflags">QLabel::QLabel(</a><a href="qwidget.html#QWidget">QWidget</a> *<em>parent</em> = nullptr, <a href="qt.html#WindowType-enum">Qt::WindowFlags</a> <em>f</em> = Qt::WindowFlags())</li>
+<li><a href="#slot-void-qlabel-clear"><code>[slot]</code>void QLabel::clear()</a></li>
+<li><a href="#signal-void-qlabel-linkactivated-const-qstring-qstring-html-link"><code>[signal]</code>void QLabel::linkActivated(const </a><a href="qstring.html">QString</a> &amp;<em>link</em>)</li>
+<li><a href="#signal-void-qlabel-linkhovered-const-qstring-qstring-html-link"><code>[signal]</code>void QLabel::linkHovered(const </a><a href="qstring.html">QString</a> &amp;<em>link</em>)</li>
+<li><a href="#slot-void-qlabel-setmovie-qmovie-qmovie-html-movie"><code>[slot]</code>void QLabel::setMovie(</a><a href="qmovie.html">QMovie</a> *<em>movie</em>)</li>
+<li><a href="#slot-void-qlabel-setnum-double-num"><code>[slot]</code>void QLabel::setNum(double <em>num</em>)</a></li>
+<li><a href="#slot-void-qlabel-setnum-int-num"><code>[slot]</code>void QLabel::setNum(int <em>num</em>)</a></li>
+<li><a href="#slot-void-qlabel-setpicture-const-qpicture-qpicture-html-picture"><code>[slot]</code>void QLabel::setPicture(const </a><a href="qpicture.html">QPicture</a> &amp;<em>picture</em>)</li>
+<li><a href="#virtual-qlabel-qlabel"><code>[virtual]</code>QLabel::~QLabel()</a></li>
+<li><a href="#qwidget-qwidget-html-qwidget-qlabel-buddy-const">QWidget</a></li>
+<li><a href="#override-virtual-protected-void-qlabel-changeevent-qevent-qevent-html-ev"><code>[override virtual protected]</code>void QLabel::changeEvent(</a><a href="qevent.html">QEvent</a> *<em>ev</em>)</li>
+<li><a href="#override-virtual-protected-void-qlabel-contextmenuevent-qcontextmenuevent-qcontextmenuevent-html-ev"><code>[override virtual protected]</code>void QLabel::contextMenuEvent(</a><a href="qcontextmenuevent.html">QContextMenuEvent</a> *<em>ev</em>)</li>
+<li><a href="#override-virtual-protected-bool-qlabel-event-qevent-qevent-html-e"><code>[override virtual protected]</code>bool QLabel::event(</a><a href="qevent.html">QEvent</a> *<em>e</em>)</li>
+<li><a href="#override-virtual-protected-void-qlabel-focusinevent-qfocusevent-qfocusevent-html-ev"><code>[override virtual protected]</code>void QLabel::focusInEvent(</a><a href="qfocusevent.html">QFocusEvent</a> *<em>ev</em>)</li>
+<li><a href="#override-virtual-protected-bool-qlabel-focusnextprevchild-bool-next"><code>[override virtual protected]</code>bool QLabel::focusNextPrevChild(bool <em>next</em>)</a></li>
+<li><a href="#override-virtual-protected-void-qlabel-focusoutevent-qfocusevent-qfocusevent-html-ev"><code>[override virtual protected]</code>void QLabel::focusOutEvent(</a><a href="qfocusevent.html">QFocusEvent</a> *<em>ev</em>)</li>
+<li><a href="#override-virtual-int-qlabel-heightforwidth-int-w-const"><code>[override virtual]</code>int QLabel::heightForWidth(int <em>w</em>) const</a></li>
+<li><a href="#override-virtual-protected-void-qlabel-keypressevent-qkeyevent-qkeyevent-html-ev"><code>[override virtual protected]</code>void QLabel::keyPressEvent(</a><a href="qkeyevent.html">QKeyEvent</a> *<em>ev</em>)</li>
+<li><a href="#override-virtual-qsize-qsize-html-qlabel-minimumsizehint-const"><code>[override virtual]</code></a><a href="qsize.html">QSize</a> QLabel::minimumSizeHint() const</li>
+<li><a href="#override-virtual-protected-void-qlabel-mousemoveevent-qmouseevent-qmouseevent-html-ev"><code>[override virtual protected]</code>void QLabel::mouseMoveEvent(</a><a href="qmouseevent.html">QMouseEvent</a> *<em>ev</em>)</li>
+<li><a href="#override-virtual-protected-void-qlabel-mousepressevent-qmouseevent-qmouseevent-html-ev"><code>[override virtual protected]</code>void QLabel::mousePressEvent(</a><a href="qmouseevent.html">QMouseEvent</a> *<em>ev</em>)</li>
+<li><a href="#override-virtual-protected-void-qlabel-mousereleaseevent-qmouseevent-qmouseevent-html-ev"><code>[override virtual protected]</code>void QLabel::mouseReleaseEvent(</a><a href="qmouseevent.html">QMouseEvent</a> *<em>ev</em>)</li>
+<li><a href="#qmovie-qmovie-html-qlabel-movie-const">QMovie</a></li>
+<li><a href="#override-virtual-protected-void-qlabel-paintevent-qpaintevent-qpaintevent-html"><code>[override virtual protected]</code>void QLabel::paintEvent(</a><a href="qpaintevent.html">QPaintEvent</a> *)</li>
+<li><a href="#since-6-0-qpicture-qpicture-html-qlabel-picture-const"><code>[since 6.0]</code></a><a href="qpicture.html">QPicture</a> QLabel::picture() const</li>
+<li><a href="#since-6-1-qtextdocument-resourceprovider-qlabel-resourceprovider-const"><code>[since 6.1]</code>QTextDocument::ResourceProvider QLabel::resourceProvider() const</a></li>
+<li><a href="#int-qlabel-selectionstart-const">int QLabel::selectionStart() const</a></li>
+<li><a href="#void-qlabel-setbuddy-qwidget-qwidget-html-qwidget-buddy">void QLabel::setBuddy(</a><a href="qwidget.html#QWidget">QWidget</a> *<em>buddy</em>)</li>
+<li><a href="#since-6-1-void-qlabel-setresourceprovider-const-qtextdocument-resourceprovider-provider"><code>[since 6.1]</code>void QLabel::setResourceProvider(const QTextDocument::ResourceProvider &amp;<em>provider</em>)</a></li>
+<li><a href="#void-qlabel-setselection-int-start-int-length">void QLabel::setSelection(int <em>start</em>, int <em>length</em>)</a></li>
+<li><a href="#override-virtual-qsize-qsize-html-qlabel-sizehint-const"><code>[override virtual]</code></a><a href="qsize.html">QSize</a> QLabel::sizeHint() const</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QLabel Class
+
+<p>QLabel小组件提供了一个文本或图像显示。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qlabel></qlabel></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Widgets REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Widgets)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += widgets</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a href="qframe.html">QFrame</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qlabel-members.html">List of all members, including inherited members</a></li>
+<li><a href="qlabel-obsolete.html">Deprecated members</a></li>
+</ul>
+<h2><span id="te-xing">特性</span><a href="#te-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th><strong><a href="#alignment-prop">alignment</a></strong> : Qt::Alignment**<a href="#hasSelectedText-prop">hasSelectedText</a>** : const bool**<a href="#indent-prop">indent</a>** : int**<a href="#margin-prop">margin</a>** : int**<a href="#openExternalLinks-prop">openExternalLinks</a>** : bool**<a href="#pixmap-prop">pixmap</a>** : QPixmap</th>
+<th><strong><a href="#scaledContents-prop">scaledContents</a></strong> : bool**<a href="#selectedText-prop">selectedText</a>** : const QString**<a href="#text-prop">text</a>** : QString**<a href="#textFormat-prop">textFormat</a>** : Qt::TextFormat**<a href="#textInteractionFlags-prop">textInteractionFlags</a>** : Qt::TextInteractionFlags**<a href="#wordWrap-prop">wordWrap</a>** : bool</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QLabel-1">QLabel</a></strong>(const QString &amp;<em>text</em>, QWidget *<em>parent</em> = nullptr, Qt::WindowFlags <em>f</em> = Qt::WindowFlags())</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QLabel">QLabel</a></strong>(QWidget *<em>parent</em> = nullptr, Qt::WindowFlags <em>f</em> = Qt::WindowFlags())</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QLabel">~QLabel</a></strong>()</td>
+</tr>
+<tr>
+<td>Qt::Alignment</td>
+<td><strong><a href="#alignment-prop">alignment</a></strong>() const</td>
+</tr>
+<tr>
+<td>QWidget *</td>
+<td><strong><a href="#buddy">buddy</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#scaledContents-prop">hasScaledContents</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasSelectedText-prop">hasSelectedText</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#indent-prop">indent</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#margin-prop">margin</a></strong>() const</td>
+</tr>
+<tr>
+<td>QMovie *</td>
+<td><strong><a href="#movie">movie</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#openExternalLinks-prop">openExternalLinks</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPicture</td>
+<td><strong><a href="#picture-1">picture</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPixmap</td>
+<td><strong><a href="#pixmap-prop">pixmap</a></strong>() const</td>
+</tr>
+<tr>
+<td>QTextDocument::ResourceProvider</td>
+<td><strong><a href="#resourceProvider">resourceProvider</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#selectedText-prop">selectedText</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#selectionStart">selectionStart</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#alignment-prop">setAlignment</a></strong>(Qt::Alignment)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setBuddy">setBuddy</a></strong>(QWidget *<em>buddy</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#indent-prop">setIndent</a></strong>(int)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#margin-prop">setMargin</a></strong>(int)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#openExternalLinks-prop">setOpenExternalLinks</a></strong>(bool <em>open</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setResourceProvider">setResourceProvider</a></strong>(const QTextDocument::ResourceProvider &amp;<em>provider</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#scaledContents-prop">setScaledContents</a></strong>(bool)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setSelection">setSelection</a></strong>(int <em>start</em>, int <em>length</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#textFormat-prop">setTextFormat</a></strong>(Qt::TextFormat)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#textInteractionFlags-prop">setTextInteractionFlags</a></strong>(Qt::TextInteractionFlags <em>flags</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#wordWrap-prop">setWordWrap</a></strong>(bool <em>on</em>)</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#text-prop">text</a></strong>() const</td>
+</tr>
+<tr>
+<td>Qt::TextFormat</td>
+<td><strong><a href="#textFormat-prop">textFormat</a></strong>() const</td>
+</tr>
+<tr>
+<td>Qt::TextInteractionFlags</td>
+<td><strong><a href="#textInteractionFlags-prop">textInteractionFlags</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#wordWrap-prop">wordWrap</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-xin-shi-xian-de-gong-gong-han-shu">重新实现的公共函数</span><a href="#chong-xin-shi-xian-de-gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual int</th>
+<th><strong><a href="#heightForWidth">heightForWidth</a></strong>(int <em>w</em>) const override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual QSize</td>
+<td><strong><a href="#minimumSizeHint">minimumSizeHint</a></strong>() const override</td>
+</tr>
+<tr>
+<td>virtual QSize</td>
+<td><strong><a href="#sizeHint">sizeHint</a></strong>() const override</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cao-han-shu">公共槽函数</span><a href="#gong-gong-cao-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#clear">clear</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#setMovie">setMovie</a></strong>(QMovie *<em>movie</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setNum-1">setNum</a></strong>(double <em>num</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setNum">setNum</a></strong>(int <em>num</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setPicture">setPicture</a></strong>(const QPicture &amp;<em>picture</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#pixmap-prop">setPixmap</a></strong>(const QPixmap &amp;)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#text-prop">setText</a></strong>(const QString &amp;)</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#linkActivated">linkActivated</a></strong>(const QString &amp;<em>link</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#linkHovered">linkHovered</a></strong>(const QString &amp;<em>link</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-xin-shi-xian-de-shou-bao-hu-han-shu">重新实现的受保护函数</span><a href="#chong-xin-shi-xian-de-shou-bao-hu-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual void</th>
+<th><strong><a href="#changeEvent">changeEvent</a></strong>(QEvent *<em>ev</em>) override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual void</td>
+<td><strong><a href="#contextMenuEvent">contextMenuEvent</a></strong>(QContextMenuEvent *<em>ev</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#event">event</a></strong>(QEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#focusInEvent">focusInEvent</a></strong>(QFocusEvent *<em>ev</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#focusNextPrevChild">focusNextPrevChild</a></strong>(bool <em>next</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#focusOutEvent">focusOutEvent</a></strong>(QFocusEvent *<em>ev</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#keyPressEvent">keyPressEvent</a></strong>(QKeyEvent *<em>ev</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#mouseMoveEvent">mouseMoveEvent</a></strong>(QMouseEvent *<em>ev</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#mousePressEvent">mousePressEvent</a></strong>(QMouseEvent *<em>ev</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#mouseReleaseEvent">mouseReleaseEvent</a></strong>(QMouseEvent *<em>ev</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#paintEvent">paintEvent</a></strong>(QPaintEvent *) override</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p><img src="https://doc.qt.io/qt-6/images/windows-label.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>QLabel用于显示文本或图像。没有提供用户交互功能。标签的视觉外观可以通过各种方式进行配置，它可以用来为另一个部件指定一个焦点记忆键。</p>
+<p>一个QLabel可以包含以下任何内容类型：</p>
+<table>
+<thead>
+<tr>
+<th align="center">Content</th>
+<th align="center">Setting</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Plain text</td>
+<td align="center">传递一个<a href="qstring.html">QString</a>给<a href="#text-prop">setText</a>()。</td>
+</tr>
+<tr>
+<td align="center">Rich text</td>
+<td align="center">将一个包含丰富文本的<a href="qstring.html">QString</a>传递给<a href="#text-prop">setText</a>()。</td>
+</tr>
+<tr>
+<td align="center">A pixmap</td>
+<td align="center">传递一个<a href="qpixmap.html">QPixmap</a>给<a href="#pixmap-prop">setPixmap</a>()。</td>
+</tr>
+<tr>
+<td align="center">A movie</td>
+<td align="center">传递一个<a href="qmovie.html">QMovie</a>给<a href="#setMovie">setMovie</a>()。</td>
+</tr>
+<tr>
+<td align="center">A number</td>
+<td align="center">传递一个<em>int</em>或<em>double</em>给<a href="#setNum">setNum</a>()，它将数字转换为纯文本。</td>
+</tr>
+<tr>
+<td align="center">Nothing</td>
+<td align="center">与空的纯文本相同。这是默认的。由<a href="#clear">clear</a>()设置。</td>
+</tr>
+</tbody></table>
+<p><strong>警告：</strong>在向构造函数传递<a href="qstring.html">QString</a>或调用<a href="#text-prop">setText</a>()时，请确保对输入进行消毒，因为QLabel试图猜测它是以纯文本还是以富文本（HTML 4标记的一个子集）显示文本。您可能希望明确调用<a href="#textFormat-prop">setTextFormat</a>()，例如，如果您希望文本为纯文本格式，但无法控制文本来源（例如，显示从网络加载的数据时）。</p>
+<p>当使用这些函数改变内容时，之前的任何内容都会被清除掉。</p>
+<p>默认情况下，标签显示<a href="styleheet-reference.html#alignment">左对齐，垂直居中</a>的文本和图像，其中要显示的文本中的任何标签都是<a href="qt.html#TextFlag-enum">自动展开</a>。然而，QLabel的外观可以通过几种方式进行调整和微调。</p>
+<p>内容在QLabel部件区域内的定位可以通过<a href="#alignment-prop">setAlignment</a>()和<a href="#indent-prop">setIndent</a>()进行调整。文本内容也可以用<a href="#wordWrap-prop">setWordWrap</a>()沿着字的边界换行。例如，这段代码在右下角设置了一个带有两行文字的下沉式面板（两行文字都与标签的右侧平齐）：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QLabel *label = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QLabel</span>(<span class="hljs-keyword">this</span>);
+label-&gt;<span class="hljs-built_in">setFrameStyle</span>(QFrame::Panel | QFrame::Sunken);
+label-&gt;<span class="hljs-built_in">setText</span>(<span class="hljs-string">"first line\nsecond line"</span>);
+label-&gt;<span class="hljs-built_in">setAlignment</span>(Qt::AlignBottom | Qt::AlignRight);</code></pre></div>
+
+<p>QLabel从<a href="qframe.html">QFrame</a>继承的属性和功能也可以用来指定任何给定的标签所要使用的部件框架。</p>
+<p>一个QLabel经常被用作一个交互式部件的标签。对于这种用途，QLabel提供了一个有用的机制来添加一个助记符（见<a href="qkeysequence.html">QKeySequence</a>），该助记符将把键盘焦点设置到其他部件（称为QLabel的 “伙伴”）。比如说:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QLineEdit *phoneEdit = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QLineEdit</span>(<span class="hljs-keyword">this</span>);
+QLabel *phoneLabel = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QLabel</span>(<span class="hljs-string">"&amp;Phone:"</span>, <span class="hljs-keyword">this</span>);
+phoneLabel-&gt;<span class="hljs-built_in">setBuddy</span>(phoneEdit);</code></pre></div>
+
+<p>在这个例子中，当用户按下Alt+P时，键盘焦点被转移到标签的伙伴（<a href="qlineedit.html">QLineEdit</a>）。如果这个伙伴是一个按钮（继承自<a href="qabstractbutton.html">QAbstractButton</a>），触发助记符将模拟一个按钮点击。</p>
+<p><strong>See also</strong> <a href="qlineedit.html">QLineEdit</a>, <a href="qtextedit.html">QTextEdit</a>, <a href="qpixmap.html">QPixmap</a>, <a href="qmovie.html">QMovie</a>, and <a href="guibooks.html#fowler">GUI Design Handbook: Label</a>.</p>
+<h2><span id="te-xing-wen-dang">特性文档</span><a href="#te-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="alignment-qt-alignment">alignment : </span><a href="#alignment-qt-alignment" class="header-anchor">#</a></h3><p>该属性持有标签内容的对齐方式</p>
+<p>默认情况下，标签的内容是左对齐和垂直居中的。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Qt::Alignment</th>
+<th><strong>alignment</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setAlignment</strong>(Qt::Alignment)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#text-prop">text</a>.</p>
+<h3><span id="read-only-hasselectedtext-const-bool"><code>[read-only]</code>hasSelectedText : const bool</span><a href="#read-only-hasselectedtext-const-bool" class="header-anchor">#</a></h3><p>这个属性表示是否有任何文本被选中</p>
+<p>hasSelectedText()如果部分或全部文本被用户选中，返回 “true”；否则返回 “false”。</p>
+<p>默认情况下，该属性为 “false”。</p>
+<p><strong>注意：</strong>标签上设置的<a href="#textInteractionFlags-prop">textInteractionFlags</a>需要包括TextSelectableByMouse或TextSelectableByKeyboard。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>hasSelectedText</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#selectedText-prop">selectedText</a>().</p>
+<h3><span id="indent-int">indent : int</span><a href="#indent-int" class="header-anchor">#</a></h3><p>这个属性保持标签的文本缩进，单位是像素。</p>
+<p>如果标签显示文本，如果<a href="#alignment-prop">alignment</a>()是<a href="qt.html#AlignmentFlag-enum">Qt::AlignLeft</a>，则缩进适用于左边缘；如果<a href="#alignment-prop">alignment</a>()是[Qt::AlignRight](qt. 如果<a href="#alignment-prop">alignment</a>()是<a href="qt.html#AlignmentFlag-enum">Qt::AlignTop</a>，则到右边缘；如果<a href="#alignment-prop">alignment</a>()是<a href="qt.html#AlignmentFlag-enum">Qt::AlignBottom</a>则到底部边缘。）</p>
+<p>如果缩进是负的，或者没有设置缩进，标签会按如下方式计算有效缩进。如果<a href="qframe.html#frameWidth-prop">frameWidth</a>()为0，则有效缩进为0。如果<a href="qframe.html#frameWidth-prop">frameWidth</a>()大于0，则有效缩进为该部件当前<a href="qwidget.html#font-prop">font</a>()中 “x “字符的一半宽度。</p>
+<p>默认情况下，缩进为-1，意味着有效缩进是按照上述方式计算的。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>int</th>
+<th><strong>indent</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setIndent</strong>(int)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="stylesheet-reference.html#alignment">alignment</a>, <a href="#margin-prop">margin</a>, <a href="qframe.html#frameWidth-prop">frameWidth</a>(), and <a href="qwidget.html#font-prop">font</a>().</p>
+<h3><span id="margin-int">margin : int</span><a href="#margin-int" class="header-anchor">#</a></h3><p>此属性保存了边距的宽度</p>
+<p>margin是指框架最里面的像素和内容最外面的像素之间的距离。</p>
+<p>默认边距为0。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>int</th>
+<th><strong>margin</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setMargin</strong>(int)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#indent-prop">indent</a>.</p>
+<h3><span id="openexternallinks-bool">openExternalLinks : bool</span><a href="#openexternallinks-bool" class="header-anchor">#</a></h3><p>指定<a href>QLabel</a>是否应该使用<a href="qdesktopservices.html#openUrl">QDesktopServices::openUrl</a>()自动打开链接，而不是发出<a href="#linkActivated">linkActivated</a>() 信号。</p>
+<p><strong>注意：</strong>标签上设置的<a href="#textInteractionFlags-prop">textInteractionFlags</a>需要包括LinksAccessibleByMouse或LinksAccessibleByKeyboard。</p>
+<p>默认值为false。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>openExternalLinks</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setOpenExternalLinks</strong>(bool <em>open</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#textInteractionFlags-prop">textInteractionFlags</a>().</p>
+<h3><span id="pixmap-qpixmap">pixmap : </span><a href="#pixmap-qpixmap" class="header-anchor">#</a></h3><p>该属性持有标签的像素图。</p>
+<p>设置像素图会清除之前的任何内容。如果有的话，好友的快捷方式会被禁用。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>QPixmap</th>
+<th><strong>pixmap</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setPixmap</strong>(const QPixmap &amp;)</td>
+</tr>
+</tbody></table>
+<h3><span id="scaledcontents-bool">scaledContents : bool</span><a href="#scaledcontents-bool" class="header-anchor">#</a></h3><p>此属性决定了标签是否会缩放其内容以填充所有可用空间。</p>
+<p>启用后，如果标签显示一个像素图，它将缩放像素图以填充可用空间。</p>
+<p>这个属性的默认值是false。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>hasScaledContents</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setScaledContents</strong>(bool)</td>
+</tr>
+</tbody></table>
+<h3><span id="read-only-selectedtext-const-qstring"><code>[read-only]</code>selectedText : const </span><a href="#read-only-selectedtext-const-qstring" class="header-anchor">#</a></h3><p>此属性用于保存所选文本</p>
+<p>如果没有选定的文本，这个属性的值是一个空字符串。</p>
+<p>默认情况下，这个属性包含一个空字符串。</p>
+<p><strong>注意：</strong>标签上设置的<a href="#textInteractionFlags-prop">textInteractionFlags</a>需要包括TextSelectableByMouse或TextSelectableByKeyboard。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>selectedText</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#hasSelectedText-prop">hasSelectedText</a>().</p>
+<h3><span id="text-qstring">text : </span><a href="#text-qstring" class="header-anchor">#</a></h3><p>此属性持有标签的文本</p>
+<p>如果没有设置文本，这将返回一个空字符串。设置文本将清除之前的任何内容。</p>
+<p>文本将被解释为纯文本或富文本，这取决于文本格式的设置；见<a href="#textFormat-prop">setTextFormat</a>()。默认设置是<a href="qt.html#TextFormat-enum">Qt::AutoText</a>；也就是说，<a href>QLabel</a>将尝试自动检测文本集的格式。关于富文本的定义，请参见<a href="richtext-html-subset.html">支持的HTML子集</a>。</p>
+<p>如果已经设置了一个好友，好友的助记符将从新的文本中更新。</p>
+<p>请注意，<a href>QLabel</a>非常适合于显示小型富文本文档，比如小型文档从标签的调色板和字体属性中获得它们的文档特定设置（字体、文本颜色、链接颜色）。对于大型文档，请在只读模式下使用<a href="qtextedit.html">QTextEdit</a>代替。<a href="qtextedit.html">QTextEdit</a>在必要时还可以提供一个滚动条。</p>
+<p><strong>注意：</strong>如果<em>文本</em>包含丰富的文本，该功能可以实现鼠标跟踪。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>text</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setText</strong>(const QString &amp;)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#textFormat-prop">setTextFormat</a>(), <a href="#setBuddy">setBuddy</a>(), and <a href="stylesheet-reference.html#alignment">alignment</a>.</p>
+<h3><span id="textformat-qt-textformat">textFormat : </span><a href="#textformat-qt-textformat" class="header-anchor">#</a></h3><p>该属性持有标签的文本格式</p>
+<p>請看 <a href="qt.html#TextFormat-enum">Qt::TextFormat</a> 枚举对可能的选项的解释。</p>
+<p>默认格式是<a href="qt.html#TextFormat-enum">Qt::AutoText</a>。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Qt::TextFormat</th>
+<th><strong>textFormat</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setTextFormat</strong>(Qt::TextFormat)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#text-prop">text</a>().</p>
+<h3><span id="textinteractionflags-qt-textinteractionflags">textInteractionFlags : </span><a href="#textinteractionflags-qt-textinteractionflags" class="header-anchor">#</a></h3><p>指定标签在显示文本时应如何与用户输入互动。</p>
+<p>如果旗標包含 <a href="qt.html#TextInteractionFlag-enum">Qt::LinksAccessibleByKeyboard</a> ，焦點策略也會自動設定為 <a href="qt.html#FocusPolicy-enum">Qt::StrongFocus</a> 。如果 <a href="qt.html#TextInteractionFlag-enum">Qt::TextSelectableByKeyboard</a> 被設定，那麼焦點策略會被設定為 <a href="qt.html#FocusPolicy-enum">Qt::ClickFocus</a> 。</p>
+<p>默认值是 <a href="qt.html#TextInteractionFlag-enum">Qt::LinksAccessibleByMouse</a> 。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Qt::TextInteractionFlags</th>
+<th><strong>textInteractionFlags</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setTextInteractionFlags</strong>(Qt::TextInteractionFlags <em>flags</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="wordwrap-bool">wordWrap : bool</span><a href="#wordwrap-bool" class="header-anchor">#</a></h3><p>该属性持有标签的文字包装策略。</p>
+<p>如果这个属性是<code>true</code>，那么标签文本在必要的时候会在断字处被包起来；否则就完全不被包起来。</p>
+<p>默认情况下，文字包装是禁用的。</p>
+<p><strong>访问功能:</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>wordWrap</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setWordWrap</strong>(bool <em>on</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#text-prop">text</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qlabel-qlabel-const-qstring-amp-text-qwidget-parent-nullptr-qt-windowflags-f-qt-windowflags">QLabel::QLabel(const  &amp;<em>text</em>,  *<em>parent</em> = nullptr,  <em>f</em> = Qt::WindowFlags())</span><a href="#qlabel-qlabel-const-qstring-amp-text-qwidget-parent-nullptr-qt-windowflags-f-qt-windowflags" class="header-anchor">#</a></h3><p>构建一个显示文本的标签，<em>text</em>。</p>
+<p>参数<em>parent</em>和widget标志<em>f</em>，被传递给<a href="qframe.html">QFrame</a>构造函数。</p>
+<p><strong>See also</strong> <a href="#text-prop">setText</a>(), <a href="#alignment-prop">setAlignment</a>(), <a href="qframe.html#setFrameStyle">setFrameStyle</a>(), and <a href="#indent-prop">setIndent</a>().</p>
+<h3><span id="qlabel-qlabel-qwidget-parent-nullptr-qt-windowflags-f-qt-windowflags">QLabel::QLabel( *<em>parent</em> = nullptr,  <em>f</em> = Qt::WindowFlags())</span><a href="#qlabel-qlabel-qwidget-parent-nullptr-qt-windowflags-f-qt-windowflags" class="header-anchor">#</a></h3><p>构建一个空标签。</p>
+<p>参数<em>parent</em>和widget标志<em>f</em>，被传递给<a href="qframe.html">QFrame</a>构造函数。</p>
+<p><strong>See also</strong> <a href="#alignment-prop">setAlignment</a>(), <a href="qframe.html#setFrameStyle">setFrameStyle</a>(), and <a href="#indent-prop">setIndent</a>().</p>
+<h3><span id="slot-void-qlabel-clear"><code>[slot]</code>void QLabel::clear()</span><a href="#slot-void-qlabel-clear" class="header-anchor">#</a></h3><p>清除任何标签内容。</p>
+<h3><span id="signal-void-qlabel-linkactivated-const-qstring-amp-link"><code>[signal]</code>void QLabel::linkActivated(const  &amp;<em>link</em>)</span><a href="#signal-void-qlabel-linkactivated-const-qstring-amp-link" class="header-anchor">#</a></h3><p>当用户点击一个链接时，会发出这个信号。锚所指的URL在<em>link</em>中被传递。</p>
+<p><strong>See also</strong> <a href="#linkHovered">linkHovered</a>().</p>
+<h3><span id="signal-void-qlabel-linkhovered-const-qstring-amp-link"><code>[signal]</code>void QLabel::linkHovered(const  &amp;<em>link</em>)</span><a href="#signal-void-qlabel-linkhovered-const-qstring-amp-link" class="header-anchor">#</a></h3><p>当用户将鼠标悬停在一个链接上时，会发出这个信号。锚所指的URL在<em>link</em>中被传递。</p>
+<p><strong>See also</strong> <a href="#linkActivated">linkActivated</a>().</p>
+<h3><span id="slot-void-qlabel-setmovie-qmovie-movie"><code>[slot]</code>void QLabel::setMovie( *<em>movie</em>)</span><a href="#slot-void-qlabel-setmovie-qmovie-movie" class="header-anchor">#</a></h3><p>将标签内容设置为<em>movie</em>。之前的任何内容都被清空。标签不会取得电影的所有权。</p>
+<p>如果有的话，好友的快捷方式会被禁用。</p>
+<p><strong>See also</strong> <a href="#movie">movie</a>() and <a href="#setBuddy">setBuddy</a>().</p>
+<h3><span id="slot-void-qlabel-setnum-double-num"><code>[slot]</code>void QLabel::setNum(double <em>num</em>)</span><a href="#slot-void-qlabel-setnum-double-num" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将标签内容设置为纯文本，包含双倍<em>num</em>的文本表示。之前的任何内容都被清除。如果双数的字符串表示法与标签的当前内容相同，则不做任何操作。</p>
+<p>如果有的话，好友的快捷方式会被禁用。</p>
+<p><strong>See also</strong> <a href="#text-prop">setText</a>(), <a href="qstring.html#setNum">QString::setNum</a>(), and <a href="#setBuddy">setBuddy</a>().</p>
+<h3><span id="slot-void-qlabel-setnum-int-num"><code>[slot]</code>void QLabel::setNum(int <em>num</em>)</span><a href="#slot-void-qlabel-setnum-int-num" class="header-anchor">#</a></h3><p>将标签内容设置为纯文本，包含整数<em>num</em>的文本表示。之前的任何内容都被清除。如果整数的字符串表示法与标签的当前内容相同，则不做任何操作。</p>
+<p>如果有的话，好友的快捷方式会被禁用。</p>
+<p><strong>See also</strong> <a href="#text-prop">setText</a>(), <a href="qstring.html#setNum">QString::setNum</a>(), and <a href="#setBuddy">setBuddy</a>().</p>
+<h3><span id="slot-void-qlabel-setpicture-const-qpicture-amp-picture"><code>[slot]</code>void QLabel::setPicture(const  &amp;<em>picture</em>)</span><a href="#slot-void-qlabel-setpicture-const-qpicture-amp-picture" class="header-anchor">#</a></h3><p>将标签内容设置为<em>picture</em>。以前的任何内容都被清除了。</p>
+<p>如果有的话，好友的快捷方式会被禁用。</p>
+<p><strong>See also</strong> <a href="#picture-1">picture</a>() and <a href="#setBuddy">setBuddy</a>().</p>
+<h3><span id="virtual-qlabel-qlabel"><code>[virtual]</code>QLabel::~QLabel()</span><a href="#virtual-qlabel-qlabel" class="header-anchor">#</a></h3><p>销毁标签。</p>
+<h3><span id="qwidget-qlabel-buddy-const"> *QLabel::buddy() const</span><a href="#qwidget-qlabel-buddy-const" class="header-anchor">#</a></h3><p>返回此标签的好友，如果当前没有设置好友，则返回nullptr。</p>
+<p><strong>See also</strong> <a href="#setBuddy">setBuddy</a>().</p>
+<h3><span id="override-virtual-protected-void-qlabel-changeevent-qevent-ev"><code>[override virtual protected]</code>void QLabel::changeEvent( *<em>ev</em>)</span><a href="#override-virtual-protected-void-qlabel-changeevent-qevent-ev" class="header-anchor">#</a></h3><p>重新实现: <a href="qframe.html#changeEvent">QFrame::changeEvent</a>(QEvent *ev).</p>
+<h3><span id="override-virtual-protected-void-qlabel-contextmenuevent-qcontextmenuevent-ev"><code>[override virtual protected]</code>void QLabel::contextMenuEvent( *<em>ev</em>)</span><a href="#override-virtual-protected-void-qlabel-contextmenuevent-qcontextmenuevent-ev" class="header-anchor">#</a></h3><p>重新实现: <a href="qwidget.html#contextMenuEvent">QWidget::contextMenuEvent</a>(QContextMenuEvent *event).</p>
+<h3><span id="override-virtual-protected-bool-qlabel-event-qevent-e"><code>[override virtual protected]</code>bool QLabel::event( *<em>e</em>)</span><a href="#override-virtual-protected-bool-qlabel-event-qevent-e" class="header-anchor">#</a></h3><p>重新实现: <a href="qframe.html#event">QFrame::event</a>(QEvent *e).</p>
+<h3><span id="override-virtual-protected-void-qlabel-focusinevent-qfocusevent-ev"><code>[override virtual protected]</code>void QLabel::focusInEvent( *<em>ev</em>)</span><a href="#override-virtual-protected-void-qlabel-focusinevent-qfocusevent-ev" class="header-anchor">#</a></h3><p>重新实现: <a href="qwidget.html#focusInEvent">QWidget::focusInEvent</a>(QFocusEvent *event).</p>
+<h3><span id="override-virtual-protected-bool-qlabel-focusnextprevchild-bool-next"><code>[override virtual protected]</code>bool QLabel::focusNextPrevChild(bool <em>next</em>)</span><a href="#override-virtual-protected-bool-qlabel-focusnextprevchild-bool-next" class="header-anchor">#</a></h3><p>重新实现: <a href="qwidget.html#focusNextPrevChild">QWidget::focusNextPrevChild</a>(bool next).</p>
+<h3><span id="override-virtual-protected-void-qlabel-focusoutevent-qfocusevent-ev"><code>[override virtual protected]</code>void QLabel::focusOutEvent( *<em>ev</em>)</span><a href="#override-virtual-protected-void-qlabel-focusoutevent-qfocusevent-ev" class="header-anchor">#</a></h3><p>重新实现: <a href="qwidget.html#focusOutEvent">QWidget::focusOutEvent</a>(QFocusEvent *event).</p>
+<h3><span id="override-virtual-int-qlabel-heightforwidth-int-w-const"><code>[override virtual]</code>int QLabel::heightForWidth(int <em>w</em>) const</span><a href="#override-virtual-int-qlabel-heightforwidth-int-w-const" class="header-anchor">#</a></h3><p>重新实现: <a href="qwidget.html#heightForWidth">QWidget::heightForWidth(int w) const</a>.</p>
+<h3><span id="override-virtual-protected-void-qlabel-keypressevent-qkeyevent-ev"><code>[override virtual protected]</code>void QLabel::keyPressEvent( *<em>ev</em>)</span><a href="#override-virtual-protected-void-qlabel-keypressevent-qkeyevent-ev" class="header-anchor">#</a></h3><p>重新实现: <a href="qwidget.html#keyPressEvent">QWidget::keyPressEvent</a>(QKeyEvent *event).</p>
+<h3><span id="override-virtual-qsize-qlabel-minimumsizehint-const"><code>[override virtual]</code> QLabel::minimumSizeHint() const</span><a href="#override-virtual-qsize-qlabel-minimumsizehint-const" class="header-anchor">#</a></h3><p>重新实现 an access function for property: <a href="qwidget.html#minimumSizeHint-prop">QWidget::minimumSizeHint</a>.</p>
+<h3><span id="override-virtual-protected-void-qlabel-mousemoveevent-qmouseevent-ev"><code>[override virtual protected]</code>void QLabel::mouseMoveEvent( *<em>ev</em>)</span><a href="#override-virtual-protected-void-qlabel-mousemoveevent-qmouseevent-ev" class="header-anchor">#</a></h3><p>重新实现: <a href="qwidget.html#mouseMoveEvent">QWidget::mouseMoveEvent</a>(QMouseEvent *event).</p>
+<h3><span id="override-virtual-protected-void-qlabel-mousepressevent-qmouseevent-ev"><code>[override virtual protected]</code>void QLabel::mousePressEvent( *<em>ev</em>)</span><a href="#override-virtual-protected-void-qlabel-mousepressevent-qmouseevent-ev" class="header-anchor">#</a></h3><p>重新实现: <a href="qwidget.html#mousePressEvent">QWidget::mousePressEvent</a>(QMouseEvent *event).</p>
+<h3><span id="override-virtual-protected-void-qlabel-mousereleaseevent-qmouseevent-ev"><code>[override virtual protected]</code>void QLabel::mouseReleaseEvent( *<em>ev</em>)</span><a href="#override-virtual-protected-void-qlabel-mousereleaseevent-qmouseevent-ev" class="header-anchor">#</a></h3><p>重新实现: <a href="qwidget.html#mouseReleaseEvent">QWidget::mouseReleaseEvent</a>(QMouseEvent *event).</p>
+<h3><span id="qmovie-qlabel-movie-const"> *QLabel::movie() const</span><a href="#qmovie-qlabel-movie-const" class="header-anchor">#</a></h3><p>返回一个指向标签电影的指针，如果没有设置电影，则返回nullptr。</p>
+<p><strong>See also</strong> <a href="#setMovie">setMovie</a>().</p>
+<h3><span id="override-virtual-protected-void-qlabel-paintevent-qpaintevent"><code>[override virtual protected]</code>void QLabel::paintEvent( *)</span><a href="#override-virtual-protected-void-qlabel-paintevent-qpaintevent" class="header-anchor">#</a></h3><p>重新实现: <a href="qframe.html#paintEvent">QFrame::paintEvent</a>(QPaintEvent *).</p>
+<h3><span id="since-6-0-qpicture-qlabel-picture-const"><code>[since 6.0]</code> QLabel::picture() const</span><a href="#since-6-0-qpicture-qlabel-picture-const" class="header-anchor">#</a></h3><p>返回标签的图片。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<h3><span id="since-6-1-qtextdocument-resourceprovider-qlabel-resourceprovider-const"><code>[since 6.1]</code>QTextDocument::ResourceProvider QLabel::resourceProvider() const</span><a href="#since-6-1-qtextdocument-resourceprovider-qlabel-resourceprovider-const" class="header-anchor">#</a></h3><p>返回该标签的富文本的资源提供者。</p>
+<p>这个函数是在Qt 6.1中引入的。</p>
+<p><strong>See also</strong> <a href="#setResourceProvider">setResourceProvider</a>().</p>
+<h3><span id="int-qlabel-selectionstart-const">int QLabel::selectionStart() const</span><a href="#int-qlabel-selectionstart-const" class="header-anchor">#</a></h3><p>selectionStart()返回标签中第一个被选中的字符的索引，如果没有文本被选中则返回-1。</p>
+<p><strong>注意：</strong>标签上设置的[textInteractionFlags]（#textInteractionFlags-prop）需要包括TextSelectableByMouse或TextSelectableByKeyboard。</p>
+<p><strong>See also</strong> <a href="#selectedText-prop">selectedText</a>().</p>
+<h3><span id="void-qlabel-setbuddy-qwidget-buddy">void QLabel::setBuddy( *<em>buddy</em>)</span><a href="#void-qlabel-setbuddy-qwidget-buddy" class="header-anchor">#</a></h3><p>将此标签的好友设置为<em>buddy</em>。</p>
+<p>当用户按下这个标签所指示的快捷键时，键盘焦点会被转移到这个标签的好友小部件上。</p>
+<p>伙伴机制只适用于包含有一个以安培符为前缀的文本的QLabels，即’&amp;’。这个字符被设置为快捷键。详情见<a href="qkeysequence.html#mnemonic">QKeySequence::mnemonic</a>()文档（要显示一个真正的安培号，请使用’&amp;&amp;’）。</p>
+<p>在一个对话框中，你可能会创建两个数据输入部件和一个标签，并设置几何布局，这样每个标签就在其数据输入部件的左边（它的 “伙伴”），例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QLineEdit *nameEdit  = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QLineEdit</span>(<span class="hljs-keyword">this</span>);
+QLabel    *nameLabel = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QLabel</span>(<span class="hljs-string">"&amp;Name:"</span>, <span class="hljs-keyword">this</span>);
+nameLabel-&gt;<span class="hljs-built_in">setBuddy</span>(nameEdit);
+QLineEdit *phoneEdit  = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QLineEdit</span>(<span class="hljs-keyword">this</span>);
+QLabel    *phoneLabel = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QLabel</span>(<span class="hljs-string">"&amp;Phone:"</span>, <span class="hljs-keyword">this</span>);
+phoneLabel-&gt;<span class="hljs-built_in">setBuddy</span>(phoneEdit);
+<span class="hljs-comment">// (layout setup not shown)</span></code></pre></div>
+
+<p>通过上面的代码，当用户按Alt+N时，焦点会跳到姓名栏，当用户按Alt+P时，焦点会跳到电话栏。</p>
+<p>要取消先前设置的好友，请在<em>buddy</em>设置为nullptr时调用此函数。</p>
+<p><strong>See also</strong> <a href="#buddy">buddy</a>(), <a href="#text-prop">setText</a>(), <a href="qshortcut.html">QShortcut</a>, and <a href="#alignment-prop">setAlignment</a>().</p>
+<h3><span id="since-6-1-void-qlabel-setresourceprovider-const-qtextdocument-resourceprovider-amp-provider"><code>[since 6.1]</code>void QLabel::setResourceProvider(const QTextDocument::ResourceProvider &amp;<em>provider</em>)</span><a href="#since-6-1-void-qlabel-setresourceprovider-const-qtextdocument-resourceprovider-amp-provider" class="header-anchor">#</a></h3><p>为这个标签的富文本设置资源的<em>provider</em>。</p>
+<p><strong>注意：</strong>标签<em>does not</em>拥有<em>provider</em>的所有权。</p>
+<p>这个函数是在Qt 6.1中引入的。</p>
+<p><strong>See also</strong> <a href="#resourceProvider">resourceProvider</a>().</p>
+<h3><span id="void-qlabel-setselection-int-start-int-length">void QLabel::setSelection(int <em>start</em>, int <em>length</em>)</span><a href="#void-qlabel-setselection-int-start-int-length" class="header-anchor">#</a></h3><p>从<em>start</em>的位置选择文本，并且是<em>length</em>的字符。</p>
+<p><strong>注意：</strong>标签上设置的<a href="#textInteractionFlags-prop">textInteractionFlags</a>需要包括TextSelectableByMouse或TextSelectableByKeyboard。</p>
+<p><strong>See also</strong> <a href="#selectedText-prop">selectedText</a>().</p>
+<h3><span id="override-virtual-qsize-qlabel-sizehint-const"><code>[override virtual]</code> QLabel::sizeHint() const</span><a href="#override-virtual-qsize-qlabel-sizehint-const" class="header-anchor">#</a></h3><p>重新实现: <a href="qframe.html#sizeHint">QFrame::sizeHint() const</a>.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/L/">L</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/L/QLibrary/QLibrary/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QLibrary类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/L/QList/QListIterator/">
+                        <span class="hidden-mobile">QListIterator类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

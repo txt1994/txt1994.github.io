@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QNetworkProxyFactory Class 公共函数 静态公共成员 详细描述 系统代理   成员函数文档 QNetworkProxyFactory::QNetworkProxyFactory() [virtual]QNetworkProxyFactory::~QNetworkProxyFactory() [static]QList&lt;QNetworkProxy&gt; QN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QNetworkProxyFactory类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/N/QNetworkProxyFactory/QNetworkProxyFactory/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QNetworkProxyFactory Class 公共函数 静态公共成员 详细描述 系统代理   成员函数文档 QNetworkProxyFactory::QNetworkProxyFactory() [virtual]QNetworkProxyFactory::~QNetworkProxyFactory() [static]QList&lt;QNetworkProxy&gt; QN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:49:33.188Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="N">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QNetworkProxyFactory类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QNetworkProxyFactory类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      37 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QNetworkProxyFactory类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qnetworkproxyfactory-class">QNetworkProxyFactory Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#xi-tong-dai-li">系统代理</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qnetworkproxyfactory-qnetworkproxyfactory">QNetworkProxyFactory::QNetworkProxyFactory()</a></li>
+<li><a href="#virtual-qnetworkproxyfactory-qnetworkproxyfactory"><code>[virtual]</code>QNetworkProxyFactory::~QNetworkProxyFactory()</a></li>
+<li><a href="#static-qlist-qlist-html-qnetworkproxy-qnetworkproxy-html-qnetworkproxyfactory-proxyforquery-const-qnetworkproxyquery-qnetworkproxyquery-html-query"><code>[static]</code></a><a href="qlist.html">QList</a>&lt;<a href="qnetworkproxy.html">QNetworkProxy</a>&gt; QNetworkProxyFactory::proxyForQuery(const <a href="qnetworkproxyquery.html">QNetworkProxyQuery</a> &amp;<em>query</em>)</li>
+<li><a href="#pure-virtual-qlist-qlist-html-qnetworkproxy-qnetworkproxy-html-qnetworkproxyfactory-queryproxy-const-qnetworkproxyquery-qnetworkproxyquery-html-query-qnetworkproxyquery"><code>[pure virtual]</code></a><a href="qlist.html">QList</a>&lt;<a href="qnetworkproxy.html">QNetworkProxy</a>&gt; QNetworkProxyFactory::queryProxy(const <a href="qnetworkproxyquery.html">QNetworkProxyQuery</a> &amp;<em>query</em> = QNetworkProxyQuery())</li>
+<li><a href="#static-void-qnetworkproxyfactory-setapplicationproxyfactory-qnetworkproxyfactory-qnetworkproxyfactory-factory"><code>[static]</code>void QNetworkProxyFactory::setApplicationProxyFactory(</a><a href="#QNetworkProxyFactory">QNetworkProxyFactory</a> *<em>factory</em>)</li>
+<li><a href="#static-void-qnetworkproxyfactory-setusesystemconfiguration-bool-enable"><code>[static]</code>void QNetworkProxyFactory::setUseSystemConfiguration(bool <em>enable</em>)</a></li>
+<li><a href="#static-qlist-qlist-html-qnetworkproxy-qnetworkproxy-html-qnetworkproxyfactory-systemproxyforquery-const-qnetworkproxyquery-qnetworkproxyquery-html-query-qnetworkproxyquery"><code>[static]</code></a><a href="qlist.html">QList</a>&lt;<a href="qnetworkproxy.html">QNetworkProxy</a>&gt; QNetworkProxyFactory::systemProxyForQuery(const <a href="qnetworkproxyquery.html">QNetworkProxyQuery</a> &amp;<em>query</em> = QNetworkProxyQuery())</li>
+<li><a href="#static-since-5-8-bool-qnetworkproxyfactory-usessystemconfiguration"><code>[static, since 5.8]</code>bool QNetworkProxyFactory::usesSystemConfiguration()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QNetworkProxyFactory Class
+
+<p>QNetworkProxyFactory类提供细粒度的代理选择. <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qnetworkproxyfactory></qnetworkproxyfactory></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Network REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Network)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += network</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qnetworkproxyfactory-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QNetworkProxyFactory">QNetworkProxyFactory</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QNetworkProxyFactory">~QNetworkProxyFactory</a></strong>()</td>
+</tr>
+<tr>
+<td>virtual QList<qnetworkproxy></qnetworkproxy></td>
+<td><strong><a href="#queryProxy">queryProxy</a></strong>(const QNetworkProxyQuery &amp;<em>query</em> = QNetworkProxyQuery()) = 0</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QList<qnetworkproxy></qnetworkproxy></th>
+<th><strong><a href="#proxyForQuery">proxyForQuery</a></strong>(const QNetworkProxyQuery &amp;<em>query</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#setApplicationProxyFactory">setApplicationProxyFactory</a></strong>(QNetworkProxyFactory *<em>factory</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setUseSystemConfiguration">setUseSystemConfiguration</a></strong>(bool <em>enable</em>)</td>
+</tr>
+<tr>
+<td>QList<qnetworkproxy></qnetworkproxy></td>
+<td><strong><a href="#systemProxyForQuery">systemProxyForQuery</a></strong>(const QNetworkProxyQuery &amp;<em>query</em> = QNetworkProxyQuery())</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#usesSystemConfiguration">usesSystemConfiguration</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QNetworkProxyFactory是<a href="qnetworkproxy.html">QNetworkProxy</a>的一个扩展，允许应用程序根据请求代理的套接字，对使用哪些代理服务器进行更精细的控制。例如，这允许应用程序根据协议或目标主机名应用不同的设置。</p>
+<p>QNetworkProxyFactory可以为一个应用程序进行全局设置，在这种情况下，它将覆盖任何用<a href="qnetworkproxy.html#setApplicationProxy">QNetworkProxy::setApplicationProxy</a>()设置的全局代理。如果全局设置，任何用Qt创建的套接字都会查询工厂以确定要使用的代理。</p>
+<p>在某些支持多连接的框架中也可以设置工厂，比如<a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>。当在这样的对象上设置时，工厂将只为该框架所创建的套接字而被查询。</p>
+<h3><span id="xi-tong-dai-li">系统代理</span><a href="#xi-tong-dai-li" class="header-anchor">#</a></h3><p>您可以将工厂配置为使用系统代理的设置。调用<a href="#setUseSystemConfiguration">setUseSystemConfiguration</a>()函数，用true来启用这一行为，用false来禁用。</p>
+<p>同样地，你可以使用工厂直接向系统代理进行查询，调用其<a href="#systemProxyForQuery">systemProxyForQuery</a>()函数。</p>
+<p><strong>警告：</strong>根据用户的系统配置，在某些平台上使用系统代理功能可能会受到限制。在<a href="#systemProxyForQuery">systemProxyForQuery</a>()文档中，包含了这些受影响平台的限制清单。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qnetworkproxyfactory-qnetworkproxyfactory">QNetworkProxyFactory::QNetworkProxyFactory()</span><a href="#qnetworkproxyfactory-qnetworkproxyfactory" class="header-anchor">#</a></h3><p>创建一个QNetworkProxyFactory对象。</p>
+<p>由于QNetworkProxyFactory是一个抽象类，你不能直接创建QNetworkProxyFactory类型的对象。</p>
+<h3><span id="virtual-qnetworkproxyfactory-qnetworkproxyfactory"><code>[virtual]</code>QNetworkProxyFactory::~QNetworkProxyFactory()</span><a href="#virtual-qnetworkproxyfactory-qnetworkproxyfactory" class="header-anchor">#</a></h3><p>销毁 <a href>QNetworkProxyFactory</a> 对象。</p>
+<h3><span id="static-qlist-lt-qnetworkproxy-gt-qnetworkproxyfactory-proxyforquery-const-qnetworkproxyquery-amp-query"><code>[static]</code>&lt;&gt; QNetworkProxyFactory::proxyForQuery(const  &amp;<em>query</em>)</span><a href="#static-qlist-lt-qnetworkproxy-gt-qnetworkproxyfactory-proxyforquery-const-qnetworkproxyquery-amp-query" class="header-anchor">#</a></h3><p>这个函数接收查询请求，<em>query</em>，检查套接字或请求类型的细节，并返回一个<a href="qnetworkproxy.html">QNetworkProxy</a>对象的列表，这些对象按优先顺序表示要使用的代理服务器。</p>
+<h3><span id="pure-virtual-qlist-lt-qnetworkproxy-gt-qnetworkproxyfactory-queryproxy-const-qnetworkproxyquery-amp-query-qnetworkproxyquery"><code>[pure virtual]</code>&lt;&gt; QNetworkProxyFactory::queryProxy(const  &amp;<em>query</em> = QNetworkProxyQuery())</span><a href="#pure-virtual-qlist-lt-qnetworkproxy-gt-qnetworkproxyfactory-queryproxy-const-qnetworkproxyquery-amp-query-qnetworkproxyquery" class="header-anchor">#</a></h3><p>这个函数接收查询请求，<em>query</em>，检查套接字或请求类型的细节，并返回一个<a href="qnetworkproxy.html">QNetworkProxy</a>对象的列表，这些对象按优先顺序表示要使用的代理服务器。</p>
+<p>当重新实现这个类时，注意至少要返回一个元素。</p>
+<p>如果你不能确定一个更好的代理选择，可以使用<a href="qnetworkproxy.html#ProxyType-enum">QNetworkProxy::DefaultProxy</a>，它告诉查询代理的代码使用一个更高的选择。例如，如果这个工厂被设置为<a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>对象，DefaultProxy将告诉它查询应用层的代理设置。</p>
+<p>如果这个工厂被设置为应用程序代理工厂，DefaultProxy和NoProxy将具有相同的含义。</p>
+<h3><span id="static-void-qnetworkproxyfactory-setapplicationproxyfactory-qnetworkproxyfactory-factory"><code>[static]</code>void QNetworkProxyFactory::setApplicationProxyFactory( *<em>factory</em>)</span><a href="#static-void-qnetworkproxyfactory-setapplicationproxyfactory-qnetworkproxyfactory-factory" class="header-anchor">#</a></h3><p>设置整个应用程序的代理工厂为<em>factory</em>。这个函数将取得该对象的所有权，并在必要时将其删除。</p>
+<p>当所有其他的代理选择请求都返回<a href="qnetworkproxy.html#ProxyType-enum">QNetworkProxy::DefaultProxy</a>时，整个应用程序的代理被用作最后的手段。例如，<a href="qtcpsocket.html">QTcpSocket</a>对象可以用QTcpSocket::setProxy设置一个代理，但如果没有设置，用这个函数设置的代理工厂类将被查询到。</p>
+<p>如果你用这个函数设置了一个代理工厂，任何用<a href="qnetworkproxy.html#setApplicationProxy">QNetworkProxy::setApplicationProxy</a>设置的应用级代理将被覆盖，而<a href="#usesSystemConfiguration">usesSystemConfiguration</a>()将返回<code>false</code>。</p>
+<p><strong>See also</strong> <a href="qnetworkproxy.html#setApplicationProxy">QNetworkProxy::setApplicationProxy</a>(), <a href="qabstractsocket.html#proxy">QAbstractSocket::proxy</a>(), and <a href="qabstractsocket.html#setProxy">QAbstractSocket::setProxy</a>().</p>
+<h3><span id="static-void-qnetworkproxyfactory-setusesystemconfiguration-bool-enable"><code>[static]</code>void QNetworkProxyFactory::setUseSystemConfiguration(bool <em>enable</em>)</span><a href="#static-void-qnetworkproxyfactory-setusesystemconfiguration-bool-enable" class="header-anchor">#</a></h3><p>启用特定平台的代理设置，并且只使用这些设置。更多信息见<a href="#systemProxyForQuery">systemProxyForQuery</a>()。</p>
+<p>在<em>enable</em>设置为 “true “的情况下调用此函数，会重置任何已经设置的代理或<a href>QNetworkProxyFactory</a>。</p>
+<p><strong>注意：</strong>参见<a href="#systemProxyForQuery">systemProxyForQuery</a>()文档，了解与使用系统代理有关的限制。</p>
+<h3><span id="static-qlist-lt-qnetworkproxy-gt-qnetworkproxyfactory-systemproxyforquery-const-qnetworkproxyquery-amp-query-qnetworkproxyquery"><code>[static]</code>&lt;&gt; QNetworkProxyFactory::systemProxyForQuery(const  &amp;<em>query</em> = QNetworkProxyQuery())</span><a href="#static-qlist-lt-qnetworkproxy-gt-qnetworkproxyfactory-systemproxyforquery-const-qnetworkproxyquery-amp-query-qnetworkproxyquery" class="header-anchor">#</a></h3><p>这个函数接收查询请求，<em>query</em>，检查套接字或请求类型的细节，并返回一个<a href="qnetworkproxy.html">QNetworkProxy</a>对象的列表，这些对象按优先顺序表示要使用的代理服务器。</p>
+<p>这个函数可以用来确定特定平台的代理设置。这个函数将使用操作系统提供的库来确定给定连接的代理，如果这种库存在的话。如果它们不存在，这个函数将只是返回一个<a href="qnetworkproxy.html">QNetworkProxy</a>类型的<a href="qnetworkproxy.html#ProxyType-enum">QNetworkProxy::NoProxy</a> 。</p>
+<p>在Windows上，这个函数将使用WinHTTP DLL函数。尽管它的名字是这样，微软建议将它用于所有需要网络连接的应用程序，而不仅仅是HTTP。这将尊重用proxycfg.exe工具在注册表上设置的代理设置。如果没有找到这些设置，该函数将试图获得Internet Explorer的设置并使用它们。</p>
+<p>在macOS上，该函数将使用苹果的SystemConfiguration框架获得代理设置。它将对包含协议标签 “ftp”、”http “和 “https “的查询分别应用FTP、HTTP和HTTPS代理配置。如果在该配置中启用了SOCKS代理，该函数将对所有查询使用SOCKS服务器。如果SOCKS没有启用，它将使用HTTPS代理进行所有TcpSocket和UrlRequest查询。</p>
+<p>在其他系统中，该函数将从 “http_proxy “环境变量中获取代理设置。这个变量必须是一个使用下列方案之一的URL。”http”、”socks5 “或 “socks5h”。</p>
+<h4><span id="xian-zhi">限制</span><a href="#xian-zhi" class="header-anchor">#</a></h4><p>这些是这个函数当前版本的限制。Qt的未来版本可能会取消这里列出的一些限制。</p>
+<ul>
+<li>在macOS上，这个函数将忽略代理自动配置的设置，因为它不能执行相关的ECMAScript代码。</li>
+<li>在Windows平台上，根据用户系统的配置，这个函数可能需要几秒钟才能执行。</li>
+</ul>
+<h3><span id="static-since-5-8-bool-qnetworkproxyfactory-usessystemconfiguration"><code>[static, since 5.8]</code>bool QNetworkProxyFactory::usesSystemConfiguration()</span><a href="#static-since-5-8-bool-qnetworkproxyfactory-usessystemconfiguration" class="header-anchor">#</a></h3><p>返回是否启用了平台特定的代理设置的使用。</p>
+<p>这个函数在Qt 5.8中引入。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/N/">N</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/N/QNetworkProxy/QNetworkProxy/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QNetworkProxy类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/N/QNetworkProxyQuery/QNetworkProxyQuery/">
+                        <span class="hidden-mobile">QNetworkProxyQuery类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

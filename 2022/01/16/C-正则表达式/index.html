@@ -1,0 +1,731 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="算法 regex_match regex_search regex_replace   迭代器 regex_iterator regex_token_iterator        此文章来源于👉正则表达式库 - cppreference.com,并整理  正则表达式库提供表示正则表达式的类，正则表达式是一种用于在字符串中匹配模式的微型语言。  定义于头文件  #include &amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++正则表达式">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/16/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="算法 regex_match regex_search regex_replace   迭代器 regex_iterator regex_token_iterator        此文章来源于👉正则表达式库 - cppreference.com,并整理  正则表达式库提供表示正则表达式的类，正则表达式是一种用于在字符串中匹配模式的微型语言。  定义于头文件  #include &amp;lt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/e5c0afee9a9baf872a8fc882c01c9743_qhd.png">
+<meta property="article:published_time" content="2022-01-16T06:45:25.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:03:33.884Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Regex">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/e5c0afee9a9baf872a8fc882c01c9743_qhd.png">
+  
+  
+  <title>C++正则表达式 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++正则表达式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-16 14:45" pubdate>
+        2022年1月16日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      55 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++正则表达式</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#suan-fa">算法</a><ul>
+<li><a href="#regex-match-https-zh-cppreference-com-w-cpp-regex-regex-match-c-11">regex_match</a></li>
+<li><a href="#regex-search-https-zh-cppreference-com-w-cpp-regex-regex-search-c-11">regex_search</a></li>
+<li><a href="#regex-replace-https-zh-cppreference-com-w-cpp-regex-regex-replace-c-11">regex_replace</a></li>
+</ul>
+</li>
+<li><a href="#die-dai-qi">迭代器</a><ul>
+<li><a href="#regex-iterator-https-zh-cppreference-com-w-cpp-regex-regex-iterator-c-11">regex_iterator</a></li>
+<li><a href="#regex-token-iterator-https-zh-cppreference-com-w-cpp-regex-regex-token-iterator-c-11">regex_token_iterator</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<p>此文章来源于👉<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/regex">正则表达式库 - cppreference.com</a>,并整理</p>
+<blockquote>
+<p>正则表达式库提供表示正则表达式的类，正则表达式是一种用于在字符串中匹配模式的微型语言。</p>
+</blockquote>
+<p>定义于头文件 <regex></regex></p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iterator&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;regex&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::string s = <span class="hljs-string">"Some people, when confronted with a problem, think "</span>
+        <span class="hljs-string">"\"I know, I'll use regular expressions.\" "</span>
+        <span class="hljs-string">"Now they have two problems."</span>;
+ 
+    <span class="hljs-function">std::regex <span class="hljs-title">self_regex</span><span class="hljs-params">(<span class="hljs-string">"REGULAR EXPRESSIONS"</span>,</span></span>
+<span class="hljs-params"><span class="hljs-function">            std::regex_constants::ECMAScript | std::regex_constants::icase)</span></span>;
+    <span class="hljs-keyword">if</span> (std::<span class="hljs-built_in">regex_search</span>(s, self_regex)) {
+        std::cout &lt;&lt; <span class="hljs-string">"Text contains the phrase 'regular expressions'\n"</span>;
+    }
+ 
+    <span class="hljs-function">std::regex <span class="hljs-title">word_regex</span><span class="hljs-params">(<span class="hljs-string">"(\\w+)"</span>)</span></span>;
+    <span class="hljs-keyword">auto</span> words_begin = 
+        std::<span class="hljs-built_in">sregex_iterator</span>(s.<span class="hljs-built_in">begin</span>(), s.<span class="hljs-built_in">end</span>(), word_regex);
+    <span class="hljs-keyword">auto</span> words_end = std::<span class="hljs-built_in">sregex_iterator</span>();
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"Found "</span>
+              &lt;&lt; std::<span class="hljs-built_in">distance</span>(words_begin, words_end)
+              &lt;&lt; <span class="hljs-string">" words\n"</span>;
+ 
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">6</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"Words longer than "</span> &lt;&lt; N &lt;&lt; <span class="hljs-string">" characters:\n"</span>;
+    <span class="hljs-keyword">for</span> (std::sregex_iterator i = words_begin; i != words_end; ++i) {
+        std::smatch match = *i;
+        std::string match_str = match.<span class="hljs-built_in">str</span>();
+        <span class="hljs-keyword">if</span> (match_str.<span class="hljs-built_in">size</span>() &gt; N) {
+            std::cout &lt;&lt; <span class="hljs-string">"  "</span> &lt;&lt; match_str &lt;&lt; <span class="hljs-string">'\n'</span>;
+        }
+    }
+ 
+    <span class="hljs-function">std::regex <span class="hljs-title">long_word_regex</span><span class="hljs-params">(<span class="hljs-string">"(\\w{7,})"</span>)</span></span>;
+    std::string new_s = std::<span class="hljs-built_in">regex_replace</span>(s, long_word_regex, <span class="hljs-string">"[$&amp;]"</span>);
+    std::cout &lt;&lt; new_s &lt;&lt; <span class="hljs-string">'\n'</span>;
+}</code></pre></div>
+
+
+
+<h1><span id="suan-fa">算法</span><a href="#suan-fa" class="header-anchor">#</a></h1><h2><span id="regex-match-c-11">(C++11)</span><a href="#regex-match-c-11" class="header-anchor">#</a></h2><blockquote>
+<p>尝试匹配一个正则表达式到整个字符序列 (函数模板)      </p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;regex&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// 简单正则表达式匹配</span>
+    std::string fnames[] = {<span class="hljs-string">"foo.txt"</span>, <span class="hljs-string">"bar.txt"</span>, <span class="hljs-string">"baz.dat"</span>, <span class="hljs-string">"zoidberg"</span>};
+    <span class="hljs-function">std::regex <span class="hljs-title">txt_regex</span><span class="hljs-params">(<span class="hljs-string">"[a-z]+\\.txt"</span>)</span></span>;
+ 
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> &amp;fname : fnames) {
+        std::cout &lt;&lt; fname &lt;&lt; <span class="hljs-string">": "</span> &lt;&lt; std::<span class="hljs-built_in">regex_match</span>(fname, txt_regex) &lt;&lt; <span class="hljs-string">'\n'</span>;
+    }   
+ 
+    <span class="hljs-comment">// 提取子匹配</span>
+    <span class="hljs-function">std::regex <span class="hljs-title">base_regex</span><span class="hljs-params">(<span class="hljs-string">"([a-z]+)\\.txt"</span>)</span></span>;
+    std::smatch base_match;
+ 
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> &amp;fname : fnames) {
+        <span class="hljs-keyword">if</span> (std::<span class="hljs-built_in">regex_match</span>(fname, base_match, base_regex)) {
+            <span class="hljs-comment">// 首个 sub_match 是整个字符串；下个</span>
+            <span class="hljs-comment">// sub_match 是首个有括号表达式。</span>
+            <span class="hljs-keyword">if</span> (base_match.<span class="hljs-built_in">size</span>() == <span class="hljs-number">2</span>) {
+                std::ssub_match base_sub_match = base_match[<span class="hljs-number">1</span>];
+                std::string base = base_sub_match.<span class="hljs-built_in">str</span>();
+                std::cout &lt;&lt; fname &lt;&lt; <span class="hljs-string">" has a base of "</span> &lt;&lt; base &lt;&lt; <span class="hljs-string">'\n'</span>;
+            }
+        }
+    }
+ 
+    <span class="hljs-comment">// 提取几个子匹配</span>
+    <span class="hljs-function">std::regex <span class="hljs-title">pieces_regex</span><span class="hljs-params">(<span class="hljs-string">"([a-z]+)\\.([a-z]+)"</span>)</span></span>;
+    std::smatch pieces_match;
+ 
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> &amp;fname : fnames) {
+        <span class="hljs-keyword">if</span> (std::<span class="hljs-built_in">regex_match</span>(fname, pieces_match, pieces_regex)) {
+            std::cout &lt;&lt; fname &lt;&lt; <span class="hljs-string">'\n'</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; pieces_match.<span class="hljs-built_in">size</span>(); ++i) {
+                std::ssub_match sub_match = pieces_match[i];
+                std::string piece = sub_match.<span class="hljs-built_in">str</span>();
+                std::cout &lt;&lt; <span class="hljs-string">"  submatch "</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">": "</span> &lt;&lt; piece &lt;&lt; <span class="hljs-string">'\n'</span>;
+            }   
+        }   
+    }   
+}</code></pre></div>
+
+<h2><span id="regex-search-c-11">(C++11)</span><a href="#regex-search-c-11" class="header-anchor">#</a></h2><blockquote>
+<p>尝试匹配一个正则表达式到字符序列的任何部分 (函数模板) </p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;regex&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::string lines[] = {<span class="hljs-string">"Roses are #ff0000"</span>,
+                           <span class="hljs-string">"violets are #0000ff"</span>,
+                           <span class="hljs-string">"all of my base are belong to you"</span>};
+ 
+    <span class="hljs-function">std::regex <span class="hljs-title">color_regex</span><span class="hljs-params">(<span class="hljs-string">"#([a-f0-9]{2})"</span></span></span>
+<span class="hljs-params"><span class="hljs-function">                            <span class="hljs-string">"([a-f0-9]{2})"</span></span></span>
+<span class="hljs-params"><span class="hljs-function">                            <span class="hljs-string">"([a-f0-9]{2})"</span>)</span></span>;
+ 
+    <span class="hljs-comment">// 简单匹配</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> &amp;line : lines) {
+        std::cout &lt;&lt; line &lt;&lt; <span class="hljs-string">": "</span> &lt;&lt; std::boolalpha
+                  &lt;&lt; std::<span class="hljs-built_in">regex_search</span>(line, color_regex) &lt;&lt; <span class="hljs-string">'\n'</span>;
+    }   
+    std::cout &lt;&lt; <span class="hljs-string">'\n'</span>;
+ 
+    <span class="hljs-comment">// 展示每个匹配中有标记子表达式的内容</span>
+    std::smatch color_match;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; line : lines) {
+        <span class="hljs-keyword">if</span>(std::<span class="hljs-built_in">regex_search</span>(line, color_match, color_regex)) {
+            std::cout &lt;&lt; <span class="hljs-string">"matches for '"</span> &lt;&lt; line &lt;&lt; <span class="hljs-string">"'\n"</span>;
+            std::cout &lt;&lt; <span class="hljs-string">"Prefix: '"</span> &lt;&lt; color_match.<span class="hljs-built_in">prefix</span>() &lt;&lt; <span class="hljs-string">"'\n"</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; color_match.<span class="hljs-built_in">size</span>(); ++i) 
+                std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">": "</span> &lt;&lt; color_match[i] &lt;&lt; <span class="hljs-string">'\n'</span>;
+            std::cout &lt;&lt; <span class="hljs-string">"Suffix: '"</span> &lt;&lt; color_match.<span class="hljs-built_in">suffix</span>() &lt;&lt; <span class="hljs-string">"\'\n\n"</span>;
+        }
+    }
+ 
+    <span class="hljs-comment">// 重复搜索（参阅 std::regex_iterator ）</span>
+    <span class="hljs-function">std::string <span class="hljs-title">log</span><span class="hljs-params">(<span class="hljs-string">R"(</span></span></span>
+<span class="hljs-string"><span class="hljs-params"><span class="hljs-function">        Speed:	366</span></span></span>
+<span class="hljs-string"><span class="hljs-params"><span class="hljs-function">        Mass:	35</span></span></span>
+<span class="hljs-string"><span class="hljs-params"><span class="hljs-function">        Speed:	378</span></span></span>
+<span class="hljs-string"><span class="hljs-params"><span class="hljs-function">        Mass:	32</span></span></span>
+<span class="hljs-string"><span class="hljs-params"><span class="hljs-function">        Speed:	400</span></span></span>
+<span class="hljs-string"><span class="hljs-params"><span class="hljs-function">	Mass:	30)"</span>)</span></span>;
+    <span class="hljs-function">std::regex <span class="hljs-title">r</span><span class="hljs-params">(<span class="hljs-string">R"(Speed:\t\d*)"</span>)</span></span>;
+    std::smatch sm;
+    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">regex_search</span>(log, sm, r))
+    {
+        std::cout &lt;&lt; sm.<span class="hljs-built_in">str</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+        log = sm.<span class="hljs-built_in">suffix</span>();
+    }
+ 
+    <span class="hljs-comment">// C 风格字符串演示</span>
+    std::cmatch cm;
+    <span class="hljs-keyword">if</span>(std::<span class="hljs-built_in">regex_search</span>(<span class="hljs-string">"this is a test"</span>, cm, std::<span class="hljs-built_in">regex</span>(<span class="hljs-string">"test"</span>))) 
+        std::cout &lt;&lt; <span class="hljs-string">"\nFound "</span> &lt;&lt; cm[<span class="hljs-number">0</span>] &lt;&lt; <span class="hljs-string">" at position "</span> &lt;&lt; cm.<span class="hljs-built_in">prefix</span>().<span class="hljs-built_in">length</span>();
+}</code></pre></div>
+
+<h2><span id="regex-replace-c-11">(C++11)</span><a href="#regex-replace-c-11" class="header-anchor">#</a></h2><blockquote>
+<p>以格式化的替换文本来替换正则表达式匹配的出现位置 (函数模板) </p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iterator&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;regex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+   std::string text = <span class="hljs-string">"Quick brown fox"</span>;
+   <span class="hljs-function">std::regex <span class="hljs-title">vowel_re</span><span class="hljs-params">(<span class="hljs-string">"a|e|i|o|u"</span>)</span></span>;
+ 
+   <span class="hljs-comment">// 写结果到输出迭代器</span>
+   std::<span class="hljs-built_in">regex_replace</span>(std::<span class="hljs-built_in">ostreambuf_iterator</span>&lt;<span class="hljs-type">char</span>&gt;(std::cout),
+                      text.<span class="hljs-built_in">begin</span>(), text.<span class="hljs-built_in">end</span>(), vowel_re, <span class="hljs-string">"*"</span>);
+ 
+   <span class="hljs-comment">// 构造保有结果的字符串</span>
+   std::cout &lt;&lt; <span class="hljs-string">'\n'</span> &lt;&lt; std::<span class="hljs-built_in">regex_replace</span>(text, vowel_re, <span class="hljs-string">"[$&amp;]"</span>) &lt;&lt; <span class="hljs-string">'\n'</span>;
+}</code></pre></div>
+
+<h1><span id="die-dai-qi">迭代器</span><a href="#die-dai-qi" class="header-anchor">#</a></h1><blockquote>
+<p>regex_iterator 用于遍历在序列中找到的匹配正则表达式的整个集合。</p>
+</blockquote>
+<h2><span id="regex-iterator-c-11">(C++11)</span><a href="#regex-iterator-c-11" class="header-anchor">#</a></h2><blockquote>
+<p>迭代一个字符序列中的所有正则表达式匹配 (类模板)    </p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;regex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iterator&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">const</span> std::string s = <span class="hljs-string">"Quick brown fox."</span>;
+ 
+    <span class="hljs-function">std::regex <span class="hljs-title">words_regex</span><span class="hljs-params">(<span class="hljs-string">"[^\\s]+"</span>)</span></span>;
+    <span class="hljs-keyword">auto</span> words_begin = 
+        std::<span class="hljs-built_in">sregex_iterator</span>(s.<span class="hljs-built_in">begin</span>(), s.<span class="hljs-built_in">end</span>(), words_regex);
+    <span class="hljs-keyword">auto</span> words_end = std::<span class="hljs-built_in">sregex_iterator</span>();
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"Found "</span> 
+              &lt;&lt; std::<span class="hljs-built_in">distance</span>(words_begin, words_end) 
+              &lt;&lt; <span class="hljs-string">" words:\n"</span>;
+ 
+    <span class="hljs-keyword">for</span> (std::sregex_iterator i = words_begin; i != words_end; ++i) {
+        std::smatch match = *i;                                                 
+        std::string match_str = match.<span class="hljs-built_in">str</span>(); 
+        std::cout &lt;&lt; match_str &lt;&lt; <span class="hljs-string">'\n'</span>;
+    }   
+}</code></pre></div>
+
+<h2><span id="regex-token-iterator-c-11">(C++11)</span><a href="#regex-token-iterator-c-11" class="header-anchor">#</a></h2><blockquote>
+<p>迭代给定字符串中的所有正则表达式匹配中的指定子表达式，或迭代未匹配的子字符串 (类模板) </p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;fstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iterator&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;regex&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+   std::string text = <span class="hljs-string">"Quick brown fox."</span>;
+   <span class="hljs-comment">// 记号化（非匹配碎片）</span>
+   <span class="hljs-comment">// 注意仅匹配二次 regex ：在获得第三值时迭代器为后缀迭代器。</span>
+   <span class="hljs-function">std::regex <span class="hljs-title">ws_re</span><span class="hljs-params">(<span class="hljs-string">"\\s+"</span>)</span></span>; <span class="hljs-comment">// 空白符</span>
+   std::<span class="hljs-built_in">copy</span>( std::<span class="hljs-built_in">sregex_token_iterator</span>(text.<span class="hljs-built_in">begin</span>(), text.<span class="hljs-built_in">end</span>(), ws_re, <span class="hljs-number">-1</span>),
+              std::<span class="hljs-built_in">sregex_token_iterator</span>(),
+              std::<span class="hljs-built_in">ostream_iterator</span>&lt;std::string&gt;(std::cout, <span class="hljs-string">"\n"</span>));
+ 
+   <span class="hljs-comment">// 迭代首个子匹配</span>
+   std::string html = <span class="hljs-string">"&lt;p&gt;&lt;a href=\"http://google.com\"&gt;google&lt;/a&gt; "</span>
+                      <span class="hljs-string">"&lt; a HREF =\"http://cppreference.com\"&gt;cppreference&lt;/a&gt;\n&lt;/p&gt;"</span>;
+   <span class="hljs-function">std::regex <span class="hljs-title">url_re</span><span class="hljs-params">(<span class="hljs-string">"&lt;\\s*A\\s+[^&gt;]*href\\s*=\\s*\"([^\"]*)\""</span>, std::regex::icase)</span></span>;
+   std::<span class="hljs-built_in">copy</span>( std::<span class="hljs-built_in">sregex_token_iterator</span>(html.<span class="hljs-built_in">begin</span>(), html.<span class="hljs-built_in">end</span>(), url_re, <span class="hljs-number">1</span>),
+              std::<span class="hljs-built_in">sregex_token_iterator</span>(),
+              std::<span class="hljs-built_in">ostream_iterator</span>&lt;std::string&gt;(std::cout, <span class="hljs-string">"\n"</span>));
+}</code></pre></div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Regex/">Regex</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/16/C-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%BA%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++文件系统库</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/15/%E7%BA%BF%E7%A8%8B%E6%94%AF%E6%8C%81%E5%BA%93/">
+                        <span class="hidden-mobile">线程支持库</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

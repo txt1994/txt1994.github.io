@@ -1,0 +1,801 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QInputDevice 类 公共类型 公共函数 信号 静态公共成员 详细描述 成员类型文档编制 [since 6.2] enum class QInputDevice:: Capability flags QInputDevice:: Capabilities enum class QInputDevice:: DeviceType flags QInputDevice:: Devic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QInputDevice类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/I/QInputDevice/QInputDevice/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QInputDevice 类 公共类型 公共函数 信号 静态公共成员 详细描述 成员类型文档编制 [since 6.2] enum class QInputDevice:: Capability flags QInputDevice:: Capabilities enum class QInputDevice:: DeviceType flags QInputDevice:: Devic">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:31:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:42:24.023Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="I">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QInputDevice类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QInputDevice类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:31" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      50 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QInputDevice类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qinputdevice-lei">QInputDevice 类</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#since-6-2-enum-class-qinputdevice-capability-flags-qinputdevice-capabilities"><code>[since 6.2] </code>enum class QInputDevice:: Capability flags QInputDevice:: Capabilities</a></li>
+<li><a href="#enum-class-qinputdevice-devicetype-flags-qinputdevice-devicetypes">enum class QInputDevice:: DeviceType flags QInputDevice:: DeviceTypes</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qinputdevice-qinputdevice-const-qstring-qstring-html-name-qint64-qtglobal-html-qint64-typedef-id-qinputdevice-devicetype-qinputdevice-html-devicetype-enum-type-const-qstring-qstring-html-seatname-qstring-qobject-qobject-html-qobject-parent-nullptr">QInputDevice:: QInputDevice (const </a><a href="qstring.html">QString </a>&amp; <em>name</em> , <a href="qtglobal.html#qint64-typedef">qint64 </a><em>id</em> , <a href="qinputdevice.html#DeviceType-enum">QInputDevice::DeviceType </a><em>type</em> , const <a href="qstring.html">QString </a>&amp; <em>seatName</em> = QString(), <a href="qobject.html#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#qinputdevice-qinputdevice-qobject-qobject-html-qobject-parent-nullptr">QInputDevice:: QInputDevice ( </a><a href="qobject.html#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#qrect-qrect-html-qinputdevice-availablevirtualgeometry-const">QRect </a></li>
+<li><a href="#qinputdevice-capabilities-qinputdevice-html-capability-enum-qinputdevice-capabilities-const">QInputDevice::Capabilities </a></li>
+<li><a href="#static-qlist-qlist-html-const-qinputdevice-qinputdevice-html-qinputdevice-qinputdevice-devices"><code>[static] </code></a><a href="qlist.html">QList </a>&lt;const <a href="qinputdevice.html#QInputDevice">QInputDevice </a>*&gt; QInputDevice:: devices ()</li>
+<li><a href="#bool-qinputdevice-hascapability-qinputdevice-capability-qinputdevice-html-capability-enum-capability-const">bool QInputDevice:: hasCapability ( </a><a href="qinputdevice.html#Capability-enum">QInputDevice::Capability </a><em>capability</em> ) const</li>
+<li><a href="#qstring-qstring-html-qinputdevice-name-const">QString </a></li>
+<li><a href="#static-const-qinputdevice-qinputdevice-html-qinputdevice-qinputdevice-primarykeyboard-const-qstring-qstring-html-seatname-qstring"><code>[static] </code>const </a><a href="qinputdevice.html#QInputDevice">QInputDevice </a>*QInputDevice:: primaryKeyboard (const <a href="qstring.html">QString </a>&amp; <em>seatName</em> = QString())</li>
+<li><a href="#qstring-qstring-html-qinputdevice-seatname-const-1">QString </a></li>
+<li><a href="#qint64-qtglobal-html-qint64-typedef-qinputdevice-systemid-const">qint64 </a></li>
+<li><a href="#qinputdevice-devicetype-qinputdevice-html-devicetype-enum-qinputdevice-type-const">QInputDevice::DeviceType </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QInputDevice 类
+
+<p>QInputDevice 类描述的设备来自 <a href>QInputEvent </a>发源。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qinputdevice></qinputdevice></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Gui REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Gui)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += gui</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 6.0</td>
+</tr>
+<tr>
+<td>继承：</td>
+<td><a href="qobject.html">QObject</a></td>
+</tr>
+<tr>
+<td>继承者：</td>
+<td><a href="qpointingdevice.html">QPointingDevice</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qinputdevice-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>flags</th>
+<th><strong><a href="qinputdevice.html#Capability-enum">Capabilities</a></strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum class</td>
+<td><strong><a href="qinputdevice.html#Capability-enum">Capability </a></strong>{ None, Position, Area, Pressure, Velocity, …, All }</td>
+</tr>
+<tr>
+<td>enum class</td>
+<td><strong><a href="qinputdevice.html#DeviceType-enum">DeviceType </a></strong>{ Unknown, Mouse, TouchScreen, TouchPad, Stylus, …, AllDevices }</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><strong><a href="qinputdevice.html#DeviceType-enum">DeviceTypes</a></strong></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="qinputdevice.html#QInputDevice-1">QInputDevice </a></strong>(const QString &amp; <em>name</em> , qint64 <em>id</em> , QInputDevice::DeviceType <em>type</em> , const QString &amp; <em>seatName</em> = QString(), QObject * <em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="qinputdevice.html#QInputDevice">QInputDevice </a></strong>(QObject * <em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="qinputdevice.html#availableVirtualGeometry">availableVirtualGeometry </a></strong>() const</td>
+</tr>
+<tr>
+<td>QInputDevice::Capabilities</td>
+<td><strong><a href="qinputdevice.html#capabilities">capabilities </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="qinputdevice.html#hasCapability">hasCapability </a></strong>(QInputDevice::Capability <em>capability</em> ) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="qinputdevice.html#name">name </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="qinputdevice.html#seatName">seatName </a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="qinputdevice.html#systemId">systemId </a></strong>() const</td>
+</tr>
+<tr>
+<td>QInputDevice::DeviceType</td>
+<td><strong><a href="qinputdevice.html#type">type </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="qinputdevice.html#availableVirtualGeometry-prop">availableVirtualGeometryChanged </a></strong>(QRect <em>area</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QList&lt;const QInputDevice *&gt;</th>
+<th><strong><a href="qinputdevice.html#devices">devices </a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>const QInputDevice *</td>
+<td><strong><a href="qinputdevice.html#primaryKeyboard">primaryKeyboard </a></strong>(const QString &amp; <em>seatName</em> = QString())</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>每个<a href>QInputEvent</a>包含一个QInputDevice指针，允许访问设备的特定属性，如类型、能力和座位。平台或通用插件有责任通过QWindowSystemInterface::registerInputDevice()来发现、创建和注册这个类的一个实例，以对应每个可用的输入设备，然后再生成指向该设备的任何输入事件。</p>
+<p>应用程序不需要实例化这个类，但可以读取由<a href="#device">QInputEvent::device</a>()和<a href="qinputdevice.html#devices">QInputDevice::devices</a>()指向的实例。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="since-6-2-enum-class-qinputdevice-capability-flags-qinputdevice-capabilities"><code>[since 6.2] </code>enum class QInputDevice:: Capability flags QInputDevice:: Capabilities</span><a href="#since-6-2-enum-class-qinputdevice-capability-flags-qinputdevice-capabilities" class="header-anchor">#</a></h3><p>表示输入设备或其驱动程序能提供什么样的信息。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QInputDevice::Capability::None</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">没有关于输入设备能力的信息可用。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::Position</code></td>
+<td align="left"><code>0x0001</code></td>
+<td align="left">表示位置信息是可用的，也就是说，触摸点中的position()系列函数返回有效的点。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::Area</code></td>
+<td align="left"><code>0x0002</code></td>
+<td align="left">表示触摸区域信息是可用的，意味着触摸点中的<a href="qeventpoint.html#ellipseDiameters-prop">QEventPoint::ellipseDiameters </a>()返回有效值。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::Pressure</code></td>
+<td align="left"><code>0x0004</code></td>
+<td align="left">表示压力信息是可用的，意味着<a href="qeventpoint.html#pressure-prop">QEventPoint::pressure </a>()返回一个有效值。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::Velocity</code></td>
+<td align="left"><code>0x0008</code></td>
+<td align="left">表示速度信息是可用的，意味着<a href="qeventpoint.html#velocity-prop">QEventPoint::velocity </a>()返回一个有效的向量。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::NormalizedPosition</code></td>
+<td align="left"><code>0x0020</code></td>
+<td align="left">表示归一化的位置是可用的，意味着<a href="qeventpoint.html#globalPosition-prop">QEventPoint::globalPosition </a>()返回一个有效值。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::MouseEmulation</code></td>
+<td align="left"><code>0x0040</code></td>
+<td align="left">表示设备合成了鼠标事件。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::Scroll</code></td>
+<td align="left"><code>0x0100</code></td>
+<td align="left">表示该设备具有滚动功能。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::PixelScroll</code></td>
+<td align="left"><code>0x0080</code></td>
+<td align="left">表示该设备(通常是<a href="qinputdevice.html#DeviceType-enum">触摸板</a>)以<a href="qwheelevent.html#pixelDelta">像素精度</a>滚动。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::Hover</code></td>
+<td align="left"><code>0x0200</code></td>
+<td align="left">表示该设备有悬停功能。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::Rotation</code></td>
+<td align="left"><code>0x0400</code></td>
+<td align="left">指示<a href="qeventpoint.html#rotation-prop">rotation</a>信息是可用的。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::XTilt</code></td>
+<td align="left"><code>0x0800</code></td>
+<td align="left">指示<a href="qtabletevent.html#xTilt">tilt</a>X轴的信息是可用的。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::YTilt</code></td>
+<td align="left"><code>0x1000</code></td>
+<td align="left">指示 <a href="qtabletevent.html#yTilt">tilt </a>为Y轴提供信息。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::TangentialPressure</code></td>
+<td align="left"><code>0x2000</code></td>
+<td align="left">指示<a href="qtabletevent.html#tangentialPressure">切向压力</a>信息是可用的。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::ZPosition</code></td>
+<td align="left"><code>0x4000</code></td>
+<td align="left">表示<a href="qtabletevent.html#z">Z轴</a>的位置信息可用。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::Capability::All</code></td>
+<td align="left"><code>0x7FFFFFFF</code></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>这个枚举是在Qt 6.2中引入或修改的。</p>
+<p>Capabilities 类型是 typedef 对于 <a href="qflags.html">QFlags </a><capability>。它存储 Capability 值的 OR 组合。</capability></p>
+<h3><span id="enum-class-qinputdevice-devicetype-flags-qinputdevice-devicetypes">enum class QInputDevice:: DeviceType flags QInputDevice:: DeviceTypes</span><a href="#enum-class-qinputdevice-devicetype-flags-qinputdevice-devicetypes" class="header-anchor">#</a></h3><p>这个枚举代表了产生<a href="qpointerevent.html">QPointerEvent</a>的设备类型。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QInputDevice::DeviceType::Unknown</code></td>
+<td align="left"><code>0x0000</code></td>
+<td align="left">该设备无法被识别。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::DeviceType::Mouse</code></td>
+<td align="left"><code>0x0001</code></td>
+<td align="left">鼠标。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::DeviceType::TouchScreen</code></td>
+<td align="left"><code>0x0002</code></td>
+<td align="left">在这种类型的设备中，触摸表面和显示器是一体化的。这意味着表面和显示器通常具有相同的尺寸，这样，触摸点的物理位置和<a href="qeventpoint.html">QEventPoint</a>报告的坐标之间就有了直接的关系。因此，Qt允许用户同时与多个QWidgets、QGraphicsItems或Qt Quick Items直接交互。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::DeviceType::TouchPad</code></td>
+<td align="left"><code>0x0004</code></td>
+<td align="left">在这种类型的设备中，触摸表面与显示器是分开的。物理触摸位置和屏幕上的坐标之间没有直接关系。相反，它们是相对于当前的鼠标位置计算的，而用户必须使用触摸板来移动这个参考点。与触摸屏不同，Qt允许用户每次只与一个<a href="qwidget.html">QWidget</a>或<a href="qgraphicsitem.html">QGraphicsItem</a>互动。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::DeviceType::Stylus</code></td>
+<td align="left"><code>0x0010</code></td>
+<td align="left">用于绘图板（如Wacom平板电脑）或触摸屏上的一种类似笔的装置，提供单独的手写笔感应功能。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::DeviceType::Airbrush</code></td>
+<td align="left"><code>0x0020</code></td>
+<td align="left">带指轮的测针可以调节<a href="qtabletevent.html#tangentialPressure">tangentialPressure</a>。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::DeviceType::Puck</code></td>
+<td align="left"><code>0x0008</code></td>
+<td align="left">一种类似于平面鼠标的设备，有一个带十字线的透明圆圈。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::DeviceType::Keyboard</code></td>
+<td align="left"><code>0x1000</code></td>
+<td align="left">一个键盘。</td>
+</tr>
+<tr>
+<td align="left"><code>QInputDevice::DeviceType::AllDevices</code></td>
+<td align="left"><code>0x7FFFFFFF</code></td>
+<td align="left">以上任何一项（用作默认的过滤值）。</td>
+</tr>
+</tbody></table>
+<p>DeviceTypes类型是<a href="qflags.html">QFlags</a><devicetype>的一个类型定义。它存储了DeviceType值的一个OR组合。</devicetype></p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qinputdevice-qinputdevice-const-qstring-amp-name-qint64-id-qinputdevice-devicetype-type-const-qstring-amp-seatname-qstring-qobject-parent-nullptr">QInputDevice:: QInputDevice (const &amp; <em>name</em> , <em>id</em> , <em>type</em> , const &amp; <em>seatName</em> = QString(), * <em>parent</em> = nullptr)</span><a href="#qinputdevice-qinputdevice-const-qstring-amp-name-qint64-id-qinputdevice-devicetype-type-const-qstring-amp-seatname-qstring-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>创建一个新的输入设备实例。给定的<em>name</em>通常是制造商指定的型号名称（如果有的话），或者其他可识别的东西；<em>id</em>是一个平台特定的数字，每个设备都是唯一的（例如X11上的xinput ID）；<em>type</em>识别什么样的设备。在能够同时处理来自多个用户或一组输入设备的输入的窗口系统上（如Wayland或X11），<em>seatName</em>标识了将被一起使用的一组设备的名称。如果该设备是一个子设备或从属设备（例如，可以轮流移动 “核心指针 “的几个小鼠之一），则应将主设备作为<em>parent</em>。</p>
+<p>平台插件创建、注册并继续拥有每个设备实例；即使某个设备没有主设备，为了内存管理的目的，通常也应该给出<em>parent</em>。</p>
+<p>默认情况下， <a href="qinputdevice.html#capabilities">capabilities </a>() are <code>None </code>.</p>
+<h3><span id="qinputdevice-qinputdevice-qobject-parent-nullptr">QInputDevice:: QInputDevice ( * <em>parent</em> = nullptr)</span><a href="#qinputdevice-qinputdevice-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>创建一个新的无效的输入设备实例，作为<em>parent</em>的子设备。</p>
+<h3><span id="qrect-qinputdevice-availablevirtualgeometry-const">QInputDevice:: availableVirtualGeometry () const</span><a href="#qrect-qinputdevice-availablevirtualgeometry-const" class="header-anchor">#</a></h3><p>返回该设备可以访问的<a href="qscreen.html#availableVirtualGeometry-prop">虚拟桌面</a>中的区域。</p>
+<p>例如，一个<a href="qinputdevice.html#DeviceType-enum">TouchScreen</a>输入设备被固定在一个物理屏幕上，并且通常被校准为这个区域与<a href="qscreen.html#geometry-prop">QScreen::geometry</a>()相同；而一个<a href="qinputdevice.html#DeviceType-enum">Mouse</a>可能能够访问虚拟桌面上的所有屏幕。Wacom绘图板的配置方式可能是映射到所有屏幕，或者只映射到用户喜欢创建绘图的屏幕，或者映射到绘图的窗口。与触摸屏集成的<a href="qinputdevice.html#DeviceType-enum">手写笔</a>设备可能被物理限制在该屏幕上。</p>
+<p>如果返回的矩形是<a href="qrect.html#isNull">null</a>，这意味着这个设备可以访问整个虚拟桌面。</p>
+<p><strong>注意：</strong>属性availableVirtualGeometry的getter函数。</p>
+<h3><span id="qinputdevice-capabilities-qinputdevice-capabilities-const">QInputDevice:: capabilities () const</span><a href="#qinputdevice-capabilities-qinputdevice-capabilities-const" class="header-anchor">#</a></h3><p>返回设备的能力。</p>
+<p><strong>注意：</strong>属性capabilities的getter函数。</p>
+<h3><span id="static-qlist-lt-const-qinputdevice-gt-qinputdevice-devices"><code>[static] </code>&lt;const *&gt; QInputDevice:: devices ()</span><a href="#static-qlist-lt-const-qinputdevice-gt-qinputdevice-devices" class="header-anchor">#</a></h3><p>返回所有注册的输入设备（键盘和指向性设备）的列表。</p>
+<p><strong>注意：</strong>返回的列表不能用于添加新设备。要为自动测试添加一个模拟的触摸屏，可以使用<a href="qtest.html#createTouchDevice">QTest::createTouchDevice</a>()。平台插件应该调用QWindowSystemInterface::registerInputDevice()来添加被发现的设备。</p>
+<h3><span id="bool-qinputdevice-hascapability-qinputdevice-capability-capability-const">bool QInputDevice:: hasCapability ( <em>capability</em> ) const</span><a href="#bool-qinputdevice-hascapability-qinputdevice-capability-capability-const" class="header-anchor">#</a></h3><p>返回设备能力是否包括给定的<em>capability</em>。</p>
+<h3><span id="qstring-qinputdevice-name-const">QInputDevice:: name () const</span><a href="#qstring-qinputdevice-name-const" class="header-anchor">#</a></h3><p>返回设备名称。</p>
+<p>这个字符串可能是空的。然而，它在有多个输入设备的系统中很有用：它可以用来区分一个<a href="qpointerevent.html">QPointerEvent</a>发源地是哪个设备。</p>
+<p><strong>注意：</strong>属性名称的getter函数。</p>
+<h3><span id="static-const-qinputdevice-qinputdevice-primarykeyboard-const-qstring-amp-seatname-qstring"><code>[static] </code>const *QInputDevice:: primaryKeyboard (const &amp; <em>seatName</em> = QString())</span><a href="#static-const-qinputdevice-qinputdevice-primarykeyboard-const-qstring-amp-seatname-qstring" class="header-anchor">#</a></h3><p>返回给定座位上的核心或主键盘 <em>seatName</em> .</p>
+<h3><span id="qstring-qinputdevice-seatname-const">QInputDevice:: seatName () const</span><a href="#qstring-qinputdevice-seatname-const" class="header-anchor">#</a></h3><p>如果知道的话，返回与该设备相关的座位；否则为空。</p>
+<p>那些打算由一个用户共同使用的设备可以被配置为具有相同的座位名称。到目前为止，这只在Wayland和X11平台上是可行的。</p>
+<p><strong>注意：</strong>属性seatName的getter函数。</p>
+<h3><span id="qint64-qinputdevice-systemid-const">QInputDevice:: systemId () const</span><a href="#qint64-qinputdevice-systemid-const" class="header-anchor">#</a></h3><p>返回平台特定的系统ID（例如X11平台的xinput ID）。</p>
+<p>所有的平台都应该为每个设备提供一个唯一的系统ID。</p>
+<p><strong>注意：</strong>属性systemId的getter函数。</p>
+<h3><span id="qinputdevice-devicetype-qinputdevice-type-const">QInputDevice:: type () const</span><a href="#qinputdevice-devicetype-qinputdevice-type-const" class="header-anchor">#</a></h3><p>返回设备类型。</p>
+<p><strong>注意：</strong>属性type的getter函数。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/I/">I</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/I/QInputAspect%20(%20Qt3DInput%20)/QInputAspect%20(%20Qt3DInput%20)/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QInputAspect类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/I/QInputChord%20(%20Qt3DInput%20)/QInputChord%20(%20Qt3DInput%20)/">
+                        <span class="hidden-mobile">QInputChord类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,533 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QtDocumentCN         本项目为翻译 Qt 官方文档，内容基于 Qt 最新发布版本 5.15，采用 CC BY-NC-SA 4.0 协议发布。 微信小程序#  参与编写#关于本项目的目录结构、文件管理、格式规范等，详见贡献指南。 完成度追踪表，用于追踪待完成或有待进一步维护的文档状态。 辅助中文文档编写的脚本和工具，详见辅助工具。 技术词汇的翻译可参考 词汇对照表。 关于如何将英">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QT翻译项目说明">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/README/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QtDocumentCN         本项目为翻译 Qt 官方文档，内容基于 Qt 最新发布版本 5.15，采用 CC BY-NC-SA 4.0 协议发布。 微信小程序#  参与编写#关于本项目的目录结构、文件管理、格式规范等，详见贡献指南。 完成度追踪表，用于追踪待完成或有待进一步维护的文档状态。 辅助中文文档编写的脚本和工具，详见辅助工具。 技术词汇的翻译可参考 词汇对照表。 关于如何将英">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/QtDocumentCN/QtDocumentCN/raw/master/Logo/Logo_green.drawio.svg">
+<meta property="og:image" content="https://camo.githubusercontent.com/09950caef1c9ba5fb06322d16cf78733ea72f9181971759e0964ffd074f4259e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f446f632d2545352539422542442545352538362538352545392539352539432545352538332538462d3431636435323f6c6f676f3d5174">
+<meta property="og:image" content="https://camo.githubusercontent.com/51cf53506e688940f52d28a0ef72634b292ce924eeb06cb566252c1b208e19b4/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d434325323042592d2d4e432d2d5341253230342e302d626c75653f6c6f676f3d63726561746976652d636f6d6d6f6e73266c6f676f436f6c6f723d7768697465">
+<meta property="og:image" content="https://camo.githubusercontent.com/cf67c560cfaf216a7162de301a1df60db824753e99ef08463673b45f18a1c85e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f506f776572656425323062792d6d64426f6f6b2d677265656e3f6c6f676f3d646174613a696d6167652f7376672b786d6c3b6261736536342c50484e325a79423462577875637a30696148523063446f764c336433647935334d793576636d63764d6a41774d43397a646d636949485a705a58644362336739496a41674d4341784f546b754e7941784f4451754d69492b44516f674944787a64486c735a54344e43694167494342416257566b615745674b4842795a575a6c636e4d74593239736233497463324e6f5a57316c4f69426b59584a724b53423744516f67494341674943427a646d63676579426d615778734f69423361476c305a5473676651304b494341674948304e436941675043397a64486c735a54344e436a78775958526f49475139496b30784f446b754e53777a4e693434597a41754d6977794c6a67734d4377314c6a45744d4334324c4459754f4577784e544d734d545979597930774c6a59734d6934784c5449734d7934334c5451754d697731597930794c6a49734d5334794c5451754e4377784c6a6b744e6934334c4445754f55677a4d533430597930354c6a59734d4330784e53347a4c5449754f4330784e79347a4c5467754e41304b4943426a4c5441754f4330794c6a49744d4334344c544d754f5377774c6a45744e533479597a41754f5330784c6a49734d6934304c5445754f4377304c6a59744d533434534445794d324d334c6a51734d4377784d6934324c5445754e4377784e5334304c5451754d584d314c6a63744f4334354c4467754e6930784f43343062444d794c6a6b744d5441344c6a594e43694167597a45754f4330314c6a6b734d5330784d5334784c5449754d6930784e533432557a45324f5334354c4441734d5459304c4442494e7a49754e324d744d5377774c544d754d5377774c6a51744e6934784c4445754d5777774c6a45744d433430517a59304c6a55734d4334794c4459794c6a59734d4377324d5377774c6a467a4c544d734d4334314c5451754d7977784c6a514e43694167597930784c6a4d734d4334354c5449754e4377784c6a67744d7934794c4449754f464d314d6977324c6a55734e5445754d6977344c6a466a4c5441754f4377784c6a59744d5334304c444d744d5334354c4451754d334d744d5334784c4449754e7930784c6a67734e433479597930774c6a63734d5334314c5445754d7977794c6a63744d69777a4c6a646a4c5441754e5377774c6a59744d5334794c4445754e5330794c4449754e51304b4943427a4c5445754e6977794c5449754d6977794c6a687a4c5441754f5377784c6a55744d5334784c4449754d6d4d744d4334794c4441754e7930774c6a45734d5334344c4441754d69777a4c6a4a6a4d43347a4c4445754e4377774c6a51734d6934304c4441754e43777a4c6a466a4c5441754d79777a4c5445754e4377324c6a6b744d79347a4c4445784c6a594e43694167597930784c6a6b734e4334334c544d754e6977344c6a45744e5334784c4445774c6a466a4c5441754d7977774c6a51744d5334794c4445754d7930794c6a59734d693433597930784c6a51734d5334304c5449754d7977794c6a59744d6934324c444d754e324d744d43347a4c4441754e4330774c6a4d734d5334314c5441754d53777a4c6a526a4d43347a4c4445754f4377774c6a51734d7934784c4441754d79777a4c6a674e43694167597930774c6a4d734d6934334c5445754d7977324c6a4d744d7977784d433434597930784c6a63734e4334314c544d754e4377344c6a49744e5377784d574d744d4334794c4441754e5330774c6a6b734d5334304c5449734d693434597930784c6a45734d5334304c5445754f4377794c6a55744d69777a4c6a526a4c5441754d6977774c6a59744d4334784c4445754f4377774c6a45734d79343044516f6749474d774c6a49734d5334324c4441754d6977794c6a67744d4334784c444d754e6d4d744d4334324c444d744d5334344c4459754e79307a4c6a59734d54466a4c5445754f4377304c6a4d744d7934324c4463754f5330314c6a51734d54466a4c5441754e5377774c6a67744d5334784c4445754e7930794c4449754f474d744d4334344c4445754d5330784c6a55734d6930794c4449754f41304b4943427a4c5441754f4377784c6a59744d5377794c6a566a4c5441754d5377774c6a55734d4377784c6a4d734d4334304c4449754d324d774c6a4d734d5334784c4441754e4377784c6a6b734d4334304c4449754e6d4d744d4334784c4445754d5330774c6a49734d6934324c5441754e5377304c6a526a4c5441754d6977784c6a67744d4334304c4449754f5330774c6a51734d79347944516f6749474d744d5334344c4451754f4330784c6a63734f5334354c4441754d6977784e533479597a49754d6977324c6a49734e6934794c4445784c6a55734d5445754f5377784e533434597a55754e7977304c6a4d734d5445754e7977324c6a51734d5463754f4377324c6a526f4d5445774c6a646a4e5334794c4441734d5441754d5330784c6a63734d5451754e7930314c6a4a7a4e7934334c5463754f4377354c6a49744d5449754f51304b494342734d7a4d744d5441344c6a5a6a4d5334344c5455754f4377784c5445774c6a6b744d6934794c5445314c6a56444d546b304c6a6b734d7a6b754e7977784f5449754e69777a4f4377784f446b754e53777a4e6934346569424e4e546b754e6977784d6a49754f4577334d7934344c446777597a41734d4377334c4441734d5441754f437777637a49344c6a67744d5334334c4449314c6a51734d5463754e51304b4943426a4c544d754e4377784f5334794c5445344c6a67734d6a55754d69307a4e6934344c4449314c6a52544e546b754e6977784d6a49754f4377314f5334324c4445794d6934346569424e4e7a67754e6977784d5459754f474d304c6a63744d4334784c4445344c6a6b744d6934354c4449794c6a45744d5463754d564d344f5334794c4467324c6a4d734f446b754d6977344e69347a624330344c6a6b734d41304b494342734c5445774c6a49734d7a41754e554d334d4334794c4445784e6934354c4463304c4445784e6934354c4463344c6a59734d5445324c6a6836494530334e53347a4c4459344c6a644d4f446b734d6a59754d6d67354c6a68734d4334344c444d306244497a4c6a59744d7a526f4f533435624330784d7934324c4451794c6a566f4c5463754d5777784d6934314c544d314c6a52734c5449304c6a55734d7a55754e4767744e69343444516f67494777744d4334344c544d31544467794c4459344c6a64494e7a55754d336f694c7a344e436a777663335a6e50673d3d">
+<meta property="og:image" content="https://camo.githubusercontent.com/6aaf31b4f70756c4fdc8a67c9e66a60b1bc6c2d7aca466eb631bd369262c0342/68747470733a2f2f6372656174697665636f6d6d6f6e732e6f72672f696d616765732f646565642f7376672f63635f626c75652e737667">
+<meta property="og:image" content="https://camo.githubusercontent.com/bd01a7c07fea756b050d49d1b5f08b012fff48ea43e7a89043fe26bff056cba0/68747470733a2f2f6372656174697665636f6d6d6f6e732e6f72672f696d616765732f646565642f7376672f6174747269627574696f6e5f69636f6e5f626c75652e737667">
+<meta property="og:image" content="https://camo.githubusercontent.com/8c99ae4156900764948fcad36deb3066da18c636abe915f1a2e6df2ac2a1fb10/68747470733a2f2f6372656174697665636f6d6d6f6e732e6f72672f696d616765732f646565642f7376672f6e635f626c75652e737667">
+<meta property="og:image" content="https://camo.githubusercontent.com/abf07614b8d07df89d4e50350c205f9614d57c0f0022b608a38dbbd0686a157a/68747470733a2f2f6372656174697665636f6d6d6f6e732e6f72672f696d616765732f646565642f7376672f73615f626c75652e737667">
+<meta property="og:image" content="https://github.com/QtDocumentCN/QtDocumentCN/raw/master/Logo/weqt.jpg">
+<meta property="og:image" content="https://camo.githubusercontent.com/d350dcac168ab7a52726cba838300844ff1fb3ea704a99e95cefd900b67a11c2/68747470733a2f2f636f6e7472696275746f72732d696d672e7765622e6170702f696d6167653f7265706f3d5174446f63756d656e74434e2f5174446f63756d656e74434e">
+<meta property="article:published_time" content="2022-03-02T04:52:47.000Z">
+<meta property="article:modified_time" content="2022-03-07T06:06:08.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="QT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/QtDocumentCN/QtDocumentCN/raw/master/Logo/Logo_green.drawio.svg">
+  
+  
+  <title>QT翻译项目说明 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QT翻译项目说明">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 12:52" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      638 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QT翻译项目说明</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月7日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>QtDocumentCN</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/QtDocumentCN/QtDocumentCN/blob/master/Logo/Logo_green.drawio.svg"><img src="https://github.com/QtDocumentCN/QtDocumentCN/raw/master/Logo/Logo_green.drawio.svg" srcset="/img/loading.gif" lazyload alt="Logo"></a> <a target="_blank" rel="noopener" href="https://www.qtdoc.cn/"><img src="https://camo.githubusercontent.com/09950caef1c9ba5fb06322d16cf78733ea72f9181971759e0964ffd074f4259e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f446f632d2545352539422542442545352538362538352545392539352539432545352538332538462d3431636435323f6c6f676f3d5174" srcset="/img/loading.gif" lazyload alt="国内镜像"></a> <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><img src="https://camo.githubusercontent.com/51cf53506e688940f52d28a0ef72634b292ce924eeb06cb566252c1b208e19b4/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d434325323042592d2d4e432d2d5341253230342e302d626c75653f6c6f676f3d63726561746976652d636f6d6d6f6e73266c6f676f436f6c6f723d7768697465" srcset="/img/loading.gif" lazyload alt="CC BY-NC-SA 4.0"></a> <a target="_blank" rel="noopener" href="https://rust-lang.github.io/mdBook/"><img src="https://camo.githubusercontent.com/cf67c560cfaf216a7162de301a1df60db824753e99ef08463673b45f18a1c85e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f506f776572656425323062792d6d64426f6f6b2d677265656e3f6c6f676f3d646174613a696d6167652f7376672b786d6c3b6261736536342c50484e325a79423462577875637a30696148523063446f764c336433647935334d793576636d63764d6a41774d43397a646d636949485a705a58644362336739496a41674d4341784f546b754e7941784f4451754d69492b44516f674944787a64486c735a54344e43694167494342416257566b615745674b4842795a575a6c636e4d74593239736233497463324e6f5a57316c4f69426b59584a724b53423744516f67494341674943427a646d63676579426d615778734f69423361476c305a5473676651304b494341674948304e436941675043397a64486c735a54344e436a78775958526f49475139496b30784f446b754e53777a4e693434597a41754d6977794c6a67734d4377314c6a45744d4334324c4459754f4577784e544d734d545979597930774c6a59734d6934784c5449734d7934334c5451754d697731597930794c6a49734d5334794c5451754e4377784c6a6b744e6934334c4445754f55677a4d533430597930354c6a59734d4330784e53347a4c5449754f4330784e79347a4c5467754e41304b4943426a4c5441754f4330794c6a49744d4334344c544d754f5377774c6a45744e533479597a41754f5330784c6a49734d6934304c5445754f4377304c6a59744d533434534445794d324d334c6a51734d4377784d6934324c5445754e4377784e5334304c5451754d584d314c6a63744f4334354c4467754e6930784f43343062444d794c6a6b744d5441344c6a594e43694167597a45754f4330314c6a6b734d5330784d5334784c5449754d6930784e533432557a45324f5334354c4441734d5459304c4442494e7a49754e324d744d5377774c544d754d5377774c6a51744e6934784c4445754d5777774c6a45744d433430517a59304c6a55734d4334794c4459794c6a59734d4377324d5377774c6a467a4c544d734d4334314c5451754d7977784c6a514e43694167597930784c6a4d734d4334354c5449754e4377784c6a67744d7934794c4449754f464d314d6977324c6a55734e5445754d6977344c6a466a4c5441754f4377784c6a59744d5334304c444d744d5334354c4451754d334d744d5334784c4449754e7930784c6a67734e433479597930774c6a63734d5334314c5445754d7977794c6a63744d69777a4c6a646a4c5441754e5377774c6a59744d5334794c4445754e5330794c4449754e51304b4943427a4c5445754e6977794c5449754d6977794c6a687a4c5441754f5377784c6a55744d5334784c4449754d6d4d744d4334794c4441754e7930774c6a45734d5334344c4441754d69777a4c6a4a6a4d43347a4c4445754e4377774c6a51734d6934304c4441754e43777a4c6a466a4c5441754d79777a4c5445754e4377324c6a6b744d79347a4c4445784c6a594e43694167597930784c6a6b734e4334334c544d754e6977344c6a45744e5334784c4445774c6a466a4c5441754d7977774c6a51744d5334794c4445754d7930794c6a59734d693433597930784c6a51734d5334304c5449754d7977794c6a59744d6934324c444d754e324d744d43347a4c4441754e4330774c6a4d734d5334314c5441754d53777a4c6a526a4d43347a4c4445754f4377774c6a51734d7934784c4441754d79777a4c6a674e43694167597930774c6a4d734d6934334c5445754d7977324c6a4d744d7977784d433434597930784c6a63734e4334314c544d754e4377344c6a49744e5377784d574d744d4334794c4441754e5330774c6a6b734d5334304c5449734d693434597930784c6a45734d5334304c5445754f4377794c6a55744d69777a4c6a526a4c5441754d6977774c6a59744d4334784c4445754f4377774c6a45734d79343044516f6749474d774c6a49734d5334324c4441754d6977794c6a67744d4334784c444d754e6d4d744d4334324c444d744d5334344c4459754e79307a4c6a59734d54466a4c5445754f4377304c6a4d744d7934324c4463754f5330314c6a51734d54466a4c5441754e5377774c6a67744d5334784c4445754e7930794c4449754f474d744d4334344c4445754d5330784c6a55734d6930794c4449754f41304b4943427a4c5441754f4377784c6a59744d5377794c6a566a4c5441754d5377774c6a55734d4377784c6a4d734d4334304c4449754d324d774c6a4d734d5334784c4441754e4377784c6a6b734d4334304c4449754e6d4d744d4334784c4445754d5330774c6a49734d6934324c5441754e5377304c6a526a4c5441754d6977784c6a67744d4334304c4449754f5330774c6a51734d79347944516f6749474d744d5334344c4451754f4330784c6a63734f5334354c4441754d6977784e533479597a49754d6977324c6a49734e6934794c4445784c6a55734d5445754f5377784e533434597a55754e7977304c6a4d734d5445754e7977324c6a51734d5463754f4377324c6a526f4d5445774c6a646a4e5334794c4441734d5441754d5330784c6a63734d5451754e7930314c6a4a7a4e7934334c5463754f4377354c6a49744d5449754f51304b494342734d7a4d744d5441344c6a5a6a4d5334344c5455754f4377784c5445774c6a6b744d6934794c5445314c6a56444d546b304c6a6b734d7a6b754e7977784f5449754e69777a4f4377784f446b754e53777a4e6934346569424e4e546b754e6977784d6a49754f4577334d7934344c446777597a41734d4377334c4441734d5441754f437777637a49344c6a67744d5334334c4449314c6a51734d5463754e51304b4943426a4c544d754e4377784f5334794c5445344c6a67734d6a55754d69307a4e6934344c4449314c6a52544e546b754e6977784d6a49754f4377314f5334324c4445794d6934346569424e4e7a67754e6977784d5459754f474d304c6a63744d4334784c4445344c6a6b744d6934354c4449794c6a45744d5463754d564d344f5334794c4467324c6a4d734f446b754d6977344e69347a624330344c6a6b734d41304b494342734c5445774c6a49734d7a41754e554d334d4334794c4445784e6934354c4463304c4445784e6934354c4463344c6a59734d5445324c6a6836494530334e53347a4c4459344c6a644d4f446b734d6a59754d6d67354c6a68734d4334344c444d306244497a4c6a59744d7a526f4f533435624330784d7934324c4451794c6a566f4c5463754d5777784d6934314c544d314c6a52734c5449304c6a55734d7a55754e4767744e69343444516f67494777744d4334344c544d31544467794c4459344c6a64494e7a55754d336f694c7a344e436a777663335a6e50673d3d" srcset="/img/loading.gif" lazyload alt="mdBook"></a></p>
+<p><a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><img src="https://camo.githubusercontent.com/6aaf31b4f70756c4fdc8a67c9e66a60b1bc6c2d7aca466eb631bd369262c0342/68747470733a2f2f6372656174697665636f6d6d6f6e732e6f72672f696d616765732f646565642f7376672f63635f626c75652e737667" srcset="/img/loading.gif" lazyload alt="CC BY-NC-SA 4.0"></a> <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><img src="https://camo.githubusercontent.com/bd01a7c07fea756b050d49d1b5f08b012fff48ea43e7a89043fe26bff056cba0/68747470733a2f2f6372656174697665636f6d6d6f6e732e6f72672f696d616765732f646565642f7376672f6174747269627574696f6e5f69636f6e5f626c75652e737667" srcset="/img/loading.gif" lazyload alt="署名"></a> <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><img src="https://camo.githubusercontent.com/8c99ae4156900764948fcad36deb3066da18c636abe915f1a2e6df2ac2a1fb10/68747470733a2f2f6372656174697665636f6d6d6f6e732e6f72672f696d616765732f646565642f7376672f6e635f626c75652e737667" srcset="/img/loading.gif" lazyload alt="非商业性使用"></a> <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><img src="https://camo.githubusercontent.com/abf07614b8d07df89d4e50350c205f9614d57c0f0022b608a38dbbd0686a157a/68747470733a2f2f6372656174697665636f6d6d6f6e732e6f72672f696d616765732f646565642f7376672f73615f626c75652e737667" srcset="/img/loading.gif" lazyload alt="相同方式共享"></a></p>
+<p>本项目为翻译 Qt 官方文档，内容基于 Qt 最新发布版本 5.15，采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议发布。</p>
+<h2><span id="wei-xin-xiao-cheng-xu">微信小程序</span><a href="#wei-xin-xiao-cheng-xu" class="header-anchor">#</a></h2><p><img src="https://github.com/QtDocumentCN/QtDocumentCN/raw/master/Logo/weqt.jpg" srcset="/img/loading.gif" lazyload alt="WeDoc"> </p>
+<h2><span id="can-yu-bian-xie">参与编写</span><a href="#can-yu-bian-xie" class="header-anchor">#</a></h2><p>关于本项目的目录结构、文件管理、格式规范等，详见<a href="CONTRIBUTING.md">贡献指南</a>。</p>
+<p><a href="completeness_tracking.md">完成度追踪表</a>，用于追踪待完成或有待进一步维护的文档状态。</p>
+<p>辅助中文文档编写的脚本和工具，详见<a target="_blank" rel="noopener" href="https://github.com/QtDocumentCN/Tools">辅助工具</a>。</p>
+<p>技术词汇的翻译可参考 <a href="Comparison_Table.md">词汇对照表</a>。</p>
+<p>关于如何将英文文档信达雅地翻译为中文技术文档，可参考 <a href="Grammar_Tips.md">语法小贴士</a>。</p>
+<h2><span id="guan-yu-she-qu">关于社区</span><a href="#guan-yu-she-qu" class="header-anchor">#</a></h2><h3><span id="can-yu-zhe-gong-yue">参与者公约</span><a href="#can-yu-zhe-gong-yue" class="header-anchor">#</a></h3><p>参与相关讨论时，请遵守<a href="CODE_OF_CONDUCT.md">参与者公约</a>。</p>
+<h3><span id="jia-ru-she-qu">加入社区</span><a href="#jia-ru-she-qu" class="header-anchor">#</a></h3><p>可以通过<a target="_blank" rel="noopener" href="https://github.com/QtDocumentCN/QtDocumentCN/issues/new">发起issue</a>的方式建立讨论。</p>
+<p>此外，我们组建了 <code>QtDocumentCN-社区组</code> 微信群，可以添加<a target="_blank" rel="noopener" href="https://github.com/CryFeiFei">@CryFeiFei</a> 的微信<code>Perfect_Cheung</code>，备注QtDoc，待邀请入群后在群里详细聊。</p>
+<p>项目初期有可能有很多不完善的地方，希望各位开发提出不合理的地方。</p>
+<h2><span id="todo">TODO</span><a href="#todo" class="header-anchor">#</a></h2><ul>
+<li><input checked disabled type="checkbox"> 使用 <a target="_blank" rel="noopener" href="https://rust-lang.github.io/mdBook/">mdbook</a> 生成 GitHub Pages，作为实际发布页面。</li>
+<li><input checked disabled type="checkbox"> 国内gitee镜像 <a target="_blank" rel="noopener" href="https://gitee.com/cryfeifei/QtDocumentCN">gitee</a>。</li>
+<li><input checked disabled type="checkbox"> 通过 Coding 等平台建立<a target="_blank" rel="noopener" href="https://www.qtdoc.cn/">国内镜像</a>。</li>
+<li><input checked disabled type="checkbox"> 使用 Coding 提供的服务来建立微信小程序</li>
+<li><input checked disabled type="checkbox"> 通过<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/c_1266078048082026496">知乎专栏</a>等形式在社区进行发布。</li>
+<li><input checked disabled type="checkbox"> 编写<a target="_blank" rel="noopener" href="https://github.com/QtDocumentCN/Tools">辅助工具</a>提高编辑效率。</li>
+<li><input disabled type="checkbox"> 提供离线发布版（如pdf、chm等）。</li>
+<li><input disabled type="checkbox"> 添加 <code>Q_D</code>/<code>D_Q</code> 私有指针、CorePrivate 模块等未在官方文档中正式发布，但已作为事实标准长期使用的特性介绍。</li>
+</ul>
+<h2><span id="juan-zhu-lie-biao">捐助列表</span><a href="#juan-zhu-lie-biao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>捐助人</th>
+<th>捐助金额</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/abc881858">吴冬亮</a></td>
+<td>200￥</td>
+</tr>
+<tr>
+<td>匿名Z</td>
+<td>100￥</td>
+</tr>
+<tr>
+<td>赵江涛</td>
+<td>50￥</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/Rzself">Rzself</a></td>
+<td>50￥</td>
+</tr>
+</tbody></table>
+<h2><span id="contributors">Contributors</span><a href="#contributors" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://github.com/QtDocumentCN/QtDocumentCN/graphs/contributors"><img src="https://camo.githubusercontent.com/d350dcac168ab7a52726cba838300844ff1fb3ea704a99e95cefd900b67a11c2/68747470733a2f2f636f6e7472696275746f72732d696d672e7765622e6170702f696d6167653f7265706f3d5174446f63756d656e74434e2f5174446f63756d656e74434e" srcset="/img/loading.gif" lazyload alt="img"></a></p>
+<p>Made with <a target="_blank" rel="noopener" href="https://contributors-img.web.app/">contributors-img</a>.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/QT/">QT</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Grammar_Tips/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">语法小贴士</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Template/">
+                        <span class="hidden-mobile">Template</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

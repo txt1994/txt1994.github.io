@@ -1,0 +1,1191 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="公共函数 静态公共成员 非相关成员 详细描述 渲染 坐标 约束   成员函数文档 QRect::QRect(int x, int y, int width, int height) QRect::QRect(const QPoint &amp;topLeft, const QSize &amp;size) QRect::QRect(const QPoint &amp;topLeft, c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QRect类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/R/QRect/QRect/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="公共函数 静态公共成员 非相关成员 详细描述 渲染 坐标 约束   成员函数文档 QRect::QRect(int x, int y, int width, int height) QRect::QRect(const QPoint &amp;topLeft, const QSize &amp;size) QRect::QRect(const QPoint &amp;topLeft, c">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qrect-intersect.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qrect-unite.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qrect-diagram-zero.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qrect-diagram-one.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qrect-diagram-two.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qrect-diagram-three.png">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qrect-intersect.png">
+<meta property="og:image" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/R/QRect/QRect/index.html#isEmpty">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/qrect-unite.png">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:51:24.353Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="R">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://doc.qt.io/qt-6/images/qrect-intersect.png">
+  
+  
+  <title>QRect类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QRect类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      17k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      142 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QRect类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#fei-xiang-guan-cheng-yuan">非相关成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#xuan-ran">渲染</a></li>
+<li><a href="#zuo-biao">坐标</a></li>
+<li><a href="#yue-shu">约束</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qrect-qrect-int-x-int-y-int-width-int-height">QRect::QRect(int <em>x</em>, int <em>y</em>, int <em>width</em>, int <em>height</em>)</a></li>
+<li><a href="#qrect-qrect-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-topleft-const-qsize-https-doc-qt-io-qt-6-qsize-html-size">QRect::QRect(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>topLeft</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsize.html">QSize</a> &amp;<em>size</em>)</li>
+<li><a href="#qrect-qrect-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-topleft-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-bottomright">QRect::QRect(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>topLeft</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>bottomRight</em>)</li>
+<li><a href="#qrect-qrect">QRect::QRect()</a></li>
+<li><a href="#void-qrect-adjust-int-dx1-int-dy1-int-dx2-int-dy2">void QRect::adjust(int <em>dx1</em>, int <em>dy1</em>, int <em>dx2</em>, int <em>dy2</em>)</a></li>
+<li><a href="#qrect-qrect-qrect-adjusted-int-dx1-int-dy1-int-dx2-int-dy2-const">QRect</a></li>
+<li><a href="#int-qrect-bottom-const">int QRect::bottom() const</a></li>
+<li><a href="#qpoint-https-doc-qt-io-qt-6-qpoint-html-qrect-bottomleft-const">QPoint</a></li>
+<li><a href="#qpoint-https-doc-qt-io-qt-6-qpoint-html-qrect-bottomright-const-1">QPoint</a></li>
+<li><a href="#qpoint-https-doc-qt-io-qt-6-qpoint-html-qrect-center-const-2">QPoint</a></li>
+<li><a href="#bool-qrect-contains-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-point-bool-proper-false-const">bool QRect::contains(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>point</em>, bool <em>proper</em> = false) const</li>
+<li><a href="#bool-qrect-contains-const-qrect-qrect-rectangle-bool-proper-false-const">bool QRect::contains(const </a><a href="#QRect">QRect</a> &amp;<em>rectangle</em>, bool <em>proper</em> = false) const</li>
+<li><a href="#bool-qrect-contains-int-x-int-y-const">bool QRect::contains(int <em>x</em>, int <em>y</em>) const</a></li>
+<li><a href="#bool-qrect-contains-int-x-int-y-bool-proper-const">bool QRect::contains(int <em>x</em>, int <em>y</em>, bool <em>proper</em>) const</a></li>
+<li><a href="#void-qrect-getcoords-int-x1-int-y1-int-x2-int-y2-const">void QRect::getCoords(int *<em>x1</em>, int *<em>y1</em>, int *<em>x2</em>, int *<em>y2</em>) const</a></li>
+<li><a href="#void-qrect-getrect-int-x-int-y-int-width-int-height-const">void QRect::getRect(int *<em>x</em>, int *<em>y</em>, int *<em>width</em>, int *<em>height</em>) const</a></li>
+<li><a href="#int-qrect-height-const">int QRect::height() const</a></li>
+<li><a href="#qrect-qrect-qrect-intersected-const-qrect-qrect-rectangle-const-1">QRect</a></li>
+<li><a href="#bool-qrect-intersects-const-qrect-qrect-rectangle-const">bool QRect::intersects(const </a><a href="#QRect">QRect</a> &amp;<em>rectangle</em>) const</li>
+<li><a href="#bool-qrect-isempty-const">bool QRect::isEmpty() const</a></li>
+<li><a href="#bool-qrect-isnull-const">bool QRect::isNull() const</a></li>
+<li><a href="#bool-qrect-isvalid-const">bool QRect::isValid() const</a></li>
+<li><a href="#int-qrect-left-const">int QRect::left() const</a></li>
+<li><a href="#zi-5-1-qrect-qrect-qrect-marginsadded-const-qmargins-https-doc-qt-io-qt-6-qmargins-html-margins-const"><code>[自5.1]</code></a><a href="#QRect">QRect</a> QRect::marginsAdded(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmargins.html">QMargins</a> &amp;<em>margins</em>) const</li>
+<li><a href="#zi-5-1-qrect-qrect-qrect-marginsremoved-const-qmargins-https-doc-qt-io-qt-6-qmargins-html-margins-const"><code>[自5.1]</code></a><a href="#QRect">QRect</a> QRect::marginsRemoved(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmargins.html">QMargins</a> &amp;<em>margins</em>) const</li>
+<li><a href="#void-qrect-movebottom-int-y">void QRect::moveBottom(int <em>y</em>)</a></li>
+<li><a href="#void-qrect-movebottomleft-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-position">void QRect::moveBottomLeft(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>position</em>)</li>
+<li><a href="#void-qrect-movebottomright-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-position">void QRect::moveBottomRight(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>position</em>)</li>
+<li><a href="#void-qrect-movecenter-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-position">void QRect::moveCenter(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>position</em>)</li>
+<li><a href="#void-qrect-moveleft-int-x">void QRect::moveLeft(int <em>x</em>)</a></li>
+<li><a href="#void-qrect-moveright-int-x">void QRect::moveRight(int <em>x</em>)</a></li>
+<li><a href="#void-qrect-moveto-int-x-int-y">void QRect::moveTo(int <em>x</em>, int <em>y</em>)</a></li>
+<li><a href="#void-qrect-moveto-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-position">void QRect::moveTo(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>position</em>)</li>
+<li><a href="#void-qrect-movetopleft-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-position">void QRect::moveTopLeft(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>position</em>)</li>
+<li><a href="#void-qrect-movetopright-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-position">void QRect::moveTopRight(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>position</em>)</li>
+<li><a href="#qrect-qrect-qrect-normalized-const-2">QRect</a></li>
+<li><a href="#int-qrect-right-const">int QRect::right() const</a></li>
+<li><a href="#void-qrect-setbottom-int-y">void QRect::setBottom(int <em>y</em>)</a></li>
+<li><a href="#void-qrect-setbottomleft-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-position">void QRect::setBottomLeft(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>position</em>)</li>
+<li><a href="#void-qrect-setbottomright-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-position">void QRect::setBottomRight(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>position</em>)</li>
+<li><a href="#void-qrect-setcoords-int-x1-int-y1-int-x2-int-y2">void QRect::setCoords(int <em>x1</em>, int <em>y1</em>, int <em>x2</em>, int <em>y2</em>)</a></li>
+<li><a href="#void-qrect-setheight-int-height">void QRect::setHeight(int <em>height</em>)</a></li>
+<li><a href="#void-qrect-setleft-int-x">void QRect::setLeft(int <em>x</em>)</a></li>
+<li><a href="#void-qrect-setrect-int-x-int-y-int-width-int-height">void QRect::setRect(int <em>x</em>, int <em>y</em>, int <em>width</em>, int <em>height</em>)</a></li>
+<li><a href="#void-qrect-setright-int-x">void QRect::setRight(int <em>x</em>)</a></li>
+<li><a href="#void-qrect-setsize-const-qsize-https-doc-qt-io-qt-6-qsize-html-size">void QRect::setSize(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsize.html">QSize</a> &amp;<em>size</em>)</li>
+<li><a href="#void-qrect-settop-int-y">void QRect::setTop(int <em>y</em>)</a></li>
+<li><a href="#void-qrect-settopleft-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-position">void QRect::setTopLeft(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>position</em>)</li>
+<li><a href="#void-qrect-settopright-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-position">void QRect::setTopRight(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>position</em>)</li>
+<li><a href="#void-qrect-setwidth-int-width">void QRect::setWidth(int <em>width</em>)</a></li>
+<li><a href="#void-qrect-setx-int-x">void QRect::setX(int <em>x</em>)</a></li>
+<li><a href="#void-qrect-sety-int-y">void QRect::setY(int <em>y</em>)</a></li>
+<li><a href="#qsize-https-doc-qt-io-qt-6-qsize-html-qrect-size-const">QSize</a></li>
+<li><a href="#jing-tai-zi-6-0-qi-qrect-qrect-qrect-span-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-p1-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-p2"><code>[静态，自6.0起]</code></a><a href="#QRect">QRect</a> QRect::span(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>p1</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>p2</em>)</li>
+<li><a href="#zi-5-8-cgrect-qrect-tocgrect-const"><code>[自5.8]</code>CGRect QRect::toCGRect() const</a></li>
+<li><a href="#int-qrect-top-const">int QRect::top() const</a></li>
+<li><a href="#qpoint-https-doc-qt-io-qt-6-qpoint-html-qrect-topleft-const-3">QPoint</a></li>
+<li><a href="#qpoint-https-doc-qt-io-qt-6-qpoint-html-qrect-topright-const-4">QPoint</a></li>
+<li><a href="#void-qrect-translate-int-dx-int-dy">void QRect::translate(int <em>dx</em>, int <em>dy</em>)</a></li>
+<li><a href="#void-qrect-translate-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-offset">void QRect::translate(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a> &amp;<em>offset</em>)</li>
+<li><a href="#qrect-qrect-qrect-translate-int-dx-int-dy-const-3">QRect</a></li>
+<li><a href="#qrect-qrect-qrect-translate-const-qpoint-https-doc-qt-io-qt-6-qpoint-html-offset-const-4">QRect</a></li>
+<li><a href="#zi-5-7-qrect-qrect-qrect-transposed-const"><code>[自5.7]</code></a><a href="#QRect">QRect</a> QRect::transposed() const</li>
+<li><a href="#qrect-qrect-qrect-united-const-qrect-qrect-rectangle-const-5">QRect</a></li>
+<li><a href="#int-qrect-width-const">int QRect::width() const</a></li>
+<li><a href="#int-qrect-x-const">int QRect::x() const</a></li>
+<li><a href="#int-qrect-y-const">int QRect::y() const</a></li>
+<li><a href="#qrect-qrect-qrect-operator-const-qrect-qrect-rectangle-const-6">QRect</a></li>
+<li><a href="#qrect-qrect-qrect-operator-const-qrect-qrect-rectangle-7">QRect</a></li>
+<li><a href="#zi-5-1-qrect-qrect-qrect-operator-const-qmargins-https-doc-qt-io-qt-6-qmargins-html-margins"><code>[自5.1]</code></a><a href="#QRect">QRect</a> &amp;QRect::operator+=(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmargins.html">QMargins</a> &amp;<em>margins</em>)</li>
+<li><a href="#zi-5-1-qrect-qrect-qrect-operator-const-qmargins-https-doc-qt-io-qt-6-qmargins-html-margins"><code>[自5.1]</code></a><a href="#QRect">QRect</a> &amp;QRect::operator-=(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmargins.html">QMargins</a> &amp;<em>margins</em>)</li>
+<li><a href="#qrect-qrect-qrect-operator-const-qrect-qrect-rectangle-const-8">QRect</a></li>
+<li><a href="#qrect-qrect-qrect-operator-const-qrect-qrect-rectangle-9">QRect</a></li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-cheng-yuan">相关非成员</a><ul>
+<li><a href="#bool-operator-const-qrect-qrect-r1-const-qrect-qrect-r2">bool operator!=(const </a><a href="#QRect">QRect</a> &amp;<em>r1</em>, const <a href="#QRect">QRect</a> &amp;<em>r2</em>)</li>
+<li><a href="#zi-5-1-qrect-qrect-operator-const-qrect-qrect-rectangle-const-qmargins-https-doc-qt-io-qt-6-qmargins-html-margins"><code>[自5.1]</code></a><a href="#QRect">QRect</a> operator+(const <a href="#QRect">QRect</a> &amp;<em>rectangle</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmargins.html">QMargins</a> &amp;<em>margins</em>)</li>
+<li><a href="#since-5-1-qrect-qrect-operator-const-qmargins-https-doc-qt-io-qt-6-qmargins-html-margins-const-qrect-qrect-rectangle"><code>[since 5.1]</code></a><a href="#QRect">QRect</a> operator+(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmargins.html">QMargins</a> &amp;<em>margins</em>, const <a href="#QRect">QRect</a> &amp;<em>rectangle</em>)</li>
+<li><a href="#since-5-3-qrect-qrect-operator-const-qrect-qrect-lhs-const-qmargins-https-doc-qt-io-qt-6-qmargins-html-rhs"><code>[since 5.3]</code></a><a href="#QRect">QRect</a> operator-(const <a href="#QRect">QRect</a> &amp;<em>lhs</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmargins.html">QMargins</a> &amp;<em>rhs</em>)</li>
+<li><a href="#qdatastream-https-doc-qt-io-qt-6-qdatastream-html-operator-qdatastream-https-doc-qt-io-qt-6-qdatastream-html-stream-const-qrect-qrect-rectangle">QDataStream</a></li>
+<li><a href="#bool-operator-const-qrect-qrect-r1-const-qrect-qrect-r2">bool operator==(const </a><a href="#QRect">QRect</a> &amp;<em>r1</em>, const <a href="#QRect">QRect</a> &amp;<em>r2</em>)</li>
+<li><a href="#qdatastream-https-doc-qt-io-qt-6-qdatastream-html-operator-qdatastream-https-doc-qt-io-qt-6-qdatastream-html-stream-qrect-qrect-rectangle-1">QDataStream</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+QRect类使用整数精度定义了平面内的一个矩形. [More...](#details)
+
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qrect></qrect></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrect-members.html">List of all members, including inherited members</a></li>
+</ul>
+<p><strong>注意：</strong>该类中的所有函数都是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/17-qdoc-commands-thread.html#reentrant">reentrant</a>。</p>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QRect-3">QRect</a></strong>(int <em>x</em>, int <em>y</em>, int <em>width</em>, int <em>height</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QRect-2">QRect</a></strong>(const QPoint &amp;<em>topLeft</em>, const QSize &amp;<em>size</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QRect-1">QRect</a></strong>(const QPoint &amp;<em>topLeft</em>, const QPoint &amp;<em>bottomRight</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QRect">QRect</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#adjust">adjust</a></strong>(int <em>dx1</em>, int <em>dy1</em>, int <em>dx2</em>, int <em>dy2</em>)</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#adjusted">adjusted</a></strong>(int <em>dx1</em>, int <em>dy1</em>, int <em>dx2</em>, int <em>dy2</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#bottom">bottom</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPoint</td>
+<td><strong><a href="#bottomLeft">bottomLeft</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPoint</td>
+<td><strong><a href="#bottomRight">bottomRight</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPoint</td>
+<td><strong><a href="#center">center</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#contains">contains</a></strong>(const QPoint &amp;<em>point</em>, bool <em>proper</em> = false) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#contains-1">contains</a></strong>(const QRect &amp;<em>rectangle</em>, bool <em>proper</em> = false) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#contains-2">contains</a></strong>(int <em>x</em>, int <em>y</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#contains-3">contains</a></strong>(int <em>x</em>, int <em>y</em>, bool <em>proper</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#getCoords">getCoords</a></strong>(int *<em>x1</em>, int *<em>y1</em>, int *<em>x2</em>, int *<em>y2</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#getRect">getRect</a></strong>(int *<em>x</em>, int *<em>y</em>, int *<em>width</em>, int *<em>height</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#height">height</a></strong>() const</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#intersected">intersected</a></strong>(const QRect &amp;<em>rectangle</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#intersects">intersects</a></strong>(const QRect &amp;<em>rectangle</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isEmpty">isEmpty</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNull">isNull</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isValid">isValid</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#left">left</a></strong>() const</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#marginsAdded">marginsAdded</a></strong>(const QMargins &amp;<em>margins</em>) const</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#marginsRemoved">marginsRemoved</a></strong>(const QMargins &amp;<em>margins</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveBottom">moveBottom</a></strong>(int <em>y</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveBottomLeft">moveBottomLeft</a></strong>(const QPoint &amp;<em>position</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveBottomRight">moveBottomRight</a></strong>(const QPoint &amp;<em>position</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveCenter">moveCenter</a></strong>(const QPoint &amp;<em>position</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveLeft">moveLeft</a></strong>(int <em>x</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveRight">moveRight</a></strong>(int <em>x</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveTo">moveTo</a></strong>(int <em>x</em>, int <em>y</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveTo-1">moveTo</a></strong>(const QPoint &amp;<em>position</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveTop">moveTop</a></strong>(int <em>y</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveTopLeft">moveTopLeft</a></strong>(const QPoint &amp;<em>position</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveTopRight">moveTopRight</a></strong>(const QPoint &amp;<em>position</em>)</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#normalized">normalized</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#right">right</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setBottom">setBottom</a></strong>(int <em>y</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setBottomLeft">setBottomLeft</a></strong>(const QPoint &amp;<em>position</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setBottomRight">setBottomRight</a></strong>(const QPoint &amp;<em>position</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setCoords">setCoords</a></strong>(int <em>x1</em>, int <em>y1</em>, int <em>x2</em>, int <em>y2</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setHeight">setHeight</a></strong>(int <em>height</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setLeft">setLeft</a></strong>(int <em>x</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setRect">setRect</a></strong>(int <em>x</em>, int <em>y</em>, int <em>width</em>, int <em>height</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setRight">setRight</a></strong>(int <em>x</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setSize">setSize</a></strong>(const QSize &amp;<em>size</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setTop">setTop</a></strong>(int <em>y</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setTopLeft">setTopLeft</a></strong>(const QPoint &amp;<em>position</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setTopRight">setTopRight</a></strong>(const QPoint &amp;<em>position</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setWidth">setWidth</a></strong>(int <em>width</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setX">setX</a></strong>(int <em>x</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setY">setY</a></strong>(int <em>y</em>)</td>
+</tr>
+<tr>
+<td>QSize</td>
+<td><strong><a href="#size">size</a></strong>() const</td>
+</tr>
+<tr>
+<td>CGRect</td>
+<td><strong><a href="#toCGRect">toCGRect</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#top">top</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPoint</td>
+<td><strong><a href="#topLeft">topLeft</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPoint</td>
+<td><strong><a href="#topRight">topRight</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#translate">translate</a></strong>(int <em>dx</em>, int <em>dy</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#translate-1">translate</a></strong>(const QPoint &amp;<em>offset</em>)</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#translated">translated</a></strong>(int <em>dx</em>, int <em>dy</em>) const</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#translated-1">translated</a></strong>(const QPoint &amp;<em>offset</em>) const</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#transposed">transposed</a></strong>() const</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#united">united</a></strong>(const QRect &amp;<em>rectangle</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#width">width</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#x">x</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#y">y</a></strong>() const</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#operator-and">operator&amp;</a></strong>(const QRect &amp;<em>rectangle</em>) const</td>
+</tr>
+<tr>
+<td>QRect &amp;</td>
+<td><strong><a href="#operator-and-eq">operator&amp;=</a></strong>(const QRect &amp;<em>rectangle</em>)</td>
+</tr>
+<tr>
+<td>QRect &amp;</td>
+<td><strong><a href="#operator-2b-eq">operator+=</a></strong>(const QMargins &amp;<em>margins</em>)</td>
+</tr>
+<tr>
+<td>QRect &amp;</td>
+<td><strong><a href="#operator--eq">operator-=</a></strong>(const QMargins &amp;<em>margins</em>)</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#operator-7c">operator|</a></strong>(const QRect &amp;<em>rectangle</em>) const</td>
+</tr>
+<tr>
+<td>QRect &amp;</td>
+<td><strong><a href="#operator-7c-eq">operator|=</a></strong>(const QRect &amp;<em>rectangle</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QRect</th>
+<th><strong><a href="#span">span</a></strong>(const QPoint &amp;<em>p1</em>, const QPoint &amp;<em>p2</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="fei-xiang-guan-cheng-yuan">非相关成员</span><a href="#fei-xiang-guan-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong><a href="#operator-not-eq">operator!=</a></strong>(const QRect &amp;<em>r1</em>, const QRect &amp;<em>r2</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QRect</td>
+<td><strong><a href="#operator-2b">operator+</a></strong>(const QRect &amp;<em>rectangle</em>, const QMargins &amp;<em>margins</em>)</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#operator-2b-1">operator+</a></strong>(const QMargins &amp;<em>margins</em>, const QRect &amp;<em>rectangle</em>)</td>
+</tr>
+<tr>
+<td>QRect</td>
+<td><strong><a href="#operator-">operator-</a></strong>(const QRect &amp;<em>lhs</em>, const QMargins &amp;<em>rhs</em>)</td>
+</tr>
+<tr>
+<td>QDataStream &amp;</td>
+<td><strong><a href="#operator-lt-lt">operator&lt;&lt;</a></strong>(QDataStream &amp;<em>stream</em>, const QRect &amp;<em>rectangle</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-eq-eq">operator==</a></strong>(const QRect &amp;<em>r1</em>, const QRect &amp;<em>r2</em>)</td>
+</tr>
+<tr>
+<td>QDataStream &amp;</td>
+<td><strong><a href="#operator-gt-gt">operator&gt;&gt;</a></strong>(QDataStream &amp;<em>stream</em>, QRect &amp;<em>rectangle</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>矩形通常表示为一个左上角和一个尺寸。QRect的尺寸（宽度和高度）总是等同于构成其渲染基础的数学矩形。</p>
+<p>一个QRect可以用一组左、上、宽和高的整数来构造，或者由一个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a>和一个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsize.html">QSize</a>来构造。下面的代码创建了两个相同的矩形。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QRect <span class="hljs-title">r1</span><span class="hljs-params">(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">11</span>, <span class="hljs-number">16</span>)</span></span>;
+<span class="hljs-function">QRect <span class="hljs-title">r2</span><span class="hljs-params">(QPoint(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>), QSize(<span class="hljs-number">11</span>, <span class="hljs-number">16</span>))</span></span>;</code></pre></div>
+
+<p>有第三个构造函数可以使用左上角和右下角坐标创建QRect，但我们建议你避免使用它。理由是由于历史原因，<a href="#bottom">bottom</a>()和<a href="#right">right</a>()函数返回的值与矩形的真正右下角有偏差。</p>
+<p>QRect类提供了一个函数集合，用于返回各种矩形坐标，并能对这些坐标进行操作。QRect还提供了相对于各种坐标来移动矩形的函数。此外，还有一个<a href="#moveTo">moveTo</a>()函数可以移动矩形，将其左上角留在给定的坐标处。另外，<a href="#translate">translate</a>()函数将矩形移动到给定的相对于当前位置的偏移量，而<a href="#translated">translated</a>()函数返回这个矩形的一个翻译副本。</p>
+<p><a href="#size">size</a>()函数以<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsize.html">QSize</a>的形式返回矩形的尺寸。尺寸也可以用<a href="#width">width</a>()和<a href="#height">height</a>()函数单独检索。要操作尺寸，请使用<a href="#setSize">setSize</a>()、<a href="#setWidth">setWidth</a>()或<a href="#setHeight">setHeight</a>()函数。另外，也可以通过应用任何一个设置矩形坐标的函数来改变尺寸，例如，<a href="#setBottom">setBottom</a>()或<a href="#setRight">setRight</a>()。</p>
+<p><a href="#contains">contains</a>()函数告诉人们一个给定的点是否在矩形内，而<a href="#intersects">intersects</a>()函数如果这个矩形与一个给定的矩形相交，则返回<code>true</code>。QRect类还提供了<a href="#intersected">intersected</a>()函数，返回相交的矩形，以及<a href="#united">united</a>()函数，返回包围给定矩形和这个矩形的矩形:</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://doc.qt.io/qt-6/images/qrect-intersect.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+<th><img src="https://doc.qt.io/qt-6/images/qrect-unite.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="#intersected">intersected</a>()</td>
+<td><a href="#united">united</a>()</td>
+</tr>
+</tbody></table>
+<p>如果<a href="#left">left</a>()&gt;<a href="#right">right</a>()或<a href="#top">top</a>()&gt;<a href="#bottom">bottom</a>()，<a href="#isEmpty">isEmpty</a>()函数返回<code>true'。注意，一个空的矩形是无效的。如果[left](#left)() &lt;= [right](#right)() *和* [top](#top)() &lt;= [bottom](#bottom)()，[isValid](#isValid)()函数返回</code>true’。另一方面，一个空矩形（<a href="#isNull">isNull</a>() == true）的宽度和高度都被设置为0。</p>
+<p>注意，由于QRect和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a>的定义方式，一个空的QRect的定义方式与<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a>基本相同。</p>
+<p>最后，QRect对象可以被流化，也可以被比较。</p>
+<h3><span id="xuan-ran">渲染</span><a href="#xuan-ran" class="header-anchor">#</a></h3><p>当使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpainter.html#RenderHint-enum">anti-aliased</a>画师时，QRect的边界线将在数学矩形的边界线两边对称地呈现。但是，当使用别名画师（默认）时，其他规则适用。</p>
+<p>那么，当用一个像素宽的笔渲染时，QRect的边界线将被渲染到数学矩形边界线的右边和下面。</p>
+<p>当用两像素宽的笔进行渲染时，边界线将被数学矩形从中间分开。只要笔的像素数是偶数，就会出现这种情况，而用奇数像素的笔渲染时，多余的像素将被渲染到数学矩形的右边和下面，就像在一个像素的情况下。</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://doc.qt.io/qt-6/images/qrect-diagram-zero.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+<th><img src="https://doc.qt.io/qt-6/images/qrect-diagram-one.png" srcset="/img/loading.gif" lazyload alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Logical representation</td>
+<td>One pixel wide pen</td>
+</tr>
+<tr>
+<td><img src="https://doc.qt.io/qt-6/images/qrect-diagram-two.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td><img src="https://doc.qt.io/qt-6/images/qrect-diagram-three.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+</tr>
+<tr>
+<td>Two pixel wide pen</td>
+<td>Three pixel wide pen</td>
+</tr>
+</tbody></table>
+<h3><span id="zuo-biao">坐标</span><a href="#zuo-biao" class="header-anchor">#</a></h3><p>QRect类提供了一个函数集合，用于返回各种矩形坐标，并能对这些坐标进行操作。QRect还提供了相对于各种坐标来移动矩形的函数。</p>
+<p>例如<a href="#left">left</a>()、<a href="#setLeft">setLeft</a>()和<a href="#moveLeft">moveLeft</a>()函数，作为一个例子。<a href="#left">left</a>()返回矩形左边缘的x坐标，<a href="#setLeft">setLeft</a>()将矩形的左边缘设置为给定的x坐标（它可以改变宽度，但绝不会改变矩形的右边缘），<a href="#moveLeft">moveLeft</a>()将整个矩形水平移动，使矩形的左边缘位于给定的x坐标，其大小不变。</p>
+<p>! <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/images/qrect-coordinates.png">img</a></p>
+<p>请注意，由于历史原因，<a href="#bottom">bottom</a>()和<a href="#right">right</a>()函数返回的值与矩形的真正右下角有偏差。右](#right)()函数返回*<a href="#left">左</a>()+<a href="#width">宽</a>() - 1<em>，<a href="#bottom">底</a>()函数返回</em><a href="#top">顶</a>()+<a href="#height">高</a>() - 1*。由<a href="#bottomRight">bottomRight</a>()便利函数返回的点的情况也是这样。此外，<a href="#topRight">topRight</a>()和<a href="#bottomLeft">bottomLeft</a>()函数的x和y坐标，分别包含与真正的右边缘和底边缘相同的偏差。</p>
+<p>我们建议你使用<a href="#x">x</a>()+<a href="#width">width</a>()和<a href="#y">y</a>()+<a href="#height">height</a>()来寻找真正的右下角，并避免使用<a href="#right">right</a>()和<a href="#bottom">bottom</a>()。另一个解决方案是使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a>。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a>类使用浮点精度的坐标在平面内定义了一个矩形，而<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html#right">QRectF::right</a>()和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html#bottom">QRectF::bottom</a>()函数*确实返回右和底的坐标。</p>
+<p>也可以使用<a href="#adjust">adjust</a>()函数为这个矩形的坐标添加偏移量，以及使用<a href="#adjusted">adjusted</a>()函数根据对原始矩形的调整检索一个新的矩形。如果宽度和高度中的任何一个是负数，使用<a href="#normalized">normalized</a>()函数来检索一个角被交换的矩形。</p>
+<p>此外，QRect提供了<a href="#getCoords">getCoords</a>()函数，可以提取矩形的左上角和右下角的位置，以及<a href="#getRect">getRect</a>()函数，提取矩形的左上角、宽度和高度。使用<a href="#setCoords">setCoords</a>()和<a href="#setRect">setRect</a>()函数可以一次性地操作矩形的坐标和尺寸。</p>
+<h3><span id="yue-shu">约束</span><a href="#yue-shu" class="header-anchor">#</a></h3><p>QRect被限制在 “int “类型的最小和最大值。对QRect的操作如果有可能导致超出这个范围的值，将导致未定义的行为。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html">QRectF</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qregion.html">QRegion</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qrect-qrect-int-x-int-y-int-width-int-height">QRect::QRect(int <em>x</em>, int <em>y</em>, int <em>width</em>, int <em>height</em>)</span><a href="#qrect-qrect-int-x-int-y-int-width-int-height" class="header-anchor">#</a></h3><p>构建一个以（<em>x</em>, <em>y</em>）为左上角，给定<em>宽</em>和<em>高</em>的矩形。</p>
+<p><strong>See also</strong> <a href="#setRect">setRect</a>().</p>
+<h3><span id="qrect-qrect-const-qpoint-amp-topleft-const-qsize-amp-size">QRect::QRect(const  &amp;<em>topLeft</em>, const  &amp;<em>size</em>)</span><a href="#qrect-qrect-const-qpoint-amp-topleft-const-qsize-amp-size" class="header-anchor">#</a></h3><p>构建一个具有给定<em>topLeft</em>角和给定<em>size</em>的矩形。</p>
+<p><strong>参见</strong> <a href="#setTopLeft">setTopLeft</a>()和<a href="#setSize">setSize</a>()。</p>
+<h3><span id="qrect-qrect-const-qpoint-amp-topleft-const-qpoint-amp-bottomright">QRect::QRect(const  &amp;<em>topLeft</em>, const  &amp;<em>bottomRight</em>)</span><a href="#qrect-qrect-const-qpoint-amp-topleft-const-qpoint-amp-bottomright" class="header-anchor">#</a></h3><p>构建一个具有给定的<em>topLeft</em>和<em>bottomRight</em>角的矩形，两个角都包括在内。</p>
+<p>如果<em>bottomRight</em>在<em>topLeft</em>的上方和左边，定义的矩形反而不包括角。</p>
+<p><strong>注意：</strong>要确保两个点都包括在内，无论相对顺序如何，请使用<a href="#span">span</a>()。</p>
+<p><strong>参见</strong> <a href="#setTopLeft">setTopLeft</a>(), <a href="#setBottomRight">setBottomRight</a>(), 和 <a href="#span">span</a>()。</p>
+<h3><span id="qrect-qrect">QRect::QRect()</span><a href="#qrect-qrect" class="header-anchor">#</a></h3><p>构建一个空矩形。</p>
+<p><strong>参见</strong> <a href="#isNull">isNull</a>()。</p>
+<h3><span id="void-qrect-adjust-int-dx1-int-dy1-int-dx2-int-dy2">void QRect::adjust(int <em>dx1</em>, int <em>dy1</em>, int <em>dx2</em>, int <em>dy2</em>)</span><a href="#void-qrect-adjust-int-dx1-int-dy1-int-dx2-int-dy2" class="header-anchor">#</a></h3><p>将<em>dx1</em>, <em>dy1</em>, <em>dx2</em>和<em>dy2</em>分别添加到矩形的现有坐标中。</p>
+<p><strong>参见</strong> <a href="#adjusted">adjusted</a>()和<a href="#setRect">setRect</a>()。</p>
+<h3><span id="qrect-qrect-adjusted-int-dx1-int-dy1-int-dx2-int-dy2-const"> QRect::adjusted(int <em>dx1</em>, int <em>dy1</em>, int <em>dx2</em>, int <em>dy2</em>) const</span><a href="#qrect-qrect-adjusted-int-dx1-int-dy1-int-dx2-int-dy2-const" class="header-anchor">#</a></h3><p>返回一个新的矩形，将<em>dx1</em>, <em>dy1</em>, <em>dx2</em>和<em>dy2</em>分别添加到这个矩形的现有坐标上。</p>
+<p><strong>参见</strong> <a href="#adjust">adjust</a>()。</p>
+<h3><span id="int-qrect-bottom-const">int QRect::bottom() const</span><a href="#int-qrect-bottom-const" class="header-anchor">#</a></h3><p>返回矩形的底边的Y坐标。</p>
+<p>请注意，由于历史原因，这个函数返回<a href="#top">top</a>() + <a href="#height">height</a>() - 1；使用<a href="#y">y</a>() + <a href="#height">height</a>() 来检索真正的y坐标。</p>
+<p><strong>参见</strong> <a href="#setBottom">setBottom</a>(), <a href="#bottomLeft">bottomLeft</a>(), 和<a href="#bottomRight">bottomRight</a>()。</p>
+<h3><span id="qpoint-qrect-bottomleft-const"> QRect::bottomLeft() const</span><a href="#qpoint-qrect-bottomleft-const" class="header-anchor">#</a></h3><p>返回矩形的左下角的位置。注意，由于历史原因，这个函数返回<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a>(<a href="#left">left</a>(), <a href="#top">top</a>() + <a href="#height">height</a>() - 1)。</p>
+<p><strong>另见</strong> <a href="#setBottomLeft">setBottomLeft</a>(), <a href="#bottom">bottom</a>(), 和 <a href="#left">left</a>()。</p>
+<h3><span id="qpoint-qrect-bottomright-const"> QRect::bottomRight() const</span><a href="#qpoint-qrect-bottomright-const" class="header-anchor">#</a></h3><p>返回矩形的右下角的位置。</p>
+<p>请注意，由于历史原因，这个函数返回<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a>(<a href="#left">left</a>() + <a href="#width">width</a>() -1, <a href="#top">top</a>() + <a href="#height">height</a>() -1) 。</p>
+<p><strong>另见</strong> <a href="#setBottomRight">setBottomRight</a>(), <a href="#bottom">bottom</a>(), 和 <a href="#right">right</a>()。</p>
+<h3><span id="qpoint-qrect-center-const"> QRect::center() const</span><a href="#qpoint-qrect-center-const" class="header-anchor">#</a></h3><p>返回矩形的中心点。</p>
+<p><strong>See also</strong> <a href="#moveCenter">moveCenter</a>().</p>
+<h3><span id="bool-qrect-contains-const-qpoint-amp-point-bool-proper-false-const">bool QRect::contains(const  &amp;<em>point</em>, bool <em>proper</em> = false) const</span><a href="#bool-qrect-contains-const-qpoint-amp-point-bool-proper-false-const" class="header-anchor">#</a></h3><p>如果给定的<em>点</em>在矩形的内部或边缘上，则返回 “true”，否则返回 “false”。如果<em>proper</em>为真，这个函数只在给定的<em>点</em>在矩形的*内（即不在边缘）时返回`真’。</p>
+<p><strong>参见</strong> <a href="#intersects">intersects</a>()。</p>
+<h3><span id="bool-qrect-contains-const-qrect-amp-rectangle-bool-proper-false-const">bool QRect::contains(const  &amp;<em>rectangle</em>, bool <em>proper</em> = false) const</span><a href="#bool-qrect-contains-const-qrect-amp-rectangle-bool-proper-false-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>如果给定的<em>rectangle</em>在这个矩形内，则返回 “true”，否则返回 “false”。如果<em>proper</em>为真，这个函数只在<em>矩形</em>完全在这个矩形内（不在边缘上）时返回`真’。</p>
+<h3><span id="bool-qrect-contains-int-x-int-y-const">bool QRect::contains(int <em>x</em>, int <em>y</em>) const</span><a href="#bool-qrect-contains-int-x-int-y-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>如果点(<em>x</em>, <em>y</em>)在这个矩形内，返回 “true”，否则返回 “false”。</p>
+<h3><span id="bool-qrect-contains-int-x-int-y-bool-proper-const">bool QRect::contains(int <em>x</em>, int <em>y</em>, bool <em>proper</em>) const</span><a href="#bool-qrect-contains-int-x-int-y-bool-proper-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>如果点(<em>x</em>, <em>y</em>)在矩形的内部或边缘上，则返回 “true”，否则返回 “false”。如果<em>proper</em>为真，该函数只在点完全在矩形内（不在边缘）时返回<code>true</code>。</p>
+<h3><span id="void-qrect-getcoords-int-x1-int-y1-int-x2-int-y2-const">void QRect::getCoords(int *<em>x1</em>, int *<em>y1</em>, int *<em>x2</em>, int *<em>y2</em>) const</span><a href="#void-qrect-getcoords-int-x1-int-y1-int-x2-int-y2-const" class="header-anchor">#</a></h3><p>提取矩形的左上角的位置为<strong>x1*和</strong>y1<em>，右下角的位置为**x2</em>和*<em>y2</em>。</p>
+<p><strong>参见</strong> <a href="#setCoords">setCoords</a>()和<a href="#getRect">getRect</a>()。</p>
+<h3><span id="void-qrect-getrect-int-x-int-y-int-width-int-height-const">void QRect::getRect(int *<em>x</em>, int *<em>y</em>, int *<em>width</em>, int *<em>height</em>) const</span><a href="#void-qrect-getrect-int-x-int-y-int-width-int-height-const" class="header-anchor">#</a></h3><p>提取矩形左上角的位置为<strong>x*和</strong>y<em>，其尺寸为**width</em>和*<em>height</em>。</p>
+<p><strong>参见</strong> <a href="#setRect">setRect</a>()和<a href="#getCoords">getCoords</a>()。</p>
+<h3><span id="int-qrect-height-const">int QRect::height() const</span><a href="#int-qrect-height-const" class="header-anchor">#</a></h3><p>返回矩形的高度。</p>
+<p><strong>参见</strong> <a href="#setHeight">setHeight</a>(), <a href>width</a>, and <a href="#size">size</a>()。</p>
+<h3><span id="qrect-qrect-intersected-const-qrect-amp-rectangle-const"> QRect::intersected(const  &amp;<em>rectangle</em>) const</span><a href="#qrect-qrect-intersected-const-qrect-amp-rectangle-const" class="header-anchor">#</a></h3><p>返回这个矩形和给定的<em>矩形</em>的交集。注意，<code>r.intersected(s)</code>等同于<code>r &amp; s</code>。</p>
+<p><img src="https://doc.qt.io/qt-6/images/qrect-intersect.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>参见</strong> <a href="#intersects">intersects</a>(), <a href="#united">united</a>(), 和 <a href="#operator-and-eq">operator&amp;=</a>()。</p>
+<h3><span id="bool-qrect-intersects-const-qrect-amp-rectangle-const">bool QRect::intersects(const  &amp;<em>rectangle</em>) const</span><a href="#bool-qrect-intersects-const-qrect-amp-rectangle-const" class="header-anchor">#</a></h3><p>如果此矩形与给定的<em>矩形</em>相交，则返回 “true”（即，至少有一个像素在两个矩形内），否则返回 “false”。</p>
+<p>相交的矩形可以用<a href="#intersected">intersected</a>()函数来检索。</p>
+<p><strong>也见</strong> <a href="#contains">contains</a>()。</p>
+<h3><span id="bool-qrect-isempty-const">bool QRect::isEmpty() const</span><a href="#bool-qrect-isempty-const" class="header-anchor">#</a></h3><p>如果矩形是空的，返回 “true”，否则返回 “false”。</p>
+<p>一个空的矩形有一个<a href="#left">left</a>() &gt; <a href="#right">right</a>() 或 <a href="#top">top</a>() &gt; <a href="#bottom">bottom</a>()。一个空的矩形是无效的（即，isEmpty() == <a href="#isValid">isValid</a>()）。</p>
+<p>使用<a href="#normalized">normalized</a>()函数来检索一个边角互换的矩形。</p>
+<p><strong>参见</strong> <a href="#isNull">isNull</a>(), <a href="#isValid">isValid</a>(), 和 <a href="#normalized">normalized</a>()。</p>
+<h3><span id="bool-qrect-isnull-const">bool QRect::isNull() const</span><a href="#bool-qrect-isnull-const" class="header-anchor">#</a></h3><p>如果矩形是一个空的矩形，返回 “true”，否则返回 “false”。</p>
+<p>一个空矩形的宽度和高度都被设置为0（即，<a href="#right">right</a>() == <a href="#left">left</a>() - 1 和 <a href="#bottom">bottom</a>() == <a href="#top">top</a>() - 1）。一个空的矩形也是空的，因此是无效的。</p>
+<p><strong>参见</strong> <a href="#isEmpty">isEmpty</a>()和<a href="#isValid">isValid</a>()。</p>
+<h3><span id="bool-qrect-isvalid-const">bool QRect::isValid() const</span><a href="#bool-qrect-isvalid-const" class="header-anchor">#</a></h3><p>如果矩形是有效的，返回 “true”，否则返回 “false”。</p>
+<p>一个有效的矩形具有<a href="#left">left</a>() &lt;= <a href="#right">right</a>() 和 <a href="#top">top</a>() &lt;= <a href="#bottom">bottom</a>() 。请注意，像交集这样的非琐碎操作并没有为无效矩形定义。一个有效的矩形不是空的（也就是说，isValid() == <img src="#isEmpty" srcset="/img/loading.gif" lazyload alt="isEmpty">()）。</p>
+<p><strong>参见</strong> <a href="#isNull">isNull</a>(), <a href="#isEmpty">isEmpty</a>(), 和 <a href="#normalized">normalized</a>()。</p>
+<h3><span id="int-qrect-left-const">int QRect::left() const</span><a href="#int-qrect-left-const" class="header-anchor">#</a></h3><p>返回矩形的左边缘的X坐标。相当于<a href="#x">x</a>()。</p>
+<p><strong>参见</strong> <a href="#setLeft">setLeft</a>(), <a href="#topLeft">topLeft</a>(), and <a href="#bottomLeft">bottomLeft</a>()。</p>
+<h3><span id="zi-5-1-qrect-qrect-marginsadded-const-qmargins-amp-margins-const"><code>[自5.1]</code> QRect::marginsAdded(const  &amp;<em>margins</em>) const</span><a href="#zi-5-1-qrect-qrect-marginsadded-const-qmargins-amp-margins-const" class="header-anchor">#</a></h3><p>返回一个由<em>margins</em>增长的矩形。</p>
+<p>这个函数是在Qt 5.1中引入的。</p>
+<p><strong>参见</strong> <a href="#operator-2b-eq">operator+=</a>(), <a href="#marginsRemoved">marginsRemoved</a>(), 和 <a href="#operator-eq">operator-=</a>()。</p>
+<h3><span id="zi-5-1-qrect-qrect-marginsremoved-const-qmargins-amp-margins-const"><code>[自5.1]</code> QRect::marginsRemoved(const  &amp;<em>margins</em>) const</span><a href="#zi-5-1-qrect-qrect-marginsremoved-const-qmargins-amp-margins-const" class="header-anchor">#</a></h3><p>从矩形中移除<em>margins</em>，使其缩小。</p>
+<p>这个函数是在Qt 5.1中引入的。</p>
+<p><strong>参见</strong> <a href="#marginsAdded">marginsAdded</a>(), <a href="#operator-2b-eq">operator+=</a>(), and <a href="#operator-eq">operator-=</a>()。</p>
+<h3><span id="void-qrect-movebottom-int-y">void QRect::moveBottom(int <em>y</em>)</span><a href="#void-qrect-movebottom-int-y" class="header-anchor">#</a></h3><p>垂直移动矩形，使矩形的底边位于给定的<em>y</em>坐标。矩形的大小是不变的。</p>
+<p><strong>参见</strong> <a href="#bottom">bottom</a>(), <a href="#setBottom">setBottom</a>(), and <a href="#moveTop">moveTop</a>()。</p>
+<h3><span id="void-qrect-movebottomleft-const-qpoint-amp-position">void QRect::moveBottomLeft(const  &amp;<em>position</em>)</span><a href="#void-qrect-movebottomleft-const-qpoint-amp-position" class="header-anchor">#</a></h3><p>移动矩形，将左下角留在给定的<em>位置</em>。矩形的大小没有变化。</p>
+<p><strong>参见</strong> <a href="#setBottomLeft">setBottomLeft</a>(), <a href="#moveBottom">moveBottom</a>(), 和<a href="#moveLeft">moveLeft</a>()。</p>
+<h3><span id="void-qrect-movebottomright-const-qpoint-amp-position">void QRect::moveBottomRight(const  &amp;<em>position</em>)</span><a href="#void-qrect-movebottomright-const-qpoint-amp-position" class="header-anchor">#</a></h3><p>移动矩形，使右下角位于给定的<em>位置</em>。矩形的大小没有变化。</p>
+<p><strong>参见</strong> <a href="#setBottomRight">setBottomRight</a>(), <a href="#moveRight">moveRight</a>(), 和 <a href="#moveBottom">moveBottom</a>()。</p>
+<h3><span id="void-qrect-movecenter-const-qpoint-amp-position">void QRect::moveCenter(const  &amp;<em>position</em>)</span><a href="#void-qrect-movecenter-const-qpoint-amp-position" class="header-anchor">#</a></h3><p>移动矩形，将中心点留在给定的<em>位置</em>。矩形的大小是不变的。</p>
+<p><strong>参见</strong> <a href="#center">center</a>()。</p>
+<h3><span id="void-qrect-moveleft-int-x">void QRect::moveLeft(int <em>x</em>)</span><a href="#void-qrect-moveleft-int-x" class="header-anchor">#</a></h3><p>水平移动矩形，使矩形的左边缘位于给定的<em>x</em>坐标。矩形的大小是不变的。</p>
+<p><strong>参见</strong> <a href="#left">left</a>(), <a href="#setLeft">setLeft</a>(), 和<a href="#moveRight">moveRight</a>()。</p>
+<h3><span id="void-qrect-moveright-int-x">void QRect::moveRight(int <em>x</em>)</span><a href="#void-qrect-moveright-int-x" class="header-anchor">#</a></h3><p>水平移动矩形，使矩形的右边缘位于给定的<em>x</em>坐标。矩形的大小是不变的。</p>
+<p><strong>参见</strong> <a href="#right">right</a>(), <a href="#setRight">setRight</a>(), 以及 <a href="#moveLeft">moveLeft</a>()。</p>
+<h3><span id="void-qrect-moveto-int-x-int-y">void QRect::moveTo(int <em>x</em>, int <em>y</em>)</span><a href="#void-qrect-moveto-int-x-int-y" class="header-anchor">#</a></h3><p>移动矩形，将左上角留在给定的位置（<em>x</em>, <em>y</em>）。矩形的大小保持不变。</p>
+<p><strong>参见</strong> <a href="#translate">translate</a>()和<a href="#moveTopLeft">moveTopLeft</a>()。</p>
+<h3><span id="void-qrect-moveto-const-qpoint-amp-position">void QRect::moveTo(const  &amp;<em>position</em>)</span><a href="#void-qrect-moveto-const-qpoint-amp-position" class="header-anchor">#</a></h3><p>移动矩形，将左上角留在给定的<em>位置</em>。</p>
+<h5><span id="void-qrect-movetop-int-y">void QRect::moveTop(int <em>y</em>)</span><a href="#void-qrect-movetop-int-y" class="header-anchor">#</a></h5><p>垂直移动矩形，使矩形的顶边位于给定的<em>y</em>坐标处。矩形的大小是不变的。</p>
+<p><strong>参见</strong> <a href="#top">top</a>(), <a href="#setTop">setTop</a>(), and <a href="#moveBottom">moveBottom</a>()。</p>
+<h3><span id="void-qrect-movetopleft-const-qpoint-amp-position">void QRect::moveTopLeft(const  &amp;<em>position</em>)</span><a href="#void-qrect-movetopleft-const-qpoint-amp-position" class="header-anchor">#</a></h3><p>移动矩形，使左上角位于给定的<em>位置</em>。矩形的大小保持不变。</p>
+<p><strong>参见</strong> <a href="#setTopLeft">setTopLeft</a>(), <a href="#moveTop">moveTop</a>(), 和 <a href="#moveLeft">moveLeft</a>()。</p>
+<h3><span id="void-qrect-movetopright-const-qpoint-amp-position">void QRect::moveTopRight(const  &amp;<em>position</em>)</span><a href="#void-qrect-movetopright-const-qpoint-amp-position" class="header-anchor">#</a></h3><p>移动矩形，使右上角位于给定的<em>位置</em>。矩形的大小保持不变。</p>
+<p><strong>参见</strong> <a href="#setTopRight">setTopRight</a>(), <a href="#moveTop">moveTop</a>(), and <a href="#moveRight">moveRight</a>()。</p>
+<h3><span id="qrect-qrect-normalized-const"> QRect::normalized() const</span><a href="#qrect-qrect-normalized-const" class="header-anchor">#</a></h3><p>返回一个规范化的矩形；也就是说，一个具有非负的宽度和高度的矩形。</p>
+<p>如果<a href="#width">width</a>() &lt; 0，该函数将交换左角和右角，如果<a href="#height">height</a>() &lt; 0，它将交换顶角和底角，同时将角从非包容性改为包容性。</p>
+<p><strong>参见</strong> <a href="#isValid">isValid</a>()和<a href="#isEmpty">isEmpty</a>()。</p>
+<h3><span id="int-qrect-right-const">int QRect::right() const</span><a href="#int-qrect-right-const" class="header-anchor">#</a></h3><p>返回矩形的右边缘的x坐标。</p>
+<p>请注意，由于历史原因，这个函数返回<a href="#left">left</a>() + <a href="#width">width</a>() - 1；使用<a href="#x">x</a>() + <a href="#width">width</a>() 来检索真正的x坐标。</p>
+<p><strong>参见</strong> <a href="#setRight">setRight</a>(), <a href="#topRight">topRight</a>(), 和 <a href="#bottomRight">bottomRight</a>()。</p>
+<h3><span id="void-qrect-setbottom-int-y">void QRect::setBottom(int <em>y</em>)</span><a href="#void-qrect-setbottom-int-y" class="header-anchor">#</a></h3><p>将矩形的底边设置为给定的<em>y</em>坐标。可以改变高度，但绝不会改变矩形的顶边。</p>
+<p><strong>参见</strong> <a href="#bottom">bottom</a>()和<a href="#moveBottom">moveBottom</a>()。</p>
+<h3><span id="void-qrect-setbottomleft-const-qpoint-amp-position">void QRect::setBottomLeft(const  &amp;<em>position</em>)</span><a href="#void-qrect-setbottomleft-const-qpoint-amp-position" class="header-anchor">#</a></h3><p>将矩形的左下角设置为给定的<em>位置</em>。可以改变大小，但绝不会改变矩形的右上角。</p>
+<p><strong>参见</strong> <a href="#bottomLeft">bottomLeft</a>() 和 <a href="#moveBottomLeft">moveBottomLeft</a>()。</p>
+<h3><span id="void-qrect-setbottomright-const-qpoint-amp-position">void QRect::setBottomRight(const  &amp;<em>position</em>)</span><a href="#void-qrect-setbottomright-const-qpoint-amp-position" class="header-anchor">#</a></h3><p>将矩形的右下角设置为给定的<em>位置</em>。可以改变大小，但绝不会改变矩形的左上角。</p>
+<p><strong>参见</strong> <a href="#bottomRight">bottomRight</a>() 和 <a href="#moveBottomRight">moveBottomRight</a>()。</p>
+<h3><span id="void-qrect-setcoords-int-x1-int-y1-int-x2-int-y2">void QRect::setCoords(int <em>x1</em>, int <em>y1</em>, int <em>x2</em>, int <em>y2</em>)</span><a href="#void-qrect-setcoords-int-x1-int-y1-int-x2-int-y2" class="header-anchor">#</a></h3><p>设置矩形的左上角的坐标为(<em>x1</em>, <em>y1</em>)，右下角的坐标为(<em>x2</em>, <em>y2</em>)。</p>
+<p><strong>参见</strong> <a href="#getCoords">getCoords</a>()和<a href="#setRect">setRect</a>()。</p>
+<h3><span id="void-qrect-setheight-int-height">void QRect::setHeight(int <em>height</em>)</span><a href="#void-qrect-setheight-int-height" class="header-anchor">#</a></h3><p>将矩形的高度设置为给定的<em>height</em>。底部的边缘会被改变，但顶部的不会。</p>
+<p><strong>参见</strong> <a href="#height">height</a>() 和 <a href="#setSize">setSize</a>()。</p>
+<h3><span id="void-qrect-setleft-int-x">void QRect::setLeft(int <em>x</em>)</span><a href="#void-qrect-setleft-int-x" class="header-anchor">#</a></h3><p>将矩形的左边缘设置为给定的<em>x</em>坐标。可以改变宽度，但绝不会改变矩形的右边缘。</p>
+<p>相当于<a href="#setX">setX</a>()。</p>
+<p><strong>另见</strong> <a href="#left">left</a>()和<a href="#moveLeft">moveLeft</a>()。</p>
+<h3><span id="void-qrect-setrect-int-x-int-y-int-width-int-height">void QRect::setRect(int <em>x</em>, int <em>y</em>, int <em>width</em>, int <em>height</em>)</span><a href="#void-qrect-setrect-int-x-int-y-int-width-int-height" class="header-anchor">#</a></h3><p>设置矩形的左上角坐标为(<em>x</em>, <em>y</em>)，其大小为给定的<em>width</em>和<em>height</em>。</p>
+<p><strong>参见</strong> <a href="#getRect">getRect</a>()和<a href="#setCoords">setCoords</a>()。</p>
+<h3><span id="void-qrect-setright-int-x">void QRect::setRight(int <em>x</em>)</span><a href="#void-qrect-setright-int-x" class="header-anchor">#</a></h3><p>将矩形的右边缘设置为给定的<em>x</em>坐标。可以改变宽度，但绝不会改变矩形的左边缘。</p>
+<p><strong>另见</strong> <a href="#right">right</a>()和<a href="#moveRight">moveRight</a>()。</p>
+<h3><span id="void-qrect-setsize-const-qsize-amp-size">void QRect::setSize(const  &amp;<em>size</em>)</span><a href="#void-qrect-setsize-const-qsize-amp-size" class="header-anchor">#</a></h3><p>将矩形的大小设置为给定的<em>size</em>。左上角不会被移动。</p>
+<p><strong>参见</strong> <a href="#size">size</a>(), <a href="#setWidth">setWidth</a>(), and <a href="#setHeight">setHeight</a>()。</p>
+<h3><span id="void-qrect-settop-int-y">void QRect::setTop(int <em>y</em>)</span><a href="#void-qrect-settop-int-y" class="header-anchor">#</a></h3><p>将矩形的顶部边缘设置为给定的<em>y</em>坐标。可以改变高度，但绝不会改变矩形的底边。</p>
+<p>相当于<a href="#setY">setY</a>()。</p>
+<p><strong>另见</strong> <a href="#top">top</a>()和<a href="#moveTop">moveTop</a>()。</p>
+<h3><span id="void-qrect-settopleft-const-qpoint-amp-position">void QRect::setTopLeft(const  &amp;<em>position</em>)</span><a href="#void-qrect-settopleft-const-qpoint-amp-position" class="header-anchor">#</a></h3><p>将矩形的左上角设置为给定的<em>位置</em>。可以改变大小，但绝不会改变矩形的右下角。</p>
+<p><strong>参见</strong> <a href="#topLeft">topLeft</a>()和<a href="#moveTopLeft">moveTopLeft</a>()。</p>
+<h3><span id="void-qrect-settopright-const-qpoint-amp-position">void QRect::setTopRight(const  &amp;<em>position</em>)</span><a href="#void-qrect-settopright-const-qpoint-amp-position" class="header-anchor">#</a></h3><p>将矩形的右上角设置为给定的<em>位置</em>。可以改变大小，但绝不会改变矩形的左下角。</p>
+<p><strong>参见</strong> <a href="#topRight">topRight</a>()和<a href="#moveTopRight">moveTopRight</a>()。</p>
+<h3><span id="void-qrect-setwidth-int-width">void QRect::setWidth(int <em>width</em>)</span><a href="#void-qrect-setwidth-int-width" class="header-anchor">#</a></h3><p>将矩形的宽度设置为给定的<em>宽度</em>。右边的边缘会被改变，但左边的不会。</p>
+<p><strong>参见</strong> <a href="#width">width</a>() 和 <a href="#setSize">setSize</a>()。</p>
+<h3><span id="void-qrect-setx-int-x">void QRect::setX(int <em>x</em>)</span><a href="#void-qrect-setx-int-x" class="header-anchor">#</a></h3><p>将矩形的左边缘设置为给定的<em>x</em>坐标。可以改变宽度，但绝不会改变矩形的右边缘。</p>
+<p>相当于<a href="#setLeft">setLeft</a>()。</p>
+<p><strong>参见</strong> <a href="#x">x</a>(), <a href="#setY">setY</a>(), 以及 <a href="#setTopLeft">setTopLeft</a>()。</p>
+<h3><span id="void-qrect-sety-int-y">void QRect::setY(int <em>y</em>)</span><a href="#void-qrect-sety-int-y" class="header-anchor">#</a></h3><p>将矩形的上边缘设置为给定的<em>y</em>坐标。可以改变高度，但绝不会改变矩形的底边。</p>
+<p>相当于<a href="#setTop">setTop</a>()。</p>
+<p><strong>参见</strong> <a href="#y">y</a>(), <a href="#setX">setX</a>(), and <a href="#setTopLeft">setTopLeft</a>()。</p>
+<h3><span id="qsize-qrect-size-const"> QRect::size() const</span><a href="#qsize-qrect-size-const" class="header-anchor">#</a></h3><p>返回矩形的大小。</p>
+<p><strong>参见</strong> <a href="#setSize">setSize</a>(), <a href="#width">width</a>(), and <a href="#height">height</a>()。</p>
+<h3><span id="jing-tai-zi-6-0-qi-qrect-qrect-span-const-qpoint-amp-p1-const-qpoint-amp-p2"><code>[静态，自6.0起]</code> QRect::span(const  &amp;<em>p1</em>, const  &amp;<em>p2</em>)</span><a href="#jing-tai-zi-6-0-qi-qrect-qrect-span-const-qpoint-amp-p1-const-qpoint-amp-p2" class="header-anchor">#</a></h3><p>返回一个横跨两个点<em>p1</em>和<em>p2</em>的矩形，包括这两个点和中间的所有东西。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<h3><span id="zi-5-8-cgrect-qrect-tocgrect-const"><code>[自5.8]</code>CGRect QRect::toCGRect() const</span><a href="#zi-5-8-cgrect-qrect-tocgrect-const" class="header-anchor">#</a></h3><p>从一个<a href>QRect</a>创建一个CGRect。</p>
+<p>这个函数是在Qt 5.8中引入的。</p>
+<p><strong>参见</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qrectf.html#fromCGRect">QRectF::fromCGRect</a>()。</p>
+<h3><span id="int-qrect-top-const">int QRect::top() const</span><a href="#int-qrect-top-const" class="header-anchor">#</a></h3><p>返回矩形顶部边缘的Y坐标。相当于<a href="#y">y</a>()。</p>
+<p><strong>参见</strong> <a href="#setTop">setTop</a>(), <a href="#topLeft">topLeft</a>(), and <a href="#topRight">topRight</a>()。</p>
+<h3><span id="qpoint-qrect-topleft-const"> QRect::topLeft() const</span><a href="#qpoint-qrect-topleft-const" class="header-anchor">#</a></h3><p>返回矩形的左上角的位置。</p>
+<p><strong>参见</strong> <a href="#setTopLeft">setTopLeft</a>(), <a href="#top">top</a>(), 和 <a href>left</a>。</p>
+<h3><span id="qpoint-qrect-topright-const"> QRect::topRight() const</span><a href="#qpoint-qrect-topright-const" class="header-anchor">#</a></h3><p>返回矩形的右上角的位置。</p>
+<p>注意，由于历史原因，这个函数返回<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a>(<a href="#left">left</a>() + <a href="#width">width</a>() -1, <a href="#top">top</a>()。</p>
+<p><strong>另见</strong> <a href="#setTopRight">setTopRight</a>(), <a href="#top">top</a>(), 和 <a href="#right">right</a>()。</p>
+<h3><span id="void-qrect-translate-int-dx-int-dy">void QRect::translate(int <em>dx</em>, int <em>dy</em>)</span><a href="#void-qrect-translate-int-dx-int-dy" class="header-anchor">#</a></h3><p>将矩形<em>dx</em>沿x轴移动，<em>dy</em>沿y轴移动，相对于当前位置。正值是将矩形向右和向下移动。</p>
+<p><strong>参见</strong> <a href="#moveTopLeft">moveTopLeft</a>(), <a href="#moveTo">moveTo</a>(), 和 <a href="#translated">translated</a>()。</p>
+<h3><span id="void-qrect-translate-const-qpoint-amp-offset">void QRect::translate(const  &amp;<em>offset</em>)</span><a href="#void-qrect-translate-const-qpoint-amp-offset" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将矩形<em>offset</em>.<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html#x">x</a>()沿x轴移动，<em>offset</em>.<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html#y">y</a>()沿y轴移动，相对于当前位置。</p>
+<h3><span id="qrect-qrect-translate-int-dx-int-dy-const"> QRect::translate(int <em>dx</em>, int <em>dy</em>) const</span><a href="#qrect-qrect-translate-int-dx-int-dy-const" class="header-anchor">#</a></h3><p>返回一个矩形的副本，该副本沿x轴平移<em>dx</em>，沿y轴平移<em>dy</em>，相对于当前位置。正值将矩形向右和向下移动。</p>
+<p><strong>另见</strong> <a href="#translate">translate</a>()。</p>
+<h3><span id="qrect-qrect-translate-const-qpoint-amp-offset-const"> QRect::translate(const  &amp;<em>offset</em>) const</span><a href="#qrect-qrect-translate-const-qpoint-amp-offset-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>返回一个矩形的副本，该副本沿x轴平移了<em>offset</em>.<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html#x">x</a>()，沿y轴平移了<em>offset</em>.<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html#y">y</a>()，相对于当前位置。</p>
+<h3><span id="zi-5-7-qrect-qrect-transposed-const"><code>[自5.7]</code> QRect::transposed() const</span><a href="#zi-5-7-qrect-qrect-transposed-const" class="header-anchor">#</a></h3><p>返回一个交换了宽度和高度的矩形的副本。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QRect r = {<span class="hljs-number">15</span>, <span class="hljs-number">51</span>, <span class="hljs-number">42</span>, <span class="hljs-number">24</span>};
+r = r.<span class="hljs-built_in">transposed</span>(); <span class="hljs-comment">// r == {15, 51, 24, 42}。</span></code></pre></div>
+
+<p>这个函数是在Qt 5.7中引入的。</p>
+<p><strong>参见</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsize.html#transposed">QSize::transposed</a>()。</p>
+<h3><span id="qrect-qrect-united-const-qrect-amp-rectangle-const"> QRect::united(const  &amp;<em>rectangle</em>) const</span><a href="#qrect-qrect-united-const-qrect-amp-rectangle-const" class="header-anchor">#</a></h3><p>返回这个矩形和给定的<em>矩形</em>的边界矩形。</p>
+<p><img src="https://doc.qt.io/qt-6/images/qrect-unite.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>也见</strong> <a href="#intersected">intersected</a>()。</p>
+<h3><span id="int-qrect-width-const">int QRect::width() const</span><a href="#int-qrect-width-const" class="header-anchor">#</a></h3><p>返回矩形的宽度。</p>
+<p><strong>另见</strong> <a href="#setWidth">setWidth</a>(), <a href="#height">height</a>(), and <a href="#size">size</a>()。</p>
+<h3><span id="int-qrect-x-const">int QRect::x() const</span><a href="#int-qrect-x-const" class="header-anchor">#</a></h3><p>返回矩形的左边缘的x坐标。相当于<a href="#left">left</a>()。</p>
+<p><strong>参见</strong> <a href="#setX">setX</a>(), <a href="#y">y</a>(), and <a href="#topLeft">topLeft</a>()。</p>
+<h3><span id="int-qrect-y-const">int QRect::y() const</span><a href="#int-qrect-y-const" class="header-anchor">#</a></h3><p>返回矩形顶部边缘的Y坐标。相当于<a href="#top">top</a>()。</p>
+<p><strong>参见</strong> <a href="#setY">setY</a>(), <a href="#x">x</a>(), and <a href="#topLeft">topLeft</a>()。</p>
+<h3><span id="qrect-qrect-operator-amp-const-qrect-amp-rectangle-const"> QRect::operator&amp;( const  &amp;<em>rectangle</em>) const</span><a href="#qrect-qrect-operator-amp-const-qrect-amp-rectangle-const" class="header-anchor">#</a></h3><p>返回这个矩形和给定的<em>矩形</em>的交点。如果没有交集，则返回一个空矩形。</p>
+<p><strong>参见</strong> <a href="#operator-and-eq">operator&amp;=</a>()和<a href="#intersected">intersected</a>()。</p>
+<h3><span id="qrect-amp-qrect-operator-amp-const-qrect-amp-rectangle"> &amp;QRect::operator&amp;=( const  &amp;<em>rectangle</em>)</span><a href="#qrect-amp-qrect-operator-amp-const-qrect-amp-rectangle" class="header-anchor">#</a></h3><p>将此矩形与给定的<em>矩形</em>相交。</p>
+<p><strong>参见</strong> <a href="#intersected">intersected</a>() 和 <a href="#operator-and">operator&amp;</a>()。</p>
+<h3><span id="zi-5-1-qrect-amp-qrect-operator-const-qmargins-amp-margins"><code>[自5.1]</code> &amp;QRect::operator+=(const  &amp;<em>margins</em>)</span><a href="#zi-5-1-qrect-amp-qrect-operator-const-qmargins-amp-margins" class="header-anchor">#</a></h3><p>将<em>margins</em>添加到矩形中，使其增长。</p>
+<p>这个函数是在Qt 5.1中引入的。</p>
+<p><strong>参见</strong> <a href="#marginsAdded">marginsAdded</a>(), <a href="#marginsRemoved">marginsRemoved</a>(), 和 <a href="#operator-eq">operator-=</a>()。</p>
+<h3><span id="zi-5-1-qrect-amp-qrect-operator-const-qmargins-amp-margins"><code>[自5.1]</code> &amp;QRect::operator-=(const  &amp;<em>margins</em>)</span><a href="#zi-5-1-qrect-amp-qrect-operator-const-qmargins-amp-margins" class="header-anchor">#</a></h3><p>返回一个由<em>margins</em>缩小的矩形。</p>
+<p>这个函数是在Qt 5.1中引入的。</p>
+<p><strong>参见</strong> <a href="#marginsRemoved">marginsRemoved</a>(), <a href="#operator-2b-eq">operator+=</a>(), and <a href="#marginsAdded">marginsAdded</a>()。</p>
+<h3><span id="qrect-qrect-operator-const-qrect-amp-rectangle-const"> QRect::operator|(const  &amp;<em>rectangle</em>) const</span><a href="#qrect-qrect-operator-const-qrect-amp-rectangle-const" class="header-anchor">#</a></h3><p>返回这个矩形和给定的<em>矩形</em>的边界矩形。</p>
+<p><strong>参见</strong> <a href="#operator-7c-eq">operator|=</a>()和<a href="#united">united</a>()。</p>
+<h3><span id="qrect-amp-qrect-operator-const-qrect-amp-rectangle"> &amp;QRect::operator|=( const  &amp;<em>rectangle</em>)</span><a href="#qrect-amp-qrect-operator-const-qrect-amp-rectangle" class="header-anchor">#</a></h3><p>将此矩形与给定的<em>矩形</em>联合。</p>
+<p><strong>参见</strong> <a href="#united">united</a>()和<a href="#operator-7c">operator|</a>()。</p>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><h3><span id="bool-operator-const-qrect-amp-r1-const-qrect-amp-r2">bool operator!=(const  &amp;<em>r1</em>, const  &amp;<em>r2</em>)</span><a href="#bool-operator-const-qrect-amp-r1-const-qrect-amp-r2" class="header-anchor">#</a></h3><p>如果矩形<em>r1</em>和<em>r2</em>不同，则返回<code>true</code>，否则返回<code>false</code>。</p>
+<h3><span id="zi-5-1-qrect-operator-const-qrect-amp-rectangle-const-qmargins-amp-margins"><code>[自5.1]</code> operator+(const  &amp;<em>rectangle</em>, const  &amp;<em>margins</em>)</span><a href="#zi-5-1-qrect-operator-const-qrect-amp-rectangle-const-qmargins-amp-margins" class="header-anchor">#</a></h3><p>返回由<em>margins</em>增长的<em>矩形</em>。</p>
+<p>这个函数是在Qt 5.1中引入的。</p>
+<h3><span id="since-5-1-qrect-operator-const-qmargins-amp-margins-const-qrect-amp-rectangle"><code>[since 5.1]</code> operator+(const  &amp;<em>margins</em>, const  &amp;<em>rectangle</em>)</span><a href="#since-5-1-qrect-operator-const-qmargins-amp-margins-const-qrect-amp-rectangle" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>返回由<em>margins</em>增长的<em>rectangle</em>。</p>
+<p>这个函数是在Qt 5.1中引入的。</p>
+<h3><span id="since-5-3-qrect-operator-const-qrect-amp-lhs-const-qmargins-amp-rhs"><code>[since 5.3]</code> operator-(const  &amp;<em>lhs</em>, const  &amp;<em>rhs</em>)</span><a href="#since-5-3-qrect-operator-const-qrect-amp-lhs-const-qmargins-amp-rhs" class="header-anchor">#</a></h3><p>返回由<em>rhs</em>边距缩小的<em>lhs</em>矩形。</p>
+<p>这个函数是在Qt 5.3中引入的。</p>
+<h3><span id="qdatastream-amp-operator-lt-lt-qdatastream-amp-stream-const-qrect-amp-rectangle"> &amp;operator&lt;&lt;( &amp;<em>stream</em>, const  &amp;<em>rectangle</em>)</span><a href="#qdatastream-amp-operator-lt-lt-qdatastream-amp-stream-const-qrect-amp-rectangle" class="header-anchor">#</a></h3><p>将给定的<em>rectangle</em>写入给定的<em>stream</em>中，并返回对该流的引用。</p>
+<p><strong>参见</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/datastreamformat.html">Serializing Qt Data Types</a>。</p>
+<h3><span id="bool-operator-const-qrect-amp-r1-const-qrect-amp-r2">bool operator==(const  &amp;<em>r1</em>, const  &amp;<em>r2</em>)</span><a href="#bool-operator-const-qrect-amp-r1-const-qrect-amp-r2" class="header-anchor">#</a></h3><p>如果矩形<em>r1</em>和<em>r2</em>相等，返回 “true”，否则返回 “false”。</p>
+<h3><span id="qdatastream-amp-operator-gt-gt-qdatastream-amp-stream-qrect-amp-rectangle"> &amp;operator&gt;&gt;( &amp;<em>stream</em>,  &amp;<em>rectangle</em>)</span><a href="#qdatastream-amp-operator-gt-gt-qdatastream-amp-stream-qrect-amp-rectangle" class="header-anchor">#</a></h3><p>从给定的<em>stream</em>中读取一个矩形到给定的<em>rectangle</em>中，并返回一个对流的引用。</p>
+<p><strong>参见</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/datastreamformat.html">Serializing Qt Data Types</a>。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/R/">R</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/R/QRectF/QRectF/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QRectF类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/R/QRegExp/QRegExp/">
+                        <span class="hidden-mobile">QRegExp类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,983 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QDBusConnection 类 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 enum QDBusConnection:: BusType enum QDBusConnection:: ConnectionCapability flags QDBusConnection:: ConnectionCapabilities enum QDBusConnection:: R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QDBusConnection类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusConnection/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QDBusConnection 类 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 enum QDBusConnection:: BusType enum QDBusConnection:: ConnectionCapability flags QDBusConnection:: ConnectionCapabilities enum QDBusConnection:: R">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:12:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:37:47.846Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="D">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QDBusConnection类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QDBusConnection类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:12" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      17k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      143 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QDBusConnection类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qdbusconnection-lei">QDBusConnection 类</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#enum-qdbusconnection-bustype">enum QDBusConnection:: BusType</a></li>
+<li><a href="#enum-qdbusconnection-connectioncapability-flags-qdbusconnection-connectioncapabilities">enum QDBusConnection:: ConnectionCapability flags QDBusConnection:: ConnectionCapabilities</a></li>
+<li><a href="#enum-qdbusconnection-registeroption-flags-qdbusconnection-registeroptions">enum QDBusConnection:: RegisterOption flags QDBusConnection:: RegisterOptions</a></li>
+<li><a href="#enum-qdbusconnection-unregistermode">enum QDBusConnection:: UnregisterMode</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qdbusconnection-qdbusconnection-const-qdbusconnection-qdbusconnection-other">QDBusConnection:: QDBusConnection (const </a><a href="#QDBusConnection">QDBusConnection </a>&amp; <em>other</em> )</li>
+<li><a href="#qdbusconnection-qdbusconnection-const-qstring-qstring-html-name">QDBusConnection:: QDBusConnection (const </a><a href="qstring.html">QString </a>&amp; <em>name</em> )</li>
+<li><a href="#qdbusconnection-qdbusconnection-qdbusconnection-operator-const-qdbusconnection-qdbusconnection-other">QDBusConnection </a></li>
+<li><a href="#qdbusconnection-qdbusconnection">QDBusConnection:: ~QDBusConnection ()</a></li>
+<li><a href="#qdbuspendingcall-qdbuspendingcall-html-qdbusconnection-asynccall-const-qdbusmessage-qdbusmessage-html-message-int-timeout-1-const">QDBusPendingCall </a></li>
+<li><a href="#qstring-qstring-html-qdbusconnection-baseservice-const">QString </a></li>
+<li><a href="#qdbusmessage-qdbusmessage-html-qdbusconnection-call-const-qdbusmessage-qdbusmessage-html-message-qdbus-callmode-qdbus-html-callmode-enum-mode-qdbus-block-int-timeout-1-const">QDBusMessage </a></li>
+<li><a href="#bool-qdbusconnection-callwithcallback-const-qdbusmessage-qdbusmessage-html-message-qobject-qobject-html-receiver-const-char-returnmethod-const-char-errormethod-int-timeout-1-const">bool QDBusConnection:: callWithCallback (const </a><a href="qdbusmessage.html">QDBusMessage </a>&amp; <em>message</em> , <a href="qobject.html">QObject </a>* <em>receiver</em> , const char * <em>returnMethod</em> , const char * <em>errorMethod</em> , int <em>timeout</em> = -1) const</li>
+<li><a href="#bool-qdbusconnection-connect-const-qstring-qstring-html-service-const-qstring-qstring-html-path-const-qstring-qstring-html-interface-const-qstring-qstring-html-name-qobject-qobject-html-receiver-const-char-slot">bool QDBusConnection:: connect (const </a><a href="qstring.html">QString </a>&amp; <em>service</em> , const <a href="qstring.html">QString </a>&amp; <em>path</em> , const <a href="qstring.html">QString </a>&amp; <em>interface</em> , const <a href="qstring.html">QString </a>&amp; <em>name</em> , <a href="qobject.html">QObject </a>* <em>receiver</em> , const char * <em>slot</em> )</li>
+<li><a href="#bool-qdbusconnection-connect-const-qstring-qstring-html-service-const-qstring-qstring-html-path-const-qstring-qstring-html-interface-const-qstring-qstring-html-name-const-qstring-qstring-html-signature-qobject-qobject-html-receiver-const-char-slot">bool QDBusConnection:: connect (const </a><a href="qstring.html">QString </a>&amp; <em>service</em> , const <a href="qstring.html">QString </a>&amp; <em>path</em> , const <a href="qstring.html">QString </a>&amp; <em>interface</em> , const <a href="qstring.html">QString </a>&amp; <em>name</em> , const <a href="qstring.html">QString </a>&amp; <em>signature</em> , <a href="qobject.html">QObject </a>* <em>receiver</em> , const char * <em>slot</em> )</li>
+<li><a href="#bool-qdbusconnection-connect-const-qstring-qstring-html-service-const-qstring-qstring-html-path-const-qstring-qstring-html-interface-const-qstring-qstring-html-name-const-qstringlist-qstringlist-html-argumentmatch-const-qstring-qstring-html-signature-qobject-qobject-html-receiver-const-char-slot">bool QDBusConnection:: connect (const </a><a href="qstring.html">QString </a>&amp; <em>service</em> , const <a href="qstring.html">QString </a>&amp; <em>path</em> , const <a href="qstring.html">QString </a>&amp; <em>interface</em> , const <a href="qstring.html">QString </a>&amp; <em>name</em> , const <a href="qstringlist.html">QStringList </a>&amp; <em>argumentMatch</em> , const <a href="qstring.html">QString </a>&amp; <em>signature</em> , <a href="qobject.html">QObject </a>* <em>receiver</em> , const char * <em>slot</em> )</li>
+<li><a href="#static-qdbusconnection-qdbusconnection-qdbusconnection-connecttobus-qdbusconnection-bustype-bustype-enum-type-const-qstring-qstring-html-name"><code>[static] </code></a><a href="#QDBusConnection">QDBusConnection </a>QDBusConnection:: connectToBus ( <a href="#BusType-enum">QDBusConnection::BusType </a><em>type</em> , const <a href="qstring.html">QString </a>&amp; <em>name</em> )</li>
+<li><a href="#static-qdbusconnection-qdbusconnection-qdbusconnection-connecttobus-const-qstring-qstring-html-address-const-qstring-qstring-html-name"><code>[static] </code></a><a href="#QDBusConnection">QDBusConnection </a>QDBusConnection:: connectToBus (const <a href="qstring.html">QString </a>&amp; <em>address</em> , const <a href="qstring.html">QString </a>&amp; <em>name</em> )</li>
+<li><a href="#static-qdbusconnection-qdbusconnection-qdbusconnection-connecttopeer-const-qstring-qstring-html-address-const-qstring-qstring-html-name"><code>[static] </code></a><a href="#QDBusConnection">QDBusConnection </a>QDBusConnection:: connectToPeer (const <a href="qstring.html">QString </a>&amp; <em>address</em> , const <a href="qstring.html">QString </a>&amp; <em>name</em> )</li>
+<li><a href="#qdbusconnection-connectioncapabilities-connectioncapability-enum-qdbusconnection-connectioncapabilities-const">QDBusConnection::ConnectionCapabilities </a></li>
+<li><a href="#bool-qdbusconnection-disconnect-const-qstring-qstring-html-service-const-qstring-qstring-html-path-const-qstring-qstring-html-interface-const-qstring-qstring-html-name-qobject-qobject-html-receiver-const-char-slot">bool QDBusConnection:: disconnect (const </a><a href="qstring.html">QString </a>&amp; <em>service</em> , const <a href="qstring.html">QString </a>&amp; <em>path</em> , const <a href="qstring.html">QString </a>&amp; <em>interface</em> , const <a href="qstring.html">QString </a>&amp; <em>name</em> , <a href="qobject.html">QObject </a>* <em>receiver</em> , const char * <em>slot</em> )</li>
+<li><a href="#bool-qdbusconnection-disconnect-const-qstring-qstring-html-service-const-qstring-qstring-html-path-const-qstring-qstring-html-interface-const-qstring-qstring-html-name-const-qstring-qstring-html-signature-qobject-qobject-html-receiver-const-char-slot">bool QDBusConnection:: disconnect (const </a><a href="qstring.html">QString </a>&amp; <em>service</em> , const <a href="qstring.html">QString </a>&amp; <em>path</em> , const <a href="qstring.html">QString </a>&amp; <em>interface</em> , const <a href="qstring.html">QString </a>&amp; <em>name</em> , const <a href="qstring.html">QString </a>&amp; <em>signature</em> , <a href="qobject.html">QObject </a>* <em>receiver</em> , const char * <em>slot</em> )</li>
+<li><a href="#bool-qdbusconnection-disconnect-const-qstring-qstring-html-service-const-qstring-qstring-html-path-const-qstring-qstring-html-interface-const-qstring-qstring-html-name-const-qstringlist-qstringlist-html-argumentmatch-const-qstring-qstring-html-signature-qobject-qobject-html-receiver-const-char-slot">bool QDBusConnection:: disconnect (const </a><a href="qstring.html">QString </a>&amp; <em>service</em> , const <a href="qstring.html">QString </a>&amp; <em>path</em> , const <a href="qstring.html">QString </a>&amp; <em>interface</em> , const <a href="qstring.html">QString </a>&amp; <em>name</em> , const <a href="qstringlist.html">QStringList </a>&amp; <em>argumentMatch</em> , const <a href="qstring.html">QString </a>&amp; <em>signature</em> , <a href="qobject.html">QObject </a>* <em>receiver</em> , const char * <em>slot</em> )</li>
+<li><a href="#static-void-qdbusconnection-disconnectfrombus-const-qstring-qstring-html-name"><code>[static] </code>void QDBusConnection:: disconnectFromBus (const </a><a href="qstring.html">QString </a>&amp; <em>name</em> )</li>
+<li><a href="#static-void-qdbusconnection-disconnectfrompeer-const-qstring-qstring-html-name"><code>[static] </code>void QDBusConnection:: disconnectFromPeer (const </a><a href="qstring.html">QString </a>&amp; <em>name</em> )</li>
+<li><a href="#qdbusconnectioninterface-qdbusconnectioninterface-html-qdbusconnection-interface-const">QDBusConnectionInterface </a></li>
+<li><a href="#bool-qdbusconnection-isconnected-const">bool QDBusConnection:: isConnected () const</a></li>
+<li><a href="#qdbuserror-qdbuserror-html-qdbusconnection-lasterror-const">QDBusError </a></li>
+<li><a href="#static-qbytearray-qbytearray-html-qdbusconnection-localmachineid"><code>[static] </code></a><a href="qbytearray.html">QByteArray </a>QDBusConnection:: localMachineId ()</li>
+<li><a href="#qstring-qstring-html-qdbusconnection-name-const-1">QString </a></li>
+<li><a href="#qobject-qobject-html-qdbusconnection-objectregisteredat-const-qstring-qstring-html-path-const">QObject </a></li>
+<li><a href="#bool-qdbusconnection-registerobject-const-qstring-qstring-html-path-qobject-qobject-html-object-qdbusconnection-registeroptions-registeroption-enum-options-exportadaptors">bool QDBusConnection:: registerObject (const </a><a href="qstring.html">QString </a>&amp; <em>path</em> , <a href="qobject.html">QObject </a>* <em>object</em> , <a href="#RegisterOption-enum">QDBusConnection::RegisterOptions </a><em>options</em> = ExportAdaptors)</li>
+<li><a href="#since-5-5-bool-qdbusconnection-registerobject-const-qstring-qstring-html-path-const-qstring-qstring-html-interface-qobject-qobject-html-object-qdbusconnection-registeroptions-registeroption-enum-options-exportadaptors"><code>[since 5.5] </code>bool QDBusConnection:: registerObject (const </a><a href="qstring.html">QString </a>&amp; <em>path</em> , const <a href="qstring.html">QString </a>&amp; <em>interface</em> , <a href="qobject.html">QObject </a>* <em>object</em> , <a href="#RegisterOption-enum">QDBusConnection::RegisterOptions </a><em>options</em> = ExportAdaptors)</li>
+<li><a href="#bool-qdbusconnection-registerservice-const-qstring-qstring-html-servicename">bool QDBusConnection:: registerService (const </a><a href="qstring.html">QString </a>&amp; <em>serviceName</em> )</li>
+<li><a href="#bool-qdbusconnection-send-const-qdbusmessage-qdbusmessage-html-message-const">bool QDBusConnection:: send (const </a><a href="qdbusmessage.html">QDBusMessage </a>&amp; <em>message</em> ) const</li>
+<li><a href="#static-qdbusconnection-qdbusconnection-qdbusconnection-sessionbus"><code>[static] </code></a><a href="#QDBusConnection">QDBusConnection </a>QDBusConnection:: sessionBus ()</li>
+<li><a href="#void-qdbusconnection-swap-qdbusconnection-qdbusconnection-other">void QDBusConnection:: swap ( </a><a href="#QDBusConnection">QDBusConnection </a>&amp; <em>other</em> )</li>
+<li><a href="#static-qdbusconnection-qdbusconnection-qdbusconnection-systembus"><code>[static] </code></a><a href="#QDBusConnection">QDBusConnection </a>QDBusConnection:: systemBus ()</li>
+<li><a href="#void-qdbusconnection-unregisterobject-const-qstring-qstring-html-path-qdbusconnection-unregistermode-unregistermode-enum-mode-unregisternode">void QDBusConnection:: unregisterObject (const </a><a href="qstring.html">QString </a>&amp; <em>path</em> , <a href="#UnregisterMode-enum">QDBusConnection::UnregisterMode </a><em>mode</em> = UnregisterNode)</li>
+<li><a href="#bool-qdbusconnection-unregisterservice-const-qstring-qstring-html-servicename">bool QDBusConnection:: unregisterService (const </a><a href="qstring.html">QString </a>&amp; <em>serviceName</em> )</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="qdbusconnection-lei">QDBusConnection 类</span><a href="#qdbusconnection-lei" class="header-anchor">#</a></h1><p>QDBusConnection 类表示到 D-Bus 总线守护程序的连接。 <a href="#details">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qdbusconnection></qdbusconnection></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Dbus REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Dbus)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += dbus</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qdbusconnection-members.html">所有成员列表，包括继承成员</a></li>
+<li><a href="qdbusconnection-obsolete.html">弃用成员</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#BusType-enum">BusType </a></strong>{ SessionBus, SystemBus, ActivationBus }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>flags</td>
+<td><strong><a href="#ConnectionCapability-enum">ConnectionCapabilities</a></strong></td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#ConnectionCapability-enum">ConnectionCapability </a></strong>{ UnixFileDescriptorPassing }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#RegisterOption-enum">RegisterOption </a></strong>{ ExportAdaptors, ExportScriptableSlots, ExportScriptableSignals, ExportScriptableProperties, ExportScriptableInvokables, …, ExportChildObjects }</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><strong><a href="#RegisterOption-enum">RegisterOptions</a></strong></td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#UnregisterMode-enum">UnregisterMode </a></strong>{ UnregisterNode, UnregisterTree }</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><strong><a href="#VirtualObjectRegisterOption-enum">VirtualObjectRegisterOptions</a></strong></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QDBusConnection-1">QDBusConnection </a></strong>(const QDBusConnection &amp; <em>other</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QDBusConnection">QDBusConnection </a></strong>(const QString &amp; <em>name</em> )</td>
+</tr>
+<tr>
+<td>QDBusConnection &amp;</td>
+<td><strong><a href="#operator-eq-1">operator= </a></strong>(const QDBusConnection &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QDBusConnection">~QDBusConnection </a></strong>()</td>
+</tr>
+<tr>
+<td>QDBusPendingCall</td>
+<td><strong><a href="#asyncCall">asyncCall </a></strong>(const QDBusMessage &amp; <em>message</em> , int <em>timeout</em> = -1) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#baseService">baseService </a></strong>() const</td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#call">call </a></strong>(const QDBusMessage &amp; <em>message</em> , QDBus::CallMode <em>mode</em> = QDBus::Block, int <em>timeout</em> = -1) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#callWithCallback">callWithCallback </a></strong>(const QDBusMessage &amp; <em>message</em> , QObject * <em>receiver</em> , const char * <em>returnMethod</em> , const char * <em>errorMethod</em> , int <em>timeout</em> = -1) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#connect">connect </a></strong>(const QString &amp; <em>service</em> , const QString &amp; <em>path</em> , const QString &amp; <em>interface</em> , const QString &amp; <em>name</em> , QObject * <em>receiver</em> , const char * <em>slot</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#connect-1">connect </a></strong>(const QString &amp; <em>service</em> , const QString &amp; <em>path</em> , const QString &amp; <em>interface</em> , const QString &amp; <em>name</em> , const QString &amp; <em>signature</em> , QObject * <em>receiver</em> , const char * <em>slot</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#connect-2">connect </a></strong>(const QString &amp; <em>service</em> , const QString &amp; <em>path</em> , const QString &amp; <em>interface</em> , const QString &amp; <em>name</em> , const QStringList &amp; <em>argumentMatch</em> , const QString &amp; <em>signature</em> , QObject * <em>receiver</em> , const char * <em>slot</em> )</td>
+</tr>
+<tr>
+<td>QDBusConnection::ConnectionCapabilities</td>
+<td><strong><a href="#connectionCapabilities">connectionCapabilities </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#disconnect">disconnect </a></strong>(const QString &amp; <em>service</em> , const QString &amp; <em>path</em> , const QString &amp; <em>interface</em> , const QString &amp; <em>name</em> , QObject * <em>receiver</em> , const char * <em>slot</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#disconnect-1">disconnect </a></strong>(const QString &amp; <em>service</em> , const QString &amp; <em>path</em> , const QString &amp; <em>interface</em> , const QString &amp; <em>name</em> , const QString &amp; <em>signature</em> , QObject * <em>receiver</em> , const char * <em>slot</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#disconnect-2">disconnect </a></strong>(const QString &amp; <em>service</em> , const QString &amp; <em>path</em> , const QString &amp; <em>interface</em> , const QString &amp; <em>name</em> , const QStringList &amp; <em>argumentMatch</em> , const QString &amp; <em>signature</em> , QObject * <em>receiver</em> , const char * <em>slot</em> )</td>
+</tr>
+<tr>
+<td>QDBusConnectionInterface *</td>
+<td><strong><a href="#interface">interface </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isConnected">isConnected </a></strong>() const</td>
+</tr>
+<tr>
+<td>QDBusError</td>
+<td><strong><a href="#lastError">lastError </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#name">name </a></strong>() const</td>
+</tr>
+<tr>
+<td>QObject *</td>
+<td><strong><a href="#objectRegisteredAt">objectRegisteredAt </a></strong>(const QString &amp; <em>path</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#registerObject">registerObject </a></strong>(const QString &amp; <em>path</em> , QObject * <em>object</em> , QDBusConnection::RegisterOptions <em>options</em> = ExportAdaptors)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#registerObject-1">registerObject </a></strong>(const QString &amp; <em>path</em> , const QString &amp; <em>interface</em> , QObject * <em>object</em> , QDBusConnection::RegisterOptions <em>options</em> = ExportAdaptors)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#registerService">registerService </a></strong>(const QString &amp; <em>serviceName</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#send">send </a></strong>(const QDBusMessage &amp; <em>message</em> ) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#swap">swap </a></strong>(QDBusConnection &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#unregisterObject">unregisterObject </a></strong>(const QString &amp; <em>path</em> , QDBusConnection::UnregisterMode <em>mode</em> = UnregisterNode)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#unregisterService">unregisterService </a></strong>(const QString &amp; <em>serviceName</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QDBusConnection</th>
+<th><strong><a href="#connectToBus">connectToBus </a></strong>(QDBusConnection::BusType <em>type</em> , const QString &amp; <em>name</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QDBusConnection</td>
+<td><strong><a href="#connectToBus-1">connectToBus </a></strong>(const QString &amp; <em>address</em> , const QString &amp; <em>name</em> )</td>
+</tr>
+<tr>
+<td>QDBusConnection</td>
+<td><strong><a href="#connectToPeer">connectToPeer </a></strong>(const QString &amp; <em>address</em> , const QString &amp; <em>name</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#disconnectFromBus">disconnectFromBus </a></strong>(const QString &amp; <em>name</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#disconnectFromPeer">disconnectFromPeer </a></strong>(const QString &amp; <em>name</em> )</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#localMachineId">localMachineId </a></strong>()</td>
+</tr>
+<tr>
+<td>QDBusConnection</td>
+<td><strong><a href="#sessionBus">sessionBus </a></strong>()</td>
+</tr>
+<tr>
+<td>QDBusConnection</td>
+<td><strong><a href="#systemBus">systemBus </a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>这个类是一个D-Bus会话的初始点。使用它，你可以获得对远程对象、接口的访问；将远程信号连接到你的对象的槽中；注册对象等等。</p>
+<p>D-Bus连接是通过<a href="#connectToBus">connectToBus</a>()函数创建的，它打开一个与服务器守护进程的连接，并进行初始握手，将该连接与一个名字联系起来。进一步尝试使用相同的名字进行连接将返回相同的连接。</p>
+<p>然后使用<a href="#disconnectFromBus">disconnectFromBus</a>()函数关闭连接。</p>
+<p>一旦断开连接，调用<a href="#connectToBus">connectToBus </a>()将不会重新建立连接，你必须创建一个新的QDBusConnection实例。</p>
+<p>为了方便两种最常见的连接类型，<a href="#sessionBus">sessionBus</a>()和<a href="#systemBus">systemBus</a>()函数分别返回会话服务器守护进程和系统服务器守护进程的开放连接。这些连接在第一次使用时被打开，在运行<a href="qcoreapplication.html">QCoreApplication</a>析构器时被关闭。</p>
+<p>D-Bus还支持点对点的连接，不需要总线服务器守护进程。使用这种设施，两个应用程序可以互相交谈并交换信息。这可以通过向<a href="#connectToBus">connectToBus</a>()函数传递一个地址来实现，该函数是由另一个D-Bus应用程序使用<a href="qdbusserver.html">QDBusServer</a>打开的。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="enum-qdbusconnection-bustype">enum QDBusConnection:: BusType</span><a href="#enum-qdbusconnection-bustype" class="header-anchor">#</a></h3><p>指定总线连接的类型。有效的总线类型是。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QDBusConnection::SessionBus</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">会话总线，与正在运行的桌面会话相关联</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::SystemBus</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">系统总线，用于与全系统的进程进行通信</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ActivationBus</code></td>
+<td align="left"><code>2</code></td>
+<td align="left">激活总线，启动服务的总线的 “别名”。</td>
+</tr>
+</tbody></table>
+<p>在会话总线上，人们可以找到同一用户的其他应用程序，它们共享同一个桌面会话（因此得名）。然而，在系统总线上，通常会发现整个系统共享的进程。</p>
+<h3><span id="enum-qdbusconnection-connectioncapability-flags-qdbusconnection-connectioncapabilities">enum QDBusConnection:: ConnectionCapability flags QDBusConnection:: ConnectionCapabilities</span><a href="#enum-qdbusconnection-connectioncapability-flags-qdbusconnection-connectioncapabilities" class="header-anchor">#</a></h3><p>该枚举描述了D-Bus连接的可用能力。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QDBusConnection::UnixFileDescriptorPassing</code></td>
+<td align="left"><code>0x0001</code></td>
+<td align="left">启用Unix文件描述符传递给其他进程（参见<a href="qdbusunixfiledescriptor.html">QDBusUnixFileDescriptor</a></td>
+</tr>
+</tbody></table>
+<p>ConnectionCapabilities类型是<a href="qflags.html">QFlags</a><connectioncapability>的一个类型定义。它存储了ConnectionCapability值的OR组合。</connectioncapability></p>
+<p><strong>另请参阅</strong> <a href="#connectionCapabilities">connectionCapabilities </a>().</p>
+<h3><span id="enum-qdbusconnection-registeroption-flags-qdbusconnection-registeroptions">enum QDBusConnection:: RegisterOption flags QDBusConnection:: RegisterOptions</span><a href="#enum-qdbusconnection-registeroption-flags-qdbusconnection-registeroptions" class="header-anchor">#</a></h3><p>指定用连接注册对象的选项。可能的值是。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QDBusConnection::ExportAdaptors</code></td>
+<td align="left"><code>0x01</code></td>
+<td align="left">输出在此对象中发现的适配器的内容</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportScriptableSlots</code></td>
+<td align="left"><code>0x10</code></td>
+<td align="left">导出此对象的可编写脚本的槽</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportScriptableSignals</code></td>
+<td align="left"><code>0x20</code></td>
+<td align="left">导出此对象的可脚本信号</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportScriptableProperties</code></td>
+<td align="left"><code>0x40</code></td>
+<td align="left">输出此对象的可编写脚本的属性</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportScriptableInvokables</code></td>
+<td align="left"><code>0x80</code></td>
+<td align="left">导出此对象的可脚本调用程序</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportScriptableContents</code></td>
+<td align="left"><code>0xf0</code></td>
+<td align="left">shorthand form for ExportScriptableSlots | ExportScriptableSignals | ExportScriptableProperties</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportNonScriptableSlots</code></td>
+<td align="left"><code>0x100</code></td>
+<td align="left">导出此对象的非脚本插槽</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportNonScriptableSignals</code></td>
+<td align="left"><code>0x200</code></td>
+<td align="left">导出此对象的非脚本信号</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportNonScriptableProperties</code></td>
+<td align="left"><code>0x400</code></td>
+<td align="left">导出此对象的非标属性</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportNonScriptableInvokables</code></td>
+<td align="left"><code>0x800</code></td>
+<td align="left">导出此对象的非脚本可调用项</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportNonScriptableContents</code></td>
+<td align="left"><code>0xf00</code></td>
+<td align="left">shorthand form for ExportNonScriptableSlots | ExportNonScriptableSignals | ExportNonScriptableProperties</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportAllSlots</code></td>
+<td align="left">`ExportScriptableSlots</td>
+<td align="left">ExportNonScriptableSlots`</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportAllSignals</code></td>
+<td align="left">`ExportScriptableSignals</td>
+<td align="left">ExportNonScriptableSignals`</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportAllProperties</code></td>
+<td align="left">`ExportScriptableProperties</td>
+<td align="left">ExportNonScriptableProperties`</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportAllInvokables</code></td>
+<td align="left">`ExportScriptableInvokables</td>
+<td align="left">ExportNonScriptableInvokables`</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportAllContents</code></td>
+<td align="left">`ExportScriptableContents</td>
+<td align="left">ExportNonScriptableContents`</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::ExportChildObjects</code></td>
+<td align="left"><code>0x1000</code></td>
+<td align="left">输出此对象的子对象</td>
+</tr>
+</tbody></table>
+<p>RegisterOptions类型是<a href="qflags.html">QFlags</a><registeroption>的一个类型定义。它存储了RegisterOption值的一个OR组合。</registeroption></p>
+<p><strong>另请参阅</strong> <a href="#registerObject">registerObject </a>(), <a href="qdbusabstractadaptor.html">QDBusAbstractAdaptor </a>，和 <a href="usingadaptors.html">Using adaptors </a>.</p>
+<h3><span id="enum-qdbusconnection-unregistermode">enum QDBusConnection:: UnregisterMode</span><a href="#enum-qdbusconnection-unregistermode" class="header-anchor">#</a></h3><p>取消注册一个对象路径的模式。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QDBusConnection::UnregisterNode</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">只取消这个节点的注册：不取消子对象的注册</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusConnection::UnregisterTree</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">取消该节点及其所有子树的注册</td>
+</tr>
+</tbody></table>
+<p>但是请注意，如果这个对象是用<a href="#RegisterOption-enum">ExportChildObjects</a>选项注册的，UnregisterNode也会取消对子对象的注册。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qdbusconnection-qdbusconnection-const-qdbusconnection-amp-other">QDBusConnection:: QDBusConnection (const &amp; <em>other</em> )</span><a href="#qdbusconnection-qdbusconnection-const-qdbusconnection-amp-other" class="header-anchor">#</a></h3><p>创建副本为 <em>other</em> 连接。</p>
+<h3><span id="qdbusconnection-qdbusconnection-const-qstring-amp-name">QDBusConnection:: QDBusConnection (const &amp; <em>name</em> )</span><a href="#qdbusconnection-qdbusconnection-const-qstring-amp-name" class="header-anchor">#</a></h3><p>创建一个QDBusConnection对象，连接到名称为<em>name</em>的连接。</p>
+<p>这并没有打开这个连接。你必须调用<a href="#connectToBus">connectToBus</a>()来打开它。</p>
+<h3><span id="qdbusconnection-amp-qdbusconnection-operator-const-qdbusconnection-amp-other">&amp;QDBusConnection:: operator= (const &amp; <em>other</em> )</span><a href="#qdbusconnection-amp-qdbusconnection-operator-const-qdbusconnection-amp-other" class="header-anchor">#</a></h3><p>在这个对象中创建一个<em>other</em>的连接的副本。请注意，这个对象在复制之前引用的连接，不会自发地断开连接。</p>
+<p><strong>另请参阅</strong> <a href="#disconnectFromBus">disconnectFromBus </a>().</p>
+<h3><span id="qdbusconnection-qdbusconnection">QDBusConnection:: ~QDBusConnection ()</span><a href="#qdbusconnection-qdbusconnection" class="header-anchor">#</a></h3><p>处置这个对象。这不会关闭连接：你必须调用<a href="#disconnectFromBus">disconnectFromBus</a>()来做到这一点。</p>
+<h3><span id="qdbuspendingcall-qdbusconnection-asynccall-const-qdbusmessage-amp-message-int-timeout-1-const">QDBusConnection:: asyncCall (const &amp; <em>message</em> , int <em>timeout</em> = -1) const</span><a href="#qdbuspendingcall-qdbusconnection-asynccall-const-qdbusmessage-amp-message-int-timeout-1-const" class="header-anchor">#</a></h3><p>通过该连接发送<em>message</em>并立即返回。这个函数只适用于方法调用。它返回一个类型为<a href="qdbuspendingcall.html">QDBusPendingCall</a>的对象，可以用来跟踪回复的状态。</p>
+<p>如果在<em>timeout</em>毫秒内没有收到回复，那么将传递一个自动的错误，表明调用的到期。默认的<em>timeout</em>是-1，它将被替换为一个适合进程间通信的实现定义的值（一般是25秒）。这个超时也是QDBusPendingCall::waitForFinished()中等待的上限。</p>
+<p>见 <a href="qdbusabstractinterface.html#asyncCall-1">QDBusInterface::asyncCall </a>()函数，以获得更友好的放置调用的方式。</p>
+<h3><span id="qstring-qdbusconnection-baseservice-const">QDBusConnection:: baseService () const</span><a href="#qstring-qdbusconnection-baseservice-const" class="header-anchor">#</a></h3><p>如果这个<a href>QDBusConnection</a>对象已经连接，则返回这个连接的唯一连接名，或者一个空的<a href="qstring.html">QString</a>否则。</p>
+<p>唯一的连接名是一个字符串，形式为”:x.xxx” (其中x是十进制数字)，在连接时由D-Bus服务器守护程序分配。它在总线中唯一地标识了这个客户。</p>
+<p>对于点对点的连接，这个函数返回一个空的<a href="qstring.html">QString</a>。</p>
+<h3><span id="qdbusmessage-qdbusconnection-call-const-qdbusmessage-amp-message-qdbus-callmode-mode-qdbus-block-int-timeout-1-const">QDBusConnection:: call (const &amp; <em>message</em> , <em>mode</em> = QDBus::Block, int <em>timeout</em> = -1) const</span><a href="#qdbusmessage-qdbusconnection-call-const-qdbusmessage-amp-message-qdbus-callmode-mode-qdbus-block-int-timeout-1-const" class="header-anchor">#</a></h3><p>在这个连接上发送<em>消息</em>，并阻塞，等待回复，最多为<em>timeout</em>毫秒。这个函数只适用于方法调用。它的返回值是回复信息，其类型为<a href="qdbusmessage.html#MessageType-enum">QDBusMessage::ReplyMessage </a>或者<a href="qdbusmessage.html#MessageType-enum">QDBusMessage::ErrorMessage </a>。</p>
+<p>如果在<em>timeout</em>毫秒内没有收到回复，那么将自动发送一个错误，表明调用已经到期。默认的<em>timeout</em>是-1，它将被替换为一个适合进程间通信的实现定义的值（通常是25秒）。</p>
+<p>见<a href="qdbusabstractinterface.html#call-1">QDBusInterface::call</a>()函数，以更友好的方式放置调用。</p>
+<p><strong>警告：</strong> 若<em>mode</em>为<a href="qdbus.html#CallMode-enum">QDBus::BlockWithGui </a>，该函数将重新进入Qt事件循环，以等待回复。在等待过程中，它可能向你的应用程序传递信号和其他方法调用。因此，每当用call()进行调用时，它必须准备好处理一个重入。</p>
+<h3><span id="bool-qdbusconnection-callwithcallback-const-qdbusmessage-amp-message-qobject-receiver-const-char-returnmethod-const-char-errormethod-int-timeout-1-const">bool QDBusConnection:: callWithCallback (const &amp; <em>message</em> , * <em>receiver</em> , const char * <em>returnMethod</em> , const char * <em>errorMethod</em> , int <em>timeout</em> = -1) const</span><a href="#bool-qdbusconnection-callwithcallback-const-qdbusmessage-amp-message-qobject-receiver-const-char-returnmethod-const-char-errormethod-int-timeout-1-const" class="header-anchor">#</a></h3><p>通过这个连接发送<em>message</em>并立即返回。当收到回复时，在<em>receiver</em>对象中调用<em>returnMethod</em>方法。如果发生错误，将调用<em>errorMethod</em>方法。</p>
+<p>如果在<em>timeout</em>毫秒内没有收到回复，就会有一个自动的错误被传递，表明调用已经到期。默认的<em>timeout</em>是-1，它将被替换为一个适合进程间通信的实现定义的值（一般是25秒）。</p>
+<p>这个函数只适用于方法调用。只要参数类型匹配，并且没有错误发生，就可以保证槽被精确地调用一次，并给出回复。</p>
+<p>返回 <code>true </code>如果消息被发送，或false如果消息不能被发送。</p>
+<h3><span id="bool-qdbusconnection-connect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-qobject-receiver-const-char-slot">bool QDBusConnection:: connect (const &amp; <em>service</em> , const &amp; <em>path</em> , const &amp; <em>interface</em> , const &amp; <em>name</em> , * <em>receiver</em> , const char * <em>slot</em> )</span><a href="#bool-qdbusconnection-connect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-qobject-receiver-const-char-slot" class="header-anchor">#</a></h3><p>将<em>service</em>、<em>path</em>、<em>interface</em>和<em>name</em>参数指定的信号连接到插槽<em>slot</em>在对象<em>receiver</em>。参数<em>service</em>和<em>path</em>可以是空的，表示连接到任何远程应用程序的( <em>interface</em> , <em>name</em> )对的任何信号。</p>
+<p>返回 <code>true </code>若连接成功。</p>
+<p><strong>警告：</strong>信号只有在参数匹配的情况下才会被传递给槽。这个验证只有在收到信号时才能进行，而不是在连接时。</p>
+<h3><span id="bool-qdbusconnection-connect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-const-qstring-amp-signature-qobject-receiver-const-char-slot">bool QDBusConnection:: connect (const &amp; <em>service</em> , const &amp; <em>path</em> , const &amp; <em>interface</em> , const &amp; <em>name</em> , const &amp; <em>signature</em> , * <em>receiver</em> , const char * <em>slot</em> )</span><a href="#bool-qdbusconnection-connect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-const-qstring-amp-signature-qobject-receiver-const-char-slot" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>将信号连接到槽<em>slot</em>在对象<em>receiver</em>。与之前的connect()重载不同，这个函数允许人们使用<em>signature</em>变量指定要连接的参数签名。然后，该函数将验证该签名是否可以被传递到<em>slot</em>指定的槽中，否则返回false。</p>
+<p>返回 <code>true </code>若连接成功。</p>
+<p><strong>注意：</strong>该函数验证信号签名是否与槽的参数相匹配，但它不验证实际的信号是否在远程服务中以给定的签名存在。</p>
+<h3><span id="bool-qdbusconnection-connect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-const-qstringlist-amp-argumentmatch-const-qstring-amp-signature-qobject-receiver-const-char-slot">bool QDBusConnection:: connect (const &amp; <em>service</em> , const &amp; <em>path</em> , const &amp; <em>interface</em> , const &amp; <em>name</em> , const &amp; <em>argumentMatch</em> , const &amp; <em>signature</em> , * <em>receiver</em> , const char * <em>slot</em> )</span><a href="#bool-qdbusconnection-connect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-const-qstringlist-amp-argumentmatch-const-qstring-amp-signature-qobject-receiver-const-char-slot" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>将信号连接到槽<em>slot</em>在对象<em>receiver</em>。与之前的connect()重载不同，这个函数允许人们使用<em>signature</em>变量指定要连接的参数签名。然后，该函数将验证该签名是否可以被传递到<em>slot</em>指定的插槽中，否则返回false。</p>
+<p><em>argumentMatch</em>参数列出要匹配的字符串参数，按顺序排列。注意，为了匹配一个空字符串，你需要传递一个<a href="qstring.html">QString</a>，它是空的但不是空的（即<a href="qstring.html">QString</a>(“”)）。一个空的 <a href="qstring.html">QString </a>会跳过该位置的匹配。</p>
+<p>返回 <code>true </code>若连接成功。</p>
+<p><strong>注意：</strong>此函数验证信号的签名是否与槽的参数相匹配，但它并不验证实际的信号是否存在于远程服务中的给定签名。</p>
+<h3><span id="static-qdbusconnection-qdbusconnection-connecttobus-qdbusconnection-bustype-type-const-qstring-amp-name"><code>[static] </code>QDBusConnection:: connectToBus ( <em>type</em> , const &amp; <em>name</em> )</span><a href="#static-qdbusconnection-qdbusconnection-connecttobus-qdbusconnection-bustype-type-const-qstring-amp-name" class="header-anchor">#</a></h3><p>打开一个类型为<em>type</em>的连接到一个已知的总线上，并将连接名<em>name</em>与之相关联。返回<a href>QDBusConnection</a>对象与该连接相关联。</p>
+<h3><span id="static-qdbusconnection-qdbusconnection-connecttobus-const-qstring-amp-address-const-qstring-amp-name"><code>[static] </code>QDBusConnection:: connectToBus (const &amp; <em>address</em> , const &amp; <em>name</em> )</span><a href="#static-qdbusconnection-qdbusconnection-connecttobus-const-qstring-amp-address-const-qstring-amp-name" class="header-anchor">#</a></h3><p>在地址<em>address</em>上打开一个与私有总线的连接，并将连接名称<em>name</em>与之相关联。返回<a href>QDBusConnection</a>对象与该连接相关联。</p>
+<h3><span id="static-qdbusconnection-qdbusconnection-connecttopeer-const-qstring-amp-address-const-qstring-amp-name"><code>[static] </code>QDBusConnection:: connectToPeer (const &amp; <em>address</em> , const &amp; <em>name</em> )</span><a href="#static-qdbusconnection-qdbusconnection-connecttopeer-const-qstring-amp-address-const-qstring-amp-name" class="header-anchor">#</a></h3><p>在地址<em>address</em>上打开一个点对点连接，并将连接名称<em>name</em>与之相关联。返回与该连接相关的<a href>QDBusConnection</a>对象。</p>
+<h3><span id="qdbusconnection-connectioncapabilities-qdbusconnection-connectioncapabilities-const">QDBusConnection:: connectionCapabilities () const</span><a href="#qdbusconnection-connectioncapabilities-qdbusconnection-connectioncapabilities-const" class="header-anchor">#</a></h3><p>返回与总线服务器或对等体协商的此连接的能力。如果这个<a href>QDBusConnection</a>没有连接，这个函数不返回任何能力。</p>
+<h3><span id="bool-qdbusconnection-disconnect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-qobject-receiver-const-char-slot">bool QDBusConnection:: disconnect (const &amp; <em>service</em> , const &amp; <em>path</em> , const &amp; <em>interface</em> , const &amp; <em>name</em> , * <em>receiver</em> , const char * <em>slot</em> )</span><a href="#bool-qdbusconnection-disconnect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-qobject-receiver-const-char-slot" class="header-anchor">#</a></h3><p>断开由<em>service</em>、<em>path</em>、<em>interface</em>和<em>name</em>参数指定的信号与插槽<em>slot</em>中对象<em>receiver</em>的连接。这些参数必须与传递给<a href="#connect">connect</a>()函数的参数相同。</p>
+<p>返回 <code>true </code>如果断开连接成功。</p>
+<h3><span id="bool-qdbusconnection-disconnect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-const-qstring-amp-signature-qobject-receiver-const-char-slot">bool QDBusConnection:: disconnect (const &amp; <em>service</em> , const &amp; <em>path</em> , const &amp; <em>interface</em> , const &amp; <em>name</em> , const &amp; <em>signature</em> , * <em>receiver</em> , const char * <em>slot</em> )</span><a href="#bool-qdbusconnection-disconnect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-const-qstring-amp-signature-qobject-receiver-const-char-slot" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>断开由<em>service</em>, <em>path</em>, <em>interface</em>, <em>name</em> ，和<em>signature</em>参数指定的信号与插槽<em>slot</em>在对象<em>receiver</em>。这些参数必须与传递给<a href="#connect">connect</a>()函数的参数相同。</p>
+<p>返回 <code>true </code>如果断开连接成功。</p>
+<h3><span id="bool-qdbusconnection-disconnect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-const-qstringlist-amp-argumentmatch-const-qstring-amp-signature-qobject-receiver-const-char-slot">bool QDBusConnection:: disconnect (const &amp; <em>service</em> , const &amp; <em>path</em> , const &amp; <em>interface</em> , const &amp; <em>name</em> , const &amp; <em>argumentMatch</em> , const &amp; <em>signature</em> , * <em>receiver</em> , const char * <em>slot</em> )</span><a href="#bool-qdbusconnection-disconnect-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name-const-qstringlist-amp-argumentmatch-const-qstring-amp-signature-qobject-receiver-const-char-slot" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>断开由<em>service</em>、<em>path</em>、<em>interface</em>、<em>name</em>、<em>argumentMatch</em>、和<em>signature</em>参数指定的信号与槽位<em>slot</em>中的接收者的连接。这些参数必须与传递给<a href="#connect">connect</a>()函数的参数相同。</p>
+<p>返回 <code>true </code>如果断开连接成功。</p>
+<h3><span id="static-void-qdbusconnection-disconnectfrombus-const-qstring-amp-name"><code>[static] </code>void QDBusConnection:: disconnectFromBus (const &amp; <em>name</em> )</span><a href="#static-void-qdbusconnection-disconnectfrombus-const-qstring-amp-name" class="header-anchor">#</a></h3><p>关闭名称为<em>name</em>的总线连接。</p>
+<p>注意，如果仍然有<a href>QDBusConnection</a>对象与同一个连接相关联，那么在所有的引用被放弃之前，该连接将不会被关闭。然而，不能再使用<a href>QDBusConnection</a>构造函数来创建更多的引用。</p>
+<h3><span id="static-void-qdbusconnection-disconnectfrompeer-const-qstring-amp-name"><code>[static] </code>void QDBusConnection:: disconnectFromPeer (const &amp; <em>name</em> )</span><a href="#static-void-qdbusconnection-disconnectfrompeer-const-qstring-amp-name" class="header-anchor">#</a></h3><p>关闭名称为<em>name</em>的同伴连接。</p>
+<p>注意，如果仍然有<a href>QDBusConnection </a>对象与同一个连接相关联，那么在所有的引用被丢弃之前，该连接不会被关闭。然而，不能再使用<a href>QDBusConnection</a>构造函数创建更多的引用。</p>
+<h3><span id="qdbusconnectioninterface-qdbusconnection-interface-const">*QDBusConnection:: interface () const</span><a href="#qdbusconnectioninterface-qdbusconnection-interface-const" class="header-anchor">#</a></h3><p>返回 <a href="qdbusconnectioninterface.html">QDBusConnectionInterface</a>对象，表示这个连接上的D-Bus服务器接口。</p>
+<h3><span id="bool-qdbusconnection-isconnected-const">bool QDBusConnection:: isConnected () const</span><a href="#bool-qdbusconnection-isconnected-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若此 <a href>QDBusConnection </a>对象被连接。</p>
+<h3><span id="qdbuserror-qdbusconnection-lasterror-const">QDBusConnection:: lastError () const</span><a href="#qdbuserror-qdbusconnection-lasterror-const" class="header-anchor">#</a></h3><p>返回这个连接中最后发生的错误。</p>
+<p>这个函数是为低级别的代码提供的。如果你使用<a href="qdbusabstractinterface.html#call-1">QDBusInterface::call</a>()，错误代码会通过其返回值报告。</p>
+<p><strong>另请参阅</strong> <a href="qdbusinterface.html">QDBusInterface </a>and <a href="qdbusmessage.html">QDBusMessage </a>.</p>
+<h3><span id="static-qbytearray-qdbusconnection-localmachineid"><code>[static] </code>QDBusConnection:: localMachineId ()</span><a href="#static-qbytearray-qdbusconnection-localmachineid" class="header-anchor">#</a></h3><p>返回D-Bus系统已知的本地机器ID。每个运行D-Bus的节点或主机都有一个唯一的标识符，如果它们共享像文件系统这样的资源，可以用来将其与其他主机区分开。</p>
+<p>请注意，本地机器的ID并不保证在系统启动时是持久的，所以这个标识符不应该存储在持久性存储中（像文件系统）。它只保证在这个启动会话的有效期内保持不变。</p>
+<h3><span id="qstring-qdbusconnection-name-const">QDBusConnection:: name () const</span><a href="#qstring-qdbusconnection-name-const" class="header-anchor">#</a></h3><p>返回此连接的连接名称，如<a href="#connectToBus">connectToBus</a>()的名称参数。</p>
+<p>连接名称可以用来唯一地识别与总线的实际底层连接。从一个连接中产生的副本将总是隐含地共享底层连接，因此将有相同的连接名称。</p>
+<p>反之，两个具有不同连接名称的连接将总是连接到不同的总线上，或者在该总线上具有不同的唯一名称（由<a href="#baseService">baseService</a>()返回）。</p>
+<p><strong>另请参阅</strong> <a href="#connectToBus">connectToBus </a>() 和 <a href="#disconnectFromBus">disconnectFromBus </a>().</p>
+<h3><span id="qobject-qdbusconnection-objectregisteredat-const-qstring-amp-path-const">*QDBusConnection:: objectRegisteredAt (const &amp; <em>path</em> ) const</span><a href="#qobject-qdbusconnection-objectregisteredat-const-qstring-amp-path-const" class="header-anchor">#</a></h3><p>返回用<a href="#registerObject">registerObject</a>()在<em>path</em>给出的对象路径上注册的对象。</p>
+<h3><span id="bool-qdbusconnection-registerobject-const-qstring-amp-path-qobject-object-qdbusconnection-registeroptions-options-exportadaptors">bool QDBusConnection:: registerObject (const &amp; <em>path</em> , * <em>object</em> , <em>options</em> = ExportAdaptors)</span><a href="#bool-qdbusconnection-registerobject-const-qstring-amp-path-qobject-object-qdbusconnection-registeroptions-options-exportadaptors" class="header-anchor">#</a></h3><p>在路径<em>path</em>处注册对象<em>object</em>并返回 <code>true </code>如果注册成功。参数<em>options</em>指定了对象<em>object</em>的多少将通过D-Bus暴露。</p>
+<p>这个函数不会替换现有的对象：如果已经有一个对象在路径<em>path</em>注册，这个函数将返回false。首先使用<a href="#unregisterObject">unregisterObject</a>()来取消注册。</p>
+<p><a href="#RegisterOption-enum">ExportChildObjects</a>标志根据注册对象的路径和子对象的<a href="qobject.html#objectName-prop">QObject::objectName</a>导出D-Bus上的子对象。因此，子对象有一个对象名称是很重要的。</p>
+<p>你不能把一个对象注册为一个用<a href="#RegisterOption-enum">ExportChildObjects</a>注册的对象的子对象。</p>
+<h3><span id="since-5-5-bool-qdbusconnection-registerobject-const-qstring-amp-path-const-qstring-amp-interface-qobject-object-qdbusconnection-registeroptions-options-exportadaptors"><code>[since 5.5] </code>bool QDBusConnection:: registerObject (const &amp; <em>path</em> , const &amp; <em>interface</em> , * <em>object</em> , <em>options</em> = ExportAdaptors)</span><a href="#since-5-5-bool-qdbusconnection-registerobject-const-qstring-amp-path-const-qstring-amp-interface-qobject-object-qdbusconnection-registeroptions-options-exportadaptors" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>在路径<em>path</em>处注册对象<em>object</em>，接口名称<em>interface</em>并返回 <code>true </code>如果注册成功。参数<em>options</em>指定了对象<em>object</em>的多少将通过D-Bus暴露。</p>
+<p>这个函数不会替换现有的对象：如果在路径<em>path</em>已经有一个对象被注册，这个函数将返回false。首先使用<a href="#unregisterObject">unregisterObject</a>()来取消注册。</p>
+<p><a href="#RegisterOption-enum">ExportChildObjects</a>标志根据注册对象的路径和子对象的<a href="qobject.html#objectName-prop">QObject::objectName</a>导出D-Bus上的子对象。因此，子对象有一个对象名称是很重要的。</p>
+<p>你不能把一个对象注册为一个用<a href="#RegisterOption-enum">ExportChildObjects</a>注册的对象的子对象。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+<h3><span id="bool-qdbusconnection-registerservice-const-qstring-amp-servicename">bool QDBusConnection:: registerService (const &amp; <em>serviceName</em> )</span><a href="#bool-qdbusconnection-registerservice-const-qstring-amp-servicename" class="header-anchor">#</a></h3><p>试图在D-Bus服务器上注册<em>serviceName</em>，如果注册成功，返回 “true”。如果该名称已经被其他应用程序注册，则注册失败。</p>
+<p><strong>另请参阅</strong> <a href="#unregisterService">unregisterService </a>() 和 <a href="qdbusconnectioninterface.html#registerService">QDBusConnectionInterface::registerService </a>().</p>
+<h3><span id="bool-qdbusconnection-send-const-qdbusmessage-amp-message-const">bool QDBusConnection:: send (const &amp; <em>message</em> ) const</span><a href="#bool-qdbusconnection-send-const-qdbusmessage-amp-message-const" class="header-anchor">#</a></h3><p>在这个连接上发送<em>消息</em>，而不等待回复。这适用于错误、信号和返回值以及不需要返回值的调用。</p>
+<p>返回 <code>true </code>如果消息被成功排队，否则为false。</p>
+<h3><span id="static-qdbusconnection-qdbusconnection-sessionbus"><code>[static] </code>QDBusConnection:: sessionBus ()</span><a href="#static-qdbusconnection-qdbusconnection-sessionbus" class="header-anchor">#</a></h3><p>返回 <a href>QDBusConnection</a>与会话总线打开的对象。这个函数返回的对象引用是有效的，直到应用程序终止，这时连接将被关闭，对象被删除。</p>
+<h3><span id="void-qdbusconnection-swap-qdbusconnection-amp-other">void QDBusConnection:: swap ( &amp; <em>other</em> )</span><a href="#void-qdbusconnection-swap-qdbusconnection-amp-other" class="header-anchor">#</a></h3><p>交换此 <a href>QDBusConnection </a>实例与 <em>other</em> .</p>
+<h3><span id="static-qdbusconnection-qdbusconnection-systembus"><code>[static] </code>QDBusConnection:: systemBus ()</span><a href="#static-qdbusconnection-qdbusconnection-systembus" class="header-anchor">#</a></h3><p>返回 <a href>QDBusConnection </a>在系统总线上打开的对象。这个函数返回的对象引用是有效的，直到<a href="qcoreapplication.html">QCoreApplication</a>的析构器被运行，这时连接将被关闭，对象被删除。</p>
+<h3><span id="void-qdbusconnection-unregisterobject-const-qstring-amp-path-qdbusconnection-unregistermode-mode-unregisternode">void QDBusConnection:: unregisterObject (const &amp; <em>path</em> , <em>mode</em> = UnregisterNode)</span><a href="#void-qdbusconnection-unregisterobject-const-qstring-amp-path-qdbusconnection-unregistermode-mode-unregisternode" class="header-anchor">#</a></h3><p>解除一个对象的注册，该对象是通过<a href="#registerObject">registerObject</a>()在<em>path</em>给出的对象路径上注册的，如果<em>mode</em>是<a href="#UnregisterMode-enum">QDBusConnection::UnregisterTree</a>，它的所有子对象也是如此。</p>
+<p>注意，你不能取消那些没有被<a href="#registerObject">registerObject</a>()注册的对象。</p>
+<h3><span id="bool-qdbusconnection-unregisterservice-const-qstring-amp-servicename">bool QDBusConnection:: unregisterService (const &amp; <em>serviceName</em> )</span><a href="#bool-qdbusconnection-unregisterservice-const-qstring-amp-servicename" class="header-anchor">#</a></h3><p>解除先前用<a href="#registerService">registerService </a>()注册的服务<em>serviceName</em>的注册，如果成功则返回`true。</p>
+<p><strong>另请参阅</strong> <a href="#registerService">registerService </a>() 和 <a href="qdbusconnectioninterface.html#unregisterService">QDBusConnectionInterface::unregisterService </a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/D/">D</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusContext/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QDBusContext类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusError/">
+                        <span class="hidden-mobile">QDBusError类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

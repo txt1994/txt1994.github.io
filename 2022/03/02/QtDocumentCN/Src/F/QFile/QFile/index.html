@@ -1,0 +1,973 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QFile Class 公共成员类型 公共成员函数 重写公共函数 静态公共成员 详细描述 直接读文件 通过流来读文件 信号 平台相关信息   成员类型文档 typedef QFile::DecoderFn   成员函数文档 QFile::QFile(const QString &amp;name, QObject *parent) QFile::QFile(QObject *parent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QFile类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/F/QFile/QFile/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QFile Class 公共成员类型 公共成员函数 重写公共函数 静态公共成员 详细描述 直接读文件 通过流来读文件 信号 平台相关信息   成员类型文档 typedef QFile::DecoderFn   成员函数文档 QFile::QFile(const QString &amp;name, QObject *parent) QFile::QFile(QObject *parent">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:16:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:39:26.092Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="F">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QFile类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QFile类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:16" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      13k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      107 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QFile类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qfile-class">QFile Class</a><ul>
+<li><a href="#gong-gong-cheng-yuan-lei-xing">公共成员类型</a></li>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#chong-xie-gong-gong-han-shu">重写公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#zhi-jie-du-wen-jian">直接读文件</a></li>
+<li><a href="#tong-guo-liu-lai-du-wen-jian">通过流来读文件</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#ping-tai-xiang-guan-xin-xi">平台相关信息</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#typedef-qfile-decoderfn">typedef QFile::DecoderFn</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qfile-qfile-const-qstring-https-doc-qt-io-qt-5-qstring-html-name-qobject-https-doc-qt-io-qt-5-qobject-html-qobject-parent">QFile::QFile(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>name</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qobject.html#QObject">QObject</a> *<em>parent</em>)</li>
+<li><a href="#qfile-qfile-qobject-https-doc-qt-io-qt-5-qobject-html-qobject-parent">QFile::QFile(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qobject.html#QObject">QObject</a> *<em>parent</em>)</li>
+<li><a href="#qfile-qfile-const-qstring-https-doc-qt-io-qt-5-qstring-html-name">QFile::QFile(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>name</em>)</li>
+<li><a href="#qfile-qfile">QFile::QFile()</a></li>
+<li><a href="#virtual-qfile-qfile"><code>[virtual]</code>QFile::~QFile()</a></li>
+<li><a href="#bool-qfile-copy-const-qstring-https-doc-qt-io-qt-5-qstring-html-newname">bool QFile::copy(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>newName</em>)</li>
+<li><a href="#static-bool-qfile-copy-const-qstring-https-doc-qt-io-qt-5-qstring-html-filename-const-qstring-https-doc-qt-io-qt-5-qstring-html-newname"><code>[static]</code>bool QFile::copy(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>fileName</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>newName</em>)</li>
+<li><a href="#static-qstring-https-doc-qt-io-qt-5-qstring-html-qfile-decodename-const-qbytearray-https-doc-qt-io-qt-5-qbytearray-html-localfilename"><code>[static]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> QFile::decodeName(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> &amp;<em>localFileName</em>)</li>
+<li><a href="#static-qstring-https-doc-qt-io-qt-5-qstring-html-qfile-decodename-const-char-localfilename"><code>[static]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> QFile::decodeName(const char *<em>localFileName</em>)</li>
+<li><a href="#static-qbytearray-https-doc-qt-io-qt-5-qbytearray-html-qfile-encodename-const-qstring-https-doc-qt-io-qt-5-qstring-html-filename"><code>[static]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> QFile::encodeName(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>fileName</em>)</li>
+<li><a href="#static-bool-qfile-exists-const-qstring-https-doc-qt-io-qt-5-qstring-html-filename"><code>[static]</code>bool QFile::exists(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>fileName</em>)</li>
+<li><a href="#bool-qfile-exists-const">bool QFile::exists() const</a></li>
+<li><a href="#override-virtual-qstring-https-doc-qt-io-qt-5-qstring-html-qfile-filename-const"><code>[override virtual]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> QFile::fileName() const</li>
+<li><a href="#bool-qfile-link-const-qstring-https-doc-qt-io-qt-5-qstring-html-linkname">bool QFile::link(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>linkName</em>)</li>
+<li><a href="#static-bool-qfile-link-const-qstring-https-doc-qt-io-qt-5-qstring-html-filename-const-qstring-https-doc-qt-io-qt-5-qstring-html-linkname"><code>[static]</code>bool QFile::link(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>fileName</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>linkName</em>)</li>
+<li><a href="#bool-qfile-movetotrash">bool QFile::moveToTrash()</a></li>
+<li><a href="#static-bool-qfile-movetotrash-const-qstring-https-doc-qt-io-qt-5-qstring-html-filename-qstring-https-doc-qt-io-qt-5-qstring-html-pathintrash-nullptr"><code>[static]</code>bool QFile::moveToTrash(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>fileName</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> *<em>pathInTrash</em> = nullptr)</li>
+<li><a href="#override-virtual-bool-qfile-open-qiodevice-openmode-https-doc-qt-io-qt-5-qiodevice-html-openmodeflag-enum-mode"><code>[override virtual]</code>bool QFile::open(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::OpenMode</a> <em>mode</em>)</li>
+<li><a href="#bool-qfile-open-file-fh-qiodevice-openmode-https-doc-qt-io-qt-5-qiodevice-html-openmodeflag-enum-mode-qfiledevice-filehandleflags-https-doc-qt-io-qt-5-qfiledevice-html-filehandleflag-enum-handleflags-dontclosehandle">bool QFile::open(FILE *<em>fh</em>, </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::OpenMode</a> <em>mode</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#FileHandleFlag-enum">QFileDevice::FileHandleFlags</a> <em>handleFlags</em> = DontCloseHandle)</li>
+<li><a href="#bool-qfile-open-int-fd-qiodevice-openmode-https-doc-qt-io-qt-5-qiodevice-html-openmodeflag-enum-mode-qfiledevice-filehandleflags-https-doc-qt-io-qt-5-qfiledevice-html-filehandleflag-enum-handleflags-dontclosehandle">bool QFile::open(int <em>fd</em>, </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::OpenMode</a> <em>mode</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#FileHandleFlag-enum">QFileDevice::FileHandleFlags</a> <em>handleFlags</em> = DontCloseHandle)</li>
+<li><a href="#override-virtual-qfiledevice-permissions-https-doc-qt-io-qt-5-qfiledevice-html-permission-enum-qfile-permissions-const"><code>[override virtual]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#Permission-enum">QFileDevice::Permissions</a> QFile::permissions() const</li>
+<li><a href="#static-qfiledevice-permissions-https-doc-qt-io-qt-5-qfiledevice-html-permission-enum-qfile-permissions-const-qstring-https-doc-qt-io-qt-5-qstring-html-filename"><code>[static]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#Permission-enum">QFileDevice::Permissions</a> QFile::permissions(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>fileName</em>)</li>
+<li><a href="#bool-qfile-remove">bool QFile::remove()</a></li>
+<li><a href="#static-bool-qfile-remove-const-qstring-https-doc-qt-io-qt-5-qstring-html-filename"><code>[static]</code>bool QFile::remove(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>fileName</em>)</li>
+<li><a href="#bool-qfile-rename-const-qstring-https-doc-qt-io-qt-5-qstring-html-newname">bool QFile::rename(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>newName</em>)</li>
+<li><a href="#static-bool-qfile-rename-const-qstring-https-doc-qt-io-qt-5-qstring-html-oldname-const-qstring-https-doc-qt-io-qt-5-qstring-html-newname"><code>[static]</code>bool QFile::rename(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>oldName</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>newName</em>)</li>
+<li><a href="#override-virtual-bool-qfile-resize-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-sz"><code>[override virtual]</code>bool QFile::resize(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> <em>sz</em>)</li>
+<li><a href="#static-bool-qfile-resize-const-qstring-https-doc-qt-io-qt-5-qstring-html-filename-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-sz"><code>[static]</code>bool QFile::resize(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>fileName</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> <em>sz</em>)</li>
+<li><a href="#void-qfile-setfilename-const-qstring-https-doc-qt-io-qt-5-qstring-html-name">void QFile::setFileName(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>name</em>)</li>
+<li><a href="#override-virtual-bool-qfile-setpermissions-qfiledevice-permissions-https-doc-qt-io-qt-5-qfiledevice-html-permission-enum-permissions"><code>[override virtual]</code>bool QFile::setPermissions(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#Permission-enum">QFileDevice::Permissions</a> <em>permissions</em>)</li>
+<li><a href="#static-bool-qfile-setpermissions-const-qstring-https-doc-qt-io-qt-5-qstring-html-filename-qfiledevice-permissions-https-doc-qt-io-qt-5-qfiledevice-html-permission-enum-permissions"><code>[static]</code>bool QFile::setPermissions(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>fileName</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#Permission-enum">QFileDevice::Permissions</a> <em>permissions</em>)</li>
+<li><a href="#override-virtual-qint64-https-doc-qt-io-qt-5-qtglobal-html-qint64-typedef-qfile-size-const"><code>[override virtual]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#qint64-typedef">qint64</a> QFile::size() const</li>
+<li><a href="#static-qstring-https-doc-qt-io-qt-5-qstring-html-qfile-symlinktarget-const-qstring-https-doc-qt-io-qt-5-qstring-html-filename"><code>[static]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> QFile::symLinkTarget(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<em>fileName</em>)</li>
+<li><a href="#qstring-https-doc-qt-io-qt-5-qstring-html-qfile-symlinktarget-const">QString</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QFile Class
+
+<p>QFile 类提供读写文件的接口。 </p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Header:</td>
+<td>#include &lt;QFile&gt;</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html">QFileDevice</a></td>
+</tr>
+<tr>
+<td>Inherited By:</td>
+<td><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtemporaryfile.html">QTemporaryFile</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfile-members.html">包含继承成员的成员列表</a></li>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfile-obsolete.html">废弃的成员</a></li>
+</ul>
+<p><strong>注意：</strong> 类中所有函数都是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/threads-reentrancy.html">可重入的</a>。</p>
+<h2><span id="gong-gong-cheng-yuan-lei-xing">公共成员类型</span><a href="#gong-gong-cheng-yuan-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">typedef</td>
+<td align="left"><strong><a href="#typedef-qfiledecoderfn">DecoderFn</a></strong></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="left"><strong><a href="#qfileqfileconst-qstring-name-qobject-parent">QFile</a></strong>(const QString &amp;<em>name</em>, QObject *<em>parent</em>)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left"><strong><a href="#qfileqfileqobject-parent">QFile</a></strong>(QObject *<em>parent</em>)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left"><strong><a href="#qfileqfileconst-qstring-name">QFile</a></strong>(const QString &amp;<em>name</em>)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left"><strong><a href="#qfileqfile">QFile</a></strong>()</td>
+</tr>
+<tr>
+<td align="center">virtual</td>
+<td align="left"><strong><a href="#virtualqfileqfile">~QFile</a></strong>()</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#bool-qfilecopyconst-qstring-newname">copy</a></strong>(const QString &amp;<em>newName</em>)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#bool-qfileexists-const">exists</a></strong>() const</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#bool-qfilelinkconst-qstring-linkname">link</a></strong>(const QString &amp;<em>linkName</em>)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#bool-qfilemovetotrash">moveToTrash</a></strong>()</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#override-virtualbool-qfileopenqiodeviceopenmode-mode-1">open</a></strong>(FILE *<em>fh</em>, QIODevice::OpenMode <em>mode</em>, QFileDevice::FileHandleFlags <em>handleFlags</em> = DontCloseHandle)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#override-virtualbool-qfileopenqiodeviceopenmode-mode-2">open</a></strong>(int <em>fd</em>, QIODevice::OpenMode <em>mode</em>, QFileDevice::FileHandleFlags <em>handleFlags</em> = DontCloseHandle)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#bool-qfileremove">remove</a></strong>()</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="h#bool-qfilerenameconst-qstring-newname">rename</a></strong>(const QString &amp;<em>newName</em>)</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><strong><a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a></strong>(const QString &amp;<em>name</em>)</td>
+</tr>
+<tr>
+<td align="center">QString</td>
+<td align="left"><strong><a href="#qstring-qfilesymlinktarget-const">symLinkTarget</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-xie-gong-gong-han-shu">重写公共函数</span><a href="#chong-xie-gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">virtual QString</td>
+<td align="left"><strong><a href="#override-virtualqstring-qfilefilename-const">fileName</a></strong>() const override</td>
+</tr>
+<tr>
+<td align="center">virtual bool</td>
+<td align="left"><strong><a href="#override-virtualbool-qfileopenqiodeviceopenmode-mode">open</a></strong>(QIODevice::OpenMode <em>mode</em>) override</td>
+</tr>
+<tr>
+<td align="center">virtual QFileDevice::Permissions</td>
+<td align="left"><strong><a href="#override-virtualqfiledevicepermissions-qfilepermissions-const">permissions</a></strong>() const override</td>
+</tr>
+<tr>
+<td align="center">virtual bool</td>
+<td align="left"><strong><a href="#override-virtualbool-qfileresizeqint64-sz">resize</a></strong>(qint64 <em>sz</em>) override</td>
+</tr>
+<tr>
+<td align="center">virtual bool</td>
+<td align="left"><strong><a href="#override-virtualbool-qfilesetpermissionsqfiledevicepermissions-permissions">setPermissions</a></strong>(QFileDevice::Permissions <em>permissions</em>) override</td>
+</tr>
+<tr>
+<td align="center">virtual qint64</td>
+<td align="left"><strong><a href="#size">size</a></strong>() const override</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#staticbool-qfilecopyconst-qstring-filename-const-qstring-newname">copy</a></strong>(const QString &amp;<em>fileName</em>, const QString &amp;<em>newName</em>)</td>
+</tr>
+<tr>
+<td align="center">QString</td>
+<td align="left"><strong><a href="#staticqstring-qfiledecodenameconst-qbytearray-localfilename">decodeName</a></strong>(const QByteArray &amp;<em>localFileName</em>)</td>
+</tr>
+<tr>
+<td align="center">QString</td>
+<td align="left"><strong><a href="#staticqstring-qfiledecodenameconst-char-localfilename">decodeName</a></strong>(const char *<em>localFileName</em>)</td>
+</tr>
+<tr>
+<td align="center">QByteArray</td>
+<td align="left"><strong><a href="#staticqbytearray-qfileencodenameconst-qstring-filename">encodeName</a></strong>(const QString &amp;<em>fileName</em>)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#staticbool-qfileexistsconst-qstring-filename">exists</a></strong>(const QString &amp;<em>fileName</em>)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#staticbool-qfilelinkconst-qstring-filename-const-qstring-linkname">link</a></strong>(const QString &amp;<em>fileName</em>, const QString &amp;<em>linkName</em>)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#staticbool-qfilemovetotrashconst-qstring-filename-qstring-pathintrash--nullptr">moveToTrash</a></strong>(const QString &amp;<em>fileName</em>, QString *<em>pathInTrash</em> = nullptr)</td>
+</tr>
+<tr>
+<td align="center">QFileDevice::Permissions</td>
+<td align="left"><strong><a href="#staticqfiledevicepermissions-qfilepermissionsconst-qstring-filename">permissions</a></strong>(const QString &amp;<em>fileName</em>)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#staticbool-qfileremoveconst-qstring-filename">remove</a></strong>(const QString &amp;<em>fileName</em>)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#staticbool-qfilerenameconst-qstring-oldname-const-qstring-newname">rename</a></strong>(const QString &amp;<em>oldName</em>, const QString &amp;<em>newName</em>)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#staticbool-qfileresizeconst-qstring-filename-qint64-sz">resize</a></strong>(const QString &amp;<em>fileName</em>, qint64 <em>sz</em>)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left"><strong><a href="#override-virtualbool-qfilesetpermissionsqfiledevicepermissions-permissions-1">setPermissions</a></strong>(const QString &amp;<em>fileName</em>, QFileDevice::Permissions <em>permissions</em>)</td>
+</tr>
+<tr>
+<td align="center">QString</td>
+<td align="left"><strong><a href="#staticqstring-qfilesymlinktargetconst-qstring-filename">symLinkTarget</a></strong>(const QString &amp;<em>fileName</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QFile 是用于读写文本及二进制的文件及<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/resources.html">资源</a>的I/O设备。 一个QFile可以单独使用，或者更简单的，可以与 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a> 或 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qdatastream.html">QDataStream</a> 一同使用。</p>
+<p>文件名通常在构造时传递，但也可以在随时使用 <a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a>()设置。QFile 需要目录分隔符为 ‘/‘ 而不是依照操作系统。其他分隔符 (如 ‘\‘) 不受支持。</p>
+<p>您可以通过 <a href="#bool-qfileexists-const">exists</a>() 判断文件是否存在。（更多操作系统相关的操作在 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfileinfo.html">QFileInfo</a> 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qdir.html">QDir</a> 中提供）</p>
+<p>文件通过 <a href="#override-virtualbool-qfileopenqiodeviceopenmode-mode">open</a>() 打开，通过 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#close">close</a>() 关闭，通过 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#flush">flush</a>() 刷新。数据通常使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qdatastream.html">QDataStream</a> or <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a> 读写，但您也可以使用 由 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html">QIODevice</a> 的继承函数 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#read">read</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readLine">readLine</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readAll">readAll</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#write">write</a>()。单字符的操作也可以使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#getChar">getChar</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#putChar">putChar</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#ungetChar">ungetChar</a>()。</p>
+<p> <a href="#size">size</a>() 返回文件大小。您可以通过 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#pos">pos</a>() 获取当前文件位置，或通过 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#seek">seek</a>() 移动到新的位置（译者注：此句中的“位置”指文件内操作的字节位置）。当您读到文件结尾， <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#atEnd">atEnd</a>() 返回 <code>true</code>。</p>
+<h3><span id="zhi-jie-du-wen-jian">直接读文件</span><a href="#zhi-jie-du-wen-jian" class="header-anchor">#</a></h3><p>如下例子逐行地直接读取文本文件：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QFile <span class="hljs-title">file</span><span class="hljs-params">(<span class="hljs-string">"in.txt"</span>)</span></span>;
+<span class="hljs-keyword">if</span> (!file.<span class="hljs-built_in">open</span>(QIODevice::ReadOnly | QIODevice::Text))
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">while</span> (!file.<span class="hljs-built_in">atEnd</span>()) {
+    QByteArray line = file.<span class="hljs-built_in">readLine</span>();
+    <span class="hljs-built_in">process_line</span>(line);
+}</code></pre></div>
+
+<p> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::Text</a> flag传递给 <a href="#override-virtualbool-qfileopenqiodeviceopenmode-mode">open</a>() ，其告诉Qt将Windows风格的换行符 (“\r\n”) 转换为 C++风格的换行符(“\n”)。默认情况下，QFile 假设为二进制模式读取，不做字节转换。</p>
+<h3><span id="tong-guo-liu-lai-du-wen-jian">通过流来读文件</span><a href="#tong-guo-liu-lai-du-wen-jian" class="header-anchor">#</a></h3><p>如下例子逐行地通过 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a> 读取文本文件：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QFile <span class="hljs-title">file</span><span class="hljs-params">(<span class="hljs-string">"in.txt"</span>)</span></span>;
+<span class="hljs-keyword">if</span> (!file.<span class="hljs-built_in">open</span>(QIODevice::ReadOnly | QIODevice::Text))
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-function">QTextStream <span class="hljs-title">in</span><span class="hljs-params">(&amp;file)</span></span>;
+<span class="hljs-keyword">while</span> (!in.<span class="hljs-built_in">atEnd</span>()) {
+    QString line = in.<span class="hljs-built_in">readLine</span>();
+    <span class="hljs-built_in">process_line</span>(line);
+}</code></pre></div>
+
+
+
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a> 会特意把8位文件中字节数据转换为QString中16位UTF-16字符。默认情况下，其假设用户使用系统默认编码（例如unix平台上是UTF-8；详情参看 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtextcodec.html#codecForLocale">QTextCodec::codecForLocale</a>() ）。编码可以通过 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtextstream.html#setCodec">QTextStream::setCodec</a>() 改变。</p>
+<p>要写入文本，您可以使用左移运算符运算符 operator&lt;&lt;()，在 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a> 中，其重载用于讲右侧内容追加的左侧，示例如下：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QFile <span class="hljs-title">file</span><span class="hljs-params">(<span class="hljs-string">"out.txt"</span>)</span></span>;
+<span class="hljs-keyword">if</span> (!file.<span class="hljs-built_in">open</span>(QIODevice::WriteOnly | QIODevice::Text))
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-function">QTextStream <span class="hljs-title">out</span><span class="hljs-params">(&amp;file)</span></span>;
+out &lt;&lt; <span class="hljs-string">"The magic number is: "</span> &lt;&lt; <span class="hljs-number">49</span> &lt;&lt; <span class="hljs-string">"\n"</span>;</code></pre></div>
+
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qdatastream.html">QDataStream</a> 和上文很相似，详情请见相当应类的文档。</p>
+<p>当你使用 QFile, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfileinfo.html">QFileInfo</a> 以及 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qdir.html">QDir</a> 来访问系统中文件，你可以使用Unicode文件名。在Unix平台，文件名会转换为8位编码。如果您想使用C++标准API (<code>&lt;cstdio&gt;</code> 或 <code>&lt;iostream&gt;</code>) 或平台相关API来访问文件而不是使用 QFile，你可以使用 <a href="#staticqbytearray-qfileencodenameconst-qstring-filename">encodeName</a>() 和 <a href="#staticqstring-qfiledecodenameconst-qbytearray-localfilename">decodeName</a>() 来在Unicode文件名和8位文件名间转换。</p>
+<p>在Unix平台，有一些特殊的系统文件 (例如  <code>/proc</code> 下的文件) ，对于这些文件，<a href="#size">size</a>() 会返回0，但你依然可以读取更多数据；这些数据在你调用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#read">read</a>() 时即时产生。在这种情况下，您便不能使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#atEnd">atEnd</a>() 来判断是否已经没有更多数据。(因为 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#atEnd">atEnd</a>() 通过文件大小是否到达结尾)。然而您可以通过连续调用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readAll">readAll</a>(),  <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#read">read</a>() 或 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readLine">readLine</a>() 指导没有数据来替代此功能。下面的例子使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a> 逐行读取<code>/proc/modules</code> ：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QFile <span class="hljs-title">file</span><span class="hljs-params">(<span class="hljs-string">"/proc/modules"</span>)</span></span>;
+<span class="hljs-keyword">if</span> (!file.<span class="hljs-built_in">open</span>(QIODevice::ReadOnly | QIODevice::Text))
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-function">QTextStream <span class="hljs-title">in</span><span class="hljs-params">(&amp;file)</span></span>;
+QString line = in.<span class="hljs-built_in">readLine</span>();
+<span class="hljs-keyword">while</span> (!line.<span class="hljs-built_in">isNull</span>()) {
+    <span class="hljs-built_in">process_line</span>(line);
+    line = in.<span class="hljs-built_in">readLine</span>();
+}</code></pre></div>
+
+
+
+<h3><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h3><p>不像其他 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html">QIODevice</a> 的实现，例如 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtcpsocket.html">QTcpSocket</a>，QFile 不会发出 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#aboutToClose">aboutToClose</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#bytesWritten">bytesWritten</a>(), 及 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#readyRead">readyRead</a>() 这些信号。这个实现细节意味着 QFile 不适用于读写某些特定类型的文件，比如Unix上的设备文件。</p>
+<h3><span id="ping-tai-xiang-guan-xin-xi">平台相关信息</span><a href="#ping-tai-xiang-guan-xin-xi" class="header-anchor">#</a></h3><p>文件权限和Unix和Windows上的处理并不相同。在Unix平台上，一个非 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#isWritable">可写入</a> 的目录，文件无法创建。但对于Windows并不一定如此，例如 ‘My Documents’ （我的文档）目录通常不可写入，但是在其中依然可以创建文件。</p>
+<p>Qt对于文件权限的理解有局限，尤其对于 <a href="#override-virtualbool-qfilesetpermissionsqfiledevicepermissions-permissions">QFile::setPermissions</a>() 有影响。在Windows上，仅当没有任何 Write* flags被设置时，Qt 会设置旧版的只读 flag。Qt不会操作访问过滤表（access control lists , ACLs）这是的此函数在NTFS卷上基本上没什么用。对于VFAT格式的U盘，倒是有可能可用。POSIX 的 ACLs 也不会被修改。</p>
+<p><strong>另请参见</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qdatastream.html">QDataStream</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfileinfo.html">QFileInfo</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qdir.html">QDir</a>, 以及 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/resources.html">The Qt Resource System</a>。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="typedef-qfile-decoderfn">typedef QFile::DecoderFn</span><a href="#typedef-qfile-decoderfn" class="header-anchor">#</a></h3><p>这个类型定义了一个如下形式的函数的指针：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QString <span class="hljs-title">myDecoderFunc</span><span class="hljs-params">(<span class="hljs-type">const</span> QByteArray &amp;localFileName)</span></span>;</code></pre></div>
+
+<p><strong>另请参见</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfile-obsolete.html#setDecodingFunction">setDecodingFunction</a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qfile-qfile-const-qstring-amp-name-qobject-parent">QFile::QFile(const  &amp;<em>name</em>,  *<em>parent</em>)</span><a href="#qfile-qfile-const-qstring-amp-name-qobject-parent" class="header-anchor">#</a></h3><p>构造基于给定的父对象 <em>parent</em> 、文件名 <em>name</em> 指定的QFile对象。</p>
+<hr>
+<h3><span id="qfile-qfile-qobject-parent">QFile::QFile( *<em>parent</em>)</span><a href="#qfile-qfile-qobject-parent" class="header-anchor">#</a></h3><p>构造基于给定的父对象 <em>parent</em> 的QFile对象。</p>
+<hr>
+<h3><span id="qfile-qfile-const-qstring-amp-name">QFile::QFile(const  &amp;<em>name</em>)</span><a href="#qfile-qfile-const-qstring-amp-name" class="header-anchor">#</a></h3><p>构造文件名 <em>name</em> 指定的QFile对象。</p>
+<hr>
+<h3><span id="qfile-qfile">QFile::QFile()</span><a href="#qfile-qfile" class="header-anchor">#</a></h3><p>构造一个QFile对象。</p>
+<hr>
+<h3><span id="virtual-qfile-qfile"><code>[virtual]</code>QFile::~QFile()</span><a href="#virtual-qfile-qfile" class="header-anchor">#</a></h3><p>销毁此QFile对象，如需要会自动关闭文件。</p>
+<hr>
+<h3><span id="bool-qfile-copy-const-qstring-amp-newname">bool QFile::copy(const  &amp;<em>newName</em>)</span><a href="#bool-qfile-copy-const-qstring-amp-newname" class="header-anchor">#</a></h3><p>将当前 <a href="#override-virtualqstring-qfilefilename-const">fileName</a>() 指定的文件复制为文件名 <em>newName</em> 指定的文件。如果成功，返回 <code>true</code> ；否则返回 <code>false</code>。</p>
+<p>注意如果 <em>newName</em> 文件名的文件已存在，函数不会覆盖，直接返回 <code>false</code> 。</p>
+<p>源文件会在复制前关闭。</p>
+<p><strong>另请参见</strong> <a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a>().</p>
+<hr>
+<h3><span id="static-bool-qfile-copy-const-qstring-amp-filename-const-qstring-amp-newname"><code>[static]</code>bool QFile::copy(const  &amp;<em>fileName</em>, const  &amp;<em>newName</em>)</span><a href="#static-bool-qfile-copy-const-qstring-amp-filename-const-qstring-amp-newname" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将文件 <em>fileName</em> 复制为文件名 <em>newName</em>。如果成功，返回 <code>true</code> ；否则返回 <code>false</code>。</p>
+<p>注意如果 <em>newName</em> 文件名的文件已存在，函数不会覆盖，直接返回 <code>false</code> 。</p>
+<p><strong>另请参见</strong> <a href="#rename">rename</a>().</p>
+<hr>
+<h3><span id="static-qstring-qfile-decodename-const-qbytearray-amp-localfilename"><code>[static]</code> QFile::decodeName(const  &amp;<em>localFileName</em>)</span><a href="#static-qstring-qfile-decodename-const-qbytearray-amp-localfilename" class="header-anchor">#</a></h3><p>和 <a href="#staticqbytearray-qfileencodenameconst-qstring-filename">QFile::encodeName</a>() 操作恰恰相反。返回 <em>localFileName</em> 的Unicode形式。</p>
+<p><strong>另请参见</strong> <a href="#staticqbytearray-qfileencodenameconst-qstring-filename">encodeName</a>().</p>
+<hr>
+<h3><span id="static-qstring-qfile-decodename-const-char-localfilename"><code>[static]</code> QFile::decodeName(const char *<em>localFileName</em>)</span><a href="#static-qstring-qfile-decodename-const-char-localfilename" class="header-anchor">#</a></h3><p>这是一个重载函数。返回 <em>localFileName</em> 的Unicode形式。</p>
+<p>详情参见 <a href="#staticqbytearray-qfileencodenameconst-qstring-filename">encodeName</a>() 。</p>
+<hr>
+<h3><span id="static-qbytearray-qfile-encodename-const-qstring-amp-filename"><code>[static]</code> QFile::encodeName(const  &amp;<em>fileName</em>)</span><a href="#static-qbytearray-qfile-encodename-const-qstring-amp-filename" class="header-anchor">#</a></h3><p>基于用户区域设置，将 <em>fileName</em> 转换为本地的8为表示。这对于用户选择的文件名足够使用。硬编码到程序中的文件名应当只使用7位ASCII字符。</p>
+<p><strong>另请参见</strong> <a href="#staticqstring-qfiledecodenameconst-qbytearray-localfilename">decodeName</a>().</p>
+<hr>
+<h3><span id="static-bool-qfile-exists-const-qstring-amp-filename"><code>[static]</code>bool QFile::exists(const  &amp;<em>fileName</em>)</span><a href="#static-bool-qfile-exists-const-qstring-amp-filename" class="header-anchor">#</a></h3><p>如果 <em>fileName</em> 对应的文件存在，返回 <code>true</code> 否则返回 <code>false</code>。</p>
+<p><strong>注意：</strong> 如果 <em>fileName</em> 是指向不存在文件的符号链接，返回 <code>false</code>。</p>
+<hr>
+<h3><span id="bool-qfile-exists-const">bool QFile::exists() const</span><a href="#bool-qfile-exists-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>如果  <a href="#override-virtualqstring-qfilefilename-const">fileName</a>() 对应的文件存在，返回 <code>true</code> 否则返回 <code>false</code>。</p>
+<p><strong>另请参见</strong> <a href="#override-virtualqstring-qfilefilename-const">fileName</a>() and <a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a>().</p>
+<hr>
+<h3><span id="override-virtual-qstring-qfile-filename-const"><code>[override virtual]</code> QFile::fileName() const</span><a href="#override-virtual-qstring-qfile-filename-const" class="header-anchor">#</a></h3><p>重写函数： <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#override-virtualqstring-qfilefilename-const">QFileDevice::fileName</a>() const.</p>
+<p>返回 <a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a>() 或构造函数设置的文件名。</p>
+<p><strong>另请参见</strong> <a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfileinfo.html#override-virtualqstring-qfilefilename-const">QFileInfo::fileName</a>().</p>
+<hr>
+<h3><span id="bool-qfile-link-const-qstring-amp-linkname">bool QFile::link(const  &amp;<em>linkName</em>)</span><a href="#bool-qfile-link-const-qstring-amp-linkname" class="header-anchor">#</a></h3><p>创建一个名为 <em>linkName</em> 的、指向 <a href="#override-virtualqstring-qfilefilename-const">fileName</a>() 文件的链接。链接的形式取决于底层文件系统（Windows上的快捷方式或Linux下的符号链接symlink）。如果成功，返回 <code>true</code> ；返回 <code>false</code>。</p>
+<p>此函数不会覆盖文件系统上已经存在的链接；如果已存在，<code>link()</code> 将返回 <code>false</code> 并设置 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#error">error()</a> 为 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#FileError-enum">RenameError</a>。</p>
+<p><strong>注意：</strong> 对于Windows平台，一个合法的链接名称必须包含 <code>.lnk</code> 后缀名。</p>
+<p><strong>另请参见</strong> <a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a>().</p>
+<hr>
+<h3><span id="static-bool-qfile-link-const-qstring-amp-filename-const-qstring-amp-linkname"><code>[static]</code>bool QFile::link(const  &amp;<em>fileName</em>, const  &amp;<em>linkName</em>)</span><a href="#static-bool-qfile-link-const-qstring-amp-filename-const-qstring-amp-linkname" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>创建一个名为 <em>linkName</em> 的、指向 <em>fileName</em> 文件的链接。链接的形式取决于底层文件系统（Windows上的快捷方式或Linux下的符号链接symlink）。如果成功，返回 <code>true</code> ；否则返回 <code>false</code>。</p>
+<p><strong>另请参见</strong> <a href="#bool-qfilelinkconst-qstring-linkname">link</a>().</p>
+<hr>
+<h3><span id="bool-qfile-movetotrash">bool QFile::moveToTrash()</span><a href="#bool-qfile-movetotrash" class="header-anchor">#</a></h3><p>将 <a href="#override-virtualqstring-qfilefilename-const">fileName</a>() 文件移入回收站。如果成功返回 <code>true</code> ，并将 <a href="#override-virtualqstring-qfilefilename-const">fileName</a>() 设置为回收站中对应文件的路径；否则返回 <code>false</code>。</p>
+<p><strong>注意：</strong> 在API不能返回回收站中文件的路径的操作系统中，一旦文件被移动 <a href="#override-virtualqstring-qfilefilename-const">fileName</a>() 会被设置为空字符串。在没有回收站的操作系统，此函数总返回 <code>false</code>。</p>
+<p>此函数引入自： Qt 5.15.</p>
+<hr>
+<h3><span id="static-bool-qfile-movetotrash-const-qstring-amp-filename-qstring-pathintrash-nullptr"><code>[static]</code>bool QFile::moveToTrash(const  &amp;<em>fileName</em>,  *<em>pathInTrash</em> = nullptr)</span><a href="#static-bool-qfile-movetotrash-const-qstring-amp-filename-qstring-pathintrash-nullptr" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将 <em>fileName</em> 文件移入回收站。如果成功返回 <code>true</code> ，并将 *<em>pathInTrash</em> 设置为回收站中对应文件的路径字符串的指针；否则返回 <code>false</code>。</p>
+<p><strong>注意：</strong>  在API不能返回回收站中文件的路径的操作系统中，一旦文件被移动 *<em>pathInTrash</em> 会被设置为空字符串。在没有回收站的操作系统，此函数总返回 <code>false</code>。</p>
+<p>此函数引入自： Qt 5.15.</p>
+<hr>
+<h3><span id="override-virtual-bool-qfile-open-qiodevice-openmode-mode"><code>[override virtual]</code>bool QFile::open( <em>mode</em>)</span><a href="#override-virtual-bool-qfile-open-qiodevice-openmode-mode" class="header-anchor">#</a></h3><p>重写函数： <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#override-virtualbool-qfileopenqiodeviceopenmode-mode">QIODevice::open</a>(QIODevice::OpenMode mode)。</p>
+<p>使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">OpenMode</a> <em>mode</em> 模式打开文件，如果成功，返回 <code>true</code> ；否则返回 <code>false</code>。</p>
+<p>模式 <em>mode</em> 必须是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::ReadOnly</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::WriteOnly</a>, 或 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::ReadWrite</a>。也可以有附加flags，例如 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::Text</a> 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::Unbuffered</a>。</p>
+<p><strong>注意：</strong> 在 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">WriteOnly</a> 或 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">ReadWrite</a> 模式，如果相关文件不存在，此函数会尝试在打开前新建。</p>
+<p><strong>另请参见</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::OpenMode</a> and <a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a>().</p>
+<hr>
+<h3><span id="bool-qfile-open-file-fh-qiodevice-openmode-mode-qfiledevice-filehandleflags-handleflags-dontclosehandle">bool QFile::open(FILE *<em>fh</em>,  <em>mode</em>,  <em>handleFlags</em> = DontCloseHandle)</span><a href="#bool-qfile-open-file-fh-qiodevice-openmode-mode-qfiledevice-filehandleflags-handleflags-dontclosehandle" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>使用给出的模式 <em>mode</em> 打开已有的文件句柄 <em>fh</em>。<em>handleFlags</em> 可能会被用于指定附加选项。如果成功，返回 <code>true</code> ；否则返回 <code>false</code>。</p>
+<p>例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printError</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span>* msg)</span></span>
+<span class="hljs-function"></span>{
+    QFile file;
+    file.<span class="hljs-built_in">open</span>(stderr, QIODevice::WriteOnly);
+    file.<span class="hljs-built_in">write</span>(msg, <span class="hljs-built_in">qstrlen</span>(msg));        <span class="hljs-comment">// 写入 stderr</span>
+    file.<span class="hljs-built_in">close</span>();
+}</code></pre></div>
+
+<p>当一个 <a href>QFile</a> 通过此函数被被打开，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#close">close</a>() 的行为由 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#FileHandleFlag-enum">AutoCloseHandle</a> flag决定。如果指定了 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#FileHandleFlag-enum">AutoCloseHandle</a> ，且此函数执行成功，那么 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#close">close</a>() 会关闭传入的句柄。否则，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#close">close</a>() 不会关闭文件，只会刷新数据(flush)。</p>
+<p><strong>警告：</strong></p>
+<ol>
+<li>如果 <em>fh</em> 并非指向常规文件，例如 <code>stdin</code>, <code>stdout</code>, 或 <code>stderr</code>，你可能不能够使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#seek">seek</a>()，且<a href="#size">size</a>() 返回0。详见 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#isSequential">QIODevice::isSequential</a>()。</li>
+<li>由于使用此函数打开的文件没有指定文件名，你不能通过 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfileinfo.html">QFileInfo</a> 读取相关信息。</li>
+</ol>
+<p><strong>Windows平台的注意事项</strong></p>
+<p>当访问文件或其他随机存取设备时，<em>fh</em> 必须以二进制模式打开（也就是 <code>fopen()</code> 的模式串必须包含’b’）。Qt 会转换行末字节如果您指定 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#OpenModeFlag-enum">QIODevice::Text</a> 给 <em>mode</em>。顺序读取设备，例如标准输入输出，不受此限制影响。</p>
+<p>您需要启用控制台应用支持，才能在控制台使用标准输入输出。要启用，可以在项目文件中加入：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">CONFIG += console</code></pre></div>
+
+
+
+<p><strong>另请参见</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#close">close</a>().</p>
+<hr>
+<h3><span id="bool-qfile-open-int-fd-qiodevice-openmode-mode-qfiledevice-filehandleflags-handleflags-dontclosehandle">bool QFile::open(int <em>fd</em>,  <em>mode</em>,  <em>handleFlags</em> = DontCloseHandle)</span><a href="#bool-qfile-open-int-fd-qiodevice-openmode-mode-qfiledevice-filehandleflags-handleflags-dontclosehandle" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>使用给出的模式 <em>mode</em> 打开已有的文件描述符 <em>fh</em>。<em>handleFlags</em> 可能会被用于指定附加选项。如果成功，返回 <code>true</code> ；否则返回 <code>false</code>。</p>
+<p>当一个 <a href>QFile</a> 通过此函数被被打开，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#close">close</a>() 的行为由 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#FileHandleFlag-enum">AutoCloseHandle</a> flag决定。如果指定了 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#FileHandleFlag-enum">AutoCloseHandle</a> ，且此函数执行成功，那么 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#close">close</a>() 会关闭传入的句柄。否则，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#close">close</a>() 不会关闭文件，只会刷新数据(flush)。</p>
+<p>通过此函数打开的文件会被自动设置为 <code>raw</code> 模式；这意味着文件I/O函数会很慢。如果您遇到了性能问题，可以尝试其他 <code>open()</code> 函数。</p>
+<p><strong>警告：</strong> </p>
+<ol>
+<li><p>如果 <em>fd</em> 不是一个常规文件，例如 0 (<code>stdin</code>), 1 (<code>stdout</code>), 或 2 (<code>stderr</code>)，你可能不能够使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#seek">seek</a>()，且<a href="#size">size</a>() 返回0。详见 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qiodevice.html#isSequential">QIODevice::isSequential</a>()。</p>
+</li>
+<li><p>由于使用此函数打开的文件没有指定文件名，你不能通过 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfileinfo.html">QFileInfo</a> 读取相关信息。</p>
+</li>
+</ol>
+<p><strong>另请参见</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#close">close</a>().</p>
+<hr>
+<h3><span id="override-virtual-qfiledevice-permissions-qfile-permissions-const"><code>[override virtual]</code> QFile::permissions() const</span><a href="#override-virtual-qfiledevice-permissions-qfile-permissions-const" class="header-anchor">#</a></h3><p>重写函数： <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#override-virtualqfiledevicepermissions-qfilepermissions-const">QFileDevice::permissions</a>() const.</p>
+<p><strong>另请参见</strong> <a href="#override-virtualbool-qfilesetpermissionsqfiledevicepermissions-permissions">setPermissions</a>().</p>
+<hr>
+<h3><span id="static-qfiledevice-permissions-qfile-permissions-const-qstring-amp-filename"><code>[static]</code> QFile::permissions(const  &amp;<em>fileName</em>)</span><a href="#static-qfiledevice-permissions-qfile-permissions-const-qstring-amp-filename" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>返回 <em>fileName</em> 文件经 OR（位或）后的权限 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#Permission-enum">QFile::Permission</a> 组合。</p>
+<hr>
+<h3><span id="bool-qfile-remove">bool QFile::remove()</span><a href="#bool-qfile-remove" class="header-anchor">#</a></h3><p>删除文件名 <a href="#override-virtualqstring-qfilefilename-const">fileName</a>() 的文件。</p>
+<p>如果成功，返回 <code>true</code> ；否则返回 <code>false</code>。</p>
+<p>文件会在删除前关闭。</p>
+<p><strong>另请参见</strong> <a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a>().</p>
+<hr>
+<h3><span id="static-bool-qfile-remove-const-qstring-amp-filename"><code>[static]</code>bool QFile::remove(const  &amp;<em>fileName</em>)</span><a href="#static-bool-qfile-remove-const-qstring-amp-filename" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>删除文件名 <em>fileName</em> 的文件。</p>
+<p>如果成功，返回 <code>true</code> ；否则返回 <code>false</code>。</p>
+<p><strong>另请参见</strong> <a href="#bool-qfileremove">remove</a>().</p>
+<hr>
+<h3><span id="bool-qfile-rename-const-qstring-amp-newname">bool QFile::rename(const  &amp;<em>newName</em>)</span><a href="#bool-qfile-rename-const-qstring-amp-newname" class="header-anchor">#</a></h3><p>把文件 <a href="#override-virtualqstring-qfilefilename-const">fileName</a>() 重命名为 <em>newName</em>。如果成功，返回 <code>true</code> ；否则返回 <code>false</code>。</p>
+<p>注意如果 <em>newName</em> 文件名的文件已存在，函数不会覆盖，直接返回 <code>false</code> 。</p>
+<p>文件在重命名前关闭。</p>
+<p>如果直接重命名失败，Qt会尝试拷贝数据到 <em>newName</em> 新文件并删除旧文件来实现重命名。如果拷贝或删除失败，Qt会撤回新文件创建，返回原先状态。</p>
+<p><strong>另请参见</strong> <a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a>().</p>
+<hr>
+<h3><span id="static-bool-qfile-rename-const-qstring-amp-oldname-const-qstring-amp-newname"><code>[static]</code>bool QFile::rename(const  &amp;<em>oldName</em>, const  &amp;<em>newName</em>)</span><a href="#static-bool-qfile-rename-const-qstring-amp-oldname-const-qstring-amp-newname" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>把文件 <em>oldName</em> 重命名为 <em>newName</em>。如果成功，返回 <code>true</code> ；否则返回 <code>false</code>。</p>
+<p>注意如果 <em>newName</em> 文件名的文件已存在，函数不会覆盖，直接返回 <code>false</code> 。</p>
+<p><strong>另请参见</strong> <a href="#rename">rename</a>().</p>
+<hr>
+<h3><span id="override-virtual-bool-qfile-resize-qint64-sz"><code>[override virtual]</code>bool QFile::resize( <em>sz</em>)</span><a href="#override-virtual-bool-qfile-resize-qint64-sz" class="header-anchor">#</a></h3><p>重写函数： <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#override-virtualbool-qfileresizeqint64-sz">QFileDevice::resize</a>(qint64 sz).</p>
+<hr>
+<h3><span id="static-bool-qfile-resize-const-qstring-amp-filename-qint64-sz"><code>[static]</code>bool QFile::resize(const  &amp;<em>fileName</em>,  <em>sz</em>)</span><a href="#static-bool-qfile-resize-const-qstring-amp-filename-qint64-sz" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>这是文件名 <em>fileName</em> 文件的大小为 <em>sz</em> 字节。如果修改大小成功返回 <code>true</code>，否则返回 <code>false</code>。如果 <em>sz</em> 比当前文件大小大，后面的数据会填充0；如果 <em>sz</em> 比当前文件大小小，会裁剪文件数据。</p>
+<p><strong>警告：</strong> 如果文件不存在，调用会失败。</p>
+<p><strong>另请参见</strong> <a href="#override-virtualbool-qfileresizeqint64-sz">resize</a>().</p>
+<hr>
+<h3><span id="void-qfile-setfilename-const-qstring-amp-name">void QFile::setFileName(const  &amp;<em>name</em>)</span><a href="#void-qfile-setfilename-const-qstring-amp-name" class="header-anchor">#</a></h3><p>设置文件名 <em>name</em>。名称可以不包含目录，包含相对目录或绝对目录。</p>
+<p>请不要在文件已经打开后调用此函数。</p>
+<p>如果文件名不包含路径，或者是相对路径，路径会基于应用程序调用 <a href="#override-virtualbool-qfileopenqiodeviceopenmode-mode">open</a>() 时的当前路径。</p>
+<p>例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QFile file;
+QDir::<span class="hljs-built_in">setCurrent</span>(<span class="hljs-string">"/tmp"</span>);
+file.<span class="hljs-built_in">setFileName</span>(<span class="hljs-string">"readme.txt"</span>);
+QDir::<span class="hljs-built_in">setCurrent</span>(<span class="hljs-string">"/home"</span>);
+file.<span class="hljs-built_in">open</span>(QIODevice::ReadOnly);      <span class="hljs-comment">// 打开Unix下文件 "/home/readme.txt"</span></code></pre></div>
+
+<p>注意Qt中目录分隔符统一使用”/“.</p>
+<p><strong>另请参见</strong> <a href="#override-virtualqstring-qfilefilename-const">fileName</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfileinfo.html">QFileInfo</a>, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qdir.html">QDir</a>.</p>
+<hr>
+<h3><span id="override-virtual-bool-qfile-setpermissions-qfiledevice-permissions-permissions"><code>[override virtual]</code>bool QFile::setPermissions( <em>permissions</em>)</span><a href="#override-virtual-bool-qfile-setpermissions-qfiledevice-permissions-permissions" class="header-anchor">#</a></h3><p>重写函数： <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#override-virtualbool-qfilesetpermissionsqfiledevicepermissions-permissions">QFileDevice::setPermissions</a>(QFileDevice::Permissions permissions).</p>
+<p>为文件设置 <em>permissions</em> 权限。如果成功返回 <code>true</code> ，如果权限不能修改返回 <code>false</code> 。</p>
+<p><strong>警告：</strong> 此函数不会操作修改 ACLs，这会限制函数功能。</p>
+<p><strong>另请参见</strong> <a href="#override-virtualqfiledevicepermissions-qfilepermissions-const">permissions</a>() and <a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a>().</p>
+<hr>
+<h3><span id="static-bool-qfile-setpermissions-const-qstring-amp-filename-qfiledevice-permissions-permissions"><code>[static]</code>bool QFile::setPermissions(const  &amp;<em>fileName</em>,  <em>permissions</em>)</span><a href="#static-bool-qfile-setpermissions-const-qstring-amp-filename-qfiledevice-permissions-permissions" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>为文件名 <em>fileName</em> 的文件设置 <em>permissions</em> 权限。</p>
+<hr>
+<h3><span id="override-virtual-qint64-qfile-size-const"><code>[override virtual]</code> QFile::size() const</span><a href="#override-virtual-qint64-qfile-size-const" class="header-anchor">#</a></h3><p>重写函数： <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qfiledevice.html#size">QFileDevice::size</a>() const.</p>
+<hr>
+<h3><span id="static-qstring-qfile-symlinktarget-const-qstring-amp-filename"><code>[static]</code> QFile::symLinkTarget(const  &amp;<em>fileName</em>)</span><a href="#static-qstring-qfile-symlinktarget-const-qstring-amp-filename" class="header-anchor">#</a></h3><p>返回符号链接（Unix上的symlink或Windows上快捷方式）<em>fileName</em> 指向的文件或目录的绝对路径。如果 <em>fileName</em> 不是一个符号链接，返回空字符串。</p>
+<p>名称可能并不是一个存在的文件，只是一个字符串路径。<a href="#bool-qfileexists-const">QFile::exists</a>() 可以用来判断是否存在。</p>
+<p>此函数引入自： Qt 4.2.</p>
+<hr>
+<h3><span id="qstring-qfile-symlinktarget-const"> QFile::symLinkTarget() const</span><a href="#qstring-qfile-symlinktarget-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>返回QFile对象对应的符号链接（Unix上的symlink或Windows上快捷方式）指向的文件或目录的绝对路径。如果 <em>fileName</em> 不是一个符号链接，返回空字符串。</p>
+<p>名称可能并不是一个存在的文件，只是一个字符串路径。<a href="#bool-qfileexists-const">QFile::exists</a>() 可以用来判断是否存在。</p>
+<p>此函数引入自： Qt 4.2.</p>
+<p><strong>另请参见</strong> <a href="#override-virtualqstring-qfilefilename-const">fileName</a>() and <a href="#void-qfilesetfilenameconst-qstring-name">setFileName</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/F/">F</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/E/QEventTransition/QEventTransition/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QEventTransition类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/F/QFileDialog/QFileDialog/">
+                        <span class="hidden-mobile">QFileDialog类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

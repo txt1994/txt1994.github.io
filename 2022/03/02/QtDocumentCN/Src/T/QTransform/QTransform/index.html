@@ -1,0 +1,1011 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QTransform 公共成员类型 属性 公共成员函数 静态公共成员函数 相关非成员函数 详细介绍 渲染图形   成员变量文档 enum QAbstractAnimation::DeletionPolicy enum QAbstractAnimation::Direction   属性文档 currentLoop : const int currentTime : int   成员类型文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QTransform类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/T/QTransform/QTransform/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QTransform 公共成员类型 属性 公共成员函数 静态公共成员函数 相关非成员函数 详细介绍 渲染图形   成员变量文档 enum QAbstractAnimation::DeletionPolicy enum QAbstractAnimation::Direction   属性文档 currentLoop : const int currentTime : int   成员类型文">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:56:14.664Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="T">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QTransform类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QTransform类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      48 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QTransform类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qtransform">QTransform</a><ul>
+<li><a href="#gong-gong-cheng-yuan-lei-xing">公共成员类型</a></li>
+<li><a href="#shu-xing">属性</a></li>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan-han-shu">静态公共成员函数</a></li>
+<li><a href="#xiang-guan-fei-cheng-yuan-han-shu">相关非成员函数</a></li>
+<li><a href="#xiang-xi-jie-shao">详细介绍</a><ul>
+<li><a href="#xuan-ran-tu-xing">渲染图形</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-bian-liang-wen-dang">成员变量文档</a><ul>
+<li><a href="#enum-qabstractanimation-deletionpolicy">enum QAbstractAnimation::DeletionPolicy</a></li>
+<li><a href="#enum-qabstractanimation-direction">enum QAbstractAnimation::Direction</a></li>
+</ul>
+</li>
+<li><a href="#shu-xing-wen-dang">属性文档</a><ul>
+<li><a href="#currentloop-const-int">currentLoop : const int</a></li>
+<li><a href="#currenttime-int">currentTime : int</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qabstractsocket-bindflag-flags-qabstractsocket-bindmode">enum <strong>QAbstractSocket</strong>::BindFlag | flags <strong>QAbstractSocket</strong>::BindMode</a></li>
+<li><a href="#xxx">XXX</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qabstractanimation-qabstractanimation-qobject-o-qobject-qobject-md-parent-q-nullptr">QAbstractAnimation::<strong>QAbstractAnimation</strong>(</a><a href="O/QObject/QObject.md">QObject</a> <em>*parent</em> = Q_NULLPTR)</li>
+<li><a href="#signal-void-qabstractanimation-currentloopchanged-int-currentloop"><strong>[signal]</strong> void QAbstractAnimation::<strong>currentLoopChanged</strong>(int <em>currentLoop</em>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+这里是文档翻译的模板，详情请见[贡献指南](https://github.com/QtDocumentCN/QtDocumentCN/blob/master/CONTRIBUTING.md)。
+
+<p>文档翻译的名词对照表可见<a href="Comparison_Table.md">对照表</a>。</p>
+<p>翻译文档结构为三层目录结构。</p>
+<div class="code-wrapper"><pre><code class="hljs markdown"><span class="hljs-section"># 类名</span>
+<span class="hljs-code">	## 公共成员类型</span>
+<span class="hljs-code">	## 公有成员函数</span>
+<span class="hljs-code">	## 成员类型文档</span>
+<span class="hljs-code">		### 类型1</span>
+<span class="hljs-code">		### 类型2</span>
+<span class="hljs-code">	## 成员函数文档</span>
+<span class="hljs-code">		### 函数1</span>
+<span class="hljs-code">		### 函数2</span></code></pre></div>
+
+
+
+<h1><span id="qtransform">QTransform</span><a href="#qtransform" class="header-anchor">#</a></h1><p>QTransform为2D坐标系提供坐标转化</p>
+<table>
+<thead>
+<tr>
+<th align="right">属性</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">头文件</td>
+<td align="left"><code>#include &lt;QTransform&gt;</code></td>
+</tr>
+<tr>
+<td align="right">qmake</td>
+<td align="left"><code>QT+=gui</code></td>
+</tr>
+<tr>
+<td align="right">自从</td>
+<td align="left">Qt 4.3</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><span id="gong-gong-cheng-yuan-lei-xing">公共成员类型</span><a href="#gong-gong-cheng-yuan-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">enum</td>
+<td align="left">TransformationType { TxNone, TxTranslate, TxScale, TxRotate, TxShear, TxProject }</td>
+</tr>
+</tbody></table>
+<h2><span id="shu-xing">属性</span><a href="#shu-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th>类型</th>
+<th>属性</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a href="A/QAbstractAnimation/QAbstractAnimation.md#currentloop--const-int">currentLoop</a></td>
+<td>const int</td>
+<td><a href="A/QAbstractAnimation/QAbstractAnimation.md#duration--const-int">duration</a></td>
+<td>const int</td>
+</tr>
+<tr>
+<td align="left"><a href="A/QAbstractAnimation/QAbstractAnimation.md#currenttime--int">currentTime</a></td>
+<td>int</td>
+<td><a href="A/QAbstractAnimation/QAbstractAnimation.md#loopcount--int">loopCount</a></td>
+<td>int</td>
+</tr>
+<tr>
+<td align="left"><a href="A/QAbstractAnimation/QAbstractAnimation.md#direction--direction">direction</a></td>
+<td>Direction</td>
+<td><a href="A/QAbstractAnimation/QAbstractAnimation.md#state--const-state">state</a></td>
+<td>const State</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="right">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right"></td>
+<td align="left">QTransform(qreal m11, qreal m12, qreal m21, qreal m22, qreal dx, qreal dy)</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left">QTransform(qreal m11, qreal m12, qreal m13, qreal m21, qreal m22, qreal m23, qreal m31, qreal m32, qreal m33 = 1.0)</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left">QTransform()</td>
+</tr>
+<tr>
+<td align="right">QTransform &amp;</td>
+<td align="left">operator=(const QTransform &amp;matrix)</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">m11() const</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">m12() const</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">m13() const</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">m21() const</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">m22() const</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">m23() const</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">m31() const</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">m32() const</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">m33() const</td>
+</tr>
+<tr>
+<td align="right">QTransform</td>
+<td align="left">adjoint() const</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">determinant() const</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">dx() const</td>
+</tr>
+<tr>
+<td align="right">qreal</td>
+<td align="left">dy() const</td>
+</tr>
+<tr>
+<td align="right">QTransform</td>
+<td align="left">inverted(bool *invertible = nullptr) const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isAffine() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isIdentity() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isInvertible() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isRotating() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isScaling() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isTranslating() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">map(qreal x, qreal y, qreal *tx, qreal *ty) const</td>
+</tr>
+<tr>
+<td align="right">QPoint</td>
+<td align="left">map(const QPoint &amp;point) const</td>
+</tr>
+<tr>
+<td align="right">QPointF</td>
+<td align="left">map(const QPointF &amp;p) const</td>
+</tr>
+<tr>
+<td align="right">QLine</td>
+<td align="left">map(const QLine &amp;l) const</td>
+</tr>
+<tr>
+<td align="right">QLineF</td>
+<td align="left">map(const QLineF &amp;line) const</td>
+</tr>
+<tr>
+<td align="right">QPolygonF</td>
+<td align="left">map(const QPolygonF &amp;polygon) const</td>
+</tr>
+<tr>
+<td align="right">QPolygon</td>
+<td align="left">map(const QPolygon &amp;polygon) const</td>
+</tr>
+<tr>
+<td align="right">QRegion</td>
+<td align="left">map(const QRegion &amp;region) const</td>
+</tr>
+<tr>
+<td align="right">QPainterPath</td>
+<td align="left">map(const QPainterPath &amp;path) const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">map(int x, int y, int *tx, int *ty) const</td>
+</tr>
+<tr>
+<td align="right">QRectF</td>
+<td align="left">mapRect(const QRectF &amp;rectangle) const</td>
+</tr>
+<tr>
+<td align="right">QRect</td>
+<td align="left">mapRect(const QRect &amp;rectangle) const</td>
+</tr>
+<tr>
+<td align="right">QPolygon</td>
+<td align="left">mapToPolygon(const QRect &amp;rectangle) const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">reset()</td>
+</tr>
+<tr>
+<td align="right">QTransform &amp;</td>
+<td align="left">rotate(qreal angle, Qt::Axis axis = Qt::ZAxis)</td>
+</tr>
+<tr>
+<td align="right">QTransform &amp;</td>
+<td align="left">rotateRadians(qreal angle, Qt::Axis axis = Qt::ZAxis)</td>
+</tr>
+<tr>
+<td align="right">QTransform &amp;</td>
+<td align="left">scale(qreal sx, qreal sy)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setMatrix(qreal m11, qreal m12, qreal m13, qreal m21, qreal m22, qreal m23, qreal m31, qreal m32, qreal m33)</td>
+</tr>
+<tr>
+<td align="right">QTransform &amp;</td>
+<td align="left">shear(qreal sh, qreal sv)</td>
+</tr>
+<tr>
+<td align="right">QTransform &amp;</td>
+<td align="left">translate(qreal dx, qreal dy)</td>
+</tr>
+<tr>
+<td align="right">QTransform</td>
+<td align="left">transposed() const</td>
+</tr>
+<tr>
+<td align="right">QTransform::TransformationType</td>
+<td align="left">type() const</td>
+</tr>
+<tr>
+<td align="right">QVariant</td>
+<td align="left">operator QVariant() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">operator!=(const QTransform &amp;matrix) const</td>
+</tr>
+<tr>
+<td align="right">QTransform</td>
+<td align="left">operator*(const QTransform &amp;matrix) const</td>
+</tr>
+<tr>
+<td align="right">QTransform &amp;</td>
+<td align="left">operator*=(const QTransform &amp;matrix)</td>
+</tr>
+<tr>
+<td align="right">QTransform &amp;</td>
+<td align="left">operator*=(qreal scalar)</td>
+</tr>
+<tr>
+<td align="right">QTransform &amp;</td>
+<td align="left">operator+=(qreal scalar)</td>
+</tr>
+<tr>
+<td align="right">QTransform &amp;</td>
+<td align="left">operator-=(qreal scalar)</td>
+</tr>
+<tr>
+<td align="right">QTransform &amp;</td>
+<td align="left">operator/=(qreal scalar)</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">operator==(const QTransform &amp;matrix) const</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><span id="jing-tai-gong-gong-cheng-yuan-han-shu">静态公共成员函数</span><a href="#jing-tai-gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">QTransform</td>
+<td align="left">fromScale(qreal sx, qreal sy)</td>
+</tr>
+<tr>
+<td align="center">QTransform</td>
+<td align="left">fromTranslate(qreal dx, qreal dy)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left">quadToQuad(const QPolygonF &amp;one, const QPolygonF &amp;two, QTransform &amp;trans)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left">quadToSquare(const QPolygonF &amp;quad, QTransform &amp;trans)</td>
+</tr>
+<tr>
+<td align="center">bool</td>
+<td align="left">squareToQuad(const QPolygonF &amp;quad, QTransform &amp;trans)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><span id="xiang-guan-fei-cheng-yuan-han-shu">相关非成员函数</span><a href="#xiang-guan-fei-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">bool</td>
+<td align="left">qFuzzyCompare(const QTransform &amp;t1, const QTransform &amp;t2)</td>
+</tr>
+<tr>
+<td align="center">uint</td>
+<td align="left">qHash(const QTransform &amp;key, uint seed = 0)</td>
+</tr>
+<tr>
+<td align="center">QPainterPath</td>
+<td align="left">operator*(const QPainterPath &amp;path, const QTransform &amp;matrix)</td>
+</tr>
+<tr>
+<td align="center">QPoint</td>
+<td align="left">operator*(const QPoint &amp;point, const QTransform &amp;matrix)</td>
+</tr>
+<tr>
+<td align="center">QPointF</td>
+<td align="left">operator*(const QPointF &amp;point, const QTransform &amp;matrix)</td>
+</tr>
+<tr>
+<td align="center">QLineF</td>
+<td align="left">operator*(const QLineF &amp;line, const QTransform &amp;matrix)</td>
+</tr>
+<tr>
+<td align="center">QLine</td>
+<td align="left">operator*(const QLine &amp;line, const QTransform &amp;matrix)</td>
+</tr>
+<tr>
+<td align="center">QPolygon</td>
+<td align="left">operator*(const QPolygon &amp;polygon, const QTransform &amp;matrix)</td>
+</tr>
+<tr>
+<td align="center">QPolygonF</td>
+<td align="left">operator*(const QPolygonF &amp;polygon, const QTransform &amp;matrix)</td>
+</tr>
+<tr>
+<td align="center">QRegion</td>
+<td align="left">operator*(const QRegion &amp;region, const QTransform &amp;matrix)</td>
+</tr>
+<tr>
+<td align="center">QDataStream &amp;</td>
+<td align="left">operator&lt;&lt;(QDataStream &amp;stream, const QTransform &amp;matrix)</td>
+</tr>
+<tr>
+<td align="center">QDataStream &amp;</td>
+<td align="left">operator&gt;&gt;(QDataStream &amp;stream, QTransform &amp;matrix)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><span id="xiang-xi-jie-shao">详细介绍</span><a href="#xiang-xi-jie-shao" class="header-anchor">#</a></h2><p>这里填一些详细介绍。</p>
+<p>一个转化是指如何平移，缩放，剪切，旋转或投影坐标系，通常在渲染图形时使用。</p>
+<p>QTransform与QMatrix的不同之处在于，它是真正的3x3矩阵，允许映射变换。QTransform的toAffine()方法允许将QTransform强制转换为QMatrix。如果在矩阵上指定了映射变换，则该变换将导致其数据丢失。</p>
+<p>QTransform是Qt中推荐的坐标转换类。</p>
+<p>QTransform 可以使用函数 <code>setMatrix(), scale(), rotate(), translate() , shear()</code> 来构建 ,或者，可以通过应用基本矩阵运算来构建它。也可以在构造矩阵时对其进行定义，并可以使用<code>reset()</code>函数将其重置为恒等矩阵（默认值）</p>
+<p>QTransform类支持基本图元的映射：可以使用<code>map()</code>函数将给定的点，线，多边形，区域或绘画路径映射到此矩阵定义的坐标系。如果是矩形，可以使用<code>mapRect()</code>函数转换其坐标。也可以使用<code>mapToPolygon()</code>函数将矩形转换为多边形（映射到由此矩阵定义的坐标系）。</p>
+<p><code>QTransform</code>提供<code>isIdentity()</code>函数，来判断是否为单位矩阵(在矩阵的乘法中，有一种矩阵起着特殊的作用，如同数的乘法中的1，这种矩阵被称为单位矩阵。它是个方阵，从左上角到右下角的对角线（称为主对角线）上的元素均为1。除此以外全都为0。via百度百科)， <code>isInvertible()</code> 函数来判断矩阵是否可逆(i.e. AB = BA = I).<code>inverted()</code>函数提供一个翻转的拷贝矩阵(否则返回单位矩阵)，<code>adjoint()</code> 函数来判断矩阵是否为共轭矩阵。另外，<code>QTransform</code>提供了determinant()函数，该函数返回矩阵的行列式。</p>
+<p>最后，QTransform类支持矩阵乘法，加法和减法，并且可以比较该类的其它对象。</p>
+<h3><span id="xuan-ran-tu-xing">渲染图形</span><a href="#xuan-ran-tu-xing" class="header-anchor">#</a></h3><hr>
+<h2><span id="cheng-yuan-bian-liang-wen-dang">成员变量文档</span><a href="#cheng-yuan-bian-liang-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qabstractanimation-deletionpolicy">enum QAbstractAnimation::DeletionPolicy</span><a href="#enum-qabstractanimation-deletionpolicy" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">QAbstractAnimation::KeepWhenStopped</td>
+<td align="center">0</td>
+<td align="left">动画停止时不会被删除</td>
+</tr>
+<tr>
+<td align="center">QAbstractAnimation::DeleteWhenStopped</td>
+<td align="center">1</td>
+<td align="left">动画停止时会被自动删除</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="enum-qabstractanimation-direction">enum QAbstractAnimation::Direction</span><a href="#enum-qabstractanimation-direction" class="header-anchor">#</a></h3><p>xxx</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">QAbstractAnimation::Forward</td>
+<td align="center">0</td>
+<td align="left">“当前时间”随时间递增（即从0向终点/duration 移动）</td>
+</tr>
+<tr>
+<td align="center">QAbstractAnimation::Backward</td>
+<td align="center">1</td>
+<td align="left">”当前时间“随时间递减（即从终点/duration 向0移动）</td>
+</tr>
+</tbody></table>
+<h2><span id="shu-xing-wen-dang">属性文档</span><a href="#shu-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="currentloop-const-int">currentLoop : const int</span><a href="#currentloop-const-int" class="header-anchor">#</a></h3><p>xxx</p>
+<p><strong>存取函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int</td>
+<td align="left"><strong>currentLoop</strong>() const</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void</td>
+<td align="left"><a href="A/QAbstractAnimation/QAbstractAnimation.md#signal-void-qabstractanimationcurrentloopchangedint-currentloop">currentLoopChanged</a>(int <em>currentLoop</em>)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="currenttime-int">currentTime : int</span><a href="#currenttime-int" class="header-anchor">#</a></h3><p>xxx</p>
+<p><strong>存取函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int</td>
+<td align="left"><strong>currentTime</strong>() const</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="left"><strong>setCurrentTime</strong>(int msecs)</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qabstractsocket-bindflag-flags-qabstractsocket-bindmode">enum <strong>QAbstractSocket</strong>::BindFlag | flags <strong>QAbstractSocket</strong>::BindMode</span><a href="#enum-qabstractsocket-bindflag-flags-qabstractsocket-bindmode" class="header-anchor">#</a></h3><p>这里填该类型详细信息。</p>
+<hr>
+<h3><span id="xxx">XXX</span><a href="#xxx" class="header-anchor">#</a></h3><p>这里填该类型详细信息。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qabstractanimation-qabstractanimation-qobject-parent-q-nullptr">QAbstractAnimation::<strong>QAbstractAnimation</strong>( <em>*parent</em> = Q_NULLPTR)</span><a href="#qabstractanimation-qabstractanimation-qobject-parent-q-nullptr" class="header-anchor">#</a></h3><p>构造 QAbstractAnimation 基类，并将 <code>parent</code> 参数传递给 <a href="O/QObject/QObject.md">QObject</a> 的构造函数。</p>
+<p><strong>另请参阅：</strong><a href="V/QVariantAnimation/QVariantAnimation.md">QVariantAnimation</a> 和 <a href="A/QAnimationGroup/QAnimationGroup.md">QAnimationGroup</a></p>
+<hr>
+<h3><span id="signal-void-qabstractanimation-currentloopchanged-int-currentloop"><strong>[signal]</strong> void QAbstractAnimation::<strong>currentLoopChanged</strong>(int <em>currentLoop</em>)</span><a href="#signal-void-qabstractanimation-currentloopchanged-int-currentloop" class="header-anchor">#</a></h3><p>每当当前循环发生变化时，<a href="A/QAbstractAnimation/QAbstractAnimation.md">QAbstractAnimation</a> 会发射该信号。<code>currentLoop</code> 为当前循环。</p>
+<p><strong>注意：</strong> 属性 <code>currentLoop</code> 的通知信号。</p>
+<p><strong>另请参阅：</strong> <a href="A/QAbstractAnimation/QAbstractAnimation.md#currentloop--const-int">currentLoop</a>() 和 <a href="A/QAbstractAnimation/QAbstractAnimation.md#loopcount--int">loopCount</a>()。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/T/">T</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/T/QTimeLine/QTimeLine/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QTimeLine类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/T/QTimer/QTimer/">
+                        <span class="hidden-mobile">QTimer类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

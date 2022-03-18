@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QUdpSocket Class 公共成员函数 详细描述 成员函数文档 QUdpSocket::QUdpSocket(QObject *parent &#x3D; nullptr) [virtual] QUdpSocket::~QUdpSocket() bool QUdpSocket::hasPendingDatagrams() const bool QUdpSocket::joinMultica">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QUdpSocket类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/U/QUdpSocket/QUdpSocket/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QUdpSocket Class 公共成员函数 详细描述 成员函数文档 QUdpSocket::QUdpSocket(QObject *parent &#x3D; nullptr) [virtual] QUdpSocket::~QUdpSocket() bool QUdpSocket::hasPendingDatagrams() const bool QUdpSocket::joinMultica">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:56:40.540Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="U">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QUdpSocket类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QUdpSocket类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      63 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QUdpSocket类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qudpsocket-class">QUdpSocket Class</a><ul>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qudpsocket-qudpsocket-qobject-parent-nullptr">QUdpSocket::<strong>QUdpSocket</strong>(QObject *<em>parent</em> = nullptr)</a></li>
+<li><a href="#virtual-qudpsocket-qudpsocket"><em>[virtual]</em> QUdpSocket::~<strong>QUdpSocket</strong>()</a></li>
+<li><a href="#bool-qudpsocket-haspendingdatagrams-const">bool QUdpSocket::<strong>hasPendingDatagrams</strong>() const</a></li>
+<li><a href="#bool-qudpsocket-joinmulticastgroup-const-qhostaddress-groupaddress">bool QUdpSocket::<strong>joinMulticastGroup</strong>(const QHostAddress &amp;<em>groupAddress</em>)</a></li>
+<li><a href="#bool-qudpsocket-joinmulticastgroup-const-qhostaddress-groupaddress-const-qnetworkinterface-iface">bool QUdpSocket::<strong>joinMulticastGroup</strong>(const QHostAddress &amp;<em>groupAddress</em>, const QNetworkInterface &amp;<em>iface</em>)</a></li>
+<li><a href="#bool-qudpsocket-leavemulticastgroup-const-qhostaddress-groupaddress">bool QUdpSocket::<strong>leaveMulticastGroup</strong>(const QHostAddress &amp;<em>groupAddress</em>)</a></li>
+<li><a href="#bool-qudpsocket-leavemulticastgroup-const-qhostaddress-groupaddress-const-qnetworkinterface-iface">bool QUdpSocket::<strong>leaveMulticastGroup</strong>(const QHostAddress &amp;<em>groupAddress</em>, const QNetworkInterface &amp;<em>iface</em>)</a></li>
+<li><a href="#qnetworkinterface-qudpsocket-multicastinterface-const">QNetworkInterface QUdpSocket::<strong>multicastInterface</strong>() const</a></li>
+<li><a href="#qint64-qudpsocket-pendingdatagramsize-const">qint64 QUdpSocket::<strong>pendingDatagramSize</strong>() const</a></li>
+<li><a href="#qint64-qudpsocket-readdatagram-char-data-qint64-maxsize-qhostaddress-address-nullptr-quint16-port-nullptr">qint64 QUdpSocket::<strong>readDatagram</strong>(char *<em>data</em>, qint64 <em>maxSize</em>, QHostAddress *<em>address</em> = nullptr, quint16 *<em>port</em> = nullptr)</a></li>
+<li><a href="#qnetworkdatagram-qudpsocket-receivedatagram-qint64-maxsize-1">QNetworkDatagram QUdpSocket::<strong>receiveDatagram</strong>(qint64 <em>maxSize</em> = -1)</a></li>
+<li><a href="#void-qudpsocket-setmulticastinterface-const-qnetworkinterface-iface">void QUdpSocket::<strong>setMulticastInterface</strong>(const QNetworkInterface &amp;<em>iface</em>)</a></li>
+<li><a href="#qint64-qudpsocket-writedatagram-const-char-data-qint64-size-const-qhostaddress-address-quint16-port">qint64 QUdpSocket::<strong>writeDatagram</strong>(const char *<em>data</em>, qint64 <em>size</em>, const QHostAddress &amp;<em>address</em>, quint16 <em>port</em>)</a></li>
+<li><a href="#qint64-qudpsocket-writedatagram-const-qnetworkdatagram-datagram">qint64 QUdpSocket::<strong>writeDatagram</strong>(const QNetworkDatagram &amp;<em>datagram</em>)</a></li>
+<li><a href="#qint64-qudpsocket-writedatagram-const-qbytearray-datagram-const-qhostaddress-host-quint16-port">qint64 QUdpSocket::<strong>writeDatagram</strong>(const QByteArray &amp;<em>datagram</em>, const QHostAddress &amp;<em>host</em>, quint16 <em>port</em>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QUdpSocket Class
+
+<p>QUdpSocket 类提供了 UDP 类型的套接字。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件</td>
+<td>#include &lt;QUdpSocket&gt;</td>
+</tr>
+<tr>
+<td>qmake</td>
+<td>QT += network</td>
+</tr>
+<tr>
+<td>基类</td>
+<td><a href="../../A/QAbstractSocket/QAbstractSocket.md">QAbstractSocket</a></td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong> 该类提供的所有函数都是可重入的。</p>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><a href="#qudpsocketqudpsocketqobject-parent--nullptr">QUdpSocket(QObject *<em>parent</em> = nullptr)</a></td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><a href="#virtual-qudpsocketqudpsocket">~QUdpSocket()</a></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#bool-qudpsockethaspendingdatagrams-const">hasPendingDatagrams() const</a></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#bool-qudpsocketjoinmulticastgroupconst-qhostaddress-groupaddress">joinMulticastGroup(const QHostAddress &amp;<em>groupAddress</em>)</a></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#bool-qudpsocketjoinmulticastgroupconst-qhostaddress-groupaddress-const-qnetworkinterface-iface">joinMulticastGroup(const QHostAddress &amp;<em>groupAddress</em>, const QNetworkInterface &amp;<em>iface</em>)</a></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#bool-qudpsocketleavemulticastgroupconst-qhostaddress-groupaddress">leaveMulticastGroup(const QHostAddress &amp;<em>groupAddress</em>)</a></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#bool-qudpsocketleavemulticastgroupconst-qhostaddress-groupaddress-const-qnetworkinterface-iface">leaveMulticastGroup(const QHostAddress &amp;<em>groupAddress</em>, const QNetworkInterface &amp;<em>iface</em>)</a></td>
+</tr>
+<tr>
+<td>QNetworkInterface</td>
+<td><a href="#qnetworkinterface-qudpsocketmulticastinterface-const">multicastInterface() const</a></td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><a href="#qint64-qudpsocketpendingdatagramsize-const">pendingDatagramSize() const</a></td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><a href="#qint64-qudpsocketreaddatagramchar-data-qint64-maxsize-qhostaddress-address--nullptr-quint16-port--nullptr">readDatagram(char *<em>data</em>, qint64 <em>maxSize</em>, QHostAddress *<em>address</em> = nullptr, quint16 *<em>port</em> = nullptr)</a></td>
+</tr>
+<tr>
+<td>QNetworkDatagram</td>
+<td><a href="#qnetworkdatagram-qudpsocketreceivedatagramqint64-maxsize---1">receiveDatagram(qint64 <em>maxSize</em> = -1)</a></td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#void-qudpsocketsetmulticastinterfaceconst-qnetworkinterface-iface">setMulticastInterface(const QNetworkInterface &amp;<em>iface</em>)</a></td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><a href="#qint64-qudpsocketwritedatagramconst-char-data-qint64-size-const-qhostaddress-address-quint16-port">writeDatagram(const char *<em>data</em>, qint64 <em>size</em>, const QHostAddress &amp;<em>address</em>, quint16 <em>port</em>)</a></td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><a href="#qint64-qudpsocketwritedatagramconst-qnetworkdatagram-datagram">writeDatagram(const QNetworkDatagram &amp;<em>datagram</em>)</a></td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><a href="qint64-qudpsocketwritedatagramconst-qbytearray-datagram-const-qhostaddress-host-quint16-port">writeDatagram(const QByteArray &amp;<em>datagram</em>, const QHostAddress &amp;<em>host</em>, quint16 <em>port</em>)</a></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>UDP（用户数据报协议）是一种轻量级，不可靠，面向数据报的无连接协议。 当在数据传输的可靠性不重要时您可以选择使用它。 QUdpSocket 是 <a href="../../A/QAbstractSocket/QAbstractSocket.md">QAbstractSocket</a> 的子类，可让您发送和接收UDP数据报。</p>
+<p>使用此类的最常见方法是使用 <a href="../../A/QAbstractSocket/QAbstractSocket.md#bool-qabstractsocketbindconst-qhostaddress-address-quint16-port--0-qabstractsocketbindmode-mode--defaultforplatform">bind()</a> 绑定到地址和端口，然后调用 <a href="#qint64-qudpsocketwritedatagramconst-char-data-qint64-size-const-qhostaddress-address-quint16-port">writeDatagram()</a> 和 <a href="#qint64-qudpsocketreaddatagramchar-data-qint64-maxsize-qhostaddress-address--nullptr-quint16-port--nullptr">readDatagram()</a> 或 <a href="#qnetworkdatagram-qudpsocketreceivedatagramqint64-maxsize---1">receiveDatagram()</a> 来传输数据。 如果要使用标准 <a href="../../I/QIODevice/QIODevice.md">QIODevice</a> 函数 read() ，readLine() ，write() 等，则您必须首先通过调用 <a href="../../A/QAbstractSocket/QAbstractSocket.md#virtual-void-qabstractsocketconnecttohostconst-qstring-hostname-quint16-port-qiodeviceopenmode-openmode--readwrite-qabstractsocketnetworklayerprotocol-protocol--anyipprotocol">connectToHost()</a> 将套接字直接连接到对等方。</p>
+<p>每次将数据报写入网络后，套接字都会发出 bytesWritten() 信号。 如果只想发送数据报，则不需要调用 <a href="../../A/QAbstractSocket/QAbstractSocket.md#bool-qabstractsocketbindconst-qhostaddress-address-quint16-port--0-qabstractsocketbindmode-mode--defaultforplatform">bind()</a> 。</p>
+<p>每次有数据报到达时，套接字都会发出 readyRead() 信号。 在有新数据报到达时，成员函数 <a href="#bool-qudpsockethaspendingdatagrams-const">hasPendingDatagrams()</a> 的返回值为真。您可以调用 <a href="#qint64-qudpsocketpendingdatagramsize-const">pendingDatagramSize()</a> 获得第一个待处理的数据报的大小。</p>
+<p><strong>注意：</strong> 当您收到 readyRead() 信号时必须将到达的数据报读入，否则在接下来新的数据报到达后不会将发送 readyRead() 信号。</p>
+<p>Qt官方示例如下：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Server::initSocket</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    udpSocket = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QUdpSocket</span>(<span class="hljs-keyword">this</span>);
+    udpSocket-&gt;<span class="hljs-built_in">bind</span>(QHostAddress::LocalHost, <span class="hljs-number">7755</span>);
+
+    <span class="hljs-built_in">connect</span>(udpSocket, &amp;QUdpSocket::readyRead,
+            <span class="hljs-keyword">this</span>, &amp;Server::readPendingDatagrams);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Server::readPendingDatagrams</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">while</span> (udpSocket-&gt;<span class="hljs-built_in">hasPendingDatagrams</span>()) {
+        QNetworkDatagram datagram = udpSocket-&gt;<span class="hljs-built_in">receiveDatagram</span>();
+        <span class="hljs-built_in">processTheDatagram</span>(datagram);
+    }
+}</code></pre></div>
+
+<p>QUdpSocket 还支持 UDP 多播功能。您可以使用 <a href="#bool-qudpsocketjoinmulticastgroupconst-qhostaddress-groupaddress">joinMulticastGroup()</a> 和 <a href="#bool-qudpsocketleavemulticastgroupconst-qhostaddress-groupaddress">LeaveMulticastGroup()</a> 函数来控制组成员身份，并使用 <a href="../../A/QAbstractSocket/QAbstractSocket.md#enum-qabstractsocketsocketoption">QAbstractSocket :: MulticastTtlOption</a> 和 <a href="../../A/QAbstractSocket/QAbstractSocket.md#enum-qabstractsocketsocketoption">QAbstractSocket :: MulticastLoopbackOption</a> 来设置 TTL 和回送套接字选项。您也可以使用 <a href="#void-qudpsocketsetmulticastinterfaceconst-qnetworkinterface-iface">setMulticastInterface()</a> 函数控制多播数据报的传出接口，并使用 <a href="#qnetworkinterface-qudpsocketmulticastinterface-const">multicastInterface()</a> 函数来查询传出接口。</p>
+<p>使用 QUdpSocket 时，您可以使用 <a href="../../A/QAbstractSocket/QAbstractSocket.md#virtual-void-qabstractsocketconnecttohostconst-qstring-hostname-quint16-port-qiodeviceopenmode-openmode--readwrite-qabstractsocketnetworklayerprotocol-protocol--anyipprotocol">connectToHost()</a> 函数建立一个虚拟连接到 UDP 服务器。虚拟连接建立后，您可以用 read() 和 write() 函数来交换数据报而不用指定每个数据报的接收者。</p>
+<p>Qt官方提供了如下几个在您的应用中使用 QUdpSocket 的示例： Broadcast Sender，Broadcast Receiver， Multicast Sender 和  Multicast Receiver。</p>
+<p>您也可以在 <a href="../../T/QTcpSocket/QTcpSocket.md">QTcpSocket</a> 和 <a href="../../N/QNetworkDatagram/QNetworkDatagram.md">QNetworkDatagram</a> 文档中找到相关信息。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qudpsocket-qudpsocket-qobject-parent-nullptr">QUdpSocket::<strong>QUdpSocket</strong>(QObject *<em>parent</em> = nullptr)</span><a href="#qudpsocket-qudpsocket-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>构造函数。构造一个 QUdpSocket 类型的对象。</p>
+<p>将 <em>parent</em> 参数传递到 <a href="../../O/QObject/QObject.md">QObject</a> 构造函数。</p>
+<p>另外您也可以在 <a href="../../A/QAbstractSocket/QAbstractSocket.md#qabstractsocketsockettype-qabstractsocketsockettype-const">socketType()</a> 中找到相关信息。</p>
+<hr>
+<h3><span id="virtual-qudpsocket-qudpsocket"><em>[virtual]</em> QUdpSocket::~<strong>QUdpSocket</strong>()</span><a href="#virtual-qudpsocket-qudpsocket" class="header-anchor">#</a></h3><p>析构函数。销毁套接字，必要的话关闭连接。</p>
+<p>另外您也可以在 <a href="../../A/QAbstractSocket/QAbstractSocket.md#override-virtual-void-qabstractsocketclose">close()</a> 中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qudpsocket-haspendingdatagrams-const">bool QUdpSocket::<strong>hasPendingDatagrams</strong>() const</span><a href="#bool-qudpsocket-haspendingdatagrams-const" class="header-anchor">#</a></h3><p>当至少有一个数据报等待读取时，该函数返回 true ，否则返回 false 。</p>
+<p>另外您也可以在 <a href="#qint64-qudpsocketpendingdatagramsize-const">pendingDatagramSize()</a> 和 <a href="#qint64-qudpsocketreaddatagramchar-data-qint64-maxsize-qhostaddress-address--nullptr-quint16-port--nullptr">readDatagram()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qudpsocket-joinmulticastgroup-const-qhostaddress-amp-groupaddress">bool QUdpSocket::<strong>joinMulticastGroup</strong>(const QHostAddress &amp;<em>groupAddress</em>)</span><a href="#bool-qudpsocket-joinmulticastgroup-const-qhostaddress-amp-groupaddress" class="header-anchor">#</a></h3><p>该函数会让套接字在操作系统选择的默认接口上加入由 <em>groupAddress</em> 指定的多播组。要加入多播组，套接字必须处于<em>已绑定</em> （ <a href="../../A/QAbstractSocket/QAbstractSocket.md#enum-qabstractsocketsocketstate"><em>BoundState</em></a> ）状态，否则将会出现错误。</p>
+<p>请注意如果您想加入一个 IPv4 组，您的套接字不能使用 IPv6 协议绑定到主机（使用 QHostAddress::Any 双重模式也不行）。您必须使用 QHostAddress::AnyIPv4。</p>
+<p>成功加入多播组后后函数返回 true ，否则返回 false 。</p>
+<p><strong>注意：</strong> 不指定接口而直接连接 IPv6 多播组的操作在任何一个操作系统上都是不被允许的。在这种情况下，请您使用该函数另外的一个可以指定接口的重载版本。</p>
+<p>该函数最初在Qt4.8版本引入。</p>
+<p>另外您也可以在 <a href="#bool-qudpsocketleavemulticastgroupconst-qhostaddress-groupaddress">LeaveMulticastGroup()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qudpsocket-joinmulticastgroup-const-qhostaddress-amp-groupaddress-const-qnetworkinterface-amp-iface">bool QUdpSocket::<strong>joinMulticastGroup</strong>(const QHostAddress &amp;<em>groupAddress</em>, const QNetworkInterface &amp;<em>iface</em>)</span><a href="#bool-qudpsocket-joinmulticastgroup-const-qhostaddress-amp-groupaddress-const-qnetworkinterface-amp-iface" class="header-anchor">#</a></h3><p>重载函数。</p>
+<p>使用 <em>iface</em> 指定的接口连接 <em>groupAddress</em> 指定的多播组。</p>
+<p>该函数最初在Qt4.8版本引入。</p>
+<p>另外您也可以在 <a href="#bool-qudpsocketleavemulticastgroupconst-qhostaddress-groupaddress">LeaveMulticastGroup()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qudpsocket-leavemulticastgroup-const-qhostaddress-amp-groupaddress">bool QUdpSocket::<strong>leaveMulticastGroup</strong>(const QHostAddress &amp;<em>groupAddress</em>)</span><a href="#bool-qudpsocket-leavemulticastgroup-const-qhostaddress-amp-groupaddress" class="header-anchor">#</a></h3><p>使用操作系统指定的默认接口离开 <em>groupAddress</em> 指定的多播组。要退出多播组，套接字必须处于<em>已绑定</em> （ <a href="../../A/QAbstractSocket/QAbstractSocket.md#enum-qabstractsocketsocketstate"><em>BoundState</em></a> ）状态，否则将会出现错误。</p>
+<p>成功退出多播组后该函数返回 true ，否则返回 false 。</p>
+<p><strong>注意：</strong> 该函数的参数应该与传递到 <a href="#bool-qudpsocketjoinmulticastgroupconst-qhostaddress-groupaddress">joinMulticastGroup()</a> 的参数相同。</p>
+<p>该函数最早在Qt4.8版本引入。</p>
+<p>另外您也可以在 <a href="#bool-qudpsocketjoinmulticastgroupconst-qhostaddress-groupaddress">joinMulticastGroup()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="bool-qudpsocket-leavemulticastgroup-const-qhostaddress-amp-groupaddress-const-qnetworkinterface-amp-iface">bool QUdpSocket::<strong>leaveMulticastGroup</strong>(const QHostAddress &amp;<em>groupAddress</em>, const QNetworkInterface &amp;<em>iface</em>)</span><a href="#bool-qudpsocket-leavemulticastgroup-const-qhostaddress-amp-groupaddress-const-qnetworkinterface-amp-iface" class="header-anchor">#</a></h3><p>重载函数。</p>
+<p>使用 <em>iface</em> 指定的接口退出 <em>groupAddress</em> 指定的多播组。</p>
+<p><strong>注意：</strong><a href="#bool-qudpsocketjoinmulticastgroupconst-qhostaddress-groupaddress">joinMulticastGroup()</a> 的参数相同。</p>
+<p>该函数最早在Qt4.8版本引入。</p>
+<p>另外您也可以在 <a href="#bool-qudpsocketjoinmulticastgroupconst-qhostaddress-groupaddress">joinMulticastGroup()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qnetworkinterface-qudpsocket-multicastinterface-const">QNetworkInterface QUdpSocket::<strong>multicastInterface</strong>() const</span><a href="#qnetworkinterface-qudpsocket-multicastinterface-const" class="header-anchor">#</a></h3><p>返回多播数据报的传出接口的接口信息。这与 IPv4 套接字的 IP_MULTICAST_IF 套接字选项和 IPv6 套接字的 IPV6_MULTICAST_IF 套接字选项相对应。如果此前并没有设置一个接口， 函数将返回一个无效的 <a href="../../N/QNetworkInterface/QNetworkInterface.md">QNetworkInterface</a> 。要退出多播组，套接字必须处于<em>已绑定</em> （ <a href="../../A/QAbstractSocket/QAbstractSocket.md#enum-qabstractsocketsocketstate"><em>BoundState</em></a> ）状态，否则将会返回一个无效的 <a href="../../N/QNetworkInterface/QNetworkInterface.md">QNetworkInterface</a>。</p>
+<p>该函数最早在Qt4.8版本引入。</p>
+<p>另外您也可以在 <a href="#void-qudpsocketsetmulticastinterfaceconst-qnetworkinterface-iface">setMulticastInterface()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qint64-qudpsocket-pendingdatagramsize-const">qint64 QUdpSocket::<strong>pendingDatagramSize</strong>() const</span><a href="#qint64-qudpsocket-pendingdatagramsize-const" class="header-anchor">#</a></h3><p>返回第一个待处理的 UDP 数据报的大小。如果没有可获取的数据报，函数将会返回-1。</p>
+<p>另外您也可以在 <a href="#bool-qudpsockethaspendingdatagrams-const">hasPendingDatagrams()</a> 和 <a href="#qint64-qudpsocketreaddatagramchar-data-qint64-maxsize-qhostaddress-address--nullptr-quint16-port--nullptr">readDatagram()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qint64-qudpsocket-readdatagram-char-data-qint64-maxsize-qhostaddress-address-nullptr-quint16-port-nullptr">qint64 QUdpSocket::<strong>readDatagram</strong>(char *<em>data</em>, qint64 <em>maxSize</em>, QHostAddress *<em>address</em> = nullptr, quint16 *<em>port</em> = nullptr)</span><a href="#qint64-qudpsocket-readdatagram-char-data-qint64-maxsize-qhostaddress-address-nullptr-quint16-port-nullptr" class="header-anchor">#</a></h3><p>接收一个不超过 <em>maxsize</em> 字节大小数据报并将其储存在 <em>data</em> 中。 发送端的主机地址和端口将分别储存在 *<em>address</em> 和 *<em>port</em> 中（某值为空指针时除外）。</p>
+<p>操作成功后返回数据报的大小，否则返回-1。</p>
+<p>如果 <em>maxsize</em> 指定的最大值太小，小于数据报的大小，数据报中剩余的数据将会被丢失。若想要避免丢失数据，您可以在读取该数据报之前调用 <a href="#qint64-qudpsocketpendingdatagramsize-const">pendingDatagramSize()</a> 来获取该数据报的大小。 如果 <em>maxsize</em> 设置为0，该数据报会被丢弃。</p>
+<p>另外您也可以在 <a href="#qint64-qudpsocketwritedatagramconst-char-data-qint64-size-const-qhostaddress-address-quint16-port">writeDatagram()</a>，<a href="#bool-qudpsockethaspendingdatagrams-const">hasPendingDatagrams()</a> 和 <a href="#qint64-qudpsocketpendingdatagramsize-const">pendingDatagramSize()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qnetworkdatagram-qudpsocket-receivedatagram-qint64-maxsize-1">QNetworkDatagram QUdpSocket::<strong>receiveDatagram</strong>(qint64 <em>maxSize</em> = -1)</span><a href="#qnetworkdatagram-qudpsocket-receivedatagram-qint64-maxsize-1" class="header-anchor">#</a></h3><p>接收一个不超过 <em>maxsize</em> 字节大小的数字报并将它的内容以及发送者的主机地址和端口一起放在一个 <a href="../../N/QNetworkDatagram/QNetworkDatagram.md">QNetworkDatagram</a> 对象中返回。如果可能，该函数还将尝试确定数据报的目标地址，端口以及接收时的跳数计数。</p>
+<p>如果操作失败，函数会返回一个无效的 <a href="../../N/QNetworkDatagram/QNetworkDatagram.md">QNetworkDatagram</a>  。</p>
+<p>如果 <em>maxsize</em> 指定的最大值太小，小于数据报的大小，数据报中剩余的数据将会被丢失。如果 <em>maxsize</em> 设置为0，该数据报会被丢弃。如果 <em>maxsize</em> 设置为-1，函数会尝试读取整个数据报。</p>
+<p>该函数最早在Qt5.8版本引入。</p>
+<p>另外您也可以在 <a href="#qint64-qudpsocketwritedatagramconst-char-data-qint64-size-const-qhostaddress-address-quint16-port">writeDatagram()</a>，<a href="#bool-qudpsockethaspendingdatagrams-const">hasPendingDatagrams()</a> 和 <a href="#qint64-qudpsocketpendingdatagramsize-const">pendingDatagramSize()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="void-qudpsocket-setmulticastinterface-const-qnetworkinterface-amp-iface">void QUdpSocket::<strong>setMulticastInterface</strong>(const QNetworkInterface &amp;<em>iface</em>)</span><a href="#void-qudpsocket-setmulticastinterface-const-qnetworkinterface-amp-iface" class="header-anchor">#</a></h3><p>将多播数据报的传出接口设置为接口 <em>iface</em> 。 这与 IPv4 套接字的 IP_MULTICAST_IF 套接字选项和 IPv6 套接字的 IPV6_MULTICAST_IF 套接字选项相对应。要设定一个接口，套接字必须处于<em>已绑定</em> （ <a href="../../A/QAbstractSocket/QAbstractSocket.md#enum-qabstractsocketsocketstate"><em>BoundState</em></a> ）状态，否则函数将不会进行任何操作。</p>
+<p>该函数最早在Qt4.8版本引入。</p>
+<p>另外您也可以在 <a href="#qnetworkinterface-qudpsocketmulticastinterface-const">multicastInterface()</a>，<a href="#bool-qudpsocketjoinmulticastgroupconst-qhostaddress-groupaddress">joinMulticastGroup()</a> 和 <a href="#bool-qudpsocketleavemulticastgroupconst-qhostaddress-groupaddress">LeaveMulticastGroup()</a> 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qint64-qudpsocket-writedatagram-const-char-data-qint64-size-const-qhostaddress-amp-address-quint16-port">qint64 QUdpSocket::<strong>writeDatagram</strong>(const char *<em>data</em>, qint64 <em>size</em>, const QHostAddress &amp;<em>address</em>, quint16 <em>port</em>)</span><a href="#qint64-qudpsocket-writedatagram-const-char-data-qint64-size-const-qhostaddress-amp-address-quint16-port" class="header-anchor">#</a></h3><p>向 <em>address</em> 指定的主机的 <em>port</em> 指定的端口上发送 <em>size</em> 字节大小的 <em>data</em> 中的数据。操作成功则返回发送的字节数，否则返回-1。</p>
+<p>数据报始终作为一个块写入。 数据报的最大大小与平台高度相关，但可以低至8192字节。 如果数据报太大，则此函数将返回-1，并且 <a href="#qabstractsocketsocketerror-qabstractsocketerror-const">error()</a> 将返回 <a href="#enum-qabstractsocketsocketerror">DatagramTooLargeError</a> 。</p>
+<hr>
+<h3><span id="qint64-qudpsocket-writedatagram-const-qnetworkdatagram-amp-datagram">qint64 QUdpSocket::<strong>writeDatagram</strong>(const QNetworkDatagram &amp;<em>datagram</em>)</span><a href="#qint64-qudpsocket-writedatagram-const-qnetworkdatagram-amp-datagram" class="header-anchor">#</a></h3><p>重载函数。</p>
+<p><em>datagram</em> 中除要发送的数据外，还包含主机地址，端口，接口和条数限制。套接字将根据这些信息发送数字报。如果目标地址和端口未被设置，函数将会将数据报发送到传递到 <a href="../../A/QAbstractSocket/QAbstractSocket.md#virtual-void-qabstractsocketconnecttohostconst-qstring-hostname-quint16-port-qiodeviceopenmode-openmode--readwrite-qabstractsocketnetworklayerprotocol-protocol--anyipprotocol">connectToHost()</a> 函数的地址。</p>
+<p>如果目标地址是具有非空范围ID的 IPv6 ，但与数据报中的接口索引不同，则操作系统将选择哪一个接口发送数据报并没有相关定义。</p>
+<p>操作成功则该函数返回发送的字节数，否则返回-1。</p>
+<p>​    <strong>警告：</strong> 在一个已连接的 UDP 套接字中调用该函数可能会产生错误并且不能发出任何包。如果您正在使用一个已连接的套接字，请调用 write() 函数发送数据报。</p>
+<p>该函数在最初在Qt5.8版本引入。</p>
+<p>另外您也可以在 QNetworkDatagram::setDestination()，QNetworkDatagram::setHopLimit() 和 QNetworkDatagram::setInterfaceIndex() 函数介绍中找到相关信息。</p>
+<hr>
+<h3><span id="qint64-qudpsocket-writedatagram-const-qbytearray-amp-datagram-const-qhostaddress-amp-host-quint16-port">qint64 QUdpSocket::<strong>writeDatagram</strong>(const QByteArray &amp;<em>datagram</em>, const QHostAddress &amp;<em>host</em>, quint16 <em>port</em>)</span><a href="#qint64-qudpsocket-writedatagram-const-qbytearray-amp-datagram-const-qhostaddress-amp-host-quint16-port" class="header-anchor">#</a></h3><p>重载函数。</p>
+<p>发送数据报 <em>datagram</em> 到 <em>host</em> 指定的主机和 <em>port</em> 指定的端口。</p>
+<p>函数成功发送数据报后会返回发送的字节数，否则返回-1。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/U/">U</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QString/QString/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QString类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/U/QUrl/QUrl/">
+                        <span class="hidden-mobile">QUrl类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

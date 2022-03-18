@@ -1,0 +1,1172 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QDate Class 公共成员类型 公共成员函数 静态公共成员 相关非成员函数 详细描述 特别注意   成员类型文档 enum QDate::MonthNameType   成员函数文档 QString QString QString QString QDateTime QDateTime QDateTime QDateTime QDate::QDate(int y, int m, i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QDate类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/D/QDate/QDate/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QDate Class 公共成员类型 公共成员函数 静态公共成员 相关非成员函数 详细描述 特别注意   成员类型文档 enum QDate::MonthNameType   成员函数文档 QString QString QString QString QDateTime QDateTime QDateTime QDateTime QDate::QDate(int y, int m, i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:12:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:37:19.218Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="D">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QDate类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QDate类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:12" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      14k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      121 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QDate类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qdate-class">QDate Class</a><ul>
+<li><a href="#gong-gong-cheng-yuan-lei-xing">公共成员类型</a></li>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-guan-fei-cheng-yuan-han-shu">相关非成员函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#te-bie-zhu-yi">特别注意</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qdate-monthnametype">enum QDate::MonthNameType</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qstring-s-qstring-qstring-md-qdate-tostring-qstringview-s-qstringview-qstringview-md-format-const">QString</a></li>
+<li><a href="#qstring-s-qstring-qstring-md-qdate-tostring-qstringview-s-qstringview-qstringview-md-format-qcalendar-c-qcalendar-qcalendar-md-cal-const-1">QString</a></li>
+<li><a href="#qstring-s-qstring-qstring-md-qdate-tostring-const-qstring-s-qstring-qstring-md-format-const-2">QString</a></li>
+<li><a href="#qstring-s-qstring-qstring-md-qdate-tostring-const-qstring-s-qstring-qstring-md-format-qcalendar-c-qcalendar-qcalendar-md-cal-const-3">QString</a></li>
+<li><a href="#qdatetime-qdatetime-qdatetime-md-qdate-endofday-qt-timespec-q-qt-namespace-qt-namespace-md-enum-timespec-spec-qt-localtime-int-offsetseconds-0-const">QDateTime</a></li>
+<li><a href="#qdatetime-qdatetime-qdatetime-md-qdate-endofday-const-qtimezone-t-qtimezone-qtimezone-md-zone-const-1">QDateTime</a></li>
+<li><a href="#qdatetime-qdatetime-qdatetime-md-qdate-startofday-qt-timespec-q-qt-namespace-qt-namespace-md-enum-timespec-spec-qt-localtime-int-offsetseconds-0-const-2">QDateTime</a></li>
+<li><a href="#qdatetime-qdatetime-qdatetime-md-qdate-startofday-const-qtimezone-t-qtimezone-qtimezone-md-zone-const-3">QDateTime</a></li>
+<li><a href="#qdate-qdate-int-y-int-m-int-d">QDate::QDate(int <em>y</em>, int <em>m</em>, int <em>d</em>)</a></li>
+<li><a href="#qdate-qdate">QDate::QDate()</a></li>
+<li><a href="#qdate-qdate-adddays-qint64-g-qtglobal-qtglobal-md-typedef-qint64-ndays-const">QDate QDate::addDays(</a><a href="../../G/QtGlobal/QtGlobal.md#typedef-qint64">qint64</a> <em>ndays</em>) const</li>
+<li><a href="#qdate-qdate-addmonths-int-nmonths-const">QDate QDate::addMonths(int <em>nmonths</em>) const</a></li>
+<li><a href="#qdate-qdate-addmonths-int-nmonths-qcalendar-c-qcalendar-qcalendar-md-cal-const">QDate QDate::addMonths(int <em>nmonths</em>, </a><a href="../../C/QCalendar/QCalendar.md">QCalendar</a> <em>cal</em>) const</li>
+<li><a href="#qdate-qdate-addyears-int-nyears-const">QDate QDate::addYears(int <em>nyears</em>) const</a></li>
+<li><a href="#qdate-qdate-addyears-int-nyears-qcalendar-c-qcalendar-qcalendar-md-cal-const">QDate QDate::addYears(int <em>nyears</em>, </a><a href="../../C/QCalendar/QCalendar.md">QCalendar</a> <em>cal</em>) const</li>
+<li><a href="#static-qdate-qdate-currentdate"><code>[static]</code> QDate QDate::currentDate()</a></li>
+<li><a href="#int-qdate-day-const">int QDate::day() const</a></li>
+<li><a href="#int-qdate-day-qcalendar-c-qcalendar-qcalendar-md-cal-const">int QDate::day(</a><a href="../../C/QCalendar/QCalendar.md">QCalendar</a> <em>cal</em>) const</li>
+<li><a href="#int-qdate-dayofweek-const">int QDate::dayOfWeek() const</a></li>
+<li><a href="#int-qdate-dayofweek-qcalendar-c-qcalendar-qcalendar-md-cal-const">int QDate::dayOfWeek(</a><a href="../../C/QCalendar/QCalendar.md">QCalendar</a> <em>cal</em>) const</li>
+<li><a href="#int-qdate-dayofyear-const">int QDate::dayOfYear() const</a></li>
+<li><a href="#int-qdate-dayofyear-qcalendar-c-qcalendar-qcalendar-md-cal-const">int QDate::dayOfYear(</a><a href="../../C/QCalendar/QCalendar.md">QCalendar</a> <em>cal</em>) const</li>
+<li><a href="#int-qdate-daysinmonth-const">int QDate::daysInMonth() const</a></li>
+<li><a href="#int-qdate-daysinmonth-qcalendar-c-qcalendar-qcalendar-md-cal-const">int QDate::daysInMonth(</a><a href="../../C/QCalendar/QCalendar.md">QCalendar</a> <em>cal</em>) const</li>
+<li><a href="#int-qdate-daysinyear-const">int QDate::daysInYear() const</a></li>
+<li><a href="#int-qdate-daysinyear-qcalendar-c-qcalendar-qcalendar-md-cal-const">int QDate::daysInYear(</a><a href="../../C/QCalendar/QCalendar.md">QCalendar</a> <em>cal</em>) const</li>
+<li><a href="#qint64-g-qtglobal-qtglobal-md-typedef-qint64-qdate-daysto-const-qdate-d-const">qint64</a></li>
+<li><a href="#static-qdate-qdate-fromjulianday-qint64-g-qtglobal-qtglobal-md-typedef-qint64-jd"><code>[static]</code>QDate QDate::fromJulianDay(</a><a href="../../G/QtGlobal/QtGlobal.md#typedef-qint64">qint64</a> <em>jd</em>)</li>
+<li><a href="#static-qdate-qdate-fromstring-const-qstring-s-qstring-qstring-md-string-qt-dateformat-q-qt-namespace-qt-namespace-md-dateformat-enum-format-qt-textdate"><code>[static]</code>QDate QDate::fromString(const </a><a href="../../S/QString/QString.md">QString</a> &amp;<em>string</em>, <a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::DateFormat</a> <em>format</em> = Qt::TextDate)</li>
+<li><a href="#static-qdate-qdate-fromstring-const-qstring-s-qstring-qstring-md-string-const-qstring-s-qstring-qstring-md-format"><code>[static]</code>QDate QDate::fromString(const </a><a href="../../S/QString/QString.md">QString</a> &amp;<em>string</em>, const <a href="../../S/QString/QString.md">QString</a> &amp;<em>format</em>)</li>
+<li><a href="#static-qdate-qdate-fromstring-const-qstring-s-qstring-qstring-md-string-const-qstring-s-qstring-qstring-md-format-qcalendar-c-qcalendar-qcalendar-md-cal"><code>[static]</code>QDate QDate::fromString(const </a><a href="../../S/QString/QString.md">QString</a> &amp;<em>string</em>, const <a href="../../S/QString/QString.md">QString</a> &amp;<em>format</em>, <a href="../../C/QCalendar/QCalendar.md">QCalendar</a> <em>cal</em>)</li>
+<li><a href="#void-qdate-getdate-int-year-int-month-int-day-const">void QDate::getDate(int <em>*year</em>, int <em>*month</em>, int <em>*day</em>) const</a></li>
+<li><a href="#static-bool-qdate-isleapyear-int-year"><code>[static]</code>bool QDate::isLeapYear(int <em>year</em>)</a></li>
+<li><a href="#bool-qdate-isnull-const">bool QDate::isNull() const</a></li>
+<li><a href="#bool-qdate-isvalid-const">bool QDate::isValid() const</a></li>
+<li><a href="#static-bool-qdate-isvalid-int-year-int-month-int-day"><code>[static]</code>bool QDate::isValid(int <em>year</em>, int <em>month</em>, int <em>day</em>)</a></li>
+<li><a href="#int-qdate-month-const">int QDate::month() const</a></li>
+<li><a href="#int-qdate-month-qcalendar-c-qcalendar-qcalendar-md-cal-const">int QDate::month(</a><a href="../../C/QCalendar/QCalendar.md">QCalendar</a> <em>cal</em>) const</li>
+<li><a href="#bool-qdate-setdate-int-year-int-month-int-day">bool QDate::setDate(int <em>year</em>, int <em>month</em>, int <em>day</em>)</a></li>
+<li><a href="#bool-qdate-setdate-int-year-int-month-int-day-qcalendar-c-qcalendar-qcalendar-md-cal">bool QDate::setDate(int <em>year</em>, int <em>month</em>, int <em>day</em>, </a><a href="../../C/QCalendar/QCalendar.md">QCalendar</a> <em>cal</em>)</li>
+<li><a href="#qint64-g-qtglobal-qtglobal-md-typedef-qint64-qdate-tojulianday-const-1">qint64</a></li>
+<li><a href="#qstring-s-qstring-qstring-md-qdate-tostring-qt-dateformat-q-qt-namespace-qt-namespace-md-dateformat-enum-format-qt-textdate-const-4">QString</a></li>
+<li><a href="#int-qdate-weeknumber-int-yearnumber-nullptr-const">int QDate::weekNumber(int *<em>yearNumber</em> = nullptr) const</a></li>
+<li><a href="#int-qdate-year-const">int QDate::year() const</a></li>
+<li><a href="#int-qdate-year-qcalendar-c-qcalendar-qcalendar-md-cal-const">int QDate::year(</a><a href="../../C/QCalendar/QCalendar.md">QCalendar</a> <em>cal</em>) const</li>
+<li><a href="#bool-qdate-operator-const-qdate-d-const">bool QDate::operator!=(const QDate &amp;<em>d</em>) const</a></li>
+<li><a href="#bool-qdate-operator-const-qdate-d-const">bool QDate::operator&lt;(const QDate &amp;<em>d</em>) const</a></li>
+<li><a href="#bool-qdate-operator-const-qdate-d-const">bool QDate::operator&lt;=(const QDate &amp;<em>d</em>) const</a></li>
+<li><a href="#bool-qdate-operator-const-qdate-d-const">bool QDate::operator==(const QDate &amp;<em>d</em>) const</a></li>
+<li><a href="#bool-qdate-operator-const-qdate-d-const">bool QDate::operator&gt;(const QDate &amp;<em>d</em>) const</a></li>
+<li><a href="#bool-qdate-operator-const-qdate-d-const">bool QDate::operator&gt;=(const QDate &amp;<em>d</em>) const</a></li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-cheng-yuan-han-shu-1">相关非成员函数</a><ul>
+<li><a href="#qdatastream-qdatastream-qdatastream-md-operator-qdatastream-qdatastream-qdatastream-md-out-const-qdate-date">QDataStream</a></li>
+<li><a href="#qdatastream-qdatastream-qdatastream-md-operator-qdatastream-qdatastream-qdatastream-md-in-qdate-date-1">QDataStream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="qdate-class">QDate Class</span><a href="#qdate-class" class="header-anchor">#</a></h1><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件</td>
+<td>#include <code>&lt;QDate&gt;</code></td>
+</tr>
+<tr>
+<td>qmake</td>
+<td>QT += core</td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong> 该类提供的所有函数都是可重入的。</p>
+<h2><span id="gong-gong-cheng-yuan-lei-xing">公共成员类型</span><a href="#gong-gong-cheng-yuan-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><a href="#enum-qdatemonthnametype">MonthNameType</a>{ DateFormat, StandaloneFormat }</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#qdateqdateint-y-int-m-int-d">QDate</a></strong>(int <em>y</em>, int <em>m</em>, int <em>d</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qdateqdate">QDate</a></strong>()</td>
+</tr>
+<tr>
+<td>QDate</td>
+<td><strong><a href="#qdate-qdateadddaysqint64-ndays-const">addDays</a></strong>(qint64 <em>ndays</em>) const</td>
+</tr>
+<tr>
+<td>QDate</td>
+<td><strong><a href="#qdate-qdateaddmonthsint-nmonths-qcalendar-cal-const">addMonths</a></strong>(int <em>nmonths</em>, QCalendar <em>cal</em>) const</td>
+</tr>
+<tr>
+<td>QDate</td>
+<td><strong><a href="#qdate-qdateaddmonthsint-nmonths-const">addMonths</a></strong>(int <em>nmonths</em>) const</td>
+</tr>
+<tr>
+<td>QDate</td>
+<td><strong><a href="#qdate-qdateaddyearsint-nyears-qcalendar-cal-const">addYears</a></strong>(int <em>nyears</em>, QCalendar <em>cal</em>) const</td>
+</tr>
+<tr>
+<td>QDate</td>
+<td><strong><a href="#qdate-qdateaddyearsint-nyears-const">addYears</a></strong>(int <em>nyears</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdatedayqcalendar-cal-const">day</a></strong>(QCalendar <em>cal</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdateday-const">day</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdatedayofweekqcalendar-cal-const">dayOfWeek</a></strong>(QCalendar <em>cal</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdatedayofweek-const">dayOfWeek</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdatedayofyearqcalendar-cal-const">dayOfYear</a></strong>(QCalendar <em>cal</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdatedayofyear-const">dayOfYear</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdatedaysinmonthqcalendar-cal-const">daysInMonth</a></strong>(QCalendar <em>cal</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdatedaysinmonth-const">daysInMonth</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdatedaysinyearqcalendar-cal-const">daysInYear</a></strong>(QCalendar <em>cal</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdatedaysinyear-const">daysInYear</a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="#qint64-qdatedaystoconst-qdate-d-const">daysTo</a></strong>(const QDate &amp;<em>d</em>) const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="#qdatetime-qdateendofdayqttimespec-spec--qtlocaltime-int-offsetseconds--0-const">endOfDay</a></strong>(Qt::TimeSpec <em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0) const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="#qdatetime-qdateendofdayconst-qtimezone-zone-const">endOfDay</a></strong>(const QTimeZone &amp;<em>zone</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#void-qdategetdateint-year-int-month-int-day-const">getDate</a></strong>(int <em>*year</em>, int <em>*month</em>, int <em>*day</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qdateisnull-const">isNull</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qdateisvalid-const">isValid</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdatemonthqcalendar-cal-const">month</a></strong>(QCalendar <em>cal</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdatemonth-const">month</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qdatesetdateint-year-int-month-int-day">setDate</a></strong>(int <em>year</em>, int <em>month</em>, int <em>day</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qdatesetdateint-year-int-month-int-day-qcalendar-cal">setDate</a></strong>(int <em>year</em>, int <em>month</em>, int <em>day</em>, QCalendar <em>cal</em>)</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="#qdatetime-qdateendofdayqttimespec-spec--qtlocaltime-int-offsetseconds--0-const">startOfDay</a></strong>(Qt::TimeSpec <em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0) const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="#qdatetime-qdatestartofdayconst-qtimezone-zone-const">startOfDay</a></strong>(const QTimeZone &amp;<em>zone</em>) const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="#qint64-qdatetojulianday-const">toJulianDay</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qdatetostringqtdateformat-format--qttextdate-const">toString</a></strong>(Qt::DateFormat <em>format</em> = Qt::TextDate) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qdatetostringconst-qstring-format-const">toString</a></strong>(const QString &amp;<em>format</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qdatetostringconst-qstring-format-qcalendar-cal-const">toString</a></strong>(const QString &amp;<em>format</em>, QCalendar <em>cal</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qdatetostringqstringview-format-const">toString</a></strong>(QStringView <em>format</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qdatetostringqstringview-format-qcalendar-cal-const">toString</a></strong>(QStringView <em>format</em>, QCalendar <em>cal</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdateweeknumberint-yearnumber--nullptr-const">weekNumber</a></strong>(int *<em>yearNumber</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdateyearqcalendar-cal-const">year</a></strong>(QCalendar <em>cal</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qdateyear-const">year</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qdateoperatorconst-qdate-d-const">operator!=</a></strong>(const QDate &amp;<em>d</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qdateoperatorconst-qdate-d-const">operator&lt;</a></strong>(const QDate &amp;<em>d</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qdateoperatorconst-qdate-d-const">operator&lt;=</a></strong>(const QDate &amp;<em>d</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qdateoperatorconst-qdate-d-const">operator==</a></strong>(const QDate &amp;<em>d</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qdateoperatorconst-qdate-d-const">operator&gt;</a></strong>(const QDate &amp;<em>d</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qdateoperatorconst-qdate-d-const">operator&gt;=</a></strong>(const QDate &amp;<em>d</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QDate</td>
+<td><strong><a href="#static-qdate-qdatecurrentdate">currentDate</a></strong>()</td>
+</tr>
+<tr>
+<td>QDate</td>
+<td><strong><a href="#staticqdate-qdatefromjuliandayqint64-jd">fromJulianDay</a></strong>(qint64 <em>jd</em>)</td>
+</tr>
+<tr>
+<td>QDate</td>
+<td><strong><a href="#staticqdate-qdatefromstringconst-qstring-string-qtdateformat-format--qttextdate">fromString</a></strong>(const QString &amp;<em>string</em>, Qt::DateFormat <em>format</em> = Qt::TextDate)</td>
+</tr>
+<tr>
+<td>QDate</td>
+<td><strong><a href="#staticqdate-qdatefromstringconst-qstring-string-const-qstring-format">fromString</a></strong>(const QString &amp;<em>string</em>, const QString &amp;<em>format</em>)</td>
+</tr>
+<tr>
+<td>QDate</td>
+<td><strong><a href="#staticqdate-qdatefromstringconst-qstring-string-const-qstring-format-qcalendarcal">fromString</a></strong>(const QString &amp;<em>string</em>, const QString &amp;<em>format</em>, QCalendar <em>cal</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#staticbool-qdateisleapyearint-year">isLeapYear</a></strong>(int <em>year</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#staticbool-qdateisvalidint-year-int-month-int-day">isValid</a></strong>(int <em>year</em>, int <em>month</em>, int <em>day</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-cheng-yuan-han-shu">相关非成员函数</span><a href="#xiang-guan-fei-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QDataStream &amp;</td>
+<td><strong><a href="#../QDataStream/QDataStream.md#qdatastream-operatorqdatastream-out-const-qdate-date">operator&lt;&lt;</a></strong>(QDataStream &amp;<em>out</em>, const QDate &amp;<em>date</em>)</td>
+</tr>
+<tr>
+<td>QDataStream &amp;</td>
+<td><strong><a href="#../QDataStream/QDataStream.md#qdatastream-operatorqdatastream-in-qdate-date">operator&gt;&gt;</a></strong>(QDataStream &amp;<em>in</em>, QDate &amp;<em>date</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>无论系统的日历和地域设置如何，一个<code>QDate</code>对象代表特定的一天。它可以告诉您某一天的年、月、日，其对应着格里高利历或者您提供的<code>QCalendar</code>。</p>
+<p>一个<code>QDate</code>对象一般由显式给定的年月日创建。注意<code>QDate</code>将1~99的年数保持，不做任何偏移。静态函数<a href="#static-qdate-qdatecurrentdate">currentDate</a>()会创建一个从系统时间读取的<code>QDate</code>对象。显式的日期设定也可以使用 <a href="#bool-qdatesetdateint-year-int-month-int-day">setDate</a>()。<a href="#staticqdate-qdatefromstringconst-qstring-string-qtdateformat-format--qttextdate">fromString</a>() 函数返回一个由日期字符串和日期格式确定的日期。</p>
+<p><a href="#int-qdateyear-const">year</a>()、<a href="(#int-qdatemonth-const)">month</a>()、<a href="#int-qdateday-const">day</a>() 函数可以访问年月日。另外，还有 <a href="#int-qdatedayofweek-const">dayOfWeek()</a>、<a href="#int-qdatedayofyear-const">dayOfYear()</a> 返回一周或一年中的天数。文字形式的信息可以通过 <a href="#qstring-qdatetostringqtdateformat-format--qttextdate-const">toString</a>()获得。天数和月数可以由 <a href="../../L/QLocale/QLocale.md">QLocale</a> 类映射成文字。</p>
+<p>QDate 提供比较两个对象的全套操作，小于意味着日期靠前。</p>
+<p>您可以通过 <a href="#qdate-qdateadddaysqint64-ndays-const">addDays</a>() 给日期增减几天，同样的还有 <a href="#qdate-qdateaddmonthsint-nmonths-qcalendar-cal-const">addMonths</a>()、<a href="#qdate-qdateaddyearsint-nyears-qcalendar-cal-const">addYears</a>() 增减几个月、几年。<a href="#qint64-qdatedaystoconst-qdate-d-const">daysTo</a>() 函数返回两个日期相距的天数。</p>
+<p><a href="#int-qdatedaysinmonth-const">daysInMonth</a>() 和 <a href="#int-qdatedaysinyear-const">daysInYear</a>() 函数返回一个月、一年里有几天。<a href="#staticbool-qdateisleapyearint-year">isLeapYear</a>() 用于判断闰年。</p>
+<h3><span id="te-bie-zhu-yi">特别注意</span><a href="#te-bie-zhu-yi" class="header-anchor">#</a></h3><ul>
+<li><p>年数没有0<br>第0年的日期是非法的。公元后是正年份，公元前是负年份。<code>QDate(1, 1, 1)</code> 的前一天是 <code>QDate(-1, 12, 31)</code>。</p>
+</li>
+<li><p>合法的日期范围<br>日期内部存储为儒略日天号，使用连续的整数记录天数，公元前4714年11月24日是格里高利历第0天（儒略历的公元前4713年1月1日）。除了可以准确有效地表示绝对日期，此类也可以用来做不同日历系统的转换。儒略历天数可以通过 <a href="#qint64-qdatetojulianday-const">QDate::toJulianDay</a>() 和 <a href="#staticqdate-qdatefromjuliandayqint64-jd">QDate::fromJulianDay</a>()读写。<br>由于技术原因，储存的儒略历天号在 -784350574879~784354017364 之间，大概是公元前2亿年到公元后2亿年之间。</p>
+</li>
+</ul>
+<p>另请参阅：<a href="../../T/QTime/QTime.md">QTime</a>、<a href="../QDateTime/QDateTime.md">QDateTime</a>、<a href="../../C/QCalendar/QCalendar.md">QCalendar</a>、<a href="../QDateTime/QDateTime.md#enum-YearRange">QDateTime::YearRange</a>、<a href="../QDateEdit/QDateEdit.md">QDateEdit</a>、<a href="../QDateTimeEdit/QDateTimeEdit.md">QDateTimeEdit</a> 和 <a href="../QCalendarWidget/QCalendarWidget.md">QCalendarWidget</a>。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qdate-monthnametype">enum QDate::MonthNameType</span><a href="#enum-qdate-monthnametype" class="header-anchor">#</a></h3><p>此枚举描述字符串中月份名称的表示类型</p>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>数值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QDate::DateFormat</code></td>
+<td><code>0</code></td>
+<td>用于日期到字符串格式化。</td>
+</tr>
+<tr>
+<td><code>QDate::StandaloneFormat</code></td>
+<td><code>1</code></td>
+<td>用于枚举月份和一周七天。通常单独的名字用首字母大写的单数形式书写。</td>
+</tr>
+</tbody></table>
+<p>此枚举在Qt 4.5中引入或修改。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qstring-qdate-tostring-qstringview-format-const"> QDate::toString( <em>format</em>) const</span><a href="#qstring-qdate-tostring-qstringview-format-const" class="header-anchor">#</a></h3><h3><span id="qstring-qdate-tostring-qstringview-format-qcalendar-cal-const"> QDate::toString( <em>format</em>,  <em>cal</em>) const</span><a href="#qstring-qdate-tostring-qstringview-format-qcalendar-cal-const" class="header-anchor">#</a></h3><h3><span id="qstring-qdate-tostring-const-qstring-amp-format-const"> QDate::toString(const  &amp;<em>format</em>) const</span><a href="#qstring-qdate-tostring-const-qstring-amp-format-const" class="header-anchor">#</a></h3><h3><span id="qstring-qdate-tostring-const-qstring-amp-format-qcalendar-cal-const"> QDate::toString(const  &amp;<em>format</em>,  <em>cal</em>) const</span><a href="#qstring-qdate-tostring-const-qstring-amp-format-qcalendar-cal-const" class="header-anchor">#</a></h3><p>返回字符串形式的日期。 参数<em>format</em>控制输出的格式。如果传入参数<em>cal</em>, 它决定了使用的日历系统，默认是格里高利历。</p>
+<p>日期格式的表示如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">占位符</th>
+<th align="center">输出格式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">d</td>
+<td align="center">无占位0的日期 (1 to 31)</td>
+</tr>
+<tr>
+<td align="center">dd</td>
+<td align="center">有占位0的日期 (01 to 31)</td>
+</tr>
+<tr>
+<td align="center">ddd</td>
+<td align="center">简写的一周七天名称(例如 ‘Mon’ to ‘Sun’)。使用系统地域设置来格式化, 也就是 <a href="../../L/QLocale/QLocale.md#system">QLocale::system</a>()</td>
+</tr>
+<tr>
+<td align="center">dddd</td>
+<td align="center">长版的一周七天名称 (例如 ‘Monday’ to ‘Sunday’)。使用系统地域设置来格式化, 也就是 <a href="../../L/QLocale/QLocale.md#system">QLocale::system</a>()</td>
+</tr>
+<tr>
+<td align="center">M</td>
+<td align="center">无占位0的月份 (1 to 12)</td>
+</tr>
+<tr>
+<td align="center">MM</td>
+<td align="center">有占位0的月份 (01 to 12)</td>
+</tr>
+<tr>
+<td align="center">MMM</td>
+<td align="center">缩写的月份名称 (例如 ‘Jan’ to ‘Dec’)。使用系统地域设置来格式化, 也就是 <a href="../../L/QLocale/QLocale.md#system">QLocale::system</a>()</td>
+</tr>
+<tr>
+<td align="center">MMMM</td>
+<td align="center">长版的月份名称 (例如 ‘January’ to ‘December’)。使用系统地域设置来格式化, 也就是 <a href="../../L/QLocale/QLocale.md#system">QLocale::system</a>()</td>
+</tr>
+<tr>
+<td align="center">yy</td>
+<td align="center">两位数年份 (00 to 99)</td>
+</tr>
+<tr>
+<td align="center">yyyy</td>
+<td align="center">四位数年份。 如果是负数，加上符号是五个字符</td>
+</tr>
+</tbody></table>
+<p>单引号包裹的内容将会一字不差地放进输出到字符串中（不带外面的单引号），尽管包含上述格式占位符。连续两个单引号(‘’)会被转义成一个单引号输出。所有其他字符不会被转义，将原封不动输出。</p>
+<p>没有分隔符的多个占位符（例如 “ddMM”）受支持，但要慎用。因为结果的可读性不好，容易引发歧义（例如难以区分“dM”的输出”212”是清2.12还是21,2）</p>
+<p>假设今天是1969年7月20日，下面是一些格式字符串的例子</p>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="center">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">dd.MM.yyyy</td>
+<td align="center">20.07.1969</td>
+</tr>
+<tr>
+<td align="center">ddd MMMM d yy</td>
+<td align="center">Sun July 20 69</td>
+</tr>
+<tr>
+<td align="center">‘The day is’ dddd</td>
+<td align="center">The day is Sunday</td>
+</tr>
+</tbody></table>
+<p>如果日期非法，会返回空字符串。</p>
+<p><strong>注意：</strong> 如果需要本地化的日期表达, 请使用 <a href="../../L/QLocale/QLocale.md#system">QLocale::system</a>().<a href="#qstring-qdatetostringconst-qstring-format-const">toString</a>()，因为 QDate 将在 Qt 6 使用英文表达（C语言风格）。</p>
+<p><strong>另请参阅：</strong><a href="#staticqdate-qdatefromstringconst-qstring-string-const-qstring-format">fromString</a>()、<a href="../QDateTime/QDateTime.md#toString">QDateTime::toString</a>()、<a href="../QTime/QTime.md#toString">QTime::toString</a>() 和 <a href="../../L/QLocale/QLocale.md#toString">QLocale::toString</a>()。</p>
+<hr>
+<h3><span id="qdatetime-qdate-endofday-qt-timespec-spec-qt-localtime-int-offsetseconds-0-const"> QDate::endOfDay( <em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0) const</span><a href="#qdatetime-qdate-endofday-qt-timespec-spec-qt-localtime-int-offsetseconds-0-const" class="header-anchor">#</a></h3><h3><span id="qdatetime-qdate-endofday-const-qtimezone-amp-zone-const"> QDate::endOfDay(const  &amp;<em>zone</em>) const</span><a href="#qdatetime-qdate-endofday-const-qtimezone-amp-zone-const" class="header-anchor">#</a></h3><p>返回这一天的最后一刻的时间。通常来说，是午夜前1ms：然而，如果时区转换让这一天跨过午夜（如夏令时），返回的是真实的最后一刻时间。这种情况只可能在使用时区参数<a href="../../T/QTimeZone/QTimeZone.md">QTimeZone</a> <em>zone</em>或者本地时间参数 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#enum-TimeSpec">Qt::LocalTime</a> <em>spec</em>时发生。</p>
+<p>参数 <em>offsetSeconds</em> 会被忽略，除非参数 <em>spec</em> 为 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#enum-TimeSpec">Qt::OffsetFromUTC</a>，其表示出了时区信息。如果UTC和那个时区间没有过渡，一天的结束是 <a href="../QTime/QTime.md">QTime</a>(23, 59, 59, 999)。</p>
+<p>在罕见的日期被整体跳过（只在从东向西跨越国际日期变更线时），返回可能是非法的。将 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#enum-TimeSpec">Qt::TimeZone</a> 作为 <em>spec</em> 参数传递 (而不是一个 <a href="../../T/QTimeZone/QTimeZone.md">QTimeZone</a>) 也会造成非法结果，如果那一时刻超过了 <a href="../QDateTime/QDateTime.md">QDateTime</a> 的表示范围。</p>
+<p>函数在 Qt 5.14 中引入。</p>
+<p><strong>另请参阅：</strong><a href="#qdatetime-qdateendofdayqttimespec-spec--qtlocaltime-int-offsetseconds--0-const">startOfDay</a>()。</p>
+<hr>
+<h3><span id="qdatetime-qdate-startofday-qt-timespec-spec-qt-localtime-int-offsetseconds-0-const"> QDate::startOfDay( <em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0) const</span><a href="#qdatetime-qdate-startofday-qt-timespec-spec-qt-localtime-int-offsetseconds-0-const" class="header-anchor">#</a></h3><h3><span id="qdatetime-qdate-startofday-const-qtimezone-amp-zone-const"> QDate::startOfDay(const  &amp;<em>zone</em>) const</span><a href="#qdatetime-qdate-startofday-const-qtimezone-amp-zone-const" class="header-anchor">#</a></h3><p>返回一天的开始时刻。通常来说应该是午夜那一时刻：然而，如果时区转换让这一天跨过午夜（如夏令时），返回的是真实的最早的一刻时间。这种情况只可能在使用时区参数<a href="../../T/QTimeZone/QTimeZone.md">QTimeZone</a> <em>zone</em>或者本地时间参数 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#enum-TimeSpec">Qt::LocalTime</a> <em>spec</em>时发生。</p>
+<p>参数 <em>offsetSeconds</em> 会被忽略，除非参数 <em>spec</em> 为 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#enum-TimeSpec">Qt::OffsetFromUTC</a>，其表示出了时区信息。如果UTC和那个时区间没有过渡，一天的结束是 <a href="../QTime/QTime.md">QTime</a>(0, 0)。</p>
+<p>在罕见的日期被整体跳过（只在从东向西跨越国际日期变更线时），返回可能是非法的。</p>
+<p>将 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#enum-TimeSpec">Qt::TimeZone</a> 作为 <em>spec</em> 参数传递 (而不是一个 <a href="../../T/QTimeZone/QTimeZone.md">QTimeZone</a>) 也会造成非法结果，如果那一时刻超过了 <a href="../QDateTime/QDateTime.md">QDateTime</a> 的表示范围。</p>
+<p>函数在 Qt 5.14 中引入。</p>
+<p><strong>另请参阅：</strong><a href="#qdatetime-qdateendofdayqttimespec-spec--qtlocaltime-int-offsetseconds--0-const">endOfDay</a>()。</p>
+<hr>
+<h3><span id="qdate-qdate-int-y-int-m-int-d">QDate::QDate(int <em>y</em>, int <em>m</em>, int <em>d</em>)</span><a href="#qdate-qdate-int-y-int-m-int-d" class="header-anchor">#</a></h3><p>从年月日构造对象，使用格里高利历。如果日期非法，对象不会修改，且 <a href="#bool-qdateisvalid-const">isValid</a>() 返回<code>false</code>。</p>
+<p><strong>警告：</strong> 1~99年就对应于它本身，不会偏移。第0年是非法的。</p>
+<p><strong>另请参阅：</strong><a href="#bool-qdateisvalid-const">isValid</a>() 和 <a href="../../C/QCalendar/QCalendar.md#dateFromParts">QCalendar::dateFromParts</a>()。</p>
+<hr>
+<h3><span id="qdate-qdate">QDate::QDate()</span><a href="#qdate-qdate" class="header-anchor">#</a></h3><p>构造一个空的日期，也是不可用的。</p>
+<p><strong>另请参阅：</strong><a href="#bool-qdateisnull-const">isNull</a>() 和 <a href="#bool-qdateisvalid-const">isValid</a>()。</p>
+<hr>
+<h3><span id="qdate-qdate-adddays-qint64-ndays-const">QDate QDate::addDays( <em>ndays</em>) const</span><a href="#qdate-qdate-adddays-qint64-ndays-const" class="header-anchor">#</a></h3><p>返回一个 <em>ndays</em> 天之后的新日期对象(负数意味着往前减日期)。</p>
+<p>当当前日期或新日期是非法日期时，返回非法日期。</p>
+<p><strong>另请参阅：</strong><a href="#qdate-qdateaddmonthsint-nmonths-const">addMonths</a>()、<a href="#qdate-qdateaddyearsint-nyears-const">addYears</a>() 和 <a href="#qint64-qdatedaystoconst-qdate-d-const">daysTo</a>()。</p>
+<hr>
+<h3><span id="qdate-qdate-addmonths-int-nmonths-const">QDate QDate::addMonths(int <em>nmonths</em>) const</span><a href="#qdate-qdate-addmonths-int-nmonths-const" class="header-anchor">#</a></h3><h3><span id="qdate-qdate-addmonths-int-nmonths-qcalendar-cal-const">QDate QDate::addMonths(int <em>nmonths</em>,  <em>cal</em>) const</span><a href="#qdate-qdate-addmonths-int-nmonths-qcalendar-cal-const" class="header-anchor">#</a></h3><p>返回一个 <em>nmonths</em> 月之后的新日期对象（负数意味着往前减日期）。</p>
+<p>如果传入 <em>cal</em> 参数，会使用日历系统使用，否则使用格里高利历。</p>
+<p><strong>注意：</strong> 如果新的日期超出年、月的合理范围，函数讲返回那个月中最接近的日期。</p>
+<p><strong>另请参阅：</strong><a href="#qdate-qdateadddaysqint64-ndays-const">addDays</a>() 和 <a href="#qdate-qdateaddyearsint-nyears-const">addYears</a>()。</p>
+<hr>
+<h3><span id="qdate-qdate-addyears-int-nyears-const">QDate QDate::addYears(int <em>nyears</em>) const</span><a href="#qdate-qdate-addyears-int-nyears-const" class="header-anchor">#</a></h3><h3><span id="qdate-qdate-addyears-int-nyears-qcalendar-cal-const">QDate QDate::addYears(int <em>nyears</em>,  <em>cal</em>) const</span><a href="#qdate-qdate-addyears-int-nyears-qcalendar-cal-const" class="header-anchor">#</a></h3><p>返回一个 <em>nyears</em> 年之后的新日期对象(负数意味着往前减日期)。</p>
+<p>如果传入 <em>cal</em> 参数，会使用日历系统使用，否则使用格里高利历。</p>
+<p><strong>注意：</strong> 如果新的日期超出年、月的合理范围，函数讲返回那个月中最接近的日期。</p>
+<p><strong>另请参阅：</strong><a href="#qdate-qdateadddaysqint64-ndays-const">addDays</a>() 和 <a href="#qdate-qdateaddmonthsint-nmonths-const">addMonths</a>()。</p>
+<hr>
+<h3><span id="static-qdate-qdate-currentdate"><code>[static]</code> QDate QDate::currentDate()</span><a href="#static-qdate-qdate-currentdate" class="header-anchor">#</a></h3><p>返回系统时钟所示的今天的日期对象。</p>
+<p><strong>另请参阅：</strong><a href="../QTime/QTime.md#currentTime">QTime::currentTime</a>() 和 <a href="../QDateTime/QDateTime.md#currentDateTime">QDateTime::currentDateTime</a>()。</p>
+<hr>
+<h3><span id="int-qdate-day-const">int QDate::day() const</span><a href="#int-qdate-day-const" class="header-anchor">#</a></h3><h3><span id="int-qdate-day-qcalendar-cal-const">int QDate::day( <em>cal</em>) const</span><a href="#int-qdate-day-qcalendar-cal-const" class="header-anchor">#</a></h3><p>返回日期是当前月份的第几天。</p>
+<p>如果传入 <em>cal</em> 参数，会使用此日历系统，否则使用格里高利历。非法日期则返回0。</p>
+<p>一些日历系统中，返回值可能大于7。</p>
+<p><strong>另请参阅：</strong><a href="#int-qdateyear-const">year</a>()、<a href="#int-qdatemonth-const">month</a>() 和 <a href="#int-qdatedayofweek-const">dayOfWeek</a>()。</p>
+<hr>
+<h3><span id="int-qdate-dayofweek-const">int QDate::dayOfWeek() const</span><a href="#int-qdate-dayofweek-const" class="header-anchor">#</a></h3><h3><span id="int-qdate-dayofweek-qcalendar-cal-const">int QDate::dayOfWeek( <em>cal</em>) const</span><a href="#int-qdate-dayofweek-qcalendar-cal-const" class="header-anchor">#</a></h3><p>返回日期是当前周的第几天（1=周一，7=周日）。</p>
+<p>如果传入 <em>cal</em> 参数，会使用此日历系统，否则使用格里高利历。非法日期则返回0。</p>
+<p>一些日历系统中，返回值可能大于7。</p>
+<p><strong>另请参阅：</strong><a href="#int-qdateday-const">day</a>()、<a href="#int-qdatedayofyear-const">dayOfYear</a>() 和 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#DayOfWeek-enum">Qt::DayOfWeek</a>。</p>
+<hr>
+<h3><span id="int-qdate-dayofyear-const">int QDate::dayOfYear() const</span><a href="#int-qdate-dayofyear-const" class="header-anchor">#</a></h3><h3><span id="int-qdate-dayofyear-qcalendar-cal-const">int QDate::dayOfYear( <em>cal</em>) const</span><a href="#int-qdate-dayofyear-qcalendar-cal-const" class="header-anchor">#</a></h3><p>返回日期是当年的第几天（第一天返回1）。</p>
+<p>如果传入 <em>cal</em> 参数，会使用此日历系统，否则使用格里高利历。非法日期则返回0。</p>
+<p><strong>另请参阅：</strong><a href="#int-qdateday-const">day</a>() 和 <a href="#int-qdatedayofweek-const">dayOfWeek</a>()。</p>
+<hr>
+<h3><span id="int-qdate-daysinmonth-const">int QDate::daysInMonth() const</span><a href="#int-qdate-daysinmonth-const" class="header-anchor">#</a></h3><h3><span id="int-qdate-daysinmonth-qcalendar-cal-const">int QDate::daysInMonth( <em>cal</em>) const</span><a href="#int-qdate-daysinmonth-qcalendar-cal-const" class="header-anchor">#</a></h3><p>返回日期对应的月份中总天数。</p>
+<p>如果传入 <em>cal</em> 参数，会使用此日历系统，否则使用格里高利历 (返回值是 28~31)。非法日期则返回0。</p>
+<p><strong>另请参阅：</strong><a href="#int-qdateday-const">day</a>() 和 <a href="#int-qdatedaysinyear-const">daysInYear</a>()。</p>
+<hr>
+<h3><span id="int-qdate-daysinyear-const">int QDate::daysInYear() const</span><a href="#int-qdate-daysinyear-const" class="header-anchor">#</a></h3><h3><span id="int-qdate-daysinyear-qcalendar-cal-const">int QDate::daysInYear( <em>cal</em>) const</span><a href="#int-qdate-daysinyear-qcalendar-cal-const" class="header-anchor">#</a></h3><p>返回日期对应的一年中的总天数。</p>
+<p>如果传入 <em>cal</em> 参数，会使用此日历系统，否则使用格里高利历 (返回值是 365 或 366)。非法日期则返回0。</p>
+<p><strong>另请参阅：</strong><a href="#int-qdateday-const">day</a>() 和 <a href="#int-qdatedaysinmonth-const">daysInMonth</a>()。</p>
+<hr>
+<h3><span id="qint64-qdate-daysto-const-qdate-amp-d-const"> QDate::daysTo(const QDate &amp;<em>d</em>) const</span><a href="#qint64-qdate-daysto-const-qdate-amp-d-const" class="header-anchor">#</a></h3><p>返回两个日期相差的天数 (<em>d</em> 日期靠前则返回为负)。</p>
+<p>如果比较的二者中有非法日期，返回0。</p>
+<p>示例:</p>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">QDate</span> d1(<span class="hljs-number">1995</span>, <span class="hljs-number">5</span>, <span class="hljs-number">17</span>);  // May <span class="hljs-number">17</span>, <span class="hljs-number">1995</span>
+<span class="hljs-attribute">QDate</span> d2(<span class="hljs-number">1995</span>, <span class="hljs-number">5</span>, <span class="hljs-number">20</span>);  // May <span class="hljs-number">20</span>, <span class="hljs-number">1995</span>
+<span class="hljs-attribute">d1</span>.daysTo(d2);          // returns <span class="hljs-number">3</span>
+<span class="hljs-attribute">d2</span>.daysTo(d1);          // returns -<span class="hljs-number">3</span></code></pre></div>
+
+<p><strong>另请参阅：</strong><a href="#qdate-qdateadddaysqint64-ndays-const">addDays</a>()。</p>
+<hr>
+<h3><span id="static-qdate-qdate-fromjulianday-qint64-jd"><code>[static]</code>QDate QDate::fromJulianDay( <em>jd</em>)</span><a href="#static-qdate-qdate-fromjulianday-qint64-jd" class="header-anchor">#</a></h3><p>将jd表示的儒略日解析为日期并返回。</p>
+<p><strong>另请参阅：</strong><a href="#qint64-qdatetojulianday-const">toJulianDay</a>()。</p>
+<hr>
+<h3><span id="static-qdate-qdate-fromstring-const-qstring-amp-string-qt-dateformat-format-qt-textdate"><code>[static]</code>QDate QDate::fromString(const  &amp;<em>string</em>,  <em>format</em> = Qt::TextDate)</span><a href="#static-qdate-qdate-fromstring-const-qstring-amp-string-qt-dateformat-format-qt-textdate" class="header-anchor">#</a></h3><p>返回  <em>string</em> 表示的  QDate 对象，非法字符串不会被解析。</p>
+<p>注意 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::TextDate</a>：建议使用英文的简写月份名称（例如 “Jan”）。尽管本地化的月份名称在 Qt 5 中也可使用，但它们会依赖于用户的区域设置。</p>
+<p><strong>注意：</strong> 对本地化的日期的支持，包括 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::SystemLocaleDate</a>、<a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::SystemLocaleShortDate</a>、<a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::SystemLocaleLongDate</a>、<a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::LocaleDate</a>、<a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::DefaultLocaleShortDate</a> 和 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::DefaultLocaleLongDate</a>，将在 Qt 6 被移除。使用 <a href="../../L/QLocale/QLocale.md#toDate">QLocale::toDate</a>() 代替。</p>
+<p><strong>另请参阅：</strong><a href="#qstring-qdatetostringconst-qstring-format-const">toString</a>() 和 <a href="../../L/QLocale/QLocale.md#toDate">QLocale::toDate</a>()。</p>
+<hr>
+<h3><span id="static-qdate-qdate-fromstring-const-qstring-amp-string-const-qstring-amp-format"><code>[static]</code>QDate QDate::fromString(const  &amp;<em>string</em>, const  &amp;<em>format</em>)</span><a href="#static-qdate-qdate-fromstring-const-qstring-amp-string-const-qstring-amp-format" class="header-anchor">#</a></h3><h3><span id="static-qdate-qdate-fromstring-const-qstring-amp-string-const-qstring-amp-format-qcalendar-cal"><code>[static]</code>QDate QDate::fromString(const  &amp;<em>string</em>, const  &amp;<em>format</em>,  <em>cal</em>)</span><a href="#static-qdate-qdate-fromstring-const-qstring-amp-string-const-qstring-amp-format-qcalendar-cal" class="header-anchor">#</a></h3><p>返回  <em>string</em> 表示的  QDate 对象，非法字符串不会被解析。</p>
+<p>如果传入 <em>cal</em> 参数，会使用此日历系统，否则使用格里高利历。下面的格式描述针对于格里高利历，其它日历可能不同。</p>
+<p>日期格式的表示如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">占位符</th>
+<th align="center">输出格式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">d</td>
+<td align="center">无占位0的日期 (1 to 31)</td>
+</tr>
+<tr>
+<td align="center">dd</td>
+<td align="center">有占位0的日期 (01 to 31)</td>
+</tr>
+<tr>
+<td align="center">ddd</td>
+<td align="center">简写的一周七天名称(例如 ‘Mon’ to ‘Sun’)。使用系统地域设置来格式化, 也就是 <a href="../../L/QLocale/QLocale.md#system">QLocale::system</a>()</td>
+</tr>
+<tr>
+<td align="center">dddd</td>
+<td align="center">长版的一周七天名称 (例如 ‘Monday’ to ‘Sunday’)。使用系统地域设置来格式化, 也就是 <a href="../../L/QLocale/QLocale.md#system">QLocale::system</a>()</td>
+</tr>
+<tr>
+<td align="center">M</td>
+<td align="center">无占位0的月份 (1 to 12)</td>
+</tr>
+<tr>
+<td align="center">MM</td>
+<td align="center">有占位0的月份 (01 to 12)</td>
+</tr>
+<tr>
+<td align="center">MMM</td>
+<td align="center">缩写的月份名称 (例如 ‘Jan’ to ‘Dec’)。使用系统地域设置来格式化, 也就是 <a href="../../L/QLocale/QLocale.md#system">QLocale::system</a>()</td>
+</tr>
+<tr>
+<td align="center">MMMM</td>
+<td align="center">长版的月份名称 (例如 ‘January’ to ‘December’)。使用系统地域设置来格式化, 也就是 <a href="../../L/QLocale/QLocale.md#system">QLocale::system</a>()</td>
+</tr>
+<tr>
+<td align="center">yy</td>
+<td align="center">两位数年份 (00 to 99)</td>
+</tr>
+<tr>
+<td align="center">yyyy</td>
+<td align="center">四位数年份。 如果是负数，加上符号是五个字符</td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong> 不行此函数的其他版, 日期和月份名必须使用用户本地语言。只有用户语言是英语时，英文名称才适用。</p>
+<p>所有其他字符将会被舍弃，单引号(‘’)包裹的内容，无论是否包含格式占位符也会被舍弃。例如：</p>
+<div class="code-wrapper"><pre><code class="hljs lasso">QDate <span class="hljs-built_in">date</span> = QDate<span class="hljs-type">::fromString</span>(<span class="hljs-string">"1MM12car2003"</span>, <span class="hljs-string">"d'MM'MMcaryyyy"</span>);
+<span class="hljs-comment">// date is 1 December 2003</span></code></pre></div>
+
+<p>如果字符串不符合格式，一个将返回一个非法的 QDate。不需要前面补0的格式是贪婪的，这意味着他们会读取两位数，尽管数字大小超出日期合法范围，并且会占据给后续格式读取的数字位置。例如，下面的日期可以表示1月30日，但M格式会捕获两位数字，导致日期返回非法：</p>
+<div class="code-wrapper"><pre><code class="hljs lasso">QDate <span class="hljs-built_in">date</span> = QDate<span class="hljs-type">::fromString</span>(<span class="hljs-string">"130"</span>, <span class="hljs-string">"Md"</span>); <span class="hljs-comment">// invalid</span></code></pre></div>
+
+<p>年月日中，没有出现在格式中的，将会使用如下默认值：</p>
+<table>
+<thead>
+<tr>
+<th align="center">字段</th>
+<th align="center">默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Year</td>
+<td align="center">1900</td>
+</tr>
+<tr>
+<td align="center">Month</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">Day</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+<p>下面是默认值的示例：</p>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">QDate</span>::fromString(<span class="hljs-string">"1.30"</span>, <span class="hljs-string">"M.d"</span>);           // January <span class="hljs-number">30</span> <span class="hljs-number">1900</span>
+<span class="hljs-attribute">QDate</span>::fromString(<span class="hljs-string">"20000110"</span>, <span class="hljs-string">"yyyyMMdd"</span>);  // January <span class="hljs-number">10</span>, <span class="hljs-number">2000</span>
+<span class="hljs-attribute">QDate</span>::fromString(<span class="hljs-string">"20000110"</span>, <span class="hljs-string">"yyyyMd"</span>);    // January <span class="hljs-number">10</span>, <span class="hljs-number">2000</span></code></pre></div>
+
+<p><strong>注意：</strong> 如果使用本地化的日期表达, 请使用 <a href="../../L/QLocale/QLocale.md#system">QLocale::system</a>().toDate(), 因为 QDate 将在 Qt 6使用英文表达 (C语言风格) 。</p>
+<p><strong>另请参阅：</strong><a href="#qstring-qdatetostringconst-qstring-format-const">toString</a>()、<a href="../QDateTime/QDateTime.md#fromString">QDateTime::fromString</a>()、<a href="../QTime/QTime.md#fromString">QTime::fromString</a>() 和 <a href="../../L/QLocale/QLocale.md#toDate">QLocale::toDate</a>()。</p>
+<hr>
+<h3><span id="void-qdate-getdate-int-year-int-month-int-day-const">void QDate::getDate(int <em>*year</em>, int <em>*month</em>, int <em>*day</em>) const</span><a href="#void-qdate-getdate-int-year-int-month-int-day-const" class="header-anchor">#</a></h3><p>读取日期，储存到 <em>*year</em>, <em>*month</em> 和 <em>*day</em>。指针可以是空指针。</p>
+<p>如果日期非法，返回的是0。</p>
+<p><strong>注意：</strong> 在 Qt 5.7 之前, 这个函数不是常函数。</p>
+<p>此函数在 Qt 4.5 中引入。</p>
+<p><strong>另请参阅：</strong><a href="#int-qdateyear-const">year</a>()，<a href="#int-qdatemonth-const">month</a>()，<a href="#int-qdateday-const">day</a>()，<a href="#bool-qdateisvalid-const">isValid</a>() 和 <a href="../../C/QCalendar/QCalendar.md#partsFromDate">QCalendar::partsFromDate</a>()。</p>
+<hr>
+<h3><span id="static-bool-qdate-isleapyear-int-year"><code>[static]</code>bool QDate::isLeapYear(int <em>year</em>)</span><a href="#static-bool-qdate-isleapyear-int-year" class="header-anchor">#</a></h3><p>判断是否是格里高利历的闰年，是则返回 <code>true</code>。</p>
+<p><strong>另请参阅：</strong><a href="../../C/QCalendar/QCalendar.md#isLeapYear">QCalendar::isLeapYear</a>()。</p>
+<hr>
+<h3><span id="bool-qdate-isnull-const">bool QDate::isNull() const</span><a href="#bool-qdate-isnull-const" class="header-anchor">#</a></h3><p>判断日期是否为空，日期为空则返回 <code>true</code>。 空日期是非法的。</p>
+<p><strong>注意：</strong> 行为与 <a href="#bool-qdateisvalid-const">isValid</a>() 等价。</p>
+<p><strong>另请参阅：</strong><a href="#bool-qdateisvalid-const">isValid</a>()。</p>
+<hr>
+<h3><span id="bool-qdate-isvalid-const">bool QDate::isValid() const</span><a href="#bool-qdate-isvalid-const" class="header-anchor">#</a></h3><p>判断日期是否合法，合法返回 <code>true</code>。</p>
+<p><strong>另请参阅：</strong><a href="#bool-qdateisnull-const">isNull</a>() 和 <a href="../../C/QCalendar/QCalendar.md#isDateValid">QCalendar::isDateValid</a>()。</p>
+<hr>
+<h3><span id="static-bool-qdate-isvalid-int-year-int-month-int-day"><code>[static]</code>bool QDate::isValid(int <em>year</em>, int <em>month</em>, int <em>day</em>)</span><a href="#static-bool-qdate-isvalid-int-year-int-month-int-day" class="header-anchor">#</a></h3><p>是上述方法的重载。</p>
+<p>判断日期（以格里高利历解析）是否合法，合法返回 <code>true</code>。</p>
+<p>例如：</p>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">QDate</span>::isValid(<span class="hljs-number">2002</span>, <span class="hljs-number">5</span>, <span class="hljs-number">17</span>);  // true
+<span class="hljs-attribute">QDate</span>::isValid(<span class="hljs-number">2002</span>, <span class="hljs-number">2</span>, <span class="hljs-number">30</span>);  // false (<span class="hljs-number">2</span>月没有<span class="hljs-number">20</span>日)
+<span class="hljs-attribute">QDate</span>::isValid(<span class="hljs-number">2004</span>, <span class="hljs-number">2</span>, <span class="hljs-number">29</span>);  // true (是闰年)
+<span class="hljs-attribute">QDate</span>::isValid(<span class="hljs-number">2000</span>, <span class="hljs-number">2</span>, <span class="hljs-number">29</span>);  // true (是闰年)
+<span class="hljs-attribute">QDate</span>::isValid(<span class="hljs-number">2006</span>, <span class="hljs-number">2</span>, <span class="hljs-number">29</span>);  // false (不是闰年)
+<span class="hljs-attribute">QDate</span>::isValid(<span class="hljs-number">2100</span>, <span class="hljs-number">2</span>, <span class="hljs-number">29</span>);  // false (不是闰年)
+<span class="hljs-attribute">QDate</span>::isValid(<span class="hljs-number">1202</span>, <span class="hljs-number">6</span>, <span class="hljs-number">6</span>);   // true (即使这一年在格里高利历之前)</code></pre></div>
+
+<p><strong>另请参阅：</strong><a href="#bool-qdateisnull-const">isNull</a>()，<a href="#setDate">setDate</a>() 和 <a href="../../C/QCalendar/QCalendar.md#isDateValid">QCalendar::isDateValid</a>()。</p>
+<hr>
+<h3><span id="int-qdate-month-const">int QDate::month() const</span><a href="#int-qdate-month-const" class="header-anchor">#</a></h3><h3><span id="int-qdate-month-qcalendar-cal-const">int QDate::month( <em>cal</em>) const</span><a href="#int-qdate-month-qcalendar-cal-const" class="header-anchor">#</a></h3><p>返回月份编号，第一个月返回1。</p>
+<p>如果传入 <em>cal</em> 参数，会使用日历系统使用，否则使用格里高利历。</p>
+<p>对于格里高利历，1月就是咱中文说的阳历一月。</p>
+<p>对于非法日期返回0。注意有一些日历中，月份可能多于12个。</p>
+<p><strong>另请参阅：</strong><a href="#int-qdateyear-const">year</a>() 和 <a href="#int-qdateday-const">day</a>()。</p>
+<hr>
+<h3><span id="bool-qdate-setdate-int-year-int-month-int-day">bool QDate::setDate(int <em>year</em>, int <em>month</em>, int <em>day</em>)</span><a href="#bool-qdate-setdate-int-year-int-month-int-day" class="header-anchor">#</a></h3><p>设置对应的日期，使用的是格里高利历。 如果设置的日期合法，将返回 <code>true</code>，否则日期标记为非法并返回 <code>false</code>。</p>
+<p>此函数在 Qt 4.2 中引入。</p>
+<p><strong>另请参阅：</strong><a href="#bool-qdateisvalid-const">isValid</a>() 和 <a href="../../C/QCalendar/QCalendar.md#dateFromParts">QCalendar::dateFromParts</a>()。</p>
+<hr>
+<h3><span id="bool-qdate-setdate-int-year-int-month-int-day-qcalendar-cal">bool QDate::setDate(int <em>year</em>, int <em>month</em>, int <em>day</em>,  <em>cal</em>)</span><a href="#bool-qdate-setdate-int-year-int-month-int-day-qcalendar-cal" class="header-anchor">#</a></h3><p>设置对应的日期，使用的是cal对应的日历。如果设置的日期合法，将返回 <code>true</code>，否则日期标记为非法并返回 <code>false</code>。</p>
+<p>函数在 Qt 5.14 中引入。</p>
+<p><strong>另请参阅：</strong><a href="#bool-qdateisvalid-const">isValid</a>() 和 <a href="../../C/QCalendar/QCalendar.md#dateFromParts">QCalendar::dateFromParts</a>()。</p>
+<hr>
+<h3><span id="qint64-qdate-tojulianday-const"> QDate::toJulianDay() const</span><a href="#qint64-qdate-tojulianday-const" class="header-anchor">#</a></h3><p>将日期转换为儒略日。</p>
+<p><strong>另请参阅：</strong><a href="#staticqdate-qdatefromjuliandayqint64-jd">fromJulianDay</a>()。</p>
+<hr>
+<h3><span id="qstring-qdate-tostring-qt-dateformat-format-qt-textdate-const"> QDate::toString( <em>format</em> = Qt::TextDate) const</span><a href="#qstring-qdate-tostring-qt-dateformat-format-qt-textdate-const" class="header-anchor">#</a></h3><p>这是一个重载函数，返回日期的字符串。 <em>format</em> 参数决定字符串格式。</p>
+<p>如果 <em>format</em> 是 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::TextDate</a>，日期使用默认格式。日期月份将使用系统地域设置，也就是 <a href="../../L/QLocale/QLocale.md#system">QLocale::system</a>()。一个例子是 “Sat May 20 1995”。</p>
+<p>如果 <em>format</em> 是 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::ISODate</a>，字符串按照 ISO 8601 格式展开，格式形如 yyyy-MM-dd。例如2002-01-05</p>
+<p><em>format</em> 中的 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::SystemLocaleDate</a>，<a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::SystemLocaleShortDate</a> 和<a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::SystemLocaleLongDate</a> 将在 Qt 6 中删除。这些应当由 <a href="../../L/QLocale/QLocale.md#toString">QLocale::system().toString(date, QLocale::ShortFormat)</a> 或 <a href="../../L/QLocale/QLocale.md#toString">QLocale::system().toString(date, QLocale::LongFormat)</a> 替代。</p>
+<p><em>format</em> 中的 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::LocaleDate</a>，<a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::DefaultLocaleShortDate</a> 和<a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::DefaultLocaleLongDate</a> 将在 Qt 6 中删除。这些应当由  <a href="../../L/QLocale/QLocale.md#toString">QLocale().toString(date, QLocale::ShortFormat)</a> 或 <a href="../../L/QLocale/QLocale.md#toString">QLocale().toString(date, QLocale::LongFormat)</a>  替代。</p>
+<p>如果 <em>format</em> 是 <a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::RFC2822Date</a>, 字符串会转换成 <a target="_blank" rel="noopener" href="http://www.rfc-editor.org/rfc/rfc2822.txt">RFC 2822</a> 兼容的格式。示例其一是 “20 May 1995”。</p>
+<p>如果日期非法，返回空字符串。</p>
+<p><strong>警告：</strong>  <a href="../../Q/Qt_Namespace/Qt_Namespace.md#DateFormat-enum">Qt::ISODate</a> 格式只在0~9999年可用。</p>
+<p><strong>另请参阅：</strong><a href="#staticqdate-qdatefromstringconst-qstring-string-const-qstring-format">fromString</a>() 和 <a href="../../L/QLocale/QLocale.md#toString">QLocale::toString</a>()。</p>
+<hr>
+<h3><span id="int-qdate-weeknumber-int-yearnumber-nullptr-const">int QDate::weekNumber(int *<em>yearNumber</em> = nullptr) const</span><a href="#int-qdate-weeknumber-int-yearnumber-nullptr-const" class="header-anchor">#</a></h3><p>返回 ISO 8601 周序号 (1 到 53)。对于非法日期返回0。</p>
+<p>如果  <em>yearNumber</em>  不是 <code>nullptr</code>(默认参数), 年号返回值存于 <code>*yearNumber</code>。</p>
+<p>根据 ISO 8601, 格里高利历中，跨年的周属于天数更多的那年。 由于 ISO 8601 规定一周始于周一，周三在哪一年这周就属于哪一年。 大多数年有52周，但也有53周的年份。</p>
+<p><strong>注意：</strong> *<em>yearNumber</em>  不总是与 <a href="#int-qdateyear-const">year</a>() 相等。例如, 2000.1.1是1999年第52周, 2002.12.31是2003年第1周。</p>
+<p><strong>另请参阅：</strong><a href="#bool-qdateisvalid-const">isValid</a>()。</p>
+<hr>
+<h3><span id="int-qdate-year-const">int QDate::year() const</span><a href="#int-qdate-year-const" class="header-anchor">#</a></h3><h3><span id="int-qdate-year-qcalendar-cal-const">int QDate::year( <em>cal</em>) const</span><a href="#int-qdate-year-qcalendar-cal-const" class="header-anchor">#</a></h3><p>返回整数型的年份。</p>
+<p>如果传入参数 <em>cal</em> , 它决定了使用的日历系统，默认是格里高利历。</p>
+<p>如果日期不合法，返回0。在一些日历系统中，比第一年早的年份非法。</p>
+<p>如果使用包含第0年的日历系统，在返回0时通过 <a href="#bool-qdateisvalid-const">isValid</a>() 判断是否合法。这些日历正常的使用负年份，-1年的下一年是0年，再下一年是1年。</p>
+<p>一些日历中，没有0年份但是有负数年份。例如格里高利历，公元前x年就是年份-x。</p>
+<p><strong>另请参阅：</strong><a href="#int-qdatemonth-const">month</a>()，<a href="#int-qdateday-const">day</a>()，<a href="../../C/QCalendar/QCalendar.md#hasYearZero">QCalendar::hasYearZero</a>() 和 <a href="../../C/QCalendar/QCalendar.md#isProleptic">QCalendar::isProleptic</a>()。</p>
+<hr>
+<h3><span id="bool-qdate-operator-const-qdate-amp-d-const">bool QDate::operator!=(const QDate &amp;<em>d</em>) const</span><a href="#bool-qdate-operator-const-qdate-amp-d-const" class="header-anchor">#</a></h3><h3><span id="bool-qdate-operator-lt-const-qdate-amp-d-const">bool QDate::operator&lt;(const QDate &amp;<em>d</em>) const</span><a href="#bool-qdate-operator-lt-const-qdate-amp-d-const" class="header-anchor">#</a></h3><h3><span id="bool-qdate-operator-lt-const-qdate-amp-d-const">bool QDate::operator&lt;=(const QDate &amp;<em>d</em>) const</span><a href="#bool-qdate-operator-lt-const-qdate-amp-d-const" class="header-anchor">#</a></h3><h3><span id="bool-qdate-operator-const-qdate-amp-d-const">bool QDate::operator==(const QDate &amp;<em>d</em>) const</span><a href="#bool-qdate-operator-const-qdate-amp-d-const" class="header-anchor">#</a></h3><h3><span id="bool-qdate-operator-gt-const-qdate-amp-d-const">bool QDate::operator&gt;(const QDate &amp;<em>d</em>) const</span><a href="#bool-qdate-operator-gt-const-qdate-amp-d-const" class="header-anchor">#</a></h3><h3><span id="bool-qdate-operator-gt-const-qdate-amp-d-const">bool QDate::operator&gt;=(const QDate &amp;<em>d</em>) const</span><a href="#bool-qdate-operator-gt-const-qdate-amp-d-const" class="header-anchor">#</a></h3><p>对于日期A和B，大于意味着日期靠后，小于意味着日期靠前，相等就是同一天。</p>
+<h2><span id="xiang-guan-fei-cheng-yuan-han-shu">相关非成员函数</span><a href="#xiang-guan-fei-cheng-yuan-han-shu" class="header-anchor">#</a></h2><h3><span id="qdatastream-amp-operator-lt-lt-qdatastream-amp-out-const-qdate-amp-date"> &amp;operator&lt;&lt;( &amp;<em>out</em>, const QDate &amp;<em>date</em>)</span><a href="#qdatastream-amp-operator-lt-lt-qdatastream-amp-out-const-qdate-amp-date" class="header-anchor">#</a></h3><p>向数据流写入日期</p>
+<p><strong>另请参阅：</strong><a href="../../S/Serializing_Qt_Data_Types/Serializing_Qt_Data_Types.md">Serializing Qt Data Types</a>。</p>
+<hr>
+<h3><span id="qdatastream-amp-operator-gt-gt-qdatastream-amp-in-qdate-amp-date"> &amp;operator&gt;&gt;( &amp;<em>in</em>, QDate &amp;<em>date</em>)</span><a href="#qdatastream-amp-operator-gt-gt-qdatastream-amp-in-qdate-amp-date" class="header-anchor">#</a></h3><p>从数据流读出日期</p>
+<p><strong>另请参阅：</strong><a href="../../S/Serializing_Qt_Data_Types/Serializing_Qt_Data_Types.md">Serializing Qt Data Types</a>。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/D/">D</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/F/QFileIconProvider/QFileIconProvider/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QFileIconProvider类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusAbstractInterface/">
+                        <span class="hidden-mobile">QDBusAbstractInterface类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

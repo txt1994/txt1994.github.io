@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QXmlAttributes Class 公共函数 详细描述 成员函数文档 QXmlAttributes::QXmlAttributes() [virtual]QXmlAttributes::~QXmlAttributes() void QXmlAttributes::append(const QString &amp;qName, const QString &amp;uri, con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QXmlAttributes类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/X/QXmlAttributes/QXmlAttributes/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QXmlAttributes Class 公共函数 详细描述 成员函数文档 QXmlAttributes::QXmlAttributes() [virtual]QXmlAttributes::~QXmlAttributes() void QXmlAttributes::append(const QString &amp;qName, const QString &amp;uri, con">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:58:12.499Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="X">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QXmlAttributes类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QXmlAttributes类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      44 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QXmlAttributes类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qxmlattributes-class">QXmlAttributes Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qxmlattributes-qxmlattributes">QXmlAttributes::QXmlAttributes()</a></li>
+<li><a href="#virtual-qxmlattributes-qxmlattributes"><code>[virtual]</code>QXmlAttributes::~QXmlAttributes()</a></li>
+<li><a href="#void-qxmlattributes-append-const-qstring-https-doc-qt-io-qt-6-qstring-html-qname-const-qstring-https-doc-qt-io-qt-6-qstring-html-uri-const-qstring-https-doc-qt-io-qt-6-qstring-html-localpart-const-qstring-https-doc-qt-io-qt-6-qstring-html-value">void QXmlAttributes::append(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>qName</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>uri</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>localPart</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>value</em>)</li>
+<li><a href="#void-qxmlattributes-clear">void QXmlAttributes::clear()</a></li>
+<li><a href="#int-qxmlattributes-count-const">int QXmlAttributes::count() const</a></li>
+<li><a href="#int-qxmlattributes-index-const-qstring-https-doc-qt-io-qt-6-qstring-html-qname-const">int QXmlAttributes::index(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>qName</em>) const</li>
+<li><a href="#int-qxmlattributes-index-qlatin1string-https-doc-qt-io-qt-6-qlatin1string-html-qname-const">int QXmlAttributes::index(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlatin1string.html">QLatin1String</a> <em>qName</em>) const</li>
+<li><a href="#int-qxmlattributes-index-const-qstring-https-doc-qt-io-qt-6-qstring-html-uri-const-qstring-https-doc-qt-io-qt-6-qstring-html-localpart-const">int QXmlAttributes::index(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>uri</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>localPart</em>) const</li>
+<li><a href="#int-qxmlattributes-length-const">int QXmlAttributes::length() const</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlattributes-localname-int-index-const">QString</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlattributes-qname-int-index-const-1">QString</a></li>
+<li><a href="#void-qxmlattributes-swap-qxmlattributes-https-doc-qt-io-qt-6-qxmlattributes-html-qxmlattributes-other">void QXmlAttributes::swap(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#QXmlAttributes">QXmlAttributes</a> &amp;<em>other</em>)</li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlattributes-type-int-index-const-2">QString</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlattributes-type-const-qstring-https-doc-qt-io-qt-6-qstring-html-qname-const-3">QString</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlattributes-type-const-qstring-https-doc-qt-io-qt-6-qstring-html-uri-const-qstring-https-doc-qt-io-qt-6-qstring-html-localname-const-4">QString</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlattributes-uri-int-index-const-5">QString</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlattributes-value-int-index-const-6">QString</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlattributes-value-const-qstring-https-doc-qt-io-qt-6-qstring-html-qname-const-7">QString</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlattributes-value-qlatin1string-https-doc-qt-io-qt-6-qlatin1string-html-qname-const-8">QString</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlattributes-value-const-qstring-https-doc-qt-io-qt-6-qstring-html-uri-const-qstring-https-doc-qt-io-qt-6-qstring-html-localname-const-9">QString</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QXmlAttributes Class
+
+<p>The QXmlAttributes class provides XML attributes. <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#details">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qxmlattributes></qxmlattributes></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core5Compat REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core5Compat)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core5compat</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes-members.html">List of all members, including inherited members</a></li>
+</ul>
+<p><strong>Note:</strong> All functions in this class are <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/threads-reentrancy.html">reentrant</a>.</p>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#QXmlAttributes">QXmlAttributes</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#dtor.QXmlAttributes">~QXmlAttributes</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#append">append</a></strong>(const QString &amp;<em>qName</em>, const QString &amp;<em>uri</em>, const QString &amp;<em>localPart</em>, const QString &amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#clear">clear</a></strong>()</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#count">count</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#index">index</a></strong>(const QString &amp;<em>qName</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#index-1">index</a></strong>(QLatin1String <em>qName</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#index-2">index</a></strong>(const QString &amp;<em>uri</em>, const QString &amp;<em>localPart</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#length">length</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#localName">localName</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#qName">qName</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#swap">swap</a></strong>(QXmlAttributes &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#type">type</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#type-1">type</a></strong>(const QString &amp;<em>qName</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#type-2">type</a></strong>(const QString &amp;<em>uri</em>, const QString &amp;<em>localName</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#uri">uri</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#value">value</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#value-1">value</a></strong>(const QString &amp;<em>qName</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#value-2">value</a></strong>(QLatin1String <em>qName</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#value-3">value</a></strong>(const QString &amp;<em>uri</em>, const QString &amp;<em>localName</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>If attributes are reported by <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlcontenthandler.html#startElement">QXmlContentHandler::startElement</a>() this class is used to pass the attribute values.</p>
+<p>Use <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#index">index</a>() to locate the position of an attribute in the list, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#count">count</a>() to retrieve the number of attributes, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#clear">clear</a>() to remove the attributes. New attributes can be added with <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#append">append</a>(). Use <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#type">type</a>() to get an attribute’s type and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#value">value</a>() to get its value. The attribute’s name is available from <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#localName">localName</a>() or <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#qName">qName</a>(), and its namespace URI from <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#uri">uri</a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qxmlattributes-qxmlattributes">QXmlAttributes::QXmlAttributes()</span><a href="#qxmlattributes-qxmlattributes" class="header-anchor">#</a></h3><p>Constructs an empty attribute list.</p>
+<h3><span id="virtual-qxmlattributes-qxmlattributes"><code>[virtual]</code>QXmlAttributes::~QXmlAttributes()</span><a href="#virtual-qxmlattributes-qxmlattributes" class="header-anchor">#</a></h3><p>Destroys the attributes object.</p>
+<h3><span id="void-qxmlattributes-append-const-qstring-amp-qname-const-qstring-amp-uri-const-qstring-amp-localpart-const-qstring-amp-value">void QXmlAttributes::append(const  &amp;<em>qName</em>, const  &amp;<em>uri</em>, const  &amp;<em>localPart</em>, const  &amp;<em>value</em>)</span><a href="#void-qxmlattributes-append-const-qstring-amp-qname-const-qstring-amp-uri-const-qstring-amp-localpart-const-qstring-amp-value" class="header-anchor">#</a></h3><p>Appends a new attribute entry to the list of attributes. The qualified name of the attribute is <em>qName</em>, the namespace URI is <em>uri</em> and the local name is <em>localPart</em>. The value of the attribute is <em>value</em>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#qName">qName</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#uri">uri</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#localName">localName</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#value">value</a>().</p>
+<h3><span id="void-qxmlattributes-clear">void QXmlAttributes::clear()</span><a href="#void-qxmlattributes-clear" class="header-anchor">#</a></h3><p>Clears the list of attributes.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#append">append</a>().</p>
+<h3><span id="int-qxmlattributes-count-const">int QXmlAttributes::count() const</span><a href="#int-qxmlattributes-count-const" class="header-anchor">#</a></h3><p>Returns the number of attributes in the list. This function is equivalent to <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#length">length</a>().</p>
+<h3><span id="int-qxmlattributes-index-const-qstring-amp-qname-const">int QXmlAttributes::index(const  &amp;<em>qName</em>) const</span><a href="#int-qxmlattributes-index-const-qstring-amp-qname-const" class="header-anchor">#</a></h3><p>Looks up the index of an attribute by the qualified name <em>qName</em>.</p>
+<p>Returns the index of the attribute or -1 if it wasn’t found.</p>
+<h3><span id="int-qxmlattributes-index-qlatin1string-qname-const">int QXmlAttributes::index( <em>qName</em>) const</span><a href="#int-qxmlattributes-index-qlatin1string-qname-const" class="header-anchor">#</a></h3><p>This is an overloaded function.</p>
+<h3><span id="int-qxmlattributes-index-const-qstring-amp-uri-const-qstring-amp-localpart-const">int QXmlAttributes::index(const  &amp;<em>uri</em>, const  &amp;<em>localPart</em>) const</span><a href="#int-qxmlattributes-index-const-qstring-amp-uri-const-qstring-amp-localpart-const" class="header-anchor">#</a></h3><p>This is an overloaded function.</p>
+<p>Looks up the index of an attribute by a namespace name.</p>
+<p><em>uri</em> specifies the namespace URI, or an empty string if the name has no namespace URI. <em>localPart</em> specifies the attribute’s local name.</p>
+<p>Returns the index of the attribute, or -1 if it wasn’t found.</p>
+<h3><span id="int-qxmlattributes-length-const">int QXmlAttributes::length() const</span><a href="#int-qxmlattributes-length-const" class="header-anchor">#</a></h3><p>Returns the number of attributes in the list.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#count">count</a>().</p>
+<h3><span id="qstring-qxmlattributes-localname-int-index-const"> QXmlAttributes::localName(int <em>index</em>) const</span><a href="#qstring-qxmlattributes-localname-int-index-const" class="header-anchor">#</a></h3><p>Looks up an attribute’s local name for the attribute at position <em>index</em>. If no namespace processing is done, the local name is an empty string.</p>
+<h3><span id="qstring-qxmlattributes-qname-int-index-const"> QXmlAttributes::qName(int <em>index</em>) const</span><a href="#qstring-qxmlattributes-qname-int-index-const" class="header-anchor">#</a></h3><p>Looks up an attribute’s XML 1.0 qualified name for the attribute at position <em>index</em>.</p>
+<h3><span id="void-qxmlattributes-swap-qxmlattributes-amp-other">void QXmlAttributes::swap( &amp;<em>other</em>)</span><a href="#void-qxmlattributes-swap-qxmlattributes-amp-other" class="header-anchor">#</a></h3><p>Swaps <code>this</code> with <em>other</em>.</p>
+<h3><span id="qstring-qxmlattributes-type-int-index-const"> QXmlAttributes::type(int <em>index</em>) const</span><a href="#qstring-qxmlattributes-type-int-index-const" class="header-anchor">#</a></h3><p>Looks up an attribute’s type for the attribute at position <em>index</em>.</p>
+<p>Currently only “CDATA” is returned.</p>
+<h3><span id="qstring-qxmlattributes-type-const-qstring-amp-qname-const"> QXmlAttributes::type(const  &amp;<em>qName</em>) const</span><a href="#qstring-qxmlattributes-type-const-qstring-amp-qname-const" class="header-anchor">#</a></h3><p>This is an overloaded function.</p>
+<p>Looks up an attribute’s type for the qualified name <em>qName</em>.</p>
+<p>Currently only “CDATA” is returned.</p>
+<h3><span id="qstring-qxmlattributes-type-const-qstring-amp-uri-const-qstring-amp-localname-const"> QXmlAttributes::type(const  &amp;<em>uri</em>, const  &amp;<em>localName</em>) const</span><a href="#qstring-qxmlattributes-type-const-qstring-amp-uri-const-qstring-amp-localname-const" class="header-anchor">#</a></h3><p>This is an overloaded function.</p>
+<p>Looks up an attribute’s type by namespace name.</p>
+<p><em>uri</em> specifies the namespace URI and <em>localName</em> specifies the local name. If the name has no namespace URI, use an empty string for <em>uri</em>.</p>
+<p>Currently only “CDATA” is returned.</p>
+<h3><span id="qstring-qxmlattributes-uri-int-index-const"> QXmlAttributes::uri(int <em>index</em>) const</span><a href="#qstring-qxmlattributes-uri-int-index-const" class="header-anchor">#</a></h3><p>Looks up an attribute’s namespace URI for the attribute at position <em>index</em>. If no namespace processing is done or if the attribute has no namespace, the namespace URI is an empty string.</p>
+<h3><span id="qstring-qxmlattributes-value-int-index-const"> QXmlAttributes::value(int <em>index</em>) const</span><a href="#qstring-qxmlattributes-value-int-index-const" class="header-anchor">#</a></h3><p>Returns an attribute’s value for the attribute at position <em>index</em>. The index must be a valid position (i.e., 0 &lt;= <em>index</em> &lt; <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlattributes.html#count">count</a>()).</p>
+<h3><span id="qstring-qxmlattributes-value-const-qstring-amp-qname-const"> QXmlAttributes::value(const  &amp;<em>qName</em>) const</span><a href="#qstring-qxmlattributes-value-const-qstring-amp-qname-const" class="header-anchor">#</a></h3><p>This is an overloaded function.</p>
+<p>Returns an attribute’s value for the qualified name <em>qName</em>, or an empty string if no attribute exists for the name given.</p>
+<h3><span id="qstring-qxmlattributes-value-qlatin1string-qname-const"> QXmlAttributes::value( <em>qName</em>) const</span><a href="#qstring-qxmlattributes-value-qlatin1string-qname-const" class="header-anchor">#</a></h3><p>This is an overloaded function.</p>
+<p>Returns an attribute’s value for the qualified name <em>qName</em>, or an empty string if no attribute exists for the name given.</p>
+<h3><span id="qstring-qxmlattributes-value-const-qstring-amp-uri-const-qstring-amp-localname-const"> QXmlAttributes::value(const  &amp;<em>uri</em>, const  &amp;<em>localName</em>) const</span><a href="#qstring-qxmlattributes-value-const-qstring-amp-uri-const-qstring-amp-localname-const" class="header-anchor">#</a></h3><p>This is an overloaded function.</p>
+<p>Returns an attribute’s value by namespace name.</p>
+<p><em>uri</em> specifies the namespace URI, or an empty string if the name has no namespace URI. <em>localName</em> specifies the attribute’s local name.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/X/">X</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/X/QXmlDeclHandler/QXmlDeclHandler/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QXmlDeclHandler类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/X/QXmlDefaultHandler/QXmlDefaultHandler/">
+                        <span class="hidden-mobile">QXmlDefaultHandler类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

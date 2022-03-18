@@ -1,0 +1,630 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QFutureIterator Class 公共函数 详细描述 成员函数文档 QFutureIterator::QFutureIterator(const QFuture &amp;future) QFutureIterator bool QFutureIterator::findNext(const T &amp;value) bool QFutureIterator::findPre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QFutureIterator类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/F/QFutureIterator/QFutureIterator/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QFutureIterator Class 公共函数 详细描述 成员函数文档 QFutureIterator::QFutureIterator(const QFuture &amp;future) QFutureIterator bool QFutureIterator::findNext(const T &amp;value) bool QFutureIterator::findPre">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/javaiterators1.png">
+<meta property="article:published_time" content="2022-03-02T06:21:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:40:04.669Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="F">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://doc.qt.io/qt-6/images/javaiterators1.png">
+  
+  
+  <title>QFutureIterator类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QFutureIterator类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:21" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QFutureIterator类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qfutureiterator-class">QFutureIterator Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qfutureiterator-qfutureiterator-const-qfuture-https-doc-qt-io-qt-6-qfuture-html-t-future">QFutureIterator::QFutureIterator(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a><t> &amp;<em>future</em>)</t></li>
+<li><a href="#qfutureiterator-qfutureiterator-t-qfutureiterator-operator-const-qfuture-https-doc-qt-io-qt-6-qfuture-html-t-future">QFutureIterator</a></li>
+<li><a href="#bool-qfutureiterator-findnext-const-t-value">bool QFutureIterator::findNext(const T &amp;<em>value</em>)</a></li>
+<li><a href="#bool-qfutureiterator-findprevious-const-t-value">bool QFutureIterator::findPrevious(const T &amp;<em>value</em>)</a></li>
+<li><a href="#bool-qfutureiterator-hasnext-const">bool QFutureIterator::hasNext() const</a></li>
+<li><a href="#bool-qfutureiterator-hasprevious-const">bool QFutureIterator::hasPrevious() const</a></li>
+<li><a href="#const-t-qfutureiterator-next">const T &amp;QFutureIterator::next()</a></li>
+<li><a href="#const-t-qfutureiterator-peeknext-const">const T &amp;QFutureIterator::peekNext() const</a></li>
+<li><a href="#const-t-qfutureiterator-peekprevious-const">const T &amp;QFutureIterator::peekPrevious() const</a></li>
+<li><a href="#const-t-qfutureiterator-previous">const T &amp;QFutureIterator::previous()</a></li>
+<li><a href="#void-qfutureiterator-toback">void QFutureIterator::toBack()</a></li>
+<li><a href="#void-qfutureiterator-tofront">void QFutureIterator::toFront()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QFutureIterator Class
+
+<p>template <typename t> class QFutureIterator</typename></p>
+<p>QFutureIterator类为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>提供了一个Java风格的const iterator。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qfutureiterator></qfutureiterator></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfutureiterator-members.html">List of all members, including inherited members</a></li>
+</ul>
+<p><strong>Note:</strong> All functions in this class are <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/17-qdoc-commands-thread.html#reentrant">reentrant</a>.</p>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QFutureIterator">QFutureIterator</a></strong>(const QFuture<t> &amp;<em>future</em>)</t></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QFutureIterator<t> &amp;</t></td>
+<td><strong><a href="#operator-eq">operator=</a></strong>(const QFuture<t> &amp;<em>future</em>)</t></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#findNext">findNext</a></strong>(const T &amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#findPrevious">findPrevious</a></strong>(const T &amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasNext">hasNext</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasPrevious">hasPrevious</a></strong>() const</td>
+</tr>
+<tr>
+<td>const T &amp;</td>
+<td><strong><a href="#next">next</a></strong>()</td>
+</tr>
+<tr>
+<td>const T &amp;</td>
+<td><strong><a href="#peekNext">peekNext</a></strong>() const</td>
+</tr>
+<tr>
+<td>const T &amp;</td>
+<td><strong><a href="#peekPrevious">peekPrevious</a></strong>() const</td>
+</tr>
+<tr>
+<td>const T &amp;</td>
+<td><strong><a href="#previous">previous</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#toBack">toBack</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#toFront">toFront</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>同时拥有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/java-style-iterators.html#java-style-iterators">Java风格的迭代器</a>和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/containers.html#stl-style-iterators">STL风格的迭代器</a>。Java风格的迭代器比STL风格的迭代器更高级，更容易使用；另一方面，它们的效率略低。</p>
+<p>使用迭代器的一个替代方法是使用索引位置。一些<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>成员函数将索引作为它们的第一个参数，这使得不使用迭代器而访问结果成为可能。</p>
+<p>QFutureIterator<t>允许你对<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a><t>进行迭代。注意，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>没有可变的迭代器（与其他Java风格的迭代器不同）。</t></t></p>
+<p>QFutureIterator构造器接受一个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>作为其参数。在构造之后，该迭代器位于结果列表的最开始（即在第一个结果之前）。下面是如何依次迭代所有结果的方法：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QFuture&lt;QString&gt; future;
+...
+<span class="hljs-function">QFutureIterator&lt;QString&gt; <span class="hljs-title">i</span><span class="hljs-params">(future)</span></span>;
+<span class="hljs-keyword">while</span> (i.<span class="hljs-built_in">hasNext</span>())
+    <span class="hljs-built_in">qDebug</span>() &lt;&lt; i.<span class="hljs-built_in">next</span>();</code></pre></div>
+
+<p><a href="#next">next</a>()函数从未来返回下一个结果（如有必要，等待它变得可用），并推进迭代器。与STL风格的迭代器不同，Java风格的迭代器指向<em>之间的结果，而不是直接指向</em>的结果。第一次调用<a href="#next">next</a>()将迭代器推进到第一个和第二个结果之间的位置，并返回第一个结果；第二次调用<a href="#next">next</a>()将迭代器推进到第二个和第三个结果之间的位置，并返回第二个结果；以此类推。</p>
+<p><img src="https://doc.qt.io/qt-6/images/javaiterators1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>下面是如何以相反的顺序迭代这些元素的方法:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QFutureIterator&lt;QString&gt; <span class="hljs-title">i</span><span class="hljs-params">(future)</span></span>;
+i.<span class="hljs-built_in">toBack</span>();
+<span class="hljs-keyword">while</span> (i.<span class="hljs-built_in">hasPrevious</span>())
+    <span class="hljs-built_in">qDebug</span>() &lt;&lt; i.<span class="hljs-built_in">previous</span>();</code></pre></div>
+
+<p>如果你想找到一个特定值的所有出现，在一个循环中使用<a href="#findNext">findNext</a>()或<a href="#findPrevious">findPrevious</a>()。</p>
+<p>多个迭代器可以在同一个future上使用。如果在一个QFutureIterator活动时，未来被修改，QFutureIterator将继续在原始未来上迭代，而忽略被修改的副本。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture-const-iterator.html">QFuture::const_iterator</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qfutureiterator-qfutureiterator-const-qfuture-amp-future">QFutureIterator::QFutureIterator(const <t> &amp;<em>future</em>)</t></span><a href="#qfutureiterator-qfutureiterator-const-qfuture-amp-future" class="header-anchor">#</a></h3><p>构建一个用于遍历<em>future</em>的迭代器。迭代器被设置为在结果列表的前面（在第一个结果之前）。</p>
+<p><strong>See also</strong> <a href="#operator-eq">operator=</a>().</p>
+<h3><span id="qfutureiterator-amp-qfutureiterator-operator-const-qfuture-amp-future"><t> &amp;QFutureIterator::operator=(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a><t> &amp;<em>future</em>)</t></t></span><a href="#qfutureiterator-amp-qfutureiterator-operator-const-qfuture-amp-future" class="header-anchor">#</a></h3><p>使得迭代器对<em>future</em>进行操作。迭代器被设置为在结果列表的前面（在第一个结果之前）。</p>
+<p><strong>See also</strong> <a href="#toFront">toFront</a>() and <a href="#toBack">toBack</a>().</p>
+<h3><span id="bool-qfutureiterator-findnext-const-t-amp-value">bool QFutureIterator::findNext(const T &amp;<em>value</em>)</span><a href="#bool-qfutureiterator-findnext-const-t-amp-value" class="header-anchor">#</a></h3><p>从当前迭代器位置开始向前搜索<em>value</em>。如果找到<em>value</em>，返回 “true”；否则返回 “false”。</p>
+<p>调用后，如果找到了<em>value</em>，迭代器的位置就在匹配结果之后；否则，迭代器的位置就在结果列表的后面。</p>
+<p><strong>See also</strong> <a href="#findPrevious">findPrevious</a>().</p>
+<h3><span id="bool-qfutureiterator-findprevious-const-t-amp-value">bool QFutureIterator::findPrevious(const T &amp;<em>value</em>)</span><a href="#bool-qfutureiterator-findprevious-const-t-amp-value" class="header-anchor">#</a></h3><p>从当前迭代器位置开始向后搜索<em>value</em>。如果找到<em>value</em>，返回 “true”；否则返回 “false”。</p>
+<p>调用后，如果找到<em>value</em>，迭代器的位置就在匹配结果之前；否则，迭代器的位置就在结果列表的前面。</p>
+<p><strong>See also</strong> <a href="#findNext">findNext</a>().</p>
+<h3><span id="bool-qfutureiterator-hasnext-const">bool QFutureIterator::hasNext() const</span><a href="#bool-qfutureiterator-hasnext-const" class="header-anchor">#</a></h3><p>如果在迭代器前面至少有一个结果，例如，迭代器<em>not</em>在结果列表的后面，则返回true；否则返回false。</p>
+<p><strong>See also</strong> <a href="#hasPrevious">hasPrevious</a>() and <a href="#next">next</a>().</p>
+<h3><span id="bool-qfutureiterator-hasprevious-const">bool QFutureIterator::hasPrevious() const</span><a href="#bool-qfutureiterator-hasprevious-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if there is at least one result ahead of the iterator, e.g., the iterator is <em>not</em> at the front of the result list; otherwise returns false.</p>
+<p><strong>See also</strong> <a href="#hasNext">hasNext</a>() and <a href="#previous">previous</a>().</p>
+<h3><span id="const-t-amp-qfutureiterator-next">const T &amp;QFutureIterator::next()</span><a href="#const-t-amp-qfutureiterator-next" class="header-anchor">#</a></h3><p>返回下一个结果并使迭代器前进一个位置。</p>
+<p>对位于结果列表后面的迭代器调用此函数会导致未定义的结果。</p>
+<p><strong>See also</strong> <a href="#hasNext">hasNext</a>(), <a href="#peekNext">peekNext</a>(), and <a href="#previous">previous</a>().</p>
+<h3><span id="const-t-amp-qfutureiterator-peeknext-const">const T &amp;QFutureIterator::peekNext() const</span><a href="#const-t-amp-qfutureiterator-peeknext-const" class="header-anchor">#</a></h3><p>在不移动迭代器的情况下返回下一个结果。</p>
+<p>对位于结果列表后面的迭代器调用此函数会导致未定义的结果。</p>
+<p><strong>See also</strong> <a href="#hasNext">hasNext</a>(), <a href="#next">next</a>(), and <a href="#peekPrevious">peekPrevious</a>().</p>
+<h3><span id="const-t-amp-qfutureiterator-peekprevious-const">const T &amp;QFutureIterator::peekPrevious() const</span><a href="#const-t-amp-qfutureiterator-peekprevious-const" class="header-anchor">#</a></h3><p>在不移动迭代器的情况下返回前一个结果。</p>
+<p>在位于结果列表前面的迭代器上调用此函数会导致未定义的结果。</p>
+<p><strong>See also</strong> <a href="#hasPrevious">hasPrevious</a>(), <a href="#previous">previous</a>(), and <a href="#peekNext">peekNext</a>().</p>
+<h3><span id="const-t-amp-qfutureiterator-previous">const T &amp;QFutureIterator::previous()</span><a href="#const-t-amp-qfutureiterator-previous" class="header-anchor">#</a></h3><p>返回上一个结果并将迭代器向后移动一个位置。</p>
+<p>在位于结果列表前面的迭代器上调用此函数会导致未定义的结果。</p>
+<p><strong>See also</strong> <a href="#hasPrevious">hasPrevious</a>(), <a href="#peekPrevious">peekPrevious</a>(), and <a href="#next">next</a>().</p>
+<h3><span id="void-qfutureiterator-toback">void QFutureIterator::toBack()</span><a href="#void-qfutureiterator-toback" class="header-anchor">#</a></h3><p>将迭代器移到结果列表的后面（最后一个结果之后）。</p>
+<p><strong>See also</strong> <a href="#toFront">toFront</a>() and <a href="#previous">previous</a>().</p>
+<h3><span id="void-qfutureiterator-tofront">void QFutureIterator::toFront()</span><a href="#void-qfutureiterator-tofront" class="header-anchor">#</a></h3><p>将迭代器移到结果列表的前面（第一个结果之前）。</p>
+<p><strong>See also</strong> <a href="#toBack">toBack</a>() and <a href="#next">next</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/F/">F</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/F/QFuture/QFuture/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QFuture类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/F/qfileinfo-obsolete/qfileinfo-obsolete/">
+                        <span class="hidden-mobile">QFileInfo废弃类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

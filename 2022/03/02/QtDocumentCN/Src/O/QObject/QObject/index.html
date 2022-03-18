@@ -1,0 +1,1936 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QObject Class 属性 公共函数 公共槽 信号 静态公共成员 受保护的函数 相关非会员 宏 详细描述 线路亲和力 没有复制构造器或赋值操作符 自动连接 动态属性 国际化（I18n）   属性文档 [bindable]objectName : QString   成员函数文档 [invokable]QObject::QObject(QObject *parent &#x3D; nullpt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QObject类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/O/QObject/QObject/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QObject Class 属性 公共函数 公共槽 信号 静态公共成员 受保护的函数 相关非会员 宏 详细描述 线路亲和力 没有复制构造器或赋值操作符 自动连接 动态属性 国际化（I18n）   属性文档 [bindable]objectName : QString   成员函数文档 [invokable]QObject::QObject(QObject *parent &#x3D; nullpt">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:49:54.396Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="O">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QObject类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QObject类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      53k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      441 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QObject类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qobject-class">QObject Class</a><ul>
+<li><a href="#shu-xing">属性</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#gong-gong-cao">公共槽</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#shou-bao-hu-de-han-shu">受保护的函数</a></li>
+<li><a href="#xiang-guan-fei-hui-yuan">相关非会员</a></li>
+<li><a href="#hong">宏</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#xian-lu-qin-he-li">线路亲和力</a></li>
+<li><a href="#mei-you-fu-zhi-gou-zao-qi-huo-fu-zhi-cao-zuo-fu">没有复制构造器或赋值操作符</a></li>
+<li><a href="#zi-dong-lian-jie">自动连接</a></li>
+<li><a href="#dong-tai-shu-xing">动态属性</a></li>
+<li><a href="#guo-ji-hua-i18n">国际化（I18n）</a></li>
+</ul>
+</li>
+<li><a href="#shu-xing-wen-dang">属性文档</a><ul>
+<li><a href="#bindable-objectname-qstring-qstring-html"><code>[bindable]</code>objectName : </a><a href="qstring.html">QString</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#invokable-qobject-qobject-qobject-qobject-parent-nullptr"><code>[invokable]</code>QObject::QObject(</a><a href="#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#slot-void-qobject-deletelater"><code>[slot]</code>void QObject::deleteLater()</a></li>
+<li><a href="#signal-void-qobject-destroyed-qobject-qobject-obj-nullptr"><code>[signal]</code>void QObject::destroyed(</a><a href="#QObject">QObject</a> *<em>obj</em> = nullptr)</li>
+<li><a href="#private-signal-void-qobject-objectnamechanged-const-qstring-qstring-html-objectname"><code>[private signal]</code>void QObject::objectNameChanged(const </a><a href="qstring.html">QString</a> &amp;<em>objectName</em>)</li>
+<li><a href="#virtual-qobject-qobject"><code>[virtual]</code>QObject::~QObject()</a></li>
+<li><a href="#bool-qobject-blocksignals-bool-block">bool QObject::blockSignals(bool <em>block</em>)</a></li>
+<li><a href="#virtual-protected-void-qobject-childevent-qchildevent-qchildevent-html-event"><code>[virtual protected]</code>void QObject::childEvent(</a><a href="qchildevent.html">QChildEvent</a> *<em>event</em>)</li>
+<li><a href="#const-qobjectlist-qobjectlist-typedef-qobject-children-const">const </a><a href="#QObjectList-typedef">QObjectList</a> &amp;QObject::children() const</li>
+<li><a href="#static-qmetaobject-connection-qmetaobject-connection-html-qobject-connect-const-qobject-qobject-sender-const-char-signal-const-qobject-qobject-receiver-const-char-method-qt-connectiontype-qt-html-connectiontype-enum-type-qt-autoconnection"><code>[static]</code></a><a href="qmetaobject-connection.html">QMetaObject::Connection</a> QObject::connect(const <a href="#QObject">QObject</a> * <em>sender</em>, const char * <em>signal</em>, const <a href="#QObject">QObject</a> * <em>receiver</em>, const char * <em>method</em>, <a href="qt.html#ConnectionType-enum">Qt::ConnectionType</a> <em>type</em> = Qt::AutoConnection)</li>
+<li><a href="#static-qmetaobject-connection-qmetaobject-connection-html-qobject-connect-const-qobject-qobject-sender-const-qmetamethod-signal-const-qobject-qobject-receiver-const-qmetamethod-method-qt-connectiontype-qt-html-connectiontype-enum-type-qt-autoconnection"><code>[static]</code></a><a href="qmetaobject-connection.html">QMetaObject::Connection</a> QObject::connect(const <a href="#QObject">QObject</a> * <em>sender</em>, const <a href>QMetaMethod</a> &amp;<em>signal</em>, const <a href="#QObject">QObject</a> *<em>receiver</em>, const <a href>QMetaMethod</a> &amp;<em>method</em>, <a href="qt.html#ConnectionType-enum">Qt::ConnectionType</a> <em>type</em> = Qt::AutoConnection)</li>
+<li><a href="#qmetaobject-connection-qmetaobject-connection-html-qobject-connect-const-qobject-qobject-sender-const-char-signal-const-char-method-qt-connectiontype-qt-html-connectiontype-enum-type-qt-autoconnection-const">QMetaObject::Connection</a></li>
+<li><a href="#static-template-typename-pointertomemberfunction-qmetaobject-connection-qmetaobject-connection-html-qobject-connect-const-qobject-qobject-sender-pointertomemberfunction-signal-const-qobject-qobject-receiver-pointertomemberfunction-method-qt-connectiontype-qt-html-connectiontype-enum-type-qt-autoconnection"><code>[static]</code>template <typename pointertomemberfunction> </typename></a><a href="qmetaobject-connection.html">QMetaObject::Connection</a> QObject::connect(const <a href="#QObject">QObject</a> * <em>sender</em>, PointerToMemberFunction <em>signal</em>, const <a href="#QObject">QObject</a> *<em>receiver</em>, PointerToMemberFunction <em>method</em>, <a href="qt.html#ConnectionType-enum">Qt::ConnectionType</a> <em>type</em> = Qt::AutoConnection)</li>
+<li><a href="#static-template-typename-pointertomemberfunction-typename-functor-qmetaobject-connection-qmetaobject-connection-html-qobject-connect-const-qobject-qobject-sender-pointertomemberfunction-signal-functor-functor"><code>[static]</code>template &lt;typename PointerToMemberFunction, typename Functor&gt; </a><a href="qmetaobject-connection.html">QMetaObject::Connection</a> QObject::connect(const <a href="#QObject">QObject</a> *<em>sender</em>, PointerToMemberFunction <em>signal</em>, Functor <em>functor</em>)</li>
+<li><a href="#static-since-5-2-template-typename-pointertomemberfunction-typename-functor-qmetaobject-connection-qmetaobject-connection-html-qobject-connect-const-qobject-qobject-sender-pointertomemberfunction-signal-const-qobject-qobject-context-functor-functor-qt-connectiontype-qt-html-connectiontype-enum-type-qt-autoconnection"><code>[static, since 5.2]</code>template &lt;typename PointerToMemberFunction, typename Functor&gt; </a><a href="qmetaobject-connection.html">QMetaObject::Connection</a> QObject::connect(const <a href="#QObject">QObject</a> *<em>sender</em>, PointerToMemberFunction <em>signal</em>, const <a href="#QObject">QObject</a> *<em>context</em>, Functor <em>functor</em>, <a href="qt.html#ConnectionType-enum">Qt::ConnectionType</a> <em>type</em> = Qt::AutoConnection)</li>
+<li><a href="#virtual-protected-since-5-0-void-qobject-connectnotify-const-qmetamethod-signal"><code>[virtual protected, since 5.0]</code>void QObject::connectNotify(const </a><a href>QMetaMethod</a> &amp;<em>signal</em>)</li>
+<li><a href="#virtual-protected-void-qobject-customevent-qevent-qevent-html-event"><code>[virtual protected]</code>void QObject::customEvent(</a><a href="qevent.html">QEvent</a> *<em>event</em>)</li>
+<li><a href="#static-bool-qobject-disconnect-const-qobject-qobject-sender-const-char-signal-const-qobject-qobject-receiver-const-char-method"><code>[static]</code>bool QObject::disconnect(const </a><a href="#QObject">QObject</a> *<em>sender</em>, const char *<em>signal</em>, const <a href="#QObject">QObject</a> *<em>receiver</em>, const char *<em>method</em>)</li>
+<li><a href="#static-bool-qobject-disconnect-const-qobject-qobject-sender-const-qmetamethod-signal-const-qobject-qobject-receiver-const-qmetamethod-method"><code>[static]</code>bool QObject::disconnect(const </a><a href="#QObject">QObject</a> *<em>sender</em>, const <a href>QMetaMethod</a> &amp;<em>signal</em>, const <a href="#QObject">QObject</a> *<em>receiver</em>, const <a href>QMetaMethod</a> &amp;<em>method</em>)</li>
+<li><a href="#bool-qobject-disconnect-const-char-signal-nullptr-const-qobject-qobject-receiver-nullptr-const-char-method-nullptr-const">bool QObject::disconnect(const char* <em>signal</em> = nullptr, const </a><a href="#QObject">QObject</a>* <em>receiver</em> = nullptr, const char *<em>method</em> = nullptr) const</li>
+<li><a href="#bool-qobject-disconnect-const-qobject-qobject-receiver-const-char-method-nullptr-const">bool QObject::disconnect(const </a><a href="#QObject">QObject</a> *<em>receiver</em>, const char *<em>method</em> = nullptr) const</li>
+<li><a href="#static-bool-qobject-disconnect-const-qmetaobject-connection-qmetaobject-connection-html-connection"><code>[static]</code>bool QObject::disconnect(const </a><a href="qmetaobject-connection.html">QMetaObject::Connection</a> &amp;<em>connection</em>)</li>
+<li><a href="#static-template-typename-pointertomemberfunction-bool-qobject-disconnect-const-qobject-qobject-sender-pointertomemberfunction-signal-const-qobject-qobject-receiver-pointertomemberfunction-method"><code>[static]</code>template <typename pointertomemberfunction> bool QObject::disconnect(const </typename></a><a href="#QObject">QObject</a> *<em>sender</em>, PointerToMemberFunction <em>signal</em>, const <a href="#QObject">QObject</a> *<em>receiver</em>, PointerToMemberFunction <em>method</em>)</li>
+<li><a href="#virtual-protected-since-5-0-void-qobject-disconnectnotify-const-qmetamethod-signal"><code>[virtual protected, since 5.0]</code>void QObject::disconnectNotify(const </a><a href>QMetaMethod</a> &amp;<em>signal</em>)</li>
+<li><a href="#void-qobject-dumpobjectinfo-const">void QObject::dumpObjectInfo() const</a></li>
+<li><a href="#void-qobject-dumpobjecttree-const">void QObject::dumpObjectTree() const</a></li>
+<li><a href="#qlist-qlist-html-qbytearray-qbytearray-html-qobject-dynamicpropertynames-const">QList</a></li>
+<li><a href="#virtual-bool-qobject-event-qevent-qevent-html-e"><code>[virtual]</code>bool QObject::event(</a><a href="qevent.html">QEvent</a> *<em>e</em>)</li>
+<li><a href="#virtual-bool-qobject-eventfilter-qobject-qobject-watched-qevent-qevent-html-event"><code>[virtual]</code>bool QObject::eventFilter(</a><a href="#QObject">QObject</a> *<em>watched</em>, <a href="qevent.html">QEvent</a> *<em>event</em>)</li>
+<li><a href="#template-typename-t-t-qobject-findchild-const-qstring-qstring-html-name-qstring-qt-findchildoptions-qt-html-findchildoption-enum-options-qt-findchildrenrecursively-const">template <typename t> T QObject::findChild(const </typename></a><a href="qstring.html">QString</a> &amp;<em>name</em> = QString(), <a href="qt.html#FindChildOption-enum">Qt::FindChildOptions</a> <em>options</em> = Qt::FindChildrenRecursively) const</li>
+<li><a href="#template-typename-t-qlist-qlist-html-t-qobject-findchildren-const-qstring-qstring-html-name-qstring-qt-findchildoptions-qt-html-findchildoption-enum-options-qt-findchildrenrecursively-const">template <typename t> </typename></a><a href="qlist.html">QList</a><t> QObject::findChildren(const <a href="qstring.html">QString</a> &amp;<em>name</em> = QString(), <a href="qt.html#FindChildOption-enum">Qt::FindChildOptions</a> <em>options</em> = Qt::FindChildrenRecursively) const</t></li>
+<li><a href="#since-5-0-template-typename-t-qlist-qlist-html-t-qobject-findchildren-const-qregularexpression-qregularexpression-html-re-qt-findchildoptions-qt-html-findchildoption-enum-options-qt-findchildrenrecursively-const"><code>[since 5.0]</code>template <typename t> </typename></a><a href="qlist.html">QList</a><t> QObject::findChildren(const <a href="qregularexpression.html">QRegularExpression</a> &amp;<em>re</em>, <a href="qt.html#FindChildOption-enum">Qt::FindChildOptions</a> <em>options</em> = Qt::FindChildrenRecursively) const</t></li>
+<li><a href="#bool-qobject-inherits-const-char-classname-const">bool QObject::inherits(const char *<em>className</em>) const</a></li>
+<li><a href="#void-qobject-installeventfilter-qobject-qobject-filterobj">void QObject::installEventFilter(</a><a href="#QObject">QObject</a> *<em>filterObj</em>)</li>
+<li><a href="#protected-since-5-0-bool-qobject-issignalconnected-const-qmetamethod-signal-const"><code>[protected, since 5.0]</code>bool QObject::isSignalConnected(const </a><a href>QMetaMethod</a> &amp;<em>signal</em>) const</li>
+<li><a href="#bool-qobject-iswidgettype-const">bool QObject::isWidgetType() const</a></li>
+<li><a href="#bool-qobject-iswindowtype-const">bool QObject::isWindowType() const</a></li>
+<li><a href="#void-qobject-killtimer-int-id">void QObject::killTimer(int <em>id</em>)</a></li>
+<li><a href="#virtual-const-qmetaobject-qmetaobject-html-qobject-metaobject-const"><code>[virtual]</code>const </a><a href="qmetaobject.html">QMetaObject</a> *QObject::metaObject() const</li>
+<li><a href="#void-qobject-movetothread-qthread-qthread-html-targetthread">void QObject::moveToThread(</a><a href="qthread.html">QThread</a> *<em>targetThread</em>)</li>
+<li><a href="#qobject-qobject-qobject-parent-const">QObject</a></li>
+<li><a href="#qvariant-qvariant-html-qobject-property-const-char-name-const">QVariant</a></li>
+<li><a href="#protected-int-qobject-receivers-const-char-signal-const"><code>[protected]</code>int QObject::receivers(const char *<em>signal</em>) const</a></li>
+<li><a href="#void-qobject-removeeventfilter-qobject-qobject-obj">void QObject::removeEventFilter(</a><a href="#QObject">QObject</a> *<em>obj</em>)</li>
+<li><a href="#protected-qobject-qobject-qobject-sender-const"><code>[protected]</code></a><a href="#QObject">QObject</a> *QObject::sender() const</li>
+<li><a href="#protected-int-qobject-sendersignalindex-const"><code>[protected]</code>int QObject::senderSignalIndex() const</a></li>
+<li><a href="#void-qobject-setparent-qobject-qobject-parent">void QObject::setParent(</a><a href="#QObject">QObject</a> *<em>parent</em>)</li>
+<li><a href="#bool-qobject-setproperty-const-char-name-const-qvariant-qvariant-html-value">bool QObject::setProperty(const char *<em>name</em>, const </a><a href="qvariant.html">QVariant</a> &amp;<em>value</em>)</li>
+<li><a href="#bool-qobject-signalsblocked-const">bool QObject::signalsBlocked() const</a></li>
+<li><a href="#int-qobject-starttimer-int-interval-qt-timertype-qt-html-timertype-enum-timertype-qt-coarsetimer">int QObject::startTimer(int <em>interval</em>, </a><a href="qt.html#TimerType-enum">Qt::TimerType</a> <em>timerType</em> = Qt::CoarseTimer)</li>
+<li><a href="#since-5-9-int-qobject-starttimer-std-chrono-milliseconds-time-qt-timertype-qt-html-timertype-enum-timertype-qt-coarsetimer"><code>[since 5.9]</code>int QObject::startTimer(std::chrono::milliseconds <em>time</em>, </a><a href="qt.html#TimerType-enum">Qt::TimerType</a> <em>timerType</em> = Qt::CoarseTimer)</li>
+<li><a href="#qthread-qthread-html-qobject-thread-const">QThread</a></li>
+<li><a href="#virtual-protected-void-qobject-timerevent-qtimerevent-qtimerevent-html-event"><code>[virtual protected]</code>void QObject::timerEvent(</a><a href="qtimerevent.html">QTimerEvent</a> *<em>event</em>)</li>
+<li><a href="#static-qstring-qstring-html-qobject-tr-const-char-sourcetext-const-char-disambiguation-nullptr-int-n-1"><code>[static]</code></a><a href="qstring.html">QString</a> QObject::tr(const char *<em>sourceText</em>, const char *<em>disambiguation</em> = nullptr, int <em>n</em> = -1)</li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-bian-liang-wen-dang">成员变量文档</a><ul>
+<li><a href="#const-qmetaobject-qmetaobject-html-qobject-staticmetaobject">const </a><a href="qmetaobject.html">QMetaObject</a> QObject::staticMetaObject</li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-hui-yuan-1">相关非会员</a><ul>
+<li><a href="#template-typename-t-t-qobject-cast-qobject-qobject-object">template <typename t> T qobject_cast(</typename></a><a href="#QObject">QObject</a> *<em>object</em>)</li>
+<li><a href="#template-typename-t-t-qobject-cast-const-qobject-qobject-object">template <typename t> T qobject_cast(const </typename></a><a href="#QObject">QObject</a> *<em>object</em>)</li>
+<li><a href="#qobjectlist">QObjectList</a></li>
+</ul>
+</li>
+<li><a href="#hong-wen-dang">宏文档</a><ul>
+<li><a href="#since-5-8-qt-no-narrowing-conversions-in-connect"><code>[since 5.8]</code>QT_NO_NARROWING_CONVERSIONS_IN_CONNECT</a></li>
+<li><a href="#q-classinfo-name-value">Q_CLASSINFO(<em>Name</em>, <em>Value</em>)</a></li>
+<li><a href="#q-disable-copy-class">Q_DISABLE_COPY(<em>Class</em>)</a></li>
+<li><a href="#since-5-13-q-disable-copy-move-class"><code>[since 5.13]</code>Q_DISABLE_COPY_MOVE(<em>Class</em>)</a></li>
+<li><a href="#q-emit">Q_EMIT</a></li>
+<li><a href="#since-5-5-q-enum"><code>[since 5.5]</code>Q_ENUM(…)</a></li>
+<li><a href="#since-5-8-q-enum-ns"><code>[since 5.8]</code>Q_ENUM_NS(…)</a></li>
+<li><a href="#since-5-5-q-flag"><code>[since 5.5]</code>Q_FLAG(…)</a></li>
+<li><a href="#since-5-8-q-flag-ns"><code>[since 5.8]</code>Q_FLAG_NS(…)</a></li>
+<li><a href="#q-gadget">Q_GADGET</a></li>
+<li><a href="#q-interfaces">Q_INTERFACES(…)</a></li>
+<li><a href="#q-invokable">Q_INVOKABLE</a></li>
+<li><a href="#since-6-0-q-moc-include"><code>[since 6.0]</code>Q_MOC_INCLUDE</a></li>
+<li><a href="#since-5-8-q-namespace"><code>[since 5.8]</code>Q_NAMESPACE</a></li>
+<li><a href="#since-5-14-q-namespace-export-export-macro"><code>[since 5.14]</code>Q_NAMESPACE_EXPORT(<em>EXPORT_MACRO</em>)</a></li>
+<li><a href="#q-object">Q_OBJECT</a></li>
+<li><a href="#q-property">Q_PROPERTY(…)</a></li>
+<li><a href="#q-revision">Q_REVISION</a></li>
+<li><a href="#since-5-0-q-set-object-name-object"><code>[since 5.0]</code>Q_SET_OBJECT_NAME(<em>Object</em>)</a></li>
+<li><a href="#q-signal">Q_SIGNAL</a></li>
+<li><a href="#q-signals">Q_SIGNALS</a></li>
+<li><a href="#q-slot">Q_SLOT</a></li>
+<li><a href="#q-slots">Q_SLOTS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QObject Class
+
+<p>QObject类是所有Qt对象的基类。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qobject></qobject></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>继承者:</td>
+<td><a href="q3dobject.html">Q3DObject</a>, <a href="q3dscene.html">Q3DScene</a>, <a href="q3dtheme.html">Q3DTheme</a>, <a href="qabstract3daxis.html">QAbstract3DAxis</a>, <a href="qabstract3dinputhandler.html">QAbstract3DInputHandler</a>, <a href="qabstract3dseries.html">QAbstract3DSeries</a>, <a href="qabstractanimation.html">QAbstractAnimation</a>, <a href="qabstractaxis.html">QAbstractAxis</a>, <a href="qabstractdataproxy.html">QAbstractDataProxy</a>, <a href="qabstracteventdispatcher.html">QAbstractEventDispatcher</a>, <a href="qabstractitemdelegate.html">QAbstractItemDelegate</a>, <a href="qabstractitemmodel.html">QAbstractItemModel</a>, <a href="qabstractitemmodeltester.html">QAbstractItemModelTester</a>, <a href="qabstractnetworkcache.html">QAbstractNetworkCache</a>, <a href="qabstractoauth.html">QAbstractOAuth</a>, <a href="qabstractoauthreplyhandler.html">QAbstractOAuthReplyHandler</a>, <a href="qabstractseries.html">QAbstractSeries</a>, <a href="qabstractstate.html">QAbstractState</a>, <a href="qabstracttextdocumentlayout.html">QAbstractTextDocumentLayout</a>, <a href="qabstracttransition.html">QAbstractTransition</a>, <a href="qaccessibleplugin.html">QAccessiblePlugin</a>, <a href="qaction.html">QAction</a>, <a href="qactiongroup.html">QActionGroup</a>, <a href="qaudiodecoder.html">QAudioDecoder</a>, <a href="qaudioinput.html">QAudioInput</a>, <a href="qaudiooutput.html">QAudioOutput</a>, <a href="qaudiosink.html">QAudioSink</a>, <a href="qaudiosource.html">QAudioSource</a>, <a href="qaxbaseobject.html">QAxBaseObject</a>, <a href="qaxfactory.html">QAxFactory</a>, <a href="qaxscript.html">QAxScript</a>, <a href="qaxscriptmanager.html">QAxScriptManager</a>, <a href="qbarset.html">QBarSet</a>, <a href="qbluetoothdevicediscoveryagent.html">QBluetoothDeviceDiscoveryAgent</a>, <a href="qbluetoothlocaldevice.html">QBluetoothLocalDevice</a>, <a href="qbluetoothserver.html">QBluetoothServer</a>, <a href="qbluetoothservicediscoveryagent.html">QBluetoothServiceDiscoveryAgent</a>, <a href="qboxset.html">QBoxSet</a>, <a href="qbuttongroup.html">QButtonGroup</a>, <a href="qcamera.html">QCamera</a>, <a href="qcanbus.html">QCanBus</a>, <a href="qcanbusdevice.html">QCanBusDevice</a>, <a href="qcandlestickmodelmapper.html">QCandlestickModelMapper</a>, <a href="qcandlestickset.html">QCandlestickSet</a>, <a href="qclipboard.html">QClipboard</a>, <a href="qcoapclient.html">QCoapClient</a>, <a href="qcompleter.html">QCompleter</a>, <a href="qcoreapplication.html">QCoreApplication</a>, <a href="qcustom3ditem.html">QCustom3DItem</a>, <a href="qdatawidgetmapper.html">QDataWidgetMapper</a>, <a href="qdbusabstractadaptor.html">QDBusAbstractAdaptor</a>, <a href="qdbusabstractinterface.html">QDBusAbstractInterface</a>, <a href="qdbuspendingcallwatcher.html">QDBusPendingCallWatcher</a>, <a href="qdbusserver.html">QDBusServer</a>, <a href="qdbusservicewatcher.html">QDBusServiceWatcher</a>, <a href="qdbusvirtualobject.html">QDBusVirtualObject</a>, <a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a>, <a href="qdesignerformwindowmanagerinterface.html">QDesignerFormWindowManagerInterface</a>, <a href="qdnslookup.html">QDnsLookup</a>, <a href="qdrag.html">QDrag</a>, <a href="qdtls.html">QDtls</a>, <a href="qdtlsclientverifier.html">QDtlsClientVerifier</a>, <a href="qeventloop.html">QEventLoop</a>, <a href="qextensionfactory.html">QExtensionFactory</a>, <a href="qextensionmanager.html">QExtensionManager</a>, <a href="qfileselector.html">QFileSelector</a>, <a href="qfilesystemwatcher.html">QFileSystemWatcher</a>, <a href="qfuturewatcher.html">QFutureWatcher</a>, <a href="qgenericplugin.html">QGenericPlugin</a>, <a href="qgeoareamonitorsource.html">QGeoAreaMonitorSource</a>, <a href="qgeopositioninfosource.html">QGeoPositionInfoSource</a>, <a href="qgeosatelliteinfosource.html">QGeoSatelliteInfoSource</a>, <a href="qgesture.html">QGesture</a>, <a href="qgraphicsanchor.html">QGraphicsAnchor</a>, <a href="qgraphicseffect.html">QGraphicsEffect</a>, <a href="qgraphicsitemanimation.html">QGraphicsItemAnimation</a>, <a href="qgraphicsobject.html">QGraphicsObject</a>, <a href="qgraphicsscene.html">QGraphicsScene</a>, <a href="qgraphicstransform.html">QGraphicsTransform</a>, <a href="qhelpenginecore.html">QHelpEngineCore</a>, <a href="qhelpfilterengine.html">QHelpFilterEngine</a>, <a href="qhelpsearchengine.html">QHelpSearchEngine</a>, <a href="qhttpmultipart.html">QHttpMultiPart</a>, <a href="qiconengineplugin.html">QIconEnginePlugin</a>, <a href="qimagecapture.html">QImageCapture</a>, <a href="qimageioplugin.html">QImageIOPlugin</a>, <a href="qinputdevice.html">QInputDevice</a>, <a href="qinputmethod.html">QInputMethod</a>, <a href="qiodevice.html">QIODevice</a>, <a href="qitemselectionmodel.html">QItemSelectionModel</a>, <a href="qjsengine.html">QJSEngine</a>, <a href="qlayout.html">QLayout</a>, <a href="qlegendmarker.html">QLegendMarker</a>, <a href="qlibrary.html">QLibrary</a>, <a href="qlocalserver.html">QLocalServer</a>, <a href="qlowenergycontroller.html">QLowEnergyController</a>, <a href="qlowenergyservice.html">QLowEnergyService</a>, <a href="qmaskgenerator.html">QMaskGenerator</a>, <a href="qmediacapturesession.html">QMediaCaptureSession</a>, <a href="qmediadevices.html">QMediaDevices</a>, <a href="qmediaplayer.html">QMediaPlayer</a>, <a href="qmediarecorder.html">QMediaRecorder</a>, <a href="qmimedata.html">QMimeData</a>, <a href="qmodbusdevice.html">QModbusDevice</a>, <a href="qmodbusreply.html">QModbusReply</a>, <a href="qmovie.html">QMovie</a>, <a href="qmqttclient.html">QMqttClient</a>, <a href="qmqttsubscription.html">QMqttSubscription</a>, <a href="qnearfieldmanager.html">QNearFieldManager</a>, <a href="qnearfieldtarget.html">QNearFieldTarget</a>, <a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>, <a href="qnetworkcookiejar.html">QNetworkCookieJar</a>, <a href="qnetworkinformation.html">QNetworkInformation</a>, <a href="qobjectcleanuphandler.html">QObjectCleanupHandler</a>, <a href="qoffscreensurface.html">QOffscreenSurface</a>, <a href="qopcuaclient.html">QOpcUaClient</a>, <a href="qopcuagdsclient.html">QOpcUaGdsClient</a>, <a href="qopcuakeypair.html">QOpcUaKeyPair</a>, <a href="qopcuanode.html">QOpcUaNode</a>, <a href="qopcuaprovider.html">QOpcUaProvider</a>, <a href="qopenglcontext.html">QOpenGLContext</a>, <a href="qopenglcontextgroup.html">QOpenGLContextGroup</a>, <a href="qopengldebuglogger.html">QOpenGLDebugLogger</a>, <a href="qopenglshader.html">QOpenGLShader</a>, <a href="qopenglshaderprogram.html">QOpenGLShaderProgram</a>, <a href="qopengltimemonitor.html">QOpenGLTimeMonitor</a>, <a href="qopengltimerquery.html">QOpenGLTimerQuery</a>, <a href="qopenglvertexarrayobject.html">QOpenGLVertexArrayObject</a>, <a href="qpdfwriter.html">QPdfWriter</a>, <a href="qpieslice.html">QPieSlice</a>, <a href="qplatformaudiodecoder.html">QPlatformAudioDecoder</a>, <a href="qplatformaudiosink.html">QPlatformAudioSink</a>, <a href="qplatformaudiosource.html">QPlatformAudioSource</a>, <a href="qplatformcamera.html">QPlatformCamera</a>, <a href="qplatformimagecapture.html">QPlatformImageCapture</a>, <a href="qpluginloader.html">QPluginLoader</a>, <a href="qqmlcomponent.html">QQmlComponent</a>, <a href="qqmlcontext.html">QQmlContext</a>, <a href="qqmlengineextensionplugin.html">QQmlEngineExtensionPlugin</a>, <a href="qqmlexpression.html">QQmlExpression</a>, <a href="qqmlfileselector.html">QQmlFileSelector</a>, <a href="qqmlimageproviderbase.html">QQmlImageProviderBase</a>, <a href="qqmlpropertymap.html">QQmlPropertyMap</a>, <a href="qquick3dobject.html">QQuick3DObject</a>, <a href="qquickimageresponse.html">QQuickImageResponse</a>, <a href="qquickitem.html">QQuickItem</a>, <a href="qquickitemgrabresult.html">QQuickItemGrabResult</a>, <a href="qquickrendercontrol.html">QQuickRenderControl</a>, <a href="qquicktextdocument.html">QQuickTextDocument</a>, <a href="qquicktexturefactory.html">QQuickTextureFactory</a>, <a href="qquickwebengineprofile.html">QQuickWebEngineProfile</a>, <a href="qremoteobjectabstractpersistedstore.html">QRemoteObjectAbstractPersistedStore</a>, <a href="qremoteobjectnode.html">QRemoteObjectNode</a>, <a href="qremoteobjectpendingcallwatcher.html">QRemoteObjectPendingCallWatcher</a>, <a href="qremoteobjectreplica.html">QRemoteObjectReplica</a>, <a href="qscreen.html">QScreen</a>, <a href="qscroller.html">QScroller</a>, <a href="qscxmldatamodel.html">QScxmlDataModel</a>, <a href="qscxmlinvokableservice.html">QScxmlInvokableService</a>, <a href="qscxmlinvokableservicefactory.html">QScxmlInvokableServiceFactory</a>, <a href="qscxmlstatemachine.html">QScxmlStateMachine</a>, <a href="qsensor.html">QSensor</a>, <a href="qsensorbackend.html">QSensorBackend</a>, <a href="qsensorreading.html">QSensorReading</a>, <a href="qsessionmanager.html">QSessionManager</a>, <a href="qsettings.html">QSettings</a>, <a href="qsgtexture.html">QSGTexture</a>, <a href="qsgtextureprovider.html">QSGTextureProvider</a>, <a href="qsharedmemory.html">QSharedMemory</a>, <a href="qshortcut.html">QShortcut</a>, <a href="qsignalmapper.html">QSignalMapper</a>, <a href="qsignalspy.html">QSignalSpy</a>, <a href="qsocketnotifier.html">QSocketNotifier</a>, <a href="qsoundeffect.html">QSoundEffect</a>, <a href="qsqldriver.html">QSqlDriver</a>, <a href="qsqldriverplugin.html">QSqlDriverPlugin</a>, <a href="qstyle.html">QStyle</a>, <a href="qstylehints.html">QStyleHints</a>, <a href="qstyleplugin.html">QStylePlugin</a>, <a href="qsvgrenderer.html">QSvgRenderer</a>, <a href="qsyntaxhighlighter.html">QSyntaxHighlighter</a>, <a href="qsystemtrayicon.html">QSystemTrayIcon</a>, <a href="qt3danimation-qabstractanimation.html">Qt3DAnimation::QAbstractAnimation</a>, <a href="qt3danimation-qanimationcontroller.html">Qt3DAnimation::QAnimationController</a>, <a href="qt3danimation-qanimationgroup.html">Qt3DAnimation::QAnimationGroup</a>, <a href="qt3danimation-qmorphtarget.html">Qt3DAnimation::QMorphTarget</a>, <a href="qt3dcore-qabstractaspect.html">Qt3DCore::QAbstractAspect</a>, <a href="qt3dcore-qaspectengine.html">Qt3DCore::QAspectEngine</a>, <a href="qt3dcore-qnode.html">Qt3DCore::QNode</a>, <a href="qt3dcore-quick-qqmlaspectengine.html">Qt3DCore::Quick::QQmlAspectEngine</a>, <a href="qt3dinput-qinputdeviceintegration.html">Qt3DInput::QInputDeviceIntegration</a>, <a href="qt3dinput-qkeyevent.html">Qt3DInput::QKeyEvent</a>, <a href="qt3dinput-qmouseevent.html">Qt3DInput::QMouseEvent</a>, <a href="qt3dinput-qwheelevent.html">Qt3DInput::QWheelEvent</a>, <a href="qt3drender-qgraphicsapifilter.html">Qt3DRender::QGraphicsApiFilter</a>, <a href="qt3drender-qpickevent.html">Qt3DRender::QPickEvent</a>, <a href="qt3drender-qrendercapabilities.html">Qt3DRender::QRenderCapabilities</a>, <a href="qt3drender-qrendercapturereply.html">Qt3DRender::QRenderCaptureReply</a>, <a href="qt3drender-qstenciloperationarguments.html">Qt3DRender::QStencilOperationArguments</a>, <a href="qt3drender-qstenciltestarguments.html">Qt3DRender::QStencilTestArguments</a>, <a href="qt3drender-qtexturewrapmode.html">Qt3DRender::QTextureWrapMode</a>, <a href="qtcpserver.html">QTcpServer</a>, <a href="qtextdocument.html">QTextDocument</a>, <a href="qtextobject.html">QTextObject</a>, <a href="qthread.html">QThread</a>, <a href="qthreadpool.html">QThreadPool</a>, <a href="qtimeline.html">QTimeLine</a>, <a href="qtimer.html">QTimer</a>, <a href="qtranslator.html">QTranslator</a>, <a href="quiloader.html">QUiLoader</a>, <a href="qundogroup.html">QUndoGroup</a>, <a href="qundostack.html">QUndoStack</a>, <a href="qvalidator.html">QValidator</a>, <a href="qvalue3daxisformatter.html">QValue3DAxisFormatter</a>, <a href="qvideosink.html">QVideoSink</a>, <a href="qvirtualkeyboardabstractinputmethod.html">QVirtualKeyboardAbstractInputMethod</a>, <a href="qvirtualkeyboarddictionary.html">QVirtualKeyboardDictionary</a>, <a href="qvirtualkeyboarddictionarymanager.html">QVirtualKeyboardDictionaryManager</a>, <a href="qvirtualkeyboardextensionplugin.html">QVirtualKeyboardExtensionPlugin</a>, <a href="qvirtualkeyboardinputcontext.html">QVirtualKeyboardInputContext</a>, <a href="qvirtualkeyboardinputengine.html">QVirtualKeyboardInputEngine</a>, <a href="qvirtualkeyboardobserver.html">QVirtualKeyboardObserver</a>, <a href="qvirtualkeyboardtrace.html">QVirtualKeyboardTrace</a>, <a href="qwaylandclient.html">QWaylandClient</a>, <a href="qwaylandquickshellintegration.html">QWaylandQuickShellIntegration</a>, <a href="qwaylandsurfacegrabber.html">QWaylandSurfaceGrabber</a>, <a href="qwaylandview.html">QWaylandView</a>, <a href="qwaylandxdgpopup.html">QWaylandXdgPopup</a>, <a href="qwaylandxdgtoplevel.html">QWaylandXdgToplevel</a>, <a href="qwebchannel.html">QWebChannel</a>, <a href="qwebchannelabstracttransport.html">QWebChannelAbstractTransport</a>, <a href="qwebenginecontextmenurequest.html">QWebEngineContextMenuRequest</a>, <a href="qwebenginecookiestore.html">QWebEngineCookieStore</a>, <a href="qwebenginedownloadrequest.html">QWebEngineDownloadRequest</a>, <a href="qwebenginehistory.html">QWebEngineHistory</a>, <a href="qwebenginenavigationrequest.html">QWebEngineNavigationRequest</a>, <a href="qwebenginenewwindowrequest.html">QWebEngineNewWindowRequest</a>, <a href="qwebenginenotification.html">QWebEngineNotification</a>, <a href="qwebenginepage.html">QWebEnginePage</a>, <a href="qwebengineprofile.html">QWebEngineProfile</a>, <a href="qwebengineurlrequestinterceptor.html">QWebEngineUrlRequestInterceptor</a>, <a href="qwebengineurlrequestjob.html">QWebEngineUrlRequestJob</a>, <a href="qwebengineurlschemehandler.html">QWebEngineUrlSchemeHandler</a>, <a href="qwebsocket.html">QWebSocket</a>, <a href="qwebsocketserver.html">QWebSocketServer</a>, <a href="qwidget.html">QWidget</a>, <a href="qwindow.html">QWindow</a>, and <a href="qwineventnotifier.html">QWinEventNotifier</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qobject-members.html">List of all members, including inherited members</a></li>
+<li><a href="qobject-obsolete.html">Deprecated members</a></li>
+</ul>
+<p><strong>注意：</strong>这个类中的所有函数都是<a href="17-qdoc-commands-thread.html#reentrant">可重入的</a>。</p>
+<p><strong>注意：</strong>这些函数也是<a href="threads-reentrancy.html">线程安全的</a>。</p>
+<ul>
+<li><a href="#connect">connect</a>()</li>
+<li><a href="#connect-2">connect</a>()</li>
+<li><a href="#connect-3">connect</a>()</li>
+<li><a href="#connect-4">connect</a>()</li>
+<li><a href="#connect-5">connect</a>()</li>
+<li><a href="#disconnect">disconnect</a>()</li>
+<li><a href="#disconnect-2">disconnect</a>()</li>
+<li><a href="#disconnect-5">disconnect</a>()</li>
+<li><a href="#deleteLater">deleteLater</a>()</li>
+</ul>
+<h2><span id="shu-xing">属性</span><a href="#shu-xing" class="header-anchor">#</a></h2><ul>
+<li><strong><a href="#objectName-prop">objectName</a></strong> : QString</li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QObject">QObject</a></strong>(QObject *<em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QObject">~QObject</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#blockSignals">blockSignals</a></strong>(bool <em>block</em>)</td>
+</tr>
+<tr>
+<td>const QObjectList &amp;</td>
+<td><strong><a href="#children">children</a></strong>() const</td>
+</tr>
+<tr>
+<td>QMetaObject::Connection</td>
+<td><strong><a href="#connect-2">connect</a></strong>(const QObject *<em>sender</em>, const char *<em>signal</em>, const char *<em>method</em>, Qt::ConnectionType <em>type</em> = Qt::AutoConnection) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#disconnect-2">disconnect</a></strong>(const char *<em>signal</em> = nullptr, const QObject *<em>receiver</em> = nullptr, const char *<em>method</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#disconnect-3">disconnect</a></strong>(const QObject *<em>receiver</em>, const char *<em>method</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#dumpObjectInfo">dumpObjectInfo</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#dumpObjectTree">dumpObjectTree</a></strong>() const</td>
+</tr>
+<tr>
+<td>QList<qbytearray></qbytearray></td>
+<td><strong><a href="#dynamicPropertyNames">dynamicPropertyNames</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#event">event</a></strong>(QEvent *<em>e</em>)</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#eventFilter">eventFilter</a></strong>(QObject *<em>watched</em>, QEvent *<em>event</em>)</td>
+</tr>
+<tr>
+<td>T</td>
+<td><strong><a href="#findChild">findChild</a></strong>(const QString &amp;<em>name</em> = QString(), Qt::FindChildOptions <em>options</em> = Qt::FindChildrenRecursively) const</td>
+</tr>
+<tr>
+<td>QList<t></t></td>
+<td><strong><a href="#findChildren">findChildren</a></strong>(const QString &amp;<em>name</em> = QString(), Qt::FindChildOptions <em>options</em> = Qt::FindChildrenRecursively) const</td>
+</tr>
+<tr>
+<td>QList<t></t></td>
+<td><strong><a href="#findChildren-1">findChildren</a></strong>(const QRegularExpression &amp;<em>re</em>, Qt::FindChildOptions <em>options</em> = Qt::FindChildrenRecursively) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#inherits">inherits</a></strong>(const char *<em>className</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#installEventFilter">installEventFilter</a></strong>(QObject *<em>filterObj</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isWidgetType">isWidgetType</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isWindowType">isWindowType</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#killTimer">killTimer</a></strong>(int <em>id</em>)</td>
+</tr>
+<tr>
+<td>virtual const QMetaObject *</td>
+<td><strong><a href="#metaObject">metaObject</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#moveToThread">moveToThread</a></strong>(QThread *<em>targetThread</em>)</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#objectName-prop">objectName</a></strong>() const</td>
+</tr>
+<tr>
+<td>QObject *</td>
+<td><strong><a href="#parent">parent</a></strong>() const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#property">property</a></strong>(const char *<em>name</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#removeEventFilter">removeEventFilter</a></strong>(QObject *<em>obj</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#objectName-prop">setObjectName</a></strong>(const QString &amp;<em>name</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setParent">setParent</a></strong>(QObject *<em>parent</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#setProperty">setProperty</a></strong>(const char *<em>name</em>, const QVariant &amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#signalsBlocked">signalsBlocked</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#startTimer">startTimer</a></strong>(int <em>interval</em>, Qt::TimerType <em>timerType</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#startTimer-1">startTimer</a></strong>(std::chrono::milliseconds <em>time</em>, Qt::TimerType <em>timerType</em> = Qt::CoarseTimer)</td>
+</tr>
+<tr>
+<td>QThread *</td>
+<td><strong><a href="#thread">thread</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cao">公共槽</span><a href="#gong-gong-cao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#deleteLater">deleteLater</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#destroyed">destroyed</a></strong>(QObject *<em>obj</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#objectNameChanged">objectNameChanged</a></strong>(const QString &amp;<em>objectName</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QMetaObject::Connection</th>
+<th><strong><a href="#connect">connect</a></strong>(const QObject *<em>sender</em>, const char *<em>signal</em>, const QObject *<em>receiver</em>, const char *<em>method</em>, Qt::ConnectionType <em>type</em> = Qt::AutoConnection)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QMetaObject::Connection</td>
+<td><strong><a href="#connect-1">connect</a></strong>(const QObject *<em>sender</em>, const QMetaMethod &amp;<em>signal</em>, const QObject *<em>receiver</em>, const QMetaMethod &amp;<em>method</em>, Qt::ConnectionType <em>type</em> = Qt::AutoConnection)</td>
+</tr>
+<tr>
+<td>QMetaObject::Connection</td>
+<td><strong><a href="#connect-3">connect</a></strong>(const QObject *<em>sender</em>, PointerToMemberFunction <em>signal</em>, const QObject *<em>receiver</em>, PointerToMemberFunction <em>method</em>, Qt::ConnectionType <em>type</em> = Qt::AutoConnection)</td>
+</tr>
+<tr>
+<td>QMetaObject::Connection</td>
+<td><strong><a href="#connect-4">connect</a></strong>(const QObject *<em>sender</em>, PointerToMemberFunction <em>signal</em>, Functor <em>functor</em>)</td>
+</tr>
+<tr>
+<td>QMetaObject::Connection</td>
+<td><strong><a href="#connect-5">connect</a></strong>(const QObject *<em>sender</em>, PointerToMemberFunction <em>signal</em>, const QObject *<em>context</em>, Functor <em>functor</em>, Qt::ConnectionType <em>type</em> = Qt::AutoConnection)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#disconnect">disconnect</a></strong>(const QObject *<em>sender</em>, const char *<em>signal</em>, const QObject *<em>receiver</em>, const char *<em>method</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#disconnect-1">disconnect</a></strong>(const QObject *<em>sender</em>, const QMetaMethod &amp;<em>signal</em>, const QObject *<em>receiver</em>, const QMetaMethod &amp;<em>method</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#disconnect-4">disconnect</a></strong>(const QMetaObject::Connection &amp;<em>connection</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#disconnect-5">disconnect</a></strong>(const QObject *<em>sender</em>, PointerToMemberFunction <em>signal</em>, const QObject *<em>receiver</em>, PointerToMemberFunction <em>method</em>)</td>
+</tr>
+<tr>
+<td>const QMetaObject</td>
+<td><strong><a href="#staticMetaObject-var">staticMetaObject</a></strong></td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#tr">tr</a></strong>(const char *<em>sourceText</em>, const char *<em>disambiguation</em> = nullptr, int <em>n</em> = -1)</td>
+</tr>
+</tbody></table>
+<h2><span id="shou-bao-hu-de-han-shu">受保护的函数</span><a href="#shou-bao-hu-de-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual void</th>
+<th><strong><a href="#childEvent">childEvent</a></strong>(QChildEvent *<em>event</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual void</td>
+<td><strong><a href="#connectNotify">connectNotify</a></strong>(const QMetaMethod &amp;<em>signal</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#customEvent">customEvent</a></strong>(QEvent *<em>event</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#disconnectNotify">disconnectNotify</a></strong>(const QMetaMethod &amp;<em>signal</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isSignalConnected">isSignalConnected</a></strong>(const QMetaMethod &amp;<em>signal</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#receivers">receivers</a></strong>(const char *<em>signal</em>) const</td>
+</tr>
+<tr>
+<td>QObject *</td>
+<td><strong><a href="#sender">sender</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#senderSignalIndex">senderSignalIndex</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#timerEvent">timerEvent</a></strong>(QTimerEvent *<em>event</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-hui-yuan">相关非会员</span><a href="#xiang-guan-fei-hui-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QObjectList-typedef">QObjectList</a></strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>T</td>
+<td><strong><a href="#qobject_cast">qobject_cast</a></strong>(QObject *<em>object</em>)</td>
+</tr>
+<tr>
+<td>T</td>
+<td><strong><a href="#qobject_cast-1">qobject_cast</a></strong>(const QObject *<em>object</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="hong">宏</span><a href="#hong" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QT_NO_NARROWING_CONVERSIONS_IN_CONNECT">QT_NO_NARROWING_CONVERSIONS_IN_CONNECT</a></strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#Q_CLASSINFO">Q_CLASSINFO</a></strong>(<em>Name</em>, <em>Value</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_DISABLE_COPY">Q_DISABLE_COPY</a></strong>(<em>Class</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_DISABLE_COPY_MOVE">Q_DISABLE_COPY_MOVE</a></strong>(<em>Class</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_EMIT">Q_EMIT</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_ENUM">Q_ENUM</a></strong>(…)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_ENUM_NS">Q_ENUM_NS</a></strong>(…)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_FLAG">Q_FLAG</a></strong>(…)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_FLAG_NS">Q_FLAG_NS</a></strong>(…)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_GADGET">Q_GADGET</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_INTERFACES">Q_INTERFACES</a></strong>(…)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_INVOKABLE">Q_INVOKABLE</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_MOC_INCLUDE">Q_MOC_INCLUDE</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_NAMESPACE">Q_NAMESPACE</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_NAMESPACE_EXPORT">Q_NAMESPACE_EXPORT</a></strong>(<em>EXPORT_MACRO</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_OBJECT">Q_OBJECT</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_PROPERTY">Q_PROPERTY</a></strong>(…)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_REVISION">Q_REVISION</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_SET_OBJECT_NAME">Q_SET_OBJECT_NAME</a></strong>(<em>Object</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_SIGNAL">Q_SIGNAL</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_SIGNALS">Q_SIGNALS</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_SLOT">Q_SLOT</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Q_SLOTS">Q_SLOTS</a></strong></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QObject是Qt <a href="object.html">Object Model</a>的核心。这个模型的核心特征是一个非常强大的无缝对象通信机制，叫做<a href="signalsandslots.html">信号和槽</a>。你可以用<a href="#connect">connect</a>()连接一个信号到一个槽，用<a href="#disconnect">disconnect</a>()破坏这个连接。为了避免永无止境的通知循环，你可以用<a href="#blockSignals">blockSignals</a>()暂时屏蔽信号。受保护的函数<a href="#connectNotify">connectNotify</a>()和<a href="#disconnectNotify">disconnectNotify</a>()使跟踪连接成为可能。</p>
+<p>QObjects在<a href="objecttrees.html">对象树</a>中组织自己。当你创建一个以另一个对象为父对象的QObject时，该对象会自动将自己添加到父对象的<a href="#children">children</a>()列表中。父对象拥有该对象的所有权；也就是说，它将在其析构器中自动删除其子对象。你可以使用<a href="#findChild">findChild</a>()或<a href="#findChildren">findChildren</a>()通过名称和可选类型来寻找一个对象。</p>
+<p>每个对象都有一个<a href="#objectName-prop">objectName</a>()，它的类名可以通过相应的<a href="#metaObject">metaObject</a>()找到（见<a href="qmetaobject.html#className">QMetaObject::className</a>()）。你可以通过使用 <a href="#inherits">inherits</a>() 函数来确定对象的类是否继承了 QObject 继承层次中的另一个类。</p>
+<p>当一个对象被删除时，它会发出一个<a href="#destroyed">destroy</a>()信号。你可以捕捉这个信号以避免对QObjects的悬空引用。</p>
+<p>QObjects可以通过<a href="#event">event</a>()接收事件并过滤其他对象的事件。参见<a href="#installEventFilter">installEventFilter</a>()和<a href="#eventFilter">eventFilter</a>()了解详情。一个方便的处理程序，<a href="#childEvent">childEvent</a>()，可以被重新实现以捕获儿童事件。</p>
+<p>最后但并非最不重要的是，QObject在Qt中提供了基本的定时器支持；参见<a href="qtimer.html">QTimer</a> 对定时器的高级支持。</p>
+<p>请注意，<a href="#Q_OBJECT">Q_OBJECT</a>宏对于任何实现信号、槽或属性的对象都是必须的。你还需要在源文件上运行 <a href="moc.html">Meta Object Compiler</a> 。我们强烈建议在QObject的所有子类中使用这个宏，无论它们是否真的使用信号、槽和属性，因为不这样做可能会导致某些函数表现出奇怪的行为。</p>
+<p>所有的Qt widgets都继承了QObject。方便的函数<a href="#isWidgetType">isWidgetType</a>()返回一个对象是否真的是一个widget。它比<a href="#qobject_cast">qobject_cast</a>&lt;<a href="qwidget.html">QWidget</a> <em>&gt;(<em>obj</em>)或</em>obj*-&gt;<a href="#inherits">inherits</a>(“<a href="qwidget.html">QWidget</a>“)快多了。</p>
+<p>一些QObject函数，例如<a href="#children">children</a>()，返回一个<a href="#QObjectList-typedef">QObjectList</a>。<a href="#QObjectList-typedef">QObjectList</a>是<a href="qlist.html">QList</a>&lt;QObject *&gt;的一个类型定义。</p>
+<h3><span id="xian-lu-qin-he-li">线路亲和力</span><a href="#xian-lu-qin-he-li" class="header-anchor">#</a></h3><p>一个QObject实例被称为有一个<em>线程亲和力</em>，或者说它*生活在某个线程中。当一个QObject收到一个<a href="qt.html#ConnectionType-enum">queued signal</a>或一个<a href="eventsandfilters.html#sending-events">posted event</a>时，槽或事件处理器将在该对象所在的线程中运行。</p>
+<p><strong>注意：</strong>如果一个QObject没有线程亲和力（也就是说，如果<a href="#thread">thread</a>()返回0），或者如果它生活在一个没有运行事件循环的线程中，那么它不能接收排队信号或发布的事件。</p>
+<p>默认情况下，一个QObject生活在它被创建的线程中。一个对象的线程亲和力可以用<a href="#thread">thread</a>()来查询，也可以用<a href="#moveToThread">moveToThread</a>()来改变。</p>
+<p>所有的QObjects必须和它们的父对象生活在同一个线程中。因此。</p>
+<ul>
+<li>如果所涉及的两个QObjects生活在不同的线程中，<a href="#setParent">setParent</a>()将会失败。</li>
+<li>当一个QObject被移动到另一个线程时，它的所有子代也将被自动移动。</li>
+<li><a href="#moveToThread">moveToThread</a>()如果QObject有一个父对象，那么将失败。</li>
+<li>如果QObjects是在<a href="qthread.html#run">QThread::run</a>()中创建的，它们不能成为<a href="qthread.html">QThread</a>对象的子对象，因为<a href="qthread.html">QThread</a>并不生活在调用<a href="qthread.html#run">QThread::run</a>()的线程中。</li>
+</ul>
+<p><strong>注意：</strong>一个QObject的成员变量*不会自动成为它的孩子。父子关系必须通过传递一个指针到子对象的<a href="#QObject">构造函数</a>，或者通过调用<a href="#setParent">setParent</a>()来设置。如果没有这个步骤，当调用<a href="#moveToThread">moveToThread</a>()时，该对象的成员变量将保留在旧线程中。</p>
+<h3><span id="mei-you-fu-zhi-gou-zao-qi-huo-fu-zhi-cao-zuo-fu">没有复制构造器或赋值操作符</span><a href="#mei-you-fu-zhi-gou-zao-qi-huo-fu-zhi-cao-zuo-fu" class="header-anchor">#</a></h3><p>QObject既没有复制构造函数，也没有赋值运算符。这是设计上的问题。实际上，它们是被声明的，但是在一个 “私有 “的部分，用宏<a href="#Q_DISABLE">Q_DISABLE</a>()。事实上，所有从QObject派生的Qt类（直接或间接）都使用这个宏来声明它们的复制构造函数和赋值运算符为私有。这个道理可以在Qt <a href="object.html">Object Model</a>页面上关于<a href="object.html#identity-vs-value">Identity vs Value</a>的讨论中找到。</p>
+<p>主要的结果是，你应该在你可能被诱惑使用你的QObject子类作为值的地方使用指向QObject（或者指向你的QObject子类）的指针。例如，如果没有一个拷贝构造函数，你就不能使用QObject的子类作为存储在容器类中的值。你必须存储指针。</p>
+<h3><span id="zi-dong-lian-jie">自动连接</span><a href="#zi-dong-lian-jie" class="header-anchor">#</a></h3><p>Qt的元对象系统提供了一种机制，在QObject子类和它们的子类之间自动连接信号和槽。只要对象被定义为合适的对象名称，并且槽遵循简单的命名规则，这种连接可以在运行时由<a href="qmetaobject.html#connectSlotsByName">QMetaObject::connectSlotsByName</a>()函数执行。</p>
+<p><a href="uic.html">uic</a>生成调用此函数的代码，以使自动连接在用<em>Qt Designer</em>创建的窗体上的部件之间执行。关于在<em>Qt Designer</em>中使用自动连接的更多信息，在<em>Qt Designer</em>手册的<a href="designer-using-a-ui-file.html">在你的应用程序中使用Designer UI文件</a>部分给出。</p>
+<h3><span id="dong-tai-shu-xing">动态属性</span><a href="#dong-tai-shu-xing" class="header-anchor">#</a></h3><p>从Qt 4.2开始，动态属性可以在运行时添加和删除QObject实例。动态属性不需要在编译时声明，但它们提供了与静态属性相同的优点，并使用相同的API进行操作–使用<a href="#property">property</a>()来读取它们，使用<a href="#setProperty">setProperty</a>()来写入它们。</p>
+<p>从Qt 4.3开始，动态属性被<a href="designer-widget-mode.html#the-perty-editor">Qt Designer</a>所支持，标准的Qt部件和用户创建的表单都可以被赋予动态属性。</p>
+<h3><span id="guo-ji-hua-i18n">国际化（I18n）</span><a href="#guo-ji-hua-i18n" class="header-anchor">#</a></h3><p>所有的QObject子类都支持Qt的翻译功能，这使得将一个应用程序的用户界面翻译成不同的语言成为可能。</p>
+<p>为了使用户可见的文本可被翻译，它必须被包裹在对<a href="#tr">tr</a>()函数的调用中。这在 <a href="i18n-source-translation.html">Writing Source Code for Translation</a> 文档中有详细解释。</p>
+<p><strong>See also</strong> <a href="qmetaobject.html">QMetaObject</a>, <a href="qpointer.html">QPointer</a>, <a href="qobjectcleanuphandler.html">QObjectCleanupHandler</a>, <a href="#Q_DISABLE_COPY">Q_DISABLE_COPY</a>(), and <a href="objecttrees.html">Object Trees &amp; Ownership</a>.</p>
+<h2><span id="shu-xing-wen-dang">属性文档</span><a href="#shu-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="bindable-objectname-qstring"><code>[bindable]</code>objectName : </span><a href="#bindable-objectname-qstring" class="header-anchor">#</a></h3><p><strong>注意：</strong>该属性支持<a href="qproperty.html">QProperty</a>绑定。</p>
+<p>该属性持有该对象的名称</p>
+<p>你可以用<a href="#findChild">findChild</a>()通过名字（和类型）找到一个对象。你可以用<a href="#findChildren">findChildren</a>()找到一个对象集合。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">qDebug</span>(<span class="hljs-string">"MyClass::setPrecision(): (%s) invalid precision %f"</span>,
+       <span class="hljs-built_in">qPrintable</span>(<span class="hljs-built_in">objectName</span>()), newPrecision);</code></pre></div>
+
+<p>默认情况下，这个属性包含一个空字符串。</p>
+<p><strong>See also</strong> <a href="#metaObject">metaObject</a>() and <a href="qmetaobject.html#className">QMetaObject::className</a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="invokable-qobject-qobject-qobject-parent-nullptr"><code>[invokable]</code>QObject::QObject( *<em>parent</em> = nullptr)</span><a href="#invokable-qobject-qobject-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>构建一个具有父对象<em>parent</em>的对象。</p>
+<p>一个对象的父对象可以被看作是该对象的所有者。例如，一个<a href="qdialog.html">对话框</a>是它包含的<strong>OK</strong>和<strong>Cancel</strong>按钮的父对象。</p>
+<p>父对象的析构器会销毁所有子对象。</p>
+<p>将<em>parent</em>设置为 “nullptr “会构造一个没有父对象的对象。如果该对象是一个部件，它将成为一个顶层窗口。</p>
+<p><strong>注意：</strong>这个函数可以通过元对象系统和QML来调用。参见<a href="#Q_INVOKABLE">Q_INVOKABLE</a>。</p>
+<p><strong>See also</strong> <a href="#parent">parent</a>(), <a href="#findChild">findChild</a>(), and <a href="#findChildren">findChildren</a>().</p>
+<h3><span id="slot-void-qobject-deletelater"><code>[slot]</code>void QObject::deleteLater()</span><a href="#slot-void-qobject-deletelater" class="header-anchor">#</a></h3><p>计划删除此对象。</p>
+<p>当控制权返回到事件循环时，该对象将被删除。如果当这个函数被调用时，事件循环没有运行（例如，在<a href="qcoreapplication.html#exec">QCoreApplication::exec</a>()之前对一个对象调用deleteLater()，一旦事件循环开始，该对象将被删除。如果deleteLater()在主事件循环停止后被调用，该对象将不会被删除。从Qt 4.8开始，如果deleteLater()被调用在一个没有运行事件循环的线程中的对象上，那么该对象将在该线程结束时被销毁。</p>
+<p>请注意，进入和离开一个新的事件循环（例如，通过打开一个模式对话框）将不会*执行延迟删除；为了删除对象，控件必须返回到调用deleteLater()的事件循环中。这不适用于在先前的嵌套事件循环仍在运行时删除的对象：Qt事件循环将在新的嵌套事件循环开始时删除这些对象。</p>
+<p><strong>注意：</strong>多次调用这个函数是安全的；当第一个延迟删除事件被传递时，该对象的任何未决事件都会从事件队列中删除。</p>
+<p><strong>Note:</strong> This function is <a href="threads-reentrancy.html">thread-safe</a>.</p>
+<p><strong>See also</strong> <a href="#destroyed">destroyed</a>() and <a href="qpointer.html">QPointer</a>.</p>
+<h3><span id="signal-void-qobject-destroyed-qobject-obj-nullptr"><code>[signal]</code>void QObject::destroyed( *<em>obj</em> = nullptr)</span><a href="#signal-void-qobject-destroyed-qobject-obj-nullptr" class="header-anchor">#</a></h3><p>这个信号在对象<em>obj</em>被销毁之前，在<a href="qpointer.html">QPointer</a>的任何实例被通知之后立即发出，并且不能被阻止。</p>
+<p>在这个信号发出后，所有对象的子代都会立即被销毁。</p>
+<p><strong>See also</strong> <a href="#deleteLater">deleteLater</a>() and <a href="qpointer.html">QPointer</a>.</p>
+<h3><span id="private-signal-void-qobject-objectnamechanged-const-qstring-amp-objectname"><code>[private signal]</code>void QObject::objectNameChanged(const  &amp;<em>objectName</em>)</span><a href="#private-signal-void-qobject-objectnamechanged-const-qstring-amp-objectname" class="header-anchor">#</a></h3><p>这个信号在对象的名字被改变后发出。新的对象名称作为<em>objectName</em>被传递。</p>
+<p><strong>注意：</strong>这是一个私有信号。它可以在信号连接中使用，但不能由用户发射。</p>
+<p><strong>注意：</strong>属性<a href="#objectName-prop">objectName</a>的通知器信号。</p>
+<p><strong>See also</strong> <a href="#objectName-prop">QObject::objectName</a>.</p>
+<h3><span id="virtual-qobject-qobject"><code>[virtual]</code>QObject::~QObject()</span><a href="#virtual-qobject-qobject" class="header-anchor">#</a></h3><p>销毁该对象，删除其所有子对象。</p>
+<p>所有进出该对象的信号都会自动断开，并且该对象的任何待发事件都会从事件队列中删除。然而，使用<a href="#deleteLater">deleteLater</a>()而不是直接删除一个<a href>QObject</a>子类，通常更安全。</p>
+<p><strong>警告：</strong>所有的子对象被删除。如果这些对象中有任何一个在堆栈或全局中，你的程序迟早会崩溃。我们不建议从父类之外持有指向子类对象的指针。如果你仍然这样做，<a href="#destroyed">destroy</a>()信号给了你一个机会来检测一个对象被销毁。</p>
+<p><strong>警告：</strong>在待处理的事件等待交付时删除一个<a href>QObject</a>会导致崩溃。如果<a href>QObject</a>存在于与当前执行的线程不同的线程中，你一定不要直接删除它。使用<a href="#deleteLater">deleteLater</a>()代替，这将导致事件循环在所有待处理的事件被传递给它之后删除该对象。</p>
+<p><strong>See also</strong> [deleteLater](#<code>[slot]</code>void QObject::deleteLater())().</p>
+<h3><span id="bool-qobject-blocksignals-bool-block">bool QObject::blockSignals(bool <em>block</em>)</span><a href="#bool-qobject-blocksignals-bool-block" class="header-anchor">#</a></h3><p>如果<em>block</em>为真，这个对象发出的信号将被阻断（即，发出的信号将不会调用任何与之相连的东西）。如果<em>block</em>为假，则不会发生这种阻塞。</p>
+<p>返回值是<a href="#signalsBlocked">signalsBlocked</a>()的先前值。</p>
+<p>请注意，即使这个对象的信号被阻塞了，<a href="#destroyed">destroyed</a>()信号也会被发射出来。</p>
+<p>被阻塞时发出的信号不会被缓冲。</p>
+<p><strong>See also</strong> <a href="#signalsBlocked">signalsBlocked</a>() and <a href="qsignalblocker.html">QSignalBlocker</a>.</p>
+<h3><span id="virtual-protected-void-qobject-childevent-qchildevent-event"><code>[virtual protected]</code>void QObject::childEvent( *<em>event</em>)</span><a href="#virtual-protected-void-qobject-childevent-qchildevent-event" class="header-anchor">#</a></h3><p>这个事件处理程序可以在一个子类中重新实现，以接收子事件。事件被传递到<em>event</em>参数中。</p>
+<p><a href="qevent.html#Type-enum">QEvent::ChildAdded</a>和<a href="qevent.html#Type-enum">QEvent::ChildRemoved</a>事件在孩子被添加或删除时被发送到对象。在这两种情况下，你只能依靠孩子是一个<a href>QObject</a>，或者如果<a href="#isWidgetType">isWidgetType</a>()返回 “true”，是一个<a href="qwidget.html">QWidget</a> 。(这是因为在<a href="qevent.html#Type-enum">ChildAdded</a>的情况下，这个孩子还没有被完全构建，而在<a href="qevent.html#Type-enum">ChildRemoved</a>的情况下，它可能已经被销毁了）。</p>
+<p><a href="qevent.html#Type-enum">QEvent::ChildPolished</a>事件是在孩子被抛光，或被抛光的孩子被添加时发送给部件。如果你收到一个孩子抛光的事件，孩子的构造通常已经完成。然而，这并不保证，在执行一个部件的构造函数时，可能会有多个抛光事件被发送。</p>
+<p>对于每个子部件，你会收到一个 <a href="qevent.html#Type-enum">ChildAdded</a> 事件，零个或多个 <a href="qevent.html#Type-enum">ChildPolished</a> 事件，以及一个 <a href="qevent.html#Type-enum">ChildRemoved</a> 事件。</p>
+<p>如果一个孩子在被添加后立即被移除，<a href="qevent.html#Type-enum">ChildPolished</a>事件会被省略。如果一个孩子在构建和销毁过程中被抛光了几次，你可能会收到同一个孩子的几个孩子抛光事件，每次都有一个不同的虚拟表。</p>
+<p><strong>See also</strong> <a href="#event">event</a>().</p>
+<h3><span id="const-qobjectlist-amp-qobject-children-const">const  &amp;QObject::children() const</span><a href="#const-qobjectlist-amp-qobject-children-const" class="header-anchor">#</a></h3><p>返回一个子对象的列表。<a href="#QObjectList-typedef">QObjectList</a> 类在<code>&lt;QObject&gt;</code>头文件中定义如下: </p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> QList&lt;QObject*&gt; QObjectList;</code></pre></div>
+
+<p>第一个添加的孩子是列表中的<a href="qlist.html#first">first</a>对象，最后一个添加的孩子是列表中的<a href="qlist.html#last">last</a>对象，也就是说，新的孩子被附加在最后。</p>
+<p>请注意，当<a href="qwidget.html">QWidget</a>的孩子被<a href="qwidget.html#raise">升高</a>或<a href="qwidget.html#lower">降低</a>时，列表的顺序会改变。被提升的部件成为列表中的最后一个对象，而被降低的部件成为列表中的第一个对象。</p>
+<p><strong>See also</strong> <a href="#findChild">findChild</a>(), <a href="#findChildren">findChildren</a>(), <a href="#parent">parent</a>(), and <a href="#setParent">setParent</a>().</p>
+<h3><span id="static-qmetaobject-connection-qobject-connect-const-qobject-sender-const-char-signal-const-qobject-receiver-const-char-method-qt-connectiontype-type-qt-autoconnection"><code>[static]</code> QObject::connect(const  * <em>sender</em>, const char * <em>signal</em>, const  * <em>receiver</em>, const char * <em>method</em>,  <em>type</em> = Qt::AutoConnection)</span><a href="#static-qmetaobject-connection-qobject-connect-const-qobject-sender-const-char-signal-const-qobject-receiver-const-char-method-qt-connectiontype-type-qt-autoconnection" class="header-anchor">#</a></h3><p>创建一个给定<em>type</em>的连接，从<em>sender</em>对象中的<em>信号</em>到<em>接收者</em>对象中的<em>method</em>。返回一个连接的句柄，以后可以用来断开连接。</p>
+<p>在指定<em>signal</em>和<em>method</em>时，你必须使用<code>SIGNAL()</code>和<code>SLOT()</code>宏，例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QLabel *label = <span class="hljs-keyword">new</span> QLabel;
+QScrollBar *scrollBar = <span class="hljs-keyword">new</span> QScrollBar;
+QObject::<span class="hljs-built_in">connect</span>(scrollBar, <span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">valueChanged</span>(<span class="hljs-type">int</span>)),
+                 label,  <span class="hljs-built_in">SLOT</span>(<span class="hljs-built_in">setNum</span>(<span class="hljs-type">int</span>)));</code></pre></div>
+
+<p>这个例子确保标签总是显示当前的滚动条值。注意，信号和槽的参数不能包含任何变量名，只包含类型。例如，下面的内容将无法工作，并返回错误：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// WRONG</span>
+QObject::<span class="hljs-built_in">connect</span>(scrollBar, <span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">valueChanged</span>(<span class="hljs-type">int</span> value)),
+                 label, <span class="hljs-built_in">SLOT</span>(<span class="hljs-built_in">setNum</span>(<span class="hljs-type">int</span> value)));</code></pre></div>
+
+<p>一个信号也可以连接到另一个信号：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyWidget</span> : <span class="hljs-keyword">public</span> QWidget
+{
+    Q_OBJECT
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">MyWidget</span>();
+
+signals:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">buttonClicked</span><span class="hljs-params">()</span></span>;
+
+<span class="hljs-keyword">private</span>:
+    QPushButton *myButton;
+};
+
+MyWidget::<span class="hljs-built_in">MyWidget</span>()
+{
+    myButton = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QPushButton</span>(<span class="hljs-keyword">this</span>);
+    <span class="hljs-built_in">connect</span>(myButton, <span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">clicked</span>()),
+            <span class="hljs-keyword">this</span>, <span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">buttonClicked</span>()));
+}</code></pre></div>
+
+<p>在这个例子中，<code>MyWidget</code>构造函数从一个私有成员变量中转发了一个信号，并以一个与<code>MyWidget</code>相关的名字使其可用。</p>
+<p>一个信号可以连接到许多槽和信号。许多信号可以被连接到一个槽上。</p>
+<p>如果一个信号被连接到多个槽，当信号被发出时，这些槽会按照连接的顺序被激活。</p>
+<p>如果该函数成功地将信号连接到槽上，它将返回一个<a href="qmetaobject-connection.html">QMetaObject::Connection</a>，它代表一个连接的柄。如果不能创建连接，连接句柄将是无效的，例如，如果 <a href>QObject</a> 无法验证 <em>signal</em> 或 <em>method</em> 的存在，或者它们的签名不兼容。你可以通过将句柄转换为一个bool来检查它是否有效。</p>
+<p>默认情况下，你建立的每个连接都会发出一个信号；重复的连接会发出两个信号。你可以通过一个<a href="#disconnect">disconnect</a>()的调用来中断所有这些连接。如果你传递<a href="qt.html#ConnectionType-enum">Qt::UniqueConnection</a> <em>类型</em>，只有当连接不是重复的时候才会被建立。如果已经有一个重复的（完全相同的信号到相同对象上的完全相同的槽），连接将失败，并且connect将返回一个无效的<a href="qmetaobject-connection.html">QMetaObject::Connection</a>。</p>
+<p><strong>注意：</strong> Qt::UniqueConnections对lambdas、非成员函数和functors不起作用；它们只适用于连接到成员函数。</p>
+<p>可选的<em>type</em>参数描述了要建立的连接的类型。特别是，它决定了一个特定的信号是立即传递给槽，还是排队在稍后的时间传递。如果信号是排队的，参数必须是Qt的元对象系统所知道的类型，因为Qt需要复制参数来把它们储存在幕后的事件中。如果你试图使用一个排队的连接并得到错误信息</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QObject::connect: Cannot queue arguments of type <span class="hljs-string">'MyType'</span>
+(Make sure <span class="hljs-string">'MyType'</span> is registered <span class="hljs-keyword">using</span> <span class="hljs-built_in">qRegisterMetaType</span>().)</code></pre></div>
+
+<p>调用<a href="qmetatype.html#qRegisterMetaType-1">qRegisterMetaType</a>()，在建立连接之前注册数据类型。</p>
+<p><strong>Note:</strong> 这个函数是 <a href="threads-reentrancy.html">thread-safe</a>.</p>
+<p><strong>See also</strong> <a href="#disconnect">disconnect</a>(), <a href="#sender">sender</a>(), <a href="qmetatype.html#qRegisterMetaType-1">qRegisterMetaType</a>(), <a href="qmetatype.html#Q_DECLARE_METATYPE">Q_DECLARE_METATYPE</a>(), and <a href="signalsandslots-syntaxes.html">Differences between String-Based and Functor-Based Connections</a>.</p>
+<h3><span id="static-qmetaobject-connection-qobject-connect-const-qobject-sender-const-qmetamethod-amp-signal-const-qobject-receiver-const-qmetamethod-amp-method-qt-connectiontype-type-qt-autoconnection"><code>[static]</code> QObject::connect(const  * <em>sender</em>, const  &amp;<em>signal</em>, const  *<em>receiver</em>, const  &amp;<em>method</em>,  <em>type</em> = Qt::AutoConnection)</span><a href="#static-qmetaobject-connection-qobject-connect-const-qobject-sender-const-qmetamethod-amp-signal-const-qobject-receiver-const-qmetamethod-amp-method-qt-connectiontype-type-qt-autoconnection" class="header-anchor">#</a></h3><p>创建一个给定<em>type</em>的连接，从<em>sender</em>对象中的<em>signal</em>到<em>receiver</em>对象中的<em>method</em>。返回一个连接的句柄，以后可以用来断开连接。</p>
+<p>如果不能创建连接，例如，参数无效，连接句柄将无效。你可以通过将<a href="qmetaobject-connection.html">QMetaObject::Connection</a>转换为一个bool来检查它是否有效。</p>
+<p>这个函数与<code>connect(const QObject *sender, const char *signal, const QObject *receiver, const char *method, Qt::ConnectionType type)</code>的工作方式相同，但它使用<a href>QMetaMethod</a>来指定信号和方法。</p>
+<p><strong>See also</strong> <a href="#connect">connect</a>(const QObject *sender, const char *signal, const QObject *receiver, const char *method, Qt::ConnectionType type).</p>
+<h3><span id="qmetaobject-connection-qobject-connect-const-qobject-sender-const-char-signal-const-char-method-qt-connectiontype-type-qt-autoconnection-const"> QObject::connect(const  *<em>sender</em>, const char *<em>signal</em>, const char *<em>method</em>,  <em>type</em> = Qt::AutoConnection) const</span><a href="#qmetaobject-connection-qobject-connect-const-qobject-sender-const-char-signal-const-char-method-qt-connectiontype-type-qt-autoconnection-const" class="header-anchor">#</a></h3><p>这个函数重载了connect()。</p>
+<p>从<em>sender</em>对象连接<em>signal</em>到此对象的<em>method</em>。</p>
+<p>相当于connect(<em>sender</em>, <em>signal</em>, <code>this</code>, <em>method</em>, <em>type</em>)。</p>
+<p>你建立的每个连接都会发出一个信号，所以重复的连接会发出两个信号。你可以使用<a href="#disconnect">disconnect</a>()中断一个连接。</p>
+<p><strong>注意：</strong>这个函数是<a href="threads-reentrancy.html">线程安全</a>。</p>
+<p><strong>See also</strong> <a href="#disconnect">disconnect</a>().</p>
+<h3><span id="static-template-qmetaobject-connection-qobject-connect-const-qobject-sender-pointertomemberfunction-signal-const-qobject-receiver-pointertomemberfunction-method-qt-connectiontype-type-qt-autoconnection"><code>[static]</code>template <typename pointertomemberfunction> <a href="qmetaobject-connection.html">QMetaObject::Connection</a> QObject::connect(const <a href="#QObject">QObject</a> * <em>sender</em>, PointerToMemberFunction <em>signal</em>, const <a href="#QObject">QObject</a> *<em>receiver</em>, PointerToMemberFunction <em>method</em>, <a href="qt.html#ConnectionType-enum">Qt::ConnectionType</a> <em>type</em> = Qt::AutoConnection)</typename></span><a href="#static-template-qmetaobject-connection-qobject-connect-const-qobject-sender-pointertomemberfunction-signal-const-qobject-receiver-pointertomemberfunction-method-qt-connectiontype-type-qt-autoconnection" class="header-anchor">#</a></h3><p>这个函数重载了connect()。</p>
+<p>创建一个给定<em>type</em>的连接，从<em>sender</em>对象中的<em>signal</em>到<em>receiver</em>对象中的<em>method</em>。返回一个连接的句柄，以后可以用来断开连接。</p>
+<p>信号必须是一个在头中被声明为信号的函数。槽函数可以是任何可以连接到信号的成员函数。如果信号的参数数至少与槽的参数数相同，并且在信号和槽的相应参数类型之间有隐含的转换，则槽可以连接到给定的信号。</p>
+<p>例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QLabel *label = <span class="hljs-keyword">new</span> QLabel;
+QLineEdit *lineEdit = <span class="hljs-keyword">new</span> QLineEdit;
+QObject::<span class="hljs-built_in">connect</span>(lineEdit, &amp;QLineEdit::textChanged,
+                 label,  &amp;QLabel::setText);</code></pre></div>
+
+<p>这个例子保证了标签总是显示当前行的编辑文本。</p>
+<p>一个信号可以连接到许多槽和信号。许多信号可以连接到一个槽。</p>
+<p>如果一个信号被连接到几个槽，当信号发出时，这些槽的激活顺序与连接的顺序相同</p>
+<p>该函数如果成功地将信号连接到槽，则返回一个连接的句柄。如果不能创建连接，连接句柄将是无效的，例如，如果<a href>QObject</a>无法验证<em>signal</em>的存在（如果它没有被声明为一个信号），你可以通过将<a href="qmetaobject-connection.html">QMetaObject::Connection</a>转换为一个bool来检查它是否有效。</p>
+<p>默认情况下，你的每个连接都会发出一个信号；重复的连接会发出两个信号。你可以通过一个<a href="#disconnect">disconnect</a>()的调用来中断所有这些连接。如果你传递<a href="qt.html#ConnectionType-enum">Qt::UniqueConnection</a> <em>类型</em>，只有当连接不是重复的时候才会被建立。如果已经有一个重复的（完全相同的信号到相同对象上的完全相同的槽），连接将失败，connect将返回一个无效的<a href="qmetaobject-connection.html">QMetaObject::Connection</a>。</p>
+<p>可选的<em>type</em>参数描述了要建立的连接的类型。特别是，它决定了一个特定的信号是立即传递到一个槽中，还是排队在稍后的时间传递。如果信号是排队的，参数必须是Qt的元对象系统所知道的类型，因为Qt需要复制参数来把它们储存在幕后的事件中。如果你试图使用一个排队的连接并得到错误信息</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QObject::connect: Cannot queue arguments of type <span class="hljs-string">'MyType'</span>
+(Make sure <span class="hljs-string">'MyType'</span> is registered <span class="hljs-keyword">using</span> <span class="hljs-built_in">qRegisterMetaType</span>().)</code></pre></div>
+
+<p>确保用<a href="qmetatype.html#Q_DECLARE_METATYPE">Q_DECLARE_METATYPE</a>声明参数类型。</p>
+<p>重载函数可以在<a href="qtglobal.html#qOverload">qOverload</a>的帮助下解决。</p>
+<p><strong>Note:</strong> This function is <a href="threads-reentrancy.html">thread-safe</a>.</p>
+<p><strong>See also</strong> <a href="signalsandslots-syntaxes.html">Differences between String-Based and Functor-Based Connections</a>.</p>
+<h3><span id="static-template-lt-typename-pointertomemberfunction-typename-functor-gt-qmetaobject-connection-qobject-connect-const-qobject-sender-pointertomemberfunction-signal-functor-functor"><code>[static]</code>template &lt;typename PointerToMemberFunction, typename Functor&gt;  QObject::connect(const  *<em>sender</em>, PointerToMemberFunction <em>signal</em>, Functor <em>functor</em>)</span><a href="#static-template-lt-typename-pointertomemberfunction-typename-functor-gt-qmetaobject-connection-qobject-connect-const-qobject-sender-pointertomemberfunction-signal-functor-functor" class="header-anchor">#</a></h3><p>这个函数重载了connect()。</p>
+<p>从<em>sender</em>对象中的<em>signal</em>创建一个连接到<em>functor</em>，并返回一个连接的句柄</p>
+<p>信号必须是一个在头中被声明为信号的函数。槽函数可以是任何可以连接到信号的函数或函数器。如果一个信号至少有和槽函数一样多的参数，槽函数就可以连接到一个给定的信号。在信号和槽的相应参数的类型之间必须存在隐含的转换。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">someFunction</span><span class="hljs-params">()</span></span>;
+QPushButton *button = <span class="hljs-keyword">new</span> QPushButton;
+QObject::<span class="hljs-built_in">connect</span>(button, &amp;QPushButton::clicked, someFunction);</code></pre></div>
+
+<p>也可以使用Lambda表达式：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QByteArray page = ...;
+QTcpSocket *socket = <span class="hljs-keyword">new</span> QTcpSocket;
+socket-&gt;<span class="hljs-built_in">connectToHost</span>(<span class="hljs-string">"qt-project.org"</span>, <span class="hljs-number">80</span>);
+QObject::<span class="hljs-built_in">connect</span>(socket, &amp;QTcpSocket::connected, [=] () {
+    socket-&gt;<span class="hljs-built_in">write</span>(<span class="hljs-string">"GET "</span> + page + <span class="hljs-string">"\r\n"</span>);
+});</code></pre></div>
+
+<p>如果发送者被破坏，连接将自动断开。然而，你应该注意，当信号发出时，在该函数中使用的任何对象仍然活着。</p>
+<p>重载函数可以在<a href="qtglobal.html#qOverload">qOverload</a>的帮助下解决。</p>
+<p><strong>Note:</strong> This function is <a href="threads-reentrancy.html">thread-safe</a>.</p>
+<h3><span id="static-since-5-2-template-lt-typename-pointertomemberfunction-typename-functor-gt-qmetaobject-connection-qobject-connect-const-qobject-sender-pointertomemberfunction-signal-const-qobject-context-functor-functor-qt-connectiontype-type-qt-autoconnection"><code>[static, since 5.2]</code>template &lt;typename PointerToMemberFunction, typename Functor&gt;  QObject::connect(const  *<em>sender</em>, PointerToMemberFunction <em>signal</em>, const  *<em>context</em>, Functor <em>functor</em>,  <em>type</em> = Qt::AutoConnection)</span><a href="#static-since-5-2-template-lt-typename-pointertomemberfunction-typename-functor-gt-qmetaobject-connection-qobject-connect-const-qobject-sender-pointertomemberfunction-signal-const-qobject-context-functor-functor-qt-connectiontype-type-qt-autoconnection" class="header-anchor">#</a></h3><p>这个函数重载了connect()。</p>
+<p>创建一个给定的<em>type</em>的连接，从<em>sender</em>对象中的<em>signal</em>到<em>functor</em>，放在<em>context</em>的特定事件循环中，并返回该连接的句柄。</p>
+<p><strong>注意：</strong> Qt::UniqueConnections对lambdas、非成员函数和functors不起作用；它们只适用于连接到成员函数。</p>
+<p>信号必须是一个在头文件中被声明为信号的函数。槽函数可以是任何可以连接到信号的函数或函数器。如果一个信号至少有和槽函数一样多的参数，槽函数就可以连接到一个给定的信号。信号和槽函数中相应参数的类型之间必须存在隐式转换。</p>
+<p>例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">someFunction</span><span class="hljs-params">()</span></span>;
+QPushButton *button = <span class="hljs-keyword">new</span> QPushButton;
+QObject::<span class="hljs-built_in">connect</span>(button, &amp;QPushButton::clicked, <span class="hljs-keyword">this</span>, someFunction, Qt::QueuedConnection);</code></pre></div>
+
+<p>也可以使用Lambda表达式:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QByteArray page = ...;
+QTcpSocket *socket = <span class="hljs-keyword">new</span> QTcpSocket;
+socket-&gt;<span class="hljs-built_in">connectToHost</span>(<span class="hljs-string">"qt-project.org"</span>, <span class="hljs-number">80</span>);
+QObject::<span class="hljs-built_in">connect</span>(socket, &amp;QTcpSocket::connected, <span class="hljs-keyword">this</span>, [=] () {
+    socket-&gt;<span class="hljs-built_in">write</span>(<span class="hljs-string">"GET "</span> + page + <span class="hljs-string">"\r\n"</span>);
+}, Qt::AutoConnection);</code></pre></div>
+
+<p>如果发送者或上下文被破坏，该连接将自动断开。然而，你应该注意，当信号发出时，任何在功能中使用的对象仍然活着。</p>
+<p>重载函数可以在<a href="qtglobal.html#qOverload">qOverload</a>的帮助下解决。</p>
+<p><strong>Note:</strong> This function is <a href="threads-reentrancy.html">thread-safe</a>.</p>
+<p>这个函数是在Qt 5.2中引入的。</p>
+<h3><span id="virtual-protected-since-5-0-void-qobject-connectnotify-const-qmetamethod-amp-signal"><code>[virtual protected, since 5.0]</code>void QObject::connectNotify(const  &amp;<em>signal</em>)</span><a href="#virtual-protected-since-5-0-void-qobject-connectnotify-const-qmetamethod-amp-signal" class="header-anchor">#</a></h3><p>当有东西被连接到这个对象中的<em>signal</em>时，这个虚拟函数被调用。</p>
+<p>如果你想把<em>signal</em>和一个特定的信号进行比较，你可以使用<a href="#fromSignal">QMetaMethod::fromSignal</a>()，如下所示:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">if</span> (signal == QMetaMethod::<span class="hljs-built_in">fromSignal</span>(&amp;MyObject::valueChanged)) {
+    <span class="hljs-comment">// signal is valueChanged</span>
+}</code></pre></div>
+
+<p><strong>警告：</strong>这个函数违反了面向对象的模块化原则。然而，当你需要执行昂贵的初始化时，它可能是有用的，只有当某些东西被连接到一个信号时。</p>
+<p><strong>警告：</strong>该函数是从执行连接的线程中调用的，而该线程可能与该对象所在的线程不同。</p>
+<p>这个函数是在Qt 5.0中引入的。</p>
+<p><strong>See also</strong> <a href="#connect">connect</a>() and <a href="#disconnectNotify">disconnectNotify</a>().</p>
+<h3><span id="virtual-protected-void-qobject-customevent-qevent-event"><code>[virtual protected]</code>void QObject::customEvent( *<em>event</em>)</span><a href="#virtual-protected-void-qobject-customevent-qevent-event" class="header-anchor">#</a></h3><p>这个事件处理程序可以在子类中重新实现以接收自定义事件。自定义事件是用户定义的事件，其类型值至少与 <a href="qevent.html#Type-enum">QEvent::Type</a> 枚举中的 <a href="qevent.html#Type-enum">QEvent::User</a> 项一样大，并且通常是 <a href="qevent.html">QEvent</a> 子类。该事件在<em>event</em>参数中被传递。</p>
+<p><strong>See also</strong> <a href="#event">event</a>() and <a href="qevent.html">QEvent</a>.</p>
+<h3><span id="static-bool-qobject-disconnect-const-qobject-sender-const-char-signal-const-qobject-receiver-const-char-method"><code>[static]</code>bool QObject::disconnect(const  *<em>sender</em>, const char *<em>signal</em>, const  *<em>receiver</em>, const char *<em>method</em>)</span><a href="#static-bool-qobject-disconnect-const-qobject-sender-const-char-signal-const-qobject-receiver-const-char-method" class="header-anchor">#</a></h3><p>断开对象<em>sender</em>中的<em>signal</em>与对象<em>receiver</em>中的<em>method</em>的连接。如果连接被成功断开，返回 “true”；否则返回 “false”。</p>
+<p>当所涉及的任何一个对象被销毁时，一个信号槽的连接就会被删除。</p>
+<p>disconnect()通常有三种用法，正如下面的例子所示。</p>
+<ol>
+<li><p>断开与一个物体的信号连接的所有东西:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">disconnect</span>(myObject, <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span>);</code></pre></div>
+
+<p>相当于非静态的重载函数</p>
+<div class="code-wrapper"><pre><code class="hljs c++">myObject-&gt;<span class="hljs-built_in">disconnect</span>();</code></pre></div>
+</li>
+<li><p>断开与特定信号相连的一切连接:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">disconnect</span>(myObject, <span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">mySignal</span>()), <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span>);</code></pre></div>
+
+<p>相当于非静态的重载函数</p>
+<div class="code-wrapper"><pre><code class="hljs c++">myObject-&gt;<span class="hljs-built_in">disconnect</span>(<span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">mySignal</span>()));</code></pre></div>
+</li>
+<li><p>断开一个特定接收器的连接:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">disconnect</span>(myObject, <span class="hljs-literal">nullptr</span>, myReceiver, <span class="hljs-literal">nullptr</span>);</code></pre></div>
+
+<p>相当于非静态的重载函数</p>
+<div class="code-wrapper"><pre><code class="hljs c++">myObject-&gt;<span class="hljs-built_in">disconnect</span>(myReceiver);</code></pre></div></li>
+</ol>
+<p><code>nullptr</code>可以作为通配符使用，分别意味着 “任何信号”、”任何接收对象 “或 “接收对象的任何槽”。</p>
+<p>发送者*永远不可以是<code>nullptr</code>。(你不能在一次调用中从一个以上的对象断开信号)。</p>
+<p>如果<em>signal</em>是<code>nullptr</code>，它将断开<em>receiver</em>和<em>method</em>与任何信号的连接。如果不是，只有指定的信号被断开。</p>
+<p>如果<em>receiver</em>是<code>nullptr</code>，它将断开与<em>signal</em>连接的任何信号。如果不是，除<em>receiver</em>以外的对象中的槽不会被断开。</p>
+<p>如果<em>method</em>是<code>nullptr</code>，它将断开与<em>receiver</em>连接的任何东西。如果不是，只有名为<em>method</em>的槽会被断开连接，而其他的槽都不会被断开。如果<em>receiver</em>被遗漏，<em>method</em>必须是<code>nullptr</code>，所以你不能在所有对象上断开一个特别命名的槽。</p>
+<p><strong>注意：</strong>断开所有信号槽的连接也将断开<a href="#destroyed">QObject::destroyed</a>()信号的连接，如果它是连接的。这样做会对那些依赖这个信号来清理资源的类产生不利影响。我们建议只断开被应用程序代码连接的特定信号。</p>
+<p><strong>Note:</strong> This function is <a href="threads-reentrancy.html">thread-safe</a>.</p>
+<p><strong>See also</strong> <a href="#connect">connect</a>().</p>
+<h3><span id="static-bool-qobject-disconnect-const-qobject-sender-const-qmetamethod-amp-signal-const-qobject-receiver-const-qmetamethod-amp-method"><code>[static]</code>bool QObject::disconnect(const  *<em>sender</em>, const  &amp;<em>signal</em>, const  *<em>receiver</em>, const  &amp;<em>method</em>)</span><a href="#static-bool-qobject-disconnect-const-qobject-sender-const-qmetamethod-amp-signal-const-qobject-receiver-const-qmetamethod-amp-method" class="header-anchor">#</a></h3><p>断开对象<em>sender</em>中的<em>signal</em>与对象<em>receiver</em>中的<em>method</em>的连接。如果连接被成功断开，返回 “true”；否则返回 “false”。</p>
+<p>这个函数提供了与<code>disconnect(const QObject *sender, const char *signal, const QObject *receiver, const char *method)</code>相同的可能性，但使用<a href>QMetaMethod</a>来表示要断开的信号和方法。</p>
+<p>另外这个函数在以下情况下返回false，并且没有信号和槽被断开连接。</p>
+<ol>
+<li><em>signal</em>不是sender类或其父类之一的成员。</li>
+<li><em>方法</em>不是接收者类或其父类之一的成员。</li>
+<li><em>signal</em>实例代表的不是一个信号。</li>
+</ol>
+<p>QMetaMethod()可以作为通配符使用，其含义是 “任何信号 “或 “接收对象的任何槽”。同样地，<code>nullptr</code>可以被用于<em>receiver</em>，意思是 “任何接收对象”。在这种情况下，方法也应该是QMetaMethod()。<em>sender</em>参数不应该是<code>nullptr</code>。</p>
+<p><strong>注意：</strong>断开所有信号槽的连接也将断开<a href="#destroyed">QObject::destroyed</a>()信号，如果它是连接的。这样做会对那些依赖这个信号来清理资源的类产生不利影响。我们建议只断开被应用程序代码连接的特定信号。</p>
+<p><strong>See also</strong> <a href="#disconnect">disconnect</a>(const QObject *sender, const char *signal, const QObject *receiver, const char *method).</p>
+<h3><span id="bool-qobject-disconnect-const-char-signal-nullptr-const-qobject-receiver-nullptr-const-char-method-nullptr-const">bool QObject::disconnect(const char* <em>signal</em> = nullptr, const * <em>receiver</em> = nullptr, const char *<em>method</em> = nullptr) const</span><a href="#bool-qobject-disconnect-const-char-signal-nullptr-const-qobject-receiver-nullptr-const-char-method-nullptr-const" class="header-anchor">#</a></h3><p>这个函数重载了 disconnect().</p>
+<p>将<em>signal</em>与<em>receiver</em>的<em>method</em> 断开连接。</p>
+<p>当所涉及的任何一个对象被销毁时，信号槽的连接就会被移除。</p>
+<p><strong>注意：</strong>断开所有信号槽的连接也将断开<a href="#destroyed">QObject::destroyed</a>()信号，如果它是连接的。这样做会对那些依赖这个信号来清理资源的类产生不利影响。我们建议只断开被应用程序代码连接的特定信号。</p>
+<p><strong>Note:</strong> This function is <a href="threads-reentrancy.html">thread-safe</a>.</p>
+<h3><span id="bool-qobject-disconnect-const-qobject-receiver-const-char-method-nullptr-const">bool QObject::disconnect(const  *<em>receiver</em>, const char *<em>method</em> = nullptr) const</span><a href="#bool-qobject-disconnect-const-qobject-receiver-const-char-method-nullptr-const" class="header-anchor">#</a></h3><p>这个函数重载了 disconnect().</p>
+<p>将此对象中的所有信号与<em>receiver</em>的<em>method</em>断开连接。</p>
+<p>当所涉及的任何一个对象被销毁时，信号槽的连接就会被删除。</p>
+<h3><span id="static-bool-qobject-disconnect-const-qmetaobject-connection-amp-connection"><code>[static]</code>bool QObject::disconnect(const  &amp;<em>connection</em>)</span><a href="#static-bool-qobject-disconnect-const-qmetaobject-connection-amp-connection" class="header-anchor">#</a></h3><p>断开一个连接。</p>
+<p>如果<em>connection</em>是无效的或已经被断开，则不做任何事情，并返回false。</p>
+<p><strong>See also</strong> <a href="#connect">connect</a>().</p>
+<h3><span id="static-template-bool-qobject-disconnect-const-qobject-sender-pointertomemberfunction-signal-const-qobject-receiver-pointertomemberfunction-method"><code>[static]</code>template <typename pointertomemberfunction> bool QObject::disconnect(const <a href="#QObject">QObject</a> *<em>sender</em>, PointerToMemberFunction <em>signal</em>, const <a href="#QObject">QObject</a> *<em>receiver</em>, PointerToMemberFunction <em>method</em>)</typename></span><a href="#static-template-bool-qobject-disconnect-const-qobject-sender-pointertomemberfunction-signal-const-qobject-receiver-pointertomemberfunction-method" class="header-anchor">#</a></h3><p>这个函数重载了 disconnect().</p>
+<p>断开对象<em>sender</em>中的<em>signal</em>与对象<em>receiver</em>中的<em>method</em>的连接。如果连接被成功断开，返回 “true”；否则返回 “false”。</p>
+<p>当所涉及的任何一个对象被销毁时，一个信号槽的连接就会被删除。</p>
+<p>disconnect()通常有三种用法，正如下面的例子所示。</p>
+<ol>
+<li><p>断开与一个物体的信号连接的所有东西:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">disconnect</span>(myObject, <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span>);</code></pre></div>
+</li>
+<li><p>断开与特定信号连接的所有东西:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">disconnect</span>(myObject, &amp;MyObject::<span class="hljs-built_in">mySignal</span>(), <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span>);</code></pre></div>
+</li>
+<li><p>断开一个特定接收器的连接:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">disconnect</span>(myObject, <span class="hljs-literal">nullptr</span>, myReceiver, <span class="hljs-literal">nullptr</span>);</code></pre></div>
+</li>
+<li><p>断开一个特定信号与特定插槽的连接：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QObject::<span class="hljs-built_in">disconnect</span>(lineEdit, &amp;QLineEdit::textChanged,
+                    label,  &amp;QLabel::setText);</code></pre></div></li>
+</ol>
+<p><code>nullptr</code>可以作为通配符使用，分别意味着 “任何信号”、”任何接收对象 “或 “接收对象的任何槽”。</p>
+<p>发送者*永远不可以是<code>nullptr</code>。(你不能在一次调用中从一个以上的对象断开信号)。</p>
+<p>如果<em>signal</em>是<code>nullptr</code>，它将断开<em>receiver</em>和<em>method</em>与任何信号的连接。如果不是，只有指定的信号被断开。</p>
+<p>如果<em>receiver</em>是<code>nullptr</code>，它将断开与<em>signal</em>连接的任何信号。如果不是，只有指定的接收器中的槽被断开连接。 disconnect()的<em>receiver</em>非空，也会断开与<em>receiver</em>作为其上下文对象连接的槽函数。</p>
+<p>如果<em>method</em>是<code>nullptr</code>，它将断开与<em>receiver</em>连接的任何东西。如果不是，只有名为<em>method</em>的槽会被断开连接，其他的槽都不会被断开。如果<em>receiver</em>被遗漏，<em>method</em>必须是<code>nullptr</code>，所以你不能断开所有对象上特别命名的槽的连接。</p>
+<p><strong>注意：</strong>不可能使用这个重载来断开连接到漏斗或lambda表达式的信号。这是因为不可能对它们进行比较。相反，请使用接收<a href="qmetaobject-connection.html">QMetaObject::Connection</a>的重载</p>
+<p><strong>Note:</strong> This function is <a href="threads-reentrancy.html">thread-safe</a>.</p>
+<p><strong>See also</strong> <a href="#connect">connect</a>().</p>
+<h3><span id="virtual-protected-since-5-0-void-qobject-disconnectnotify-const-qmetamethod-amp-signal"><code>[virtual protected, since 5.0]</code>void QObject::disconnectNotify(const  &amp;<em>signal</em>)</span><a href="#virtual-protected-since-5-0-void-qobject-disconnectnotify-const-qmetamethod-amp-signal" class="header-anchor">#</a></h3><p>当有东西从这个对象中的<em>signal</em>断开时，这个虚拟函数被调用。</p>
+<p>参见<a href="#connectNotify">connectNotify</a>()，以了解如何将<em>signal</em>与特定信号进行比较的例子。</p>
+<p>如果所有的信号都从这个对象中断开了（例如，<a href="#disconnect">disconnect</a>()的信号参数是<code>nullptr</code>），disconnectNotify()只被调用一次，而<em>signal</em>将是一个无效的<a href>QMetaMethod</a>（<a href="#isValid">QMetaMethod::isValid</a>() 返回 <code>false</code>）。</p>
+<p><strong>警告：</strong>这个函数违反了面向对象的模块化原则。然而，它对于优化对昂贵资源的访问可能是有用的。</p>
+<p><strong>警告：</strong>该函数是从执行断开连接的线程中调用的，该线程可能与该对象所在的线程不同。这个函数也可以在<a href>QObject</a>的内部mutex被锁定时被调用。因此，不允许从你的重新实现中重新进入任何<a href>QObject</a>函数，如果你在重新实现中锁定了一个mutex，请确保你不会在其他地方持有该mutex的情况下调用<a href>QObject</a>函数，否则会导致死锁。</p>
+<p>这个函数是在Qt 5.0中引入的。</p>
+<p><strong>See also</strong> <a href="#disconnect">disconnect</a>() and <a href="#connectNotify">connectNotify</a>().</p>
+<h3><span id="void-qobject-dumpobjectinfo-const">void QObject::dumpObjectInfo() const</span><a href="#void-qobject-dumpobjectinfo-const" class="header-anchor">#</a></h3><p>将此对象的信号连接等信息转储到调试输出。</p>
+<p><strong>注意：</strong>在Qt 5.9之前，这个函数不是常数。</p>
+<p><strong>See also</strong> <a href="#dumpObjectTree">dumpObjectTree</a>().</p>
+<h3><span id="void-qobject-dumpobjecttree-const">void QObject::dumpObjectTree() const</span><a href="#void-qobject-dumpobjecttree-const" class="header-anchor">#</a></h3><p>转储一棵子树到调试输出。</p>
+<p><strong>注意：</strong>在Qt 5.9之前，这个函数不是常数。</p>
+<p><strong>See also</strong> <a href="#dumpObjectInfo">dumpObjectInfo</a>().</p>
+<h3><span id="qlist-lt-qbytearray-gt-qobject-dynamicpropertynames-const">&lt;&gt; QObject::dynamicPropertyNames() const</span><a href="#qlist-lt-qbytearray-gt-qobject-dynamicpropertynames-const" class="header-anchor">#</a></h3><p>返回所有使用<a href="#setProperty">setProperty</a>()动态添加到对象的属性名称。</p>
+<h3><span id="virtual-bool-qobject-event-qevent-e"><code>[virtual]</code>bool QObject::event( *<em>e</em>)</span><a href="#virtual-bool-qobject-event-qevent-e" class="header-anchor">#</a></h3><p>这个虚拟函数接收对一个对象的事件，如果事件<em>e</em>被识别和处理，应该返回true。</p>
+<p>事件()函数可以被重新实现以定制一个对象的行为。</p>
+<p>请确保你为所有你没有处理的事件调用父事件类的实现。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> : <span class="hljs-keyword">public</span> QWidget
+{
+    Q_OBJECT
+
+        <span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">MyClass</span>(QWidget *parent = <span class="hljs-literal">nullptr</span>);
+    ~<span class="hljs-built_in">MyClass</span>();
+
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">event</span><span class="hljs-params">(QEvent* ev)</span> <span class="hljs-keyword">override</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">if</span> (ev-&gt;<span class="hljs-built_in">type</span>() == QEvent::PolishRequest) {
+            <span class="hljs-comment">// overwrite handling of PolishRequest if any</span>
+            <span class="hljs-built_in">doThings</span>();
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        } <span class="hljs-keyword">else</span>  <span class="hljs-keyword">if</span> (ev-&gt;<span class="hljs-built_in">type</span>() == QEvent::Show) {
+            <span class="hljs-comment">// complement handling of Show if any</span>
+            <span class="hljs-built_in">doThings2</span>();
+            QWidget::<span class="hljs-built_in">event</span>(ev);
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        }
+        <span class="hljs-comment">// Make sure the rest of events are handled</span>
+        <span class="hljs-keyword">return</span> QWidget::<span class="hljs-built_in">event</span>(ev);
+    }
+};</code></pre></div>
+
+<p><strong>See also</strong> <a href="#installEventFilter">installEventFilter</a>(), <a href="#timerEvent">timerEvent</a>(), <a href="qcoreapplication.html#sendEvent">QCoreApplication::sendEvent</a>(), and <a href="qcoreapplication.html#postEvent">QCoreApplication::postEvent</a>().</p>
+<h3><span id="virtual-bool-qobject-eventfilter-qobject-watched-qevent-event"><code>[virtual]</code>bool QObject::eventFilter( *<em>watched</em>,  *<em>event</em>)</span><a href="#virtual-bool-qobject-eventfilter-qobject-watched-qevent-event" class="header-anchor">#</a></h3><p>如果这个对象已经被安装为<em>watched</em>对象的事件过滤器，则过滤事件。</p>
+<p>在你对这个函数的重新实现中，如果你想把*事件过滤掉，即停止它被进一步处理，则返回true；否则返回false。</p>
+<p>例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MainWindow</span> : <span class="hljs-keyword">public</span> QMainWindow
+{
+    <span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">MainWindow</span>();
+
+    <span class="hljs-keyword">protected</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">eventFilter</span><span class="hljs-params">(QObject *obj, QEvent *ev)</span> <span class="hljs-keyword">override</span></span>;
+
+    <span class="hljs-keyword">private</span>:
+    QTextEdit *textEdit;
+};
+
+MainWindow::<span class="hljs-built_in">MainWindow</span>()
+{
+    textEdit = <span class="hljs-keyword">new</span> QTextEdit;
+    <span class="hljs-built_in">setCentralWidget</span>(textEdit);
+
+    textEdit-&gt;<span class="hljs-built_in">installEventFilter</span>(<span class="hljs-keyword">this</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">MainWindow::eventFilter</span><span class="hljs-params">(QObject *obj, QEvent *event)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">if</span> (obj == textEdit) {
+        <span class="hljs-keyword">if</span> (event-&gt;<span class="hljs-built_in">type</span>() == QEvent::KeyPress) {
+            QKeyEvent *keyEvent = <span class="hljs-built_in">static_cast</span>&lt;QKeyEvent*&gt;(event);
+            <span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"Ate key press"</span> &lt;&lt; keyEvent-&gt;<span class="hljs-built_in">key</span>();
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// pass the event on to the parent class</span>
+        <span class="hljs-keyword">return</span> QMainWindow::<span class="hljs-built_in">eventFilter</span>(obj, event);
+    }
+}</code></pre></div>
+
+<p>注意在上面的例子中，未处理的事件被传递给基类的eventFilter()函数，因为基类可能为了自己的内部目的重新实现了eventFilter()。</p>
+<p>一些事件，如<a href="qevent.html#Type-enum">QEvent::ShortcutOverride</a>必须被明确接受（通过对其调用<a href="qevent.html#accept">accept</a>()），以防止传播。</p>
+<p><strong>警告：</strong>如果你在这个函数中删除了接收器对象，一定要返回true。否则，Qt将把事件转发给被删除的对象，程序可能会崩溃。</p>
+<p><strong>See also</strong> <a href="#installEventFilter">installEventFilter</a>().</p>
+<h3><span id="template-t-qobject-findchild-const-qstring-amp-name-qstring-qt-findchildoptions-options-qt-findchildrenrecursively-const">template <typename t> T QObject::findChild(const <a href="qstring.html">QString</a> &amp;<em>name</em> = QString(), <a href="qt.html#FindChildOption-enum">Qt::FindChildOptions</a> <em>options</em> = Qt::FindChildrenRecursively) const</typename></span><a href="#template-t-qobject-findchild-const-qstring-amp-name-qstring-qt-findchildoptions-options-qt-findchildrenrecursively-const" class="header-anchor">#</a></h3><p>返回这个对象的子类型，这个对象可以被转换为T类型，并且被称为<em>name</em>，如果没有这样的对象，则返回<code>nullptr</code>。省略<em>name</em>参数会导致所有的对象名称都被匹配。搜索是递归进行的，除非<em>options</em>指定了选项FindDirectChildrenOnly。</p>
+<p>如果有一个以上的子对象与搜索相匹配，将返回最直接的祖先。如果有几个直接祖先，则不确定哪一个会被返回。在这种情况下，应该使用<a href="#findChildren">findChildren</a>()。</p>
+<p>这个例子返回了<code>parentWidget</code>的一个子节点<code>QPushButton</code>，名为<code>"button1"</code>，即使该按钮不是父节点的直接子节点:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QPushButton *button = parentWidget-&gt;<span class="hljs-built_in">findChild</span>&lt;QPushButton *&gt;(<span class="hljs-string">"button1"</span>);</code></pre></div>
+
+<p>这个例子返回一个<code>QListWidget</code>的子代<code>parentWidget</code>:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QListWidget *list = parentWidget-&gt;<span class="hljs-built_in">findChild</span>&lt;QListWidget *&gt;();</code></pre></div>
+
+<p>这个例子返回<code>parentWidget</code>（它的直接父对象）的子对象<code>QPushButton</code>，命名为<code>"button1"</code>:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QPushButton *button = parentWidget-&gt;<span class="hljs-built_in">findChild</span>&lt;QPushButton *&gt;(<span class="hljs-string">"button1"</span>, Qt::FindDirectChildrenOnly);</code></pre></div>
+
+<p>这个例子返回一个<code>QListWidget</code>的孩子，<code>parentWidget</code>是它的直接父辈:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QListWidget *list = parentWidget-&gt;<span class="hljs-built_in">findChild</span>&lt;QListWidget *&gt;(<span class="hljs-built_in">QString</span>(), Qt::FindDirectChildrenOnly);</code></pre></div>
+
+<p><strong>See also</strong> <a href="#findChildren">findChildren</a>().</p>
+<h3><span id="template-qlist-qobject-findchildren-const-qstring-amp-name-qstring-qt-findchildoptions-options-qt-findchildrenrecursively-const">template <typename t> <a href="qlist.html">QList</a><t> QObject::findChildren(const <a href="qstring.html">QString</a> &amp;<em>name</em> = QString(), <a href="qt.html#FindChildOption-enum">Qt::FindChildOptions</a> <em>options</em> = Qt::FindChildrenRecursively) const</t></typename></span><a href="#template-qlist-qobject-findchildren-const-qstring-amp-name-qstring-qt-findchildoptions-options-qt-findchildrenrecursively-const" class="header-anchor">#</a></h3><p>返回这个对象的所有子对象，其<em>name</em>可以被转换为T类型，如果没有这样的对象，则返回一个空列表。省略<em>name</em>参数会导致所有的对象名称都被匹配。除非<em>options</em>指定了选项FindDirectChildrenOnly，否则搜索是递归进行的。</p>
+<p>下面的例子显示了如何找到指定的名为 <code>widgetname </code>的 <code>parentWidget </code>的子对象列表:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QList&lt;QWidget *&gt; widgets = parentWidget.<span class="hljs-built_in">findChildren</span>&lt;QWidget *&gt;(<span class="hljs-string">"widgetname"</span>);</code></pre></div>
+
+<p>这个例子返回所有属于 <code>parentWidget </code>的子女的 <code>QPushButton</code>。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QList&lt;QPushButton *&gt; allPButtons = parentWidget.<span class="hljs-built_in">findChildren</span>&lt;QPushButton *&gt;();</code></pre></div>
+
+<p>这个例子返回所有<code>QPushButton</code>，它们是<code>parentWidget</code>的直接子代:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QList&lt;QPushButton *&gt; childButtons = parentWidget.<span class="hljs-built_in">findChildren</span>&lt;QPushButton *&gt;(<span class="hljs-built_in">QString</span>(), Qt::FindDirectChildrenOnly);</code></pre></div>
+
+<p><strong>See also</strong> <a href="#findChild">findChild</a>().</p>
+<h3><span id="since-5-0-template-qlist-qobject-findchildren-const-qregularexpression-amp-re-qt-findchildoptions-options-qt-findchildrenrecursively-const"><code>[since 5.0]</code>template <typename t> <a href="qlist.html">QList</a><t> QObject::findChildren(const <a href="qregularexpression.html">QRegularExpression</a> &amp;<em>re</em>, <a href="qt.html#FindChildOption-enum">Qt::FindChildOptions</a> <em>options</em> = Qt::FindChildrenRecursively) const</t></typename></span><a href="#since-5-0-template-qlist-qobject-findchildren-const-qregularexpression-amp-re-qt-findchildoptions-options-qt-findchildrenrecursively-const" class="header-anchor">#</a></h3><p>这个函数重载了 findChildren()。</p>
+<p>返回这个对象的子代，这些子代可以被转换为T类型，并且其名称与正则表达式<em>re</em>相匹配，如果没有这样的对象，则返回一个空列表。除非<em>options</em>指定了选项FindDirectChildrenOnly，否则搜索是递归进行的。</p>
+<p>这个函数是在Qt 5.0中引入的。</p>
+<h3><span id="bool-qobject-inherits-const-char-classname-const">bool QObject::inherits(const char *<em>className</em>) const</span><a href="#bool-qobject-inherits-const-char-classname-const" class="header-anchor">#</a></h3><p>如果这个对象是一个继承了<em>className</em>的类或继承了<em>className</em>的<a href>QObject</a>子类的实例，则返回<code>true</code>；否则返回<code>false</code>。</p>
+<p>一个类被认为是继承了它自己。</p>
+<p>例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QTimer *timer = <span class="hljs-keyword">new</span> QTimer;         <span class="hljs-comment">// QTimer inherits QObject</span>
+timer-&gt;<span class="hljs-built_in">inherits</span>(<span class="hljs-string">"QTimer"</span>);          <span class="hljs-comment">// returns true</span>
+timer-&gt;<span class="hljs-built_in">inherits</span>(<span class="hljs-string">"QObject"</span>);         <span class="hljs-comment">// returns true</span>
+timer-&gt;<span class="hljs-built_in">inherits</span>(<span class="hljs-string">"QAbstractButton"</span>); <span class="hljs-comment">// returns false</span>
+
+<span class="hljs-comment">// QVBoxLayout inherits QObject and QLayoutItem</span>
+QVBoxLayout *layout = <span class="hljs-keyword">new</span> QVBoxLayout;
+layout-&gt;<span class="hljs-built_in">inherits</span>(<span class="hljs-string">"QObject"</span>);        <span class="hljs-comment">// returns true</span>
+layout-&gt;<span class="hljs-built_in">inherits</span>(<span class="hljs-string">"QLayoutItem"</span>);    <span class="hljs-comment">// returns true (even though QLayoutItem is not a QObject)</span></code></pre></div>
+
+<p>如果你需要确定一个对象是否是某个特定类的实例，以达到铸造它的目的，可以考虑使用<a href="#qobject_cast">qobject_cast</a>&lt;Type *&gt;(object)代替。</p>
+<p><strong>See also</strong> <a href="#metaObject">metaObject</a>() and <a href="#qobject_cast">qobject_cast</a>().</p>
+<h3><span id="void-qobject-installeventfilter-qobject-filterobj">void QObject::installEventFilter( *<em>filterObj</em>)</span><a href="#void-qobject-installeventfilter-qobject-filterobj" class="header-anchor">#</a></h3><p>在这个对象上安装一个事件过滤器<em>filterObj</em>。比如说：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">monitoredObj-&gt;<span class="hljs-built_in">installEventFilter</span>(filterObj);</code></pre></div>
+
+<p>一个事件过滤器是一个对象，它接收所有发送到这个对象的事件。过滤器可以停止事件或将其转发到此对象。事件过滤器<em>filterObj</em>通过其<a href="#eventFilter">eventFilter</a>()函数接收事件。如果事件应该被过滤，<a href="#eventFilter">eventFilter</a>()函数必须返回true，（即停止）；否则它必须返回false。</p>
+<p>如果在一个对象上安装了多个事件过滤器，那么最后安装的过滤器会先被激活。</p>
+<p>这里有一个 “KeyPressEater “类，它吃下它所监控对象的按键：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">KeyPressEater</span> : <span class="hljs-keyword">public</span> QObject
+{
+    Q_OBJECT
+        ...
+
+        <span class="hljs-keyword">protected</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">eventFilter</span><span class="hljs-params">(QObject *obj, QEvent *event)</span> <span class="hljs-keyword">override</span></span>;
+};
+
+<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">KeyPressEater::eventFilter</span><span class="hljs-params">(QObject *obj, QEvent *event)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">if</span> (event-&gt;<span class="hljs-built_in">type</span>() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = <span class="hljs-built_in">static_cast</span>&lt;QKeyEvent *&gt;(event);
+        <span class="hljs-built_in">qDebug</span>(<span class="hljs-string">"Ate key press %d"</span>, keyEvent-&gt;<span class="hljs-built_in">key</span>());
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// standard event processing</span>
+        <span class="hljs-keyword">return</span> QObject::<span class="hljs-built_in">eventFilter</span>(obj, event);
+    }
+}</code></pre></div>
+
+<p>而这里是如何在两个小工具上安装的：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">KeyPressEater *keyPressEater = <span class="hljs-keyword">new</span> <span class="hljs-built_in">KeyPressEater</span>(<span class="hljs-keyword">this</span>);
+QPushButton *pushButton = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QPushButton</span>(<span class="hljs-keyword">this</span>);
+QListView *listView = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QListView</span>(<span class="hljs-keyword">this</span>);
+
+pushButton-&gt;<span class="hljs-built_in">installEventFilter</span>(keyPressEater);
+listView-&gt;<span class="hljs-built_in">installEventFilter</span>(keyPressEater);</code></pre></div>
+
+<p>例如，<a href="qshortcut.html">QShortcut</a>类使用这种技术来拦截快捷键的按下。</p>
+<p><strong>警告：</strong>如果你在<a href="#eventFilter">eventFilter</a>()函数中删除了接收器对象，一定要返回true。如果你返回false，Qt会将事件发送到被删除的对象，程序会崩溃。</p>
+<p>注意，过滤对象必须与这个对象在同一个线程中。如果<em>filterObj</em>在一个不同的线程中，这个函数什么也不做。如果<em>filterObj</em>或此对象在调用此函数后被移到不同的线程中，事件过滤器将不会被调用，直到两个对象再次拥有相同的线程亲和力（它<em>not</em>被删除）。</p>
+<p><strong>See also</strong> <a href="#removeEventFilter">removeEventFilter</a>(), <a href="#eventFilter">eventFilter</a>(), and <a href="#event">event</a>().</p>
+<h3><span id="protected-since-5-0-bool-qobject-issignalconnected-const-qmetamethod-amp-signal-const"><code>[protected, since 5.0]</code>bool QObject::isSignalConnected(const  &amp;<em>signal</em>) const</span><a href="#protected-since-5-0-bool-qobject-issignalconnected-const-qmetamethod-amp-signal-const" class="header-anchor">#</a></h3><p>如果<em>signal</em>连接到至少一个接收器，则返回<code>true</code>，否则返回<code>false'</code>.</p>
+<p><em>signal</em>必须是这个对象的一个信号成员，否则行为未定义。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">static</span> <span class="hljs-type">const</span> QMetaMethod valueChangedSignal = QMetaMethod::<span class="hljs-built_in">fromSignal</span>(&amp;MyObject::valueChanged);
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSignalConnected</span>(valueChangedSignal)) {
+    QByteArray data;
+    data = <span class="hljs-built_in">get_the_value</span>();       <span class="hljs-comment">// expensive operation</span>
+    <span class="hljs-function">emit <span class="hljs-title">valueChanged</span><span class="hljs-params">(data)</span></span>;
+}</code></pre></div>
+
+<p>正如上面的代码片段所示，你可以使用这个函数来避免发出一个无人监听的信号。</p>
+<p><strong>警告：</strong>这个函数违反了面向对象的模块化原则。然而，当你需要执行昂贵的初始化时，它可能是有用的，只有当某些东西与信号相连时。</p>
+<p>这个函数是在Qt 5.0中引入的。</p>
+<h3><span id="bool-qobject-iswidgettype-const">bool QObject::isWidgetType() const</span><a href="#bool-qobject-iswidgettype-const" class="header-anchor">#</a></h3><p>如果该对象是一个widget，返回 <code>true</code>；否则返回 <code>false</code>。</p>
+<p>调用这个函数等同于调用<code>inherits("QWidget")</code>，只是速度更快。</p>
+<h3><span id="bool-qobject-iswindowtype-const">bool QObject::isWindowType() const</span><a href="#bool-qobject-iswindowtype-const" class="header-anchor">#</a></h3><p>如果该对象是一个窗口，返回 “true”；否则返回 “false”。</p>
+<p>调用这个函数等同于调用<code>inherits("QWindow")</code>，只是速度更快。</p>
+<h3><span id="void-qobject-killtimer-int-id">void QObject::killTimer(int <em>id</em>)</span><a href="#void-qobject-killtimer-int-id" class="header-anchor">#</a></h3><p>杀死具有定时器标识符的定时器，<em>id</em>。</p>
+<p>当一个定时器事件被启动时，定时器标识符由<a href="#startTimer">startTimer</a>()返回。</p>
+<p><strong>See also</strong> <a href="#timerEvent">timerEvent</a>() and <a href="#startTimer">startTimer</a>().</p>
+<h3><span id="virtual-const-qmetaobject-qobject-metaobject-const"><code>[virtual]</code>const  *QObject::metaObject() const</span><a href="#virtual-const-qmetaobject-qobject-metaobject-const" class="header-anchor">#</a></h3><p>返回一个指向此对象的元对象的指针。</p>
+<p>元对象包含了继承<a href>QObject</a>的类的信息，例如：类名、超类名、属性、信号和槽。每个包含<a href="#Q_OBJECT">Q_OBJECT</a>宏的<a href>QObject</a>子类都会有一个元对象。</p>
+<p>元对象的信息是信号/槽连接机制和属性系统所需要的。<a href="#inherits">inherits</a>()函数也会使用元对象。</p>
+<p>如果你没有指向实际对象实例的指针，但仍想访问一个类的元对象，你可以使用<a href="#staticMetaObject-var">staticMetaObject</a>。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QObject *obj = <span class="hljs-keyword">new</span> QPushButton;
+obj-&gt;<span class="hljs-built_in">metaObject</span>()-&gt;<span class="hljs-built_in">className</span>();             <span class="hljs-comment">// returns "QPushButton"</span>
+
+QPushButton::staticMetaObject.<span class="hljs-built_in">className</span>();  <span class="hljs-comment">// returns "QPushButton"</span></code></pre></div>
+
+<p><strong>See also</strong> <a href="#staticMetaObject-var">staticMetaObject</a>.</p>
+<h3><span id="void-qobject-movetothread-qthread-targetthread">void QObject::moveToThread( *<em>targetThread</em>)</span><a href="#void-qobject-movetothread-qthread-targetthread" class="header-anchor">#</a></h3><p>改变此对象及其子对象的线程亲和力。如果该对象有一个父对象，则不能被移动。事件处理将在<em>targetThread</em>中继续。</p>
+<p>要移动一个对象到主线程，使用<a href="qcoreapplication.html#instance">QApplication::instance</a>()检索一个指向当前应用程序的指针，然后使用<a href="#thread">QApplication::thread</a>()检索该应用程序所在的线程。比如说:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">myObject-&gt;<span class="hljs-built_in">moveToThread</span>(QApplication::<span class="hljs-built_in">instance</span>()-&gt;<span class="hljs-built_in">thread</span>());</code></pre></div>
+
+<p>如果<em>targetThread</em>是<code>nullptr</code>，这个对象及其子对象的所有事件处理都会停止，因为它们不再与任何线程相关。</p>
+<p>请注意，该对象的所有活动定时器将被重置。计时器首先在当前线程中停止，然后在<em>targetThread</em>中重新启动（具有相同的时间间隔）。因此，在线程之间不断移动一个对象可以无限期地推迟计时器事件。</p>
+<p>一个<a href="qevent.html#Type-enum">QEvent::ThreadChange</a>事件会在线程亲和力改变之前发送到这个对象。你可以处理这个事件来执行任何特殊的处理。请注意，任何被发布到这个对象的新事件将在<em>targetThread</em>中被处理，只要它不是<code>nullptr</code>：当它是<code>nullptr</code>时，这个对象或它的子对象的事件处理就不能发生，因为它们不再与任何线程相关。</p>
+<p><strong>警告：</strong>这个函数<strong>不是</strong>线程安全的；当前线程必须与当前线程亲和力相同。换句话说，这个函数只能将一个对象从当前线程 “推 “到另一个线程，它不能将一个对象从任何任意的线程 “拉 “到当前线程。然而，这个规则有一个例外：没有线程亲和力的对象可以被 “拉 “到当前线程。</p>
+<p><strong>See also</strong> <a href="#thread">thread</a>().</p>
+<h3><span id="qobject-qobject-parent-const"> *QObject::parent() const</span><a href="#qobject-qobject-parent-const" class="header-anchor">#</a></h3><p>返回一个指向父对象的指针。</p>
+<p><strong>See also</strong> <a href="#setParent">setParent</a>() and <a href="#children">children</a>().</p>
+<h3><span id="qvariant-qobject-property-const-char-name-const"> QObject::property(const char *<em>name</em>) const</span><a href="#qvariant-qobject-property-const-char-name-const" class="header-anchor">#</a></h3><p>返回该对象的<em>name</em>属性的值。</p>
+<p>如果没有这样的属性存在，返回的变体是无效的。</p>
+<p>关于所有可用属性的信息是通过<a href="#metaObject">metaObject</a>()和<a href="#dynamicPropertyNames">dynamicPropertyNames</a>()提供。</p>
+<p><strong>See also</strong> <a href="#setProperty">setProperty</a>(), <a href="qvariant.html#isValid">QVariant::isValid</a>(), <a href="#metaObject">metaObject</a>(), and <a href="#dynamicPropertyNames">dynamicPropertyNames</a>().</p>
+<h3><span id="protected-int-qobject-receivers-const-char-signal-const"><code>[protected]</code>int QObject::receivers(const char *<em>signal</em>) const</span><a href="#protected-int-qobject-receivers-const-char-signal-const" class="header-anchor">#</a></h3><p>返回连接到<em>signal</em>的接收者的数量。</p>
+<p>由于槽和信号都可以作为信号的接收者，而且相同的连接可以多次进行，所以接收者的数量与这个信号的连接数量相同。</p>
+<p>在调用这个函数时，你可以使用<code>SIGNAL()</code>宏来传递一个特定的信号。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">if</span> (<span class="hljs-built_in">receivers</span>(<span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">valueChanged</span>(QByteArray))) &gt; <span class="hljs-number">0</span>) {
+    QByteArray data;
+    <span class="hljs-built_in">get_the_value</span>(&amp;data);       <span class="hljs-comment">// expensive operation</span>
+    <span class="hljs-function">emit <span class="hljs-title">valueChanged</span><span class="hljs-params">(data)</span></span>;
+}</code></pre></div>
+
+<p><strong>警告：</strong>这个函数违反了面向对象的模块化原则。然而，当你需要执行昂贵的初始化时，它可能是有用的，只有当某个东西连接到一个信号时。</p>
+<p><strong>See also</strong> <a href="#isSignalConnected">isSignalConnected</a>().</p>
+<h3><span id="void-qobject-removeeventfilter-qobject-obj">void QObject::removeEventFilter( *<em>obj</em>)</span><a href="#void-qobject-removeeventfilter-qobject-obj" class="header-anchor">#</a></h3><p>从这个对象中删除一个事件过滤器对象<em>obj</em>。如果没有安装这样的事件过滤器，该请求会被忽略。</p>
+<p>当此对象被销毁时，此对象的所有事件过滤器将被自动删除。</p>
+<p>删除一个事件过滤器总是安全的，即使在事件过滤器激活期间（即从<a href="#eventFilter">eventFilter</a>()函数）。</p>
+<p><strong>See also</strong> <a href="#installEventFilter">installEventFilter</a>(), <a href="#eventFilter">eventFilter</a>(), and <a href="#event">event</a>().</p>
+<h3><span id="protected-qobject-qobject-sender-const"><code>[protected]</code> *QObject::sender() const</span><a href="#protected-qobject-qobject-sender-const" class="header-anchor">#</a></h3><p>如果在一个由信号激活的槽中调用，返回一个指向发送信号的对象的指针；否则返回<code>nullptr</code>。指针只在从这个对象的线程上下文调用此函数的槽的执行期间有效。</p>
+<p>如果发送者被销毁，或者槽与发送者的信号断开，这个函数返回的指针将失效。</p>
+<p><strong>警告：</strong>此函数违反了面向对象的模块化原则。然而，当许多信号被连接到一个槽上时，获得对发送者的访问可能是有用的。</p>
+<p><strong>警告：</strong>如上所述，当槽通过<a href="qt.html#ConnectionType-enum">Qt::DirectConnection</a>从不同于此对象的线程调用时，此函数的返回值是无效的。请不要在这种情况下使用这个函数。</p>
+<p><strong>See also</strong> <a href="#senderSignalIndex">senderSignalIndex</a>().</p>
+<h3><span id="protected-int-qobject-sendersignalindex-const"><code>[protected]</code>int QObject::senderSignalIndex() const</span><a href="#protected-int-qobject-sendersignalindex-const" class="header-anchor">#</a></h3><p>返回调用当前执行槽的信号的元方法索引，它是由<a href="#sender">sender</a>()返回的类的成员。如果在一个由信号激活的槽之外调用，则返回-1。</p>
+<p>对于带有默认参数的信号，这个函数将总是返回带有所有参数的索引，无论哪一个是用<a href="#connect">connect</a>()使用的。例如，信号<code>destroyed(QObject *obj = \nullptr)</code>将有两个不同的索引（有参数和无参数），但这个函数将总是返回有参数的索引。这不适用于带有不同参数的重载信号。</p>
+<p><strong>警告：</strong>此函数违反了面向对象的模块化原则。然而，当许多信号被连接到一个槽上时，获取信号索引可能是有用的。</p>
+<p><strong>警告：</strong>当槽通过<a href="qt.html#ConnectionType-enum">Qt::DirectConnection</a>从不同于此对象的线程中调用时，此函数的返回值是无效的。请不要在这种情况下使用这个函数。</p>
+<p><strong>See also</strong> <a href="#sender">sender</a>(), <a href="qmetaobject.html#indexOfSignal">QMetaObject::indexOfSignal</a>(), and <a href="qmetaobject.html#method">QMetaObject::method</a>().</p>
+<h3><span id="void-qobject-setparent-qobject-parent">void QObject::setParent( *<em>parent</em>)</span><a href="#void-qobject-setparent-qobject-parent" class="header-anchor">#</a></h3><p>使该对象成为<em>parent</em>的孩子。</p>
+<p><strong>See also</strong> <a href="#parent">parent</a>() and <a href="#children">children</a>().</p>
+<h3><span id="bool-qobject-setproperty-const-char-name-const-qvariant-amp-value">bool QObject::setProperty(const char *<em>name</em>, const  &amp;<em>value</em>)</span><a href="#bool-qobject-setproperty-const-char-name-const-qvariant-amp-value" class="header-anchor">#</a></h3><p>将对象的<em>name</em>属性的值设置为<em>value</em>。</p>
+<p>如果该属性是用<a href="#Q_PROPERTY">Q_PROPERTY</a>在类中定义的，那么成功时返回true，否则返回false。如果该属性没有使用<a href="#Q_PROPERTY">Q_PROPERTY</a>定义，因此没有在元对象中列出，那么它将被添加为一个动态属性并返回false。</p>
+<p>所有可用属性的信息是通过<a href="#metaObject">metaObject</a>()和<a href="#dynamicPropertyNames">dynamicPropertyNames</a>()提供的。</p>
+<p>动态属性可以使用<a href="#property">property</a>()再次查询，并且可以通过将属性值设置为无效的<a href="qvariant.html">QVariant</a>而被删除。改变一个动态属性的值会导致一个<a href="qdynamicpropertychangeevent.html">QDynamicPropertyChangeEvent</a>被发送到该对象。</p>
+<p><strong>注意：</strong>以”<em>q</em>“开头的动态属性被保留用于内部用途。</p>
+<p><strong>See also</strong> <a href="#property">property</a>(), <a href="#metaObject">metaObject</a>(), <a href="#dynamicPropertyNames">dynamicPropertyNames</a>(), and <a href="qmetaproperty.html#write">QMetaProperty::write</a>().</p>
+<h3><span id="bool-qobject-signalsblocked-const">bool QObject::signalsBlocked() const</span><a href="#bool-qobject-signalsblocked-const" class="header-anchor">#</a></h3><p>如果信号被阻塞，则返回 <code>true</code>； 否则返回<code>false</code>。</p>
+<p>默认情况下不阻止信号。</p>
+<p><strong>See also</strong> <a href="#blockSignals">blockSignals</a>() and <a href="qsignalblocker.html">QSignalBlocker</a>.</p>
+<h3><span id="int-qobject-starttimer-int-interval-qt-timertype-timertype-qt-coarsetimer">int QObject::startTimer(int <em>interval</em>,  <em>timerType</em> = Qt::CoarseTimer)</span><a href="#int-qobject-starttimer-int-interval-qt-timertype-timertype-qt-coarsetimer" class="header-anchor">#</a></h3><p>启动计时器并返回计时器标识符，如果无法启动计时器，则返回零。</p>
+<p>计时器事件将每隔 <em>interval</em> 毫秒发生一次，直到调用 <a href="#killTimer">killTimer</a>()。 如果 <em>interval</em> 为 0，则每次没有更多窗口系统事件要处理时，计时器事件就会发生一次。</p>
+<p>发生定时器事件时，使用 <a href="qtimerevent.html">QTimerEvent</a> 事件参数类调用虚拟 <a href="#timerEvent">timerEvent</a>() 函数。 重新实现此函数以获取计时器事件。</p>
+<p>如果有多个定时器正在运行，则可以使用 <a href="qtimerevent.html#timerId">QTimerEvent::timerId</a>() 来找出激活了哪个定时器。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyObject</span> : <span class="hljs-keyword">public</span> QObject
+{
+    Q_OBJECT
+
+        <span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">MyObject</span>(QObject *parent = <span class="hljs-literal">nullptr</span>);
+
+    <span class="hljs-keyword">protected</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">timerEvent</span><span class="hljs-params">(QTimerEvent *event)</span> <span class="hljs-keyword">override</span></span>;
+};
+
+MyObject::<span class="hljs-built_in">MyObject</span>(QObject *parent)
+    : <span class="hljs-built_in">QObject</span>(parent)
+    {
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">50</span>);     <span class="hljs-comment">// 50-millisecond timer</span>
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">1000</span>);   <span class="hljs-comment">// 1-second timer</span>
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">60000</span>);  <span class="hljs-comment">// 1-minute timer</span>
+
+        <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono;
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-built_in">milliseconds</span>(<span class="hljs-number">50</span>));
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-built_in">minutes</span>(<span class="hljs-number">1</span>));
+
+        <span class="hljs-comment">// since C++14 we can use std::chrono::duration literals, e.g.:</span>
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">100</span>ms);
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">5</span>s);
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">2</span>min);
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">1</span>h);
+    }
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">MyObject::timerEvent</span><span class="hljs-params">(QTimerEvent *event)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"Timer ID:"</span> &lt;&lt; event-&gt;<span class="hljs-built_in">timerId</span>();
+}</code></pre></div>
+
+<p>请注意，<a href="qtimer.html">QTimer</a>的精度取决于底层操作系统和硬件。<em>timerType</em>参数允许你自定义定时器的精度。参见 <a href="qt.html#TimerType-enum">Qt::TimerType</a> 以了解不同定时器类型的信息。大多数平台支持20毫秒的精度；有些平台提供更多。如果Qt无法提供所需数量的定时器事件，它将默默地丢弃一些。</p>
+<p><a href="qtimer.html">QTimer</a>类提供了一个高层次的编程接口，用单次定时器和定时器信号代替事件。还有一个<a href="qbasictimer.html">QBasicTimer</a>类，它比<a href="qtimer.html">QTimer</a>更轻量级，也不像直接使用定时器ID那样笨拙。</p>
+<p><strong>See also</strong> <a href="#timerEvent">timerEvent</a>(), <a href="#killTimer">killTimer</a>(), and <a href="qtimer.html#singleShot">QTimer::singleShot</a>().</p>
+<h3><span id="since-5-9-int-qobject-starttimer-std-chrono-milliseconds-time-qt-timertype-timertype-qt-coarsetimer"><code>[since 5.9]</code>int QObject::startTimer(std::chrono::milliseconds <em>time</em>,  <em>timerType</em> = Qt::CoarseTimer)</span><a href="#since-5-9-int-qobject-starttimer-std-chrono-milliseconds-time-qt-timertype-timertype-qt-coarsetimer" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>启动一个定时器并返回一个定时器标识符，如果不能启动定时器，则返回0。</p>
+<p>在调用<a href="#killTimer">killTimer</a>()之前，每隔<em>time</em>就会发生一个定时器事件。如果<em>time</em>等于<code>std::Chrono::duration::zero()</code>，那么每当没有更多的窗口系统事件需要处理时，就会发生一次定时器事件。</p>
+<p>当一个定时器事件发生时，虚拟的<a href="#timerEvent">timerEvent</a>()函数被调用，并带有<a href="qtimerevent.html">QTimerEvent</a>事件参数类。重新实现这个函数来获取定时器事件。</p>
+<p>如果多个定时器正在运行，<a href="qtimerevent.html#timerId">QTimerEvent::timerId</a>()可以用来找出哪个定时器被激活。</p>
+<p>例子。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyObject</span> : <span class="hljs-keyword">public</span> QObject
+{
+    Q_OBJECT
+
+        <span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">MyObject</span>(QObject *parent = <span class="hljs-literal">nullptr</span>);
+
+    <span class="hljs-keyword">protected</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">timerEvent</span><span class="hljs-params">(QTimerEvent *event)</span> <span class="hljs-keyword">override</span></span>;
+};
+
+MyObject::<span class="hljs-built_in">MyObject</span>(QObject *parent)
+    : <span class="hljs-built_in">QObject</span>(parent)
+    {
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">50</span>);     <span class="hljs-comment">// 50-millisecond timer</span>
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">1000</span>);   <span class="hljs-comment">// 1-second timer</span>
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">60000</span>);  <span class="hljs-comment">// 1-minute timer</span>
+
+        <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono;
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-built_in">milliseconds</span>(<span class="hljs-number">50</span>));
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-built_in">minutes</span>(<span class="hljs-number">1</span>));
+
+        <span class="hljs-comment">// since C++14 we can use std::chrono::duration literals, e.g.:</span>
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">100</span>ms);
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">5</span>s);
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">2</span>min);
+        <span class="hljs-built_in">startTimer</span>(<span class="hljs-number">1</span>h);
+    }
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">MyObject::timerEvent</span><span class="hljs-params">(QTimerEvent *event)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"Timer ID:"</span> &lt;&lt; event-&gt;<span class="hljs-built_in">timerId</span>();
+}</code></pre></div>
+
+<p>请注意，<a href="qtimer.html">QTimer</a>的精度取决于底层操作系统和硬件。<em>timerType</em>参数允许你自定义定时器的精度。参见 <a href="qt.html#TimerType-enum">Qt::TimerType</a> 以了解不同定时器类型的信息。大多数平台支持20毫秒的精度；有些平台提供更多。如果Qt无法提供所需数量的定时器事件，它将默默地丢弃一些。</p>
+<p><a href="qtimer.html">QTimer</a>类提供了一个高层次的编程接口，用单次定时器和定时器信号代替事件。还有一个<a href="qbasictimer.html">QBasicTimer</a>类，它比<a href="qtimer.html">QTimer</a>更轻量级，也不像直接使用定时器ID那样笨拙。</p>
+<p>这个函数是在Qt 5.9中引入的。</p>
+<p><strong>See also</strong> <a href="#timerEvent">timerEvent</a>(), <a href="#killTimer">killTimer</a>(), and <a href="qtimer.html#singleShot">QTimer::singleShot</a>().</p>
+<h3><span id="qthread-qobject-thread-const"> *QObject::thread() const</span><a href="#qthread-qobject-thread-const" class="header-anchor">#</a></h3><p>返回该对象所在的线程。</p>
+<p><strong>See also</strong> <a href="#moveToThread">moveToThread</a>().</p>
+<h3><span id="virtual-protected-void-qobject-timerevent-qtimerevent-event"><code>[virtual protected]</code>void QObject::timerEvent( *<em>event</em>)</span><a href="#virtual-protected-void-qobject-timerevent-qtimerevent-event" class="header-anchor">#</a></h3><p>这个事件处理程序可以在子类中重新实现，以接收该对象的定时器事件。</p>
+<p><a href="qtimer.html">QTimer</a>提供了一个更高级别的定时器功能的接口，也提供了更多关于定时器的一般信息。计时器事件是在<em>event</em>参数中传递的。</p>
+<p><strong>See also</strong> <a href="#startTimer">startTimer</a>(), <a href="#killTimer">killTimer</a>(), and <a href="#event">event</a>().</p>
+<h3><span id="static-qstring-qobject-tr-const-char-sourcetext-const-char-disambiguation-nullptr-int-n-1"><code>[static]</code> QObject::tr(const char *<em>sourceText</em>, const char *<em>disambiguation</em> = nullptr, int <em>n</em> = -1)</span><a href="#static-qstring-qobject-tr-const-char-sourcetext-const-char-disambiguation-nullptr-int-n-1" class="header-anchor">#</a></h3><p>返回<em>sourceText</em>的翻译版本，可选择基于<em>disambiguation</em>字符串和包含复数的字符串的<em>n</em>值；否则，如果没有合适的翻译字符串，则返回<a href="qstring.html#fromUtf8">QString::fromUtf8</a>（<em>sourceText</em>）。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">MainWindow::createActions</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    QMenu *fileMenu = <span class="hljs-built_in">menuBar</span>()-&gt;<span class="hljs-built_in">addMenu</span>(<span class="hljs-built_in">tr</span>(<span class="hljs-string">"&amp;File"</span>));
+    ...
+}</code></pre></div>
+
+<p>如果同一个<em>sourceText</em>在同一个上下文中被用于不同的角色，可以在<em>disambiguation</em>中传递一个额外的识别字符串（默认为<code>nullptr</code>）。在Qt 4.4和更早的版本中，这是传递注释给翻译者的首选方式。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">MyWindow::<span class="hljs-built_in">MyWindow</span>()
+{
+    QLabel *senderLabel = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QLabel</span>(<span class="hljs-built_in">tr</span>(<span class="hljs-string">"Name:"</span>));
+    QLabel *recipientLabel = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QLabel</span>(<span class="hljs-built_in">tr</span>(<span class="hljs-string">"Name:"</span>, <span class="hljs-string">"recipient"</span>));
+    ...</code></pre></div>
+
+<p>参见 <a href="i18n-source-translation.html">Writing Source Code for Translation</a> 对Qt翻译机制的详细描述，以及 <a href="i18n-source-translation.html#disambiguation">Disambiguation</a> 部分关于消歧的信息。</p>
+<p><strong>警告：</strong>只有在**调用此方法之前安装了所有翻译器，此方法才是可重入的。不支持在执行翻译的同时安装或删除翻译器。这样做可能会导致崩溃或其他不受欢迎的行为。</p>
+<p><strong>See also</strong> <a href="qcoreapplication.html#translate">QCoreApplication::translate</a>() and <a href="internationalization.html">Internationalization with Qt</a>.</p>
+<h2><span id="cheng-yuan-bian-liang-wen-dang">成员变量文档</span><a href="#cheng-yuan-bian-liang-wen-dang" class="header-anchor">#</a></h2><h3><span id="const-qmetaobject-qobject-staticmetaobject">const  QObject::staticMetaObject</span><a href="#const-qmetaobject-qobject-staticmetaobject" class="header-anchor">#</a></h3><p>这个变量存储了该类的元对象。</p>
+<p>元对象包含了继承<a href>QObject</a>的类的信息，例如：类名、超类名、属性、信号和槽。每个包含<a href="#Q_OBJECT">Q_OBJECT</a>宏的类也会有一个元对象。</p>
+<p>元对象的信息是信号/槽连接机制和属性系统所需要的。<a href="#inherits">inherits</a>()函数也会使用元对象。</p>
+<p>如果你有一个指向某个对象的指针，你可以使用<a href="#metaObject">metaObject</a>()来检索与该对象相关的元对象。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QPushButton::staticMetaObject.<span class="hljs-built_in">className</span>();  <span class="hljs-comment">// returns "QPushButton"</span>
+
+QObject *obj = <span class="hljs-keyword">new</span> QPushButton;
+obj-&gt;<span class="hljs-built_in">metaObject</span>()-&gt;<span class="hljs-built_in">className</span>();             <span class="hljs-comment">// returns "QPushButton"</span></code></pre></div>
+
+<p><strong>See also</strong> <a href="#metaObject">metaObject</a>().</p>
+<h2><span id="xiang-guan-fei-hui-yuan">相关非会员</span><a href="#xiang-guan-fei-hui-yuan" class="header-anchor">#</a></h2><h3><span id="template-t-qobject-cast-qobject-object">template <typename t> T qobject_cast(<a href="#QObject">QObject</a> *<em>object</em>)</typename></span><a href="#template-t-qobject-cast-qobject-object" class="header-anchor">#</a></h3><h3><span id="template-t-qobject-cast-const-qobject-object">template <typename t> T qobject_cast(const <a href="#QObject">QObject</a> *<em>object</em>)</typename></span><a href="#template-t-qobject-cast-const-qobject-object" class="header-anchor">#</a></h3><p>如果对象是T类型（或子类），返回给定的<em>object</em>，并将其转换为T类型；否则返回<code>nullptr</code>。如果<em>object</em>是<code>nullptr</code>，那么它也将返回<code>nullptr</code>。</p>
+<p>类T必须（直接或间接）继承<a href>QObject</a>，并且用<a href="#Q_OBJECT">Q_OBJECT</a>宏声明。</p>
+<p>一个类被认为是继承了它自己。</p>
+<p>例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QObject *obj = <span class="hljs-keyword">new</span> QTimer;          <span class="hljs-comment">// QTimer inherits QObject</span>
+
+QTimer *timer = <span class="hljs-built_in">qobject_cast</span>&lt;QTimer *&gt;(obj);
+<span class="hljs-comment">// timer == (QObject *)obj</span>
+
+QAbstractButton *button = <span class="hljs-built_in">qobject_cast</span>&lt;QAbstractButton *&gt;(obj);
+<span class="hljs-comment">// button == nullptr</span></code></pre></div>
+
+<p><a href="#qobject_cast">qobject_cast</a>()函数的行为类似于标准的C++<code>dynamic_cast()</code>，它的优点是不需要RTTI支持，而且可以跨越动态库边界工作。</p>
+<p><a href="#qobject_cast">qobject_cast</a>()也可以与接口结合使用；详情请参见<a href="qtwidgets-tools-plugandpaint-app-example.html">Plug &amp; Paint</a>的例子。</p>
+<p><strong>警告：</strong>如果T没有用<a href="#Q_OBJECT">Q_OBJECT</a>宏声明，这个函数的返回值是未定义的。</p>
+<p><strong>See also</strong> <a href="#inherits">QObject::inherits</a>().</p>
+<h3><span id="qobjectlist">QObjectList</span><a href="#qobjectlist" class="header-anchor">#</a></h3><p>Synonym for <a href="qlist.html">QList</a>&lt;<a href>QObject</a> *&gt;.</p>
+<h2><span id="hong-wen-dang">宏文档</span><a href="#hong-wen-dang" class="header-anchor">#</a></h2><h3><span id="since-5-8-qt-no-narrowing-conversions-in-connect"><code>[since 5.8]</code>QT_NO_NARROWING_CONVERSIONS_IN_CONNECT</span><a href="#since-5-8-qt-no-narrowing-conversions-in-connect" class="header-anchor">#</a></h3><p>当信号和槽使用基于PMF的语法连接时，定义此宏将禁用信号携带的参数和槽接受的参数之间的缩小和浮点到积分的转换。</p>
+<p>这个函数是在Qt 5.8中引入的。</p>
+<p><strong>See also</strong> <a href="#connect">QObject::connect</a>.</p>
+<h3><span id="q-classinfo-name-value">Q_CLASSINFO(<em>Name</em>, <em>Value</em>)</span><a href="#q-classinfo-name-value" class="header-anchor">#</a></h3><p>这个宏将额外的信息关联到类，这些信息可以通过<a href="#metaObject">QObject::metaObject</a>()获得。Qt只在<a href="qtdbus-index.html">Qt D-Bus</a>和<a href="qtqml-index.html">Qt QML</a>模块中有限地使用了这个功能。</p>
+<p>额外信息的形式是<em>Name</em>字符串和<em>Value</em>字面字符串。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> : <span class="hljs-keyword">public</span> QObject
+{
+    <span class="hljs-function">Q_OBJECT</span>
+<span class="hljs-function">        <span class="hljs-title">Q_CLASSINFO</span><span class="hljs-params">(<span class="hljs-string">"Author"</span>, <span class="hljs-string">"Pierre Gendron"</span>)</span></span>
+<span class="hljs-function">        <span class="hljs-title">Q_CLASSINFO</span><span class="hljs-params">(<span class="hljs-string">"URL"</span>, <span class="hljs-string">"http://www.my-organization.qc.ca"</span>)</span></span>
+<span class="hljs-function"></span>
+<span class="hljs-function">        <span class="hljs-keyword">public</span>:</span>
+<span class="hljs-function">    ...</span>
+<span class="hljs-function">};</span></code></pre></div>
+
+<p><strong>See also</strong> <a href="qmetaobject.html#classInfo">QMetaObject::classInfo</a>(), <a href="usingadaptors.html">Using Qt D-Bus Adaptors</a>, and <a href="qtquick-codesamples.html#extending-qml">Extending QML</a>.</p>
+<h3><span id="q-disable-copy-class">Q_DISABLE_COPY(<em>Class</em>)</span><a href="#q-disable-copy-class" class="header-anchor">#</a></h3><p>禁止对给定的<em>类</em>使用复制构造函数和赋值运算符。</p>
+<p><a href>QObject</a>的子类的实例不应该被认为是可以被复制或分配的值，而是唯一的身份。这意味着当你创建你自己的<a href>QObject</a>的子类（主管或间接）时，你不应该*给它一个复制构造函数或赋值操作符。然而，仅仅从你的类中省略它们可能是不够的，因为，如果你错误地写了一些需要复制构造函数或赋值运算符的代码（这很容易做到），你的编译器会体贴地为你创建它。你必须做得更多。</p>
+<p>好奇的用户会看到，从<a href>QObject</a>派生的Qt类通常在私有部分包括这个宏：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> : <span class="hljs-keyword">public</span> QObject
+{
+    <span class="hljs-keyword">private</span>:
+    <span class="hljs-built_in">Q_DISABLE_COPY</span>(MyClass)
+};</code></pre></div>
+
+<p>它在私有部分声明了一个拷贝构造函数和一个赋值运算符，所以如果你错误地使用它们，编译器会报告一个错误。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> : <span class="hljs-keyword">public</span> QObject
+{
+    <span class="hljs-keyword">private</span>:
+    <span class="hljs-built_in">MyClass</span>(<span class="hljs-type">const</span> MyClass &amp;) = <span class="hljs-keyword">delete</span>;
+    MyClass &amp;<span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> MyClass &amp;) = <span class="hljs-keyword">delete</span>;
+};</code></pre></div>
+
+<p>但即使这样，也不一定能完全抓住每一种情况。你可能会被诱惑做这样的事情:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QWidget w = <span class="hljs-built_in">QWidget</span>();</code></pre></div>
+
+<p>首先，不要这样做。大多数编译器会生成使用复制构造函数的代码，所以会报告隐私侵犯错误，但你的C++编译器并不要求以特定的方式为这个语句生成代码。它可以生成代码，<em>既不使用</em>复制构造函数，也<em>不使用</em>我们做成私有的赋值运算符。在这种情况下，不会报告错误，但当你调用<code>w</code>的成员函数时，你的应用程序可能会崩溃。</p>
+<p><strong>See also</strong> <a href="#Q_DISABLE_COPY_MOVE">Q_DISABLE_COPY_MOVE</a>.</p>
+<h3><span id="since-5-13-q-disable-copy-move-class"><code>[since 5.13]</code>Q_DISABLE_COPY_MOVE(<em>Class</em>)</span><a href="#since-5-13-q-disable-copy-move-class" class="header-anchor">#</a></h3><p>一个方便的宏，它禁止对给定的<em>Class</em>使用复制构造函数、赋值运算符、移动构造函数和移动赋值运算符。</p>
+<p>这个函数是在Qt 5.13中引入的。</p>
+<p><strong>See also</strong> <a href="#Q_DISABLE_COPY">Q_DISABLE_COPY</a>.</p>
+<h3><span id="q-emit">Q_EMIT</span><a href="#q-emit" class="header-anchor">#</a></h3><p>当你想使用Qt信号和槽与<a href="signalsandslots.html#3rd-party-signals-and-slots">第三方信号/槽机制</a>时，使用这个宏来替换发射信号的<code>emit</code>关键字。</p>
+<p>该宏通常在<code>.pro</code>文件中的<code>CONFIG</code>变量指定了<code>no_keywords</code>时使用，但它甚至可以在<code>no_keywords</code> <em>没有</em>指定时使用。</p>
+<h3><span id="since-5-5-q-enum"><code>[since 5.5]</code>Q_ENUM(…)</span><a href="#since-5-5-q-enum" class="header-anchor">#</a></h3><p>这个宏在元对象系统中注册了一个枚举类型。它必须放在一个有 <a href="#Q_OBJECT">Q_OBJECT</a> 或 <a href="#Q_GADGET">Q_GADGET</a> 宏的类中的枚举声明之后。对于命名空间，使用<a href="#Q_ENUM_NS">Q_ENUM_NS</a>()代替。</p>
+<p>比如说:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> : <span class="hljs-keyword">public</span> QObject
+{
+    Q_OBJECT
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">MyClass</span>(QObject *parent = <span class="hljs-literal">nullptr</span>);
+    ~<span class="hljs-built_in">MyClass</span>();
+
+    <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Priority</span> { High, Low, VeryHigh, VeryLow };
+    <span class="hljs-built_in">Q_ENUM</span>(Priority)
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setPriority</span><span class="hljs-params">(Priority priority)</span></span>;
+    <span class="hljs-function">Priority <span class="hljs-title">priority</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;
+};</code></pre></div>
+
+<p>用Q_ENUM声明的枚举，其<a href="qmetaenum.html">QMetaEnum</a>注册在包围的<a href="qmetaobject.html">QMetaObject</a>中。你也可以使用 <a href="qmetaenum.html#fromType">QMetaEnum::fromType</a>() 来获取 <a href="qmetaenum.html">QMetaEnum</a>。</p>
+<p>注册的枚举也会自动注册到Qt元类型系统中，使它们为<a href="qmetatype.html">QMetaType</a>所知，而不需要使用<a href="qmetatype.html#Q_DECLARE_METATYPE">Q_DECLARE_METATYPE</a> ()。这将实现有用的功能；例如，如果在<a href="qvariant.html">QVariant</a>中使用，你可以将它们转换为字符串。同样地，将它们传递给 <a href="qdebug.html">QDebug</a> 将打印出它们的名字。</p>
+<p>请注意，枚举值在元对象系统中被存储为有符号的<code>int</code>。当通过元对象系统访问枚举时，用超出 “int “有效范围的值注册枚举将导致溢出和潜在的未定义行为。例如，QML确实通过元对象系统访问注册的枚举。</p>
+<p>这个函数是在Qt 5.5中引入的。</p>
+<p><strong>See also</strong> <a href="properties.html">Qt’s Property System</a>.</p>
+<h3><span id="since-5-8-q-enum-ns"><code>[since 5.8]</code>Q_ENUM_NS(…)</span><a href="#since-5-8-q-enum-ns" class="header-anchor">#</a></h3><p>这个宏在元对象系统中注册了一个枚举类型。它必须放在枚举声明之后，并放在有<a href="#Q_NAMESPACE">Q_NAMESPACE</a>宏的命名空间中。它与<a href="#Q_ENUM">Q_ENUM</a>相同，但在一个命名空间中。</p>
+<p>用Q_ENUM_NS声明的枚举，其<a href="qmetaenum.html">QMetaEnum</a>注册在包围的<a href="qmetaobject.html">QMetaObject</a>中。你也可以使用 <a href="qmetaenum.html#fromType">QMetaEnum::fromType</a>() 来获取 <a href="qmetaenum.html">QMetaEnum</a>。</p>
+<p>注册的枚举也会自动注册到Qt元类型系统中，使它们为<a href="qmetatype.html">QMetaType</a>所知，而不需要使用<a href="qmetatype.html#Q_DECLARE_METATYPE">Q_DECLARE_METATYPE</a> ()。这将实现有用的功能；例如，如果在<a href="qvariant.html">QVariant</a>中使用，你可以将它们转换为字符串。同样地，将它们传递给 <a href="qdebug.html">QDebug</a> 将打印出它们的名字。</p>
+<p>请注意，枚举值在元对象系统中被存储为有符号的<code>int'。当通过元对象系统访问枚举时，用超出 </code>int `有效范围的值注册枚举将导致溢出和潜在的未定义行为。例如，QML确实通过元对象系统访问注册的枚举。</p>
+<p>这个函数是在Qt 5.8中引入的。</p>
+<p><strong>See also</strong> <a href="properties.html">Qt’s Property System</a>.</p>
+<h3><span id="since-5-5-q-flag"><code>[since 5.5]</code>Q_FLAG(…)</span><a href="#since-5-5-q-flag" class="header-anchor">#</a></h3><p>这个宏在元对象系统中注册了一个<a href="qflags.html">flags类型</a>。它通常用在类的定义中，声明一个给定枚举的值可以被用作标志，并使用位法OR运算符进行组合。对于命名空间，使用<a href="#Q_FLAG_NS">Q_FLAG_NS</a>()代替。</p>
+<p>该宏必须放在枚举声明之后。标志类型的声明是使用<a href="qflags.html#Q_DECLARE_FLAGS">Q_DECLARE_FLAGS</a>()宏完成的。</p>
+<p>例如，在<a href="qitemselectionmodel.html">QItemSelectionModel</a>中，<a href="qitemselectionmodel.html#SelectionFlag-enum">SelectionFlags</a>标志以如下方式声明:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">QItemSelectionModel</span> : <span class="hljs-keyword">public</span> QObject
+{
+    Q_OBJECT
+
+        <span class="hljs-keyword">public</span>:
+    ...
+        <span class="hljs-keyword">enum</span> <span class="hljs-title class_">SelectionFlag</span> {
+        NoUpdate       = <span class="hljs-number">0x0000</span>,
+        Clear          = <span class="hljs-number">0x0001</span>,
+        Select         = <span class="hljs-number">0x0002</span>,
+        Deselect       = <span class="hljs-number">0x0004</span>,
+        Toggle         = <span class="hljs-number">0x0008</span>,
+        Current        = <span class="hljs-number">0x0010</span>,
+        Rows           = <span class="hljs-number">0x0020</span>,
+        Columns        = <span class="hljs-number">0x0040</span>,
+        SelectCurrent  = Select | Current,
+        ToggleCurrent  = Toggle | Current,
+        ClearAndSelect = Clear | Select
+    };
+
+    <span class="hljs-built_in">Q_DECLARE_FLAGS</span>(SelectionFlags, SelectionFlag)
+        <span class="hljs-built_in">Q_FLAG</span>(SelectionFlags)
+        ...
+}</code></pre></div>
+
+<p><strong>注意：</strong> Q_FLAG宏负责在元对象系统中注册各个标志值，所以除了这个宏之外，没有必要再使用<a href="#Q_ENUM">Q_ENUM</a>()。</p>
+<p>这个函数是在Qt 5.5中引入的。</p>
+<p><strong>See also</strong> <a href="properties.html">Qt’s Property System</a>.</p>
+<h3><span id="since-5-8-q-flag-ns"><code>[since 5.8]</code>Q_FLAG_NS(…)</span><a href="#since-5-8-q-flag-ns" class="header-anchor">#</a></h3><p>这个宏在元对象系统中注册了一个 <a href="qflags.html">flags type</a> 。它被用于拥有<a href="#Q_NAMESPACE">Q_NAMESPACE</a>宏的命名空间中，以声明给定枚举的值可以被用作标志，并使用bitwise OR操作符组合。它与<a href="#Q_FLAG">Q_FLAG</a>相同，只是在一个命名空间中。</p>
+<p>该宏必须放在枚举声明之后。</p>
+<p><strong>注意：</strong> Q_FLAG_NS宏负责在元对象系统中注册各个标志值，所以除了这个宏之外，没有必要使用<a href="#Q_ENUM_NS">Q_ENUM_NS</a>()。</p>
+<p>这个函数是在Qt 5.8中引入的。</p>
+<p><strong>See also</strong> <a href="properties.html">Qt’s Property System</a>.</p>
+<h3><span id="q-gadget">Q_GADGET</span><a href="#q-gadget" class="header-anchor">#</a></h3><p>Q_GADGET 宏是 <a href="#Q_OBJECT">Q_OBJECT</a> 宏的轻量级版本，适用于不继承 <a href>QObject</a> 但仍想使用 [QMetaObject] (qmetaobject.html) 所提供的一些反射功能的类。就像 <a href="#Q_OBJECT">Q_OBJECT</a> 宏一样，它必须出现在一个类定义的私有部分。</p>
+<p>Q_GADGET可以有<a href="#Q_ENUM">Q_ENUM</a>、<a href="#Q_PROPERTY">Q_PROPERTY</a>和<a href="#Q_INVOKABLE">Q_INVOKABLE</a>，但是它们不能有信号或槽。</p>
+<p>Q_GADGET使一个类成员，<code>staticMetaObject</code>可用。<code>staticMetaObject</code>的类型是<a href="qmetaobject.html">QMetaObject</a>，并提供对用Q_ENUMS声明的枚举的访问。</p>
+<h3><span id="q-interfaces">Q_INTERFACES(…)</span><a href="#q-interfaces" class="header-anchor">#</a></h3><p>这个宏告诉Qt这个类实现了哪些接口。这是在实现插件时使用的。</p>
+<p>例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BasicToolsPlugin</span> : <span class="hljs-keyword">public</span> QObject,
+<span class="hljs-keyword">public</span> BrushInterface,
+<span class="hljs-keyword">public</span> ShapeInterface,
+<span class="hljs-keyword">public</span> FilterInterface
+{
+    <span class="hljs-function">Q_OBJECT</span>
+<span class="hljs-function">        <span class="hljs-title">Q_PLUGIN_METADATA</span><span class="hljs-params">(IID <span class="hljs-string">"org.qt-project.Qt.Examples.PlugAndPaint.BrushInterface"</span> FILE <span class="hljs-string">"basictools.json"</span>)</span></span>
+<span class="hljs-function">        <span class="hljs-title">Q_INTERFACES</span><span class="hljs-params">(BrushInterface ShapeInterface FilterInterface)</span></span>
+<span class="hljs-function"></span>
+<span class="hljs-function">        <span class="hljs-keyword">public</span>:</span>
+<span class="hljs-function">    ...</span>
+<span class="hljs-function">};</span></code></pre></div>
+
+<p>详情请看<a href="qtwidgets-tools-plugandpaint-plugins-basictools-example.html">Plug &amp; Paint Basic Tools</a>的例子。</p>
+<p><strong>See also</strong> <a href="qtplugin.html#Q_DECLARE_INTERFACE">Q_DECLARE_INTERFACE</a>(), <a href="qtplugin.html#Q_PLUGIN_METADATA">Q_PLUGIN_METADATA</a>(), and <a href="plugins-howto.html">How to Create Qt Plugins</a>.</p>
+<h3><span id="q-invokable">Q_INVOKABLE</span><a href="#q-invokable" class="header-anchor">#</a></h3><p>在成员函数的声明中应用这个宏，以允许它们通过元对象系统被调用。该宏写在返回类型之前，如下面的例子所示：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Window</span> : <span class="hljs-keyword">public</span> QWidget
+{
+    Q_OBJECT
+
+        <span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Window</span>();
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">normalMethod</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function">Q_INVOKABLE <span class="hljs-type">void</span> <span class="hljs-title">invokableMethod</span><span class="hljs-params">()</span></span>;
+};</code></pre></div>
+
+<p><code>invokableMethod()</code>函数使用Q_INVOKABLE标记，使其在元对象系统中被注册，并使其能够使用<a href="qmetaobject.html#invokeMethod">QMetaObject::invokeMethod</a>()被调用。由于 “normalMethod() “函数没有以这种方式注册，它不能用<a href="qmetaobject.html#invokeMethod">QMetaObject::invokeMethod</a>()来调用。</p>
+<p>如果一个可调用的成员函数返回一个指向<a href>QObject</a>或<a href>QObject</a>子类的指针，并且它被从QML中调用，特殊的所有权规则适用。更多信息请参见 <a href="qtqml-cppintegration-data.html">Data Type Conversion Between QML and C++</a>。</p>
+<h3><span id="since-6-0-q-moc-include"><code>[since 6.0]</code>Q_MOC_INCLUDE</span><a href="#since-6-0-q-moc-include" class="header-anchor">#</a></h3><p>Q_MOC_INCLUDE宏可以在类内或类外使用，并告诉<a href="moc.html">Meta Object Compiler</a>添加一个包含。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// Put this in your code and the generated code will include this header.</span>
+<span class="hljs-built_in">Q_MOC_INCLUDE</span>(<span class="hljs-string">"myheader.h"</span>)</code></pre></div>
+
+<p>如果你用作属性或信号/槽参数的类型是向前声明的，这就很有用。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<h3><span id="since-5-8-q-namespace"><code>[since 5.8]</code>Q_NAMESPACE</span><a href="#since-5-8-q-namespace" class="header-anchor">#</a></h3><p>Q_NAMESPACE 宏可以用来为一个命名空间添加 <a href="qmetaobject.html">QMetaObject</a> 的功能。</p>
+<p>Q_NAMESPACEs 可以有 <a href="#Q_CLASSINFO">Q_CLASSINFO</a>、<a href="#Q_ENUM_NS">Q_ENUM_NS</a>、<a href="#Q_FLAG_NS">Q_FLAG_NS</a>。但它们不能有<a href="#Q_ENUM">Q_ENUM</a>、<a href="#Q_FLAG">Q_FLAG</a>、<a href="#Q_PROPERTY">Q_PROPERTY</a>、<a href="#Q_INVOKABLE">Q_INVOKABLE</a>、信号或者槽。</p>
+<p>Q_NAMESPACE使一个外部变量，<code>staticMetaObject</code>可用。<code>staticMetaObject</code>是<a href="qmetaobject.html">QMetaObject</a>的类型，并提供对用<a href="#Q_ENUM_NS">Q_ENUM_NS</a>/<a href="#Q_FLAG_NS">Q_FLAG_NS</a>声明的枚举的访问。</p>
+<p>比如说：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">namespace</span> test {
+Q_NAMESPACE
+...</code></pre></div>
+
+<p>这个函数是在Qt 5.8中引入的。</p>
+<p><strong>See also</strong> <a href="#Q_NAMESPACE_EXPORT">Q_NAMESPACE_EXPORT</a>.</p>
+<h3><span id="since-5-14-q-namespace-export-export-macro"><code>[since 5.14]</code>Q_NAMESPACE_EXPORT(<em>EXPORT_MACRO</em>)</span><a href="#since-5-14-q-namespace-export-export-macro" class="header-anchor">#</a></h3><p>Q_NAMESPACE_EXPORT 宏可以用来为命名空间添加 <a href="qmetaobject.html">QMetaObject</a> 功能。</p>
+<p>它的工作原理与 <a href="#Q_NAMESPACE">Q_NAMESPACE</a> 宏完全相同。然而，在命名空间中被定义的外部<code>staticMetaObject</code>变量是用提供的<em>EXPORT_MACRO</em>修饰符来声明的。如果该对象需要从一个动态库中导出，这很有用。</p>
+<p>比如说:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">namespace</span> test {
+<span class="hljs-built_in">Q_NAMESPACE_EXPORT</span>(EXPORT_MACRO)
+...</code></pre></div>
+
+<p>这个函数是在Qt 5.14中引入的。</p>
+<p><strong>See also</strong> <a href="#Q_NAMESPACE">Q_NAMESPACE</a> and <a href="sharedlibrary.html">Creating Shared Libraries</a>.</p>
+<h3><span id="q-object">Q_OBJECT</span><a href="#q-object" class="header-anchor">#</a></h3><p>Q_OBJECT宏必须出现在类定义的私有部分，该类声明了自己的信号和槽，或者使用了Qt的元对象系统提供的其他服务。</p>
+<p>比如说：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QObject&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Counter</span> : <span class="hljs-keyword">public</span> QObject
+{
+    Q_OBJECT
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Counter</span>() { m_value = <span class="hljs-number">0</span>; }
+
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">value</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{ <span class="hljs-keyword">return</span> m_value; }
+
+<span class="hljs-keyword">public</span> slots:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setValue</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span></span>;
+
+signals:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">valueChanged</span><span class="hljs-params">(<span class="hljs-type">int</span> newValue)</span></span>;
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-type">int</span> m_value;
+};</code></pre></div>
+
+<p><strong>注意：</strong>这个宏需要类是<a href>QObject</a>的一个子类。使用<a href="#Q_GADGET">Q_GADGET</a>而不是Q_OBJECT来启用元对象系统对不是<a href>QObject</a>子类的类中的枚举支持。</p>
+<p><strong>See also</strong> <a href="metaobjects.html">Meta-Object System</a>, <a href="signalsandslots.html">Signals and Slots</a>, and <a href="properties.html">Qt’s Property System</a>.</p>
+<h3><span id="q-property">Q_PROPERTY(…)</span><a href="#q-property" class="header-anchor">#</a></h3><p>这个宏用于在继承了 <a href>QObject</a> 的类中声明属性。属性的行为类似于类的数据成员，但它们有额外的功能可以通过<a href="metaobjects.html">元对象系统</a>访问。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">Q_PROPERTY</span>(type <span class="hljs-built_in">name</span>
+           (READ getFunction [WRITE setFunction] |
+            MEMBER memberName [(READ getFunction | WRITE setFunction)])
+           [RESET resetFunction]
+           [NOTIFY notifySignal]
+           [REVISION <span class="hljs-type">int</span> | <span class="hljs-built_in">REVISION</span>(<span class="hljs-type">int</span>[, <span class="hljs-type">int</span>])]
+           [DESIGNABLE <span class="hljs-type">bool</span>]
+           [SCRIPTABLE <span class="hljs-type">bool</span>]
+           [STORED <span class="hljs-type">bool</span>]
+           [USER <span class="hljs-type">bool</span>]
+           [BINDABLE bindableProperty]
+           [CONSTANT]
+           [FINAL]
+           [REQUIRED])</code></pre></div>
+
+<p>属性名称和类型以及<code>READ</code>函数是必需的。类型可以是<a href="qvariant.html">QVariant</a>支持的任何类型，也可以是一个用户定义的类型。其他项目是可选的，但<code>WRITE</code>函数是常见的。除了`USER’默认为false，其他属性都默认为true。</p>
+<p>例如:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">Q_PROPERTY</span>(QString title READ title WRITE setTitle USER <span class="hljs-literal">true</span>)</code></pre></div>
+
+<p>关于如何使用这个宏的更多细节，以及一个更详细的使用例子，请参见<a href="properties.html">Qt的属性系统</a>的讨论。</p>
+<p><strong>See also</strong> <a href="properties.html">Qt’s Property System</a>.</p>
+<h3><span id="q-revision">Q_REVISION</span><a href="#q-revision" class="header-anchor">#</a></h3><p>在成员函数的声明中应用这个宏，以便在元对象系统中用修订号来标记它们。该宏写在返回类型之前，如下面的例子所示：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Window</span> : <span class="hljs-keyword">public</span> QWidget
+{
+    <span class="hljs-function">Q_OBJECT</span>
+<span class="hljs-function">        <span class="hljs-title">Q_PROPERTY</span><span class="hljs-params">(<span class="hljs-type">int</span> normalProperty READ normalProperty)</span></span>
+<span class="hljs-function">        <span class="hljs-title">Q_PROPERTY</span><span class="hljs-params">(<span class="hljs-type">int</span> newProperty READ newProperty REVISION(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>))</span></span>
+<span class="hljs-function"></span>
+<span class="hljs-function">        <span class="hljs-keyword">public</span>:</span>
+<span class="hljs-function">    Window();</span>
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">normalProperty</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">newProperty</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-keyword">public</span> slots:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">normalMethod</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-built_in">Q_REVISION</span>(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">newMethod</span><span class="hljs-params">()</span></span>;
+};</code></pre></div>
+
+<p>当使用元对象系统动态地将对象暴露给另一个API时，这很有用，因为你可以匹配另一个API的多个版本所期望的版本。考虑一下下面这个简化的例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">Window window;
+<span class="hljs-type">int</span> expectedRevision = <span class="hljs-number">0</span>;
+<span class="hljs-type">const</span> QMetaObject *windowMetaObject = window.<span class="hljs-built_in">metaObject</span>();
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i &lt; windowMetaObject-&gt;<span class="hljs-built_in">methodCount</span>(); i++)
+    <span class="hljs-keyword">if</span> (windowMetaObject-&gt;<span class="hljs-built_in">method</span>(i).<span class="hljs-built_in">revision</span>() &lt;= expectedRevision)
+        <span class="hljs-built_in">exposeMethod</span>(windowMetaObject-&gt;<span class="hljs-built_in">method</span>(i));
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i &lt; windowMetaObject-&gt;<span class="hljs-built_in">propertyCount</span>(); i++)
+    <span class="hljs-keyword">if</span> (windowMetaObject-&gt;<span class="hljs-built_in">property</span>(i).<span class="hljs-built_in">revision</span>() &lt;= expectedRevision)
+        <span class="hljs-built_in">exposeProperty</span>(windowMetaObject-&gt;<span class="hljs-built_in">property</span>(i));</code></pre></div>
+
+<p>使用与前面例子相同的Window类，newProperty和newMethod只有在预期版本为<code>2.1</code>或更高时才会在这段代码中暴露。</p>
+<p>由于所有的方法如果没有标签，就被认为是处于修订版<code>0</code>，所以<code>Q_REVISION(0)</code>或<code>Q_REVISION(0, 0)</code>的标签是无效的，被忽略。</p>
+<p>你可以向<code>Q_REVISION</code>传递一个或两个整数参数。如果你传递一个参数，它只表示次要版本。这意味着主版本是未指定的。如果你传递两个，第一个参数是主版本，第二个参数是次版本。</p>
+<p>这个标签不被元对象系统本身使用。目前这只被<a href="qtqml-module.html">QtQml</a>模块使用。</p>
+<p>对于一个更通用的字符串标签，见<a href="#tag">QMetaMethod::tag</a>()</p>
+<p><strong>See also</strong> <a href="#revision">QMetaMethod::revision</a>().</p>
+<h3><span id="since-5-0-q-set-object-name-object"><code>[since 5.0]</code>Q_SET_OBJECT_NAME(<em>Object</em>)</span><a href="#since-5-0-q-set-object-name-object" class="header-anchor">#</a></h3><p>这个宏给<em>Object</em>分配了<a href="#objectName-prop">objectName</a> “对象”。</p>
+<p>无论<em>Object</em>是否是一个指针，都不重要，这个宏自己会计算出来。</p>
+<p>这个函数是在Qt 5.0中引入的。</p>
+<p><strong>See also</strong> <a href="#objectName-prop">QObject::objectName</a>().</p>
+<h3><span id="q-signal">Q_SIGNAL</span><a href="#q-signal" class="header-anchor">#</a></h3><p>这是一个额外的宏，允许你将一个单一的函数标记为一个信号。它可能相当有用，特别是当你使用第三方源代码解析器时，它不理解<code>signals</code>或<code>Q_SIGNALS</code>组。</p>
+<p>当你想使用Qt信号和槽与<a href="signalsandslots.html#3rd-party-signals-and-slots">第三方信号/槽机制</a>时，使用这个宏来替代类声明中的<code>signals</code>关键字。</p>
+<p>该宏通常在<code>.pro</code>文件中的<code>CONFIG</code>变量指定了<code>no_keywords</code>时使用，但它甚至可以在<code>no_keywords</code>没有*指定时使用。</p>
+<h3><span id="q-signals">Q_SIGNALS</span><a href="#q-signals" class="header-anchor">#</a></h3><p>当你想使用Qt信号和槽与<a href="signalsandslots.html#3rd-party-signals-and-slots">第三方信号/槽机制</a>时，使用这个宏来替代类声明中的<code>signals</code>关键字。</p>
+<p>该宏通常在<code>.pro</code>文件中的<code>CONFIG</code>变量指定了<code>no_keywords</code>时使用，但它甚至可以在<code>no_keywords</code>没有*指定时使用。</p>
+<h3><span id="q-slot">Q_SLOT</span><a href="#q-slot" class="header-anchor">#</a></h3><p>这是一个额外的宏，允许你将一个单一的函数标记为一个槽。它可能相当有用，特别是当你使用第三方源代码解析器时，它不理解<code>slots</code>或<code>Q_SLOTS</code>组。</p>
+<p>当你想使用Qt信号和槽与<a href="signalsandslots.html#3rd-party-signals-and-slots">第三方信号/槽机制</a>时，使用这个宏来替代类声明中的<code>slots</code>关键字。</p>
+<p>该宏通常在<code>.pro</code>文件中的<code>CONFIG</code>变量指定了<code>no_keywords</code>时使用，但它甚至可以在<code>no_keywords</code>没有*指定时使用。</p>
+<h3><span id="q-slots">Q_SLOTS</span><a href="#q-slots" class="header-anchor">#</a></h3><p>当你想使用Qt信号和槽与<a href="signalsandslots.html#3rd-party-signals-and-slots">第三方信号/槽机制</a>时，使用这个宏来替代类声明中的<code>slots</code>关键字。</p>
+<p>该宏通常在<code>.pro</code>文件中的<code>CONFIG</code>变量指定了<code>no_keywords</code>时使用，但它甚至可以在<code>no_keywords</code><em>没有</em>指定时使用。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/O/">O</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/K/QKeyValueIterator/QKeyValueIterator/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QKeyValueIterator类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/K/QKeySequenceEdit/QKeySequenceEdit/">
+                        <span class="hidden-mobile">QKeySequenceEdit类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

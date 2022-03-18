@@ -1,0 +1,1158 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QJSEngine 类 公共类型 特性 公共函数 信号 静态公共成员 相关非成员 详细描述 估算脚本 引擎配置 脚本异常 脚本对象的创建 QObject 集成 扩展   成员类型文档编制 enum QJSEngine:: Extension flags QJSEngine:: 扩展 enum QJSEngine:: ObjectOwnership   特性文档编制 [since 5.15">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QJSEngine类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/J/QJSEngine/QJSEngine/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QJSEngine 类 公共类型 特性 公共函数 信号 静态公共成员 相关非成员 详细描述 估算脚本 引擎配置 脚本异常 脚本对象的创建 QObject 集成 扩展   成员类型文档编制 enum QJSEngine:: Extension flags QJSEngine:: 扩展 enum QJSEngine:: ObjectOwnership   特性文档编制 [since 5.15">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:44:16.231Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="J">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QJSEngine类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QJSEngine类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      18k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      149 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QJSEngine类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qjsengine-lei">QJSEngine 类</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#te-xing">特性</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-guan-fei-cheng-yuan">相关非成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#gu-suan-jiao-ben">估算脚本</a></li>
+<li><a href="#yin-qing-pei-zhi">引擎配置</a></li>
+<li><a href="#jiao-ben-yi-chang">脚本异常</a></li>
+<li><a href="#jiao-ben-dui-xiang-de-chuang-jian">脚本对象的创建</a></li>
+<li><a href="#qobject-ji-cheng">QObject 集成</a></li>
+<li><a href="#kuo-zhan">扩展</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#enum-qjsengine-extension-flags-qjsengine-kuo-zhan">enum QJSEngine:: Extension flags QJSEngine:: 扩展</a></li>
+<li><a href="#enum-qjsengine-objectownership">enum QJSEngine:: ObjectOwnership</a></li>
+</ul>
+</li>
+<li><a href="#te-xing-wen-dang-bian-zhi">特性文档编制</a><ul>
+<li><a href="#since-5-15-uilanguage-qstring-qstring-html"><code>[since 5.15] </code>uiLanguage : </a><a href="qstring.html">QString</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qjsengine-qjsengine-qobject-qobject-html-qobject-parent">QJSEngine:: QJSEngine ( </a><a href="qobject.html#QObject">QObject </a>* <em>parent</em> )</li>
+<li><a href="#qjsengine-qjsengine">QJSEngine:: QJSEngine ()</a></li>
+<li><a href="#override-virtual-qjsengine-qjsengine"><code>[override virtual] </code>QJSEngine:: ~QJSEngine ()</a></li>
+<li><a href="#since-qt-6-1-qjsvalue-qjsengine-catcherror"><code>[since Qt 6.1] </code></a><a href>QJSValue </a>QJSEngine:: catchError ()</li>
+<li><a href="#void-qjsengine-collectgarbage">void QJSEngine:: collectGarbage ()</a></li>
+<li><a href="#qjsvalue-qjsengine-evaluate-const-qstring-qstring-html-program-const-qstring-qstring-html-filename-qstring-int-linenumber-1-qstringlist-qstringlist-html-exceptionstacktrace-nullptr">QJSValue </a></li>
+<li><a href="#template-typename-t-t-qjsengine-fromscriptvalue-const-qjsvalue-value">template <typename t> T QJSEngine:: fromScriptValue (const </typename></a><a href>QJSValue </a>&amp; <em>value</em> )</li>
+<li><a href="#qjsvalue-qjsengine-globalobject-const-1">QJSValue </a></li>
+<li><a href="#since-qt-6-1-bool-qjsengine-haserror-const"><code>[since Qt 6.1] </code>bool QJSEngine:: hasError () const</a></li>
+<li><a href="#since-5-12-qjsvalue-qjsengine-importmodule-const-qstring-qstring-html-filename"><code>[since 5.12] </code></a><a href>QJSValue </a>QJSEngine:: importModule (const <a href="qstring.html">QString </a>&amp; <em>fileName</em> )</li>
+<li><a href="#since-5-6-void-qjsengine-installextensions-qjsengine-extensions-extension-enum-extensions-const-qjsvalue-object-qjsvalue"><code>[since 5.6] </code>void QJSEngine:: installExtensions ( </a><a href="#Extension-enum">QJSEngine::Extensions </a><em>extensions</em> , const <a href>QJSValue </a>&amp; <em>object</em> = QJSValue())</li>
+<li><a href="#since-5-14-bool-qjsengine-isinterrupted-const"><code>[since 5.14] </code>bool QJSEngine:: isInterrupted () const</a></li>
+<li><a href="#qjsvalue-qjsengine-newarray-uint-qtglobal-html-uint-typedef-length-0-2">QJSValue </a></li>
+<li><a href="#since-5-12-qjsvalue-qjsengine-newerrorobject-qjsvalue-errortype-errortype-enum-errortype-const-qstring-qstring-html-message-qstring"><code>[since 5.12] </code></a><a href>QJSValue </a>QJSEngine:: newErrorObject ( <a href="#ErrorType-enum">QJSValue::ErrorType </a><em>errorType</em> , const <a href="qstring.html">QString </a>&amp; <em>message</em> = QString())</li>
+<li><a href="#qjsvalue-qjsengine-newobject-3">QJSValue </a></li>
+<li><a href="#since-5-8-qjsvalue-qjsengine-newqmetaobject-const-qmetaobject-qmetaobject-html-metaobject"><code>[since 5.8] </code></a><a href>QJSValue </a>QJSEngine:: newQMetaObject (const <a href="qmetaobject.html">QMetaObject </a>* <em>metaObject</em> )</li>
+<li><a href="#since-5-8-template-typename-t-qjsvalue-qjsengine-newqmetaobject"><code>[since 5.8] </code>template <typename t> </typename></a><a href>QJSValue </a>QJSEngine:: newQMetaObject ()</li>
+<li><a href="#qjsvalue-qjsengine-newqobject-qobject-qobject-html-qobject-object-4">QJSValue </a></li>
+<li><a href="#since-6-2-qjsvalue-qjsengine-newsymbol-const-qstring-qstring-html-name"><code>[since 6.2] </code></a><a href>QJSValue </a>QJSEngine:: newSymbol (const <a href="qstring.html">QString </a>&amp; <em>name</em> )</li>
+<li><a href="#static-qjsengine-objectownership-objectownership-enum-qjsengine-objectownership-qobject-qobject-html-qobject-object"><code>[static] </code></a><a href="#ObjectOwnership-enum">QJSEngine::ObjectOwnership </a>QJSEngine:: objectOwnership ( <a href="qobject.html#QObject">QObject </a>* <em>object</em> )</li>
+<li><a href="#bool-qjsengine-registermodule-const-qstring-qstring-html-modulename-const-qjsvalue-value">bool QJSEngine:: registerModule (const </a><a href="qstring.html">QString </a>&amp; <em>moduleName</em> , const <a href>QJSValue </a>&amp; <em>value</em> )</li>
+<li><a href="#since-5-14-void-qjsengine-setinterrupted-bool-interrupted"><code>[since 5.14] </code>void QJSEngine:: setInterrupted ( bool <em>interrupted</em> )</a></li>
+<li><a href="#static-void-qjsengine-setobjectownership-qobject-qobject-html-qobject-object-qjsengine-objectownership-objectownership-enum-ownership"><code>[static] </code>void QJSEngine:: setObjectOwnership ( </a><a href="qobject.html#QObject">QObject </a>* <em>object</em> , <a href="#ObjectOwnership-enum">QJSEngine::ObjectOwnership </a><em>ownership</em> )</li>
+<li><a href="#since-qt-5-12-void-qjsengine-throwerror-const-qstring-qstring-html-message"><code>[since Qt 5.12] </code>void QJSEngine:: throwError (const </a><a href="qstring.html">QString </a>&amp; <em>message</em> )</li>
+<li><a href="#since-qt-5-12-void-qjsengine-throwerror-qjsvalue-errortype-errortype-enum-errortype-const-qstring-qstring-html-message-qstring"><code>[since Qt 5.12] </code>void QJSEngine:: throwError ( </a><a href="#ErrorType-enum">QJSValue::ErrorType </a><em>errorType</em> , const <a href="qstring.html">QString </a>&amp; <em>message</em> = QString())</li>
+<li><a href="#since-6-1-void-qjsengine-throwerror-const-qjsvalue-error"><code>[since 6.1] </code>void QJSEngine:: throwError (const </a><a href>QJSValue </a>&amp; <em>error</em> )</li>
+<li><a href="#template-typename-t-qjsvalue-qjsengine-toscriptvalue-const-t-value">template <typename t> </typename></a><a href>QJSValue </a>QJSEngine:: toScriptValue (const T &amp; <em>value</em> )</li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-cheng-yuan-1">相关非成员</a><ul>
+<li><a href="#since-5-5-qjsengine-qjsengine-qjsengine-const-qobject-qobject-html-qobject-object"><code>[since 5.5] </code></a><a href="#QJSEngine">QJSEngine </a>* qjsEngine (const <a href="qobject.html#QObject">QObject </a>* <em>object</em> )</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QJSEngine 类
+
+<p>QJSEngine 类提供用于估算 JavaScript 代码的环境。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qjsengine></qjsengine></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Qml REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Qml)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += qml</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 5.0</td>
+</tr>
+<tr>
+<td>继承：</td>
+<td><a href="qobject.html">QObject</a></td>
+</tr>
+<tr>
+<td>继承者：</td>
+<td><a href="qqmlengine.html">QQmlEngine</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qjsengine-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<p><strong>注意：</strong> 此类的所有函数 <a href="threads-reentrancy.html">可重入 </a>.</p>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#Extension-enum">Extension </a></strong>{ TranslationExtension, ConsoleExtension, GarbageCollectionExtension, AllExtensions }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>flags</td>
+<td><strong><a href="#Extension-enum">扩展</a></strong></td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#ObjectOwnership-enum">ObjectOwnership </a></strong>{ CppOwnership, JavaScriptOwnership }</td>
+</tr>
+</tbody></table>
+<h2><span id="te-xing">特性</span><a href="#te-xing" class="header-anchor">#</a></h2><ul>
+<li><strong><a href="#uiLanguage-prop">uiLanguage </a></strong>: QString</li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QJSEngine-1">QJSEngine </a></strong>(QObject * <em>parent</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QJSEngine">QJSEngine </a></strong>()</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QJSEngine">~QJSEngine </a></strong>() override</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#catchError">catchError </a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#collectGarbage">collectGarbage </a></strong>()</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#evaluate">evaluate </a></strong>(const QString &amp; <em>program</em> , const QString &amp; <em>fileName</em> = QString(), int <em>lineNumber</em> = 1, QStringList * <em>exceptionStackTrace</em> = nullptr)</td>
+</tr>
+<tr>
+<td>T</td>
+<td><strong><a href="#fromScriptValue">fromScriptValue </a></strong>(const QJSValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#globalObject">globalObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasError">hasError </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#importModule">importModule </a></strong>(const QString &amp; <em>fileName</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#installExtensions">installExtensions </a></strong>(QJSEngine::Extensions <em>extensions</em> , const QJSValue &amp; <em>object</em> = QJSValue())</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isInterrupted">isInterrupted </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#newArray">newArray </a></strong>(uint <em>length</em> = 0)</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#newErrorObject">newErrorObject </a></strong>(QJSValue::ErrorType <em>errorType</em> , const QString &amp; <em>message</em> = QString())</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#newObject">newObject </a></strong>()</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#newQMetaObject">newQMetaObject </a></strong>(const QMetaObject * <em>metaObject</em> )</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#newQMetaObject-1">newQMetaObject </a></strong>()</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#newQObject">newQObject </a></strong>(QObject * <em>object</em> )</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#newSymbol">newSymbol </a></strong>(const QString &amp; <em>name</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#registerModule">registerModule </a></strong>(const QString &amp; <em>moduleName</em> , const QJSValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setInterrupted">setInterrupted </a></strong>(bool <em>interrupted</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#uiLanguage-prop">setUiLanguage </a></strong>(const QString &amp; <em>language</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#throwError">throwError </a></strong>(const QString &amp; <em>message</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#throwError-1">throwError </a></strong>(QJSValue::ErrorType <em>errorType</em> , const QString &amp; <em>message</em> = QString())</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#throwError-2">throwError </a></strong>(const QJSValue &amp; <em>error</em> )</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#toScriptValue">toScriptValue </a></strong>(const T &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#uiLanguage-prop">uiLanguage </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#uiLanguage-prop">uiLanguageChanged </a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QJSEngine::ObjectOwnership</th>
+<th><strong><a href="#objectOwnership">objectOwnership </a></strong>(QObject * <em>object</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#setObjectOwnership">setObjectOwnership </a></strong>(QObject * <em>object</em> , QJSEngine::ObjectOwnership <em>ownership</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QJSEngine *</th>
+<th><strong><a href="#qjsEnginex">qjsEngine </a></strong>(const QObject * <em>object</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><h3><span id="gu-suan-jiao-ben">估算脚本</span><a href="#gu-suan-jiao-ben" class="header-anchor">#</a></h3><p>使用 <a href="#evaluate">evaluate</a>() 来评估脚本代码。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QJSEngine myEngine;
+QJSValue three = myEngine.<span class="hljs-built_in">evaluate</span>(<span class="hljs-string">"1 + 2"</span>);</code></pre></div>
+
+<p><a href="#evaluate">evaluate</a>() 返回 <a href>QJSValue</a>，持有评估的结果。QJSValue]()类提供了将结果转换为各种C++类型的函数（例如，<a href="#toString">QJSValue::toString</a>() 和 <a href="#toNumber">QJSValue::toNumber</a>()）。</p>
+<p>下面的代码片段显示了如何定义一个脚本函数，然后使用<a href="#call">QJSValue::call</a>()从C++调用：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QJSValue fun = myEngine.<span class="hljs-built_in">evaluate</span>(<span class="hljs-string">"(function(a, b) { return a + b; })"</span>);
+QJSValueList args;
+args &lt;&lt; <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">2</span>;
+QJSValue threeAgain = fun.<span class="hljs-built_in">call</span>(args);</code></pre></div>
+
+<p>从上面的片段可以看出，一个脚本是以字符串的形式提供给引擎的。装入脚本的一种常见方式是通过读取文件的内容并将其传递给<a href="#evaluate">evaluate</a>()：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QString fileName = <span class="hljs-string">"helloworld.qs"</span>;
+<span class="hljs-function">QFile <span class="hljs-title">scriptFile</span><span class="hljs-params">(fileName)</span></span>;
+<span class="hljs-keyword">if</span> (!scriptFile.<span class="hljs-built_in">open</span>(QIODevice::ReadOnly))
+    <span class="hljs-comment">// handle error</span>
+<span class="hljs-function">QTextStream <span class="hljs-title">stream</span><span class="hljs-params">(&amp;scriptFile)</span></span>;
+QString contents = stream.<span class="hljs-built_in">readAll</span>();
+scriptFile.<span class="hljs-built_in">close</span>();
+myEngine.<span class="hljs-built_in">evaluate</span>(contents, fileName);</code></pre></div>
+
+<p>这里我们把文件的名字作为第二个参数传给<a href="#evaluate">evaluate</a>()。这不会以任何方式影响评估；第二个参数是一个通用的字符串，被存储在<code>Error</code>对象中，用于调试目的。</p>
+<p>对于较大的功能片段，你可能想把你的代码和数据封装成模块。一个模块是一个包含脚本代码、变量等的文件，并使用导出语句来描述它与应用程序其他部分的接口。在导入语句的帮助下，一个模块可以引用其他模块的功能。这允许以一种安全的方式从较小的连接构件中构建一个脚本应用程序。相反，使用<a href="#evaluate">evaluate</a>()的方法有一个风险，即来自一个<a href="#evaluate">evaluate</a>()调用的内部变量或函数会意外地污染全局对象并影响后续的评估。</p>
+<p>下面的例子提供了一个可以加数字的模块：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">export</span> function <span class="hljs-title">sum</span><span class="hljs-params">(left, right)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">return</span> left + right
+}</code></pre></div>
+
+<p>如果该模块以<code>math.mjs</code>的名字保存，可以用QJSEngine::import()加载：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QJSvalue <span class="hljs-keyword">module</span> = myEngine.<span class="hljs-built_in">importModule</span>(<span class="hljs-string">"./math.mjs"</span>);
+QJSValue sumFunction = <span class="hljs-keyword">module</span>.<span class="hljs-built_in">property</span>(<span class="hljs-string">"sum"</span>);
+QJSValue result = sumFunction.<span class="hljs-built_in">call</span>(args);</code></pre></div>
+
+<p>模块也可以通过导入语句使用其他模块的功能：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">import</span> { sum } from <span class="hljs-string">"./math.mjs"</span>;
+<span class="hljs-function"><span class="hljs-keyword">export</span> function <span class="hljs-title">addTwice</span><span class="hljs-params">(left, right)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sum</span>(left, right) * <span class="hljs-number">2</span>;
+}</code></pre></div>
+
+<p>模块不一定是文件。它们可以是用<a href="#registerModule">QJSEngine::registerModule</a>()注册的值:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">import</span> version from <span class="hljs-string">"version"</span>;
+<span class="hljs-function"><span class="hljs-keyword">export</span> function <span class="hljs-title">getVersion</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">return</span> version;
+}
+
+<span class="hljs-function">QJSValue <span class="hljs-title">version</span><span class="hljs-params">(<span class="hljs-number">610</span>)</span></span>;
+myEngine.<span class="hljs-built_in">registerModule</span>(<span class="hljs-string">"version"</span>, version);
+QJSValue <span class="hljs-keyword">module</span> = myEngine.<span class="hljs-built_in">importModule</span>(<span class="hljs-string">"./myprint.mjs"</span>);
+QJSValue getVersion = <span class="hljs-keyword">module</span>.<span class="hljs-built_in">property</span>(<span class="hljs-string">"getVersion"</span>);
+QJSValue result = getVersion.<span class="hljs-built_in">call</span>();</code></pre></div>
+
+<p>支持命名导出，但由于它们被视为对象的成员，默认导出必须是ECMAScript对象。QJSValue]()中的大多数newXYZ函数将返回一个对象。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QJSValue <span class="hljs-title">name</span><span class="hljs-params">(<span class="hljs-string">"Qt6"</span>)</span></span>;
+QJSValue obj = myEngine.<span class="hljs-built_in">newObject</span>();
+obj.<span class="hljs-built_in">setProperty</span>(<span class="hljs-string">"name"</span>, name);
+myEngine.<span class="hljs-built_in">registerModule</span>(<span class="hljs-string">"info"</span>, obj);
+
+<span class="hljs-keyword">import</span> { name } from <span class="hljs-string">"info"</span>;
+<span class="hljs-function"><span class="hljs-keyword">export</span> function <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">return</span> name;
+}</code></pre></div>
+
+<h3><span id="yin-qing-pei-zhi">引擎配置</span><a href="#yin-qing-pei-zhi" class="header-anchor">#</a></h3><p><a href="#globalObject">globalObject</a>()函数返回与脚本引擎相关的**全球对象。全局对象的属性可以从任何脚本代码中访问（也就是说，它们是全局变量）。通常，在评估 “用户 “脚本之前，你会希望通过向全局对象添加一个或多个属性来配置脚本引擎:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">myEngine.<span class="hljs-built_in">globalObject</span>().<span class="hljs-built_in">setProperty</span>(<span class="hljs-string">"myNumber"</span>, <span class="hljs-number">123</span>);
+...
+QJSValue myNumberPlusOne = myEngine.<span class="hljs-built_in">evaluate</span>(<span class="hljs-string">"myNumber + 1"</span>);</code></pre></div>
+
+<p>将自定义属性添加到脚本环境中是提供特定于你的应用程序的脚本API的标准手段之一。通常这些自定义属性是由<a href="#newQObject">newQObject</a>() 或<a href="#newObject">newObject</a>() 函数创建的对象。</p>
+<h3><span id="jiao-ben-yi-chang">脚本异常</span><a href="#jiao-ben-yi-chang" class="header-anchor">#</a></h3><p><a href="#evaluate">evaluate </a>()可以抛出一个脚本异常（例如，由于语法错误）。如果是这样，那么<a href="#evaluate">evaluate</a>()就会返回被抛出的值（通常是一个<code>错误</code>对象）。使用<a href="#isError">QJSValue::isError</a>()来检查异常情况。</p>
+<p>对于错误的详细信息，使用<a href="#toString">QJSValue::toString</a>()来获取错误信息，并使用<a href>QJSValue::property</a>来查询<code>Error</code>对象的属性。以下属性是可用的:</p>
+<ul>
+<li><code>name</code></li>
+<li><code>message</code></li>
+<li><code>fileName</code></li>
+<li><code>lineNumber</code></li>
+<li><code>stack</code></li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++">QJSValue result = myEngine.<span class="hljs-built_in">evaluate</span>(...);
+<span class="hljs-keyword">if</span> (result.<span class="hljs-built_in">isError</span>())
+    <span class="hljs-built_in">qDebug</span>()
+    &lt;&lt; <span class="hljs-string">"Uncaught exception at line"</span>
+    &lt;&lt; result.<span class="hljs-built_in">property</span>(<span class="hljs-string">"lineNumber"</span>).<span class="hljs-built_in">toInt</span>()
+    &lt;&lt; <span class="hljs-string">":"</span> &lt;&lt; result.<span class="hljs-built_in">toString</span>();</code></pre></div>
+
+<h3><span id="jiao-ben-dui-xiang-de-chuang-jian">脚本对象的创建</span><a href="#jiao-ben-dui-xiang-de-chuang-jian" class="header-anchor">#</a></h3><p>使用 <a href="#newObject">newObject </a>()来创建一个JavaScript对象；这相当于脚本语句<code>new Object() </code>的C++版本。你可以使用<a href>QJSValue</a>中的特定对象功能来操作脚本对象（例如，<a href="#setProperty">QJSValue::setProperty</a>()）。同样地，使用<a href="#newArray">newArray </a>()来创建一个JavaScript数组对象。</p>
+<h3><span id="qobject-ji-cheng">QObject 集成</span><a href="#qobject-ji-cheng" class="header-anchor">#</a></h3><p>使用 <a href="#newQObject">newQObject</a>() 来包裹一个 <a href="qobject.html">QObject</a>(或子类) 指针。<a href="#newQObject">newQObject</a>()返回一个代理脚本对象；<a href="qobject.html">QObject</a>的属性、子对象、信号和槽都可以作为代理对象的属性。不需要绑定代码，因为它是使用Qt元对象系统动态完成的。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QPushButton *button = <span class="hljs-keyword">new</span> QPushButton;
+QJSValue scriptButton = myEngine.<span class="hljs-built_in">newQObject</span>(button);
+myEngine.<span class="hljs-built_in">globalObject</span>().<span class="hljs-built_in">setProperty</span>(<span class="hljs-string">"button"</span>, scriptButton);
+myEngine.<span class="hljs-built_in">evaluate</span>(<span class="hljs-string">"button.checkable = true"</span>);
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; scriptButton.<span class="hljs-built_in">property</span>(<span class="hljs-string">"checkable"</span>).<span class="hljs-built_in">toBool</span>();
+scriptButton.<span class="hljs-built_in">property</span>(<span class="hljs-string">"show"</span>).<span class="hljs-built_in">call</span>(); <span class="hljs-comment">// call the show() slot</span></code></pre></div>
+
+<p>使用 <a href="#newQMetaObject-1">newQMetaObject </a>() 包裹一个 <a href="qmetaobject.html">QMetaObject </a> ；这给你一个基于 <a href="qobject.html">QObject </a> 类的 “脚本表示”。<a href="#newQMetaObject-1">newQMetaObject</a>()返回一个代理脚本对象；该类的枚举值可以作为代理对象的属性。</p>
+<p>暴露在元对象系统中的构造函数（使用<a href="qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>）可以从脚本中调用，以创建一个新的<a href="qobject.html">QObject</a>实例与<a href="#ObjectOwnership-enum">JavaScriptOwnership</a> 。例如，给定下面的类定义:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyObject</span> : <span class="hljs-keyword">public</span> QObject
+{
+    Q_OBJECT
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">Q_INVOKABLE <span class="hljs-title">MyObject</span><span class="hljs-params">()</span> </span>{}
+};</code></pre></div>
+
+<p>类的staticMetaObject可以像这样暴露给JavaScript：类的stance可以在JavaScript中创建:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QJSValue jsMetaObject = engine.<span class="hljs-built_in">newQMetaObject</span>(&amp;MyObject::staticMetaObject);
+engine.<span class="hljs-built_in">globalObject</span>().<span class="hljs-built_in">setProperty</span>(<span class="hljs-string">"MyObject"</span>, jsMetaObject);</code></pre></div>
+
+<p>然后可以在JavaScript中创建该类的实例。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">engine.<span class="hljs-built_in">evaluate</span>(<span class="hljs-string">"var myObject = new MyObject()"</span>);</code></pre></div>
+
+<p><strong>注意：</strong> 目前只支持使用<a href="qobject.html#Q_OBJECT">Q_OBJECT</a>宏的类；不可能将<a href="qobject.html#Q_GADGET">Q_GADGET</a>类的<code>staticMetaObject</code>暴露给JavaScript。</p>
+<h4><span id="dong-tai-de-qobject-shu-xing">动态的QObject属性</span><a href="#dong-tai-de-qobject-shu-xing" class="header-anchor">#</a></h4><p>动态<a href="qobject.html">QObject</a>属性不被支持。例如，下面的代码将无法工作:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QJSEngine engine;
+QObject *myQObject = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QObject</span>();
+myQObject-&gt;<span class="hljs-built_in">setProperty</span>(<span class="hljs-string">"dynamicProperty"</span>, <span class="hljs-number">3</span>);
+QJSValue myScriptQObject = engine.<span class="hljs-built_in">newQObject</span>(myQObject);
+engine.<span class="hljs-built_in">globalObject</span>().<span class="hljs-built_in">setProperty</span>(<span class="hljs-string">"myObject"</span>, myScriptQObject);
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; engine.<span class="hljs-built_in">evaluate</span>(<span class="hljs-string">"myObject.dynamicProperty"</span>).<span class="hljs-built_in">toInt</span>();</code></pre></div>
+
+<h3><span id="kuo-zhan">扩展</span><a href="#kuo-zhan" class="header-anchor">#</a></h3><p>QJSEngine提供了一个兼容的ECMAScript实现。默认情况下，像日志这样熟悉的工具是不可用的，但它们可以通过<a href="#installExtensions">installExtensions</a>()函数安装。</p>
+<p><strong>另请参阅</strong> <a href>QJSValue </a>, <a href="qtjavascript.html">Making Applications Scriptable </a>，和 <a href="qtqml-javascript-functionlist.html">List of JavaScript Objects and Functions </a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="enum-qjsengine-extension-flags-qjsengine-kuo-zhan">enum QJSEngine:: Extension flags QJSEngine:: 扩展</span><a href="#enum-qjsengine-extension-flags-qjsengine-kuo-zhan" class="header-anchor">#</a></h3><p>这个枚举用于指定要通过<a href="#installExtensions">installExtensions</a>()安装的扩展。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QJSEngine::TranslationExtension</code></td>
+<td align="left"><code>0x1</code></td>
+<td align="left">表示应该安装翻译函数（例如，<code>qsTr()</code>）。这也是在安装Qt.Net。<a href="#uiLanguage-prop">uiLanguage</a>特性。</td>
+</tr>
+<tr>
+<td align="left"><code>QJSEngine::ConsoleExtension</code></td>
+<td align="left"><code>0x2</code></td>
+<td align="left">表示应该安装控制台函数（例如，<code>console.log()</code>）。</td>
+</tr>
+<tr>
+<td align="left"><code>QJSEngine::GarbageCollectionExtension</code></td>
+<td align="left"><code>0x4</code></td>
+<td align="left">表示应该安装垃圾收集功能（例如，<code>gc()</code>）。</td>
+</tr>
+<tr>
+<td align="left"><code>QJSEngine::AllExtensions</code></td>
+<td align="left"><code>0xffffffff</code></td>
+<td align="left">表示应该安装所有的扩展。</td>
+</tr>
+</tbody></table>
+<p><strong>翻译Extension</strong></p>
+<p>脚本翻译函数和C++翻译函数之间的关系在下表中描述:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Script Function</th>
+<th align="left">Corresponding C++ Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">qsTr()</td>
+<td align="left"><a href="qobject.html#tr">QObject::tr </a>()</td>
+</tr>
+<tr>
+<td align="left"><a href="qtglobal.html#QT_TR_NOOP">QT_TR_NOOP </a>()</td>
+<td align="left"><a href="qtglobal.html#QT_TR_NOOP">QT_TR_NOOP </a>()</td>
+</tr>
+<tr>
+<td align="left">qsTranslate()</td>
+<td align="left"><a href="qcoreapplication.html#translate">QCoreApplication::translate </a>()</td>
+</tr>
+<tr>
+<td align="left"><a href="qtglobal.html#QT_TRANSLATE_NOOP">QT_TRANSLATE_NOOP </a>()</td>
+<td align="left"><a href="qtglobal.html#QT_TRANSLATE_NOOP">QT_TRANSLATE_NOOP </a>()</td>
+</tr>
+<tr>
+<td align="left">qsTrId()</td>
+<td align="left"><a href="qtglobal.html#qtTrId">qtTrId </a>()</td>
+</tr>
+<tr>
+<td align="left"><a href="qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP </a>()</td>
+<td align="left"><a href="qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP </a>()</td>
+</tr>
+</tbody></table>
+<p>这个标志还为字符串原型添加了一个<code>arg()</code>函数。</p>
+<p>更多信息，见 <a href="internationalization.html">Qt 国际化 </a>文档编制。</p>
+<p><strong>控制台扩展</strong></p>
+<p><a href="#console-api">控制台</a>对象实现了<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Console">控制台API</a>的一个子集，它提供熟悉的日志功能，如<code>console.log()</code>。</p>
+<p>增加的功能列表如下:</p>
+<ul>
+<li><code>console.assert(</code></li>
+<li><code>console.debug()</code></li>
+<li><code>console.exception()</code></li>
+<li><code>console.info()</code></li>
+<li><code>console.log() </code>(equivalent to <code>console.debug() </code>)</li>
+<li><code>console.error()</code></li>
+<li><code>console.time()</code></li>
+<li><code>console.timeEnd()</code></li>
+<li><code>console.trace()</code></li>
+<li><code>console.count()</code></li>
+<li><code>console.warn()</code></li>
+<li><code>print() </code>(equivalent to <code>console.debug() </code>)</li>
+</ul>
+<p>更多信息，见 <a href="#console-api">控制台 API </a>文档编制。</p>
+<p><strong>垃圾收集扩展(GarbageCollectionExtension)</strong></p>
+<p><code>gc()</code>函数等同于调用<a href="#collectGarbage">collectGarbage </a>()。</p>
+<p>Extensions类型是<a href="qflags.html">QFlags</a><extension>的一个类型定义。它存储了一个扩展值的OR组合。</extension></p>
+<h3><span id="enum-qjsengine-objectownership">enum QJSEngine:: ObjectOwnership</span><a href="#enum-qjsengine-objectownership" class="header-anchor">#</a></h3><p>ObjectOwnership控制当相应的JavaScript对象被引擎回收时，JavaScript内存管理器是否会自动销毁<a href="qobject.html">QObject</a>。两个所有权选项是：</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QJSEngine::CppOwnership</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">该对象是由C++代码拥有的，JavaScript内存管理器永远不会删除它。JavaScript destroy()方法不能在这些对象上使用。这个选项类似于QScriptEngine::QtOwnership。</td>
+</tr>
+<tr>
+<td align="left"><code>QJSEngine::JavaScriptOwnership</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">这个对象是由JavaScript拥有的。当该对象作为方法调用的返回值返回给JavaScript内存管理器时，JavaScript内存管理器将跟踪它，如果没有剩余的JavaScript引用，并且它没有<a href="qobject.html#parent">QObject::parent</a>()，则删除它。一个被一个<a href>QJSEngine</a>跟踪的对象将在该<a href>QJSEngine</a>的析构器中被删除。因此，如果其中一个引擎被删除，两个不同引擎的具有JavaScriptOwnership的对象之间的JavaScript引用将不再有效。这个选项类似于QScriptEngine::ScriptOwnership。</td>
+</tr>
+</tbody></table>
+<p>一般来说，应用程序不需要明确地设置一个对象的所有权。JavaScript内存管理器使用一种启发式方法来设置默认的所有权。默认情况下，一个由JavaScript内存管理器创建的对象具有JavaScriptOwnership。但通过调用<a href="qqmlcomponent.html#create">QQmlComponent::create </a>()或<a href="qqmlcomponent.html#beginCreate">QQmlComponent::beginCreate </a>()创建的根对象除外，它们默认具有CppOwnership。这些根级对象的所有权被认为已经转移给了C++调用者。</p>
+<p>不是由JavaScript内存管理器创建的对象默认拥有CppOwnership。但从C++方法调用中返回的对象是个例外；它们的所有权将被设置为JavaScriptOwnership。这只适用于<a href="qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>方法或槽的明确调用，但不适用于属性获取器的调用。</p>
+<p>调用 <a href="#setObjectOwnership">setObjectOwnership </a>()会覆盖默认的所有权。</p>
+<p><strong>另请参阅</strong> <a href="qtqml-cppintegration-data.html#data-ownership">Data Ownership </a>.</p>
+<h2><span id="te-xing-wen-dang-bian-zhi">特性文档编制</span><a href="#te-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="since-5-15-uilanguage-qstring"><code>[since 5.15] </code>uiLanguage : </span><a href="#since-5-15-uilanguage-qstring" class="header-anchor">#</a></h3><p>此属性持有要用于翻译用户界面字符串的语言</p>
+<p>该属性持有用于用户界面字符串翻译的语言名称。当<a href="#Extension-enum">QJSEngine::TranslationExtension</a>被安装在引擎上时，它被暴露为 “Qt.uiLanguage “以供读写。它总是暴露在<a href="qqmlengine.html">QQmlEngine</a>的实例中。</p>
+<p>你可以自由设置这个值并在绑定中使用它。建议在你的应用程序中安装翻译器后再设置它。根据惯例，一个空字符串意味着不打算从源代码中使用的语言进行翻译。</p>
+<p>该特性在 Qt 5.15 引入。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>uiLanguage</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setUiLanguage</strong> (const QString &amp; <em>language</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>uiLanguageChanged</strong> ()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qjsengine-qjsengine-qobject-parent">QJSEngine:: QJSEngine ( * <em>parent</em> )</span><a href="#qjsengine-qjsengine-qobject-parent" class="header-anchor">#</a></h3><p>构建一个QJSEngine对象，给定的<em>parent</em>。</p>
+<p><a href="#globalObject">globalObject</a>()被初始化为具有<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第15.1节中描述的属性。</p>
+<h3><span id="qjsengine-qjsengine">QJSEngine:: QJSEngine ()</span><a href="#qjsengine-qjsengine" class="header-anchor">#</a></h3><p>构建一个QJSEngine对象。</p>
+<p><a href="#globalObject">globalObject</a>()被初始化为具有<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第15.1节中描述的属性。</p>
+<h3><span id="override-virtual-qjsengine-qjsengine"><code>[override virtual] </code>QJSEngine:: ~QJSEngine ()</span><a href="#override-virtual-qjsengine-qjsengine" class="header-anchor">#</a></h3><p>销毁此 <a href>QJSEngine </a>.</p>
+<p>在<a href>QJSEngine </a>销毁期间，垃圾不会从持久性JS堆中收集。如果你需要释放所有的内存，在销毁<a href>QJSEngine</a>之前手动调用<a href="#collectGarbage">collectGarbage</a>。</p>
+<h3><span id="since-qt-6-1-qjsvalue-qjsengine-catcherror"><code>[since Qt 6.1] </code>QJSEngine:: catchError ()</span><a href="#since-qt-6-1-qjsvalue-qjsengine-catcherror" class="header-anchor">#</a></h3><p>如果当前有一个异常等待处理，则捕捉它并将其作为<a href>QJSValue</a>返回。否则返回未定义的<a href>QJSValue </a>。调用此方法后 <a href="#hasError">hasError </a>() 返回 <code>false </code>。</p>
+<p>该函数在 Qt 6.1 引入。</p>
+<h3><span id="void-qjsengine-collectgarbage">void QJSEngine:: collectGarbage ()</span><a href="#void-qjsengine-collectgarbage" class="header-anchor">#</a></h3><p>运行 “垃圾收集器”。</p>
+<p>垃圾收集器将试图通过定位和处理脚本环境中不再可及的对象来回收内存。</p>
+<p>通常你不需要调用这个函数；当<a href>QJSEngine</a>决定这样做是明智的（即当创建了一定数量的新对象时），垃圾收集器会自动被调用。然而，你可以调用这个函数来明确地要求尽快进行垃圾收集。</p>
+<h3><span id="qjsvalue-qjsengine-evaluate-const-qstring-amp-program-const-qstring-amp-filename-qstring-int-linenumber-1-qstringlist-exceptionstacktrace-nullptr">QJSEngine:: evaluate (const &amp; <em>program</em> , const &amp; <em>fileName</em> = QString(), int <em>lineNumber</em> = 1, * <em>exceptionStackTrace</em> = nullptr)</span><a href="#qjsvalue-qjsengine-evaluate-const-qstring-amp-program-const-qstring-amp-filename-qstring-int-linenumber-1-qstringlist-exceptionstacktrace-nullptr" class="header-anchor">#</a></h3><p>评估<em>program</em> ，使用<em>lineNumber</em>作为基本行号，并返回评估的结果。</p>
+<p>脚本代码将在全局对象的背景下被评估。</p>
+<p>对<em>program</em>的评估可以在引擎中引起<a href="#script-exceptions">异常</a>；在这种情况下，返回值将是被抛出的异常（通常是一个<code>错误</code>对象；见<a href="#isError">QJSValue::isError</a>()）。</p>
+<p><em>lineNumber</em>用于指定<em>program</em>的起始行号；引擎报告的与该评价有关的行号信息将基于该参数。例如，如果<em>program</em>由两行代码组成，而第二行的语句引起了一个脚本异常，那么异常行的编号就是<em>lineNumber</em>加1。当没有指定起始行号时，行号将是基于1的。</p>
+<p><em>fileName</em>用于错误报告。例如，在错误对象中，如果提供了这个函数，文件名可以通过 “fileName “属性访问。</p>
+<p><em>exceptionStackTrace</em>用于报告是否抛出了一个未捕获的异常。如果你把一个非空的指向<a href="qstringlist.html">QStringList</a>的指针传给它，如果脚本抛出了一个未处理的异常，它将把它设置为 “stackframe message “的列表，否则就是一个空列表。一个堆栈框架信息的格式是：函数名：行号：列：文件名。</p>
+<p><strong>注意：</strong>在某些情况下，例如对于本地函数，函数名和文件名可以为空，行号和列可以为-1。</p>
+<p><strong>注意：</strong>如果抛出了一个异常，并且异常值不是一个Error实例（即，<a href="#isError">QJSValue::isError </a>() 返回 <code>false </code>），异常值仍将被返回。使用<code>exceptionStackTrace-&gt;isEmpty() </code>来区分该值是正常的还是异常的返回值。</p>
+<h3><span id="template-t-qjsengine-fromscriptvalue-const-qjsvalue-amp-value">template <typename t> T QJSEngine:: fromScriptValue (const <a href>QJSValue </a>&amp; <em>value</em> )</typename></span><a href="#template-t-qjsengine-fromscriptvalue-const-qjsvalue-amp-value" class="header-anchor">#</a></h3><p>返回给定<em>value</em>转换为模板类型<code>T</code>。这适用于任何有<code>QMetaType</code>的类型<code>T</code>。</p>
+<p><strong>另请参阅</strong> <a href="#toScriptValue">toScriptValue </a>().</p>
+<h3><span id="qjsvalue-qjsengine-globalobject-const">QJSEngine:: globalObject () const</span><a href="#qjsvalue-qjsengine-globalobject-const" class="header-anchor">#</a></h3><p>返回这个引擎的全局对象。</p>
+<p>默认情况下，全局对象包含了<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>中的内置对象，例如数学、日期和字符串。此外，你可以设置全局对象的属性，使你自己的扩展对所有脚本代码可用。脚本代码中的非本地变量将被创建为全局对象的属性，全局代码中的本地变量也是如此。</p>
+<h3><span id="since-qt-6-1-bool-qjsengine-haserror-const"><code>[since Qt 6.1] </code>bool QJSEngine:: hasError () const</span><a href="#since-qt-6-1-bool-qjsengine-haserror-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果最后一次执行JavaScript导致异常，或者调用了<a href="#throwError">throwError</a>()。否则返回 “false”。请注意，<a href="#evaluate">evaluate</a>()可以捕获任何被评估的代码中抛出的异常。</p>
+<p>该函数在 Qt 6.1 引入。</p>
+<h3><span id="since-5-12-qjsvalue-qjsengine-importmodule-const-qstring-amp-filename"><code>[since 5.12] </code>QJSEngine:: importModule (const &amp; <em>fileName</em> )</span><a href="#since-5-12-qjsvalue-qjsengine-importmodule-const-qstring-amp-filename" class="header-anchor">#</a></h3><p>导入位于<em>fileName</em>的模块，并返回一个模块命名空间对象，其中包含所有导出的变量、常量和函数属性。</p>
+<p>如果这是第一次在引擎中导入模块，文件会从本地文件系统或Qt资源系统中的指定位置加载，并作为ECMAScript模块进行评估。该文件应该是以UTF-8编码的文本。</p>
+<p>同一模块的后续导入将返回之前导入的实例。模块是单子，在引擎被销毁之前一直存在。</p>
+<p>指定 <em>fileName</em> 将在内部使用 <a href="qfileinfo.html#canonicalFilePath">QFileInfo::canonicalFilePath </a>()进行标准化。这意味着在磁盘上使用不同相对路径的同一文件的多次导入将只加载该文件一次。</p>
+<p><strong>注意：</strong>如果在加载模块的过程中抛出一个异常，返回值将是该异常（通常是一个<code>错误</code>对象；见<a href="#isError">QJSValue::isError</a>()）。</p>
+<p>该函数在 Qt 5.12 引入。</p>
+<p><strong>另请参阅</strong> <a href="#registerModule">registerModule </a>().</p>
+<h3><span id="since-5-6-void-qjsengine-installextensions-qjsengine-extensions-extensions-const-qjsvalue-amp-object-qjsvalue"><code>[since 5.6] </code>void QJSEngine:: installExtensions ( <em>extensions</em> , const &amp; <em>object</em> = QJSValue())</span><a href="#since-5-6-void-qjsengine-installextensions-qjsengine-extensions-extensions-const-qjsvalue-amp-object-qjsvalue" class="header-anchor">#</a></h3><p>安装JavaScript <em>extensions</em>以增加标准ECMAScript实现中所没有的功能。</p>
+<p>这些扩展被安装在给定的<em>object</em> 上，如果没有指定对象，则安装在<a href="#globalObject">全局对象</a>上。</p>
+<p>可以通过 “OR “的方式同时安装几个扩展的枚举值:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">installExtensions</span>(QJSEngine::TranslationExtension | QJSEngine::ConsoleExtension);</code></pre></div>
+
+<p>该函数在 Qt 5.6 引入。</p>
+<p><strong>另请参阅</strong> <a href="#Extension-enum">Extension </a>.</p>
+<h3><span id="since-5-14-bool-qjsengine-isinterrupted-const"><code>[since 5.14] </code>bool QJSEngine:: isInterrupted () const</span><a href="#since-5-14-bool-qjsengine-isinterrupted-const" class="header-anchor">#</a></h3><p>返回当前JavaScript的执行是否被中断。</p>
+<p>该函数在 Qt 5.14 引入。</p>
+<p><strong>另请参阅</strong> <a href="#setInterrupted">setInterrupted </a>().</p>
+<h3><span id="qjsvalue-qjsengine-newarray-uint-length-0">QJSEngine:: newArray ( <em>length</em> = 0)</span><a href="#qjsvalue-qjsengine-newarray-uint-length-0" class="header-anchor">#</a></h3><p>创建一个数组类的JavaScript对象，给定的<em>length</em> 。</p>
+<p><strong>另请参阅</strong> <a href="#newObject">newObject </a>().</p>
+<h3><span id="since-5-12-qjsvalue-qjsengine-newerrorobject-qjsvalue-errortype-errortype-const-qstring-amp-message-qstring"><code>[since 5.12] </code>QJSEngine:: newErrorObject ( <em>errorType</em> , const &amp; <em>message</em> = QString())</span><a href="#since-5-12-qjsvalue-qjsengine-newerrorobject-qjsvalue-errortype-errortype-const-qstring-amp-message-qstring" class="header-anchor">#</a></h3><p>创建一个Error类的JavaScript对象，<em>message</em>为错误信息。</p>
+<p>创建的对象的原型将是<em>errorType</em>。</p>
+<p>该函数在 Qt 5.12 引入。</p>
+<p><strong>另请参阅</strong> <a href="#newObject">newObject </a>(), <a href="#throwError">throwError </a>()，和 <a href="#isError">QJSValue::isError </a>().</p>
+<h3><span id="qjsvalue-qjsengine-newobject">QJSEngine:: newObject ()</span><a href="#qjsvalue-qjsengine-newobject" class="header-anchor">#</a></h3><p>创建一个Object类的JavaScript对象。</p>
+<p>创建的对象的原型将是Object原型对象。</p>
+<p><strong>另请参阅</strong> <a href="#newArray">newArray </a>() 和 <a href="#setProperty">QJSValue::setProperty </a>().</p>
+<h3><span id="since-5-8-qjsvalue-qjsengine-newqmetaobject-const-qmetaobject-metaobject"><code>[since 5.8] </code>QJSEngine:: newQMetaObject (const * <em>metaObject</em> )</span><a href="#since-5-8-qjsvalue-qjsengine-newqmetaobject-const-qmetaobject-metaobject" class="header-anchor">#</a></h3><p>创建一个JavaScript对象，包装给定的<a href="qmetaobject.html">QMetaObject</a><em>metaObject</em>必须超过脚本引擎的寿命。建议只对静态的元对象使用这个方法。</p>
+<p>当作为构造函数调用时，将创建一个新的类的实例。只有<a href="qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>所暴露的构造函数才会在脚本引擎中可见。</p>
+<p>该函数在 Qt 5.8 引入。</p>
+<p><strong>另请参阅</strong> <a href="#newQObject">newQObject </a>() 和 <a href="#qobject-integration">QObject 集成 </a>.</p>
+<h3><span id="since-5-8-template-qjsvalue-qjsengine-newqmetaobject"><code>[since 5.8] </code>template <typename t> <a href>QJSValue </a>QJSEngine:: newQMetaObject ()</typename></span><a href="#since-5-8-template-qjsvalue-qjsengine-newqmetaobject" class="header-anchor">#</a></h3><p>创建一个JavaScript对象，包裹静态的<a href="qmetaobject.html">QMetaObject</a>，与<code>T</code>类相关。</p>
+<p>该函数在 Qt 5.8 引入。</p>
+<p><strong>另请参阅</strong> <a href="#newQObject">newQObject </a>() 和 <a href="#qobject-integration">QObject 集成 </a>.</p>
+<h3><span id="qjsvalue-qjsengine-newqobject-qobject-object">QJSEngine:: newQObject ( * <em>object</em> )</span><a href="#qjsvalue-qjsengine-newqobject-qobject-object" class="header-anchor">#</a></h3><p>创建一个JavaScript对象，包装给定的<a href="qobject.html">QObject</a><em>object</em>，使用<a href="#ObjectOwnership-enum">JavaScriptOwnership</a> 。</p>
+<p><em>object</em>的信号和槽，属性和孩子都可以作为创建的<a href>QJSValue</a>的属性。</p>
+<p>如果<em>object</em>是一个空指针，这个函数返回一个空值。</p>
+<p>如果已经为<em>object</em>的类（或其超类，递归）注册了一个默认的原型，新的脚本对象的原型将被设置为该默认原型。</p>
+<p>如果给定的<em>object</em>在引擎的控制之外被删除，任何试图通过JavaScript包装对象访问被删除的<a href="qobject.html">QObject</a>的成员（无论是通过脚本代码还是C++）都会导致一个<a href="#script-exceptions">脚本异常</a>。</p>
+<p><strong>另请参阅</strong> <a href="#toQObject">QJSValue::toQObject </a>().</p>
+<h3><span id="since-6-2-qjsvalue-qjsengine-newsymbol-const-qstring-amp-name"><code>[since 6.2] </code>QJSEngine:: newSymbol (const &amp; <em>name</em> )</span><a href="#since-6-2-qjsvalue-qjsengine-newsymbol-const-qstring-amp-name" class="header-anchor">#</a></h3><p>创建一个Symbol类的JavaScript对象，其值为<em>name</em>。</p>
+<p>创建的对象的原型将是Symbol原型对象。</p>
+<p>该函数在 Qt 6.2 引入。</p>
+<p><strong>另请参阅</strong> <a href="#newObject">newObject </a>().</p>
+<h3><span id="static-qjsengine-objectownership-qjsengine-objectownership-qobject-object"><code>[static] </code>QJSEngine:: objectOwnership ( * <em>object</em> )</span><a href="#static-qjsengine-objectownership-qjsengine-objectownership-qobject-object" class="header-anchor">#</a></h3><p>返回<em>object</em>的所有权。</p>
+<p><strong>另请参阅</strong> <a href="#setObjectOwnership">setObjectOwnership </a>() 和 <a href="#ObjectOwnership-enum">QJSEngine::ObjectOwnership </a>.</p>
+<h3><span id="bool-qjsengine-registermodule-const-qstring-amp-modulename-const-qjsvalue-amp-value">bool QJSEngine:: registerModule (const &amp; <em>moduleName</em> , const &amp; <em>value</em> )</span><a href="#bool-qjsengine-registermodule-const-qstring-amp-modulename-const-qjsvalue-amp-value" class="header-anchor">#</a></h3><p>注册一个<a href>QJSValue</a>来作为一个模块。这个函数被调用后，所有导入<em>moduleName</em>的模块将导入<em>value</em>的值，而不是从文件系统加载<em>moduleName</em>。</p>
+<p>任何有效的<a href>QJSValue</a>都可以被注册，但命名的导出（即<code>import { name } from "info" </code>被视为一个对象的成员，所以默认的导出必须用<a href>QJSEngine</a>的一个newXYZ方法创建。</p>
+<p>因为这允许导入文件系统中不存在的模块，脚本应用程序可以使用它来提供内置模块，类似于Node.js。</p>
+<p>返回 <code>true </code>当成功时， <code>false </code>否则。</p>
+<p><strong>注意：</strong> <a href>QJSValue </a><em>value</em>不会被调用或读取，直到它被其他模块使用。这意味着没有代码需要评估，所以不会出现错误，直到另一个模块在试图加载这个模块时抛出一个异常。</p>
+<p><strong>警告：</strong>试图从不是对象的<a href>QJSValue</a>访问一个命名的出口，将触发一个<a href="#%E8%84%9A%E6%9C%AC-%E5%BC%82%E5%B8%B8">异常</a>。</p>
+<p><strong>另请参阅</strong> <a href="#importModule">importModule </a>().</p>
+<h3><span id="since-5-14-void-qjsengine-setinterrupted-bool-interrupted"><code>[since 5.14] </code>void QJSEngine:: setInterrupted ( bool <em>interrupted</em> )</span><a href="#since-5-14-void-qjsengine-setinterrupted-bool-interrupted" class="header-anchor">#</a></h3><p>中断或重新启用JavaScript的执行。</p>
+<p>如果<em>interrupted</em>为 “true”，任何由这个引擎执行的JavaScript都会立即中止，并返回一个错误对象，直到再次调用这个函数时，<em>interrupted</em>的值为 “false”。</p>
+<p>这个函数是线程安全的。你可以从不同的线程调用它，以便中断，例如，JavaScript中的无限循环。</p>
+<p>该函数在 Qt 5.14 引入。</p>
+<p><strong>另请参阅</strong> <a href="#isInterrupted">isInterrupted </a>().</p>
+<h3><span id="static-void-qjsengine-setobjectownership-qobject-object-qjsengine-objectownership-ownership"><code>[static] </code>void QJSEngine:: setObjectOwnership ( * <em>object</em> , <em>ownership</em> )</span><a href="#static-void-qjsengine-setobjectownership-qobject-object-qjsengine-objectownership-ownership" class="header-anchor">#</a></h3><p>设置<em>object</em>的<em>ownership</em> 。</p>
+<p>一个具有<code>JavaScriptOwnership</code>的对象，只要它还有一个父对象，即使没有对它的引用，也不会被垃圾回收。</p>
+<p><strong>另请参阅</strong> <a href="#objectOwnership">objectOwnership </a>() 和 <a href="#ObjectOwnership-enum">QJSEngine::ObjectOwnership </a>.</p>
+<h3><span id="since-qt-5-12-void-qjsengine-throwerror-const-qstring-amp-message"><code>[since Qt 5.12] </code>void QJSEngine:: throwError (const &amp; <em>message</em> )</span><a href="#since-qt-5-12-void-qjsengine-throwerror-const-qstring-amp-message" class="header-anchor">#</a></h3><p>抛出一个运行时错误（异常），并给出<em>message</em>。</p>
+<p>这个方法是JavaScript中<code>throw()</code>表达式的C++对应物。它使C++代码可以向<a href>QJSEngine</a>报告运行时错误。因此，它只能从被JavaScript函数通过<a href>QJSEngine</a>调用的C++代码中被调用。</p>
+<p>当从C++返回时，引擎将中断正常的执行流程，并调用下一个预先注册的异常处理程序，该异常对象包含了给定的<em>message</em>。错误对象将指向JavaScript调用者堆栈中最顶层的上下文的位置；具体来说，它将有<code>lineNumber</code>、<code>fileName</code>和<code>stack</code>属性。这些属性在[脚本异常]（#script-exceptions）中有所描述。</p>
+<p>在下面的例子中，<em>FileAccess.cpp</em>中的一个C++方法在<em>qmlFile.qml</em>中调用<code>readFileAsText()</code>的位置抛出一个错误:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// qmlFile.qml</span>
+<span class="hljs-function">function <span class="hljs-title">someFunction</span><span class="hljs-params">()</span> </span>{
+    ...
+        var text = FileAccess.<span class="hljs-built_in">readFileAsText</span>(<span class="hljs-string">"/path/to/file.txt"</span>);
+}
+
+<span class="hljs-comment">// FileAccess.cpp</span>
+<span class="hljs-comment">// Assuming that FileAccess is a QObject-derived class that has been</span>
+<span class="hljs-comment">// registered as a singleton type and provides an invokable method</span>
+<span class="hljs-comment">// readFileAsText()</span>
+<span class="hljs-function">QJSValue <span class="hljs-title">FileAccess::readFileAsText</span><span class="hljs-params">(<span class="hljs-type">const</span> QString &amp; filePath)</span> </span>{
+    <span class="hljs-function">QFile <span class="hljs-title">file</span><span class="hljs-params">(filePath)</span></span>;
+    <span class="hljs-keyword">if</span> (!file.<span class="hljs-built_in">open</span>(QIODevice::ReadOnly)) {
+        jsEngine-&gt;<span class="hljs-built_in">throwError</span>(file.<span class="hljs-built_in">errorString</span>());
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">QString</span>();
+    }
+    ...
+        <span class="hljs-keyword">return</span> content;
+}</code></pre></div>
+
+<p>也可以在JavaScript中捕捉抛出的错误:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// qmlFile.qml</span>
+<span class="hljs-function">function <span class="hljs-title">someFunction</span><span class="hljs-params">()</span> </span>{
+    ...
+        var text;
+    <span class="hljs-keyword">try</span> {
+        text = FileAccess.<span class="hljs-built_in">readFileAsText</span>(<span class="hljs-string">"/path/to/file.txt"</span>);
+    } <span class="hljs-built_in">catch</span> (error) {
+        console.<span class="hljs-built_in">warn</span>(<span class="hljs-string">"In "</span> + error.fileName + <span class="hljs-string">":"</span> + <span class="hljs-string">"error.lineNumber"</span> +
+                     <span class="hljs-string">": "</span> + error.message);
+    }
+}</code></pre></div>
+
+<p>如果你需要一个更具体的运行时错误来描述一个异常，你可以使用[throwError(QJSValue::ErrorType errorType, const QString &amp;message) ] (#throwError-1)重载。</p>
+<p>该函数在 Qt 5.12 引入。</p>
+<p><strong>另请参阅</strong> <a href="#script-exceptions">脚本异常 </a>.</p>
+<h3><span id="since-qt-5-12-void-qjsengine-throwerror-qjsvalue-errortype-errortype-const-qstring-amp-message-qstring"><code>[since Qt 5.12] </code>void QJSEngine:: throwError ( <em>errorType</em> , const &amp; <em>message</em> = QString())</span><a href="#since-qt-5-12-void-qjsengine-throwerror-qjsvalue-errortype-errortype-const-qstring-amp-message-qstring" class="header-anchor">#</a></h3><p>这个函数重载了throwError()。</p>
+<p>抛出一个具有给定<em>errorType</em>和<em>message</em>的运行时错误（异常）。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// Assuming that DataEntry is a QObject-derived class that has been</span>
+<span class="hljs-comment">// registered as a singleton type and provides an invokable method</span>
+<span class="hljs-comment">// setAge().</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DataEntry::setAge</span><span class="hljs-params">(<span class="hljs-type">int</span> age)</span> </span>{
+    <span class="hljs-keyword">if</span> (age &lt; <span class="hljs-number">0</span> || age &gt; <span class="hljs-number">200</span>) {
+        jsEngine-&gt;<span class="hljs-built_in">throwError</span>(QJSValue::RangeError,
+                             <span class="hljs-string">"Age must be between 0 and 200"</span>);
+    }
+    ...
+}</code></pre></div>
+
+<p>该函数在 Qt 5.12 引入。</p>
+<p><strong>另请参阅</strong> <a href="#script-exceptions">脚本异常 </a>and <a href="#newErrorObject">newErrorObject </a>().</p>
+<h3><span id="since-6-1-void-qjsengine-throwerror-const-qjsvalue-amp-error"><code>[since 6.1] </code>void QJSEngine:: throwError (const &amp; <em>error</em> )</span><a href="#since-6-1-void-qjsengine-throwerror-const-qjsvalue-amp-error" class="header-anchor">#</a></h3><p>这个函数重载了throwError()。</p>
+<p>抛出一个预先构建的运行时<em>error</em> （异常）。这样你就可以使用<a href="#newErrorObject">newErrorObject</a>()来创建错误，并根据需要定制它。</p>
+<p>该函数在 Qt 6.1 引入。</p>
+<p><strong>另请参阅</strong> <a href="#script-exceptions">脚本异常 </a>and <a href="#newErrorObject">newErrorObject </a>().</p>
+<h3><span id="template-qjsvalue-qjsengine-toscriptvalue-const-t-amp-value">template <typename t> <a href>QJSValue </a>QJSEngine:: toScriptValue (const T &amp; <em>value</em> )</typename></span><a href="#template-qjsvalue-qjsengine-toscriptvalue-const-t-amp-value" class="header-anchor">#</a></h3><p>创建 <a href>QJSValue</a>采用给定 <em>value</em> 。这适用于任何有<code>QMetaType</code>的类型<code>T</code>。</p>
+<p><strong>另请参阅</strong> <a href="#fromScriptValue">fromScriptValue </a>().</p>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><h3><span id="since-5-5-qjsengine-qjsengine-const-qobject-object"><code>[since 5.5] </code>* qjsEngine (const * <em>object</em> )</span><a href="#since-5-5-qjsengine-qjsengine-const-qobject-object" class="header-anchor">#</a></h3><p>返回 <a href>QJSEngine</a>与<em>object</em>关联，若有的话。</p>
+<p>如果你将一个<a href="qobject.html">QObject</a>暴露在JavaScript环境中，并且在以后的程序中想重新获得访问权，那么这个函数就很有用。它不需要你保留从<a href="#newQObject">QJSEngine::newQObject</a>()返回的包装器。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/J/">J</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/X/QXmlStreamAttributes/QXmlStreamAttributes/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QXmlStreamAttributes类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/J/QJSManagedValue/QJSManagedValue/">
+                        <span class="hidden-mobile">QJSManagedValue类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

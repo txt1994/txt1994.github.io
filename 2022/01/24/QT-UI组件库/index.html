@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QT组件库第1-31 QT组件库第32-56 Layouts 布局组件库 1号 Vertical Layout 2号 Horizontal Layout 3号 Grid Layout 4号 Form Layout   Spacers 空间间隔组(弹簧) 5号 Horizontal Spacer 6号 Vertical Spacer   Buttons 按钮 7号 Push Button">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QT_UI组件库">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/24/QT-UI%E7%BB%84%E4%BB%B6%E5%BA%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QT组件库第1-31 QT组件库第32-56 Layouts 布局组件库 1号 Vertical Layout 2号 Horizontal Layout 3号 Grid Layout 4号 Form Layout   Spacers 空间间隔组(弹簧) 5号 Horizontal Spacer 6号 Vertical Spacer   Buttons 按钮 7号 Push Button">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/qtcreator_71Pf42d1yb.png">
+<meta property="article:published_time" content="2022-01-24T06:33:42.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:07:26.183Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="QT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/qtcreator_71Pf42d1yb.png">
+  
+  
+  <title>QT_UI组件库 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QT_UI组件库">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-24 14:33" pubdate>
+        2022年1月24日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QT_UI组件库</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qt-zu-jian-ku-di-1-31">QT组件库第1-31</a></li>
+<li><a href="#qt-zu-jian-ku-di-32-56">QT组件库第32-56</a></li>
+<li><a href="#layouts-bu-ju-zu-jian-ku">Layouts 布局组件库</a><ul>
+<li><a href="#1-hao-vertical-layout">1号 Vertical Layout</a></li>
+<li><a href="#2-hao-horizontal-layout">2号 Horizontal Layout</a></li>
+<li><a href="#3-hao-grid-layout">3号 Grid Layout</a></li>
+<li><a href="#4-hao-form-layout">4号 Form Layout</a></li>
+</ul>
+</li>
+<li><a href="#spacers-kong-jian-jian-ge-zu-dan-huang">Spacers 空间间隔组(弹簧)</a><ul>
+<li><a href="#5-hao-horizontal-spacer">5号 Horizontal Spacer</a></li>
+<li><a href="#6-hao-vertical-spacer">6号 Vertical Spacer</a></li>
+</ul>
+</li>
+<li><a href="#buttons-an-niu">Buttons 按钮</a><ul>
+<li><a href="#7-hao-push-button">7号 Push Button</a></li>
+<li><a href="#8-hao-tool-button">8号 Tool Button</a></li>
+<li><a href="#9-hao-radio-button">9号 Radio Button</a></li>
+<li><a href="#10-hao-check-box">10号 Check Box</a></li>
+<li><a href="#11-hao-command-link-button">11号 Command Link Button</a></li>
+<li><a href="#12-hao-dialog-button-box">12号 Dialog Button Box</a></li>
+</ul>
+</li>
+<li><a href="#item-views-model-based-qing-dan-shi-tu-zu">Item Views (Model-Based) 清单视图组</a><ul>
+<li><a href="#13-hao-list-view">13号 List View</a></li>
+<li><a href="#14-hao-tree-view">14号 Tree View</a></li>
+<li><a href="#15-hao-table-view">15号 Table View</a></li>
+<li><a href="#16-hao-column-view">16号 Column View</a></li>
+<li><a href="#17-hao-undo-view">17号 Undo View</a></li>
+</ul>
+</li>
+<li><a href="#item-widgets-item-based-qing-dan-kong-jian-zu">Item Widgets (Item-Based) 清单控件组</a><ul>
+<li><a href="#18-hao-list-widget">18号 List Widget</a></li>
+<li><a href="#19-hao-tree-widget">19号 Tree Widget</a></li>
+<li><a href="#20-hao-table-widget">20号 Table Widget</a></li>
+</ul>
+</li>
+<li><a href="#containers-rong-qi-zu">Containers 容器组</a><ul>
+<li><a href="#21-hao-group-box">21号 Group Box</a></li>
+<li><a href="#22-hao-scroll-area">22号 Scroll Area</a></li>
+<li><a href="#23-hao-tool-box">23号 Tool Box</a></li>
+<li><a href="#24-hao-tab-widget">24号 Tab Widget</a></li>
+<li><a href="#25-hao-stacked-widget">25号 Stacked Widget</a></li>
+<li><a href="#26-hao-frame">26号 Frame</a></li>
+<li><a href="#27-hao-widget">27号 Widget</a></li>
+<li><a href="#28-hao-mdi-area">28号 MDI Area</a></li>
+<li><a href="#29-hao-dock-widget">29号 Dock Widget</a></li>
+<li><a href="#30-hao-qax-widget">30号 QAx Widget</a></li>
+</ul>
+</li>
+<li><a href="#input-widgets-shu-ru-bu-jian-zu">Input Widgets 输入部件组</a><ul>
+<li><a href="#31-hao-combo-box">31号 Combo Box</a></li>
+<li><a href="#32-hao-font-combo-box">32号 Font Combo Box</a></li>
+<li><a href="#33-hao-line-edit">33号 Line Edit</a></li>
+<li><a href="#34-hao-text-edit">34号 Text Edit</a></li>
+<li><a href="#35-hao-plain-text-edit">35号 Plain Text Edit</a></li>
+<li><a href="#36-hao-spin-box">36号 Spin Box</a></li>
+<li><a href="#37-hao-double-spin-box">37号 Double Spin Box</a></li>
+<li><a href="#38-hao-time-edit">38号 Time Edit</a></li>
+<li><a href="#39-hao-date-edit">39号 Date Edit</a></li>
+<li><a href="#40-hao-date-time-edit">40号 Date/Time Edit</a></li>
+<li><a href="#41-hao-dial">41号 Dial</a></li>
+<li><a href="#42-hao-horizontal-scroll-bar">42号 Horizontal Scroll Bar</a></li>
+<li><a href="#43-hao-vertical-scroll-bar">43号 Vertical Scroll Bar</a></li>
+<li><a href="#44-hao-horizontal-slider">44号 Horizontal Slider</a></li>
+<li><a href="#45-hao-vertical-slider">45号 Vertical Slider</a></li>
+<li><a href="#46-hao-key-sequence-edit">46号 Key Sequence Edit</a></li>
+</ul>
+</li>
+<li><a href="#display-widgets-xian-shi-kong-jian-zu">Display Widgets 显示控件组</a><ul>
+<li><a href="#47-hao-label">47号 Label</a></li>
+<li><a href="#48-hao-text-browser">48号 text Browser</a></li>
+<li><a href="#49-hao-graphics-view">49号 Graphics View</a></li>
+<li><a href="#50-hao-calendar-widget">50号 Calendar Widget</a></li>
+<li><a href="#51-hao-lcd-number">51号 Lcd Number</a></li>
+<li><a href="#52-hao-progress-bar">52号 Progress Bar</a></li>
+<li><a href="#53-hao-horizontal-line">53号 Horizontal Line</a></li>
+<li><a href="#54-hao-vertical-line">54号 Vertical Line</a></li>
+<li><a href="#55-hao-opengl-widget">55号 OpenGL Widget</a></li>
+<li><a href="#56-hao-qquick-widget">56号 QQuick Widget</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h2><span id="qt-zu-jian-ku-di-1-31">QT组件库第1-31</span><a href="#qt-zu-jian-ku-di-1-31" class="header-anchor">#</a></h2><img src="https://gitee.com/txt1994/images/raw/master/img/QT/qtcreator_7pbSsW5UeS.png" srcset="/img/loading.gif" lazyload style="zoom:110%;">
+
+<h2><span id="qt-zu-jian-ku-di-32-56">QT组件库第32-56</span><a href="#qt-zu-jian-ku-di-32-56" class="header-anchor">#</a></h2><img src="https://gitee.com/txt1994/images/raw/master/img/QT/qtcreator_PLS87txx9E.png" srcset="/img/loading.gif" lazyload style="zoom:130%;">
+
+<hr>
+<h2><span id="layouts-bu-ju-zu-jian-ku">Layouts 布局组件库</span><a href="#layouts-bu-ju-zu-jian-ku" class="header-anchor">#</a></h2><h3><span id="1-hao-vertical-layout">1号 Vertical Layout</span><a href="#1-hao-vertical-layout" class="header-anchor">#</a></h3><blockquote>
+<p>垂直布局</p>
+</blockquote>
+<h3><span id="2-hao-horizontal-layout">2号 Horizontal Layout</span><a href="#2-hao-horizontal-layout" class="header-anchor">#</a></h3><blockquote>
+<p>水平布局</p>
+</blockquote>
+<h3><span id="3-hao-grid-layout">3号 Grid Layout</span><a href="#3-hao-grid-layout" class="header-anchor">#</a></h3><blockquote>
+<p>网格布局</p>
+</blockquote>
+<h3><span id="4-hao-form-layout">4号 Form Layout</span><a href="#4-hao-form-layout" class="header-anchor">#</a></h3><blockquote>
+<p>表单布局</p>
+</blockquote>
+<hr>
+<h2><span id="spacers-kong-jian-jian-ge-zu-dan-huang">Spacers 空间间隔组(弹簧)</span><a href="#spacers-kong-jian-jian-ge-zu-dan-huang" class="header-anchor">#</a></h2><h3><span id="5-hao-horizontal-spacer">5号 Horizontal Spacer</span><a href="#5-hao-horizontal-spacer" class="header-anchor">#</a></h3><blockquote>
+<p>水平间隔</p>
+</blockquote>
+<h3><span id="6-hao-vertical-spacer">6号 Vertical Spacer</span><a href="#6-hao-vertical-spacer" class="header-anchor">#</a></h3><blockquote>
+<p>垂直间隔</p>
+</blockquote>
+<hr>
+<h2><span id="buttons-an-niu">Buttons 按钮</span><a href="#buttons-an-niu" class="header-anchor">#</a></h2><h3><span id="7-hao-push-button">7号 Push Button</span><a href="#7-hao-push-button" class="header-anchor">#</a></h3><blockquote>
+</blockquote>
+<h3><span id="8-hao-tool-button">8号 Tool Button</span><a href="#8-hao-tool-button" class="header-anchor">#</a></h3><blockquote>
+</blockquote>
+<h3><span id="9-hao-radio-button">9号 Radio Button</span><a href="#9-hao-radio-button" class="header-anchor">#</a></h3><blockquote>
+</blockquote>
+<h3><span id="10-hao-check-box">10号 Check Box</span><a href="#10-hao-check-box" class="header-anchor">#</a></h3><blockquote>
+</blockquote>
+<h3><span id="11-hao-command-link-button">11号 Command Link Button</span><a href="#11-hao-command-link-button" class="header-anchor">#</a></h3><blockquote>
+</blockquote>
+<h3><span id="12-hao-dialog-button-box">12号 Dialog Button Box</span><a href="#12-hao-dialog-button-box" class="header-anchor">#</a></h3><blockquote>
+</blockquote>
+<hr>
+<h2><span id="item-views-model-based-qing-dan-shi-tu-zu">Item Views (Model-Based) 清单视图组</span><a href="#item-views-model-based-qing-dan-shi-tu-zu" class="header-anchor">#</a></h2><h3><span id="13-hao-list-view">13号 List View</span><a href="#13-hao-list-view" class="header-anchor">#</a></h3><blockquote>
+<p>清单视图</p>
+</blockquote>
+<h3><span id="14-hao-tree-view">14号 Tree View</span><a href="#14-hao-tree-view" class="header-anchor">#</a></h3><blockquote>
+<p>树视图</p>
+</blockquote>
+<h3><span id="15-hao-table-view">15号 Table View</span><a href="#15-hao-table-view" class="header-anchor">#</a></h3><blockquote>
+<p>表视图</p>
+</blockquote>
+<h3><span id="16-hao-column-view">16号 Column View</span><a href="#16-hao-column-view" class="header-anchor">#</a></h3><blockquote>
+<p>列视图</p>
+</blockquote>
+<h3><span id="17-hao-undo-view">17号 Undo View</span><a href="#17-hao-undo-view" class="header-anchor">#</a></h3><blockquote>
+<p>撤消视图</p>
+</blockquote>
+<h2><span id="item-widgets-item-based-qing-dan-kong-jian-zu">Item Widgets (Item-Based) 清单控件组</span><a href="#item-widgets-item-based-qing-dan-kong-jian-zu" class="header-anchor">#</a></h2><h3><span id="18-hao-list-widget">18号 List Widget</span><a href="#18-hao-list-widget" class="header-anchor">#</a></h3><blockquote>
+<p>清单控件</p>
+</blockquote>
+<h3><span id="19-hao-tree-widget">19号 Tree Widget</span><a href="#19-hao-tree-widget" class="header-anchor">#</a></h3><blockquote>
+<p>树控件</p>
+</blockquote>
+<h3><span id="20-hao-table-widget">20号 Table Widget</span><a href="#20-hao-table-widget" class="header-anchor">#</a></h3><blockquote>
+<p>表控件</p>
+</blockquote>
+<h2><span id="containers-rong-qi-zu">Containers 容器组</span><a href="#containers-rong-qi-zu" class="header-anchor">#</a></h2><h3><span id="21-hao-group-box">21号 Group Box</span><a href="#21-hao-group-box" class="header-anchor">#</a></h3><blockquote>
+<p>组框</p>
+</blockquote>
+<h3><span id="22-hao-scroll-area">22号 Scroll Area</span><a href="#22-hao-scroll-area" class="header-anchor">#</a></h3><blockquote>
+<p>滚动区域</p>
+</blockquote>
+<h3><span id="23-hao-tool-box">23号 Tool Box</span><a href="#23-hao-tool-box" class="header-anchor">#</a></h3><blockquote>
+<p>工具箱</p>
+</blockquote>
+<h3><span id="24-hao-tab-widget">24号 Tab Widget</span><a href="#24-hao-tab-widget" class="header-anchor">#</a></h3><blockquote>
+<p>标签小部件</p>
+</blockquote>
+<h3><span id="25-hao-stacked-widget">25号 Stacked Widget</span><a href="#25-hao-stacked-widget" class="header-anchor">#</a></h3><blockquote>
+<p>堆叠部件</p>
+</blockquote>
+<h3><span id="26-hao-frame">26号 Frame</span><a href="#26-hao-frame" class="header-anchor">#</a></h3><blockquote>
+<p>帧</p>
+</blockquote>
+<h3><span id="27-hao-widget">27号 Widget</span><a href="#27-hao-widget" class="header-anchor">#</a></h3><blockquote>
+<p>小部件</p>
+</blockquote>
+<h3><span id="28-hao-mdi-area">28号 MDI Area</span><a href="#28-hao-mdi-area" class="header-anchor">#</a></h3><blockquote>
+<p>MDI区域</p>
+</blockquote>
+<h3><span id="29-hao-dock-widget">29号 Dock Widget</span><a href="#29-hao-dock-widget" class="header-anchor">#</a></h3><blockquote>
+<p>停靠窗口不见</p>
+</blockquote>
+<h3><span id="30-hao-qax-widget">30号 QAx Widget</span><a href="#30-hao-qax-widget" class="header-anchor">#</a></h3><blockquote>
+<p>封装Flash的AciveX控件</p>
+</blockquote>
+<h2><span id="input-widgets-shu-ru-bu-jian-zu">Input Widgets 输入部件组</span><a href="#input-widgets-shu-ru-bu-jian-zu" class="header-anchor">#</a></h2><h3><span id="31-hao-combo-box">31号 Combo Box</span><a href="#31-hao-combo-box" class="header-anchor">#</a></h3><blockquote>
+<p>组合框</p>
+</blockquote>
+<h3><span id="32-hao-font-combo-box">32号 Font Combo Box</span><a href="#32-hao-font-combo-box" class="header-anchor">#</a></h3><blockquote>
+<p>字体组合框</p>
+</blockquote>
+<h3><span id="33-hao-line-edit">33号 Line Edit</span><a href="#33-hao-line-edit" class="header-anchor">#</a></h3><blockquote>
+<p>行编辑</p>
+</blockquote>
+<h3><span id="34-hao-text-edit">34号 Text Edit</span><a href="#34-hao-text-edit" class="header-anchor">#</a></h3><blockquote>
+<p>文本编辑</p>
+</blockquote>
+<h3><span id="35-hao-plain-text-edit">35号 Plain Text Edit</span><a href="#35-hao-plain-text-edit" class="header-anchor">#</a></h3><blockquote>
+<p>纯文本编辑</p>
+</blockquote>
+<h3><span id="36-hao-spin-box">36号 Spin Box</span><a href="#36-hao-spin-box" class="header-anchor">#</a></h3><blockquote>
+<p>数字显示框</p>
+</blockquote>
+<h3><span id="37-hao-double-spin-box">37号 Double Spin Box</span><a href="#37-hao-double-spin-box" class="header-anchor">#</a></h3><blockquote>
+<p>双数字显示框</p>
+</blockquote>
+<h3><span id="38-hao-time-edit">38号 Time Edit</span><a href="#38-hao-time-edit" class="header-anchor">#</a></h3><blockquote>
+<p>时间编辑</p>
+</blockquote>
+<h3><span id="39-hao-date-edit">39号 Date Edit</span><a href="#39-hao-date-edit" class="header-anchor">#</a></h3><blockquote>
+<p>日期编辑</p>
+</blockquote>
+<h3><span id="40-hao-date-time-edit">40号 Date/Time Edit</span><a href="#40-hao-date-time-edit" class="header-anchor">#</a></h3><blockquote>
+<p>日期或时间编辑</p>
+</blockquote>
+<h3><span id="41-hao-dial">41号 Dial</span><a href="#41-hao-dial" class="header-anchor">#</a></h3><blockquote>
+<p>拨号</p>
+</blockquote>
+<h3><span id="42-hao-horizontal-scroll-bar">42号 Horizontal Scroll Bar</span><a href="#42-hao-horizontal-scroll-bar" class="header-anchor">#</a></h3><blockquote>
+<p>水平滚动条</p>
+</blockquote>
+<h3><span id="43-hao-vertical-scroll-bar">43号 Vertical Scroll Bar</span><a href="#43-hao-vertical-scroll-bar" class="header-anchor">#</a></h3><blockquote>
+<p>垂直滚动条</p>
+</blockquote>
+<h3><span id="44-hao-horizontal-slider">44号 Horizontal Slider</span><a href="#44-hao-horizontal-slider" class="header-anchor">#</a></h3><blockquote>
+<p>水平滑块</p>
+</blockquote>
+<h3><span id="45-hao-vertical-slider">45号 Vertical Slider</span><a href="#45-hao-vertical-slider" class="header-anchor">#</a></h3><blockquote>
+<p>垂直滑块</p>
+</blockquote>
+<h3><span id="46-hao-key-sequence-edit">46号 Key Sequence Edit</span><a href="#46-hao-key-sequence-edit" class="header-anchor">#</a></h3><blockquote>
+<p>按键序列编辑</p>
+</blockquote>
+<h2><span id="display-widgets-xian-shi-kong-jian-zu">Display Widgets 显示控件组</span><a href="#display-widgets-xian-shi-kong-jian-zu" class="header-anchor">#</a></h2><h3><span id="47-hao-label">47号 Label</span><a href="#47-hao-label" class="header-anchor">#</a></h3><blockquote>
+<p>标签</p>
+</blockquote>
+<h3><span id="48-hao-text-browser">48号 text Browser</span><a href="#48-hao-text-browser" class="header-anchor">#</a></h3><blockquote>
+<p>文本浏览器</p>
+</blockquote>
+<h3><span id="49-hao-graphics-view">49号 Graphics View</span><a href="#49-hao-graphics-view" class="header-anchor">#</a></h3><blockquote>
+<p>图形视图</p>
+</blockquote>
+<h3><span id="50-hao-calendar-widget">50号 Calendar Widget</span><a href="#50-hao-calendar-widget" class="header-anchor">#</a></h3><blockquote>
+<p>日历</p>
+</blockquote>
+<h3><span id="51-hao-lcd-number">51号 Lcd Number</span><a href="#51-hao-lcd-number" class="header-anchor">#</a></h3><blockquote>
+<p>液晶数字</p>
+</blockquote>
+<h3><span id="52-hao-progress-bar">52号 Progress Bar</span><a href="#52-hao-progress-bar" class="header-anchor">#</a></h3><blockquote>
+<p>进度条</p>
+</blockquote>
+<h3><span id="53-hao-horizontal-line">53号 Horizontal Line</span><a href="#53-hao-horizontal-line" class="header-anchor">#</a></h3><blockquote>
+<p>水平线</p>
+</blockquote>
+<h3><span id="54-hao-vertical-line">54号 Vertical Line</span><a href="#54-hao-vertical-line" class="header-anchor">#</a></h3><blockquote>
+<p>垂直线</p>
+</blockquote>
+<h3><span id="55-hao-opengl-widget">55号 OpenGL Widget</span><a href="#55-hao-opengl-widget" class="header-anchor">#</a></h3><blockquote>
+<p>开放式图形工具</p>
+</blockquote>
+<h3><span id="56-hao-qquick-widget">56号 QQuick Widget</span><a href="#56-hao-qquick-widget" class="header-anchor">#</a></h3><blockquote>
+<p>嵌入QML工具</p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/QT/">QT</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/24/C-%E6%96%B0%E7%89%B9%E6%80%A7/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++新特性</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/24/Me/">
+                        <span class="hidden-mobile">Me</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

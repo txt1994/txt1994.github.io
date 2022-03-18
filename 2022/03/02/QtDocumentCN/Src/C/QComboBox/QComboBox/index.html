@@ -1,0 +1,1505 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="+ [内容](#nei-rong)   QComboBox Class 公共类型 特性 公共函数 重新实现的公共函数 公共插槽 信号 受保护的函数 重新实现的受保护函数 详细说明 成员类型文档 enum QComboBox::InsertPolicy enum QComboBox::SizeAdjustPolicy   特性文档 [read-only]count : const int [">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QComboBox类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/C/QComboBox/QComboBox/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="+ [内容](#nei-rong)   QComboBox Class 公共类型 特性 公共函数 重新实现的公共函数 公共插槽 信号 受保护的函数 重新实现的受保护函数 详细说明 成员类型文档 enum QComboBox::InsertPolicy enum QComboBox::SizeAdjustPolicy   特性文档 [read-only]count : const int [">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/windows-combobox.png">
+<meta property="article:published_time" content="2022-03-02T06:06:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:37:07.535Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://doc.qt.io/qt-6/images/windows-combobox.png">
+  
+  
+  <title>QComboBox类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QComboBox类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:06" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      22k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      181 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QComboBox类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<div class="code-wrapper"><pre><code class="hljs">+ [内容](#nei-rong)
+</code></pre></div>
+<ul>
+<li><a href="#qcombobox-class">QComboBox Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#te-xing">特性</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#chong-xin-shi-xian-de-gong-gong-han-shu">重新实现的公共函数</a></li>
+<li><a href="#gong-gong-cha-cao">公共插槽</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#shou-bao-hu-de-han-shu">受保护的函数</a></li>
+<li><a href="#chong-xin-shi-xian-de-shou-bao-hu-han-shu">重新实现的受保护函数</a></li>
+<li><a href="#xiang-xi-shuo-ming">详细说明</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qcombobox-insertpolicy">enum QComboBox::InsertPolicy</a></li>
+<li><a href="#enum-qcombobox-sizeadjustpolicy">enum QComboBox::SizeAdjustPolicy</a></li>
+</ul>
+</li>
+<li><a href="#te-xing-wen-dang">特性文档</a><ul>
+<li><a href="#read-only-count-const-int"><code>[read-only]</code>count : const int</a></li>
+<li><a href="#read-only-since-5-2-currentdata-const-qvariant-https-doc-qt-io-qt-6-qvariant-html"><code>[read-only, since 5.2]</code>currentData : const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a></li>
+<li><a href="#currentindex-int">currentIndex : int</a></li>
+<li><a href="#currenttext-qstring-https-doc-qt-io-qt-6-qstring-html">currentText : </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a></li>
+<li><a href="#duplicatesenabled-bool">duplicatesEnabled : bool</a></li>
+<li><a href="#editable-bool">editable : bool</a></li>
+<li><a href="#frame-bool">frame : bool</a></li>
+<li><a href="#iconsize-qsize-https-doc-qt-io-qt-6-qsize-html">iconSize : </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsize.html">QSize</a></li>
+<li><a href="#insertpolicy-insertpolicy-https-doc-qt-io-qt-6-qcombobox-html-insertpolicy-enum">insertPolicy : </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#InsertPolicy-enum">InsertPolicy</a></li>
+<li><a href="#maxcount-int">maxCount : int</a></li>
+<li><a href="#maxvisibleitems-int">maxVisibleItems : int</a></li>
+<li><a href="#minimumcontentslength-int">minimumContentsLength : int</a></li>
+<li><a href="#modelcolumn-int">modelColumn : int</a></li>
+<li><a href="#since-5-15-placeholdertext-qstring-https-doc-qt-io-qt-6-qstring-html"><code>[since 5.15]</code>placeholderText : </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a></li>
+<li><a href="#sizeadjustpolicy-sizeadjustpolicy-https-doc-qt-io-qt-6-qcombobox-html-sizeadjustpolicy-enum">sizeAdjustPolicy : </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#SizeAdjustPolicy-enum">SizeAdjustPolicy</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qcombobox-qcombobox-qwidget-https-doc-qt-io-qt-6-qwidget-html-qwidget-parent-nullptr">QComboBox::QComboBox(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#QWidget">QWidget</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#signal-void-qcombobox-activated-int-index"><code>[signal]</code>void QComboBox::activated(int <em>index</em>)</a></li>
+<li><a href="#slot-void-qcombobox-clear"><code>[slot]</code>void QComboBox::clear()</a></li>
+<li><a href="#slot-void-qcombobox-clearedittext"><code>[slot]</code>void QComboBox::clearEditText()</a></li>
+<li><a href="#signal-void-qcombobox-currentindexchanged-int-index"><code>[signal]</code>void QComboBox::currentIndexChanged(int <em>index</em>)</a></li>
+<li><a href="#signal-since-5-0-void-qcombobox-currenttextchanged-const-qstring-https-doc-qt-io-qt-6-qstring-html-text"><code>[signal, since 5.0]</code>void QComboBox::currentTextChanged(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>)</li>
+<li><a href="#signal-void-qcombobox-edittextchanged-const-qstring-https-doc-qt-io-qt-6-qstring-html-text"><code>[signal]</code>void QComboBox::editTextChanged(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>)</li>
+<li><a href="#signal-void-qcombobox-highlighted-int-index"><code>[signal]</code>void QComboBox::highlighted(int <em>index</em>)</a></li>
+<li><a href="#slot-void-qcombobox-setedittext-const-qstring-https-doc-qt-io-qt-6-qstring-html-text"><code>[slot]</code>void QComboBox::setEditText(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>)</li>
+<li><a href="#signal-since-5-14-void-qcombobox-textactivated-const-qstring-https-doc-qt-io-qt-6-qstring-html-text"><code>[signal, since 5.14]</code>void QComboBox::textActivated(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>)</li>
+<li><a href="#signal-since-5-14-void-qcombobox-texthighlighted-const-qstring-https-doc-qt-io-qt-6-qstring-html-text"><code>[signal, since 5.14]</code>void QComboBox::textHighlighted(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>)</li>
+<li><a href="#virtual-qcombobox-qcombobox"><code>[virtual]</code>QComboBox::~QComboBox()</a></li>
+<li><a href="#void-qcombobox-additem-const-qstring-https-doc-qt-io-qt-6-qstring-html-text-const-qvariant-https-doc-qt-io-qt-6-qvariant-html-userdata-qvariant">void QComboBox::addItem(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a> &amp;<em>userData</em> = QVariant())</li>
+<li><a href="#void-qcombobox-additem-const-qicon-https-doc-qt-io-qt-6-qicon-html-icon-const-qstring-https-doc-qt-io-qt-6-qstring-html-text-const-qvariant-https-doc-qt-io-qt-6-qvariant-html-userdata-qvariant">void QComboBox::addItem(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qicon.html">QIcon</a> &amp;<em>icon</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a> &amp;<em>userData</em> = QVariant())</li>
+<li><a href="#void-qcombobox-additems-const-qstringlist-https-doc-qt-io-qt-6-qstringlist-html-texts">void QComboBox::addItems(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstringlist.html">QStringList</a> &amp;<em>texts</em>)</li>
+<li><a href="#override-virtual-protected-void-qcombobox-changeevent-qevent-https-doc-qt-io-qt-6-qevent-html-e"><code>[override virtual protected]</code>void QComboBox::changeEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html">QEvent</a> *<em>e</em>)</li>
+<li><a href="#qcompleter-https-doc-qt-io-qt-6-qcompleter-html-qcombobox-completer-const">QCompleter</a></li>
+<li><a href="#override-virtual-protected-void-qcombobox-contextmenuevent-qcontextmenuevent-https-doc-qt-io-qt-6-qcontextmenuevent-html-e"><code>[override virtual protected]</code>void QComboBox::contextMenuEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcontextmenuevent.html">QContextMenuEvent</a> *<em>e</em>)</li>
+<li><a href="#override-virtual-bool-qcombobox-event-qevent-https-doc-qt-io-qt-6-qevent-html-event"><code>[override virtual]</code>bool QComboBox::event(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html">QEvent</a> *<em>event</em>)</li>
+<li><a href="#int-qcombobox-finddata-const-qvariant-https-doc-qt-io-qt-6-qvariant-html-data-int-role-qt-userrole-qt-matchflags-https-doc-qt-io-qt-6-qt-html-matchflag-enum-flags-static-cast-qt-matchflags-qt-matchexactly-qt-matchcasesensitive-const">int QComboBox::findData(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a> &amp;<em>data</em>, int <em>role</em> = Qt::UserRole, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#MatchFlag-enum">Qt::MatchFlags</a> <em>flags</em> = static_cast<a href="Qt::MatchFlags">Qt::MatchFlags</a>(Qt::MatchExactly|Qt::MatchCaseSensitive)) const</li>
+<li><a href="#int-qcombobox-findtext-const-qstring-https-doc-qt-io-qt-6-qstring-html-text-qt-matchflags-https-doc-qt-io-qt-6-qt-html-matchflag-enum-flags-qt-matchexactly-qt-matchcasesensitive-const">int QComboBox::findText(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#MatchFlag-enum">Qt::MatchFlags</a> <em>flags</em> = Qt::MatchExactly|Qt::MatchCaseSensitive) const</li>
+<li><a href="#override-virtual-protected-void-qcombobox-focusinevent-qfocusevent-https-doc-qt-io-qt-6-qfocusevent-html-e"><code>[override virtual protected]</code>void QComboBox::focusInEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfocusevent.html">QFocusEvent</a> *<em>e</em>)</li>
+<li><a href="#override-virtual-protected-void-qcombobox-focusoutevent-qfocusevent-https-doc-qt-io-qt-6-qfocusevent-html-e"><code>[override virtual protected]</code>void QComboBox::focusOutEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfocusevent.html">QFocusEvent</a> *<em>e</em>)</li>
+<li><a href="#override-virtual-protected-void-qcombobox-hideevent-qhideevent-https-doc-qt-io-qt-6-qhideevent-html-e"><code>[override virtual protected]</code>void QComboBox::hideEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhideevent.html">QHideEvent</a> *<em>e</em>)</li>
+<li><a href="#virtual-void-qcombobox-hidepopup"><code>[virtual]</code>void QComboBox::hidePopup()</a></li>
+<li><a href="#virtual-protected-void-qcombobox-initstyleoption-qstyleoptioncombobox-https-doc-qt-io-qt-6-qstyleoptioncombobox-html-option-const"><code>[virtual protected]</code>void QComboBox::initStyleOption(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstyleoptioncombobox.html">QStyleOptionComboBox</a> *<em>option</em>) const</li>
+<li><a href="#override-virtual-protected-void-qcombobox-inputmethodevent-qinputmethodevent-https-doc-qt-io-qt-6-qinputmethodevent-html-e"><code>[override virtual protected]</code>void QComboBox::inputMethodEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qinputmethodevent.html">QInputMethodEvent</a> *<em>e</em>)</li>
+<li><a href="#override-virtual-qvariant-https-doc-qt-io-qt-6-qvariant-html-qcombobox-inputmethodquery-qt-inputmethodquery-https-doc-qt-io-qt-6-qt-html-inputmethodquery-enum-query-const"><code>[override virtual]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a> QComboBox::inputMethodQuery(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#InputMethodQuery-enum">Qt::InputMethodQuery</a> <em>query</em>) const</li>
+<li><a href="#void-qcombobox-insertitem-int-index-const-qstring-https-doc-qt-io-qt-6-qstring-html-text-const-qvariant-https-doc-qt-io-qt-6-qvariant-html-userdata-qvariant">void QComboBox::insertItem(int <em>index</em>, const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a> &amp;<em>userData</em> = QVariant())</li>
+<li><a href="#void-qcombobox-insertitem-int-index-const-qicon-https-doc-qt-io-qt-6-qicon-html-icon-const-qstring-https-doc-qt-io-qt-6-qstring-html-text-const-qvariant-https-doc-qt-io-qt-6-qvariant-html-userdata-qvariant">void QComboBox::insertItem(int <em>index</em>, const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qicon.html">QIcon</a> &amp;<em>icon</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a> &amp;<em>userData</em> = QVariant())</li>
+<li><a href="#void-qcombobox-insertitems-int-index-const-qstringlist-https-doc-qt-io-qt-6-qstringlist-html-list">void QComboBox::insertItems(int <em>index</em>, const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstringlist.html">QStringList</a> &amp;<em>list</em>)</li>
+<li><a href="#void-qcombobox-insertseparator-int-index">void QComboBox::insertSeparator(int <em>index</em>)</a></li>
+<li><a href="#qvariant-https-doc-qt-io-qt-6-qvariant-html-qcombobox-itemdata-int-index-int-role-qt-userrole-const">QVariant</a></li>
+<li><a href="#qabstractitemdelegate-https-doc-qt-io-qt-6-qabstractitemdelegate-html-qcombobox-itemdelegate-const">QAbstractItemDelegate</a></li>
+<li><a href="#qicon-https-doc-qt-io-qt-6-qicon-html-qcombobox-itemicon-int-index-const">QIcon</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qcombobox-itemtext-int-index-const">QString</a></li>
+<li><a href="#override-virtual-protected-void-qcombobox-keypressevent-qkeyevent-https-doc-qt-io-qt-6-qkeyevent-html-e"><code>[override virtual protected]</code>void QComboBox::keyPressEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qkeyevent.html">QKeyEvent</a> *<em>e</em>)</li>
+<li><a href="#override-virtual-protected-void-qcombobox-keyreleaseevent-qkeyevent-https-doc-qt-io-qt-6-qkeyevent-html-e"><code>[override virtual protected]</code>void QComboBox::keyReleaseEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qkeyevent.html">QKeyEvent</a> *<em>e</em>)</li>
+<li><a href="#qlineedit-https-doc-qt-io-qt-6-qlineedit-html-qcombobox-lineedit-const">QLineEdit</a></li>
+<li><a href="#override-virtual-qsize-https-doc-qt-io-qt-6-qsize-html-qcombobox-minimumsizehint-const"><code>[override virtual]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsize.html">QSize</a> QComboBox::minimumSizeHint() const</li>
+<li><a href="#qabstractitemmodel-https-doc-qt-io-qt-6-qabstractitemmodel-html-qcombobox-model-const">QAbstractItemModel</a></li>
+<li><a href="#override-virtual-protected-void-qcombobox-mousepressevent-qmouseevent-https-doc-qt-io-qt-6-qmouseevent-html-e"><code>[override virtual protected]</code>void QComboBox::mousePressEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmouseevent.html">QMouseEvent</a> *<em>e</em>)</li>
+<li><a href="#override-virtual-protected-void-qcombobox-mousereleaseevent-qmouseevent-https-doc-qt-io-qt-6-qmouseevent-html-e"><code>[override virtual protected]</code>void QComboBox::mouseReleaseEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmouseevent.html">QMouseEvent</a> *<em>e</em>)</li>
+<li><a href="#override-virtual-protected-void-qcombobox-paintevent-qpaintevent-https-doc-qt-io-qt-6-qpaintevent-html-e"><code>[override virtual protected]</code>void QComboBox::paintEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpaintevent.html">QPaintEvent</a> *<em>e</em>)</li>
+<li><a href="#void-qcombobox-removeitem-int-index">void QComboBox::removeItem(int <em>index</em>)</a></li>
+<li><a href="#override-virtual-protected-void-qcombobox-resizeevent-qresizeevent-https-doc-qt-io-qt-6-qresizeevent-html-e"><code>[override virtual protected]</code>void QComboBox::resizeEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qresizeevent.html">QResizeEvent</a> *<em>e</em>)</li>
+<li><a href="#qmodelindex-https-doc-qt-io-qt-6-qmodelindex-html-qcombobox-rootmodelindex-const">QModelIndex</a></li>
+<li><a href="#void-qcombobox-setcompleter-qcompleter-https-doc-qt-io-qt-6-qcompleter-html-completer">void QComboBox::setCompleter(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcompleter.html">QCompleter</a> *<em>completer</em>)</li>
+<li><a href="#void-qcombobox-setitemdata-int-index-const-qvariant-https-doc-qt-io-qt-6-qvariant-html-value-int-role-qt-userrole">void QComboBox::setItemData(int <em>index</em>, const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a> &amp;<em>value</em>, int <em>role</em> = Qt::UserRole)</li>
+<li><a href="#void-qcombobox-setitemdelegate-qabstractitemdelegate-https-doc-qt-io-qt-6-qabstractitemdelegate-html-delegate">void QComboBox::setItemDelegate(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qabstractitemdelegate.html">QAbstractItemDelegate</a> *<em>delegate</em>)</li>
+<li><a href="#void-qcombobox-setitemicon-int-index-const-qicon-https-doc-qt-io-qt-6-qicon-html-icon">void QComboBox::setItemIcon(int <em>index</em>, const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qicon.html">QIcon</a> &amp;<em>icon</em>)</li>
+<li><a href="#void-qcombobox-setitemtext-int-index-const-qstring-https-doc-qt-io-qt-6-qstring-html-text">void QComboBox::setItemText(int <em>index</em>, const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>text</em>)</li>
+<li><a href="#void-qcombobox-setlineedit-qlineedit-https-doc-qt-io-qt-6-qlineedit-html-edit">void QComboBox::setLineEdit(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlineedit.html">QLineEdit</a> *<em>edit</em>)</li>
+<li><a href="#virtual-void-qcombobox-setmodel-qabstractitemmodel-https-doc-qt-io-qt-6-qabstractitemmodel-html-model"><code>[virtual]</code>void QComboBox::setModel(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qabstractitemmodel.html">QAbstractItemModel</a> *<em>model</em>)</li>
+<li><a href="#void-qcombobox-setrootmodelindex-const-qmodelindex-https-doc-qt-io-qt-6-qmodelindex-html-index">void QComboBox::setRootModelIndex(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qmodelindex.html">QModelIndex</a> &amp;<em>index</em>)</li>
+<li><a href="#void-qcombobox-setvalidator-const-qvalidator-https-doc-qt-io-qt-6-qvalidator-html-validator">void QComboBox::setValidator(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvalidator.html">QValidator</a> *<em>validator</em>)</li>
+<li><a href="#void-qcombobox-setview-qabstractitemview-https-doc-qt-io-qt-6-qabstractitemview-html-itemview">void QComboBox::setView(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qabstractitemview.html">QAbstractItemView</a> *<em>itemView</em>)</li>
+<li><a href="#override-virtual-protected-void-qcombobox-showevent-qshowevent-https-doc-qt-io-qt-6-qshowevent-html-e"><code>[override virtual protected]</code>void QComboBox::showEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qshowevent.html">QShowEvent</a> *<em>e</em>)</li>
+<li><a href="#virtual-void-qcombobox-showpopup"><code>[virtual]</code>void QComboBox::showPopup()</a></li>
+<li><a href="#override-virtual-qsize-https-doc-qt-io-qt-6-qsize-html-qcombobox-sizehint-const"><code>[override virtual]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsize.html">QSize</a> QComboBox::sizeHint() const</li>
+<li><a href="#const-qvalidator-https-doc-qt-io-qt-6-qvalidator-html-qcombobox-validator-const">const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvalidator.html">QValidator</a> *QComboBox::validator() const</li>
+<li><a href="#qabstractitemview-https-doc-qt-io-qt-6-qabstractitemview-html-qcombobox-view-const">QAbstractItemView</a></li>
+<li><a href="#override-virtual-protected-void-qcombobox-wheelevent-qwheelevent-https-doc-qt-io-qt-6-qwheelevent-html-e"><code>[override virtual protected]</code>void QComboBox::wheelEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwheelevent.html">QWheelEvent</a> *<em>e</em>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h3><span id="nei-rong">内容</span><a href="#nei-rong" class="header-anchor">#</a></h3><ul>
+<li><a href="#%E5%85%AC%E5%85%B1%E7%B1%BB%E5%9E%8B">公共类型</a></li>
+<li><a href="#%E7%89%B9%E6%80%A7">特性</a></li>
+<li><a href="#%E5%85%AC%E5%85%B1%E5%87%BD%E6%95%B0">公共函数</a></li>
+<li><a href="#%E9%87%8D%E6%96%B0%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%85%AC%E5%85%B1%E5%87%BD%E6%95%B0">重新实现的公共函数</a></li>
+<li><a href="#%E5%85%AC%E5%85%B1%E6%8F%92%E6%A7%BD">公共插槽</a></li>
+<li><a href="#%E4%BF%A1%E5%8F%B7">信号</a></li>
+<li><a href="#%E5%8F%97%E4%BF%9D%E6%8A%A4%E7%9A%84%E5%87%BD%E6%95%B0">受保护的函数</a></li>
+<li><a href="#%E9%87%8D%E6%96%B0%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8F%97%E4%BF%9D%E6%8A%A4%E5%87%BD%E6%95%B0">重新实现的受保护函数</a></li>
+<li><a href="#%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E">详细说明</a></li>
+</ul>
+<h1><span id="qcombobox-class">QComboBox Class</span><a href="#qcombobox-class" class="header-anchor">#</a></h1><p> QComboBox 小部件是一个组合按钮和弹出列表。  <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#details">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qcombobox></qcombobox></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Widgets REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Widgets)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += widgets</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html">QWidget</a></td>
+</tr>
+<tr>
+<td>Inherited By:</td>
+<td><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfontcombobox.html">QFontComboBox</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#InsertPolicy-enum">InsertPolicy</a></strong> { NoInsert, InsertAtTop, InsertAtCurrent, InsertAtBottom, InsertAfterCurrent, …, InsertAlphabetically }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#SizeAdjustPolicy-enum">SizeAdjustPolicy</a></strong> { AdjustToContents, AdjustToContentsOnFirstShow, AdjustToMinimumContentsLengthWithIcon }</td>
+</tr>
+</tbody></table>
+<h2><span id="te-xing">特性</span><a href="#te-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#count-prop">count</a></strong> : const int**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentData-prop">currentData</a>** : const QVariant**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndex-prop">currentIndex</a>** : int**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentText-prop">currentText</a>** : QString**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#duplicatesEnabled-prop">duplicatesEnabled</a>** : bool**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#editable-prop">editable</a>** : bool**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#frame-prop">frame</a>** : bool**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#iconSize-prop">iconSize</a>** : QSize</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertPolicy-prop">insertPolicy</a></strong> : InsertPolicy**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#maxCount-prop">maxCount</a>** : int**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#maxVisibleItems-prop">maxVisibleItems</a>** : int**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#minimumContentsLength-prop">minimumContentsLength</a>** : int**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#modelColumn-prop">modelColumn</a>** : int**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#placeholderText-prop">placeholderText</a>** : QString**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#sizeAdjustPolicy-prop">sizeAdjustPolicy</a>** : SizeAdjustPolicy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#QComboBox">QComboBox</a></strong>(QWidget *<em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#dtor.QComboBox">~QComboBox</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#addItem">addItem</a></strong>(const QString &amp;<em>text</em>, const QVariant &amp;<em>userData</em> = QVariant())</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#addItem-1">addItem</a></strong>(const QIcon &amp;<em>icon</em>, const QString &amp;<em>text</em>, const QVariant &amp;<em>userData</em> = QVariant())</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#addItems">addItems</a></strong>(const QStringList &amp;<em>texts</em>)</td>
+</tr>
+<tr>
+<td>QCompleter *</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#completer">completer</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#count-prop">count</a></strong>() const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentData-prop">currentData</a></strong>(int <em>role</em> = Qt::UserRole) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndex-prop">currentIndex</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentText-prop">currentText</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#duplicatesEnabled-prop">duplicatesEnabled</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#findData">findData</a></strong>(const QVariant &amp;<em>data</em>, int <em>role</em> = Qt::UserRole, Qt::MatchFlags <em>flags</em> = static_cast<a href="Qt::MatchFlags">Qt::MatchFlags</a>(Qt::MatchExactly|Qt::MatchCaseSensitive)) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#findText">findText</a></strong>(const QString &amp;<em>text</em>, Qt::MatchFlags <em>flags</em> = Qt::MatchExactly|Qt::MatchCaseSensitive) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#frame-prop">hasFrame</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#hidePopup">hidePopup</a></strong>()</td>
+</tr>
+<tr>
+<td>QSize</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#iconSize-prop">iconSize</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertItem">insertItem</a></strong>(int <em>index</em>, const QString &amp;<em>text</em>, const QVariant &amp;<em>userData</em> = QVariant())</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertItem-1">insertItem</a></strong>(int <em>index</em>, const QIcon &amp;<em>icon</em>, const QString &amp;<em>text</em>, const QVariant &amp;<em>userData</em> = QVariant())</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertItems">insertItems</a></strong>(int <em>index</em>, const QStringList &amp;<em>list</em>)</td>
+</tr>
+<tr>
+<td>QComboBox::InsertPolicy</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertPolicy-prop">insertPolicy</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertSeparator">insertSeparator</a></strong>(int <em>index</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#editable-prop">isEditable</a></strong>() const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#itemData">itemData</a></strong>(int <em>index</em>, int <em>role</em> = Qt::UserRole) const</td>
+</tr>
+<tr>
+<td>QAbstractItemDelegate *</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#itemDelegate">itemDelegate</a></strong>() const</td>
+</tr>
+<tr>
+<td>QIcon</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#itemIcon">itemIcon</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#itemText">itemText</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QLineEdit *</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#lineEdit">lineEdit</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#maxCount-prop">maxCount</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#maxVisibleItems-prop">maxVisibleItems</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#minimumContentsLength-prop">minimumContentsLength</a></strong>() const</td>
+</tr>
+<tr>
+<td>QAbstractItemModel *</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#model">model</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#modelColumn-prop">modelColumn</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#placeholderText-prop">placeholderText</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#removeItem">removeItem</a></strong>(int <em>index</em>)</td>
+</tr>
+<tr>
+<td>QModelIndex</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#rootModelIndex">rootModelIndex</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setCompleter">setCompleter</a></strong>(QCompleter *<em>completer</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#duplicatesEnabled-prop">setDuplicatesEnabled</a></strong>(bool <em>enable</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#editable-prop">setEditable</a></strong>(bool <em>editable</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#frame-prop">setFrame</a></strong>(bool)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#iconSize-prop">setIconSize</a></strong>(const QSize &amp;<em>size</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertPolicy-prop">setInsertPolicy</a></strong>(QComboBox::InsertPolicy <em>policy</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setItemData">setItemData</a></strong>(int <em>index</em>, const QVariant &amp;<em>value</em>, int <em>role</em> = Qt::UserRole)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setItemDelegate">setItemDelegate</a></strong>(QAbstractItemDelegate *<em>delegate</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setItemIcon">setItemIcon</a></strong>(int <em>index</em>, const QIcon &amp;<em>icon</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setItemText">setItemText</a></strong>(int <em>index</em>, const QString &amp;<em>text</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setLineEdit">setLineEdit</a></strong>(QLineEdit *<em>edit</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#maxCount-prop">setMaxCount</a></strong>(int <em>max</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#maxVisibleItems-prop">setMaxVisibleItems</a></strong>(int <em>maxItems</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#minimumContentsLength-prop">setMinimumContentsLength</a></strong>(int <em>characters</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setModel">setModel</a></strong>(QAbstractItemModel *<em>model</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#modelColumn-prop">setModelColumn</a></strong>(int <em>visibleColumn</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#placeholderText-prop">setPlaceholderText</a></strong>(const QString &amp;<em>placeholderText</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setRootModelIndex">setRootModelIndex</a></strong>(const QModelIndex &amp;<em>index</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#sizeAdjustPolicy-prop">setSizeAdjustPolicy</a></strong>(QComboBox::SizeAdjustPolicy <em>policy</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setValidator">setValidator</a></strong>(const QValidator *<em>validator</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setView">setView</a></strong>(QAbstractItemView *<em>itemView</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#showPopup">showPopup</a></strong>()</td>
+</tr>
+<tr>
+<td>QComboBox::SizeAdjustPolicy</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#sizeAdjustPolicy-prop">sizeAdjustPolicy</a></strong>() const</td>
+</tr>
+<tr>
+<td>const QValidator *</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#validator">validator</a></strong>() const</td>
+</tr>
+<tr>
+<td>QAbstractItemView *</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#view">view</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-xin-shi-xian-de-gong-gong-han-shu">重新实现的公共函数</span><a href="#chong-xin-shi-xian-de-gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual bool</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#event">event</a></strong>(QEvent *<em>event</em>) override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual QVariant</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#inputMethodQuery">inputMethodQuery</a></strong>(Qt::InputMethodQuery <em>query</em>) const override</td>
+</tr>
+<tr>
+<td>virtual QSize</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#minimumSizeHint">minimumSizeHint</a></strong>() const override</td>
+</tr>
+<tr>
+<td>virtual QSize</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#sizeHint">sizeHint</a></strong>() const override</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cha-cao">公共插槽</span><a href="#gong-gong-cha-cao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#clear">clear</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#clearEditText">clearEditText</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndex-prop">setCurrentIndex</a></strong>(int <em>index</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentText-prop">setCurrentText</a></strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setEditText">setEditText</a></strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#activated">activated</a></strong>(int <em>index</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndexChanged">currentIndexChanged</a></strong>(int <em>index</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentTextChanged">currentTextChanged</a></strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#editTextChanged">editTextChanged</a></strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#highlighted">highlighted</a></strong>(int <em>index</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#textActivated">textActivated</a></strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#textHighlighted">textHighlighted</a></strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="shou-bao-hu-de-han-shu">受保护的函数</span><a href="#shou-bao-hu-de-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual void</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#initStyleOption">initStyleOption</a></strong>(QStyleOptionComboBox *<em>option</em>) const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="chong-xin-shi-xian-de-shou-bao-hu-han-shu">重新实现的受保护函数</span><a href="#chong-xin-shi-xian-de-shou-bao-hu-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual void</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#changeEvent">changeEvent</a></strong>(QEvent *<em>e</em>) override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#contextMenuEvent">contextMenuEvent</a></strong>(QContextMenuEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#focusInEvent">focusInEvent</a></strong>(QFocusEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#focusOutEvent">focusOutEvent</a></strong>(QFocusEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#hideEvent">hideEvent</a></strong>(QHideEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#inputMethodEvent">inputMethodEvent</a></strong>(QInputMethodEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#keyPressEvent">keyPressEvent</a></strong>(QKeyEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#keyReleaseEvent">keyReleaseEvent</a></strong>(QKeyEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#mousePressEvent">mousePressEvent</a></strong>(QMouseEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#mouseReleaseEvent">mouseReleaseEvent</a></strong>(QMouseEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#paintEvent">paintEvent</a></strong>(QPaintEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#resizeEvent">resizeEvent</a></strong>(QResizeEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#showEvent">showEvent</a></strong>(QShowEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#wheelEvent">wheelEvent</a></strong>(QWheelEvent *<em>e</em>) override</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-shuo-ming">详细说明</span><a href="#xiang-xi-shuo-ming" class="header-anchor">#</a></h2><p><img src="https://doc.qt.io/qt-6/images/windows-combobox.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>QComboBox 提供了一种以占用最少屏幕空间的方式向用户呈现选项列表的方法。</p>
+<p>组合框是显示当前项目的选择小部件，并且可以弹出可选项目列表。组合框可以是可编辑的，允许用户修改列表中的每个项目。</p>
+<p>组合框可以包含像素图和字符串；<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertItem">insertItem</a> () 和setItemText <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setItemText">(</a> ) 函数被适当地重载。对于可编辑的组合框，提供了<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#clearEditText">clearEditText</a> () 函数，用于在不改变组合框内容的情况下清除显示的字符串。</p>
+<p>如果组合框的当前项发生更改，则会发出三个信号，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndexChanged">currentIndexChanged</a> ()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentTextChanged">currentTextChanged</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#activated">activated</a> ()。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndexChanged">currentIndexChanged</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentTextChanged">currentTextChanged</a> () 无论更改是通过编程方式还是通过用户交互完成的，都会始终发出，而<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#activated">activate</a> () 仅在更改是由用户交互引起时才发出。当用户突出显示组合框弹出列表中的项目时，会发出<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#highlighted">突出显示</a>的 () 信号。所有三个信号都存在于两个版本中，一个带有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a>参数，一个带有<code>int</code>参数。如果用户选择或突出显示像素图，则只有<code>int</code>发出信号。每当更改可编辑组合框的文本时，都会发出<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#editTextChanged">editTextChanged</a> () 信号。</p>
+<p>当用户在可编辑的组合框中输入新字符串时，小部件可能会插入也可能不会插入它，并且它可以将其插入到多个位置。默认策略是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#InsertPolicy-enum">InsertAtBottom</a>，但您可以使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertPolicy-prop">setInsertPolicy</a> () 更改它。</p>
+<p>可以使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvalidator.html">QValidator</a>将输入限制为可编辑的组合框；参见<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setValidator">setValidator</a> ()。默认情况下，接受任何输入。</p>
+<p>例如，可以使用插入函数<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertItem">insertItem</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertItems">insertItems</a> () 来填充组合框。可以使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setItemText">setItemText</a> () 更改项目。一个项目可以用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#removeItem">removeItem</a> () 删除，所有项目都可以用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#clear">clear</a> () 删除。当前项的文本由<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentText-prop">currentText</a> ()返回，编号项的文本由text()返回。可以使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndex-prop">setCurrentIndex</a> () 设置当前项。通过<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#count-prop">count</a> ()返回combobox中的item个数；可以使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#maxCount-prop">setMaxCount</a> () 设置最大项目数。您可以允许使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#editable-prop">setEditable进行编辑</a>()。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setCompleter">对于可编辑的组合框，您可以使用setCompleter</a> ()设置自动完成，用户是否可以添加重复项由<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#duplicatesEnabled-prop">setDuplicatesEnabled</a> () 设置。</p>
+<p>QComboBox 将<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/model-view-programming.html">模型/视图框架</a>用于其弹出列表并存储其项目。默认情况下，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstandarditemmodel.html">QStandardItemModel</a>存储项目，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlistview.html">QListView</a>子类显示弹出列表。您可以直接访问模型和视图（使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#model">model</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#view">view</a> ()），但是QComboBox 还提供了设置和获取项目数据的函数（例如，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setItemData">setItemData</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#itemText">itemText</a> ()）。您还可以设置新的模型和视图（使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setModel">setModel</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setView">setView</a> ()）。对于组合框标签中的文本和图标，模型中具有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#ItemDataRole-enum">Qt::DisplayRole</a>和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#ItemDataRole-enum">Qt::DecorationRole的数据</a>用来。请注意，您不能更改<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#view">视图() 的</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qabstractitemview.html#SelectionMode-enum">SelectionMode</a>，例如，通过使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qabstractitemview.html#selectionMode-prop">setSelectionMode</a> ()。</p>
+<p><strong>另请参阅</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlineedit.html">QLineEdit</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qspinbox.html">QSpinBox</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qradiobutton.html">QRadioButton</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbuttongroup.html">QButtonGroup</a>和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/guibooks.html#fowler">GUI 设计手册：组合框、下拉列表框</a>。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qcombobox-insertpolicy">enum QComboBox::InsertPolicy</span><a href="#enum-qcombobox-insertpolicy" class="header-anchor">#</a></h3><p> 此枚举指定用户输入新字符串时<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html">QComboBox应执行的操作。</a> </p>
+<table>
+<thead>
+<tr>
+<th>持续的</th>
+<th>价值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QComboBox::NoInsert</code></td>
+<td><code>0</code></td>
+<td>该字符串不会插入到组合框中。</td>
+</tr>
+<tr>
+<td><code>QComboBox::InsertAtTop</code></td>
+<td><code>1</code></td>
+<td>该字符串将作为组合框中的第一项插入。</td>
+</tr>
+<tr>
+<td><code>QComboBox::InsertAtCurrent</code></td>
+<td><code>2</code></td>
+<td>当前项目将被字符串<em>替换。</em></td>
+</tr>
+<tr>
+<td><code>QComboBox::InsertAtBottom</code></td>
+<td><code>3</code></td>
+<td>该字符串将插入到组合框中的最后一项之后。</td>
+</tr>
+<tr>
+<td><code>QComboBox::InsertAfterCurrent</code></td>
+<td><code>4</code></td>
+<td>该字符串插入组合框中的当前项之后。</td>
+</tr>
+<tr>
+<td><code>QComboBox::InsertBeforeCurrent</code></td>
+<td><code>5</code></td>
+<td>该字符串插入到组合框中的当前项之前。</td>
+</tr>
+<tr>
+<td><code>QComboBox::InsertAlphabetically</code></td>
+<td><code>6</code></td>
+<td>字符串按字母顺序插入组合框中。</td>
+</tr>
+</tbody></table>
+<h3><span id="enum-qcombobox-sizeadjustpolicy">enum QComboBox::SizeAdjustPolicy</span><a href="#enum-qcombobox-sizeadjustpolicy" class="header-anchor">#</a></h3><p> 此枚举指定当添加新内容或内容更改时<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html">QComboBox</a>的大小提示应如何调整。 </p>
+<table>
+<thead>
+<tr>
+<th>持续的</th>
+<th>价值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QComboBox::AdjustToContents</code></td>
+<td><code>0</code></td>
+<td>组合框将始终根据内容进行调整</td>
+</tr>
+<tr>
+<td><code>QComboBox::AdjustToContentsOnFirstShow</code></td>
+<td><code>1</code></td>
+<td>组合框将在第一次显示时根据其内容进行调整。</td>
+</tr>
+<tr>
+<td><code>QComboBox::AdjustToMinimumContentsLengthWithIcon</code></td>
+<td><code>2</code></td>
+<td>组合框将调整为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#minimumContentsLength-prop">minimumContentsLength</a>加上图标的空间。出于性能原因，请在大型模型上使用此策略。</td>
+</tr>
+</tbody></table>
+<h2><span id="te-xing-wen-dang">特性文档</span><a href="#te-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="read-only-count-const-int"><code>[read-only]</code>count : const int</span><a href="#read-only-count-const-int" class="header-anchor">#</a></h3><p>此属性保存组合框中的项目数</p>
+<p>默认情况下，对于空组合框，此属性的值为 0。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>int</th>
+<th><strong>count</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="read-only-since-5-2-currentdata-const-qvariant"><code>[read-only, since 5.2]</code>currentData : const </span><a href="#read-only-since-5-2-currentdata-const-qvariant" class="header-anchor">#</a></h3><p>此属性保存当前项目的数据</p>
+<p>默认情况下，对于空组合框或未设置当前项目的组合框，此属性包含无效的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant</a>。</p>
+<p>这个属性是在 Qt 5.2 中引入的。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QVariant</th>
+<th><strong>currentData</strong>(int <em>role</em> = Qt::UserRole) const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="currentindex-int">currentIndex : int</span><a href="#currentindex-int" class="header-anchor">#</a></h3><p>此属性保存组合框中当前项的索引。</p>
+<p>当前索引可以在插入或删除项目时更改。</p>
+<p>默认情况下，对于空组合框或未设置当前项的组合框，此属性的值为 -1。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>int</th>
+<th><strong>currentIndex</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setCurrentIndex</strong>(int <em>index</em>)</td>
+</tr>
+</tbody></table>
+<p>** <strong>通知信号：</strong> **</p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndexChanged">currentIndexChanged</a></strong>(int <em>index</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="currenttext-qstring">currentText : </span><a href="#currenttext-qstring" class="header-anchor">#</a></h3><p>该属性保存当前文本</p>
+<p>如果组合框可编辑，则当前文本为行编辑显示的值。否则，如果组合框为空或未设置当前项，则为当前项的值或空字符串。</p>
+<p>如果组合框是可编辑的，setter setCurrentText() 只需调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setEditText">setEditText ()。</a>否则，如果列表中有匹配的文本，则将<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndex-prop">currentIndex</a>设置为相应的索引。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>currentText</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setCurrentText</strong>(const QString &amp;<em>text</em>)</td>
+</tr>
+</tbody></table>
+<p> <strong>通知信号：</strong> </p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentTextChanged">currentTextChanged</a></strong>(const QString &amp;<em>text</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#editable-prop">editable</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setEditText">setEditText</a>().</p>
+<h3><span id="duplicatesenabled-bool">duplicatesEnabled : bool</span><a href="#duplicatesenabled-bool" class="header-anchor">#</a></h3><p>该属性保存用户是否可以在组合框中输入重复项</p>
+<p>请注意，始终可以以编程方式将重复项插入组合框中。</p>
+<p>默认情况下，此属性为<code>false</code>（不允许重复）。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>duplicatesEnabled</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setDuplicatesEnabled</strong>(bool <em>enable</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="editable-bool">editable : bool</span><a href="#editable-bool" class="header-anchor">#</a></h3><p>该属性保存用户是否可以编辑组合框</p>
+<p>默认情况下，此属性为<code>false</code>. 编辑的效果取决于插入策略。</p>
+<p><strong>注意：</strong>禁用<em>可编辑</em>状态时，将删除验证器和完成器。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>isEditable</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setEditable</strong>(bool <em>editable</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#InsertPolicy-enum">InsertPolicy</a>.</p>
+<h3><span id="frame-bool">frame : bool</span><a href="#frame-bool" class="header-anchor">#</a></h3><p>此属性保存组合框是否使用框架绘制自身</p>
+<p>如果启用（默认），组合框在框架内绘制自身，否则组合框在没有任何框架的情况下绘制自身。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>hasFrame</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setFrame</strong>(bool)</td>
+</tr>
+</tbody></table>
+<h3><span id="iconsize-qsize">iconSize : </span><a href="#iconsize-qsize" class="header-anchor">#</a></h3><p>此属性保存组合框中显示的图标的大小。</p>
+<p>除非明确设置，否则返回当前样式的默认值。这个尺寸是图标可以拥有的最大尺寸；较小尺寸的图标不会按比例放大。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QSize</th>
+<th><strong>iconSize</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setIconSize</strong>(const QSize &amp;<em>size</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="insertpolicy-insertpolicy">insertPolicy : </span><a href="#insertpolicy-insertpolicy" class="header-anchor">#</a></h3><p>此属性包含用于确定用户插入的项目应出现在组合框中的位置的策略</p>
+<p>默认值为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#InsertPolicy-enum">InsertAtBottom</a>，表示新项目将出现在项目列表的底部。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QComboBox::InsertPolicy</th>
+<th><strong>insertPolicy</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setInsertPolicy</strong>(QComboBox::InsertPolicy <em>policy</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#InsertPolicy-enum">InsertPolicy</a>.</p>
+<h3><span id="maxcount-int">maxCount : int</span><a href="#maxcount-int" class="header-anchor">#</a></h3><p>此属性保存组合框中允许的最大项目数</p>
+<p><strong>注意：</strong>如果您将最大数量设置为小于组合框中项目的当前数量，多余的项目将被截断。如果您在组合框上设置了外部模型，这也适用。</p>
+<p>默认情况下，此属性的值源自可用的最高有符号整数（通常为 2147483647）。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>int</th>
+<th><strong>maxCount</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setMaxCount</strong>(int <em>max</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="maxvisibleitems-int">maxVisibleItems : int</span><a href="#maxvisibleitems-int" class="header-anchor">#</a></h3><p>此属性保存组合框屏幕上允许的最大尺寸，以项目为单位</p>
+<p>默认情况下，此属性的值为 10。</p>
+<p><strong>注意：对于为</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstyle.html#StyleHint-enum">QStyle::SH_ComboBox_Popup</a>返回 true 的样式中的不可编辑组合框（例如 Mac 样式或 Gtk+ 样式），此属性将被忽略。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>int</th>
+<th><strong>maxVisibleItems</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setMaxVisibleItems</strong>(int <em>maxItems</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="minimumcontentslength-int">minimumContentsLength : int</span><a href="#minimumcontentslength-int" class="header-anchor">#</a></h3><p>此属性包含应适合组合框的最少字符数。</p>
+<p>默认值为 0。</p>
+<p>如果此属性设置为正值，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#minimumSizeHint">minimumSizeHint</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#sizeHint">sizeHint</a> () 会将其考虑在内。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>int</th>
+<th><strong>minimumContentsLength</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setMinimumContentsLength</strong>(int <em>characters</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#sizeAdjustPolicy-prop">sizeAdjustPolicy</a>.</p>
+<h3><span id="modelcolumn-int">modelColumn : int</span><a href="#modelcolumn-int" class="header-anchor">#</a></h3><p>此属性保存模型中可见的列。</p>
+<p>如果在填充组合框之前设置，弹出视图不会受到影响，并且会显示第一列（使用此属性的默认值）。</p>
+<p>默认情况下，此属性的值为 0。</p>
+<p><strong>注意：</strong>在可编辑的组合框中，可见列也将成为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcompleter.html#completionColumn-prop">完成列</a>。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>int</th>
+<th><strong>modelColumn</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setModelColumn</strong>(int <em>visibleColumn</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="since-5-15-placeholdertext-qstring"><code>[since 5.15]</code>placeholderText : </span><a href="#since-5-15-placeholdertext-qstring" class="header-anchor">#</a></h3><p>设置没有设置有效索引时显示的<em>placeholderText文本</em></p>
+<p>设置无效索引时将显示placeholderText <em>。</em>无法在下拉列表中访问文本。在添加项目之前调用此函数时，将显示占位符文本，否则如果要显示占位符文本，则必须以编程方式调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndex-prop">setCurrentIndex</a> (-1)。设置一个空的占位符文本以重置设置。</p>
+<p>当<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html">QComboBox</a>可编辑时，请改用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlineedit.html#placeholderText-prop">QLineEdit::setPlaceholderText</a> ()。</p>
+<p>此属性是在 Qt 5.15 中引入的。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>placeholderText</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setPlaceholderText</strong>(const QString &amp;<em>placeholderText</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="sizeadjustpolicy-sizeadjustpolicy">sizeAdjustPolicy : </span><a href="#sizeadjustpolicy-sizeadjustpolicy" class="header-anchor">#</a></h3><p>此属性包含描述当内容更改时组合框的大小如何更改的策略</p>
+<p>默认值为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#SizeAdjustPolicy-enum">AdjustToContentsOnFirstShow</a>。</p>
+<p><strong>访问功能：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QComboBox::SizeAdjustPolicy</th>
+<th><strong>sizeAdjustPolicy</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setSizeAdjustPolicy</strong>(QComboBox::SizeAdjustPolicy <em>policy</em>)</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#SizeAdjustPolicy-enum">SizeAdjustPolicy</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qcombobox-qcombobox-qwidget-parent-nullptr">QComboBox::QComboBox( *<em>parent</em> = nullptr)</span><a href="#qcombobox-qcombobox-qwidget-parent-nullptr" class="header-anchor">#</a></h3><p> 使用默认模型<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstandarditemmodel.html">QStandardItemModel</a>构造具有给定<em>parent</em>的组合框。 </p>
+<h3><span id="signal-void-qcombobox-activated-int-index"><code>[signal]</code>void QComboBox::activated(int <em>index</em>)</span><a href="#signal-void-qcombobox-activated-int-index" class="header-anchor">#</a></h3><p> 当用户在组合框中选择一个项目时发送此信号。项目的<em>index</em>被传递。请注意，即使选择未更改，也会发送此信号。如果您需要知道选项何时实际更改，请使用信号<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndexChanged">currentIndexChanged</a> () 或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentTextChanged">currentTextChanged</a> ()。 </p>
+<h3><span id="slot-void-qcombobox-clear"><code>[slot]</code>void QComboBox::clear()</span><a href="#slot-void-qcombobox-clear" class="header-anchor">#</a></h3><p>清除组合框，删除所有项目。</p>
+<p>注意：如果您在组合框上设置了外部模型，则在调用此函数时该模型仍将被清除。</p>
+<h3><span id="slot-void-qcombobox-clearedittext"><code>[slot]</code>void QComboBox::clearEditText()</span><a href="#slot-void-qcombobox-clearedittext" class="header-anchor">#</a></h3><p> 清除组合框中用于编辑的行编辑的内容。 </p>
+<h3><span id="signal-void-qcombobox-currentindexchanged-int-index"><code>[signal]</code>void QComboBox::currentIndexChanged(int <em>index</em>)</span><a href="#signal-void-qcombobox-currentindexchanged-int-index" class="header-anchor">#</a></h3><p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndex-prop">每当组合框中的currentIndex</a>通过用户交互或以编程方式更改时，都会发送此信号。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndex-prop">如果组合框为空或currentIndex</a>已重置，则传递项目的<em>index</em>或 -1。</p>
+<p><strong>注意：属性</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndex-prop">currentIndex</a>的通知信号。</p>
+<h3><span id="signal-since-5-0-void-qcombobox-currenttextchanged-const-qstring-amp-text"><code>[signal, since 5.0]</code>void QComboBox::currentTextChanged(const  &amp;<em>text</em>)</span><a href="#signal-since-5-0-void-qcombobox-currenttextchanged-const-qstring-amp-text" class="header-anchor">#</a></h3><p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentText-prop">每当currentText</a>更改时都会发送此信号。新值作为<em>text</em>传递。</p>
+<p><strong>注意：属性</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentText-prop">currentText</a>的通知信号。</p>
+<p>此功能是在 Qt 5.0 中引入的。</p>
+<h3><span id="signal-void-qcombobox-edittextchanged-const-qstring-amp-text"><code>[signal]</code>void QComboBox::editTextChanged(const  &amp;<em>text</em>)</span><a href="#signal-void-qcombobox-edittextchanged-const-qstring-amp-text" class="header-anchor">#</a></h3><p> 当组合框的行编辑小部件中的文本发生更改时，将发出此信号。新文本由<em>text</em>指定。 </p>
+<h3><span id="signal-void-qcombobox-highlighted-int-index"><code>[signal]</code>void QComboBox::highlighted(int <em>index</em>)</span><a href="#signal-void-qcombobox-highlighted-int-index" class="header-anchor">#</a></h3><p> 当用户突出显示组合框弹出列表中的项目时发送此信号。项目的<em>index</em>被传递。 </p>
+<h3><span id="slot-void-qcombobox-setedittext-const-qstring-amp-text"><code>[slot]</code>void QComboBox::setEditText(const  &amp;<em>text</em>)</span><a href="#slot-void-qcombobox-setedittext-const-qstring-amp-text" class="header-anchor">#</a></h3><p> 设置组合框<em>text</em>编辑中的文本。 </p>
+<h3><span id="signal-since-5-14-void-qcombobox-textactivated-const-qstring-amp-text"><code>[signal, since 5.14]</code>void QComboBox::textActivated(const  &amp;<em>text</em>)</span><a href="#signal-since-5-14-void-qcombobox-textactivated-const-qstring-amp-text" class="header-anchor">#</a></h3><p>当用户在组合框中选择一个项目时发送此信号。项目的<em>text</em>被传递。请注意，即使选择未更改，也会发送此信号。如果您需要知道选项何时实际更改，请使用信号<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentIndexChanged">currentIndexChanged</a> () 或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#currentTextChanged">currentTextChanged</a> ()。</p>
+<p>这个函数是在 Qt 5.14 中引入的。</p>
+<h3><span id="signal-since-5-14-void-qcombobox-texthighlighted-const-qstring-amp-text"><code>[signal, since 5.14]</code>void QComboBox::textHighlighted(const  &amp;<em>text</em>)</span><a href="#signal-since-5-14-void-qcombobox-texthighlighted-const-qstring-amp-text" class="header-anchor">#</a></h3><p>当用户突出显示组合框弹出列表中的项目时发送此信号。项目的<em>text</em>被传递。</p>
+<p>这个函数是在 Qt 5.14 中引入的。</p>
+<h3><span id="virtual-qcombobox-qcombobox"><code>[virtual]</code>QComboBox::~QComboBox()</span><a href="#virtual-qcombobox-qcombobox" class="header-anchor">#</a></h3><p> 销毁组合框。 </p>
+<h3><span id="void-qcombobox-additem-const-qstring-amp-text-const-qvariant-amp-userdata-qvariant">void QComboBox::addItem(const  &amp;<em>text</em>, const  &amp;<em>userData</em> = QVariant())</span><a href="#void-qcombobox-additem-const-qstring-amp-text-const-qvariant-amp-userdata-qvariant" class="header-anchor">#</a></h3><p>使用给定的<em>text</em>将项目添加到组合框中，并包含指定的<em>userData</em>（存储在<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#ItemDataRole-enum">Qt::UserRole</a>中）。该项目被附加到现有项目的列表中。 </p>
+<h3><span id="void-qcombobox-additem-const-qicon-amp-icon-const-qstring-amp-text-const-qvariant-amp-userdata-qvariant">void QComboBox::addItem(const  &amp;<em>icon</em>, const  &amp;<em>text</em>, const  &amp;<em>userData</em> = QVariant())</span><a href="#void-qcombobox-additem-const-qicon-amp-icon-const-qstring-amp-text-const-qvariant-amp-userdata-qvariant" class="header-anchor">#</a></h3><p> 使用给定的<em>icon和text</em>将项目添加到组合框中，并包含指定的<em>userData</em>（存储在<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#ItemDataRole-enum">Qt::UserRole</a>中）。该项目被附加到现有项目的列表中。 </p>
+<h3><span id="void-qcombobox-additems-const-qstringlist-amp-texts">void QComboBox::addItems(const  &amp;<em>texts</em>)</span><a href="#void-qcombobox-additems-const-qstringlist-amp-texts" class="header-anchor">#</a></h3><p> 将给定<em>texts</em>中的每个字符串添加到组合框中。每个项目依次附加到现有项目列表中。 </p>
+<h3><span id="override-virtual-protected-void-qcombobox-changeevent-qevent-e"><code>[override virtual protected]</code>void QComboBox::changeEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-changeevent-qevent-e" class="header-anchor">#</a></h3><p> 重新实现 : <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#changeEvent">QWidget::changeEvent</a>(QEvent *event).</p>
+<h3><span id="qcompleter-qcombobox-completer-const"> *QComboBox::completer() const</span><a href="#qcompleter-qcombobox-completer-const" class="header-anchor">#</a></h3><p>返回用于自动完成组合框文本输入的完成程序。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setCompleter">setCompleter</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#editable-prop">editable</a>。</p>
+<h3><span id="override-virtual-protected-void-qcombobox-contextmenuevent-qcontextmenuevent-e"><code>[override virtual protected]</code>void QComboBox::contextMenuEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-contextmenuevent-qcontextmenuevent-e" class="header-anchor">#</a></h3><p> 重新实现 : <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#contextMenuEvent">QWidget::contextMenuEvent</a>(QContextMenuEvent *event).</p>
+<h3><span id="override-virtual-bool-qcombobox-event-qevent-event"><code>[override virtual]</code>bool QComboBox::event( *<em>event</em>)</span><a href="#override-virtual-bool-qcombobox-event-qevent-event" class="header-anchor">#</a></h3><p> 重新实现 : <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#event">QWidget::event</a>(QEvent *event).</p>
+<h3><span id="int-qcombobox-finddata-const-qvariant-amp-data-int-role-qt-userrole-qt-matchflags-flags-static-castqt-matchflags-qt-matchexactly-qt-matchcasesensitive-const">int QComboBox::findData(const  &amp;<em>data</em>, int <em>role</em> = Qt::UserRole,  <em>flags</em> = static_cast(Qt::MatchExactly|Qt::MatchCaseSensitive)) const</span><a href="#int-qcombobox-finddata-const-qvariant-amp-data-int-role-qt-userrole-qt-matchflags-flags-static-castqt-matchflags-qt-matchexactly-qt-matchcasesensitive-const" class="header-anchor">#</a></h3><p>返回包含给定<em>role</em> 给定<em>data</em>的项目的索引；否则返回 -1。</p>
+<p><em>flags</em> 指定如何搜索组合框中的项目。</p>
+<h3><span id="int-qcombobox-findtext-const-qstring-amp-text-qt-matchflags-flags-qt-matchexactly-qt-matchcasesensitive-const">int QComboBox::findText(const  &amp;<em>text</em>,  <em>flags</em> = Qt::MatchExactly|Qt::MatchCaseSensitive) const</span><a href="#int-qcombobox-findtext-const-qstring-amp-text-qt-matchflags-flags-qt-matchexactly-qt-matchcasesensitive-const" class="header-anchor">#</a></h3><p>返回包含给定<em>text</em>的项目的索引；否则返回 -1。</p>
+<p><em>flags</em> 指定如何搜索组合框中的项目。</p>
+<h3><span id="override-virtual-protected-void-qcombobox-focusinevent-qfocusevent-e"><code>[override virtual protected]</code>void QComboBox::focusInEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-focusinevent-qfocusevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#focusInEvent">QWidget::focusInEvent</a>(QFocusEvent *event).</p>
+<h3><span id="override-virtual-protected-void-qcombobox-focusoutevent-qfocusevent-e"><code>[override virtual protected]</code>void QComboBox::focusOutEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-focusoutevent-qfocusevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#focusOutEvent">QWidget::focusOutEvent</a>(QFocusEvent *event).</p>
+<h3><span id="override-virtual-protected-void-qcombobox-hideevent-qhideevent-e"><code>[override virtual protected]</code>void QComboBox::hideEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-hideevent-qhideevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#hideEvent">QWidget::hideEvent</a>(QHideEvent *event).</p>
+<h3><span id="virtual-void-qcombobox-hidepopup"><code>[virtual]</code>void QComboBox::hidePopup()</span><a href="#virtual-void-qcombobox-hidepopup" class="header-anchor">#</a></h3><p>如果当前可见，则隐藏组合框中的项目列表并重置内部状态，以便如果自定义弹出窗口显示在重新实现的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#showPopup">showPopup</a> () 中，那么您还需要重新实现 hidePopup() 函数以隐藏您的自定义弹出窗口并在隐藏自定义弹出窗口小部件时调用基类实现以重置内部状态。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#showPopup">showPopup</a> ()。</p>
+<h3><span id="virtual-protected-void-qcombobox-initstyleoption-qstyleoptioncombobox-option-const"><code>[virtual protected]</code>void QComboBox::initStyleOption( *<em>option</em>) const</span><a href="#virtual-protected-void-qcombobox-initstyleoption-qstyleoptioncombobox-option-const" class="header-anchor">#</a></h3><p>使用此<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html">QComboBox</a>中的值初始化<em>option</em>。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstyleoptioncombobox.html">当子类需要QStyleOptionComboBox</a>但不想自己填写所有信息时，此方法对子类很有用。</p>
+<p><strong>另见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstyleoption.html#initFrom">QStyleOption::initFrom</a> ()。</p>
+<h3><span id="override-virtual-protected-void-qcombobox-inputmethodevent-qinputmethodevent-e"><code>[override virtual protected]</code>void QComboBox::inputMethodEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-inputmethodevent-qinputmethodevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#inputMethodEvent">QWidget::inputMethodEvent</a>(QInputMethodEvent *event).</p>
+<h3><span id="override-virtual-qvariant-qcombobox-inputmethodquery-qt-inputmethodquery-query-const"><code>[override virtual]</code> QComboBox::inputMethodQuery( <em>query</em>) const</span><a href="#override-virtual-qvariant-qcombobox-inputmethodquery-qt-inputmethodquery-query-const" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#inputMethodQuery">QWidget::inputMethodQuery(Qt::InputMethodQuery query) const</a>.</p>
+<h3><span id="void-qcombobox-insertitem-int-index-const-qstring-amp-text-const-qvariant-amp-userdata-qvariant">void QComboBox::insertItem(int <em>index</em>, const  &amp;<em>text</em>, const  &amp;<em>userData</em> = QVariant())</span><a href="#void-qcombobox-insertitem-int-index-const-qstring-amp-text-const-qvariant-amp-userdata-qvariant" class="header-anchor">#</a></h3><p>将<em>text</em>和<em>userData</em>（存储在<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#ItemDataRole-enum">Qt::UserRole</a>中）插入到给定<em>index</em>的组合框中。</p>
+<p>如果索引等于或大于项目总数，则将新项目附加到现有项目列表中。如果索引为零或负数，则新项目将附加到现有项目列表中。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertItems">insertItems</a> ()。</p>
+<h3><span id="void-qcombobox-insertitem-int-index-const-qicon-amp-icon-const-qstring-amp-text-const-qvariant-amp-userdata-qvariant">void QComboBox::insertItem(int <em>index</em>, const  &amp;<em>icon</em>, const  &amp;<em>text</em>, const  &amp;<em>userData</em> = QVariant())</span><a href="#void-qcombobox-insertitem-int-index-const-qicon-amp-icon-const-qstring-amp-text-const-qvariant-amp-userdata-qvariant" class="header-anchor">#</a></h3><p>将<em>icon</em>、<em>text</em>和<em>userData</em>（存储在<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#ItemDataRole-enum">Qt::UserRole</a>中）插入到给定<em>index</em>的组合框中。</p>
+<p>如果索引等于或大于项目总数，则将新项目附加到现有项目列表中。如果索引为零或负数，则新项目将附加到现有项目列表中。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertItems">insertItems</a> ()。</p>
+<h3><span id="void-qcombobox-insertitems-int-index-const-qstringlist-amp-list">void QComboBox::insertItems(int <em>index</em>, const  &amp;<em>list</em>)</span><a href="#void-qcombobox-insertitems-int-index-const-qstringlist-amp-list" class="header-anchor">#</a></h3><p>将<em>list</em>中的字符串作为单独的项目插入组合框中，从指定的<em>index</em>开始。</p>
+<p>如果索引等于或大于项目总数，则将新项目附加到现有项目列表中。如果索引为零或负数，则新项目将附加到现有项目列表中。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertItem">insertItem</a> ()。</p>
+<h3><span id="void-qcombobox-insertseparator-int-index">void QComboBox::insertSeparator(int <em>index</em>)</span><a href="#void-qcombobox-insertseparator-int-index" class="header-anchor">#</a></h3><p>在给定<em>index</em>处将分隔项插入组合框中。</p>
+<p>如果索引等于或大于项目总数，则将新项目附加到现有项目列表中。如果索引为零或负数，则新项目将附加到现有项目列表中。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#insertItem">insertItem</a> ()。</p>
+<h3><span id="qvariant-qcombobox-itemdata-int-index-int-role-qt-userrole-const"> QComboBox::itemData(int <em>index</em>, int <em>role</em> = Qt::UserRole) const</span><a href="#qvariant-qcombobox-itemdata-int-index-int-role-qt-userrole-const" class="header-anchor">#</a></h3><p>返回组合框中给定<em>index</em>中给定<em>role</em> 的数据，如果没有此角色的数据，则返回无效的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qvariant.html">QVariant 。</a></p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setItemData">setItemData</a> ()。</p>
+<h3><span id="qabstractitemdelegate-qcombobox-itemdelegate-const"> *QComboBox::itemDelegate() const</span><a href="#qabstractitemdelegate-qcombobox-itemdelegate-const" class="header-anchor">#</a></h3><p>返回弹出列表视图使用的项目委托。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setItemDelegate">setItemDelegate</a> ()。</p>
+<h3><span id="qicon-qcombobox-itemicon-int-index-const"> QComboBox::itemIcon(int <em>index</em>) const</span><a href="#qicon-qcombobox-itemicon-int-index-const" class="header-anchor">#</a></h3><p>返回组合框中给定<em>index</em>的图标。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setItemIcon">setItemIcon</a> ()。</p>
+<h3><span id="qstring-qcombobox-itemtext-int-index-const"> QComboBox::itemText(int <em>index</em>) const</span><a href="#qstring-qcombobox-itemtext-int-index-const" class="header-anchor">#</a></h3><p>返回组合框中给定<em>index</em>的文本。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setItemText">setItemText</a> ()。</p>
+<h3><span id="override-virtual-protected-void-qcombobox-keypressevent-qkeyevent-e"><code>[override virtual protected]</code>void QComboBox::keyPressEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-keypressevent-qkeyevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#keyPressEvent">QWidget::keyPressEvent</a>(QKeyEvent *event).</p>
+<h3><span id="override-virtual-protected-void-qcombobox-keyreleaseevent-qkeyevent-e"><code>[override virtual protected]</code>void QComboBox::keyReleaseEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-keyreleaseevent-qkeyevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#keyReleaseEvent">QWidget::keyReleaseEvent</a>(QKeyEvent *event).</p>
+<h3><span id="qlineedit-qcombobox-lineedit-const"> *QComboBox::lineEdit() const</span><a href="#qlineedit-qcombobox-lineedit-const" class="header-anchor">#</a></h3><p>返回用于编辑组合框中项目的行编辑，或者<code>nullptr</code>如果没有行编辑。</p>
+<p>只有可编辑的组合框有行编辑。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setLineEdit">setLineEdit</a> ()。</p>
+<h3><span id="override-virtual-qsize-qcombobox-minimumsizehint-const"><code>[override virtual]</code> QComboBox::minimumSizeHint() const</span><a href="#override-virtual-qsize-qcombobox-minimumsizehint-const" class="header-anchor">#</a></h3><p> 重新实现属性的访问函数 : <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#minimumSizeHint-prop">QWidget::minimumSizeHint</a>.</p>
+<h3><span id="qabstractitemmodel-qcombobox-model-const"> *QComboBox::model() const</span><a href="#qabstractitemmodel-qcombobox-model-const" class="header-anchor">#</a></h3><p>返回组合框使用的模型。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setModel">setModel</a> ()。</p>
+<h3><span id="override-virtual-protected-void-qcombobox-mousepressevent-qmouseevent-e"><code>[override virtual protected]</code>void QComboBox::mousePressEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-mousepressevent-qmouseevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#mousePressEvent">QWidget::mousePressEvent</a>(QMouseEvent *event).</p>
+<h3><span id="override-virtual-protected-void-qcombobox-mousereleaseevent-qmouseevent-e"><code>[override virtual protected]</code>void QComboBox::mouseReleaseEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-mousereleaseevent-qmouseevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#mouseReleaseEvent">QWidget::mouseReleaseEvent</a>(QMouseEvent *event).</p>
+<h3><span id="override-virtual-protected-void-qcombobox-paintevent-qpaintevent-e"><code>[override virtual protected]</code>void QComboBox::paintEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-paintevent-qpaintevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#paintEvent">QWidget::paintEvent</a>(QPaintEvent *event).</p>
+<h3><span id="void-qcombobox-removeitem-int-index">void QComboBox::removeItem(int <em>index</em>)</span><a href="#void-qcombobox-removeitem-int-index" class="header-anchor">#</a></h3><p>从组合框中删除给定<em>index</em>处的项目。如果索引被删除，这将更新当前索引。</p>
+<p><em>如果索引</em>超出范围，则此函数不执行任何操作。</p>
+<h3><span id="override-virtual-protected-void-qcombobox-resizeevent-qresizeevent-e"><code>[override virtual protected]</code>void QComboBox::resizeEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-resizeevent-qresizeevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#resizeEvent">QWidget::resizeEvent</a>(QResizeEvent *event).</p>
+<h3><span id="qmodelindex-qcombobox-rootmodelindex-const"> QComboBox::rootModelIndex() const</span><a href="#qmodelindex-qcombobox-rootmodelindex-const" class="header-anchor">#</a></h3><p>返回组合框中项目的根模型项目索引。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setRootModelIndex">setRootModelIndex</a> ()。</p>
+<h3><span id="void-qcombobox-setcompleter-qcompleter-completer">void QComboBox::setCompleter( *<em>completer</em>)</span><a href="#void-qcombobox-setcompleter-qcompleter-completer" class="header-anchor">#</a></h3><p>设置要使用的<em>完成</em>者而不是当前的完成者。如果<em>完成</em>者是<code>nullptr</code>，则禁用自动完成。</p>
+<p>默认情况下，对于可编辑的组合框，会自动创建一个执行不区分大小写的内联完成的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcompleter.html">QCompleter 。</a></p>
+<p><strong>注意：</strong>当<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#editable-prop">可编辑</a>属性变为 时<code>false</code>，或者当行编辑被调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setLineEdit">setLineEdit</a> () 替换时，完成符被删除。在不可编辑的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html">QComboBox</a>上设置完成程序将被忽略。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#completer">completer</a>().</p>
+<h3><span id="void-qcombobox-setitemdata-int-index-const-qvariant-amp-value-int-role-qt-userrole">void QComboBox::setItemData(int <em>index</em>, const  &amp;<em>value</em>, int <em>role</em> = Qt::UserRole)</span><a href="#void-qcombobox-setitemdata-int-index-const-qvariant-amp-value-int-role-qt-userrole" class="header-anchor">#</a></h3><p>将组合框中给定<em>index</em>上的项目的数据<em>role</em>设置为指定<em>value</em>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#itemData">itemData</a> ()。</p>
+<h3><span id="void-qcombobox-setitemdelegate-qabstractitemdelegate-delegate">void QComboBox::setItemDelegate( *<em>delegate</em>)</span><a href="#void-qcombobox-setitemdelegate-qabstractitemdelegate-delegate" class="header-anchor">#</a></h3><p>设置弹出列表视图的项目delegate*。组合框获得委托的所有权。</p>
+<p>任何现有的委托都将被删除，但不会被删除。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html">QComboBox</a>不拥有<em>delegate</em>的所有权。</p>
+<p><strong>警告：</strong>您不应在组合框、小部件映射器或视图之间共享同一委托实例。这样做可能会导致不正确或不直观的编辑行为，因为连接到给定委托的每个视图都可能收到<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qabstractitemdelegate.html#closeEditor">closeEditor</a> () 信号，并尝试访问、修改或关闭已关闭的编辑器。</p>
+<p><strong>另见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#itemDelegate">itemDelegate</a> ()。</p>
+<h3><span id="void-qcombobox-setitemicon-int-index-const-qicon-amp-icon">void QComboBox::setItemIcon(int <em>index</em>, const  &amp;<em>icon</em>)</span><a href="#void-qcombobox-setitemicon-int-index-const-qicon-amp-icon" class="header-anchor">#</a></h3><p>在组合框中的给定<em>index</em>上设置项目的<em>icon</em>。</p>
+<p><strong>另见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#itemIcon">itemIcon</a> ()。</p>
+<h3><span id="void-qcombobox-setitemtext-int-index-const-qstring-amp-text">void QComboBox::setItemText(int <em>index</em>, const  &amp;<em>text</em>)</span><a href="#void-qcombobox-setitemtext-int-index-const-qstring-amp-text" class="header-anchor">#</a></h3><p>为组合框中给定<em>index</em>上的项目设置<em>text</em>。</p>
+<p><strong>另见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#itemText">itemText</a> ()。</p>
+<h3><span id="void-qcombobox-setlineedit-qlineedit-edit">void QComboBox::setLineEdit( *<em>edit</em>)</span><a href="#void-qcombobox-setlineedit-qlineedit-edit" class="header-anchor">#</a></h3><p>设置要使用的行*<em>edit</em>而不是当前行编辑小部件。</p>
+<p>组合框拥有行编辑的所有权。</p>
+<p><strong>注意：</strong>由于组合框的行编辑拥有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcompleter.html">QCompleter</a>，任何先前对<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setCompleter">setCompleter</a> () 的调用将不再有任何效果。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#lineEdit">lineEdit</a> ()。</p>
+<h3><span id="virtual-void-qcombobox-setmodel-qabstractitemmodel-model"><code>[virtual]</code>void QComboBox::setModel( *<em>model</em>)</span><a href="#virtual-void-qcombobox-setmodel-qabstractitemmodel-model" class="header-anchor">#</a></h3><p>将模型设置为<em>model</em>。<em>型号</em>一定不能<code>nullptr</code>。如果要清除模型的内容，调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#clear">clear</a> ()。</p>
+<p><strong>注意：</strong>如果组合框是可编辑的，那么<em>模型</em>也将设置在行编辑的完成者上。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#model">model</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#clear">clear</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setCompleter">setCompleter</a>().</p>
+<h3><span id="void-qcombobox-setrootmodelindex-const-qmodelindex-amp-index">void QComboBox::setRootModelIndex(const  &amp;<em>index</em>)</span><a href="#void-qcombobox-setrootmodelindex-const-qmodelindex-amp-index" class="header-anchor">#</a></h3><p>为组合框中的项目设置根模型项目<em>index</em>。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#rootModelIndex">rootModelIndex</a> ()。</p>
+<h3><span id="void-qcombobox-setvalidator-const-qvalidator-validator">void QComboBox::setValidator(const  *<em>validator</em>)</span><a href="#void-qcombobox-setvalidator-const-qvalidator-validator" class="header-anchor">#</a></h3><p>设置要使用的<em>validator</em>，而不是当前的验证器。</p>
+<p><strong>注意：</strong>当<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#editable-prop">可编辑</a>属性变为<code>false</code>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#validator">validator</a>().</p>
+<h3><span id="void-qcombobox-setview-qabstractitemview-itemview">void QComboBox::setView( *<em>itemView</em>)</span><a href="#void-qcombobox-setview-qabstractitemview-itemview" class="header-anchor">#</a></h3><p>将要在组合框弹出窗口中使用的视图设置为给定的<em>itemView</em>。组合框拥有视图的所有权。</p>
+<p>注意：如果您想使用便捷视图（如<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlistwidget.html">QListWidget</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtablewidget.html">QTableWidget</a>或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtreewidget.html">QTreeWidget</a>），请确保在调用此函数之前调用带有便捷小部件模型的组合框上的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setModel">setModel () 。</a></p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#view">view</a>().</p>
+<h3><span id="override-virtual-protected-void-qcombobox-showevent-qshowevent-e"><code>[override virtual protected]</code>void QComboBox::showEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-showevent-qshowevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#showEvent">QWidget::showEvent</a>(QShowEvent *event).</p>
+<h3><span id="virtual-void-qcombobox-showpopup"><code>[virtual]</code>void QComboBox::showPopup()</span><a href="#virtual-void-qcombobox-showpopup" class="header-anchor">#</a></h3><p>显示组合框中的项目列表。如果列表为空，则不会显示任何项目。</p>
+<p>如果您重新实现此函数以显示自定义弹出窗口，请确保调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#hidePopup">hidePopup</a> () 以重置内部状态。</p>
+<p><strong>另见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#hidePopup">hidePopup</a> ()。</p>
+<h3><span id="override-virtual-qsize-qcombobox-sizehint-const"><code>[override virtual]</code> QComboBox::sizeHint() const</span><a href="#override-virtual-qsize-qcombobox-sizehint-const" class="header-anchor">#</a></h3><p>重新实现属性的访问函数：<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#sizeHint-prop">QWidget::sizeHint</a>。</p>
+<p>此实现缓存大小提示以避免在内容动态更改时调整大小。要使缓存值无效，请更改<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#sizeAdjustPolicy-prop">sizeAdjustPolicy</a>。</p>
+<h3><span id="const-qvalidator-qcombobox-validator-const">const  *QComboBox::validator() const</span><a href="#const-qvalidator-qcombobox-validator-const" class="header-anchor">#</a></h3><p>返回用于约束组合框文本输入的验证器。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setValidator">setValidator</a> () 和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#editable-prop">editable</a>。</p>
+<h3><span id="qabstractitemview-qcombobox-view-const"> *QComboBox::view() const</span><a href="#qabstractitemview-qcombobox-view-const" class="header-anchor">#</a></h3><p>返回用于组合框弹出的列表视图。</p>
+<p><strong>另请参见</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qcombobox.html#setView">setView</a> ()。</p>
+<h3><span id="override-virtual-protected-void-qcombobox-wheelevent-qwheelevent-e"><code>[override virtual protected]</code>void QComboBox::wheelEvent( *<em>e</em>)</span><a href="#override-virtual-protected-void-qcombobox-wheelevent-qwheelevent-e" class="header-anchor">#</a></h3><p>重新实现: <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qwidget.html#wheelEvent">QWidget::wheelEvent</a>(QWheelEvent *event).</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusPendingReply/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QDBusPendingReply类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/C/QColorSpace/QColorSpace/">
+                        <span class="hidden-mobile">QColorSpace类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

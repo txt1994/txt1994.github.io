@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QHoverEvent Class 公共函数 详细描述 成员函数文档 QHoverEvent::QHoverEvent(QEvent::Type type, const QPointF &amp;pos, const QPointF &amp;oldPos, Qt::KeyboardModifiers modifiers &#x3D; Qt::NoModifier, const QPointing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QHoverEvent类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/H/QHoverEvent/QHoverEvent/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QHoverEvent Class 公共函数 详细描述 成员函数文档 QHoverEvent::QHoverEvent(QEvent::Type type, const QPointF &amp;pos, const QPointF &amp;oldPos, Qt::KeyboardModifiers modifiers &#x3D; Qt::NoModifier, const QPointing">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://doc.qt.io/qt-6/images/hoverevents.png">
+<meta property="article:published_time" content="2022-03-02T06:31:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:41:07.193Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="H">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://doc.qt.io/qt-6/images/hoverevents.png">
+  
+  
+  <title>QHoverEvent类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QHoverEvent类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:31" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QHoverEvent类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qhoverevent-class">QHoverEvent Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qhoverevent-qhoverevent-qevent-type-https-doc-qt-io-qt-6-qevent-html-type-enum-type-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-pos-const-qpointf-https-doc-qt-io-qt-6-qpointf-html-oldpos-qt-keyboardmodifiers-https-doc-qt-io-qt-6-qt-html-keyboardmodifier-enum-modifiers-qt-nomodifier-const-qpointingdevice-https-doc-qt-io-qt-6-qpointingdevice-html-device-qpointingdevice-primarypointingdevice">QHoverEvent::QHoverEvent(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::Type</a> <em>type</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>pos</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a> &amp;<em>oldPos</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#KeyboardModifier-enum">Qt::KeyboardModifiers</a> <em>modifiers</em> = Qt::NoModifier, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointingdevice.html">QPointingDevice</a> *<em>device</em> = QPointingDevice::primaryPointingDevice())</li>
+<li><a href="#qpoint-https-doc-qt-io-qt-6-qpoint-html-qhoverevent-oldpos-const">QPoint</a></li>
+<li><a href="#qpointf-https-doc-qt-io-qt-6-qpointf-html-qhoverevent-oldposf-const">QPointF</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QHoverEvent Class
+
+<p>QHoverEvent类包含描述一个鼠标事件的参数. <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qhoverevent></qhoverevent></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Gui REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Gui)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += gui</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qsinglepointevent.html">QSinglePointEvent</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhoverevent-members.html">List of all members, including inherited members</a></li>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhoverevent-obsolete.html">Deprecated members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhoverevent.html#QHoverEvent-2">QHoverEvent</a></strong>(QEvent::Type <em>type</em>, const QPointF &amp;<em>pos</em>, const QPointF &amp;<em>oldPos</em>, Qt::KeyboardModifiers <em>modifiers</em> = Qt::NoModifier, const QPointingDevice *<em>device</em> = QPointingDevice::primaryPointingDevice())</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QPoint</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhoverevent.html#oldPos">oldPos</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPointF</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhoverevent.html#oldPosF">oldPosF</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>当鼠标光标移入、移出或在小组件内，以及小组件有 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#WidgetAttribute-enum">Qt::WA_Hover</a> 属性时，就会发生鼠标事件。</p>
+<p>函数pos()给出了当前的光标位置，而<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhoverevent.html#oldPos">oldPos</a>()给出了旧的鼠标位置。</p>
+<p>事件<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::HoverEnter</a>和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::HoverLeave</a>，与事件<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::Enter</a>和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::Leave</a>之间有一些相似之处。然而，它们略有不同，因为我们在HoverEnter和HoverLeave的事件处理程序中做了更新()。</p>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::HoverMove</a>也与<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::MouseMove</a>略有不同。让我们考虑一个顶级窗口A包含一个子窗口B，而子窗口B又包含一个子窗口C（都启用了鼠标跟踪）：</p>
+<p><img src="https://doc.qt.io/qt-6/images/hoverevents.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>现在，如果你在A的中间把光标从上面移到下面，你会得到以下<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::MouseMove</a>事件。</p>
+<ol>
+<li>A::MouseMove</li>
+<li>B::MouseMove</li>
+<li>C::MouseMove</li>
+</ol>
+<p>你将得到与<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::HoverMove</a>相同的事件，只是无论事件是否被接受，该事件总是传播到顶层。它只有在<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qt.html#WidgetAttribute-enum">Qt::WA_NoMousePropagation</a>属性下才会停止传播。</p>
+<p>在这种情况下，事件将以如下方式发生。</p>
+<ol>
+<li>A::HoverMove</li>
+<li>A::HoverMove, B::HoverMove</li>
+<li>A::HoverMove, B::HoverMove, C::HoverMove</li>
+</ol>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qhoverevent-qhoverevent-qevent-type-type-const-qpointf-amp-pos-const-qpointf-amp-oldpos-qt-keyboardmodifiers-modifiers-qt-nomodifier-const-qpointingdevice-device-qpointingdevice-primarypointingdevice">QHoverEvent::QHoverEvent( <em>type</em>, const  &amp;<em>pos</em>, const  &amp;<em>oldPos</em>,  <em>modifiers</em> = Qt::NoModifier, const  *<em>device</em> = QPointingDevice::primaryPointingDevice())</span><a href="#qhoverevent-qhoverevent-qevent-type-type-const-qpointf-amp-pos-const-qpointf-amp-oldpos-qt-keyboardmodifiers-modifiers-qt-nomodifier-const-qpointingdevice-device-qpointingdevice-primarypointingdevice" class="header-anchor">#</a></h3><p>构建一个源自<em>设备</em>的悬停事件对象。</p>
+<p>参数<em>type</em>必须是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::HoverEnter</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::HoverLeave</a>, 或者<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::HoverMove</a>。</p>
+<p><em>pos</em>是当前鼠标指针相对于接收部件的位置，而<em>oldPos</em>是它之前的这种位置。<em>modifiers</em>持有事件发生时所有键盘修改器的状态。</p>
+<h3><span id="qpoint-qhoverevent-oldpos-const"> QHoverEvent::oldPos() const</span><a href="#qpoint-qhoverevent-oldpos-const" class="header-anchor">#</a></h3><p>返回鼠标指针之前的位置，相对于接收事件的部件。如果没有先前的位置，oldPos()将返回与pos()相同的位置。</p>
+<p>在<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::HoverEnter</a>事件中，这个位置将始终是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpoint.html">QPoint</a>(-1, -1)。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhoverevent-obsolete.html#pos">pos</a>().</p>
+<h3><span id="qpointf-qhoverevent-oldposf-const"> QHoverEvent::oldPosF() const</span><a href="#qpointf-qhoverevent-oldposf-const" class="header-anchor">#</a></h3><p>返回鼠标指针之前的位置，相对于接收事件的部件。如果没有先前的位置，oldPosF()将返回与posF()相同的位置。</p>
+<p>在<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qevent.html#Type-enum">QEvent::HoverEnter</a>事件中，这个位置将始终是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qpointf.html">QPointF</a>(-1, -1)。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhoverevent-obsolete.html#posF">posF</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/H/">H</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/H/QHostInfo/QHostInfo/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QHostInfo类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/H/QHttp2Configuration/QHttp2Configuration/">
+                        <span class="hidden-mobile">QHttp2Configuration类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

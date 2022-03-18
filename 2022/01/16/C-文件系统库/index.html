@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="类 非成员函数 文件类型      此文来源于👉文件系统库 - cppreference.com，并整理。  库范畴定义 文件：持有数据的文件系统对象，能被写入或读取，或二者皆可。文件拥有名称及属性，属性之一是文件类型： 目录：表现为目录条目的容器的文件，目录条目标识其他文件（其中一些可以是另外的嵌套的目录）。讨论到具体文件时，包含该文件目录条目的目录是其父目录。父目录能以相对路径名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++文件系统库">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/16/C-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%BA%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="类 非成员函数 文件类型      此文来源于👉文件系统库 - cppreference.com，并整理。  库范畴定义 文件：持有数据的文件系统对象，能被写入或读取，或二者皆可。文件拥有名称及属性，属性之一是文件类型： 目录：表现为目录条目的容器的文件，目录条目标识其他文件（其中一些可以是另外的嵌套的目录）。讨论到具体文件时，包含该文件目录条目的目录是其父目录。父目录能以相对路径名">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/c++file.png">
+<meta property="article:published_time" content="2022-01-16T07:16:11.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:02:47.098Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="FileSystem">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/c++file.png">
+  
+  
+  <title>C++文件系统库 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++文件系统库">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-16 15:16" pubdate>
+        2022年1月16日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++文件系统库</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#lei">类</a></li>
+<li><a href="#fei-cheng-yuan-han-shu">非成员函数</a></li>
+<li><a href="#wen-jian-lei-xing"><strong>文件类型</strong></a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<p>此文来源于👉<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem">文件系统库 - cppreference.com</a>，并整理。</p>
+<ul>
+<li>库范畴定义<ul>
+<li>文件：持有数据的文件系统对象，能被写入或读取，或二者皆可。文件拥有名称及属性，属性之一是文件类型：<ul>
+<li>目录：表现为目录条目的容器的文件，目录条目标识其他文件（其中一些可以是另外的嵌套的目录）。讨论到具体文件时，包含该文件目录条目的目录是其父目录。父目录能以相对路径名 “..” 表示。</li>
+<li>硬链接：关联一个名字到一个既存文件的目录条目。若支持多重硬链接，则文件在最后一个到它的硬链接被移除后才被移除。</li>
+<li>符号链接：关联一个名词到一个路径的目录条目，路径可以存在亦可不存在。</li>
+<li><em>常规文件</em>：不是其他文件类型的文件。</li>
+</ul>
+</li>
+<li>文件名：命名一个文件的字符串。容许字符、大小写区别、最大长度以及被禁止名称是实现定义的。名称 “.” （点）与 “..” （双点）在库层次拥有特殊含义。</li>
+<li>路径：标识一个文件的元素序列。它以可选的 根名 （例如 Windows 上的 “C:” 或 “//server” ）开始，后随可选的 根目录 （例如 Unix 上的 “/“ ），后随零或更多个文件名（除了最后一个都必须是目录或到目录的链接）的序列。表示路径的字符串（路径名）的原生格式（如哪些字符被用作分隔符）与字符编码是实现定义的，库提供路径的可移植表示。<ul>
+<li>绝对路径：无歧义地标识一个文件位置的路径。</li>
+<li>规范路径：不包含符号链接、 “.” 或 “..” 元素的绝对路径。</li>
+<li>相对路径：标识相对于文件系统中某位置的文件位置的路径。特殊路径名 “.” （点，“当前目录”）和 “..” （双点、“父目录”）是相对路径。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="lei">类</span><a href="#lei" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="left">定义于头文件 <code>&lt;filesystem&gt;</code></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">定义于命名空间 <code>std::filesystem</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/path">path</a>(C++17)</td>
+<td align="left">表示路径 (类)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/filesystem_error">filesystem_error</a>(C++17)</td>
+<td align="left">文件系统错误时抛出的异常 (类)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/directory_entry">directory_entry</a>(C++17)</td>
+<td align="left">目录条目 (类)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/directory_iterator">directory_iterator</a>(C++17)</td>
+<td align="left">指向目录内容的迭代器 (类)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/recursive_directory_iterator">recursive_directory_iterator</a>(C++17)</td>
+<td align="left">指向一个目录及其子目录的内容的迭代器 (类)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/file_status">file_status</a>(C++17)</td>
+<td align="left">表示文件类型及权限 (类)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/space_info">space_info</a>(C++17)</td>
+<td align="left">关于文件系统上空闲及可用空间的信息 (类)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/file_type">file_type</a>(C++17)</td>
+<td align="left">文件的类型 (枚举)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/perms">perms</a>(C++17)</td>
+<td align="left">标识文件系统权限 (枚举)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/perm_options">perm_options</a>(C++17)</td>
+<td align="left">指定权限操作的语义 (枚举)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/copy_options">copy_options</a>(C++17)</td>
+<td align="left">指定复制操作的语义 (枚举)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/directory_options">directory_options</a>(C++17)</td>
+<td align="left">用于迭代目录内容的选项 (枚举)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/file_time_type">file_time_type</a>(C++17)</td>
+<td align="left">表示文件时间值 (typedef)</td>
+</tr>
+</tbody></table>
+<h2><span id="fei-cheng-yuan-han-shu">非成员函数</span><a href="#fei-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="left">定义于头文件 <code>&lt;filesystem&gt;</code></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">定义于命名空间 <code>std::filesystem</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/absolute">absolute</a>(C++17)</td>
+<td align="left">组成一个绝对路径 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/canonical">canonicalweakly_canonical</a>(C++17)</td>
+<td align="left">组成一个规范路径 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/relative">relativeproximate</a>(C++17)</td>
+<td align="left">组成一个相对路径 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/copy">copy</a>(C++17)</td>
+<td align="left">复制文件或目录 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/copy_file">copy_file</a>(C++17)</td>
+<td align="left">复制文件内容 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/copy_symlink">copy_symlink</a>(C++17)</td>
+<td align="left">复制一个符号链接 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/create_directory">create_directory create_directories</a>(C++17)(C++17)</td>
+<td align="left">创建新目录 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/create_hard_link">create_hard_link</a>(C++17)</td>
+<td align="left">创建一个硬链接 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/create_symlink">create_symlink create_directory_symlink</a>(C++17)(C++17)</td>
+<td align="left">创建一个符号链接 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/current_path">current_path</a>(C++17)</td>
+<td align="left">返回或设置当前工作目录 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/exists">exists</a>(C++17)</td>
+<td align="left">检查路径是否指代既存的文件系统对象 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/equivalent">equivalent</a>(C++17)</td>
+<td align="left">检查两个路径是否指代同一文件系统对象 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/file_size">file_size</a>(C++17)</td>
+<td align="left">返回文件的大小 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/hard_link_count">hard_link_count</a>(C++17)</td>
+<td align="left">返回指代特定文件的硬链接数 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/last_write_time">last_write_time</a>(C++17)</td>
+<td align="left">获取或设置最近一次数据修改的时间 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/permissions">permissions</a>(C++17)</td>
+<td align="left">修改文件访问权限 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/read_symlink">read_symlink</a>(C++17)</td>
+<td align="left">获得符号链接的目标 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/remove">remove remove_all</a>(C++17)(C++17)</td>
+<td align="left">移除一个文件或空目录 移除一个文件或递归地移除一个目录及其所有内容 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/rename">rename</a>(C++17)</td>
+<td align="left">移动或重命名一个文件或目录 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/resize_file">resize_file</a>(C++17)</td>
+<td align="left">以截断或填充零更改一个常规文件的大小 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/space">space</a>(C++17)</td>
+<td align="left">确定文件系统上的可用空闲空间 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/status">status symlink_status</a>(C++17)(C++17)</td>
+<td align="left">确定文件属性 确定文件属性，检查符号链接目标 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/temp_directory_path">temp_directory_path</a>(C++17)</td>
+<td align="left">返回一个适用于临时文件的目录 (函数)</td>
+</tr>
+</tbody></table>
+<h2><span id="wen-jian-lei-xing"><strong>文件类型</strong></span><a href="#wen-jian-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/is_block_file">is_block_file</a>(C++17)</th>
+<th align="left">检查给定的路径是否表示块设备 (函数)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/is_character_file">is_character_file</a>(C++17)</td>
+<td align="left">检查给定的路径是否表示字符设备 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/is_directory">is_directory</a>(C++17)</td>
+<td align="left">检查给定的路径是否表示一个目录 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/is_empty">is_empty</a>(C++17)</td>
+<td align="left">检查给定的路径是否表示一个空文件或空目录 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/is_fifo">is_fifo</a>(C++17)</td>
+<td align="left">检查给定的路径是否表示一个命名管道 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/is_other">is_other</a>(C++17)</td>
+<td align="left">检查参数是否表示一个<em>其他</em>文件 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/is_regular_file">is_regular_file</a>(C++17)</td>
+<td align="left">检查参数是否表示一个常规文件 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/is_socket">is_socket</a>(C++17)</td>
+<td align="left">检查参数是否表示一个具名 IPC 套接字 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/is_symlink">is_symlink</a>(C++17)</td>
+<td align="left">检查参数是否表示一个符号链接 (函数)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/filesystem/status_known">status_known</a>(C++17)</td>
+<td align="left">检查参数是否表示一个符号链接 (函数)</td>
+</tr>
+</tbody></table>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/FileSystem/">FileSystem</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/18/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">动态内存管理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/16/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+                        <span class="hidden-mobile">C++正则表达式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

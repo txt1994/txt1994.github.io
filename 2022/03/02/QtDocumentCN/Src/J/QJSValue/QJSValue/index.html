@@ -1,0 +1,1177 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QJSValue Class 公共类型 公共函数 相关非成员 详细描述 Working With Arrays   成员类型文档编制 [since 5.12] enum QJSValue:: ErrorType enum QJSValue:: ObjectConversionBehavior enum QJSValue:: SpecialValue   成员函数文档编制 QJSValue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QJSValue类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/J/QJSValue/QJSValue/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QJSValue Class 公共类型 公共函数 相关非成员 详细描述 Working With Arrays   成员类型文档编制 [since 5.12] enum QJSValue:: ErrorType enum QJSValue:: ObjectConversionBehavior enum QJSValue:: SpecialValue   成员函数文档编制 QJSValue">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:45:10.026Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="J">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QJSValue类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QJSValue类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      16k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      136 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QJSValue类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qjsvalue-class">QJSValue Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-guan-fei-cheng-yuan">相关非成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#working-with-arrays">Working With Arrays</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#since-5-12-enum-qjsvalue-errortype"><code>[since 5.12] </code>enum QJSValue:: ErrorType</a></li>
+<li><a href="#enum-qjsvalue-objectconversionbehavior">enum QJSValue:: ObjectConversionBehavior</a></li>
+<li><a href="#enum-qjsvalue-specialvalue">enum QJSValue:: SpecialValue</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qjsvalue-qjsvalue-const-char-value">QJSValue:: QJSValue (const char * <em>value</em> )</a></li>
+<li><a href="#qjsvalue-qjsvalue-const-qlatin1string-qlatin1string-html-value">QJSValue:: QJSValue (const </a><a href="qlatin1string.html">QLatin1String </a>&amp; <em>value</em> )</li>
+<li><a href="#qjsvalue-qjsvalue-const-qstring-qstring-html-value">QJSValue:: QJSValue (const </a><a href="qstring.html">QString </a>&amp; <em>value</em> )</li>
+<li><a href="#qjsvalue-qjsvalue-double-value">QJSValue:: QJSValue ( double <em>value</em> )</a></li>
+<li><a href="#qjsvalue-qjsvalue-uint-uint-typedef-value">QJSValue:: QJSValue ( </a><a href="#uint-typedef">uint </a><em>value</em> )</li>
+<li><a href="#qjsvalue-qjsvalue-int-value">QJSValue:: QJSValue ( int <em>value</em> )</a></li>
+<li><a href="#qjsvalue-qjsvalue-bool-value">QJSValue:: QJSValue ( bool <em>value</em> )</a></li>
+<li><a href="#qjsvalue-qjsvalue-qjsvalue-qjsvalue-other">QJSValue:: QJSValue ( </a><a href="#QJSValue">QJSValue </a>&amp;&amp; <em>other</em> )</li>
+<li><a href="#qjsvalue-qjsvalue-const-qjsvalue-qjsvalue-other">QJSValue:: QJSValue (const </a><a href="#QJSValue">QJSValue </a>&amp; <em>other</em> )</li>
+<li><a href="#qjsvalue-qjsvalue-qjsvalue-specialvalue-specialvalue-enum-value-undefinedvalue">QJSValue:: QJSValue ( </a><a href="#SpecialValue-enum">QJSValue::SpecialValue </a><em>value</em> = UndefinedValue)</li>
+<li><a href="#qjsvalue-qjsvalue-qjsvalue-operator-const-qjsvalue-qjsvalue-other">QJSValue </a></li>
+<li><a href="#qjsvalue-qjsvalue-qjsvalue-operator-qjsvalue-qjsvalue-other-1">QJSValue </a></li>
+<li><a href="#qjsvalue-qjsvalue">QJSValue:: ~QJSValue ()</a></li>
+<li><a href="#qjsvalue-qjsvalue-qjsvalue-call-const-qjsvaluelist-qjsvaluelist-typedef-args-qjsvaluelist-const-2">QJSValue </a></li>
+<li><a href="#qjsvalue-qjsvalue-qjsvalue-callasconstructor-const-qjsvaluelist-qjsvaluelist-typedef-args-qjsvaluelist-const-3">QJSValue </a></li>
+<li><a href="#qjsvalue-qjsvalue-qjsvalue-callwithinstance-const-qjsvalue-qjsvalue-instance-const-qjsvaluelist-qjsvaluelist-typedef-args-qjsvaluelist-const-4">QJSValue </a></li>
+<li><a href="#bool-qjsvalue-deleteproperty-const-qstring-qstring-html-name">bool QJSValue:: deleteProperty (const </a><a href="qstring.html">QString </a>&amp; <em>name</em> )</li>
+<li><a href="#bool-qjsvalue-deng-yu-const-qjsvalue-qjsvalue-other-const">bool QJSValue:: 等于 (const </a><a href="#QJSValue">QJSValue </a>&amp; <em>other</em> ) const</li>
+<li><a href="#since-5-12-qjsvalue-errortype-errortype-enum-qjsvalue-errortype-const"><code>[since 5.12] </code></a><a href="#ErrorType-enum">QJSValue::ErrorType </a>QJSValue:: errorType () const</li>
+<li><a href="#bool-qjsvalue-hasownproperty-const-qstring-qstring-html-name-const">bool QJSValue:: hasOwnProperty (const </a><a href="qstring.html">QString </a>&amp; <em>name</em> ) const</li>
+<li><a href="#bool-qjsvalue-hasproperty-const-qstring-qstring-html-name-const">bool QJSValue:: hasProperty (const </a><a href="qstring.html">QString </a>&amp; <em>name</em> ) const</li>
+<li><a href="#bool-qjsvalue-isarray-const">bool QJSValue:: isArray () const</a></li>
+<li><a href="#bool-qjsvalue-isbool-const">bool QJSValue:: isBool () const</a></li>
+<li><a href="#bool-qjsvalue-iscallable-const">bool QJSValue:: isCallable () const</a></li>
+<li><a href="#bool-qjsvalue-isdate-const">bool QJSValue:: isDate () const</a></li>
+<li><a href="#bool-qjsvalue-iserror-const">bool QJSValue:: isError () const</a></li>
+<li><a href="#bool-qjsvalue-isnull-const">bool QJSValue:: isNull () const</a></li>
+<li><a href="#bool-qjsvalue-isnumber-const">bool QJSValue:: isNumber () const</a></li>
+<li><a href="#bool-qjsvalue-isobject-const">bool QJSValue:: isObject () const</a></li>
+<li><a href="#since-5-8-bool-qjsvalue-isqmetaobject-const"><code>[since 5.8] </code>bool QJSValue:: isQMetaObject () const</a></li>
+<li><a href="#bool-qjsvalue-isqobject-const">bool QJSValue:: isQObject () const</a></li>
+<li><a href="#bool-qjsvalue-isregexp-const">bool QJSValue:: isRegExp () const</a></li>
+<li><a href="#bool-qjsvalue-isstring-const">bool QJSValue:: isString () const</a></li>
+<li><a href="#bool-qjsvalue-isundefined-const">bool QJSValue:: isUndefined () const</a></li>
+<li><a href="#bool-qjsvalue-isurl-const">bool QJSValue:: isUrl () const</a></li>
+<li><a href="#bool-qjsvalue-isvariant-const">bool QJSValue:: isVariant () const</a></li>
+<li><a href="#qjsvalue-qjsvalue-qjsvalue-property-const-qstring-qstring-html-name-const-5">QJSValue </a></li>
+<li><a href="#qjsvalue-qjsvalue-qjsvalue-property-quint32-quint32-typedef-arrayindex-const-6">QJSValue </a></li>
+<li><a href="#qjsvalue-qjsvalue-qjsvalue-prototype-const">QJSValue</a></li>
+<li><a href="#void-qjsvalue-setproperty-const-qstring-qstring-html-name-const-qjsvalue-qjsvalue-value">void QJSValue:: setProperty (const </a><a href="qstring.html">QString</a> &amp; <em>name</em> , const <a href="#QJSValue">QJSValue</a>&amp; <em>value</em> )</li>
+<li><a href="#void-qjsvalue-setproperty-quint32-quint32-typedef-arrayindex-const-qjsvalue-qjsvalue-value">void QJSValue:: setProperty ( </a><a href="#quint32-typedef">quint32 </a><em>arrayIndex</em> , const <a href="#QJSValue">QJSValue </a>&amp; <em>value</em> )</li>
+<li><a href="#void-qjsvalue-setprototype-const-qjsvalue-qjsvalue-prototype">void QJSValue:: setPrototype ( const </a><a href="#QJSValue">QJSValue</a>&amp; <em>prototype</em> )</li>
+<li><a href="#bool-qjsvalue-strictlyequals-const-qjsvalue-qjsvalue-other-const">bool QJSValue:: strictlyEquals (const </a><a href="#QJSValue">QJSValue</a>&amp; <em>other</em> ) const</li>
+<li><a href="#bool-qjsvalue-tobool-const">bool QJSValue:: toBool () const</a></li>
+<li><a href="#qdatetime-qdatetime-html-qjsvalue-todatetime-const">QDateTime </a></li>
+<li><a href="#qint32-qint32-typedef-qjsvalue-toint-const">qint32 </a></li>
+<li><a href="#double-qjsvalue-tonumber-const">double QJSValue:: toNumber () const</a></li>
+<li><a href="#qjsprimitivevalue-qjsprimitivevalue-html-qjsvalue-toprimitive-const">QJSPrimitiveValue </a></li>
+<li><a href="#since-5-8-const-qmetaobject-qmetaobject-html-qjsvalue-toqmetaobject-const"><code>[since 5.8] </code>const </a><a href="qmetaobject.html">QMetaObject </a>*QJSValue:: toQMetaObject () const</li>
+<li><a href="#qobject-qobject-html-qjsvalue-toqobject-const">QObject </a></li>
+<li><a href="#qstring-qstring-html-qjsvalue-tostring-const">QString </a></li>
+<li><a href="#quint32-quint32-typedef-qjsvalue-touint-const">quint32 </a></li>
+<li><a href="#qvariant-qjsvalue-tovariant-qjsvalue-objectconversionbehavior-objectconversionbehavior-enum-behavior-const">QVariant </a></li>
+<li><a href="#qvariant-qjsvalue-tovariant-const-1">QVariant </a></li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-cheng-yuan-1">相关非成员</a><ul>
+<li><a href="#qjsvaluelist">QJSValueList</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QJSValue Class
+
+<p>QJSValue类作为Qt/JavaScript数据类型的一个容器。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qjsvalue></qjsvalue></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Qml REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Qml)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += qml</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 5.0</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qjsvalue-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#ErrorType-enum">ErrorType </a></strong>{ GenericError, RangeError, ReferenceError, SyntaxError, TypeError, URIError }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a href="#ObjectConversionBehavior-enum">ObjectConversionBehavior </a></strong>{ ConvertJSObjects, RetainJSObjects }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#SpecialValue-enum">SpecialValue </a></strong>{ UndefinedValue, NullValue }</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QJSValue-9">QJSValue </a></strong>(const char * <em>value</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QJSValue-8">QJSValue </a></strong>(const QLatin1String &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSValue-7">QJSValue </a></strong>(const QString &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSValue-6">QJSValue </a></strong>(double <em>value</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSValue-5">QJSValue </a></strong>(uint <em>value</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSValue-4">QJSValue </a></strong>(int <em>value</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSValue-3">QJSValue </a></strong>(bool <em>value</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSValue-2">QJSValue </a></strong>(QJSValue &amp;&amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSValue-1">QJSValue </a></strong>(const QJSValue &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSValue">QJSValue </a></strong>(QJSValue::SpecialValue <em>value</em> = UndefinedValue)</td>
+</tr>
+<tr>
+<td>QJSValue &amp;</td>
+<td><strong><a href="#operator-eq-1">operator= </a></strong>(const QJSValue &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td>QJSValue &amp;</td>
+<td><strong><a href="#operator-eq">operator= </a></strong>(QJSValue &amp;&amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QJSValue">~QJSValue </a></strong>()</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#call">call </a></strong>(const QJSValueList &amp; <em>args</em> = QJSValueList()) const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#callAsConstructor">callAsConstructor </a></strong>(const QJSValueList &amp; <em>args</em> = QJSValueList()) const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#callWithInstance">callWithInstance </a></strong>(const QJSValue &amp; <em>instance</em> , const QJSValueList &amp; <em>args</em> = QJSValueList()) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#deleteProperty">deleteProperty </a></strong>(const QString &amp; <em>name</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#equals">等于 </a></strong>(const QJSValue &amp; <em>other</em> ) const</td>
+</tr>
+<tr>
+<td>QJSValue::ErrorType</td>
+<td><strong><a href="#errorType">errorType </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasOwnProperty">hasOwnProperty </a></strong>(const QString &amp; <em>name</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasProperty">hasProperty </a></strong>(const QString &amp; <em>name</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isArray">isArray </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isBool">isBool </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isCallable">isCallable </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isDate">isDate </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isError">isError </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNull">isNull </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNumber">isNumber </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isObject">isObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isQMetaObject">isQMetaObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isQObject">isQObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isRegExp">isRegExp </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isString">isString </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isUndefined">isUndefined </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isUrl">isUrl </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isVariant">isVariant </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#property">property </a></strong>(const QString &amp; <em>name</em> ) const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#property-1">property </a></strong>(quint32 <em>arrayIndex</em> ) const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#prototype">prototype </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setProperty">setProperty </a></strong>(const QString &amp; <em>name</em> , const QJSValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setProperty-1">setProperty </a></strong>(quint32 <em>arrayIndex</em> , const QJSValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setPrototype">setPrototype </a></strong>(const QJSValue &amp; <em>prototype</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#strictlyEquals">strictlyEquals </a></strong>(const QJSValue &amp; <em>other</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#toBool">toBool </a></strong>() const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="#toDateTime">toDateTime </a></strong>() const</td>
+</tr>
+<tr>
+<td>qint32</td>
+<td><strong><a href="#toInt">toInt </a></strong>() const</td>
+</tr>
+<tr>
+<td>double</td>
+<td><strong><a href="#toNumber">toNumber </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJSPrimitiveValue</td>
+<td><strong><a href="#toPrimitive">toPrimitive </a></strong>() const</td>
+</tr>
+<tr>
+<td>const QMetaObject *</td>
+<td><strong><a href="#toQMetaObject">toQMetaObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>QObject *</td>
+<td><strong><a href="#toQObject">toQObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#toString">toString </a></strong>() const</td>
+</tr>
+<tr>
+<td>quint32</td>
+<td><strong><a href="#toUInt">toUInt </a></strong>() const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#toVariant">toVariant </a></strong>(QJSValue::ObjectConversionBehavior <em>behavior</em> ) const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#toVariant-1">toVariant </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QJSValueList-typedef">QJSValueList</a></strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QJSValue支持[ECMA-262]（<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm%EF%BC%89%E6%A0%87%E5%87%86%E4%B8%AD%E5%AE%9A%E4%B9%89%E7%9A%84%E7%B1%BB%E5%9E%8B%E3%80%82%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%EF%BC%8C%E5%8D%B3%E6%9C%AA%E5%AE%9A%E4%B9%89%E3%80%81%E7%A9%BA%E3%80%81%E5%B8%83%E5%B0%94%E3%80%81%E6%95%B0%E5%AD%97%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9B%E4%BB%A5%E5%8F%8A%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%98%B5%E5%88%97%E7%B1%BB%E5%9E%8B%E3%80%82%E6%AD%A4%E5%A4%96%EF%BC%8C%E8%BF%98%E4%B8%BAQt/C++%E7%B1%BB%E5%9E%8B%E6%8F%90%E4%BE%9B%E4%BA%86%E5%86%85%E7%BD%AE%E6%94%AF%E6%8C%81%EF%BC%8C%E5%A6%82[QVariant]()%E5%92%8C[QObject](qobject.html)%E3%80%82">http://www.ecma-international.org/publications/standards/Ecma-262.htm）标准中定义的类型。原始类型，即未定义、空、布尔、数字和字符串；以及对象和阵列类型。此外，还为Qt/C++类型提供了内置支持，如[QVariant]()和[QObject](qobject.html)。</a></p>
+<p>对于基于对象的类型（包括日期和正则），使用<a href="qjsengine.html">QJSEngine</a>中的newT()函数（例如，<a href="qjsengine.html#newObject">QJSEngine::newObject</a>()）来创建所需类型的QJSValue。对于原始类型，使用QJSValue构造函数中的一个重载。对于其他类型，例如注册的小工具类型，如[QPoint]（qpoint.html），你可以使用[QJSEngine::toScriptValue]（qjsengine.html#toScriptValue）。</p>
+<p>命名为isT()的方法（例如，<a href="#isBool">isBool </a>(), <a href="#isUndefined">isUndefined </a>()）可以用来测试一个值是否属于某种类型。命名为toT()的方法（例如<a href="#toBool">toBool</a>(), <a href="#toString">toString</a>()）可用于将一个QJSValue转换为另一种类型。你也可以使用通用的qjsvalue_cast()函数。</p>
+<p>对象值有零个或多个属性，它们本身就是QJSValues。使用<a href="#setProperty">setProperty</a>()来设置对象的一个属性，并调用<a href="#property">property</a>()来检索一个属性的值。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QJSEngine myEngine;
+QJSValue myObject = myEngine.<span class="hljs-built_in">newObject</span>();
+QJSValue myOtherObject = myEngine.<span class="hljs-built_in">newObject</span>();
+myObject.<span class="hljs-built_in">setProperty</span>(<span class="hljs-string">"myChild"</span>, myOtherObject);
+myObject.<span class="hljs-built_in">setProperty</span>(<span class="hljs-string">"name"</span>, <span class="hljs-string">"John Doe"</span>);</code></pre></div>
+
+<p>如果你想遍历一个脚本对象的属性，请使用<a href="qjsvalueiterator.html">QJSValueIterator</a>类。</p>
+<p>对象的值有一个内部的 “prototype “属性，可以用<a href="#prototype">prototype</a>()和<a href="#setPrototype">setPrototype</a>()访问它。</p>
+<p>函数对象（<a href="#isCallable">isCallable</a>()返回true的对象）可以通过调用<a href="#call">call</a>()来调用。） 构造函数可以通过调用<a href="#callAsConstructor">callAsConstructor</a>()来构造新对象。</p>
+<p>使用 <a href="#equals">等于</a>() 或 <a href="#strictlyEquals">strictlyEquals</a>() 来比较一个QJSValue和另一个QJSValue。</p>
+<p>请注意，<a href="#isObject">isObject</a>()为真的QJSValue只携带一个实际对象的引用；复制QJSValue将只复制对象的引用，而不是对象本身。如果你想克隆一个对象（即把一个对象的属性复制到另一个对象），你可以在脚本代码中的 “for-in “语句或C++中的<a href="qjsvalueiterator.html">QJSValueIterator</a>的帮助下这样做。</p>
+<h3><span id="working-with-arrays">Working With Arrays</span><a href="#working-with-arrays" class="header-anchor">#</a></h3><p>要使用QJSValue创建一个数组。use <a href="qjsengine.html#newArray">QJSEngine::newArray </a>():</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// Assumes that this class was declared in QML.</span>
+QJSValue jsArray = engine-&gt;<span class="hljs-built_in">newArray</span>(<span class="hljs-number">3</span>);</code></pre></div>
+
+<p>要设置数组中的单个元素，请使用<a href="#setProperty-1">setProperty(quint32 arrayIndex, const QJSValue &amp;value)</a>重载。例如，要用整数来填充上面的数组:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; ++i) {
+    jsArray.<span class="hljs-built_in">setProperty</span>(i, QRandomGenerator::<span class="hljs-built_in">global</span>().<span class="hljs-built_in">generate</span>());
+}</code></pre></div>
+
+<p>要确定数组的长度，请访问<code>"length" </code>property。要访问数组元素，使用<a href="#property-1">property</a>(quint32 arrayIndex) 重载。下面的代码将我们上面创建的数组读回一个列表中:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QVector&lt;<span class="hljs-type">int</span>&gt; integers;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> length = jsArray.<span class="hljs-built_in">property</span>(<span class="hljs-string">"length"</span>).<span class="hljs-built_in">toInt</span>();
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; length; ++i) {
+    integers.<span class="hljs-built_in">append</span>(jsArray.<span class="hljs-built_in">property</span>(i).<span class="hljs-built_in">toInt</span>());
+}</code></pre></div>
+
+<p><strong>另请参阅</strong> <a href="qjsengine.html">QJSEngine </a>and <a href="qjsvalueiterator.html">QJSValueIterator </a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="since-5-12-enum-qjsvalue-errortype"><code>[since 5.12] </code>enum QJSValue:: ErrorType</span><a href="#since-5-12-enum-qjsvalue-errortype" class="header-anchor">#</a></h3><p>使用这个枚举可以得到JavaScript语言特定类型的Error对象。</p>
+<p>当在C++中模拟语言特性需要使用专门的异常类型时，它们可能是有用的。此外，它们可能有助于更清楚地传达某些典型情况，而不是抛出一个通用的JavaScript异常。例如，处理网络和资源定位器的代码可能会发现使用URIError类型来传播与畸形定位器有关的错误是非常有用的。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QJSValue::GenericError</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">一个通用的错误对象，但不属于特定的子类型。</td>
+</tr>
+<tr>
+<td align="left"><code>QJSValue::RangeError</code></td>
+<td align="left"><code>3</code></td>
+<td align="left">一个值不符合预期的集合或范围。</td>
+</tr>
+<tr>
+<td align="left"><code>QJSValue::ReferenceError</code></td>
+<td align="left"><code>4</code></td>
+<td align="left">引用了一个不存在的变量。</td>
+</tr>
+<tr>
+<td align="left"><code>QJSValue::SyntaxError</code></td>
+<td align="left"><code>5</code></td>
+<td align="left">遇到了一个无效的标记或标记序列，不符合语言的语法。</td>
+</tr>
+<tr>
+<td align="left"><code>QJSValue::TypeError</code></td>
+<td align="left"><code>6</code></td>
+<td align="left">一个操作数或参数与预期的类型不一致。</td>
+</tr>
+<tr>
+<td align="left"><code>QJSValue::URIError</code></td>
+<td align="left"><code>7</code></td>
+<td align="left">一个URI处理函数被错误地使用，或者提供的URI是畸形的。</td>
+</tr>
+</tbody></table>
+<p>该枚举在 Qt 5.12 引入或被修改。</p>
+<h3><span id="enum-qjsvalue-objectconversionbehavior">enum QJSValue:: ObjectConversionBehavior</span><a href="#enum-qjsvalue-objectconversionbehavior" class="header-anchor">#</a></h3><p>这个枚举用于指定在转换为<a href>QVariant</a>时，如何处理没有对应的本地Qt类型的JavaScript对象。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QJSValue::ConvertJSObjects</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">试图进行尽最大努力，可能是有损的转换。</td>
+</tr>
+<tr>
+<td align="left"><code>QJSValue::RetainJSObjects</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">该值被保留为<a href>QJSValue</a>包裹的<a href>QVariant</a>。</td>
+</tr>
+</tbody></table>
+<h3><span id="enum-qjsvalue-specialvalue">enum QJSValue:: SpecialValue</span><a href="#enum-qjsvalue-specialvalue" class="header-anchor">#</a></h3><p>这个枚举是用来指定一个单值类型。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QJSValue::UndefinedValue</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">一个未定义的值。</td>
+</tr>
+<tr>
+<td align="left"><code>QJSValue::NullValue</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">一个空值。</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qjsvalue-qjsvalue-const-char-value">QJSValue:: QJSValue (const char * <em>value</em> )</span><a href="#qjsvalue-qjsvalue-const-char-value" class="header-anchor">#</a></h3><p>用一个字符串<em>value</em>构建一个新的QJSValue。</p>
+<h3><span id="qjsvalue-qjsvalue-const-qlatin1string-amp-value">QJSValue:: QJSValue (const &amp; <em>value</em> )</span><a href="#qjsvalue-qjsvalue-const-qlatin1string-amp-value" class="header-anchor">#</a></h3><p>用一个字符串<em>value</em>构建一个新的QJSValue。</p>
+<h3><span id="qjsvalue-qjsvalue-const-qstring-amp-value">QJSValue:: QJSValue (const &amp; <em>value</em> )</span><a href="#qjsvalue-qjsvalue-const-qstring-amp-value" class="header-anchor">#</a></h3><p>用一个字符串<em>value</em>构建一个新的QJSValue。</p>
+<h3><span id="qjsvalue-qjsvalue-double-value">QJSValue:: QJSValue ( double <em>value</em> )</span><a href="#qjsvalue-qjsvalue-double-value" class="header-anchor">#</a></h3><p>用一个double <em>value</em>构建一个新的QJSValue。</p>
+<h3><span id="qjsvalue-qjsvalue-uint-value">QJSValue:: QJSValue ( <em>value</em> )</span><a href="#qjsvalue-qjsvalue-uint-value" class="header-anchor">#</a></h3><p>用一个number <em>value</em>构建一个新的QJSValue。</p>
+<h3><span id="qjsvalue-qjsvalue-int-value">QJSValue:: QJSValue ( int <em>value</em> )</span><a href="#qjsvalue-qjsvalue-int-value" class="header-anchor">#</a></h3><p>用一个number <em>value</em>构建一个新的QJSValue。</p>
+<h3><span id="qjsvalue-qjsvalue-bool-value">QJSValue:: QJSValue ( bool <em>value</em> )</span><a href="#qjsvalue-qjsvalue-bool-value" class="header-anchor">#</a></h3><p>用一个布尔值<em>value</em>构建一个新的QJSValue。</p>
+<h3><span id="qjsvalue-qjsvalue-qjsvalue-amp-amp-other">QJSValue:: QJSValue ( &amp;&amp; <em>other</em> )</span><a href="#qjsvalue-qjsvalue-qjsvalue-amp-amp-other" class="header-anchor">#</a></h3><p>移动构造. 从<em>other</em> 移动到这个QJSValue对象。</p>
+<h3><span id="qjsvalue-qjsvalue-const-qjsvalue-amp-other">QJSValue:: QJSValue (const &amp; <em>other</em> )</span><a href="#qjsvalue-qjsvalue-const-qjsvalue-amp-other" class="header-anchor">#</a></h3><p>构建一个新的QJSValue，它是<em>other</em>的一个副本。</p>
+<p>注意，若<em>other</em>是一个对象（即，<a href="#isObject">isObject</a>()将返回true），那么只有对基础对象的引用被复制到新的脚本值中（即，对象本身没有被复制）。</p>
+<h3><span id="qjsvalue-qjsvalue-qjsvalue-specialvalue-value-undefinedvalue">QJSValue:: QJSValue ( <em>value</em> = UndefinedValue)</span><a href="#qjsvalue-qjsvalue-qjsvalue-specialvalue-value-undefinedvalue" class="header-anchor">#</a></h3><p>构建一个新的具有<em>UndefinedValue</em>值的QJSValue。</p>
+<h3><span id="qjsvalue-amp-qjsvalue-operator-const-qjsvalue-amp-other">&amp;QJSValue:: operator= (const &amp; <em>other</em> )</span><a href="#qjsvalue-amp-qjsvalue-operator-const-qjsvalue-amp-other" class="header-anchor">#</a></h3><p>赋值<em>other</em> 值到这个<a href>QJSValue</a>。</p>
+<p>注意，若<em>other</em>是一个对象（<a href="#isObject">isObject</a>()返回true），只有对基础对象的引用将被分配；对象本身不会被复制。</p>
+<h3><span id="qjsvalue-amp-qjsvalue-operator-qjsvalue-amp-amp-other">&amp;QJSValue:: operator= ( &amp;&amp; <em>other</em> )</span><a href="#qjsvalue-amp-qjsvalue-operator-qjsvalue-amp-amp-other" class="header-anchor">#</a></h3><p>移动赋值 <em>other</em> 到此 <a href>QJSValue </a>对象。</p>
+<h3><span id="qjsvalue-qjsvalue">QJSValue:: ~QJSValue ()</span><a href="#qjsvalue-qjsvalue" class="header-anchor">#</a></h3><p>销毁此 <a href>QJSValue </a>.</p>
+<h3><span id="qjsvalue-qjsvalue-call-const-qjsvaluelist-amp-args-qjsvaluelist-const">QJSValue:: call (const &amp; <em>args</em> = QJSValueList()) const</span><a href="#qjsvalue-qjsvalue-call-const-qjsvaluelist-amp-args-qjsvaluelist-const" class="header-anchor">#</a></h3><p>将这个<a href>QJSValue</a>作为一个函数调用，将<em>args</em>作为参数传给函数，并使用globalObject()作为 “this “对象。返回从该函数返回的值。</p>
+<p>若此 <a href>QJSValue </a>不可调用，call()不做任何事情，并返回一个未定义的 <a href>QJSValue </a>。</p>
+<p>调用call()可能会导致脚本引擎发生异常；在这种情况下，call()会返回被抛出的值（通常是一个<code>Error </code>对象）。你可以在返回值上调用<a href="#isError">isError</a>()，以确定是否发生异常。</p>
+<p><strong>另请参阅</strong> <a href="#isCallable">isCallable </a>(), <a href="#callWithInstance">callWithInstance </a>()，和 <a href="#callAsConstructor">callAsConstructor </a>().</p>
+<h3><span id="qjsvalue-qjsvalue-callasconstructor-const-qjsvaluelist-amp-args-qjsvaluelist-const">QJSValue:: callAsConstructor (const &amp; <em>args</em> = QJSValueList()) const</span><a href="#qjsvalue-qjsvalue-callasconstructor-const-qjsvaluelist-amp-args-qjsvaluelist-const" class="header-anchor">#</a></h3><p>创建新的 <code>Object </code>并调用这个 <a href>QJSValue </a>作为构造函数，使用创建的对象作为`this’对象并传递<em>args</em>作为参数。如果构造函数调用的返回值是一个对象，那么该对象将被返回；否则将返回默认的构造对象。</p>
+<p>若此 <a href>QJSValue </a>不是一个函数，callAsConstructor()不做任何事情，并返回一个未定义的 <a href>QJSValue </a>。</p>
+<p>调用这个函数可能会导致脚本引擎发生异常；在这种情况下，被抛出的值（通常是一个`错误’对象）会被返回。你可以在返回值上调用<a href="#isError">isError</a>()，以确定是否发生异常。</p>
+<p><strong>另请参阅</strong> <a href="#call">call </a>() 和 <a href="qjsengine.html#newObject">QJSEngine::newObject </a>().</p>
+<h3><span id="qjsvalue-qjsvalue-callwithinstance-const-qjsvalue-amp-instance-const-qjsvaluelist-amp-args-qjsvaluelist-const">QJSValue:: callWithInstance (const &amp; <em>instance</em> , const &amp; <em>args</em> = QJSValueList()) const</span><a href="#qjsvalue-qjsvalue-callwithinstance-const-qjsvalue-amp-instance-const-qjsvaluelist-amp-args-qjsvaluelist-const" class="header-anchor">#</a></h3><p>将此<a href>QJSValue</a>作为一个函数调用，在函数调用中使用<em>instance</em>作为`this’对象，并将<em>args</em>作为参数传递给函数。返回从该函数返回的值。</p>
+<p>若此<a href>QJSValue</a>不是一个函数，<a href="#call">call</a>()不做任何事情，并返回一个未定义的<a href>QJSValue</a>。</p>
+<p>注意，若<em>instance</em>不是一个对象，全局对象（见<a href="qjsengine.html#globalObject">QJSEngine::globalObject</a>()）将被用作`this’对象。</p>
+<p>调用<a href="#call">call</a>()可以导致脚本引擎发生异常；在这种情况下，<a href="#call">call</a>()返回被抛出的值（通常是一个<code>Error</code>对象）。你可以在返回值上调用<a href="#isError">isError</a>()，以确定是否发生异常。</p>
+<p><strong>另请参阅</strong> <a href="#call">call </a>().</p>
+<h3><span id="bool-qjsvalue-deleteproperty-const-qstring-amp-name">bool QJSValue:: deleteProperty (const &amp; <em>name</em> )</span><a href="#bool-qjsvalue-deleteproperty-const-qstring-amp-name" class="header-anchor">#</a></h3><p>试图删除此对象的指定<em>name</em> 的属性。如果该属性被删除，则返回真，否则返回假。</p>
+<p>这个函数的行为与JavaScript的删除操作符一致。特别是。</p>
+<ul>
+<li>非可配置的属性不能被删除。</li>
+<li>即使这个对象没有给定的<em>name</em> 的属性，这个函数也会返回true（也就是说，不存在的属性是 “琐碎的可删除”）。</li>
+<li>如果这个对象没有给定的<em>name</em> 的属性，但是<a href="#prototype">prototype</a>()链中的一个对象有，那么原型对象的属性不会被删除，并且这个函数返回true。</li>
+</ul>
+<p><strong>另请参阅</strong> <a href="#setProperty">setProperty </a>() 和 <a href="#hasOwnProperty">hasOwnProperty </a>().</p>
+<h3><span id="bool-qjsvalue-deng-yu-const-qjsvalue-amp-other-const">bool QJSValue:: 等于 (const &amp; <em>other</em> ) const</span><a href="#bool-qjsvalue-deng-yu-const-qjsvalue-amp-other-const" class="header-anchor">#</a></h3><p>返回true，若此 <a href>QJSValue</a>等于 <em>other</em> ，否则返回false。比较遵循<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第11.9.3节 “抽象等价比较算法 “中描述的行为。</p>
+<p>即使这个<a href>QJSValue</a>的类型与<em>other</em> 值的类型不同，这个函数也可以返回真；也就是说，比较并不严格。例如，将数字9与字符串 “9 “进行比较会返回真；将未定义的值与空值进行比较会返回真；将原始值为6的<code>数字</code>对象与原始值为 “6 “的<code>字符串</code>对象进行比较会返回真；将数字1与布尔值<code>true</code>进行比较会返回真。如果你想进行没有这种隐含值转换的比较，请使用<a href="#strictlyEquals">strictEquals</a>()。</p>
+<p>请注意，如果这个<a href>QJSValue</a>或<em>other</em> 值是对象，调用这个函数对脚本引擎有副作用，因为引擎将调用对象的valueOf()函数（可能还有<a href="#toString">toString</a>()），试图将对象转换为原始值（可能导致一个未捕获的脚本异常）。</p>
+<p><strong>另请参阅</strong> <a href="#strictlyEquals">strictlyEquals </a>().</p>
+<h3><span id="since-5-12-qjsvalue-errortype-qjsvalue-errortype-const"><code>[since 5.12] </code>QJSValue:: errorType () const</span><a href="#since-5-12-qjsvalue-errortype-qjsvalue-errortype-const" class="header-anchor">#</a></h3><p>如果它是一个错误对象，返回这个<a href>QJSValue</a>代表的错误类型。否则，返回 “NoError”。</p>
+<p>该函数在 Qt 5.12 引入。</p>
+<p><strong>另请参阅</strong> <a href="#isError">isError </a>() 和 <a href="qjsengine.html#script-exceptions">QJSEngine - Script Exceptions </a>.</p>
+<h3><span id="bool-qjsvalue-hasownproperty-const-qstring-amp-name-const">bool QJSValue:: hasOwnProperty (const &amp; <em>name</em> ) const</span><a href="#bool-qjsvalue-hasownproperty-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>如果这个对象有一个自己的（非原型继承的）给定<em>name</em> 的属性，则返回true。</p>
+<p><strong>另请参阅</strong> <a href="#property">property </a>() 和 <a href="#hasProperty">hasProperty </a>().</p>
+<h3><span id="bool-qjsvalue-hasproperty-const-qstring-amp-name-const">bool QJSValue:: hasProperty (const &amp; <em>name</em> ) const</span><a href="#bool-qjsvalue-hasproperty-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>如果这个对象有一个给定的<em>name</em> 的属性，则返回true，否则返回false。</p>
+<p><strong>另请参阅</strong> <a href="#property">property </a>() 和 <a href="#hasOwnProperty">hasOwnProperty </a>().</p>
+<h3><span id="bool-qjsvalue-isarray-const">bool QJSValue:: isArray () const</span><a href="#bool-qjsvalue-isarray-const" class="header-anchor">#</a></h3><p>返回 true，若此 <a href>QJSValue</a>是一个数组类的对象；否则返回 false。</p>
+<p><strong>另请参阅</strong> <a href="qjsengine.html#newArray">QJSEngine::newArray </a>().</p>
+<h3><span id="bool-qjsvalue-isbool-const">bool QJSValue:: isBool () const</span><a href="#bool-qjsvalue-isbool-const" class="header-anchor">#</a></h3><p>返回true，若此<a href>QJSValue</a>是原始类型的布尔值；否则返回false。</p>
+<p><strong>另请参阅</strong> <a href="#toBool">toBool </a>().</p>
+<h3><span id="bool-qjsvalue-iscallable-const">bool QJSValue:: isCallable () const</span><a href="#bool-qjsvalue-iscallable-const" class="header-anchor">#</a></h3><p>返回 true，若此 <a href>QJSValue </a>是一个函数，否则返回 false。</p>
+<p><strong>另请参阅</strong> <a href="#call">call </a>().</p>
+<h3><span id="bool-qjsvalue-isdate-const">bool QJSValue:: isDate () const</span><a href="#bool-qjsvalue-isdate-const" class="header-anchor">#</a></h3><p>返回true，若此<a href>QJSValue</a>是一个Date类的对象；否则返回false。</p>
+<h3><span id="bool-qjsvalue-iserror-const">bool QJSValue:: isError () const</span><a href="#bool-qjsvalue-iserror-const" class="header-anchor">#</a></h3><p>返回true，若此<a href>QJSValue</a>是一个错误类的对象；否则返回false。</p>
+<p><strong>另请参阅</strong> <a href="#errorType">errorType </a>() 和 <a href="qjsengine.html#script-exceptions">QJSEngine - Script Exceptions </a>.</p>
+<h3><span id="bool-qjsvalue-isnull-const">bool QJSValue:: isNull () const</span><a href="#bool-qjsvalue-isnull-const" class="header-anchor">#</a></h3><p>返回true，若此<a href>QJSValue</a>是原始类型的Null；否则返回false。</p>
+<h3><span id="bool-qjsvalue-isnumber-const">bool QJSValue:: isNumber () const</span><a href="#bool-qjsvalue-isnumber-const" class="header-anchor">#</a></h3><p>返回true，若此<a href>QJSValue</a>是原始类型的Number，否则返回false。</p>
+<p><strong>另请参阅</strong> <a href="#toNumber">toNumber </a>().</p>
+<h3><span id="bool-qjsvalue-isobject-const">bool QJSValue:: isObject () const</span><a href="#bool-qjsvalue-isobject-const" class="header-anchor">#</a></h3><p>返回true，若此<a href>QJSValue</a>为对象类型；否则返回false。</p>
+<p>请注意，函数值、变体值和<a href="qobject.html">QObject</a>值都是对象，所以这个函数对这些值返回true。</p>
+<p><strong>另请参阅</strong> <a href="qjsengine.html#newObject">QJSEngine::newObject </a>().</p>
+<h3><span id="since-5-8-bool-qjsvalue-isqmetaobject-const"><code>[since 5.8] </code>bool QJSValue:: isQMetaObject () const</span><a href="#since-5-8-bool-qjsvalue-isqmetaobject-const" class="header-anchor">#</a></h3><p>返回 true，若此 <a href>QJSValue </a>是 <a href="qmetaobject.html">QMetaObject </a>；否则返回 false。</p>
+<p>该函数在 Qt 5.8 引入。</p>
+<p><strong>另请参阅</strong> <a href="#toQMetaObject">toQMetaObject </a>() 和 <a href="qjsengine.html#newQMetaObject-1">QJSEngine::newQMetaObject </a>().</p>
+<h3><span id="bool-qjsvalue-isqobject-const">bool QJSValue:: isQObject () const</span><a href="#bool-qjsvalue-isqobject-const" class="header-anchor">#</a></h3><p>返回 true，若此 <a href>QJSValue </a>是 <a href="qobject.html">QObject </a>；否则返回 false。</p>
+<p>注意：即使这个<a href>QJSValue</a>包裹的<a href="qobject.html">QObject</a>已经被删除，这个函数也会返回true。</p>
+<p><strong>另请参阅</strong> <a href="#toQObject">toQObject </a>() 和 <a href="qjsengine.html#newQObject">QJSEngine::newQObject </a>().</p>
+<h3><span id="bool-qjsvalue-isregexp-const">bool QJSValue:: isRegExp () const</span><a href="#bool-qjsvalue-isregexp-const" class="header-anchor">#</a></h3><p>返回 true，若此 <a href>QJSValue</a>是一个正则类的对象; 否则返回 false。</p>
+<h3><span id="bool-qjsvalue-isstring-const">bool QJSValue:: isString () const</span><a href="#bool-qjsvalue-isstring-const" class="header-anchor">#</a></h3><p>返回 true，若此 <a href>QJSValue</a>是一个字符串 的对象; 否则返回 false。</p>
+<p><strong>另请参阅</strong> <a href="#toString">toString </a>().</p>
+<h3><span id="bool-qjsvalue-isundefined-const">bool QJSValue:: isUndefined () const</span><a href="#bool-qjsvalue-isundefined-const" class="header-anchor">#</a></h3><p>返回 true，若此<a href>QJSValue</a>是原始类型的未定义，或管理值已被清除（通过删除引擎）。 否则返回 false。</p>
+<h3><span id="bool-qjsvalue-isurl-const">bool QJSValue:: isUrl () const</span><a href="#bool-qjsvalue-isurl-const" class="header-anchor">#</a></h3><p>返回 true，若此 <a href>QJSValue</a>是一个URL类的对象。; 否则返回 false。</p>
+<h3><span id="bool-qjsvalue-isvariant-const">bool QJSValue:: isVariant () const</span><a href="#bool-qjsvalue-isvariant-const" class="header-anchor">#</a></h3><p>返回 true，若此 <a href>QJSValue</a>是一个变量值; 否则返回 false。</p>
+<p><strong>另请参阅</strong> <a href="#toVariant-1">toVariant </a>().</p>
+<h3><span id="qjsvalue-qjsvalue-property-const-qstring-amp-name-const">QJSValue:: property (const &amp; <em>name</em> ) const</span><a href="#qjsvalue-qjsvalue-property-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>返回这个<a href>QJSValue</a>的属性的值，并给出<em>名称</em>。如果不存在这样的属性，一个未定义的<a href>QJSValue</a>被返回。</p>
+<p>如果该属性是使用getter函数实现的（即设置了PropertyGetter标志），调用property()对脚本引擎有副作用，因为getter函数将被调用（可能导致未捕获的脚本异常）。如果发生了异常，property()会返回被抛出的值（通常是一个<code>Error</code>对象）。</p>
+<p>要访问数组元素，请使用<a href="#setProperty-1">setProperty(quint32 arrayIndex, const QJSValue &amp;value)</a>重载来代替。</p>
+<p><strong>另请参阅</strong> <a href="#setProperty">setProperty </a>(), <a href="#hasProperty">hasProperty </a>()，和 <a href="qjsvalueiterator.html">QJSValueIterator </a>.</p>
+<h3><span id="qjsvalue-qjsvalue-property-quint32-arrayindex-const">QJSValue:: property ( <em>arrayIndex</em> ) const</span><a href="#qjsvalue-qjsvalue-property-quint32-arrayindex-const" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回这个<a href>QJSValue</a>的属性的值，并给出<em>名称</em>。如果不存在这样的属性，一个未定义的<a href>QJSValue</a>被返回。</p>
+<p>如果该属性是使用getter函数实现的（即设置了PropertyGetter标志），调用prottReturns属性在给定的<em>arrayIndex</em>。</p>
+<p>有可能以两种方式访问数组中的元素。第一种是使用数组索引作为属性名称：y()对脚本引擎有副作用，因为getter函数会被调用（可能会导致一个未捕获的脚本异常）。如果发生了异常，property()会返回被抛出的值（通常是一个<code>Error</code>对象）。</p>
+<p>要访问数组元素，请使用<a href="#setProperty-1">setProperty(quint32 arrayIndex, const QJSValue &amp;value)</a>重载来代替：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">qDebug</span>() &lt;&lt; jsValueArray.<span class="hljs-built_in">property</span>(<span class="hljs-built_in">QLatin1String</span>(<span class="hljs-string">"4"</span>)).<span class="hljs-built_in">toString</span>();</code></pre></div>
+
+<p>第二种是使用需要索引的重载。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">qDebug</span>() &lt;&lt; jsValueArray.<span class="hljs-built_in">property</span>(<span class="hljs-number">4</span>).<span class="hljs-built_in">toString</span>()。</code></pre></div>
+
+<p>这两种方法实现了相同的结果，只是后者。</p>
+<ul>
+<li>更容易使用（可以直接使用一个整数）</li>
+<li>更快（无需转换为整数）</li>
+</ul>
+<p>如果此<a href>QJSValue</a>不是一个数组对象，这个函数的行为就像property()被调用时使用<em>arrayIndex</em>的字符串表示。</p>
+<h3><span id="qjsvalueqjsvalue-prototype-const">QJSValue:: prototype () const</span><a href="#qjsvalueqjsvalue-prototype-const" class="header-anchor">#</a></h3><p>若此 <a href>QJSValue</a>是一个对象，返回此对象的内部原型（<code>__proto__ </code>property）；否则返回未定义的 <a href>QJSValue</a>。</p>
+<p><strong>另请参阅</strong> <a href="#setPrototype">setPrototype</a>() 和 <a href="#isObject">isObject</a>()。</p>
+<h3><span id="void-qjsvalue-setproperty-const-qstring-amp-name-const-qjsvalue-amp-value">void QJSValue:: setProperty (const  &amp; <em>name</em> , const &amp; <em>value</em> )</span><a href="#void-qjsvalue-setproperty-const-qstring-amp-name-const-qjsvalue-amp-value" class="header-anchor">#</a></h3><p>设置这个<a href>QJSValue</a>的属性的值，并给定<em>name</em>到<em>value</em>。</p>
+<p>若此 <a href>QJSValue</a>不是一个对象，此函数不做任何事情。</p>
+<p>若此 <a href>QJSValue </a>尚未有一个名称为<em>name</em>的属性，则会创建一个新的属性。</p>
+<p>要修改数组元素，请使用<a href="#setProperty-1">setProperty(quint32 arrayIndex, const QJSValue &amp;value)</a>重载来代替。</p>
+<p><strong>另请参阅</strong> <a href="#property">property</a>() 和 <a href="#deleteProperty">deleteProperty</a>()。</p>
+<h3><span id="void-qjsvalue-setproperty-quint32-arrayindex-const-qjsvalue-amp-value">void QJSValue:: setProperty ( <em>arrayIndex</em> , const &amp; <em>value</em> )</span><a href="#void-qjsvalue-setproperty-quint32-arrayindex-const-qjsvalue-amp-value" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>设置给定<em>arrayIndex</em>到给定<em>value</em>的属性。</p>
+<p>可以通过两种方式来修改数组中的元素。第一种是使用数组索引作为属性名称。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">jsValueArray.<span class="hljs-built_in">setProperty</span>(<span class="hljs-built_in">QLatin1String</span>(<span class="hljs-string">"4"</span>), value)。</code></pre></div>
+
+<p>第二个是使用需要索引的重载。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">jsValueArray.<span class="hljs-built_in">setProperty</span>(<span class="hljs-number">4</span>, value);</code></pre></div>
+
+<p>这两种方法实现了相同的结果，只是后者。</p>
+<ul>
+<li>更容易使用（可以直接使用一个整数）</li>
+<li>更快（无需转换为整数）。</li>
+</ul>
+<p>如果此<a href>QJSValue</a>不是一个数组对象，此函数的行为就像setProperty()被调用时使用<em>arrayIndex</em>的字符串表示。</p>
+<p><strong>另请参阅</strong> <a href="#property-1">property</a>(quint32 arrayIndex) 和 <a href="#working-with-arrays">Working With Arrays</a> 。</p>
+<h3><span id="void-qjsvalue-setprototype-const-qjsvalue-amp-prototype">void QJSValue:: setPrototype ( const &amp; <em>prototype</em> )</span><a href="#void-qjsvalue-setprototype-const-qjsvalue-amp-prototype" class="header-anchor">#</a></h3><p>若此 <a href>QJSValue </a>是一个对象，将此对象的内部原型（<code>__proto__ </code>property）设置为<em>prototype</em>；如果 <a href>QJSValue </a>是空的，它将原型设置为空；否则不做任何事情。</p>
+<p>内部原型不应该与名为 “prototype “的公共属性相混淆；公共原型通常只在作为构造器的函数上设置。</p>
+<p><strong>另请参阅</strong> <a href="#prototype">prototype</a>() 和 <a href="#isObject">isObject</a>()。</p>
+<h3><span id="bool-qjsvalue-strictlyequals-const-qjsvalue-amp-other-const">bool QJSValue:: strictlyEquals (const &amp; <em>other</em> ) const</span><a href="#bool-qjsvalue-strictlyequals-const-qjsvalue-amp-other-const" class="header-anchor">#</a></h3><p>返回true，若此<a href>QJSValue</a>等于<em>other</em>使用严格的比较（没有转换），否则返回false。 比较遵循<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第11.9.6节，”严格的平等比较算法 “中描述的行为。</p>
+<p>如果这个<a href>QJSValue</a>的类型与<em>另一个</em>值的类型不同，这个函数返回false。如果类型相等，结果取决于类型，如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Undefined</td>
+<td align="left">true</td>
+</tr>
+<tr>
+<td align="left">Null</td>
+<td align="left">true</td>
+</tr>
+<tr>
+<td align="left">Bool</td>
+<td align="left">如果两个值都是真，则为真，否则为假</td>
+</tr>
+<tr>
+<td align="left">Number</td>
+<td align="left">如果其中一个值是NaN（非数字），则为假；如果数值相等，则为真，否则为假。</td>
+</tr>
+<tr>
+<td align="left">String</td>
+<td align="left">如果两个值都是完全相同的字符序列，则为真，否则为假。</td>
+</tr>
+<tr>
+<td align="left">Object</td>
+<td align="left">如果两个值指的是同一个对象，则为真，否则为假</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#equals">等于 </a>().</p>
+<h3><span id="bool-qjsvalue-tobool-const">bool QJSValue:: toBool () const</span><a href="#bool-qjsvalue-tobool-const" class="header-anchor">#</a></h3><p>使用<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第9.2节 “ToBoolean “中描述的转换规则，返回此<a href>QJSValue</a>的布尔值。</p>
+<p>请注意，如果这个<a href>QJSValue</a>是一个对象，调用这个函数会对脚本引擎产生副作用，因为引擎会调用对象的valueOf()函数（可能还有<a href="#toString">toString</a>()），试图将对象转换成一个原始值（可能导致一个未捕获的脚本异常）。</p>
+<p><strong>另请参阅</strong> <a href="#isBool">isBool </a>().</p>
+<h3><span id="qdatetime-qjsvalue-todatetime-const">QJSValue:: toDateTime () const</span><a href="#qdatetime-qjsvalue-todatetime-const" class="header-anchor">#</a></h3><p>返回 <a href="qdatetime.html">QDateTime</a>表示这个值，在当地时间。如果这个<a href>QJSValue</a>不是一个日期，或者这个日期的值是NaN（非数字），一个无效的<a href="qdatetime.html">QDateTime</a>被返回。</p>
+<p><strong>另请参阅</strong> <a href="#isDate">isDate </a>().</p>
+<h3><span id="qint32-qjsvalue-toint-const">QJSValue:: toInt () const</span><a href="#qint32-qjsvalue-toint-const" class="header-anchor">#</a></h3><p>使用<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第9.5节 “ToInt32 “中描述的转换规则，返回此<a href>QJSValue</a>的有符号32位整数值。</p>
+<p>请注意，如果这个<a href>QJSValue</a>是一个对象，调用这个函数对脚本引擎有副作用，因为引擎将调用对象的valueOf()函数（可能还有<a href="#toString">toString</a>()），试图将对象转换为一个原始值（可能导致未捕获的脚本异常）。</p>
+<p><strong>另请参阅</strong> <a href="#toNumber">toNumber </a>() 和 <a href="#toUInt">toUInt </a>().</p>
+<h3><span id="double-qjsvalue-tonumber-const">double QJSValue:: toNumber () const</span><a href="#double-qjsvalue-tonumber-const" class="header-anchor">#</a></h3><p>返回这个<a href>QJSValue</a>的数字值，如<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第9.3节 “ToNumber “所定义。</p>
+<p>请注意，如果这个<a href>QJSValue</a>是一个对象，调用这个函数对脚本引擎有副作用，因为引擎将调用对象的valueOf()函数（可能还有<a href="#toString">toString</a>()），试图将对象转换为一个原始值（可能导致未捕获的脚本异常）。</p>
+<p><strong>另请参阅</strong> <a href="#isNumber">isNumber </a>(), <a href="#toInt">toInt </a>()，和 <a href="#toUInt">toUInt </a>().</p>
+<h3><span id="qjsprimitivevalue-qjsvalue-toprimitive-const">QJSValue:: toPrimitive () const</span><a href="#qjsprimitivevalue-qjsvalue-toprimitive-const" class="header-anchor">#</a></h3><p>将值转换为一个<a href="qjsprimitivevalue.html">QJSPrimitiveValue</a>。如果该值持有<a href="qjsprimitivevalue.html">QJSPrimitiveValue</a>支持的类型，则该值被复制。否则，该值将被转换为一个字符串，并且该字符串被存储在<a href="qjsprimitivevalue.html">QJSPrimitiveValue</a>中。</p>
+<p><strong>注意：</strong>将一个被管理的值转换为一个字符串可能会抛出一个异常。特别是，符号不能被胁迫成字符串，或者自定义的<a href="#toString">toString</a>()方法可能会抛出。在这种情况下，结果是未定义的值，引擎在转换后会携带一个错误。</p>
+<h3><span id="since-5-8-const-qmetaobject-qjsvalue-toqmetaobject-const"><code>[since 5.8] </code>const *QJSValue:: toQMetaObject () const</span><a href="#since-5-8-const-qmetaobject-qjsvalue-toqmetaobject-const" class="header-anchor">#</a></h3><p>如果这个<a href>QJSValue</a>是<a href="qmetaobject.html">QMetaObject</a>，返回<a href="qmetaobject.html">QMetaObject</a>的指，即<a href>QJSValue</a>代表的指针；否则，返回<code>nullptr</code>。</p>
+<p>该函数在 Qt 5.8 引入。</p>
+<p><strong>另请参阅</strong> <a href="#isQMetaObject">isQMetaObject </a>().</p>
+<h3><span id="qobject-qjsvalue-toqobject-const">*QJSValue:: toQObject () const</span><a href="#qobject-qjsvalue-toqobject-const" class="header-anchor">#</a></h3><p>若此 <a href>QJSValue </a>是 <a href="qobject.html">QObject </a>，返回 <a href>QJSValue </a>所代表的 <a href="qobject.html">QObject </a> 指针；否则，返回 <code>nullptr </code>。</p>
+<p>如果这个<a href>QJSValue</a>包裹的<a href="qobject.html">QObject</a>已经被删除，这个函数返回<code>nullptr</code>（也就是说，toQObject()有可能返回<code>nullptr</code>，即使<a href="#isQObject">isQObject</a>()返回真）。</p>
+<p><strong>另请参阅</strong> <a href="#isQObject">isQObject </a>().</p>
+<h3><span id="qstring-qjsvalue-tostring-const">QJSValue:: toString () const</span><a href="#qstring-qjsvalue-tostring-const" class="header-anchor">#</a></h3><p>返回这个<a href>QJSValue</a>的字符串值，如<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第9.8节 “ToString “中所定义。</p>
+<p>请注意，如果这个<a href>QJSValue</a>是一个对象，调用这个函数会对脚本引擎产生副作用，因为引擎会调用对象的toString()函数（可能还有valueOf()），试图将对象转换为一个原始值（可能导致一个未捕获的脚本异常）。</p>
+<p><strong>另请参阅</strong> <a href="#isString">isString </a>().</p>
+<h3><span id="quint32-qjsvalue-touint-const">QJSValue:: toUInt () const</span><a href="#quint32-qjsvalue-touint-const" class="header-anchor">#</a></h3><p>使用<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第9.6节 “ToUint32 “中描述的转换规则，返回此<a href>QJSValue</a>的无符号32位整数值。</p>
+<p>请注意，如果这个<a href>QJSValue</a>是一个对象，调用这个函数会对脚本引擎产生副作用，因为引擎会调用对象的valueOf()函数（可能还有<a href="#toString">toString</a>()），试图将对象转换为一个原始值（可能导致一个未捕获的脚本异常）。</p>
+<p><strong>另请参阅</strong> <a href="#toNumber">toNumber </a>() 和 <a href="#toInt">toInt </a>().</p>
+<h3><span id="qvariant-qjsvalue-tovariant-qjsvalue-objectconversionbehavior-behavior-const">QJSValue:: toVariant ( <em>behavior</em> ) const</span><a href="#qvariant-qjsvalue-tovariant-qjsvalue-objectconversionbehavior-behavior-const" class="header-anchor">#</a></h3><p>返回这个<a href>QJSValue</a>的<a href>QVariant</a>值，如果它可以被转换为<a href>QVariant</a>；否则返回一个无效的<a href>QVariant</a>。一些JavaScript类型和对象在Qt中具有本地表达式。这些被转换为它们的本地表达式。比如说:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Input Type</th>
+<th align="left">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Undefined</td>
+<td align="left">一个无效的<a href>QVariant</a>。</td>
+</tr>
+<tr>
+<td align="left">Null</td>
+<td align="left">一个包含空指针的<a href>QVariant</a>（[QMetaType::Nullptr]（#Type-enum））。</td>
+</tr>
+<tr>
+<td align="left">Bool</td>
+<td align="left">一个包含布尔值的<a href>QVariant</a>。</td>
+</tr>
+<tr>
+<td align="left">Number</td>
+<td align="left">一个<a href>QVariant</a>包含数字的值。</td>
+</tr>
+<tr>
+<td align="left">String</td>
+<td align="left">一个<a href>QVariant</a>，包含字符串的值。</td>
+</tr>
+<tr>
+<td align="left"><a href>QVariant </a>Object</td>
+<td align="left">结果是对象的<a href>QVariant</a>值（没有转换）。</td>
+</tr>
+<tr>
+<td align="left"><a href="qobject.html">QObject </a>Object</td>
+<td align="left">一个包含指向<a href="qobject.html">QObject</a>的指针的<a href>QVariant</a>。</td>
+</tr>
+<tr>
+<td align="left">Date Object</td>
+<td align="left">一个包含日期值的<a href>QVariant</a>（<a href="#toDateTime">toDateTime</a>()）。</td>
+</tr>
+<tr>
+<td align="left"><a href="qtcborcommon.html#QCborKnownTags-enum">RegularExpression </a>Object</td>
+<td align="left">一个包含正则表达式值的<a href>QVariant</a>。</td>
+</tr>
+</tbody></table>
+<p>对于其他类型，<em>behavior</em>参数是相关的。如果给了<code>ConvertJSObjects</code>，就会尽力进行转换，但可能是有损的。通用的JavaScript对象被转换为QVariantMap。JavaScript数组被转换为QVariantList。每个属性或元素被转换为<a href>QVariant</a>，递归；循环引用不被遵循。JavaScript函数对象被放弃。如果给了 “RetainJSObjects”，<a href>QJSValue</a>被包装成一个<a href>QVariant</a>凭借<a href="#fromValue">QVariant::fromValue</a>()。由此产生的转换是无损的，但对象的内部结构不能立即访问。</p>
+<p><strong>另请参阅</strong> <a href="#isVariant">isVariant </a>().</p>
+<h3><span id="qvariant-qjsvalue-tovariant-const">QJSValue:: toVariant () const</span><a href="#qvariant-qjsvalue-tovariant-const" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>Returns toVariant( <a href="#ObjectConversionBehavior-enum">ConvertJSObjects </a>).</p>
+<p><strong>另请参阅</strong> <a href="#isVariant">isVariant </a>().</p>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><h3><span id="qjsvaluelist">QJSValueList</span><a href="#qjsvaluelist" class="header-anchor">#</a></h3><p>This is a typedef for a <a href="qlist.html">QList </a>&lt; <a href>QJSValue </a>&gt;.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/J/">J</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/J/QJSValueIterator/QJSValueIterator/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QJSValueIterator类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/J/QJalaliCalendar/QJalaliCalendar/">
+                        <span class="hidden-mobile">QJalaliCalendar类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

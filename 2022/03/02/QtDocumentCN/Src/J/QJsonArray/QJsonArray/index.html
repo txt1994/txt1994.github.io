@@ -1,0 +1,937 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QJsonArray 类 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 QJsonArray:: ConstIterator QJsonArray:: Iterator QJsonArray:: const_pointer QJsonArray:: const_reference QJsonArray:: difference_type QJsonArray:: poin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QJsonArray类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/J/QJsonArray/QJsonArray/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QJsonArray 类 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 QJsonArray:: ConstIterator QJsonArray:: Iterator QJsonArray:: const_pointer QJsonArray:: const_reference QJsonArray:: difference_type QJsonArray:: poin">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:44:33.826Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="J">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QJsonArray类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QJsonArray类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      10k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      85 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QJsonArray类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qjsonarray-lei">QJsonArray 类</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#qjsonarray-constiterator">QJsonArray:: ConstIterator</a></li>
+<li><a href="#qjsonarray-iterator">QJsonArray:: Iterator</a></li>
+<li><a href="#qjsonarray-const-pointer">QJsonArray:: const_pointer</a></li>
+<li><a href="#qjsonarray-const-reference">QJsonArray:: const_reference</a></li>
+<li><a href="#qjsonarray-difference-type">QJsonArray:: difference_type</a></li>
+<li><a href="#qjsonarray-pointer">QJsonArray:: pointer</a></li>
+<li><a href="#qjsonarray-reference">QJsonArray:: reference</a></li>
+<li><a href="#qjsonarray-size-type">QJsonArray:: size_type</a></li>
+<li><a href="#qjsonarray-value-type">QJsonArray:: value_type</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#since-5-10-qjsonarray-qjsonarray-qjsonarray-qjsonarray-other"><code>[since 5.10] </code>QJsonArray:: QJsonArray ( </a><a href="#QJsonArray">QJsonArray </a>&amp;&amp; <em>other</em> )</li>
+<li><a href="#qjsonarray-qjsonarray-const-qjsonarray-qjsonarray-other">QJsonArray:: QJsonArray (const </a><a href="#QJsonArray">QJsonArray </a>&amp; <em>other</em> )</li>
+<li><a href="#since-5-4-qjsonarray-qjsonarray-std-initializer-list-qjsonvalue-args"><code>[since 5.4] </code>QJsonArray:: QJsonArray ( std::initializer_list &lt; </a><a href>QJsonValue </a>&gt; <em>args</em> )</li>
+<li><a href="#qjsonarray-qjsonarray">QJsonArray:: QJsonArray ()</a></li>
+<li><a href="#since-5-10-qjsonarray-qjsonarray-qjsonarray-operator-qjsonarray-qjsonarray-other"><code>[since 5.10] </code></a><a href="#QJsonArray">QJsonArray </a>&amp;QJsonArray:: operator= ( <a href="#QJsonArray">QJsonArray </a>&amp;&amp; <em>other</em> )</li>
+<li><a href="#qjsonarray-qjsonarray-qjsonarray-operator-const-qjsonarray-qjsonarray-other">QJsonArray </a></li>
+<li><a href="#qjsonarray-qjsonarray">QJsonArray:: ~QJsonArray ()</a></li>
+<li><a href="#void-qjsonarray-append-const-qjsonvalue-value">void QJsonArray:: append (const </a><a href>QJsonValue </a>&amp; <em>value</em> )</li>
+<li><a href="#qjsonvalue-qjsonarray-at-qsizetype-i-const">QJsonValue </a></li>
+<li><a href="#qjsonarray-iterator-qjsonarray-iterator-html-qjsonarray-begin">QJsonArray::iterator </a></li>
+<li><a href="#qjsonarray-const-iterator-qjsonarray-const-iterator-html-qjsonarray-begin-const">QJsonArray::const_iterator </a></li>
+<li><a href="#qjsonarray-const-iterator-qjsonarray-const-iterator-html-qjsonarray-cbegin-const-1">QJsonArray::const_iterator </a></li>
+<li><a href="#qjsonarray-const-iterator-qjsonarray-const-iterator-html-qjsonarray-cend-const-2">QJsonArray::const_iterator </a></li>
+<li><a href="#qjsonarray-const-iterator-qjsonarray-const-iterator-html-qjsonarray-constbegin-const-3">QJsonArray::const_iterator </a></li>
+<li><a href="#qjsonarray-const-iterator-qjsonarray-const-iterator-html-qjsonarray-constend-const-4">QJsonArray::const_iterator </a></li>
+<li><a href="#bool-qjsonarray-contains-const-qjsonvalue-value-const">bool QJsonArray:: contains (const </a><a href>QJsonValue </a>&amp; <em>value</em> ) const</li>
+<li><a href="#qsizetype-qjsonarray-count-const">qsizetype QJsonArray:: count () const</a></li>
+<li><a href="#bool-qjsonarray-empty-const">bool QJsonArray:: empty () const</a></li>
+<li><a href="#qjsonarray-iterator-qjsonarray-iterator-html-qjsonarray-end-1">QJsonArray::iterator </a></li>
+<li><a href="#qjsonarray-const-iterator-qjsonarray-const-iterator-html-qjsonarray-end-const-5">QJsonArray::const_iterator </a></li>
+<li><a href="#qjsonarray-iterator-qjsonarray-iterator-html-qjsonarray-erase-qjsonarray-iterator-qjsonarray-iterator-html-it-2">QJsonArray::iterator </a></li>
+<li><a href="#qjsonvalue-qjsonarray-first-const-1">QJsonValue </a></li>
+<li><a href="#static-qjsonarray-qjsonarray-qjsonarray-fromstringlist-const-qstringlist-list"><code>[static] </code></a><a href="#QJsonArray">QJsonArray </a>QJsonArray:: fromStringList (const <a href>QStringList </a>&amp; <em>list</em> )</li>
+<li><a href="#static-qjsonarray-qjsonarray-qjsonarray-fromvariantlist-const-qvariantlist-list"><code>[static] </code></a><a href="#QJsonArray">QJsonArray </a>QJsonArray:: fromVariantList (const QVariantList &amp; <em>list</em> )</li>
+<li><a href="#void-qjsonarray-insert-qsizetype-i-const-qjsonvalue-value">void QJsonArray:: insert ( qsizetype <em>i</em> , const </a><a href>QJsonValue </a>&amp; <em>value</em> )</li>
+<li><a href="#qjsonarray-iterator-qjsonarray-iterator-html-qjsonarray-insert-qjsonarray-iterator-qjsonarray-iterator-html-before-const-qjsonvalue-value-3">QJsonArray::iterator </a></li>
+<li><a href="#bool-qjsonarray-isempty-const">bool QJsonArray:: isEmpty () const</a></li>
+<li><a href="#qjsonvalue-qjsonarray-last-const-2">QJsonValue </a></li>
+<li><a href="#void-qjsonarray-pop-back">void QJsonArray:: pop_back ()</a></li>
+<li><a href="#void-qjsonarray-pop-front">void QJsonArray:: pop_front ()</a></li>
+<li><a href="#void-qjsonarray-prepend-const-qjsonvalue-value">void QJsonArray:: prepend (const </a><a href>QJsonValue </a>&amp; <em>value</em> )</li>
+<li><a href="#void-qjsonarray-push-back-const-qjsonvalue-value">void QJsonArray:: push_back (const </a><a href>QJsonValue </a>&amp; <em>value</em> )</li>
+<li><a href="#void-qjsonarray-push-front-const-qjsonvalue-value">void QJsonArray:: push_front (const </a><a href>QJsonValue </a>&amp; <em>value</em> )</li>
+<li><a href="#void-qjsonarray-removeat-qsizetype-i">void QJsonArray:: removeAt ( qsizetype <em>i</em> )</a></li>
+<li><a href="#void-qjsonarray-removefirst">void QJsonArray:: removeFirst ()</a></li>
+<li><a href="#void-qjsonarray-removelast">void QJsonArray:: removeLast ()</a></li>
+<li><a href="#void-qjsonarray-replace-qsizetype-i-const-qjsonvalue-value">void QJsonArray:: replace ( qsizetype <em>i</em> , const </a><a href>QJsonValue </a>&amp; <em>value</em> )</li>
+<li><a href="#qsizetype-qjsonarray-size-const">qsizetype QJsonArray:: size () const</a></li>
+<li><a href="#since-5-10-void-qjsonarray-swap-qjsonarray-qjsonarray-other"><code>[since 5.10] </code>void QJsonArray:: swap ( </a><a href="#QJsonArray">QJsonArray </a>&amp; <em>other</em> )</li>
+<li><a href="#qjsonvalue-qjsonarray-takeat-qsizetype-i-3">QJsonValue </a></li>
+<li><a href="#qvariantlist-qjsonarray-tovariantlist-const">QVariantList QJsonArray:: toVariantList () const</a></li>
+<li><a href="#bool-qjsonarray-operator-const-qjsonarray-qjsonarray-other-const">bool QJsonArray:: operator!= (const </a><a href="#QJsonArray">QJsonArray </a>&amp; <em>other</em> ) const</li>
+<li><a href="#since-5-3-qjsonarray-qjsonarray-qjsonarray-operator-const-qjsonvalue-value-const"><code>[since 5.3] </code></a><a href="#QJsonArray">QJsonArray </a>QJsonArray:: operator+ (const <a href>QJsonValue </a>&amp; <em>value</em> ) const</li>
+<li><a href="#since-5-3-qjsonarray-qjsonarray-qjsonarray-operator-const-qjsonvalue-value"><code>[since 5.3] </code></a><a href="#QJsonArray">QJsonArray </a>&amp;QJsonArray:: operator+= (const <a href>QJsonValue </a>&amp; <em>value</em> )</li>
+<li><a href="#since-5-3-qjsonarray-qjsonarray-qjsonarray-operator-const-qjsonvalue-value"><code>[since 5.3] </code></a><a href="#QJsonArray">QJsonArray </a>&amp;QJsonArray:: operator&lt;&lt; (const <a href>QJsonValue </a>&amp; <em>value</em> )</li>
+<li><a href="#bool-qjsonarray-operator-const-qjsonarray-qjsonarray-other-const">bool QJsonArray:: operator== (const </a><a href="#QJsonArray">QJsonArray </a>&amp; <em>other</em> ) const</li>
+<li><a href="#qjsonvalueref-qjsonarray-operator-qsizetype-i">QJsonValueRef QJsonArray:: operator[] ( qsizetype <em>i</em> )</a></li>
+<li><a href="#qjsonvalue-qjsonarray-operator-qsizetype-i-const-4">QJsonValue </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QJsonArray 类
+
+<p>QJsonArray 类封装 JSON 数组。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qjsonarray></qjsonarray></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 5.0</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qjsonarray-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<p><strong>注意：</strong> 此类的所有函数 <a href="17-qdoc-commands-thread.html#reentrant">可重入 </a>.</p>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>class</th>
+<th><strong><a href="qjsonarray-const-iterator.html">const_iterator</a></strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>class</td>
+<td><strong><a href="qjsonarray-iterator.html">iterator</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#ConstIterator-typedef">ConstIterator</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#Iterator-typedef">Iterator</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#const_pointer-typedef">const_pointer</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#const_reference-typedef">const_reference</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#difference_type-typedef">difference_type</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#pointer-typedef">pointer</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#reference-typedef">reference</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#size_type-typedef">size_type</a></strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#value_type-typedef">value_type</a></strong></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>[QJsonArray ](# 12)</strong>(QJsonArray &amp;&amp; <em>other</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>**<a href="#test">QJsonArray </a> **(const QJsonArray &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJsonArray-1">QJsonArray </a></strong>(std::initializer_list<qjsonvalue> <em>args</em> )</qjsonvalue></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJsonArray">QJsonArray </a></strong>()</td>
+</tr>
+<tr>
+<td>QJsonArray &amp;</td>
+<td><strong><a href="#operator-eq-1">operator= </a></strong>(QJsonArray &amp;&amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td>QJsonArray &amp;</td>
+<td><strong><a href="#operator-eq">operator= </a></strong>(const QJsonArray &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QJsonArray">~QJsonArray </a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#append">append </a></strong>(const QJsonValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>QJsonValue</td>
+<td><strong><a href="#qjsonvalue-qjsonarray-at-qsizetype-i-const">at </a></strong>(qsizetype <em>i</em> ) const</td>
+</tr>
+<tr>
+<td>QJsonArray::iterator</td>
+<td><strong><a href="#begin">begin </a></strong>()</td>
+</tr>
+<tr>
+<td>QJsonArray::const_iterator</td>
+<td><strong><a href="#begin-1">begin </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJsonArray::const_iterator</td>
+<td><strong><a href="#cbegin">cbegin </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJsonArray::const_iterator</td>
+<td><strong><a href="#cend">cend </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJsonArray::const_iterator</td>
+<td><strong><a href="#constBegin">constBegin </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJsonArray::const_iterator</td>
+<td><strong><a href="#constEnd">constEnd </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#contains">contains </a></strong>(const QJsonValue &amp; <em>value</em> ) const</td>
+</tr>
+<tr>
+<td>qsizetype</td>
+<td><strong>[count ](QJsonArray.md#qsizetype QJsonArray:: count () const)</strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#empty">empty </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJsonArray::iterator</td>
+<td><strong><a href="#end">end </a></strong>()</td>
+</tr>
+<tr>
+<td>QJsonArray::const_iterator</td>
+<td><strong><a href="#end-1">end </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJsonArray::iterator</td>
+<td><strong><a href="#erase">erase </a></strong>(QJsonArray::iterator <em>it</em> )</td>
+</tr>
+<tr>
+<td>QJsonValue</td>
+<td><strong><a href="#first">first </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#insert">insert </a></strong>(qsizetype <em>i</em> , const QJsonValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>QJsonArray::iterator</td>
+<td><strong><a href="#insert-1">insert </a></strong>(QJsonArray::iterator <em>before</em> , const QJsonValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isEmpty">isEmpty </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJsonValue</td>
+<td><strong><a href="#last">last </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#pop_back">pop_back </a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#pop_front">pop_front </a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#prepend">prepend </a></strong>(const QJsonValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#push_back">push_back </a></strong>(const QJsonValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#push_front">push_front </a></strong>(const QJsonValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#removeAt">removeAt </a></strong>(qsizetype <em>i</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#removeFirst">removeFirst </a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#removeLast">removeLast </a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#replace">replace </a></strong>(qsizetype <em>i</em> , const QJsonValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>qsizetype</td>
+<td><strong><a href="#size">size </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#swap">swap </a></strong>(QJsonArray &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td>QJsonValue</td>
+<td><strong><a href="#takeAt">takeAt </a></strong>(qsizetype <em>i</em> )</td>
+</tr>
+<tr>
+<td>QVariantList</td>
+<td><strong><a href="#toVariantList">toVariantList </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-not-eq">operator!= </a></strong>(const QJsonArray &amp; <em>other</em> ) const</td>
+</tr>
+<tr>
+<td>QJsonArray</td>
+<td><strong><a href="#operator-2b">operator+ </a></strong>(const QJsonValue &amp; <em>value</em> ) const</td>
+</tr>
+<tr>
+<td>QJsonArray &amp;</td>
+<td><strong><a href="#operator-2b-eq">operator+= </a></strong>(const QJsonValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>QJsonArray &amp;</td>
+<td><strong><a href="#operator-lt-lt">operator&lt;&lt; </a></strong>(const QJsonValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-eq-eq">operator== </a></strong>(const QJsonArray &amp; <em>other</em> ) const</td>
+</tr>
+<tr>
+<td>QJsonValueRef</td>
+<td><strong>[operator<a href="#operator-5b-5d">] </a></strong>(qsizetype <em>i</em> )</td>
+</tr>
+<tr>
+<td>QJsonValue</td>
+<td><strong>[operator<a href="#operator-5b-5d-1">] </a></strong>(qsizetype <em>i</em> ) const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QJsonArray</th>
+<th><strong><a href="#fromStringList">fromStringList </a></strong>(const QStringList &amp; <em>list</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QJsonArray</td>
+<td><strong><a href="#fromVariantList">fromVariantList </a></strong>(const QVariantList &amp; <em>list</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>一个JSON数组是一个值的列表。这个列表可以通过从数组中插入和删除<a href>QJsonValue</a>的方式来进行操作。</p>
+<p>QJsonArray可以转换为QVariantList，也可以从QVariantList转换。你可以用<a href="#size">size</a>()、<a href="#insert">insert</a>()和<a href="#removeAt">removeAt</a>()查询其中的条目数，并使用标准的C++迭代器模式对其内容进行迭代。</p>
+<p>QJsonArray是一个隐式共享的类，只要它没有被修改，就会与它所创建的文档共享数据。</p>
+<p>你可以通过<a href="qjsondocument.html">QJsonDocument</a>将数组转换为基于文本的JSON。</p>
+<p><strong>另请参阅</strong> <a href="json.html">在 Qt 中支持 JSON </a>and <a href>JSON 保存游戏范例 </a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qjsonarray-constiterator">QJsonArray:: ConstIterator</span><a href="#qjsonarray-constiterator" class="header-anchor">#</a></h3><p>Qt 样式同义词 <a href="qjsonarray-const-iterator.html">QJsonArray::const_iterator </a>.</p>
+<h3><span id="qjsonarray-iterator">QJsonArray:: Iterator</span><a href="#qjsonarray-iterator" class="header-anchor">#</a></h3><p>Qt 样式同义词 <a href="qjsonarray-iterator.html">QJsonArray::iterator </a>.</p>
+<h3><span id="qjsonarray-const-pointer">QJsonArray:: const_pointer</span><a href="#qjsonarray-const-pointer" class="header-anchor">#</a></h3><p>const <a href>QJsonValue</a>*的类型定义。为了兼容STL而提供。</p>
+<h3><span id="qjsonarray-const-reference">QJsonArray:: const_reference</span><a href="#qjsonarray-const-reference" class="header-anchor">#</a></h3><p>const <a href>QJsonValue</a>&amp;的类型定义。为了兼容STL而提供。</p>
+<h3><span id="qjsonarray-difference-type">QJsonArray:: difference_type</span><a href="#qjsonarray-difference-type" class="header-anchor">#</a></h3><p>qsizetype的类型定义。为了兼容STL而提供。</p>
+<h3><span id="qjsonarray-pointer">QJsonArray:: pointer</span><a href="#qjsonarray-pointer" class="header-anchor">#</a></h3><p>const <a href>QJsonValue</a>*的类型定义。为了兼容STL而提供。</p>
+<h3><span id="qjsonarray-reference">QJsonArray:: reference</span><a href="#qjsonarray-reference" class="header-anchor">#</a></h3><p>const <a href>QJsonValue</a>&amp;的类型定义。为了兼容STL而提供。</p>
+<h3><span id="qjsonarray-size-type">QJsonArray:: size_type</span><a href="#qjsonarray-size-type" class="header-anchor">#</a></h3><p>qsizetype的类型定义。 为了兼容STL而提供。</p>
+<h3><span id="qjsonarray-value-type">QJsonArray:: value_type</span><a href="#qjsonarray-value-type" class="header-anchor">#</a></h3><p>const <a href>QJsonValue</a>的类型定义。为了兼容STL而提供。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="since-5-10-qjsonarray-qjsonarray-qjsonarray-amp-amp-other"><code>[since 5.10] </code>QJsonArray:: QJsonArray ( &amp;&amp; <em>other</em> )</span><a href="#since-5-10-qjsonarray-qjsonarray-qjsonarray-amp-amp-other" class="header-anchor">#</a></h3><p>移动构造从<em>other</em>构建一个QJsonArray。</p>
+<p>该函数在 Qt 5.10 引入。</p>
+<h3><span id="qjsonarray-qjsonarray-const-qjsonarray-amp-other">QJsonArray:: QJsonArray (const &amp; <em>other</em> )</span><a href="#qjsonarray-qjsonarray-const-qjsonarray-amp-other" class="header-anchor">#</a></h3><p>创建一个<em>other</em>的副本。</p>
+<p>由于QJsonArray是隐式共享的，只要对象没有被修改，拷贝就是浅层的。</p>
+<h3><span id="since-5-4-qjsonarray-qjsonarray-std-initializer-list-lt-qjsonvalue-gt-args"><code>[since 5.4] </code>QJsonArray:: QJsonArray ( std::initializer_list &lt; &gt; <em>args</em> )</span><a href="#since-5-4-qjsonarray-qjsonarray-std-initializer-list-lt-qjsonvalue-gt-args" class="header-anchor">#</a></h3><p>创建一个由<em>args</em>初始化列表初始化的数组。</p>
+<p>QJsonArray可以用类似于JSON符号的方式来构造，例如:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QJsonArray array = { <span class="hljs-number">1</span>, <span class="hljs-number">2.2</span>, <span class="hljs-built_in">QString</span>() };</code></pre></div>
+
+<p>该函数在 Qt 5.4 引入。</p>
+<h3><span id="qjsonarray-qjsonarray">QJsonArray:: QJsonArray ()</span><a href="#qjsonarray-qjsonarray" class="header-anchor">#</a></h3><p>创建一个空数组。</p>
+<h3><span id="since-5-10-qjsonarray-amp-qjsonarray-operator-qjsonarray-amp-amp-other"><code>[since 5.10] </code>&amp;QJsonArray:: operator= ( &amp;&amp; <em>other</em> )</span><a href="#since-5-10-qjsonarray-amp-qjsonarray-operator-qjsonarray-amp-amp-other" class="header-anchor">#</a></h3><p>移动赋值 <em>other</em> 到此数组。</p>
+<p>该函数在 Qt 5.10 引入。</p>
+<h3><span id="qjsonarray-amp-qjsonarray-operator-const-qjsonarray-amp-other">&amp;QJsonArray:: operator= (const &amp; <em>other</em> )</span><a href="#qjsonarray-amp-qjsonarray-operator-const-qjsonarray-amp-other" class="header-anchor">#</a></h3><p>赋值 <em>other</em> 到此数组。</p>
+<h3><span id="qjsonarray-qjsonarray">QJsonArray:: ~QJsonArray ()</span><a href="#qjsonarray-qjsonarray" class="header-anchor">#</a></h3><p>删除数组。</p>
+<h3><span id="void-qjsonarray-append-const-qjsonvalue-amp-value">void QJsonArray:: append (const &amp; <em>value</em> )</span><a href="#void-qjsonarray-append-const-qjsonvalue-amp-value" class="header-anchor">#</a></h3><p>插入<strong>value</strong>在数组的末端。</p>
+<p><strong>另请参阅</strong> <a href="#prepend">prepend </a>() 和 <a href="#insert">insert </a>().</p>
+<h3><span id="qjsonvalue-qjsonarray-at-qsizetype-i-const">QJsonArray:: at ( qsizetype <em>i</em> ) const</span><a href="#qjsonvalue-qjsonarray-at-qsizetype-i-const" class="header-anchor">#</a></h3><p>返回的 <a href>QJsonValue </a>代表索引<em>i</em>的值。</p>
+<p>返回的<a href>QJsonValue</a>是 “未定义”，如果<em>i</em>超出了范围。</p>
+<h3><span id="qjsonarray-iterator-qjsonarray-begin">QJsonArray:: begin ()</span><a href="#qjsonarray-iterator-qjsonarray-begin" class="header-anchor">#</a></h3><p>返回 <a href="#stl-style-iterators">STL 样式迭代器</a>指向数组中的第一个项目。</p>
+<p><strong>另请参阅</strong> <a href="#constBegin">constBegin </a>() 和 <a href="#end">end </a>().</p>
+<h3><span id="qjsonarray-const-iterator-qjsonarray-begin-const">QJsonArray:: begin () const</span><a href="#qjsonarray-const-iterator-qjsonarray-begin-const" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<h3><span id="qjsonarray-const-iterator-qjsonarray-cbegin-const">QJsonArray:: cbegin () const</span><a href="#qjsonarray-const-iterator-qjsonarray-cbegin-const" class="header-anchor">#</a></h3><p>返回常量 <a href="#stl-style-iterators">STL 样式迭代器</a>指向数组中的第一个项目。</p>
+<p><strong>另请参阅</strong> <a href="#begin">begin </a>() 和 <a href="#cend">cend </a>().</p>
+<h3><span id="qjsonarray-const-iterator-qjsonarray-cend-const">QJsonArray:: cend () const</span><a href="#qjsonarray-const-iterator-qjsonarray-cend-const" class="header-anchor">#</a></h3><p>返回常量 <a href="#stl-style-iterators">STL 样式迭代器</a>指向数组中最后一项之后的迭代器。</p>
+<p><strong>另请参阅</strong> <a href="#cbegin">cbegin </a>() 和 <a href="#end">end </a>().</p>
+<h3><span id="qjsonarray-const-iterator-qjsonarray-constbegin-const">QJsonArray:: constBegin () const</span><a href="#qjsonarray-const-iterator-qjsonarray-constbegin-const" class="header-anchor">#</a></h3><p>返回常量 <a href="#stl-style-iterators">STL 样式迭代器</a>指向数组中的第一个项目。</p>
+<p><strong>另请参阅</strong> <a href="#begin">begin </a>() 和 <a href="#constEnd">constEnd </a>().</p>
+<h3><span id="qjsonarray-const-iterator-qjsonarray-constend-const">QJsonArray:: constEnd () const</span><a href="#qjsonarray-const-iterator-qjsonarray-constend-const" class="header-anchor">#</a></h3><p>返回常量 <a href="#stl-style-iterators">STL 样式迭代器</a>指向数组中最后一项之后的迭代器。</p>
+<p><strong>另请参阅</strong> <a href="#constBegin">constBegin </a>() 和 <a href="#end">end </a>().</p>
+<h3><span id="bool-qjsonarray-contains-const-qjsonvalue-amp-value-const">bool QJsonArray:: contains (const &amp; <em>value</em> ) const</span><a href="#bool-qjsonarray-contains-const-qjsonvalue-amp-value-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果数组包含<em>value</em>的出现，否则<code>false </code>。</p>
+<p><strong>另请参阅</strong> <a href="#count">count </a>().</p>
+<h3><span id="qsizetype-qjsonarray-count-const">qsizetype QJsonArray:: count () const</span><a href="#qsizetype-qjsonarray-count-const" class="header-anchor">#</a></h3><p>如同 <a href="#size">size </a>().</p>
+<p><strong>另请参阅</strong> <a href="#size">size </a>().</p>
+<h3><span id="bool-qjsonarray-empty-const">bool QJsonArray:: empty () const</span><a href="#bool-qjsonarray-empty-const" class="header-anchor">#</a></h3><p>此函数是为兼容 STL 而提供的。它相当于 <a href="#isEmpty">isEmpty </a>()，如果数组是空的，则返回 <code>true </code>。</p>
+<h3><span id="qjsonarray-iterator-qjsonarray-end">QJsonArray:: end ()</span><a href="#qjsonarray-iterator-qjsonarray-end" class="header-anchor">#</a></h3><p>返回 <a href="#stl-style-iterators">STL 样式迭代器</a>指向数组中最后一项之后的迭代器。</p>
+<p><strong>另请参阅</strong> <a href="#begin">begin </a>() 和 <a href="#constEnd">constEnd </a>().</p>
+<h3><span id="qjsonarray-const-iterator-qjsonarray-end-const">QJsonArray:: end () const</span><a href="#qjsonarray-const-iterator-qjsonarray-end-const" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<h3><span id="qjsonarray-iterator-qjsonarray-erase-qjsonarray-iterator-it">QJsonArray:: erase ( <em>it</em> )</span><a href="#qjsonarray-iterator-qjsonarray-erase-qjsonarray-iterator-it" class="header-anchor">#</a></h3><p>移除<em>it</em>所指向的项目，并返回指向下一个项目的迭代器。</p>
+<p><strong>另请参阅</strong> <a href="#removeAt">removeAt </a>().</p>
+<h3><span id="qjsonvalue-qjsonarray-first-const">QJsonArray:: first () const</span><a href="#qjsonvalue-qjsonarray-first-const" class="header-anchor">#</a></h3><p>返回存储在数组中的第一个值。</p>
+<p>如同 <code>at(0) </code>.</p>
+<p><strong>另请参阅</strong> <a href="#at">at </a>().</p>
+<h3><span id="static-qjsonarray-qjsonarray-fromstringlist-const-qstringlist-amp-list"><code>[static] </code>QJsonArray:: fromStringList (const &amp; <em>list</em> )</span><a href="#static-qjsonarray-qjsonarray-fromstringlist-const-qstringlist-amp-list" class="header-anchor">#</a></h3><p>将字符串列表<em>list</em>转换为<a href>QJsonArray</a>。</p>
+<p><em>list</em>中的值将被转换为JSON值。</p>
+<p><strong>另请参阅</strong> <a href="#toVariantList">toVariantList </a>() 和 <a href="#fromVariant">QJsonValue::fromVariant </a>().</p>
+<h3><span id="static-qjsonarray-qjsonarray-fromvariantlist-const-qvariantlist-amp-list"><code>[static] </code>QJsonArray:: fromVariantList (const QVariantList &amp; <em>list</em> )</span><a href="#static-qjsonarray-qjsonarray-fromvariantlist-const-qvariantlist-amp-list" class="header-anchor">#</a></h3><p>转换变体列表<em>list</em>到<a href>QJsonArray</a>。</p>
+<p>在<em>list</em>中的<a href="qvariant.html">QVariant</a>值将被转换为JSON值。</p>
+<p><strong>注意：</strong> 从<a href="qvariant.html">QVariant</a>的转换不是完全无损的。请参阅<a href="#fromVariant">QJsonValue::fromVariant</a>()中的文档 了解更多信息。</p>
+<p><strong>另请参阅</strong> <a href="#toVariantList">toVariantList </a>() 和 <a href="#fromVariant">QJsonValue::fromVariant </a>().</p>
+<h3><span id="void-qjsonarray-insert-qsizetype-i-const-qjsonvalue-amp-value">void QJsonArray:: insert ( qsizetype <em>i</em> , const &amp; <em>value</em> )</span><a href="#void-qjsonarray-insert-qsizetype-i-const-qjsonvalue-amp-value" class="header-anchor">#</a></h3><p>插入<em>value</em>在数组中的索引位置<em>i</em>。如果<em>i</em>是<code>0</code>，那么该值被预加到数组中。如果<em>i</em>是<a href="#size">size</a>()，那么该值被附加到数组中。</p>
+<p><strong>另请参阅</strong> <a href="#append">append </a>(), <a href="#prepend">prepend </a>(), <a href="#replace">replace </a>()，和 <a href="#removeAt">removeAt </a>().</p>
+<h3><span id="qjsonarray-iterator-qjsonarray-insert-qjsonarray-iterator-before-const-qjsonvalue-amp-value">QJsonArray:: insert ( <em>before</em> , const &amp; <em>value</em> )</span><a href="#qjsonarray-iterator-qjsonarray-insert-qjsonarray-iterator-before-const-qjsonvalue-amp-value" class="header-anchor">#</a></h3><p>插入<em>value</em>在<em>before</em>所指向的位置之前，并返回一个指向新插入项的迭代器。</p>
+<p><strong>另请参阅</strong> <a href="#erase">erase </a>() 和 <a href="#insert">insert </a>().</p>
+<h3><span id="bool-qjsonarray-isempty-const">bool QJsonArray:: isEmpty () const</span><a href="#bool-qjsonarray-isempty-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该对象是空的。这与<a href="#size">size</a>() == 0相同。</p>
+<p><strong>另请参阅</strong> <a href="#size">size </a>().</p>
+<h3><span id="qjsonvalue-qjsonarray-last-const">QJsonArray:: last () const</span><a href="#qjsonvalue-qjsonarray-last-const" class="header-anchor">#</a></h3><p>返回存储在数组中的最后一个值。</p>
+<p>如同 <code>at(size() - 1) </code>.</p>
+<p><strong>另请参阅</strong> <a href="#at">at </a>().</p>
+<h3><span id="void-qjsonarray-pop-back">void QJsonArray:: pop_back ()</span><a href="#void-qjsonarray-pop-back" class="header-anchor">#</a></h3><p>此函数是为兼容STL而提供的。它相当于<a href="#removeLast">removeLast</a>()。数组不能是空的。如果数组可能是空的，在调用此函数前请调用<a href="#isEmpty">isEmpty</a>()。</p>
+<h3><span id="void-qjsonarray-pop-front">void QJsonArray:: pop_front ()</span><a href="#void-qjsonarray-pop-front" class="header-anchor">#</a></h3><p>此函数是为兼容 STL 而提供的。它相当于 <a href="#removeFirst">removeFirst </a>(). 数组不能是空的。如果数组可能是空的，在调用此函数前请调用<a href="#isEmpty">isEmpty</a>()。</p>
+<h3><span id="void-qjsonarray-prepend-const-qjsonvalue-amp-value">void QJsonArray:: prepend (const &amp; <em>value</em> )</span><a href="#void-qjsonarray-prepend-const-qjsonvalue-amp-value" class="header-anchor">#</a></h3><p>插入<em>value</em>在数组的开头。</p>
+<p>这如同<code>insert(0, value)</code>，并将<em>value</em>预置到数组中。</p>
+<p><strong>另请参阅</strong> <a href="#append">append </a>() 和 <a href="#insert">insert </a>().</p>
+<h3><span id="void-qjsonarray-push-back-const-qjsonvalue-amp-value">void QJsonArray:: push_back (const &amp; <em>value</em> )</span><a href="#void-qjsonarray-push-back-const-qjsonvalue-amp-value" class="header-anchor">#</a></h3><p>此函数是为兼容 STL 而提供的。它相当于 <a href="#append">append</a>(value) 并将<em>value</em>追加到数组中。</p>
+<h3><span id="void-qjsonarray-push-front-const-qjsonvalue-amp-value">void QJsonArray:: push_front (const &amp; <em>value</em> )</span><a href="#void-qjsonarray-push-front-const-qjsonvalue-amp-value" class="header-anchor">#</a></h3><p>此函数是为兼容 STL 而提供的。它相当于 <a href="#prepend">prepend</a>(value)，并将把<em>value</em>预置到数组中。</p>
+<h3><span id="void-qjsonarray-removeat-qsizetype-i">void QJsonArray:: removeAt ( qsizetype <em>i</em> )</span><a href="#void-qjsonarray-removeat-qsizetype-i" class="header-anchor">#</a></h3><p>移除索引位置<em>i</em>的值。<em>i</em>必须是数组中有效的索引位置（即，<code>0 &lt;= i &lt; size() </code>）。</p>
+<p><strong>另请参阅</strong> <a href="#insert">insert </a>() 和 <a href="#replace">replace </a>().</p>
+<h3><span id="void-qjsonarray-removefirst">void QJsonArray:: removeFirst ()</span><a href="#void-qjsonarray-removefirst" class="header-anchor">#</a></h3><p>删除数组中的第一个项目。调用此函数等同于调用<code>removeAt(0)</code>。数组不能是空的。如果数组可以为空，在调用此函数之前，请调用<a href="#isEmpty">isEmpty</a>()。</p>
+<p><strong>另请参阅</strong> <a href="#removeAt">removeAt </a>() 和 <a href="#removeLast">removeLast </a>().</p>
+<h3><span id="void-qjsonarray-removelast">void QJsonArray:: removeLast ()</span><a href="#void-qjsonarray-removelast" class="header-anchor">#</a></h3><p>删除数组中的最后一个项目。调用此函数等同于调用<code>removeAt(size() - 1) </code>。数组不能是空的。如果数组可以为空，在调用此函数之前，请调用<a href="#isEmpty">isEmpty</a>()。</p>
+<p><strong>另请参阅</strong> <a href="#removeAt">removeAt </a>() 和 <a href="#removeFirst">removeFirst </a>().</p>
+<h3><span id="void-qjsonarray-replace-qsizetype-i-const-qjsonvalue-amp-value">void QJsonArray:: replace ( qsizetype <em>i</em> , const &amp; <em>value</em> )</span><a href="#void-qjsonarray-replace-qsizetype-i-const-qjsonvalue-amp-value" class="header-anchor">#</a></h3><p>替换项在索引位置<em>i</em>与<em>value</em>。<em>i</em>必须是数组中有效的索引位置（即，<code>0 &lt;= i &lt; size() </code>）。</p>
+<p><strong>另请参阅</strong> [operator<a href="#operator-5b-5d">] </a>() 和 <a href="#removeAt">removeAt </a>().</p>
+<h3><span id="qsizetype-qjsonarray-size-const">qsizetype QJsonArray:: size () const</span><a href="#qsizetype-qjsonarray-size-const" class="header-anchor">#</a></h3><p>返回存储在数组中的值的数量。</p>
+<h3><span id="since-5-10-void-qjsonarray-swap-qjsonarray-amp-other"><code>[since 5.10] </code>void QJsonArray:: swap ( &amp; <em>other</em> )</span><a href="#since-5-10-void-qjsonarray-swap-qjsonarray-amp-other" class="header-anchor">#</a></h3><p>用这个数组交换<em>其他</em>。这个操作非常快，而且从不失败。</p>
+<p>该函数在 Qt 5.10 引入。</p>
+<h3><span id="qjsonvalue-qjsonarray-takeat-qsizetype-i">QJsonArray:: takeAt ( qsizetype <em>i</em> )</span><a href="#qjsonvalue-qjsonarray-takeat-qsizetype-i" class="header-anchor">#</a></h3><p>移除索引位置<em>i</em>的项目并返回。<em>i</em>必须是数组中有效的索引位置（即：<code>0 &lt;= i &lt; size() </code>）。</p>
+<p>若不使用返回值， <a href="#removeAt">removeAt </a>() 效率更高。</p>
+<p><strong>另请参阅</strong> <a href="#removeAt">removeAt </a>().</p>
+<h3><span id="qvariantlist-qjsonarray-tovariantlist-const">QVariantList QJsonArray:: toVariantList () const</span><a href="#qvariantlist-qjsonarray-tovariantlist-const" class="header-anchor">#</a></h3><p>将此对象转换为QVariantList。</p>
+<p>返回创建的映射。</p>
+<h3><span id="bool-qjsonarray-operator-const-qjsonarray-amp-other-const">bool QJsonArray:: operator!= (const &amp; <em>other</em> ) const</span><a href="#bool-qjsonarray-operator-const-qjsonarray-amp-other-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个数组不等于<em>其他</em>。</p>
+<h3><span id="since-5-3-qjsonarray-qjsonarray-operator-const-qjsonvalue-amp-value-const"><code>[since 5.3] </code>QJsonArray:: operator+ (const &amp; <em>value</em> ) const</span><a href="#since-5-3-qjsonarray-qjsonarray-operator-const-qjsonvalue-amp-value-const" class="header-anchor">#</a></h3><p>返回一个数组，该数组包含该数组中的所有项，后面是提供的*值。</p>
+<p>该函数在 Qt 5.3 引入。</p>
+<p><strong>另请参阅</strong> <a href="#operator-2b-eq">operator+= </a>().</p>
+<h3><span id="since-5-3-qjsonarray-amp-qjsonarray-operator-const-qjsonvalue-amp-value"><code>[since 5.3] </code>&amp;QJsonArray:: operator+= (const &amp; <em>value</em> )</span><a href="#since-5-3-qjsonarray-amp-qjsonarray-operator-const-qjsonvalue-amp-value" class="header-anchor">#</a></h3><p>追加<em>value</em>到数组，并返回数组本身的一个引用。</p>
+<p>该函数在 Qt 5.3 引入。</p>
+<p><strong>另请参阅</strong> <a href="#append">append </a>() 和 <a href="#operator-lt-lt">operator&lt;&lt; </a>().</p>
+<h3><span id="since-5-3-qjsonarray-amp-qjsonarray-operator-lt-lt-const-qjsonvalue-amp-value"><code>[since 5.3] </code>&amp;QJsonArray:: operator&lt;&lt; (const &amp; <em>value</em> )</span><a href="#since-5-3-qjsonarray-amp-qjsonarray-operator-lt-lt-const-qjsonvalue-amp-value" class="header-anchor">#</a></h3><p>追加<em>值</em>到数组，并返回数组本身的一个引用。</p>
+<p>该函数在 Qt 5.3 引入。</p>
+<p><strong>另请参阅</strong> <a href="#operator-2b-eq">operator+= </a>() 和 <a href="#append">append </a>().</p>
+<h3><span id="bool-qjsonarray-operator-const-qjsonarray-amp-other-const">bool QJsonArray:: operator== (const &amp; <em>other</em> ) const</span><a href="#bool-qjsonarray-operator-const-qjsonarray-amp-other-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个数组等于<em>other</em>.</p>
+<h3><span id="qjsonvalueref-qjsonarray-operator-qsizetype-i">QJsonValueRef QJsonArray:: operator[] ( qsizetype <em>i</em> )</span><a href="#qjsonvalueref-qjsonarray-operator-qsizetype-i" class="header-anchor">#</a></h3><p>返回索引位置<em>i</em>的值，作为一个可修改的引用。<em>i</em>必须是数组中有效的索引位置（即：<code>0 &lt;= i &lt; size() </code>）。</p>
+<p>返回值是<a href="#qjsonvalueref">QJsonValueRef</a>的类型，是<a href>QJsonArray</a>和<a href="qjsonobject.html">QJsonObject</a>的辅助类。当你得到一个<a href="#qjsonvalueref">QJsonValueRef</a>类型的对象时，你可以像使用一个<a href>QJsonValue</a>的引用那样使用它。如果你对它进行赋值，赋值将适用于<a href>QJsonArray</a>的<a href="qjsonobject.html">QJsonObject</a>中的字符，而你正是从那里得到了这个引用。</p>
+<p><strong>另请参阅</strong> <a href="#at">at </a>().</p>
+<h3><span id="qjsonvalue-qjsonarray-operator-qsizetype-i-const">QJsonArray:: operator[] ( qsizetype <em>i</em> ) const</span><a href="#qjsonvalue-qjsonarray-operator-qsizetype-i-const" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>如同 <a href="#at">at </a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/J/">J</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/J/QJoint/QJoint/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QJoint类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/J/QJsonParseError/QJsonParseError/">
+                        <span class="hidden-mobile">QJsonParseError类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

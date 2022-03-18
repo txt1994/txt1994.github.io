@@ -1,0 +1,930 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QSqlResult Class 公共函数 受保护的类型 受保护的函数 详细描述 成员类型文档 enum QSqlResult::BindingSyntax   成员函数文档 [protected]QSqlResult::QSqlResult(const QSqlDriver *db) [virtual]QSqlResult::~QSqlResult() [protected]void">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QSqlResult类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/QSqlResult/QSqlResult/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QSqlResult Class 公共函数 受保护的类型 受保护的函数 详细描述 成员类型文档 enum QSqlResult::BindingSyntax   成员函数文档 [protected]QSqlResult::QSqlResult(const QSqlDriver *db) [virtual]QSqlResult::~QSqlResult() [protected]void">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:54:13.630Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="S">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QSqlResult类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QSqlResult类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      12k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      102 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QSqlResult类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qsqlresult-class">QSqlResult Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#shou-bao-hu-de-lei-xing">受保护的类型</a></li>
+<li><a href="#shou-bao-hu-de-han-shu">受保护的函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qsqlresult-bindingsyntax">enum QSqlResult::BindingSyntax</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#protected-qsqlresult-qsqlresult-const-qsqldriver-qsqldriver-html-db"><code>[protected]</code>QSqlResult::QSqlResult(const </a><a href="qsqldriver.html">QSqlDriver</a> *<em>db</em>)</li>
+<li><a href="#virtual-qsqlresult-qsqlresult"><code>[virtual]</code>QSqlResult::~QSqlResult()</a></li>
+<li><a href="#protected-void-qsqlresult-addbindvalue-const-qvariant-qvariant-html-val-qsql-paramtype-qsql-html-paramtypeflag-enum-paramtype"><code>[protected]</code>void QSqlResult::addBindValue(const </a><a href="qvariant.html">QVariant</a> &amp;<em>val</em>, <a href="qsql.html#ParamTypeFlag-enum">QSql::ParamType</a> <em>paramType</em>)</li>
+<li><a href="#protected-int-qsqlresult-at-const"><code>[protected]</code>int QSqlResult::at() const</a></li>
+<li><a href="#virtual-protected-void-qsqlresult-bindvalue-int-index-const-qvariant-qvariant-html-val-qsql-paramtype-qsql-html-paramtypeflag-enum-paramtype"><code>[virtual protected]</code>void QSqlResult::bindValue(int <em>index</em>, const </a><a href="qvariant.html">QVariant</a> &amp;<em>val</em>, <a href="qsql.html#ParamTypeFlag-enum">QSql::ParamType</a> <em>paramType</em>)</li>
+<li><a href="#virtual-protected-void-qsqlresult-bindvalue-const-qstring-qstring-html-placeholder-const-qvariant-qvariant-html-val-qsql-paramtype-qsql-html-paramtypeflag-enum-paramtype"><code>[virtual protected]</code>void QSqlResult::bindValue(const </a><a href="qstring.html">QString</a> &amp;<em>placeholder</em>, const <a href="qvariant.html">QVariant</a> &amp;<em>val</em>, <a href="qsql.html#ParamTypeFlag-enum">QSql::ParamType</a> <em>paramType</em>)</li>
+<li><a href="#protected-qsql-paramtype-qsql-html-paramtypeflag-enum-qsqlresult-bindvaluetype-int-index-const"><code>[protected]</code></a><a href="qsql.html#ParamTypeFlag-enum">QSql::ParamType</a> QSqlResult::bindValueType(int <em>index</em>) const</li>
+<li><a href="#protected-qsql-paramtype-qsql-html-paramtypeflag-enum-qsqlresult-bindvaluetype-const-qstring-qstring-html-placeholder-const"><code>[protected]</code></a><a href="qsql.html#ParamTypeFlag-enum">QSql::ParamType</a> QSqlResult::bindValueType(const <a href="qstring.html">QString</a> &amp;<em>placeholder</em>) const</li>
+<li><a href="#protected-qsqlresult-bindingsyntax-bindingsyntax-enum-qsqlresult-bindingsyntax-const"><code>[protected]</code></a><a href="#BindingSyntax-enum">QSqlResult::BindingSyntax</a> QSqlResult::bindingSyntax() const</li>
+<li><a href="#protected-qvariant-qvariant-html-qsqlresult-boundvalue-int-index-const"><code>[protected]</code></a><a href="qvariant.html">QVariant</a> QSqlResult::boundValue(int <em>index</em>) const</li>
+<li><a href="#protected-qvariant-qvariant-html-qsqlresult-boundvalue-const-qstring-qstring-html-placeholder-const"><code>[protected]</code></a><a href="qvariant.html">QVariant</a> QSqlResult::boundValue(const <a href="qstring.html">QString</a> &amp;<em>placeholder</em>) const</li>
+<li><a href="#protected-int-qsqlresult-boundvaluecount-const"><code>[protected]</code>int QSqlResult::boundValueCount() const</a></li>
+<li><a href="#protected-qstring-qstring-html-qsqlresult-boundvaluename-int-index-const"><code>[protected]</code></a><a href="qstring.html">QString</a> QSqlResult::boundValueName(int <em>index</em>) const</li>
+<li><a href="#protected-qlist-qlist-html-qvariant-qvariant-html-qsqlresult-boundvalues-const"><code>[protected]</code></a><a href="qlist.html">QList</a>&lt;<a href="qvariant.html">QVariant</a>&gt; &amp;QSqlResult::boundValues() const</li>
+<li><a href="#protected-void-qsqlresult-clear"><code>[protected]</code>void QSqlResult::clear()</a></li>
+<li><a href="#pure-virtual-protected-qvariant-qvariant-html-qsqlresult-data-int-index"><code>[pure virtual protected]</code></a><a href="qvariant.html">QVariant</a> QSqlResult::data(int <em>index</em>)</li>
+<li><a href="#protected-const-qsqldriver-qsqldriver-html-qsqlresult-driver-const"><code>[protected]</code>const </a><a href="qsqldriver.html">QSqlDriver</a> *QSqlResult::driver() const</li>
+<li><a href="#virtual-protected-bool-qsqlresult-exec"><code>[virtual protected]</code>bool QSqlResult::exec()</a></li>
+<li><a href="#protected-qstring-qstring-html-qsqlresult-executedquery-const"><code>[protected]</code></a><a href="qstring.html">QString</a> QSqlResult::executedQuery() const</li>
+<li><a href="#pure-virtual-protected-bool-qsqlresult-fetch-int-index"><code>[pure virtual protected]</code>bool QSqlResult::fetch(int <em>index</em>)</a></li>
+<li><a href="#pure-virtual-protected-bool-qsqlresult-fetchfirst"><code>[pure virtual protected]</code>bool QSqlResult::fetchFirst()</a></li>
+<li><a href="#pure-virtual-protected-bool-qsqlresult-fetchlast"><code>[pure virtual protected]</code>bool QSqlResult::fetchLast()</a></li>
+<li><a href="#virtual-protected-bool-qsqlresult-fetchnext"><code>[virtual protected]</code>bool QSqlResult::fetchNext()</a></li>
+<li><a href="#virtual-protected-bool-qsqlresult-fetchprevious"><code>[virtual protected]</code>bool QSqlResult::fetchPrevious()</a></li>
+<li><a href="#virtual-qvariant-qvariant-html-qsqlresult-handle-const"><code>[virtual]</code></a><a href="qvariant.html">QVariant</a> QSqlResult::handle() const</li>
+<li><a href="#protected-bool-qsqlresult-hasoutvalues-const"><code>[protected]</code>bool QSqlResult::hasOutValues() const</a></li>
+<li><a href="#protected-bool-qsqlresult-isactive-const"><code>[protected]</code>bool QSqlResult::isActive() const</a></li>
+<li><a href="#protected-bool-qsqlresult-isforwardonly-const"><code>[protected]</code>bool QSqlResult::isForwardOnly() const</a></li>
+<li><a href="#pure-virtual-protected-bool-qsqlresult-isnull-int-index"><code>[pure virtual protected]</code>bool QSqlResult::isNull(int <em>index</em>)</a></li>
+<li><a href="#protected-bool-qsqlresult-isselect-const"><code>[protected]</code>bool QSqlResult::isSelect() const</a></li>
+<li><a href="#protected-bool-qsqlresult-isvalid-const"><code>[protected]</code>bool QSqlResult::isValid() const</a></li>
+<li><a href="#protected-qsqlerror-qsqlerror-html-qsqlresult-lasterror-const"><code>[protected]</code></a><a href="qsqlerror.html">QSqlError</a> QSqlResult::lastError() const</li>
+<li><a href="#virtual-protected-qvariant-qvariant-html-qsqlresult-lastinsertid-const"><code>[virtual protected]</code></a><a href="qvariant.html">QVariant</a> QSqlResult::lastInsertId() const</li>
+<li><a href="#protected-qstring-qstring-html-qsqlresult-lastquery-const"><code>[protected]</code></a><a href="qstring.html">QString</a> QSqlResult::lastQuery() const</li>
+<li><a href="#pure-virtual-protected-int-qsqlresult-numrowsaffected"><code>[pure virtual protected]</code>int QSqlResult::numRowsAffected()</a></li>
+<li><a href="#virtual-protected-bool-qsqlresult-prepare-const-qstring-qstring-html-query"><code>[virtual protected]</code>bool QSqlResult::prepare(const </a><a href="qstring.html">QString</a> &amp;<em>query</em>)</li>
+<li><a href="#virtual-protected-qsqlrecord-qsqlrecord-html-qsqlresult-record-const"><code>[virtual protected]</code></a><a href="qsqlrecord.html">QSqlRecord</a> QSqlResult::record() const</li>
+<li><a href="#pure-virtual-protected-bool-qsqlresult-reset-const-qstring-qstring-html-query"><code>[pure virtual protected]</code>bool QSqlResult::reset(const </a><a href="qstring.html">QString</a> &amp;<em>query</em>)</li>
+<li><a href="#protected-void-qsqlresult-resetbindcount"><code>[protected]</code>void QSqlResult::resetBindCount()</a></li>
+<li><a href="#virtual-protected-bool-qsqlresult-saveprepare-const-qstring-qstring-html-query"><code>[virtual protected]</code>bool QSqlResult::savePrepare(const </a><a href="qstring.html">QString</a> &amp;<em>query</em>)</li>
+<li><a href="#virtual-protected-void-qsqlresult-setactive-bool-active"><code>[virtual protected]</code>void QSqlResult::setActive(bool <em>active</em>)</a></li>
+<li><a href="#virtual-protected-void-qsqlresult-setat-int-index"><code>[virtual protected]</code>void QSqlResult::setAt(int <em>index</em>)</a></li>
+<li><a href="#virtual-protected-void-qsqlresult-setforwardonly-bool-forward"><code>[virtual protected]</code>void QSqlResult::setForwardOnly(bool <em>forward</em>)</a></li>
+<li><a href="#virtual-protected-void-qsqlresult-setlasterror-const-qsqlerror-qsqlerror-html-error"><code>[virtual protected]</code>void QSqlResult::setLastError(const </a><a href="qsqlerror.html">QSqlError</a> &amp;<em>error</em>)</li>
+<li><a href="#virtual-protected-void-qsqlresult-setquery-const-qstring-qstring-html-query"><code>[virtual protected]</code>void QSqlResult::setQuery(const </a><a href="qstring.html">QString</a> &amp;<em>query</em>)</li>
+<li><a href="#virtual-protected-void-qsqlresult-setselect-bool-select"><code>[virtual protected]</code>void QSqlResult::setSelect(bool <em>select</em>)</a></li>
+<li><a href="#pure-virtual-protected-int-qsqlresult-size"><code>[pure virtual protected]</code>int QSqlResult::size()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QSqlResult Class
+
+<p>QSqlResult 类提供了一个抽象接口，用于访问特定 SQL 数据库中的数据。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qsqlresult></qsqlresult></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Sql REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Sql)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += sql</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qsqlresult-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual</th>
+<th><strong><a href="#dtor.QSqlResult">~QSqlResult</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual QVariant</td>
+<td><strong><a href="#handle">handle</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="shou-bao-hu-de-lei-xing">受保护的类型</span><a href="#shou-bao-hu-de-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#BindingSyntax-enum">BindingSyntax</a></strong> { PositionalBinding, NamedBinding }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="shou-bao-hu-de-han-shu">受保护的函数</span><a href="#shou-bao-hu-de-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QSqlResult">QSqlResult</a></strong>(const QSqlDriver *<em>db</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#addBindValue">addBindValue</a></strong>(const QVariant &amp;<em>val</em>, QSql::ParamType <em>paramType</em>)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#at">at</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#bindValue">bindValue</a></strong>(int <em>index</em>, const QVariant &amp;<em>val</em>, QSql::ParamType <em>paramType</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#bindValue-1">bindValue</a></strong>(const QString &amp;<em>placeholder</em>, const QVariant &amp;<em>val</em>, QSql::ParamType <em>paramType</em>)</td>
+</tr>
+<tr>
+<td>QSql::ParamType</td>
+<td><strong><a href="#bindValueType">bindValueType</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QSql::ParamType</td>
+<td><strong><a href="#bindValueType-1">bindValueType</a></strong>(const QString &amp;<em>placeholder</em>) const</td>
+</tr>
+<tr>
+<td>QSqlResult::BindingSyntax</td>
+<td><strong><a href="#bindingSyntax">bindingSyntax</a></strong>() const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#boundValue">boundValue</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#boundValue-1">boundValue</a></strong>(const QString &amp;<em>placeholder</em>) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#boundValueCount">boundValueCount</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#boundValueName">boundValueName</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QList<qvariant> &amp;</qvariant></td>
+<td><strong><a href="#boundValues">boundValues</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#clear">clear</a></strong>()</td>
+</tr>
+<tr>
+<td>virtual QVariant</td>
+<td><strong><a href="#data">data</a></strong>(int <em>index</em>) = 0</td>
+</tr>
+<tr>
+<td>const QSqlDriver *</td>
+<td><strong><a href="#driver">driver</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#exec">exec</a></strong>()</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#executedQuery">executedQuery</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#fetch">fetch</a></strong>(int <em>index</em>) = 0</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#fetchFirst">fetchFirst</a></strong>() = 0</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#fetchLast">fetchLast</a></strong>() = 0</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#fetchNext">fetchNext</a></strong>()</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#fetchPrevious">fetchPrevious</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasOutValues">hasOutValues</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isActive">isActive</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isForwardOnly">isForwardOnly</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#isNull">isNull</a></strong>(int <em>index</em>) = 0</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isSelect">isSelect</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isValid">isValid</a></strong>() const</td>
+</tr>
+<tr>
+<td>QSqlError</td>
+<td><strong><a href="#lastError">lastError</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual QVariant</td>
+<td><strong><a href="#lastInsertId">lastInsertId</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#lastQuery">lastQuery</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual int</td>
+<td><strong><a href="#numRowsAffected">numRowsAffected</a></strong>() = 0</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#prepare">prepare</a></strong>(const QString &amp;<em>query</em>)</td>
+</tr>
+<tr>
+<td>virtual QSqlRecord</td>
+<td><strong><a href="#record">record</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#reset">reset</a></strong>(const QString &amp;<em>query</em>) = 0</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#resetBindCount">resetBindCount</a></strong>()</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><strong><a href="#savePrepare">savePrepare</a></strong>(const QString &amp;<em>query</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#setActive">setActive</a></strong>(bool <em>active</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#setAt">setAt</a></strong>(int <em>index</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#setForwardOnly">setForwardOnly</a></strong>(bool <em>forward</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#setLastError">setLastError</a></strong>(const QSqlError &amp;<em>error</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#setQuery">setQuery</a></strong>(const QString &amp;<em>query</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#setSelect">setSelect</a></strong>(bool <em>select</em>)</td>
+</tr>
+<tr>
+<td>virtual int</td>
+<td><strong><a href="#size">size</a></strong>() = 0</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>通常，您将使用 <a href="qsqlquery.html">QSqlQuery</a> 而不是 QSqlResult，因为 <a href="qsqlquery.html">QSqlQuery</a> 为特定于数据库的 QSqlResult 实现提供了一个通用包装器。</p>
+<p>如果您正在实现自己的 SQL 驱动程序（通过子类化 <a href="qsqldriver.html">QSqlDriver</a>），您将需要提供自己的 QSqlResult 子类来实现您需要的所有纯虚函数和其他虚函数。</p>
+<p><strong>See also</strong> <a href="qsqldriver.html">QSqlDriver</a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qsqlresult-bindingsyntax">enum QSqlResult::BindingSyntax</span><a href="#enum-qsqlresult-bindingsyntax" class="header-anchor">#</a></h3><p>此枚举类型指定用于在准备好的查询中指定占位符的不同语法。</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QSqlResult::PositionalBinding</code></td>
+<td><code>0</code></td>
+<td>使用 ODBC 样式的位置语法，带有”?” 作为占位符。</td>
+</tr>
+<tr>
+<td><code>QSqlResult::NamedBinding</code></td>
+<td><code>1</code></td>
+<td>使用带有命名占位符的 Oracle 样式语法（例如，”:id”）</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#bindingSyntax">bindingSyntax</a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="protected-qsqlresult-qsqlresult-const-qsqldriver-db"><code>[protected]</code>QSqlResult::QSqlResult(const  *<em>db</em>)</span><a href="#protected-qsqlresult-qsqlresult-const-qsqldriver-db" class="header-anchor">#</a></h3><p>使用数据库驱动程序 <em>db</em> 创建一个 QSqlResult。 对象被初始化为非活动状态。</p>
+<p><strong>另请参阅</strong> <a href="#isActive">isActive</a>() 和 <a href="#driver">driver</a>()。</p>
+<h3><span id="virtual-qsqlresult-qsqlresult"><code>[virtual]</code>QSqlResult::~QSqlResult()</span><a href="#virtual-qsqlresult-qsqlresult" class="header-anchor">#</a></h3><p>销毁对象并释放所有分配的资源。</p>
+<h3><span id="protected-void-qsqlresult-addbindvalue-const-qvariant-amp-val-qsql-paramtype-paramtype"><code>[protected]</code>void QSqlResult::addBindValue(const  &amp;<em>val</em>,  <em>paramType</em>)</span><a href="#protected-void-qsqlresult-addbindvalue-const-qvariant-amp-val-qsql-paramtype-paramtype" class="header-anchor">#</a></h3><p>将参数类型 <em>paramType</em> 的值 <em>val</em> 绑定到当前记录（行）中的下一个可用位置。</p>
+<p><strong>另请参阅</strong> <a href="#bindValue">bindValue</a>()。</p>
+<h3><span id="protected-int-qsqlresult-at-const"><code>[protected]</code>int QSqlResult::at() const</span><a href="#protected-int-qsqlresult-at-const" class="header-anchor">#</a></h3><p>返回结果的当前（从零开始）行位置。可能返回特殊值 <a href="qsql.html#Location-enum">QSql::BeforeFirstRow</a> 或 <a href="qsql.html#Location-enum">QSql::AfterLastRow</a>。</p>
+<p><strong>另请参阅</strong> <a href="#setAt">setAt</a>() 和 <a href="#isValid">isValid</a>()。</p>
+<h3><span id="virtual-protected-void-qsqlresult-bindvalue-int-index-const-qvariant-amp-val-qsql-paramtype-paramtype"><code>[virtual protected]</code>void QSqlResult::bindValue(int <em>index</em>, const  &amp;<em>val</em>,  <em>paramType</em>)</span><a href="#virtual-protected-void-qsqlresult-bindvalue-int-index-const-qvariant-amp-val-qsql-paramtype-paramtype" class="header-anchor">#</a></h3><p>将参数类型 <em>paramType</em> 的值 <em>val</em> 绑定到当前记录（行）中的位置 <em>index</em>。</p>
+<p><strong>另请参阅</strong> <a href="#addBindValue">addBindValue</a>()。</p>
+<h3><span id="virtual-protected-void-qsqlresult-bindvalue-const-qstring-amp-placeholder-const-qvariant-amp-val-qsql-paramtype-paramtype"><code>[virtual protected]</code>void QSqlResult::bindValue(const  &amp;<em>placeholder</em>, const  &amp;<em>val</em>,  <em>paramType</em>)</span><a href="#virtual-protected-void-qsqlresult-bindvalue-const-qstring-amp-placeholder-const-qvariant-amp-val-qsql-paramtype-paramtype" class="header-anchor">#</a></h3><p>这是一个过载功能。</p>
+<p>将参数类型 <em>paramType</em> 的值 <em>val</em> 绑定到当前记录（行）中的 <em>placeholder</em> 名称。</p>
+<p><strong>注意：</strong> 绑定未定义的占位符将导致未定义的行为。</p>
+<p><strong>另见</strong> <a href="qsqlquery.html#bindValue">QSqlQuery::bindValue</a>()。</p>
+<h3><span id="protected-qsql-paramtype-qsqlresult-bindvaluetype-int-index-const"><code>[protected]</code> QSqlResult::bindValueType(int <em>index</em>) const</span><a href="#protected-qsql-paramtype-qsqlresult-bindvaluetype-int-index-const" class="header-anchor">#</a></h3><p>返回绑定在 <em>index</em> 位置的值的参数类型。</p>
+<p><strong>另请参阅</strong> <a href="#boundValue">boundValue</a>()。</p>
+<h3><span id="protected-qsql-paramtype-qsqlresult-bindvaluetype-const-qstring-amp-placeholder-const"><code>[protected]</code> QSqlResult::bindValueType(const  &amp;<em>placeholder</em>) const</span><a href="#protected-qsql-paramtype-qsqlresult-bindvaluetype-const-qstring-amp-placeholder-const" class="header-anchor">#</a></h3><p>这是一个过载功能。</p>
+<p>返回与给定 <em>placeholder</em> 名称绑定的值的参数类型。</p>
+<h3><span id="protected-qsqlresult-bindingsyntax-qsqlresult-bindingsyntax-const"><code>[protected]</code> QSqlResult::bindingSyntax() const</span><a href="#protected-qsqlresult-bindingsyntax-qsqlresult-bindingsyntax-const" class="header-anchor">#</a></h3><p>返回准备好的查询使用的绑定语法。</p>
+<h3><span id="protected-qvariant-qsqlresult-boundvalue-int-index-const"><code>[protected]</code> QSqlResult::boundValue(int <em>index</em>) const</span><a href="#protected-qvariant-qsqlresult-boundvalue-int-index-const" class="header-anchor">#</a></h3><p>返回当前记录（行）中位置 <em>index</em> 处绑定的值。</p>
+<p><strong>See also</strong> <a href="#bindValue">bindValue</a>() and <a href="#boundValues">boundValues</a>().</p>
+<h3><span id="protected-qvariant-qsqlresult-boundvalue-const-qstring-amp-placeholder-const"><code>[protected]</code> QSqlResult::boundValue(const  &amp;<em>placeholder</em>) const</span><a href="#protected-qvariant-qsqlresult-boundvalue-const-qstring-amp-placeholder-const" class="header-anchor">#</a></h3><p>这是一个过载功能。</p>
+<p>返回当前记录（行）中给定 <em>placeholder</em> 名称所绑定的值。</p>
+<p><strong>另请参阅</strong> <a href="#bindValueType">bindValueType</a>()。</p>
+<h3><span id="protected-int-qsqlresult-boundvaluecount-const"><code>[protected]</code>int QSqlResult::boundValueCount() const</span><a href="#protected-int-qsqlresult-boundvaluecount-const" class="header-anchor">#</a></h3><p>返回结果中绑定值的数量。</p>
+<p><strong>另见</strong> <a href="#boundValues">boundValues</a>()。</p>
+<h3><span id="protected-qstring-qsqlresult-boundvaluename-int-index-const"><code>[protected]</code> QSqlResult::boundValueName(int <em>index</em>) const</span><a href="#protected-qstring-qsqlresult-boundvaluename-int-index-const" class="header-anchor">#</a></h3><p>返回当前记录（行）中位置 <em>index</em> 处的绑定值的名称。</p>
+<p><strong>另请参阅</strong> <a href="#boundValue">boundValue</a>()。</p>
+<h3><span id="protected-qlist-lt-qvariant-gt-amp-qsqlresult-boundvalues-const"><code>[protected]</code>&lt;&gt; &amp;QSqlResult::boundValues() const</span><a href="#protected-qlist-lt-qvariant-gt-amp-qsqlresult-boundvalues-const" class="header-anchor">#</a></h3><p>返回当前记录（行）的结果边界值的向量。</p>
+<p><strong>另请参阅</strong> <a href="#boundValueCount">boundValueCount</a>()。</p>
+<h3><span id="protected-void-qsqlresult-clear"><code>[protected]</code>void QSqlResult::clear()</span><a href="#protected-void-qsqlresult-clear" class="header-anchor">#</a></h3><p>清除整个结果集并释放任何关联的资源。</p>
+<h3><span id="pure-virtual-protected-qvariant-qsqlresult-data-int-index"><code>[pure virtual protected]</code> QSqlResult::data(int <em>index</em>)</span><a href="#pure-virtual-protected-qvariant-qsqlresult-data-int-index" class="header-anchor">#</a></h3><p>以 <a href="qvariant.html">QVariant</a> 形式返回当前行中字段 <em>index</em> 的数据。仅当结果处于活动状态并位于有效记录上且 <em>index</em> 为非负数时才调用此函数。派生类必须重新实现此函数并返回字段 <em>index</em> 的值，如果无法确定则返回 QVariant()。</p>
+<h3><span id="protected-const-qsqldriver-qsqlresult-driver-const"><code>[protected]</code>const  *QSqlResult::driver() const</span><a href="#protected-const-qsqldriver-qsqlresult-driver-const" class="header-anchor">#</a></h3><p>返回与结果关联的驱动程序。这是传递给构造函数的对象。</p>
+<h3><span id="virtual-protected-bool-qsqlresult-exec"><code>[virtual protected]</code>bool QSqlResult::exec()</span><a href="#virtual-protected-bool-qsqlresult-exec" class="header-anchor">#</a></h3><p>执行查询，成功则返回true；否则返回假。</p>
+<p><strong>另见</strong> <a href="#prepare">prepare</a>()。</p>
+<h3><span id="protected-qstring-qsqlresult-executedquery-const"><code>[protected]</code> QSqlResult::executedQuery() const</span><a href="#protected-qstring-qsqlresult-executedquery-const" class="header-anchor">#</a></h3><p>返回实际执行的查询。这可能与传递的查询不同，例如，如果绑定值与准备好的查询一起使用并且基础数据库不支持准备好的查询。</p>
+<p><strong>See also</strong> <a href="#exec">exec</a>() and <a href="#setQuery">setQuery</a>().</p>
+<h3><span id="pure-virtual-protected-bool-qsqlresult-fetch-int-index"><code>[pure virtual protected]</code>bool QSqlResult::fetch(int <em>index</em>)</span><a href="#pure-virtual-protected-bool-qsqlresult-fetch-int-index" class="header-anchor">#</a></h3><p>将结果定位到任意（从零开始）行<em>index</em>。</p>
+<p>仅当结果处于活动状态时才调用此函数。派生类必须重新实现此函数并将结果定位到行<em>index</em>，并使用适当的值调用<a href="#setAt">setAt</a>()。返回 true 表示成功，返回 false 表示失败。</p>
+<p><strong>另请参阅</strong> <a href="#isActive">isActive</a>()、<a href="#fetchFirst">fetchFirst</a>()、<a href="#fetchLast">fetchLast</a>()、<a href="#fetchNext">fetchNext</a>() 和 [fetchPrevious] (#fetchPrevious)()。</p>
+<h3><span id="pure-virtual-protected-bool-qsqlresult-fetchfirst"><code>[pure virtual protected]</code>bool QSqlResult::fetchFirst()</span><a href="#pure-virtual-protected-bool-qsqlresult-fetchfirst" class="header-anchor">#</a></h3><p>将结果定位到结果中的第一条记录（第 0 行）。</p>
+<p>仅当结果处于活动状态时才调用此函数。派生类必须重新实现此函数并将结果定位到第一条记录，并使用适当的值调用 <a href="#setAt">setAt</a>()。返回 true 表示成功，返回 false 表示失败。</p>
+<p><strong>另见</strong> <a href="#fetch">fetch</a>() 和 <a href="#fetchLast">fetchLast</a>()。</p>
+<h3><span id="pure-virtual-protected-bool-qsqlresult-fetchlast"><code>[pure virtual protected]</code>bool QSqlResult::fetchLast()</span><a href="#pure-virtual-protected-bool-qsqlresult-fetchlast" class="header-anchor">#</a></h3><p>将结果定位到结果中的最后一条记录（最后一行）。</p>
+<p>仅当结果处于活动状态时才调用此函数。派生类必须重新实现此函数并将结果定位到最后一条记录，并使用适当的值调用 <a href="#setAt">setAt</a>()。返回 true 表示成功，返回 false 表示失败。</p>
+<p><strong>另请参阅</strong> <a href="#fetch">fetch</a>() 和 <a href="#fetchFirst">fetchFirst</a>()。</p>
+<h3><span id="virtual-protected-bool-qsqlresult-fetchnext"><code>[virtual protected]</code>bool QSqlResult::fetchNext()</span><a href="#virtual-protected-bool-qsqlresult-fetchnext" class="header-anchor">#</a></h3><p>将结果定位到结果中的下一个可用记录（行）。</p>
+<p>仅当结果处于活动状态时才调用此函数。默认实现使用下一个索引调用 <a href="#fetch">fetch</a>()。派生类可以重新实现此函数并以其他方式将结果定位到下一条记录，并使用适当的值调用 <a href="#setAt">setAt</a>()。返回 true 表示成功，返回 false 表示失败。</p>
+<p><strong>See also</strong> <a href="#fetch">fetch</a>() and <a href="#fetchPrevious">fetchPrevious</a>().</p>
+<h3><span id="virtual-protected-bool-qsqlresult-fetchprevious"><code>[virtual protected]</code>bool QSqlResult::fetchPrevious()</span><a href="#virtual-protected-bool-qsqlresult-fetchprevious" class="header-anchor">#</a></h3><p>将结果定位到结果中的前一条记录（行）。</p>
+<p>仅当结果处于活动状态时才调用此函数。 默认实现使用前一个索引调用 <a href="#fetch">fetch</a>()。 派生类可以重新实现此函数并以其他方式将结果定位到下一条记录，并使用适当的值调用 <a href="#setAt">setAt</a>()。 返回 true 表示成功，返回 false 表示失败。</p>
+<h3><span id="virtual-qvariant-qsqlresult-handle-const"><code>[virtual]</code> QSqlResult::handle() const</span><a href="#virtual-qvariant-qsqlresult-handle-const" class="header-anchor">#</a></h3><p>返回包装在 <a href="qvariant.html">QVariant</a> 中的此结果集的低级数据库句柄，如果没有句柄，则返回无效的 <a href="qvariant.html">QVariant</a>。</p>
+<p><strong>警告：</strong> 请谨慎使用此功能，并且仅在您知道自己在做什么的情况下使用。</p>
+<p><strong>警告：</strong> 如果结果被修改（例如，如果你清除它），这里返回的句柄可能会变成一个过时的指针。</p>
+<p><strong>警告：</strong> 如果结果尚未执行，则句柄可以为 NULL。</p>
+<p><strong>警告：</strong> PostgreSQL：在只进模式下，<a href>QSqlResult</a> 的句柄在调用 <a href="#fetch">fetch</a>(), <a href="#fetchFirst">fetchFirst</a>(), <a href="#fetchLast">fetchLast</a>)()、<a href="#fetchNext">fetchNext</a>()、<a href="#fetchPrevious">fetchPrevious</a>()、nextResult()。</p>
+<p>这里返回的句柄是依赖于数据库的，你应该在访问它之前查询变量的类型名称。</p>
+<p>此示例检索 sqlite 结果的句柄：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QSqlDatabase db = QSqlDatabase::<span class="hljs-built_in">database</span>(<span class="hljs-string">"sales"</span>);
+<span class="hljs-function">QSqlQuery <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-string">"SELECT NAME, DOB FROM EMPLOYEES"</span>, db)</span></span>;
+
+QVariant v = query.<span class="hljs-built_in">result</span>()-&gt;<span class="hljs-built_in">handle</span>();
+<span class="hljs-keyword">if</span> (v.<span class="hljs-built_in">isValid</span>() &amp;&amp; <span class="hljs-built_in">qstrcmp</span>(v.<span class="hljs-built_in">typeName</span>(), <span class="hljs-string">"sqlite3_stmt*"</span>) == <span class="hljs-number">0</span>) {
+    <span class="hljs-comment">// v.data() returns a pointer to the handle</span>
+    sqlite3_stmt *handle = *<span class="hljs-built_in">static_cast</span>&lt;sqlite3_stmt **&gt;(v.<span class="hljs-built_in">data</span>());
+    <span class="hljs-keyword">if</span> (handle) {
+        <span class="hljs-comment">// ...</span>
+    }
+}</code></pre></div>
+
+<p>此代码段返回 PostgreSQL 或 MySQL 的句柄：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">if</span> (<span class="hljs-built_in">qstrcmp</span>(v.<span class="hljs-built_in">typeName</span>(), <span class="hljs-string">"PGresult*"</span>) == <span class="hljs-number">0</span>) {
+    PGresult *handle = *<span class="hljs-built_in">static_cast</span>&lt;PGresult **&gt;(v.<span class="hljs-built_in">data</span>());
+    <span class="hljs-keyword">if</span> (handle) {
+        <span class="hljs-comment">// ...</span>
+    }
+}
+
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">qstrcmp</span>(v.<span class="hljs-built_in">typeName</span>(), <span class="hljs-string">"MYSQL_STMT*"</span>) == <span class="hljs-number">0</span>) {
+    MYSQL_STMT *handle = *<span class="hljs-built_in">static_cast</span>&lt;MYSQL_STMT **&gt;(v.<span class="hljs-built_in">data</span>());
+    <span class="hljs-keyword">if</span> (handle) {
+        <span class="hljs-comment">// ...</span>
+    }
+}</code></pre></div>
+
+<p><strong>See also</strong> <a href="qsqldriver.html#handle">QSqlDriver::handle</a>().</p>
+<h3><span id="protected-bool-qsqlresult-hasoutvalues-const"><code>[protected]</code>bool QSqlResult::hasOutValues() const</span><a href="#protected-bool-qsqlresult-hasoutvalues-const" class="header-anchor">#</a></h3><p>如果查询的至少一个绑定值是 <code>QSql::Out</code> 或 <a href="qsql.html#ParamTypeFlag-enum">QSql::InOut</a>，则返回 <code>true</code>；否则返回“假”。</p>
+<p><strong>另请参阅</strong> <a href="#bindValueType">bindValueType</a>()。</p>
+<h3><span id="protected-bool-qsqlresult-isactive-const"><code>[protected]</code>bool QSqlResult::isActive() const</span><a href="#protected-bool-qsqlresult-isactive-const" class="header-anchor">#</a></h3><p>如果结果有要检索的记录，则返回 <code>true</code>；否则返回“假”。</p>
+<h3><span id="protected-bool-qsqlresult-isforwardonly-const"><code>[protected]</code>bool QSqlResult::isForwardOnly() const</span><a href="#protected-bool-qsqlresult-isforwardonly-const" class="header-anchor">#</a></h3><p>如果只能向前滚动结果集，则返回 <code>true</code>；否则返回“假”。</p>
+<p><strong>另请参阅</strong> <a href="#setForwardOnly">setForwardOnly</a>()。</p>
+<h3><span id="pure-virtual-protected-bool-qsqlresult-isnull-int-index"><code>[pure virtual protected]</code>bool QSqlResult::isNull(int <em>index</em>)</span><a href="#pure-virtual-protected-bool-qsqlresult-isnull-int-index" class="header-anchor">#</a></h3><p>如果当前行中 <em>index</em> 位置的字段为 null，则返回 <code>true</code>；否则返回“假”。</p>
+<h3><span id="protected-bool-qsqlresult-isselect-const"><code>[protected]</code>bool QSqlResult::isSelect() const</span><a href="#protected-bool-qsqlresult-isselect-const" class="header-anchor">#</a></h3><p>如果当前结果来自“SELECT”语句，则返回“true”；否则返回“假”。</p>
+<p><strong>另见</strong> <a href="#setSelect">setSelect</a>()。</p>
+<h3><span id="protected-bool-qsqlresult-isvalid-const"><code>[protected]</code>bool QSqlResult::isValid() const</span><a href="#protected-bool-qsqlresult-isvalid-const" class="header-anchor">#</a></h3><p>如果结果定位在有效记录上（即结果不定位在第一条记录之前或最后一条记录之后），则返回 <code>true</code>；否则返回“假”。</p>
+<p><strong>See also</strong> <a href="#at">at</a>().</p>
+<h3><span id="protected-qsqlerror-qsqlresult-lasterror-const"><code>[protected]</code> QSqlResult::lastError() const</span><a href="#protected-qsqlerror-qsqlresult-lasterror-const" class="header-anchor">#</a></h3><p>返回与结果关联的最后一个错误。</p>
+<p><strong>See also</strong> <a href="#setLastError">setLastError</a>().</p>
+<h3><span id="virtual-protected-qvariant-qsqlresult-lastinsertid-const"><code>[virtual protected]</code> QSqlResult::lastInsertId() const</span><a href="#virtual-protected-qvariant-qsqlresult-lastinsertid-const" class="header-anchor">#</a></h3><p>如果数据库支持，则返回最近插入行的对象 ID。 如果查询未插入任何值或数据库未报告 id，则将返回无效的 <a href="qvariant.html">QVariant</a>。 如果插入操作多于一行，则行为未定义。</p>
+<p>请注意，对于 Oracle 数据库，将返回行的 ROWID，而对于 MySQL 数据库，将返回行的自动增量字段。</p>
+<p><strong>See also</strong> <a href="qsqldriver.html#hasFeature">QSqlDriver::hasFeature</a>().</p>
+<h3><span id="protected-qstring-qsqlresult-lastquery-const"><code>[protected]</code> QSqlResult::lastQuery() const</span><a href="#protected-qstring-qsqlresult-lastquery-const" class="header-anchor">#</a></h3><p>返回当前 SQL 查询文本，如果没有则返回空字符串。</p>
+<p><strong>See also</strong> <a href="#setQuery">setQuery</a>().</p>
+<h3><span id="pure-virtual-protected-int-qsqlresult-numrowsaffected"><code>[pure virtual protected]</code>int QSqlResult::numRowsAffected()</span><a href="#pure-virtual-protected-int-qsqlresult-numrowsaffected" class="header-anchor">#</a></h3><p>返回受执行的最后一个查询影响的行数，如果无法确定或查询是 <code>SELECT</code> 语句，则返回 -1。</p>
+<p><strong>See also</strong> <a href="#size">size</a>().</p>
+<h3><span id="virtual-protected-bool-qsqlresult-prepare-const-qstring-amp-query"><code>[virtual protected]</code>bool QSqlResult::prepare(const  &amp;<em>query</em>)</span><a href="#virtual-protected-bool-qsqlresult-prepare-const-qstring-amp-query" class="header-anchor">#</a></h3><p>准备给定的 <em>query</em> 以供执行； 查询通常会使用占位符，以便可以重复执行。 如果查询准备成功，则返回 true； 否则返回“假”。</p>
+<p><strong>See also</strong> <a href="#exec">exec</a>().</p>
+<h3><span id="virtual-protected-qsqlrecord-qsqlresult-record-const"><code>[virtual protected]</code> QSqlResult::record() const</span><a href="#virtual-protected-qsqlrecord-qsqlresult-record-const" class="header-anchor">#</a></h3><p>如果查询处于活动状态，则返回当前记录； 否则返回一个空的 <a href="qsqlrecord.html">QSqlRecord</a>。</p>
+<p>默认实现总是返回一个空的 <a href="qsqlrecord.html">QSqlRecord</a>。</p>
+<p><strong>See also</strong> <a href="#isActive">isActive</a>().</p>
+<h3><span id="pure-virtual-protected-bool-qsqlresult-reset-const-qstring-amp-query"><code>[pure virtual protected]</code>bool QSqlResult::reset(const  &amp;<em>query</em>)</span><a href="#pure-virtual-protected-bool-qsqlresult-reset-const-qstring-amp-query" class="header-anchor">#</a></h3><p>将结果设置为使用 SQL 语句 <em>query</em> 进行后续数据检索。</p>
+<p>派生类必须重新实现此函数并将 <em>query</em> 应用于数据库。 此函数仅在结果设置为非活动状态并位于新结果的第一条记录之前调用。 如果查询成功并准备好使用，派生类应该返回 true，否则返回 false。</p>
+<p><strong>See also</strong> <a href="#setQuery">setQuery</a>().</p>
+<h3><span id="protected-void-qsqlresult-resetbindcount"><code>[protected]</code>void QSqlResult::resetBindCount()</span><a href="#protected-void-qsqlresult-resetbindcount" class="header-anchor">#</a></h3><p>重置绑定参数的数量。</p>
+<h3><span id="virtual-protected-bool-qsqlresult-saveprepare-const-qstring-amp-query"><code>[virtual protected]</code>bool QSqlResult::savePrepare(const  &amp;<em>query</em>)</span><a href="#virtual-protected-bool-qsqlresult-saveprepare-const-qstring-amp-query" class="header-anchor">#</a></h3><p>准备给定的<em>query</em>，尽可能使用底层数据库功能。 如果查询准备成功，则返回 <code>true</code>； 否则返回“假”。</p>
+<p>注意：这个方法应该被称为“safePrepare()”。</p>
+<p><strong>See also</strong> <a href="#prepare">prepare</a>().</p>
+<h3><span id="virtual-protected-void-qsqlresult-setactive-bool-active"><code>[virtual protected]</code>void QSqlResult::setActive(bool <em>active</em>)</span><a href="#virtual-protected-void-qsqlresult-setactive-bool-active" class="header-anchor">#</a></h3><p>该函数是为派生类提供的，用于将内部活动状态设置为<em>active</em>。</p>
+<p><strong>See also</strong> <a href="#isActive">isActive</a>().</p>
+<h3><span id="virtual-protected-void-qsqlresult-setat-int-index"><code>[virtual protected]</code>void QSqlResult::setAt(int <em>index</em>)</span><a href="#virtual-protected-void-qsqlresult-setat-int-index" class="header-anchor">#</a></h3><p>此函数是为派生类提供的，用于将内部（从零开始）行位置设置为 <em>index</em>。</p>
+<p><strong>See also</strong> <a href="#at">at</a>().</p>
+<h3><span id="virtual-protected-void-qsqlresult-setforwardonly-bool-forward"><code>[virtual protected]</code>void QSqlResult::setForwardOnly(bool <em>forward</em>)</span><a href="#virtual-protected-void-qsqlresult-setforwardonly-bool-forward" class="header-anchor">#</a></h3><p>将只转发模式设置为 <em>forward</em>。如果 <em>forward</em> 为真，则只允许 <a href="#fetchNext">fetchNext</a>() 用于导航结果。仅转发模式需要更少的内存，因为不必缓存结果。默认情况下，此功能被禁用。</p>
+<p>将 forward only 设置为 false 是对数据库引擎的建议，它对结果集是仅向前还是可滚动有最终决定权。 <a href="#isForwardOnly">isForwardOnly</a>() 将始终返回结果集的正确状态。</p>
+<p><strong>注意：</strong> 在执行查询后调用 setForwardOnly 充其量会导致意外结果，最坏情况下会导致崩溃。</p>
+<p><strong>注意：</strong> 为确保只进查询成功完成，应用程序不仅应在执行查询后检查 <a href="#lastError">lastError</a>() 错误，而且应在导航查询结果后检查错误。</p>
+<p><strong>警告：</strong> PostgreSQL：在只进模式下浏览查询结果时，不要在同一数据库连接上执行任何其他 SQL 命令。这将导致查询结果丢失。</p>
+<p><strong>See also</strong> <a href="#isForwardOnly">isForwardOnly</a>(), <a href="#fetchNext">fetchNext</a>(), and <a href="qsqlquery.html#setForwardOnly">QSqlQuery::setForwardOnly</a>().</p>
+<h3><span id="virtual-protected-void-qsqlresult-setlasterror-const-qsqlerror-amp-error"><code>[virtual protected]</code>void QSqlResult::setLastError(const  &amp;<em>error</em>)</span><a href="#virtual-protected-void-qsqlresult-setlasterror-const-qsqlerror-amp-error" class="header-anchor">#</a></h3><p>此函数是为派生类提供的，用于将最后一个错误设置为 <em>error</em>。</p>
+<p><strong>另见</strong> <a href="#lastError">lastError</a>()。</p>
+<h3><span id="virtual-protected-void-qsqlresult-setquery-const-qstring-amp-query"><code>[virtual protected]</code>void QSqlResult::setQuery(const  &amp;<em>query</em>)</span><a href="#virtual-protected-void-qsqlresult-setquery-const-qstring-amp-query" class="header-anchor">#</a></h3><p>将结果的当前查询设置为 <em>query</em>。 您必须调用 <a href="#reset">reset</a>() 来对数据库执行查询。</p>
+<p><strong>另请参阅</strong> <a href="#reset">reset</a>() 和 <a href="#lastQuery">lastQuery</a>()。</p>
+<h3><span id="virtual-protected-void-qsqlresult-setselect-bool-select"><code>[virtual protected]</code>void QSqlResult::setSelect(bool <em>select</em>)</span><a href="#virtual-protected-void-qsqlresult-setselect-bool-select" class="header-anchor">#</a></h3><p>该函数是为派生类提供的，用于指示当前语句是否为 SQL <code>SELECT</code> 语句。 如果语句是 <code>SELECT</code> 语句，<em>select</em> 参数应该为真； 否则它应该是错误的。</p>
+<p><strong>另请参阅</strong> <a href="#isSelect">isSelect</a>()。</p>
+<h3><span id="pure-virtual-protected-int-qsqlresult-size"><code>[pure virtual protected]</code>int QSqlResult::size()</span><a href="#pure-virtual-protected-int-qsqlresult-size" class="header-anchor">#</a></h3><p>返回 <code>SELECT</code> 结果的大小，如果无法确定或查询不是 <code>SELECT</code> 语句，则返回 -1。</p>
+<p><strong>See also</strong> <a href="#numRowsAffected">numRowsAffected</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/S/">S</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSqlRecord/QSqlRecord/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QSqlRecord类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSqlRelationalDelegate/QSqlRelationalDelegate/">
+                        <span class="hidden-mobile">QSqlRelationalDelegate类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

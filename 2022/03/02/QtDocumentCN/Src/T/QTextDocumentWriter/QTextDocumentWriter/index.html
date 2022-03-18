@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QTextDocumentWriter Class 公共函数 静态公共成员 详细描述 成员函数文档 QTextDocumentWriter::QTextDocumentWriter(const QString &amp;fileName, const QByteArray &amp;format &#x3D; QByteArray()) QTextDocumentWriter::QTextDocu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QTextDocumentWriter类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/T/QTextDocumentWriter/QTextDocumentWriter/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QTextDocumentWriter Class 公共函数 静态公共成员 详细描述 成员函数文档 QTextDocumentWriter::QTextDocumentWriter(const QString &amp;fileName, const QByteArray &amp;format &#x3D; QByteArray()) QTextDocumentWriter::QTextDocu">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:55:38.907Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="T">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QTextDocumentWriter类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QTextDocumentWriter类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      40 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QTextDocumentWriter类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qtextdocumentwriter-class">QTextDocumentWriter Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qtextdocumentwriter-qtextdocumentwriter-const-qstring-qstring-html-filename-const-qbytearray-qbytearray-html-format-qbytearray">QTextDocumentWriter::QTextDocumentWriter(const </a><a href="qstring.html">QString</a> &amp;<em>fileName</em>, const <a href="qbytearray.html">QByteArray</a> &amp;<em>format</em> = QByteArray())</li>
+<li><a href="#qtextdocumentwriter-qtextdocumentwriter-qiodevice-qiodevice-html-device-const-qbytearray-qbytearray-html-format">QTextDocumentWriter::QTextDocumentWriter(</a><a href="qiodevice.html">QIODevice</a> *<em>device</em>, const <a href="qbytearray.html">QByteArray</a> &amp;<em>format</em>)</li>
+<li><a href="#qtextdocumentwriter-qtextdocumentwriter">QTextDocumentWriter::QTextDocumentWriter()</a></li>
+<li><a href="#qtextdocumentwriter-qtextdocumentwriter">QTextDocumentWriter::~QTextDocumentWriter()</a></li>
+<li><a href="#qiodevice-qiodevice-html-qtextdocumentwriter-device-const">QIODevice</a></li>
+<li><a href="#qstring-qstring-html-qtextdocumentwriter-filename-const">QString</a></li>
+<li><a href="#qbytearray-qbytearray-html-qtextdocumentwriter-format-const">QByteArray</a></li>
+<li><a href="#void-qtextdocumentwriter-setdevice-qiodevice-qiodevice-html-device">void QTextDocumentWriter::setDevice(</a><a href="qiodevice.html">QIODevice</a> *<em>device</em>)</li>
+<li><a href="#void-qtextdocumentwriter-setfilename-const-qstring-qstring-html-filename">void QTextDocumentWriter::setFileName(const </a><a href="qstring.html">QString</a> &amp;<em>fileName</em>)</li>
+<li><a href="#void-qtextdocumentwriter-setformat-const-qbytearray-qbytearray-html-format">void QTextDocumentWriter::setFormat(const </a><a href="qbytearray.html">QByteArray</a> &amp;<em>format</em>)</li>
+<li><a href="#static-qlist-qlist-html-qbytearray-qbytearray-html-qtextdocumentwriter-supporteddocumentformats"><code>[static]</code></a><a href="qlist.html">QList</a>&lt;<a href="qbytearray.html">QByteArray</a>&gt; QTextDocumentWriter::supportedDocumentFormats()</li>
+<li><a href="#bool-qtextdocumentwriter-write-const-qtextdocument-qtextdocument-html-document">bool QTextDocumentWriter::write(const </a><a href="qtextdocument.html">QTextDocument</a> *<em>document</em>)</li>
+<li><a href="#bool-qtextdocumentwriter-write-const-qtextdocumentfragment-qtextdocumentfragment-html-fragment">bool QTextDocumentWriter::write(const </a><a href="qtextdocumentfragment.html">QTextDocumentFragment</a> &amp;<em>fragment</em>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QTextDocumentWriter Class
+
+<p>QTextDocumentWriter 类提供了一个与格式无关的接口，用于将 <a href="qtextdocument.html">QTextDocument</a> 写入文件或其他设备。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qtextdocumentwriter></qtextdocumentwriter></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Gui REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Gui)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += gui</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qtextdocumentwriter-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QTextDocumentWriter-2">QTextDocumentWriter</a></strong>(const QString &amp;<em>fileName</em>, const QByteArray &amp;<em>format</em> = QByteArray())</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QTextDocumentWriter-1">QTextDocumentWriter</a></strong>(QIODevice *<em>device</em>, const QByteArray &amp;<em>format</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QTextDocumentWriter">QTextDocumentWriter</a></strong>()</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QTextDocumentWriter">~QTextDocumentWriter</a></strong>()</td>
+</tr>
+<tr>
+<td>QIODevice *</td>
+<td><strong><a href="#device">device</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#fileName">fileName</a></strong>() const</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#format">format</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setDevice">setDevice</a></strong>(QIODevice *<em>device</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setFileName">setFileName</a></strong>(const QString &amp;<em>fileName</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setFormat">setFormat</a></strong>(const QByteArray &amp;<em>format</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#write">write</a></strong>(const QTextDocument *<em>document</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#write-1">write</a></strong>(const QTextDocumentFragment &amp;<em>fragment</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QList<qbytearray></qbytearray></th>
+<th><strong><a href="#supportedDocumentFormats">supportedDocumentFormats</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>要编写文档，请使用文件名或设备对象构造一个 QTextDocumentWriter 对象，并指定要编写的文档格式。 您可以稍后使用 <a href="#setFormat">setFormat</a>() 构建编写器并设置格式。</p>
+<p>调用 <a href="#write">write</a>() 将文档写入设备。 如果文档写入成功，此函数返回 <code>true</code>。 但是，如果在编写文档时发生错误，它将返回 false。</p>
+<p>调用 <a href="#supportedDocumentFormats">supportedDocumentFormats</a>() 获取 QTextDocumentWriter 可以编写的格式列表。</p>
+<p>由于支持的输出格式的功能差异很大，因此编写器只需为每种格式输出适当的对象子集。 这通常包括文档中包含的格式化文本和图像。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qtextdocumentwriter-qtextdocumentwriter-const-qstring-amp-filename-const-qbytearray-amp-format-qbytearray">QTextDocumentWriter::QTextDocumentWriter(const  &amp;<em>fileName</em>, const  &amp;<em>format</em> = QByteArray())</span><a href="#qtextdocumentwriter-qtextdocumentwriter-const-qstring-amp-filename-const-qbytearray-amp-format-qbytearray" class="header-anchor">#</a></h3><p>Constructs an QTextDocumentWriter object that will write to a file with the name <em>fileName</em>, using the document format specified by <em>format</em>. If <em>format</em> is not provided, QTextDocumentWriter will detect the document format by inspecting the extension of <em>fileName</em>.</p>
+<h3><span id="qtextdocumentwriter-qtextdocumentwriter-qiodevice-device-const-qbytearray-amp-format">QTextDocumentWriter::QTextDocumentWriter( *<em>device</em>, const  &amp;<em>format</em>)</span><a href="#qtextdocumentwriter-qtextdocumentwriter-qiodevice-device-const-qbytearray-amp-format" class="header-anchor">#</a></h3><p>Constructs a QTextDocumentWriter object to write to the given <em>device</em> in the document format specified by <em>format</em>.</p>
+<h3><span id="qtextdocumentwriter-qtextdocumentwriter">QTextDocumentWriter::QTextDocumentWriter()</span><a href="#qtextdocumentwriter-qtextdocumentwriter" class="header-anchor">#</a></h3><p>Constructs an empty QTextDocumentWriter object. Before writing, you must call <a href="#setFormat">setFormat</a>() to set a document format, then <a href="#setDevice">setDevice</a>() or <a href="#setFileName">setFileName</a>().</p>
+<h3><span id="qtextdocumentwriter-qtextdocumentwriter">QTextDocumentWriter::~QTextDocumentWriter()</span><a href="#qtextdocumentwriter-qtextdocumentwriter" class="header-anchor">#</a></h3><p>Destroys the <a href>QTextDocumentWriter</a> object.</p>
+<h3><span id="qiodevice-qtextdocumentwriter-device-const"> *QTextDocumentWriter::device() const</span><a href="#qiodevice-qtextdocumentwriter-device-const" class="header-anchor">#</a></h3><p>Returns the device currently assigned, or <code>nullptr</code> if no device has been assigned.</p>
+<p><strong>See also</strong> <a href="#setDevice">setDevice</a>().</p>
+<h3><span id="qstring-qtextdocumentwriter-filename-const"> QTextDocumentWriter::fileName() const</span><a href="#qstring-qtextdocumentwriter-filename-const" class="header-anchor">#</a></h3><p>If the currently assigned device is a <a href="qfile.html">QFile</a>, or if <a href="#setFileName">setFileName</a>() has been called, this function returns the name of the file to be written to. In all other cases, it returns an empty string.</p>
+<p><strong>See also</strong> <a href="#setFileName">setFileName</a>() and <a href="#setDevice">setDevice</a>().</p>
+<h3><span id="qbytearray-qtextdocumentwriter-format-const"> QTextDocumentWriter::format() const</span><a href="#qbytearray-qtextdocumentwriter-format-const" class="header-anchor">#</a></h3><p>Returns the format used for writing documents.</p>
+<p><strong>See also</strong> <a href="#setFormat">setFormat</a>().</p>
+<h3><span id="void-qtextdocumentwriter-setdevice-qiodevice-device">void QTextDocumentWriter::setDevice( *<em>device</em>)</span><a href="#void-qtextdocumentwriter-setdevice-qiodevice-device" class="header-anchor">#</a></h3><p>Sets the writer’s device to the <em>device</em> specified. If a device has already been set, the old device is removed but otherwise left unchanged.</p>
+<p>If the device is not already open, <a href>QTextDocumentWriter</a> will attempt to open the device in <a href="qiodevicebase.html#OpenModeFlag-enum">WriteOnly</a> mode by calling open().</p>
+<p><strong>Note:</strong> This will not work for certain devices, such as <a href="qprocess.html">QProcess</a>, <a href="qtcpsocket.html">QTcpSocket</a> and <a href="qudpsocket.html">QUdpSocket</a>, where some configuration is required before the device can be opened.</p>
+<p><strong>See also</strong> <a href="#device">device</a>() and <a href="#setFileName">setFileName</a>().</p>
+<h3><span id="void-qtextdocumentwriter-setfilename-const-qstring-amp-filename">void QTextDocumentWriter::setFileName(const  &amp;<em>fileName</em>)</span><a href="#void-qtextdocumentwriter-setfilename-const-qstring-amp-filename" class="header-anchor">#</a></h3><p>Sets the name of the file to be written to <em>fileName</em>. Internally, <a href>QTextDocumentWriter</a> will create a <a href="qfile.html">QFile</a> and open it in <a href="qiodevicebase.html#OpenModeFlag-enum">WriteOnly</a> mode, and use this file when writing the document.</p>
+<p><strong>See also</strong> <a href="#fileName">fileName</a>() and <a href="#setDevice">setDevice</a>().</p>
+<h3><span id="void-qtextdocumentwriter-setformat-const-qbytearray-amp-format">void QTextDocumentWriter::setFormat(const  &amp;<em>format</em>)</span><a href="#void-qtextdocumentwriter-setformat-const-qbytearray-amp-format" class="header-anchor">#</a></h3><p>Sets the format used to write documents to the <em>format</em> specified. <em>format</em> is a case insensitive text string. For example:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QTextDocumentWriter writer;
+writer.<span class="hljs-built_in">setFormat</span>(<span class="hljs-string">"odf"</span>); <span class="hljs-comment">// same as writer.setFormat("ODF");</span></code></pre></div>
+
+<p>You can call <a href="#supportedDocumentFormats">supportedDocumentFormats</a>() for the full list of formats <a href>QTextDocumentWriter</a> supports.</p>
+<p><strong>See also</strong> <a href="#format">format</a>().</p>
+<h3><span id="static-qlist-lt-qbytearray-gt-qtextdocumentwriter-supporteddocumentformats"><code>[static]</code>&lt;&gt; QTextDocumentWriter::supportedDocumentFormats()</span><a href="#static-qlist-lt-qbytearray-gt-qtextdocumentwriter-supporteddocumentformats" class="header-anchor">#</a></h3><p>Returns the list of document formats supported by <a href>QTextDocumentWriter</a>.</p>
+<p>By default, Qt can write the following formats:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Format</th>
+<th align="center">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">plaintext</td>
+<td align="center">Plain text</td>
+</tr>
+<tr>
+<td align="center">HTML</td>
+<td align="center">HyperText Markup Language</td>
+</tr>
+<tr>
+<td align="center">markdown</td>
+<td align="center">Markdown (CommonMark or GitHub dialects)</td>
+</tr>
+<tr>
+<td align="center">ODF</td>
+<td align="center">OpenDocument Format</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#setFormat">setFormat</a>().</p>
+<h3><span id="bool-qtextdocumentwriter-write-const-qtextdocument-document">bool QTextDocumentWriter::write(const  *<em>document</em>)</span><a href="#bool-qtextdocumentwriter-write-const-qtextdocument-document" class="header-anchor">#</a></h3><p>Writes the given <em>document</em> to the assigned device or file and returns <code>true</code> if successful; otherwise returns <code>false</code>.</p>
+<h3><span id="bool-qtextdocumentwriter-write-const-qtextdocumentfragment-amp-fragment">bool QTextDocumentWriter::write(const  &amp;<em>fragment</em>)</span><a href="#bool-qtextdocumentwriter-write-const-qtextdocumentfragment-amp-fragment" class="header-anchor">#</a></h3><p>Writes the document fragment specified by <em>fragment</em> to the assigned device or file and returns <code>true</code> if successful; otherwise returns <code>false</code>.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/T/">T</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/T/QTextCursor/QTextCursor/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QTextCursor类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/T/QTextDocument/QTextDocument/">
+                        <span class="hidden-mobile">QTextDocument类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

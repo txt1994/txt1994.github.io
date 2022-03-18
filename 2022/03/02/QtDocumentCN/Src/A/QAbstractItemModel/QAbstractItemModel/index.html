@@ -1,0 +1,1675 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QAbstractItemModel 类 公共成员类型 公共成员函数 公共槽函数 信号 受保护的函数 受保护的槽函数 详细描述 子类化   成员类型文档 CheckIndexOption CheckIndexOptions LayoutChangeHint   成员函数文档 QAbstractItemModel columnsAboutToBeInserted columnsAboutT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QAbstractItemModel类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QAbstractItemModel 类 公共成员类型 公共成员函数 公共槽函数 信号 受保护的函数 受保护的槽函数 详细描述 子类化   成员类型文档 CheckIndexOption CheckIndexOptions LayoutChangeHint   成员函数文档 QAbstractItemModel columnsAboutToBeInserted columnsAboutT">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/modelindex-no-parent.png">
+<meta property="og:image" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/modelview-begin-insert-columns.png">
+<meta property="og:image" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/modelview-begin-append-columns.png">
+<meta property="og:image" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/modelview-begin-insert-rows.png">
+<meta property="og:image" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/modelview-begin-append-rows.png">
+<meta property="og:image" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/modelview-move-rows-1.png">
+<meta property="og:image" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/modelview-move-rows-2.png">
+<meta property="og:image" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/modelview-move-rows-3.png">
+<meta property="og:image" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/modelview-move-rows-4.png">
+<meta property="og:image" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/modelview-begin-remove-columns.png">
+<meta property="og:image" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/modelview-begin-remove-rows.png">
+<meta property="article:published_time" content="2022-03-02T04:52:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:33:43.733Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="A">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/modelindex-no-parent.png">
+  
+  
+  <title>QAbstractItemModel类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QAbstractItemModel类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 12:52" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      39k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      328 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QAbstractItemModel类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qabstractitemmodel-lei">QAbstractItemModel 类</a><ul>
+<li><a href="#gong-gong-cheng-yuan-lei-xing">公共成员类型</a></li>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#gong-gong-cao-han-shu">公共槽函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#shou-bao-hu-de-han-shu">受保护的函数</a></li>
+<li><a href="#shou-bao-hu-de-cao-han-shu">受保护的槽函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#zi-lei-hua">子类化</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#checkindexoption-checkindexoptions">CheckIndexOption CheckIndexOptions</a></li>
+<li><a href="#layoutchangehint">LayoutChangeHint</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qabstractitemmodel">QAbstractItemModel</a></li>
+<li><a href="#columnsabouttobeinserted">columnsAboutToBeInserted</a></li>
+<li><a href="#columnsabouttobemoved">columnsAboutToBeMoved</a></li>
+<li><a href="#columnsabouttoberemoved">columnsAboutToBeRemoved</a></li>
+<li><a href="#columnsinserted">columnsInserted</a></li>
+<li><a href="#columnsmoved">columnsMoved</a></li>
+<li><a href="#columnsremoved">columnsRemoved</a></li>
+<li><a href="#datachanged">dataChanged</a></li>
+<li><a href="#headerdatachanged">headerDataChanged</a></li>
+<li><a href="#layoutabouttobechanged">layoutAboutToBeChanged</a></li>
+<li><a href="#layoutchanged">layoutChanged</a></li>
+<li><a href="#modelabouttobereset">modelAboutToBeReset</a></li>
+<li><a href="#modelreset">modelReset</a></li>
+<li><a href="#resetinternaldata">resetInternalData</a></li>
+<li><a href="#revert">revert</a></li>
+<li><a href="#rowsabouttobeinserted">rowsAboutToBeInserted</a></li>
+<li><a href="#rowsabouttobemoved">rowsAboutToBeMoved</a></li>
+<li><a href="#rowsabouttoberemoved">rowsAboutToBeRemoved</a></li>
+<li><a href="#rowsinserted">rowsInserted</a></li>
+<li><a href="#rowsmoved">rowsMoved</a></li>
+<li><a href="#rowsremoved">rowsRemoved</a></li>
+<li><a href="#submit">submit</a></li>
+<li><a href="#qabstractitemmodel">~QAbstractItemModel</a></li>
+<li><a href="#begininsertcolumns">beginInsertColumns</a></li>
+<li><a href="#begininsertrows">beginInsertRows</a></li>
+<li><a href="#beginmovecolumns">beginMoveColumns</a></li>
+<li><a href="#beginmoverows">beginMoveRows</a></li>
+<li><a href="#beginremovecolumns">beginRemoveColumns</a></li>
+<li><a href="#beginremoverows">beginRemoveRows</a></li>
+<li><a href="#beginresetmodel">beginResetModel</a></li>
+<li><a href="#buddy">buddy</a></li>
+<li><a href="#candropmimedata">canDropMimeData</a></li>
+<li><a href="#canfetchmore">canFetchMore</a></li>
+<li><a href="#changepersistentindex">changePersistentIndex</a></li>
+<li><a href="#changepersistentindexlist">changePersistentIndexList</a></li>
+<li><a href="#checkindex">checkIndex</a></li>
+<li><a href="#columncount">columnCount</a></li>
+<li><a href="#createindex">createIndex</a></li>
+<li><a href="#data">data</a></li>
+<li><a href="#dropmimedata">dropMimeData</a></li>
+<li><a href="#endinsertcolumns">endInsertColumns</a></li>
+<li><a href="#endinsertrows">endInsertRows</a></li>
+<li><a href="#endmovecolumns">endMoveColumns</a></li>
+<li><a href="#endmoverows">endMoveRows</a></li>
+<li><a href="#endremovecolumns">endRemoveColumns</a></li>
+<li><a href="#endremoverows">endRemoveRows</a></li>
+<li><a href="#endresetmodel">endResetModel</a></li>
+<li><a href="#fetchmore">fetchMore</a></li>
+<li><a href="#flags">flags</a></li>
+<li><a href="#haschildren">hasChildren</a></li>
+<li><a href="#hasindex">hasIndex</a></li>
+<li><a href="#headerdata">headerData</a></li>
+<li><a href="#index">index</a></li>
+<li><a href="#insertcolumn">insertColumn</a></li>
+<li><a href="#insertcolumns">insertColumns</a></li>
+<li><a href="#insertrow">insertRow</a></li>
+<li><a href="#insertrows">insertRows</a></li>
+<li><a href="#itemdata">itemData</a></li>
+<li><a href="#match">match</a></li>
+<li><a href="#mimedata">mimeData</a></li>
+<li><a href="#mimetypes">mimeTypes</a></li>
+<li><a href="#movecolumn">moveColumn</a></li>
+<li><a href="#movecolumns">moveColumns</a></li>
+<li><a href="#moverow">moveRow</a></li>
+<li><a href="#moverows">moveRows</a></li>
+<li><a href="#parent">parent</a></li>
+<li><a href="#persistentindexlist">persistentIndexList</a></li>
+<li><a href="#removecolumn">removeColumn</a></li>
+<li><a href="#removecolumns">removeColumns</a></li>
+<li><a href="#removerow">removeRow</a></li>
+<li><a href="#removerows">removeRows</a></li>
+<li><a href="#rolenames">roleNames</a></li>
+<li><a href="#rowcount">rowCount</a></li>
+<li><a href="#setdata">setData</a></li>
+<li><a href="#setheaderdata">setHeaderData</a></li>
+<li><a href="#setitemdata">setItemData</a></li>
+<li><a href="#sibling">sibling</a></li>
+<li><a href="#sort">sort</a></li>
+<li><a href="#span">span</a></li>
+<li><a href="#supporteddragactions">supportedDragActions</a></li>
+<li><a href="#supporteddropactions">supportedDropActions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="qabstractitemmodel-lei">QAbstractItemModel 类</span><a href="#qabstractitemmodel-lei" class="header-anchor">#</a></h1><p>QAbstractItemModel类为项模型类提供了抽象接口。<a href>更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件</td>
+<td><code>#include &lt;QAbstractItemModel&gt; </code></td>
+</tr>
+<tr>
+<td>qmake</td>
+<td><code>QT += core</code></td>
+</tr>
+<tr>
+<td>继承</td>
+<td><a href>QObject</a></td>
+</tr>
+<tr>
+<td>派生</td>
+<td><a href>QAbstractListModel</a>、<a href>QAbstractProxyModel</a>、<a href>QAbstractTableModel</a>、<a href>QConcatenateTablesProxyModel</a>、<a href>QDirModel</a>、<a href>QFileSystemModel</a> 和 <a href>QStandardItemModel</a></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cheng-yuan-lei-xing">公共成员类型</span><a href="#gong-gong-cheng-yuan-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>类型名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum class</td>
+<td><a href="#checkindexoption-checkindexoptions">CheckIndexOption</a> { NoOption, IndexIsValid, DoNotUseParent, ParentIsInvalid }</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><a href="#checkindexoption-checkindexoptions">CheckIndexOptions</a></td>
+</tr>
+<tr>
+<td>enum</td>
+<td><a href="#layoutchangehint">LayoutChangeHint</a> { NoLayoutChangeHint, VerticalSortHint, HorizontalSortHint }</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><a href>QAbstractItemModel</a>(QObject *parent = nullptr)</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><del>[QAbstractItemModel](#</del>qabstractitemmodel)()</td>
+</tr>
+<tr>
+<td>virtual QModelIndex</td>
+<td><a href="#buddy">buddy</a>(const QModelIndex &amp;index) const</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#candropmimedata">canDropMimeData</a>(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &amp;parent) const s</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#canfetchmore">canFetchMore</a>(const QModelIndex &amp;parent) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#checkindex">checkIndex</a>(const QModelIndex &amp;index, QAbstractItemModel::CheckIndexOptions options = CheckIndexOption::NoOption) const</td>
+</tr>
+<tr>
+<td>virtual int</td>
+<td><a href="#columncount">columnCount</a>(const QModelIndex &amp;parent = QModelIndex()) const = 0</td>
+</tr>
+<tr>
+<td>virtual QVariant</td>
+<td><a href="#data">data</a>(const QModelIndex &amp;index, int role = Qt::DisplayRole) const = 0</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#dropMimeData">dropMimeData</a>(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &amp;parent)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><a href="#fetchMore">fetchMore</a>(const QModelIndex &amp;parent)</td>
+</tr>
+<tr>
+<td>virtual Qt::ItemFlags</td>
+<td><a href="#flags">flags</a>(const QModelIndex &amp;index) const</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#haschildren">hasChildren</a> QModelIndex &amp;parent = QModelIndex()) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#hasindex">hasIndex</a> row, int column, const QModelIndex &amp;parent = QModelIndex()) const</td>
+</tr>
+<tr>
+<td>virtual QVariant</td>
+<td><a href="#headerdata">headerData</a> section, Qt::Orientation orientation, int role = Qt::DisplayRole) const</td>
+</tr>
+<tr>
+<td>virtual QModelIndex</td>
+<td><a href="#index">index</a> row, int column, const QModelIndex &amp;parent = QModelIndex()) const = 0</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#insertcolumn">insertColumn</a> column, const QModelIndex &amp;parent = QModelIndex())</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#insertcolumns">insertColumns</a> column, int count, const QModelIndex &amp;parent = QModelIndex())</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#insertRow">insertRow</a>(int row, const QModelIndex &amp;parent = QModelIndex())</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#insertrows">insertRows</a> row, int count, const QModelIndex &amp;parent = QModelIndex())</td>
+</tr>
+<tr>
+<td>virtual QMap&lt;int, QVariant&gt;</td>
+<td><a href="#itemdata">itemData</a> QModelIndex &amp;index) const</td>
+</tr>
+<tr>
+<td>virtual QModelIndexList</td>
+<td><a href="#match">match</a> QModelIndex &amp;start, int role, const QVariant &amp;value, int hits = 1, Qt::MatchFlags flags = Qt::MatchFlags (Qt::MatchStartsWith</td>
+</tr>
+<tr>
+<td>virtual QMimeData *</td>
+<td><a href="#mimedata">mimeData</a> QModelIndexList &amp;indexes) const</td>
+</tr>
+<tr>
+<td>virtual QStringList</td>
+<td><a href="#mimetypes">mimeTypes</a> const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#movecolumn">moveColumn</a> QModelIndex &amp;sourceParent, int sourceColumn, const QModelIndex &amp;destinationParent, int destinationChild)</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#movecolumns">moveColumns</a> QModelIndex &amp;sourceParent, int sourceColumn, int count, const QModelIndex &amp;destinationParent, int destinationChild)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#moverow">moveRow</a> QModelIndex &amp;sourceParent, int sourceRow, const QModelIndex &amp;destinationParent, int destinationChild)</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#moverows">moveRows</a> QModelIndex &amp;sourceParent, int sourceRow, int count, const QModelIndex &amp;destinationParent, int destinationChild)</td>
+</tr>
+<tr>
+<td>virtual QModelIndex</td>
+<td><a href="#parent">parent</a> QModelIndex &amp;index) const = 0</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#removecolumn">removeColumn</a> column, const QModelIndex &amp;parent = QModelIndex())</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#removecolumns">removeColumns</a> column, int count, const QModelIndex &amp;parent = QModelIndex())</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#removerow">removeRow</a> row, const QModelIndex &amp;parent = QModelIndex())</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#removerows">removeRows</a> row, int count, const QModelIndex &amp;parent = QModelIndex())</td>
+</tr>
+<tr>
+<td>virtual QHash&lt;int, QByteArray&gt;</td>
+<td><a href="#rolenames">roleNames</a> const</td>
+</tr>
+<tr>
+<td>virtual int</td>
+<td><a href="#rowcount">rowCount</a> QModelIndex &amp;parent = QModelIndex()) const = 0</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#setdata">setData</a> QModelIndex &amp;index, const QVariant &amp;value, int role = Qt::EditRole)</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#setheaderdata">setHeaderData</a> section, Qt::Orientation orientation, const QVariant &amp;value, int role = Qt::EditRole)</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#setitemdata">setItemData</a> QModelIndex &amp;index, const QMap&lt;int, QVariant&gt; &amp;roles)</td>
+</tr>
+<tr>
+<td>virtual QModelIndex</td>
+<td><a href="#sibling">sibling</a> row, int column, const QModelIndex &amp;index) const</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><a href="#sort">sort</a> column, Qt::SortOrder order = Qt::AscendingOrder)</td>
+</tr>
+<tr>
+<td>virtual QSize</td>
+<td><a href="#span">span</a> QModelIndex &amp;index) const</td>
+</tr>
+<tr>
+<td>virtual Qt::DropActions</td>
+<td><a href="#supporteddragactions">supportedDragActions</a> const</td>
+</tr>
+<tr>
+<td>virtual Qt::DropActions</td>
+<td><a href="#supporteddropactions">supportedDropActions</a> const</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cao-han-shu">公共槽函数</span><a href="#gong-gong-cao-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual void</td>
+<td><a href="#revert">revert</a>()</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="#submit">submit</a>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><a href="#columnsabouttobeinserted">columnsAboutToBeInserted</a> QModelIndex &amp;parent, int first, int last)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#columnsabouttobemoved">columnsAboutToBeMoved</a>(const QModelIndex &amp;sourceParent, int sourceStart, int sourceEnd, const QModelIndex &amp;destinationParent, int destinationColumn)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#columnsabouttoberemoved">columnsAboutToBeRemoved</a>(const QModelIndex &amp;parent, int first, int last)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#columnsinserted">columnsInserted</a>(QModelIndex &amp;parent, int first, int last)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#columnsmoved">columnsMoved</a>(const QModelIndex &amp;parent, int start, int end, const QModelIndex &amp;destination, int column)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#columnsremoved">columnsRemoved</a>(const QModelIndex &amp;parent, int first, int last)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#datachanged">dataChanged</a>(const QModelIndex &amp;topLeft, const QModelIndex &amp;bottomRight, const QVector<int> &amp;roles = QVector<int>())</int></int></td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#headerdatachanged">headerDataChanged</a>(Qt::Orientation orientation, int first, int last)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#layoutabouttobechanged">layoutAboutToBeChanged</a>(const QList<qpersistentmodelindex> &amp;parents = QList<qpersistentmodelindex>(), QAbstractItemModel::LayoutChangeHint hint = QAbstractItemModel::NoLayoutChangeHint)</qpersistentmodelindex></qpersistentmodelindex></td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#layoutchanged">layoutChanged</a>(const QList<qpersistentmodelindex> &amp;parents = QList<qpersistentmodelindex>(), QAbstractItemModel::LayoutChangeHint hint = QAbstractItemModel::NoLayoutChangeHint)</qpersistentmodelindex></qpersistentmodelindex></td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#modelabouttobereset">modelAboutToBeReset</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#modelreset">modelReset</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#rowsabouttobeinserted">rowsAboutToBeInserted</a>(const QModelIndex &amp;parent, int start, int end)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#rowsabouttobemoved">rowsAboutToBeMoved</a>(const QModelIndex &amp;sourceParent, int sourceStart, int sourceEnd, const QModelIndex &amp;destinationParent, int destinationRow)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#rowsabouttoberemoved">rowsAboutToBeRemoved</a>(const QModelIndex &amp;parent, int first, int last)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#rowsinserted">rowsInserted</a>(const QModelIndex &amp;parent, int first, int last)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#rowsmoved">rowsMoved</a>(const QModelIndex &amp;parent, int start, int end, const QModelIndex &amp;destination, int row)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#rowsremoved">rowsRemoved</a>(const QModelIndex &amp;parent, int first, int last)</td>
+</tr>
+</tbody></table>
+<h2><span id="shou-bao-hu-de-han-shu">受保护的函数</span><a href="#shou-bao-hu-de-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><a href="#begininsertcolumns">beginInsertColumns</a>(const QModelIndex &amp;parent, int first, int last)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#begininsertrows">beginInsertRows</a>(const QModelIndex &amp;parent, int first, int last)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#beginmovecolumns">beginMoveColumns</a>(const QModelIndex &amp;sourceParent, int sourceFirst, int sourceLast, const QModelIndex &amp;destinationParent, int destinationChild)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href="#beginmoverows">beginMoveRows</a>(const QModelIndex &amp;sourceParent, int sourceFirst, int sourceLast, const QModelIndex &amp;destinationParent, int destinationChild)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#beginremovecolumns">beginRemoveColumns</a>(const QModelIndex &amp;parent, int first, int last)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#beginremoverows">beginRemoveRows</a>(const QModelIndex &amp;parent, int first, int last)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#beginresetmodel">beginResetModel</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#changepersistentindex">changePersistentIndex</a>(const QModelIndex &amp;from, const QModelIndex &amp;to)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#changepersistentindexlist">changePersistentIndexList</a>(const QModelIndexList &amp;from, const QModelIndexList &amp;to)</td>
+</tr>
+<tr>
+<td>QModelIndex</td>
+<td><a href="#createindex">createIndex</a>(int row, int column, void *ptr = nullptr) const</td>
+</tr>
+<tr>
+<td>QModelIndex</td>
+<td><a href="#createindex">createIndex</a>(int row, int column, quintptr id) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#begininsertcolumns">endInsertColumns</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#endinsertrows">endInsertRows</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#endmovecolumns">endMoveColumns</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#endmoverows">endMoveRows</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#endremovecolumns">endRemoveColumns</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#endremoverows">endRemoveRows</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="#endresetmodel">endResetModel</a>()</td>
+</tr>
+<tr>
+<td>QModelIndexList</td>
+<td><a href="#changepersistentindexlist">persistentIndexList</a>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="shou-bao-hu-de-cao-han-shu">受保护的槽函数</span><a href="#shou-bao-hu-de-cao-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><a href="#resetinternaldata">resetInternalData</a>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p><code>QAbstractItemModel</code> 类定义了项模型与模型/视图体系结构中的其他组件进行交互操作时必须使用的标准接口。应该子类化该类创建新的模型，而不是直接实例化使用。</p>
+<p><code>QAbstractItemModel</code> 类是<a href>模型/视图类</a>中的一个，也是 <code>Qt</code> <a href>模型/视图框架</a>的一部分。它可以用作 <code>QML</code> 中的项视图元素或 <code>Qt Widgets</code> 模块中的项视图类的底层数据模型。</p>
+<p>如果需要一个模型来使用项视图，比如 <code>QML</code> 的 <code>List View</code> 元素或者 <code>C++ widgets</code> 的　<a href>QListView</a> 或者　<a href> QTableView</a>，应该考虑子类化 <a href>QAbstractListModel</a> 或者 <a href>QAbstractTableModel</a> 而不是使用该类。</p>
+<p>底层数据模型作为表的层次结构暴露给视图和委托。如果不使用层次结构，那么模型就是一个简单的具有行和列的表。每个项都有一个由　<a href>QModelIndex</a> 指定的惟一索引。</p>
+<p><img src="/modelindex-no-parent.png" srcset="/img/loading.gif" lazyload alt="modelindex-no-parent"></p>
+<p>每个数据项都可以通过包含一个关联的模型索引的模型进行访问。该索引可以通过　<a href>index()</a> 函数获得。每个索引可能有一个　<a href>sibling()</a> 索引；子项有一个 <a href>parent()</a>　索引。</p>
+<p>每个项目都有许多与之关联的数据元素，可以通过为模型的 <a href>data()</a> 函数指定一个角色（请参阅 <a href>Qt::ItemDataRole</a>）来检索它们。可以使用 <a href>itemData()</a> 函数同时获取所有可用角色的数据。</p>
+<p>使用特定的 <a href>Qt::ItemDataRole</a> 设置每个角色的数据。可以使用 <a href>setData()</a> 单独设置各个角色的数据，也可以使用 <a href>setItemData</a> 设置所有角色的数据。</p>
+<p>可以使用 <a href>flags()</a> 查询项（请参阅 <a href>Qt::ItemFlag</a>），以查看是否可以通过其他方式选择，拖动或操纵它们。</p>
+<p>如果项具有子对象，则 <a href>hasChildren</a> 为相应的索引返回 <code>true</code>。</p>
+<p>该模型在层次结构的每个级别都有一个 <a href>rowCount()</a> 和 <a href>columnCount</a>。可以使用 <a href>insertRows()</a>，<a href>insertColumns()</a>，<a href>removeRows()</a> 和 <a href>removeColumns()</a> 插入和删除行和列。</p>
+<p>模型发出信号以指示变化。例如，只要模型可用的数据项发生更改，就会发出 <a href>dataChanged()</a>。对模型提供的标题的更改将将发射　<a href>headerDataChanged()</a> 信号。如果底层数据的结构发生了变化，则模型可以发出　<a href>layoutChanged()</a> 来向任何附加的视图指示它们应该重新显示所显示的任何项，并需要考虑到新的结构。</p>
+<p>可以使用 <a href>match()</a> 函数在模型中搜索可用的项以查找特定数据。</p>
+<p>要对模型进行排序，可以使用 <a href>sort()</a>。</p>
+<h3><span id="zi-lei-hua">子类化</span><a href="#zi-lei-hua" class="header-anchor">#</a></h3><p><strong>注意：</strong>　在<a href>模型子类化参考</a>中有一些关于模型子类化的通用指南。</p>
+<p>子类化　<a href>QAbstractItemModel</a> 时，至少必须实现 <a href>index()</a>，<a href>parent()</a>，<a href>rowCount()</a>，<a href>columnCount()</a> 和 <a href>data()</a>。这些函数在所有的只读模型中使用，同样也构成了可编辑模型的基础。</p>
+<p>还可以为模型重新实现 <a href>hasChildren()</a>　来提供特殊的行为，而不是重新实现成本很高的 <a href>rowCount()</a>。这使得模型可以限制视图请求的数据量，并且可以作为实现模型数据的惰性填充的一种方式。</p>
+<p>要在模型中启用编辑，还必须实现　<a href>setData</a> 和重新实现 <a href>flags()</a> 以确保返回 <code>ItemIsEditable</code>。还可以重新实现 <a href>headerData()</a> 和 <a href>setHeaderData</a> 来控制呈现模型标题的方式。</p>
+<p>当分别重新实现 <a href>setData()</a> 和 <a href>setHeaderData()</a> 函数时，必须显式发射　<a href>dataChanged()</a> 和 <a href>headerDataChanged()</a> 信号。</p>
+<p>定制模型需要创建模型索引以供其他组件使用。为此，请使用适当的行号和列号以及相应的标识符调用 <a href>createIndex()</a>，并将其作为指针或整数值。这些值的组合对于每个项都必须是唯一的。定制模型通常在其他重新实现的函数中使用这些唯一标识符，以检索项数据并访问有关该项的父项和子项的信息。有关唯一标识符的更多信息，请参见<a href>简单树模型</a>示例。</p>
+<p>不必支持 <a href>Qt::ItemDataRole</a> 中定义的每个角色。根据模型中包含的数据类型，可能只有实现 <a href>data()</a> 函数以返回一些更常见角色的有效信息才有用。大多数模型至少为 <a href>Qt::DisplayRole</a> 提供项数据的文本表示，行为良好的模型也应为 <a href>Qt::ToolTipRole</a> 和 <a href>Qt::WhatsThisRole</a> 提供有效信息。支持这些角色可使模型与标准 <code>Qt</code> 视图一起使用。但是，对于某些处理高度专业化数据的模型，仅为用户定义的角色提供数据可能是合适的。</p>
+<p>提供可调整数据结构大小的接口的模型可以提供 <a href>insertRows()</a>，<a href>removeRows()</a>，<a href>insertColumns()</a> 和 <a href>removeColumns()</a> 的实现。在实现这些函数时，重要的是要在模型尺寸大小发生 <em>之前</em> 和 <em>之后</em> 将有关模型尺寸的更改通知所有连接的视图：</p>
+<ul>
+<li><a href>insertRows()</a> 的实现必须在将新行插入数据结构 <em>之前</em> 调用 <a href>beginInsertRows()</a>，<em>然后立即</em> 调用 <a href>endInsertRows()</a>。</li>
+<li><a href>insertColumns()</a> 的实现必须在将新列插入数据结构　<em>之前</em> 调用 <a href>beginInsertColumns()</a>，<em>然后立即</em> 调用 <a href>endInsertColumns()</a>。</li>
+<li><a href>removeRows()</a> 的实现必须在从数据结构中删除行　<em>之前</em> 调用 <a href>beginRemoveRows()</a>，<em>然后立即</em> 调用 <a href>endRemoveRows()</a>。</li>
+<li><a href>removeColumns()</a> 的实现必须在列从数据结构中删除之前调用 <a href>beginRemoveColumns()</a>，<em>然后立即</em> 调用 <a href>endRemoveColumns()</a>。</li>
+</ul>
+<p>这些函数发出的私有信号使附加组件有机会在任何数据变得不可用之前采取行动。使用这些 <code>begin</code> 和 <code>end</code> 函数封装插入和删除操作还使模型能够正确地管理<a href>持久模型索引</a>。<strong>如果希望正确处理选择，则必须确保调用了这些函数。</strong> 如果插入或移除带有子项的项，则不需要为子项调用这些函数。换句话说，父项将管理其子项。</p>
+<p>要创建增量填充的模型，可以重新实现 <a href>fetchMore()</a> 和 <a href>canFetchMore()</a>。如果 <a href>fetchMore()</a> 的重新实现向模型中添加了行，则必须调用 <a href>beginInsertRows()</a> 和 <a href>endInsertRows()</a>。</p>
+<p>参见<a href>模型类</a>、<a href>模型子类化参考</a>、<a href>QModelIndex</a>、<a href>QAbstractItemView</a>、<a href="../../M/Model_View_Programming/Model_View_Programming.md#%E5%9C%A8%E9%A1%B9%E8%A7%86%E5%9B%BE%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%8B%96%E6%94%BE">在项视图中使用拖放</a>、<a href>简单DOM模型示例</a>、<a href>简单树模型示例</a>、<a href>可编辑树模型示例</a>和 <a href>Fetch More示例</a>。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="checkindexoption-checkindexoptions">CheckIndexOption CheckIndexOptions</span><a href="#checkindexoption-checkindexoptions" class="header-anchor">#</a></h3><p><strong>enum class QAbstractItemModel::CheckIndexOption</strong><br><strong>flags QAbstractItemModel::CheckIndexOptions</strong></p>
+<p>这个枚举可以用来控制 <a href>QAbstractItemModel::checkIndex()</a> 执行的检查。</p>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QAbstractItemModel::CheckIndexOption::NoOption</td>
+<td>0x0000</td>
+<td>没有指定检查选项。</td>
+</tr>
+<tr>
+<td>QAbstractItemModel::CheckIndexOption::IndexIsValid</td>
+<td>0x0001</td>
+<td>传递给 <a href>QAbstractItemModel::checkIndex()</a> 的模型索引被检查为有效的模型索引。</td>
+</tr>
+<tr>
+<td>QAbstractItemModel::CheckIndexOption::DoNotUseParent</td>
+<td>0x0002</td>
+<td>不执行任何涉及到传递给 <a href>QAbstractItemModel::checkIndex()</a> 的父索引的使用的检查。</td>
+</tr>
+<tr>
+<td>QAbstractItemModel::CheckIndexOption::ParentIsInvalid</td>
+<td>0x0004</td>
+<td>传递给 <a href>QAbstractItemModel::checkIndex()</a> 的模型索引的父索引被检查为无效的模型索引。如果同时指定了此选项和 DoNotUseParent，则忽略此选项。</td>
+</tr>
+</tbody></table>
+<p>该枚举是在 <code>Qt 5.11</code> 中引入或修改的。</p>
+<p><code>CheckIndexOptions</code> 类型是一个 <a href>QFlags</a>&lt;<code>CheckIndexOption</code>&gt; 的类型定义。它存储一个或组合的 <code>CheckIndexOption</code> 值。</p>
+<h3><span id="layoutchangehint">LayoutChangeHint</span><a href="#layoutchangehint" class="header-anchor">#</a></h3><p><strong>enum QAbstractItemModel::LayoutChangeHint</strong></p>
+<p>这个枚举描述了模型改变布局的方式。</p>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QAbstractItemModel::NoLayoutChangeHint</td>
+<td>0</td>
+<td>没有任何提示。</td>
+</tr>
+<tr>
+<td>QAbstractItemModel::VerticalSortHint</td>
+<td>1</td>
+<td>正在对行进行排序。</td>
+</tr>
+<tr>
+<td>QAbstractItemModel::HorizontalSortHint</td>
+<td>2</td>
+<td>正在对列进行排序。</td>
+</tr>
+</tbody></table>
+<p>注意，<code>VerticalSortHint</code>　和 <code>HorizontalSortHint</code> 表示项在同一父级中移动，而不是移动到模型中的不同父级，也没有过滤掉或过滤进来。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qabstractitemmodel">QAbstractItemModel</span><a href="#qabstractitemmodel" class="header-anchor">#</a></h3><p><font size="4"> QAbstractItemModel::<strong>QAbstractItemModel</strong>(<a href>QObject</a> *parent = nullptr) </font> </p>
+<p>构造指定父类对象 <code>parent</code> 的抽象项模型。</p>
+<h3><span id="columnsabouttobeinserted">columnsAboutToBeInserted</span><a href="#columnsabouttobeinserted" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>columnsAboutToBeInserted</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> first, <strong>int</strong> last)</font></p>
+<p>在将列插入模型之前就发射此信号。新项将位于给定父项 <code>parent</code> 下的首 <code>first</code> 尾 <code>last</code>之间。</p>
+<p><strong>注意:</strong> 连接到这个信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 的实现发射，不能在子类代码中显式发射。</p>
+<p><strong>注意:</strong>　这是一个私有信号。它可以用于信号连接，但不能由用户发射。</p>
+<p>参见 <a href>insertColumns()</a> 和 <a href>beginInsertColumns()</a>。</p>
+<h3><span id="columnsabouttobemoved">columnsAboutToBeMoved</span><a href="#columnsabouttobemoved" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>columnsAboutToBeMoved</strong>(const <a href>QModelIndex</a> &amp;sourceParent, <strong>int</strong> sourceStart, <strong>int</strong> sourceEnd, const <a href>QModelIndex</a> &amp;destinationParent, <strong>int</strong> destinationColumn)</font> </p>
+<p>模型中的列被移动之前发射该信号。将要移动的项是在给定 <code>sourceParent</code> 下在 <code>sourceStart</code> 和 <code>sourceEnd</code> 之间（包括首尾）的项。它们将从 <code>destinationColumn</code> 列开始移动到<code>destinationParent</code>。</p>
+<p><strong>注意：</strong> 连接到该信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 实现发射，不能在子类代码中显式发射。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>该函数在 <code>Qt4.6</code> 中被引入。</p>
+<p>参见 <a href>beginMoveRows</a>()。</p>
+<h3><span id="columnsabouttoberemoved">columnsAboutToBeRemoved</span><a href="#columnsabouttoberemoved" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>columnsAboutToBeRemoved</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> first, <strong>int</strong> last)</font> </p>
+<p>模型中的列被移除之前发射该信号。将要移除的项是在给定 <code>parent</code> 下在 <code>first</code> 和 <code>last</code> 之间（包括首尾）的项。</p>
+<p><strong>注意：</strong> 连接到该信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 实现发射，不能在子类代码中显式发射。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>参见 <a href>removeColumns</a>() 和 <a href>beginRemoveColumns</a>()。</p>
+<h3><span id="columnsinserted">columnsInserted</span><a href="#columnsinserted" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>columnsInserted</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> first, <strong>int</strong> last)</font> </p>
+<p>将列插入到模型之后发射该信号。新的项是在给定 <code>parent</code> 下在 <code>first</code> 和 <code>last</code> 之间（包括首尾）的项。</p>
+<p><strong>注意：</strong> 连接到该信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 实现发射，不能在子类代码中显式发射。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>参见 <a href>insertColumns</a>() 和 <a href>beginInsertColumns</a>()。</p>
+<h3><span id="columnsmoved">columnsMoved</span><a href="#columnsmoved" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>columnsMoved</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> start, <strong>int</strong> end, const <a href>QModelIndex</a> &amp;destination, <strong>int</strong> column)</font> </p>
+<p>模型中的列被移动之后发射该信号。新的项是在给定 <code>parent</code> 下在 <code>start</code> 和 <code>end</code> 之间（包括首尾）的项。它们将从 <code>column</code> 列开始移动到<code>destination</code>。</p>
+<p><strong>注意：</strong> 连接到该信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 实现发射，不能在子类代码中显式发射。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>该函数在 <code>Qt4.6</code> 中被引入。</p>
+<p>参见 <a href>beginMoveRows</a>()。</p>
+<h3><span id="columnsremoved">columnsRemoved</span><a href="#columnsremoved" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>columnsRemoved</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> first, <strong>int</strong> last)</font> </p>
+<p>模型中的列被移除之后发射该信号。移除的项是在给定 <code>parent</code> 下在 <code>first</code> 和 <code>last</code> 之间（包括首尾）的项。</p>
+<p><strong>注意：</strong> 连接到该信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 实现发射，不能在子类代码中显式发射。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>参见 <a href>removeColumns</a>() 和 <a href>beginRemoveColumns</a>()。</p>
+<h3><span id="datachanged">dataChanged</span><a href="#datachanged" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>dataChanged</strong>(const <a href>QModelIndex</a> &amp;topLeft, const <a href>QModelIndex</a> &amp;bottomRight, const <a href>QVector</a>&lt;**int**&gt; &amp;roles = QVector<int>())</int></font> </p>
+<p>现有的项的数据发生改变时发射该信号。</p>
+<p>如果项是同一父项，则受影响的项是在 <code>topLeft</code> 和 <code>bottomRight</code>（包含）之间的项目。如果项没有相同的父项，则行为是不确定的。</p>
+<p>当重新实现 <a href>setData</a>() 函数时，必须显示地发射该信号。</p>
+<p>可选的 <code>roles</code> 参数可用于指定实际修改了哪些数据角色。<code>Roles</code> 参数中的向量为空，表示应将所有角色视为已修改。角色参数中元素的顺序没有任何关联。</p>
+<p>参见 <a href>headerDataChanged</a>()、<a href>setData</a>() 和 <a href>layoutChanged</a>()。</p>
+<h3><span id="headerdatachanged">headerDataChanged</span><a href="#headerdatachanged" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>headerDataChanged</strong>(const <a href>Qt::Orientation</a> &amp;orientation, <strong>int</strong> first, <strong>int</strong> last)</font> </p>
+<p>当标题改变时发射该信号。<code>orientation</code> 表示是横向标题还是竖向标题发生了改变。标题中从 <code>first</code> 到 <code>last</code> 的部分需要更新。</p>
+<p>当重新实现 <a href>setData</a>() 函数时，必须显示地发射该信号。</p>
+<p>如果要更改列数或行数，则不需要发出此信号，而可以使用 <code>begin/end</code> 函数（有关详细信息，请参见 <a href>QAbstractItemModel</a> 类描述中的子类化部分）。</p>
+<p>参见 <a href>headerData</a>()、<a href>setHeaderData</a>() 和 <a href>dataChanged</a>()。</p>
+<h3><span id="layoutabouttobechanged">layoutAboutToBeChanged</span><a href="#layoutabouttobechanged" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>layoutAboutToBeChanged</strong>(const <a href>QList</a>&lt;<a href>QPersistentModelIndex</a>&gt; &amp;parents = QList<qpersistentmodelindex>(), <a href>QAbstractItemModel::LayoutChangeHint</a> hint = QAbstractItemModel::NoLayoutChangeHint)</qpersistentmodelindex></font> </p>
+<p>这个信号会在模型的布局改变之前发出。连接到这个信号的组件使用它来适应模型布局的变化。</p>
+<p>在发出 <code>layoutAboutToBeChanged()</code> 之后，子类应该更新所有的持久化模型索引。</p>
+<p>可选的 <code>parents</code> 参数用于提供更具体的通知关于模型布局的哪些部分正在被改变。空列表表示对整个模型的布局进行了更改。<code>parents</code> 列表中元素的顺序不重要。可选的 <code>hint</code> 参数用于提示模型重新布局时都发生了什么。</p>
+<p>该函数在 <code>Qt 5.0</code> 中被引入。</p>
+<p>参见 <a href>layoutChanged</a>() 和 <a href>changePersistentIndex</a>()。</p>
+<h3><span id="layoutchanged">layoutChanged</span><a href="#layoutchanged" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>layoutChanged</strong>(const <a href>QList</a>&lt;<a href>QPersistentModelIndex</a>&gt; &amp;parents = QList<qpersistentmodelindex>(), <a href>QAbstractItemModel::LayoutChangeHint</a> hint = QAbstractItemModel::NoLayoutChangeHint)</qpersistentmodelindex></font> </p>
+<p>每当模型公开的项的布局发生变化时，就会发出这个信号，例如，对模型进行排序时。当视图接收到该信号时，应更新项的布局来反映此更改。</p>
+<p>当对 <a href>QAbstractItemModel</a> 或 <a href>QAbstractProxyModel</a> 进行子类化时，请确保在更改项顺序或更改要公开给视图的数据的结构之前发出 <a href>layoutAboutToBeChanged</a>() 信号，并在更改布局后发出 <a href>layoutChanged</a>() 信号。</p>
+<p>可选的 <code>parents</code> 参数用于给出有关模型布局的哪些部分正在更改的具体的通知。空列表表示更改了整个模型的布局。<code>parents</code> 列表中元素的顺序并不重要。可选的 <code>hint</code> 参数用于提示模型重新布局时发生的情况。</p>
+<p>子类应在发​​出 <a href>layoutChanged</a>() 信号之前更新所有持久模型索引。换句话说，当结构改变时：</p>
+<ul>
+<li>发出 <a href>layoutAboutToBeChanged</a></li>
+<li>记住将会改变的 <a href>QModelIndex</a></li>
+<li>更新内部数据</li>
+<li>调用 <a href>changePersistentIndex</a>()</li>
+<li>发出 layoutChanged</li>
+</ul>
+<p>该函数在 <code>Qt 5.0</code> 中被引入。  </p>
+<p>参见 <a href>layoutAboutToBeChanged</a>()、<a href>dataChanged</a>()、<a href>headerDataChanged</a>()、<a href>modelReset</a>() 和 <a href>changePersistentIndex</a>()。</p>
+<h3><span id="modelabouttobereset">modelAboutToBeReset</span><a href="#modelabouttobereset" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>modelAboutToBeReset</strong>()</font> </p>
+<p>当调用 <a href="#beginresetmodel">beginResetModel</a>() 时，在模型的内部状态(例如持久模型索引)失效之前发出这个信号。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>该函数在 <code>Qt 4.2</code> 中被引入。  </p>
+<p>参见 <a href="#beginresetmodel">beginResetModel</a>() 和 <a href="#modelreset">modelReset</a>()。</p>
+<h3><span id="modelreset">modelReset</span><a href="#modelreset" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>modelReset</strong>()</font> </p>
+<p>当调用 <a href="#endresetmodel">endResetModel</a>() 时，在模型的内部状态(例如持久模型索引)失效之后发出这个信号。</p>
+<p>注意，如果模型被重置，则应该认为之前从模型中检索的所有信息都是无效的。这包括但不限于 <a href="#rowcount">rowCount</a>()、<a href="#columncount">columnCount</a>()、<a href="#flags">flags</a>()、通过 <a href="#data">data</a>()检索的数据和 <a href="#rolenames">roleNames</a>()。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>该函数在 <code>Qt 4.1</code> 中被引入。  </p>
+<p>参见 <a href="#endresetmodel">endResetModel</a>() 和 <a href="#modelabouttobereset">modelAboutToBeReset</a>()。</p>
+<h3><span id="resetinternaldata">resetInternalData</span><a href="#resetinternaldata" class="header-anchor">#</a></h3><p><font size="4" weight="lighter">[ protected slot ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>resetInternalData</strong>()</font> </p>
+<p>该槽函数在模型的内部数据被清除并被重置之后被调用。</p>
+<p>该槽函数为具体代理模型的子类提供了便利，例如维护了额外的数据的 <a href>QSortFilterProxyModel</a> 的子类。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomDataProxy</span> : <span class="hljs-keyword">public</span> QSortFilterProxyModel
+{
+    Q_OBJECT
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">CustomDataProxy</span>(QObject *parent)
+      : <span class="hljs-built_in">QSortFilterProxyModel</span>(parent)
+    {
+    }
+
+    ...
+
+    <span class="hljs-function">QVariant <span class="hljs-title">data</span><span class="hljs-params">(<span class="hljs-type">const</span> QModelIndex &amp;index, <span class="hljs-type">int</span> role)</span> <span class="hljs-keyword">override</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">if</span> (role != Qt::BackgroundRole)
+            <span class="hljs-keyword">return</span> QSortFilterProxyModel::<span class="hljs-built_in">data</span>(index, role);
+
+        <span class="hljs-keyword">if</span> (m_customData.<span class="hljs-built_in">contains</span>(index.<span class="hljs-built_in">row</span>()))
+            <span class="hljs-keyword">return</span> m_customData.<span class="hljs-built_in">value</span>(index.<span class="hljs-built_in">row</span>());
+        <span class="hljs-keyword">return</span> QSortFilterProxyModel::<span class="hljs-built_in">data</span>(index, role);
+    }
+
+<span class="hljs-keyword">private</span> slots:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">resetInternalData</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        m_customData.<span class="hljs-built_in">clear</span>();
+    }
+
+<span class="hljs-keyword">private</span>:
+  QHash&lt;<span class="hljs-type">int</span>, QVariant&gt; m_customData;
+};
+</code></pre></div>
+<p><strong>注意：</strong> 由于错误，该槽函数没有出现在 <code>Qt 5.0</code> 中。</p>
+<p>该函数在 <code>Qt 4.8</code> 中被引入。  </p>
+<p>参见 <a href="#modelabouttobereset">modelAboutToBeReset</a>() 和 <a href="#modelreset">modelReset</a>()。</p>
+<h3><span id="revert">revert</span><a href="#revert" class="header-anchor">#</a></h3><p><font size="4">[ virtual slot ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>revert</strong>()</font> </p>
+<p>让模型知道它应该丢弃缓存的信息。这个函数通常用于行编辑。</p>
+<p>该函数在 <code>Qt 4.2</code> 中被引入。  </p>
+<p>参见 <a href="#submit">submit</a>()。</p>
+<h3><span id="rowsabouttobeinserted">rowsAboutToBeInserted</span><a href="#rowsabouttobeinserted" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>rowsAboutToBeInserted</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> start, <strong>int</strong> end)</font> </p>
+<p>在将行插入模型之前就发出该信号。新项将位于给定 <code>parent</code> 项目下的包含 <code>start</code> 和 <code>end</code> 之间。</p>
+<p><strong>注意：</strong> 连接到该信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 实现发出，而不能在子类代码中显式发出。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。 </p>
+<p>参见 <a href="#insertrows">insertRows</a>() 和 <a href="#begininsertrows">beginInsertRows</a>()。</p>
+<h3><span id="rowsabouttobemoved">rowsAboutToBeMoved</span><a href="#rowsabouttobemoved" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>rowsAboutToBeMoved</strong>(const <a href>QModelIndex</a> &amp;sourceParent, <strong>int</strong> sourceStart, <strong>int</strong> sourceEnd, const <a href>QModelIndex</a> &amp;destinationParent, <strong>int</strong> destinationRow)</font> </p>
+<p>模型中的行被移动之前发射该信号。将要移动的项是在给定 <code>sourceParent</code> 下在 <code>sourceStart</code> 和 <code>sourceEnd</code> 之间（包括首尾）的项。它们将从 <code>destinationRow</code> 列开始移动到<code>destinationParent</code>。</p>
+<p><strong>注意：</strong> 连接到该信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 实现发射，不能在子类代码中显式发射。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>该函数在 <code>Qt4.6</code> 中被引入。</p>
+<p>参见 <a href="#beginmoverows">beginMoveRows</a>()。</p>
+<h3><span id="rowsabouttoberemoved">rowsAboutToBeRemoved</span><a href="#rowsabouttoberemoved" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>rowsAboutToBeRemoved</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> first, <strong>int</strong> last)</font> </p>
+<p>模型中的行被移除之前发射该信号。将要移除的项是在给定 <code>parent</code> 下在 <code>first</code> 和 <code>last</code> 之间（包括首尾）的项。</p>
+<p><strong>注意：</strong> 连接到该信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 实现发射，不能在子类代码中显式发射。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>参见 <a href="#removerows">removeRows</a>() 和 <a href="#beginremoverows">beginRemoveRows</a>()。</p>
+<h3><span id="rowsinserted">rowsInserted</span><a href="#rowsinserted" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>rowsInserted</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> first, <strong>int</strong> last)</font> </p>
+<p>将行插入到模型之后发射该信号。新的项是在给定 <code>parent</code> 下在 <code>first</code> 和 <code>last</code> 之间（包括首尾）的项。</p>
+<p><strong>注意：</strong> 连接到该信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 实现发射，不能在子类代码中显式发射。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>参见 <a href="#insertrows">insertRows</a>() 和 <a href="#begininsertrows">beginInsertRows</a>()。</p>
+<h3><span id="rowsmoved">rowsMoved</span><a href="#rowsmoved" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>rowsMoved</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> start, <strong>int</strong> end, const <a href>QModelIndex</a> &amp;destination, <strong>int</strong> column)</font> </p>
+<p>模型中的行被移动之后发射该信号。新的项是在给定 <code>parent</code> 下在 <code>start</code> 和 <code>end</code> 之间（包括首尾）的项。它们将从 <code>column</code> 列开始移动到<code>destination</code>。</p>
+<p><strong>注意：</strong> 连接到该信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 实现发射，不能在子类代码中显式发射。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>该函数在 <code>Qt4.6</code> 中被引入。</p>
+<p>参见 <a href="#beginmoverows">beginMoveRows</a>()。</p>
+<h3><span id="rowsremoved">rowsRemoved</span><a href="#rowsremoved" class="header-anchor">#</a></h3><p><font size="4">[ signal ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>rowsRemoved</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> first, <strong>int</strong> last)</font> </p>
+<p>模型中的行被移除之后发射该信号。移除的项是在给定 <code>parent</code> 下在 <code>first</code> 和 <code>last</code> 之间（包括首尾）的项。</p>
+<p><strong>注意：</strong> 连接到该信号的组件使用它来适应模型尺寸的变化。它只能由 <a href>QAbstractItemModel</a> 实现发射，不能在子类代码中显式发射。</p>
+<p><strong>注意：</strong> 这是一个私有信号。仅用于信号连接，而不能由用户发射。</p>
+<p>参见 <a href="#removerows">removeRows</a>() 和 <a href="#beginremoverows">beginRemoveRows</a>()。</p>
+<h3><span id="submit">submit</span><a href="#submit" class="header-anchor">#</a></h3><p><font size="4">[ virtual slot ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>submit</strong>()</font> </p>
+<p>让模型知道它应该将缓存的信息提交到永久存储。这个函数通常用于行编辑。</p>
+<p>如果没有错误，返回 <code>true</code>;否则返回 <code>false</code>。</p>
+<p>参见 <a href="#revert">revert</a>()。</p>
+<h3><span id="qabstractitemmodel">~QAbstractItemModel</span><a href="#qabstractitemmodel" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>~QAbstractItemModel</strong>()</font> </p>
+<p>销毁抽象项模型。</p>
+<h3><span id="begininsertcolumns">beginInsertColumns</span><a href="#begininsertcolumns" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>beginInsertColumns</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> first, <strong>int</strong> last)</font> </p>
+<p>开始一个列插入操作。</p>
+<p>在子类中重新实现 <a href="#insertcolumns">insertColumns</a>() 时，必须在将数据插入模型的底层数据存储之前调用此函数。<code>parent</code> 索引对应于插入新列的父索引;<code>first</code> 和 <code>last</code> 是新列插入后的列号。</p>
+<div class="table"><table class="generic" width="100%">
+<tbody><tr class="odd" valign="top"><td><img alt="Inserting columns" src="modelview-begin-insert-columns.png" srcset="/img/loading.gif" lazyload width="326"></td><td>指定要插入到模型项中的列的范围的第一个和最后一个列号。<p>例如，如图所示，我们在列4之前插入三列，所以 <i>first</i> 是4，<i>last</i> 是 6:</p>
+<div class="code-wrapper"><pre class="cpp prettyprint prettyprinted" style><span class="pln">beginInsertColumns</span><span class="pun">(</span><span class="pln">parent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">4</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">6</span></span><span class="pun">);</span></pre></div>
+<p>这将插入三个新列作为列4、5和6。</p>
+</td></tr>
+<tr class="even" valign="top"><td><img alt="Appending columns" src="modelview-begin-append-columns.png" srcset="/img/loading.gif" lazyload></td><td>要追加列，请将它们插入到最后一列之后。例如，如图所示，我们将三列附加到一个包含六列的集合(以列5结尾)，因此 <i>first</i> 是 6 and <i>last</i> 是 8:<p></p>
+<div class="code-wrapper"><pre class="cpp prettyprint prettyprinted" style><span class="pln">beginInsertColumns</span><span class="pun">(</span><span class="pln">parent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">6</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">8</span></span><span class="pun">);</span></pre></div>
+<p>这将追加两个新列作为列6、7和8。</p>
+</td></tr>
+</tbody></table></div>
+
+<p><strong>注意：</strong> 此函数发出 <a href="#columnsabouttobeinserted">columnAboutToBeInserted</a>() 信号，在插入数据之前，已连接的视图（或代理）必须处理该信号。否则，视图可能会以无效状态结束。</p>
+<p>参见 <a href="#endinsertcolumns">endInsertColumns</a>()。</p>
+<h3><span id="begininsertrows">beginInsertRows</span><a href="#begininsertrows" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>beginInsertRows</strong>(const <a href>QModelIndex</a> &amp;parent, <strong>int</strong> first, <strong>int</strong> last)</font> </p>
+<p>开始一个行插入操作。</p>
+<p>在子类中重新实现 <a href="#insertrows">insertRows</a>() 时，必须在将数据插入模型的底层数据存储之前调用此函数。<code>parent</code> 索引对应于插入新列的父索引;<code>first</code> 和 <code>last</code> 是新行插入后的行号。</p>
+<div class="table"><table class="generic" width="100%">
+<tbody><tr class="odd" valign="top"><td><img alt="Inserting rows" src="modelview-begin-insert-rows.png" srcset="/img/loading.gif" lazyload width="274"></td><td>为要插入模型中项的行范围指定第一行和最后一行。
+
+<p>例如，如图所示，我们在第2行之前插入三行，因此<i>first</i> 是2，<i>first</i> 是4：</p><p></p>
+<div class="code-wrapper"><pre class="cpp prettyprint prettyprinted" style><span class="pln">beginInsertRows</span><span class="pun">(</span><span class="pln">parent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">2</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">4</span></span><span class="pun">);</span></pre></div>
+<p>这将插入三行新行，即第2、3和4行。</p>
+</td></tr>
+<tr class="even" valign="top"><td><img alt="Appending rows" src="modelview-begin-append-rows.png" srcset="/img/loading.gif" lazyload></td><td>要追加行，请将它们插入到最后一行之后。例如，如图所示，我们将两行附加到一个包含4个现有行的集合(以第3行结束)，因此 <i>first</i> 是4，<i>last</i> 是5: <p></p>
+<div class="code-wrapper"><pre class="cpp prettyprint prettyprinted" style><span class="pln">beginInsertRows</span><span class="pun">(</span><span class="pln">parent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">4</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">5</span></span><span class="pun">);</span></pre></div>
+<p>这将追加两个新行作为第4行和第5行。</p>
+</td></tr>
+</tbody></table></div>
+
+<p><strong>注意：</strong> 此函数发出 <a href="#rowsabouttobeinserted">rowsAboutToBeInserted</a>() 信号，在插入数据之前，已连接的视图（或代理）必须处理该信号。否则，视图可能会以无效状态结束。</p>
+<p>参见 <a href="#endinsertrows">endInsertRows</a>()。</p>
+<h3><span id="beginmovecolumns">beginMoveColumns</span><a href="#beginmovecolumns" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>beginMoveColumns</strong>(const <a href>QModelIndex</a> &amp;sourceParent, <strong>int</strong> sourceFirst, <strong>int</strong> sourceLast, const <a href>QModelIndex</a> &amp;destinationParent, <strong>int</strong> destinationChild)</font> </p>
+<p>开始一个列移动操作。</p>
+<p>当重新实现子类时，此方法简化了模型中实体的移动。此方法负责在模型中移动持久索引，否则您将需要自己执行此操作。使用 <code>beginMoveColumns</code> 和 <a href="#endmovecolumns">endMoveColumns</a>() 是直接发送与 <a href="#changepersistentindex">changePersistentIndex</a>() 一起的 <a href="#layoutabouttobechanged">layoutAboutToBeChanged</a>() 和 <a href="#layoutchanged">layoutChanged</a>() 的另一种选择。</p>
+<p><code>sourceParent</code> 索引对应于从其移出列的父级；<code>sourceFirst</code> 和 <code>sourceLast</code> 是要移动的列的第一列和最后一列。<code>destinationParent</code> 索引对应于将这些列移入的父级。<code>destinationChild</code> 是要将列移动到的列。也就是说，<code>sourceParent</code> 中 <code>sourceFirst</code> 列的索引将成为 <code>destinationParent</code> 中的 <code>destinationChild</code> 列，然后是所有其他列，直到 <code>sourceLast</code>。</p>
+<p>但是，当在同一父目录下移动列时(<code>sourceParent</code> 和 <code>destinationParent</code> 是相等的)，这些列将被放置在 <code>destinationChild</code> 索引之前。也就是说，如果您希望移动列0和1，使它们变成列 1 和列 2,<code>destinationChild</code> 应该是 3。在本例中，源列 <code>i</code> (位于 <code>sourceFirst</code> 和 <code>sourceLast</code> 之间)的新索引等于(<code>destinationChild-sourceLast-1+i</code>)。</p>
+<p>注意，如果 <code>sourceParent</code> 和 <code>destinationParent</code> 是相同的，您必须确保 <code>destinationChild</code> 不在 <code>sourceFirst</code> 和 <code>sourceLast + 1</code> 的范围内。还必须确保不会尝试将列移动到它自己的子列或祖先列中。如果任一条件为真，此方法将返回 <code>false</code>，在这种情况下，应中止移动操作。</p>
+<p>该函数在 <code>Qt4.6</code> 中被引入。</p>
+<p>参见 <a href="#endmovecolumns">endMoveColumns</a>()。</p>
+<h3><span id="beginmoverows">beginMoveRows</span><a href="#beginmoverows" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>beginMoveRows</strong>(const <a href>QModelIndex</a> &amp;sourceParent, <strong>int</strong> sourceFirst, <strong>int</strong> sourceLast, const <a href>QModelIndex</a> &amp;destinationParent, <strong>int</strong> destinationChild)</font> </p>
+<p>开始一个行移动操作。</p>
+<p>当重新实现子类时，此方法简化了模型中实体的移动。此方法负责在模型中移动持久索引，否则您将需要自己执行此操作。使用 <code>beginMoveRows</code> 和 <code>endMoveRows</code> 是直接发送与 <a href="#changepersistentindex">changePersistentIndex</a>() 一起的 <a href="#layoutabouttobechanged">layoutAboutToBeChanged</a>() 和 <a href="#layoutchanged">layoutChanged</a>() 的另一种选择。</p>
+<p><code>sourceParent</code> 索引对应于从其移出行的父级；<code>sourceFirst</code> 和 <code>sourceLast</code> 是要移动的行的第一行和最后一行。<code>destinationParent</code> 索引对应于将这些行移入的父级。<code>destinationChild</code> 是要将行移动到的行。也就是说，<code>sourceParent</code> 中的 <code>sourceFirst</code> 行的索引将成为 <code>destinationParent</code> 中的 <code>destinationChild</code> 行，然后是所有其他行，直到 <code>sourceLast</code>。</p>
+<p>但是，当在同一父目录下移动列时(<code>sourceParent</code> 和 <code>destinationParent</code> 是相等的)，这些行将被放置在 <code>destinationChild</code> 索引之前。也就是说，如果您希望移动列0和1，使它们变成行 1 和行 2,<code>destinationChild</code> 应该是 3。在本例中，源行 <code>i</code> (位于 <code>sourceFirst</code> 和 <code>sourceLast</code> 之间)的新索引等于(<code>destinationChild-sourceLast-1+i</code>)。</p>
+<p>注意，如果 <code>sourceParent</code> 和 <code>destinationParent</code> 是相同的，您必须确保 <code>destinationChild</code> 不在 <code>sourceFirst</code> 和 <code>sourceLast + 1</code> 的范围内。还必须确保不会尝试将行移动到它自己的子列或祖先行中。如果任一条件为真，此方法将返回 <code>false</code>，在这种情况下，应中止移动操作。</p>
+<div class="table"><table class="generic" width="100%">
+<tbody><tr class="odd" valign="top"><td><img alt="Moving rows to another parent" src="modelview-move-rows-1.png" srcset="/img/loading.gif" lazyload width="800"></td><td>指定源父行中您希望在模型中移动的行跨度的第一行和最后一行编号。还要在目标父级中指定要将范围内的行移动到的行。例如，如图所示，我们将源中的第 2 行到第 3 行移动了三行，因此 <i>sourceFirst</i>  为 2，<i>sourceLast</i> 为 4。我们将这些项移动到目标的第2行上方，因此 <i>destinationChild</i> 为2。<p></p>
+<div class="code-wrapper"><pre class="cpp prettyprint prettyprinted" style><span class="pln">beginMoveRows</span><span class="pun">(</span><span class="pln">sourceParent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">2</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">4</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> destinationParent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">2</span></span><span class="pun">);</span></pre></div>
+<p>这会将源中的三行第 2、3 和 4 行移动到目标中的 2、3 和 4 行。其他受影响的同级项也因此被移位。</p>
+</td></tr>
+<tr class="even" valign="top"><td><img alt="Moving rows to append to another parent" src="modelview-move-rows-2.png" srcset="/img/loading.gif" lazyload></td><td>若要将行追加到另一个父元素，请将它们移到最后一行的后面。例如，如图所示，我们将三行移动到一个包含 6 个现有行的集合中(以第 5 行结束)，因此 <i>destinationChild</i> 为6：<p></p>
+<div class="code-wrapper"><pre class="cpp prettyprint prettyprinted" style><span class="pln">beginMoveRows</span><span class="pun">(</span><span class="pln">sourceParent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">2</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">4</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> destinationParent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">6</span></span><span class="pun">);</span></pre></div>
+<p>这会将目标行移到目标父级的末尾，分别为 6、7 和 8。</p>
+</td></tr>
+<tr class="odd" valign="top"><td><img alt="Moving rows in the same parent up" src="modelview-move-rows-3.png" srcset="/img/loading.gif" lazyload></td><td>要在同一父级中移动行，请指定要将其移动到的行。
+例如，如图所示，我们将一项从第 2 行移至第 0 行，因此 <i>sourceFirst</i> 和 <i>sourceLast</i> 为2，<i>destinationChild</i> 为0。<p></p>
+<div class="code-wrapper"><pre class="cpp prettyprint prettyprinted" style><span class="pln">beginMoveRows</span><span class="pun">(</span><span class="pln">parent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">2</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">2</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> parent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">0</span></span><span class="pun">);</span></pre></div>
+<p>注意，其他行可能会相应移位。另请注意，在同一父级中移动项时，请勿尝试无效移动或无操作移动。在上面的示例中，项 2 位于移动之前的第 2 行，因此无法将其移动到第 2 行（已经存在）或第 3 行（空操作，因为第 3 行意味着已经在第 3 行之上）</p>
+</td></tr>
+<tr class="even" valign="top"><td><img alt="Moving rows in the same parent down" src="modelview-move-rows-4.png" srcset="/img/loading.gif" lazyload></td><td>要在同一父级中移动行，请指定要将其移动到的行。例如，如图所示，我们将一项从第 2 行移至第 4 行，因此 <i>sourceFirst</i> 和 <i>sourceLast</i> 为2，<i>destinationChild</i> 为4。<p></p>
+<div class="code-wrapper"><pre class="cpp prettyprint prettyprinted" style><span class="pln">beginMoveRows</span><span class="pun">(</span><span class="pln">parent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">2</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">2</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> parent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">4</span></span><span class="pun">);</span></pre></div>
+<p>注意，其他行可能会相应移位。</p>
+</td></tr>
+</tbody></table></div>
+
+<p>该函数在 <code>Qt4.6</code> 中被引入。</p>
+<p>参见 <a href="#endmoverows">endMoveRows</a>()。</p>
+<h3><span id="beginremovecolumns">beginRemoveColumns</span><a href="#beginremovecolumns" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>beginRemoveColumns</strong>(const <a href>QModelIndex</a> &amp;parent, int first, int last)</font> </p>
+<p>开始一个列移除操作。</p>
+<p>在子类中重新实现 <a href="#removecolumns">removeColumns</a>() 时，必须在从模型的底层数据存储中删除数据之前调用此函数。<code>parent</code> 索引对应于删除新列的父索引; <code>first</code> 和 <code>last</code> 是要删除的第一个和最后一个列的列号。</p>
+<div class="table"><p><strong>注意：</strong> 此函数发出 <a href>columnAboutToBeRemoved</a>() 信号，在删除数据之前，已连接的视图（或代理）必须处理该信号。否则，视图可能会以无效状态结束。</p><p>参见 <a href="#endremovecolumns">endRemoveColumns</a>()。</p><table class="generic" width="100%">
+<tbody><tr class="odd" valign="top"><td><img alt="Removing columns" src="modelview-begin-remove-columns.png" srcset="/img/loading.gif" lazyload width="482"></td><td>指定要从模型中的项中删除的列的范围的第一个和最后一个列号。例如，如图所示，我们将这三列从第4列移到第6列，因此 <i>first</i> 是4，<i>last</i> 是6:<p></p>
+<div class="code-wrapper"><pre class="cpp prettyprint prettyprinted" style><span class="pln">beginRemoveColumns</span><span class="pun">(</span><span class="pln">parent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">4</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">6</span></span><span class="pun">);</span></pre></div>
+</td></tr>
+
+
+
+</tbody></table></div>
+
+<h3><span id="beginremoverows">beginRemoveRows</span><a href="#beginremoverows" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>beginRemoveRows</strong>(const <a href>QModelIndex</a> &amp;parent, int first, int last)</font> </p>
+<p>开始一个行移除操作。</p>
+<p>在子类中重新实现 <a href="#removerows">removeRows</a>() 时，必须在从模型的基础数据存储中删除数据之前调用此函数。</p>
+<p><code>parent</code> 引对应于从中删除新行的父索引；<code>first</code> 和 <code>last</code> 是要删除的行的行号。</p>
+<div class="table"><table class="generic" width="100%">
+<tbody><tr class="odd" valign="top"><td><img alt="Removing rows" src="modelview-begin-remove-rows.png" srcset="/img/loading.gif" lazyload width="250"></td><td>指定要从模型中的项中删除的行范围的第一个和最后一个行号。例如，如图所示，我们将从第 2 行到第 3 行的两行删除，因此 <i>first</i> 是 2，<i>last</i> 是 3：<p></p>
+<div class="code-wrapper"><pre class="cpp prettyprint prettyprinted" style><span class="pln">beginRemoveRows</span><span class="pun">(</span><span class="pln">parent</span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">2</span></span><span class="operator"><span class="pun">,</span></span><span class="pln"> </span><span class="number"><span class="lit">3</span></span><span class="pun">);</span></pre></div>
+</td></tr>
+</tbody></table></div>
+
+<p><strong>注意：</strong> 此函数发出 <a href="#rowsabouttoberemoved">rowsAboutToBeRemoved</a>() 信号，连接的视图（或代理）必须在删除数据之前处理该信号。否则，视图可能会以无效状态结束。</p>
+<p>参见 <a href="#endremoverows">endRemoveRows</a>()。</p>
+<h3><span id="beginresetmodel">beginResetModel</span><a href="#beginresetmodel" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>beginResetModel</strong>()</font> </p>
+<p>开始模型重置操作。</p>
+<p>重置操作会在任何附加的视图中将模型重置为当前状态。</p>
+<p><strong>注意：</strong> 附加到这个模型的任何视图都将被重置。</p>
+<p>当一个模型被重置时，这意味着以前从该模型报告的任何数据现在都是无效的，必须再次进行查询。这也意味着当前项和任何选定项都将无效。当模型从根本上更改其数据时，有时只需调用此函数比在底层数据源或其结构发生更改时发出 <a href="#datachanged">dataChanged</a>() 通知其他组件更容易。</p>
+<p>在重新设置模型或代理模型中的任何内部数据结构之前，必须调用此函数。</p>
+<p>这个函数发出信号 <a href="#modelabouttobereset">modelAboutToBeReset</a>()。</p>
+<p>该函数在 <code>Qt4.6</code> 中被引入。</p>
+<p>参见 <a href="#modelabouttobereset">modelAboutToBeReset</a>()、<a href="#modelreset">modelReset</a>() 和 <a href="#endresetmodel">endResetModel</a>()。</p>
+<h3><span id="buddy">buddy</span><a href="#buddy" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>buddy</strong>(const <a href>QModelIndex</a> &amp;index) const</font> </p>
+<p>返回由 <code>index</code> 表示的项的伙伴的模型索引。当用户想要编辑项目时，视图将调用此函数以检查是否应改为编辑模型中的另一个项。然后，视图将使用伙伴项返回的模型索引构造一个委托。</p>
+<p>此功能的默认实现将每个项都作为自己的伙伴。</p>
+<h3><span id="candropmimedata">canDropMimeData</span><a href="#candropmimedata" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>canDropMimeData</strong>(const <a href>QMimeData</a> *data, <a href>Qt::DropAction</a> action, <strong>int</strong> row, <strong>int</strong> column, const <a href>QModelIndex</a> &amp;parent) const</font> </p>
+<p>如果模型接受放置 <code>data</code>，则返回 <code>true</code>。这个默认实现只检查 <a href>mimeTypes</a>() 列表中数据是否至少有一种格式，以及操作是否在模型的 <a href>supportedDropActions</a>() 中。</p>
+<p>如果您想要测试是否可以在 <code>row</code>、<code>column</code>、<code>parent</code>节点上放置 <code>data</code>，请在自定义模型中重新实现此函数。如果您不需要该测试，那么就没有必要重新实现此函数。</p>
+<p>参见 <a href="#dropmimedata">dropMimeData</a>() 和 <a href="../../M/Model_View_Programming/Model_View_Programming.md#%E5%9C%A8%E9%A1%B9%E8%A7%86%E5%9B%BE%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%8B%96%E6%94%BE">在项视图中使用拖放</a>。</p>
+<h3><span id="canfetchmore">canFetchMore</span><a href="#canfetchmore" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>canFetchMore</strong>(const <a href>QModelIndex</a> &amp;parent) const</font> </p>
+<p>如果在 <code>parent</code> 索引下有更多可用的数据返回 <code>true</code>；否则返回 <code>fasle</code>;</p>
+<p>默认的实现总是返回 <code>false</code>。</p>
+<p>如果 <code>canFetchMore()</code> 返回 <code>true</code>，则应该调用 <a href="#fetchmore">fetchMore</a>() 函数。比如 <a href>QAbstractItemView</a> 就是这样做的。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href="#fetchmore">fetchMore</a>()。</p>
+<h3><span id="changepersistentindex">changePersistentIndex</span><a href="#changepersistentindex" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>changePersistentIndex</strong>(const <a href>QModelIndex</a> &amp;from, const <a href>QModelIndex</a> &amp;to)</font> </p>
+<p>将等于给定的 <code>from</code> 的 <a href>QPersistentModelIndex</a>() 模型索引更改为 <code>to</code> 模型索引。</p>
+<p>如果没有找到与给定的模型索引 <code>from</code> 相等的持久模型索引，则什么也不会改变。</p>
+<p>如果 <code>canFetchMore()</code> 返回 <code>true</code>，则应该调用 <a href="#fetchmore">fetchMore</a>() 函数。比如 <a href>QAbstractItemView</a> 就是这样做的。</p>
+<p>参见 <a href="#persistentindexlist">persistentIndexList</a>() 和 <a href="#changepersistentindexlist">changePersistentIndexList</a>()。</p>
+<h3><span id="changepersistentindexlist">changePersistentIndexList</span><a href="#changepersistentindexlist" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>changePersistentIndexList</strong>(const <a href>QModelIndexList </a> &amp;from, const <a href>QModelIndexList </a> &amp;to)</font> </p>
+<p>将等于给定的 <code>from</code> 的 <a href>QPersistentModelIndex</a>()es 模型索引列表更改为 <code>to</code> 模型索引列表。</p>
+<p>如果没有找到与给定的模型索引 <code>from</code> 相等的持久模型索引，则什么也不会改变。</p>
+<p>该函数在 <code>Qt4.1</code> 中被引入。</p>
+<p>参见 <a href="#persistentindexlist">persistentIndexList</a>() 和 <a href="#changepersistentindex">changePersistentIndex</a>()。</p>
+<h3><span id="checkindex">checkIndex</span><a href="#checkindex" class="header-anchor">#</a></h3><p><font size="4"><strong>bool</strong> QAbstractItemModel::<strong>checkIndex</strong>(const <a href>QModelIndex</a> &amp;index, <a href>QAbstractItemModel::CheckIndexOptions</a> options = CheckIndexOption::NoOption) const</font> </p>
+<p>此函数检查索引是否为此模型的合法模型索引。 合法模型索引要么是无效的模型索引，要么是具有以下所有条件的有效模型索引：</p>
+<ul>
+<li><code>index</code> 的模型就是 <code>this</code>；</li>
+<li><code>index</code> 的行数大于等于零；</li>
+<li><code>index</code> 的行数小于父索引的行数；</li>
+<li><code>index</code> 的列数大于等于零；</li>
+<li><code>index</code> 的列数小于父索引的列数。</li>
+</ul>
+<p><code>options</code> 参数可能会改变其中一些检查。如果 <code>options</code> 包含 <code>IndexIsValid</code>，那么 <code>index</code> 必须是一个有效的索引;这在重新实现 <a href="#data">data</a>() 或 <a href="#setdata">setData</a>() 等需要有效索引的函数时非常有用。</p>
+<p>如果 <code>options</code> 包含 <code>DoNotUseParent</code>，那么将调用 <a href="#parent">parent</a>() 的检查将被省略;允许在重新实现的 <a href="#parent">parent</a>() 函数中调用此函数(否则，将导致无穷递归和崩溃)。</p>
+<p>如果 <code>options</code> 不包含 <code>DoNotUseParent</code>，但包含 <code>IndexIsValid</code>，那么将执行额外的检查:检查父索引是否有效。这在实现平面模型(如列表或表)时非常有用，在这种情况下，模型索引不应该具有有效的父索引。</p>
+<p>该函数如果检查成功返回 <code>true</code>，否则返回 <code>false</code>。允许在 <code>Q_ASSERT</code> 和类似的其他调试机制中使用该函数。如果某些检查失败，则将在 <code>qt.core.qabstractitemmodel.checkindex</code> 日志记录类别中显示一条警告消息，其中包含一些可能对调试失败有用的信息。</p>
+<p><strong>注意：</strong> 这个函数是一个调试助手，用于实现您自己的项模型。在开发复杂模型时，以及在构建复杂的模型层次结构时(例如使用代理模型)，调用这个函数来捕获传递给某个 <a href>QAbstractItemModel</a>() <code>API</code> 的非法模型索引(如上定义)相关的bug是很有用的。</p>
+<p><strong>警告：</strong> 请注意，将非法索引传递给项模型是未定义的行为，因此应用程序必须避免这样做，并且不能依赖于项模型可以用来优雅地处理非法索引的任何“防御性”编程。</p>
+<p>该函数在 `Qt5.11 中被引入。</p>
+<p>参见 <a href>QModelIndex</a>。</p>
+<h3><span id="columncount">columnCount</span><a href="#columncount" class="header-anchor">#</a></h3><p><font size="4">[ pure virtual ]&amp;emsp;<strong>int</strong> QAbstractItemModel::<strong>columnCount</strong>(const <a href>QModelIndex</a> &amp;parent = QModelIndex()) const</font> </p>
+<p>返回给定 <code>parent</code> 索引的子项的列的数量。</p>
+<p>在大多数子类中，列的数量独立于 <code>parent</code>。</p>
+<p>例如：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">DomModel::columnCount</span><span class="hljs-params">(<span class="hljs-type">const</span> QModelIndex &amp;parent)</span> <span class="hljs-type">const</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-built_in">Q_UNUSED</span>(parent);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}</code></pre></div>
+
+<p><strong>注意：</strong> 在实现基于表的模型时，当父模型有效时，<code>columnCount()</code> 应该返回 0。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>该函数在 <code>Qt4.1</code> 中被引入。</p>
+<p>参见 <a href="#rowcount">rowCount</a>()。</p>
+<h3><span id="createindex">createIndex</span><a href="#createindex" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong><a href>QModelIndex</a></strong> QAbstractItemModel::<strong>createIndex</strong>(<strong>int</strong> row, <strong>int</strong> column, <strong>void</strong> *ptr = nullptr) const</font> </p>
+<p>使用内部指针 <code>ptr</code> 为给定的 <code>row</code> 和 <code>column</code> 创建模型索引。</p>
+<p>当使用 <a href>QSortFilterProxyModel</a> 时，它的索引有自己的内部指针。不建议在模型外部访问这个内部指针。使用 <a href>data</a>() 函数代替。</p>
+<p>这个函数提供了一个一致的接口，模型子类必须使用这个接口来创建模型索引。</p>
+<p>参见 <a href>QModelIndex::internalId</a>()。</p>
+<h3><span id="data">data</span><a href="#data" class="header-anchor">#</a></h3><p><font size="4">[ pure virtual ]&amp;emsp;<strong><a href>QVariant</a></strong> QAbstractItemModel::<strong>data</strong>(const <a href>QModelIndex</a> &amp;index, <strong>int</strong> role = Qt::DisplayRole) const</font> </p>
+<p>返回指定角色 <code>role</code> 和 索引 <code>index</code> 的项数据。</p>
+<p><strong>注意：</strong> 如果没有要返回的值，则返回无效的 <a href>QVariant</a>，而不是返回 0。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href>Qt::ItemDataRole</a>、<a href="#setdata">setData</a>() 和 <a href="#headerdata">headerData</a>()。</p>
+<h3><span id="dropmimedata">dropMimeData</span><a href="#dropmimedata" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>dropMimeData</strong>(const <a href>QMimeData</a> *data, <a href>Qt::DropAction</a> action, <strong>int</strong> row, <strong>int</strong> column, const <a href>QModelIndex</a> &amp;parent) const</font> </p>
+<p>处理以给定操作 <code>action</code> 结束的拖放操作提供的数据 <code>data</code>。</p>
+<p>如果数据和操作被模型处理了则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>指定的行 <code>row</code>、列 <code>column</code> 和父索引 <code>parent</code> 指示模型中操作结束的项的位置。在正确的位置完成动作是模型的责任。</p>
+<p>例如，<a href>QTreeView</a> 中的一个项上的拖放操作可以导致新项作为行 <code>row</code>、列 <code>column</code> 和父索引 <code>parent</code> 指定的项的子项插入，或者作为项的兄弟项插入。</p>
+<p>当行 <code>row</code> 和列 <code>column</code> 为 -1 时，这意味着放置的数据应该被认为是直接在 <code>parent</code> 上放置的。通常这意味着将数据附加为父项 <code>parent</code> 的子项。如果行 <code>row</code> 和列 <code>column</code> 大于或等于零，则表示放置发生在指定父索引 <code>parent</code> 的 <code>row</code> 和列 <code>column</code> 的前面。</p>
+<p>调用 <a href>mimeTypes</a>() 成员来获取可接受的 <code>MIME</code> 类型列表。这个默认实现假定 <a href>mimeTypes</a>() 是默认实现，它返回一个默认 <code>MIME</code> 类型。如果您在自定义模型中重新实现 <a href>mimeTypes</a>() 以返回多个 <code>MIME</code> 类型，那么您必须重新实现此函数以使用它们。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href>supportedDropActions</a>、<a href="#candropmimedata">canDropMimeData</a>() 和 <a href="../../M/Model_View_Programming/Model_View_Programming.md#%E5%9C%A8%E9%A1%B9%E8%A7%86%E5%9B%BE%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%8B%96%E6%94%BE">在项视图中使用拖放</a>。</p>
+<h3><span id="endinsertcolumns">endInsertColumns</span><a href="#endinsertcolumns" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>endInsertColumns</strong>()</font> </p>
+<p>结束列插入操作。</p>
+<p>在子类中重新实现 <a href="#insertcolumns">insertColumns</a>()时，必须在将数据插入模型的底层数据存储之后调用此函数。</p>
+<p>参见 <a href="#begininsertcolumns">beginInsertColumns</a>()。</p>
+<h3><span id="endinsertrows">endInsertRows</span><a href="#endinsertrows" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>endInsertRows</strong>()</font> </p>
+<p>结束行插入操作。</p>
+<p>在子类中重新实现 <a href="#insertrows">insertRows</a>()时，必须在将数据插入模型的底层数据存储之后调用此函数。</p>
+<p>参见 <a href="#begininsertrows">beginInsertRows</a>()。</p>
+<h3><span id="endmovecolumns">endMoveColumns</span><a href="#endmovecolumns" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>endMoveColumns</strong>()</font> </p>
+<p>结束列移动操作。</p>
+<p>在实现子类时，必须在模型的底层数据存储中移动数据之后调用此函数。</p>
+<p>该函数在 <code>Qt4.6</code> 中被引入。</p>
+<p>参见 <a href="#beginmovecolumns">beginMoveColumns</a>()。</p>
+<h3><span id="endmoverows">endMoveRows</span><a href="#endmoverows" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>endMoveRows</strong>()</font> </p>
+<p>结束行移动操作。</p>
+<p>在实现子类时，必须在模型的底层数据存储中移动数据之后调用此函数。</p>
+<p>该函数在 <code>Qt4.6</code> 中被引入。</p>
+<p>参见 <a href="#beginmoverows">beginMoveRows</a>()。</p>
+<h3><span id="endremovecolumns">endRemoveColumns</span><a href="#endremovecolumns" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>endRemoveColumns</strong>()</font> </p>
+<p>结束列删除操作。</p>
+<p>在子类中重新实现 <a href="#removecolumns">removeColumns</a>() 时，必须在从模型的底层数据存储中删除数据之后调用此函数。</p>
+<p>参见 <a href="#beginremovecolumns">beginRemoveColumns</a>()。</p>
+<h3><span id="endremoverows">endRemoveRows</span><a href="#endremoverows" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>endRemoveRows</strong>()</font> </p>
+<p>结束行删除操作。</p>
+<p>在子类中重新实现 <a href="#removerows">removeRows</a>() 时，必须在从模型的底层数据存储中删除数据之后调用此函数。</p>
+<p>参见 <a href="#beginremoverows">beginRemoveRows</a>()。</p>
+<h3><span id="endresetmodel">endResetModel</span><a href="#endresetmodel" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>endResetModel</strong>()</font> </p>
+<p>完成模型重置操作。</p>
+<p>在重置模型或代理模型中的任何内部数据结构后，必须调用此函数。</p>
+<p>该函数发出 <a href="#modelreset">modelReset</a>() 信号。</p>
+<p>该函数在 <code>Qt4.6</code> 中被引入。</p>
+<p>参见 <a href="#beginresetmodel">beginResetModel</a>()。</p>
+<h3><span id="fetchmore">fetchMore</span><a href="#fetchmore" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>fetchMore</strong>(const <a href>QModelIndex</a> &amp;parent)</font> </p>
+<p>获取指定的 <code>parent</code> 父索引的项的任何可用的数据。</p>
+<p>如果递增地填充模型，则需要重新实现该函数。</p>
+<p>该函数的默认实现没有做任何事情。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href="#canfetchmore">canFetchMore</a>()。</p>
+<h3><span id="flags">flags</span><a href="#flags" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong><a href>Qt::ItemFlags</a></strong> QAbstractItemModel::<strong>flags</strong>(const <a href>QModelIndex</a> &amp;index) const</font> </p>
+<p>返回给定索引的项标志。</p>
+<p>基类的实现返回启用项(<code>ItemIsEnabled</code>)和允许选择项(<code>ItemIsSelectable</code>)的标志的组合。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href>Qt::ItemFlags</a>。</p>
+<h3><span id="haschildren">hasChildren</span><a href="#haschildren" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong><a href>Qt::ItemFlags</a></strong> QAbstractItemModel::<strong>hasChildren</strong>(const <a href>QModelIndex</a> &amp;parent = QModelIndex()) const</font> </p>
+<p>如果父索引 <code>parent</code> 有任何子项则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>在父索引上使用 <a href="#rowcount">rowCount</a>() 来查找子项的数量。</p>
+<p>注意，如果一个索引设置了 <a href>Qt::ItemNeverHasChildren</a> 标志，那么用该索引调用该方法是未定义的行为。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href="#parent">parent</a>() 和 <a href="#index">index</a>()。</p>
+<h3><span id="hasindex">hasIndex</span><a href="#hasindex" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>hasIndex</strong>(<strong>int</strong> row, <strong>int</strong> column, const <a href>QModelIndex</a> &amp;parent = QModelIndex()) const</font> </p>
+<p>如果模型返回一个指定父索引 <code>parent</code>、行 <code>row</code> 和列 <code>column</code> 的有效 <a href>QModelIndex</a>，则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<h3><span id="headerdata">headerData</span><a href="#headerdata" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong><a href>QVariant</a></strong> QAbstractItemModel::<strong>headerData</strong>(<strong>int</strong> section, <a href>Qt::Orientation</a> orientation, <strong>int</strong> role = Qt::DisplayRole) const</font> </p>
+<p>返回标题中具有给定 <code>orientation</code> 和 <code>section</code> 的数据。</p>
+<p>对于水平标题，节号对应于列号。类似地，对于垂直标题，节号对应于行号。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href>Qt::ItemDataRole</a>、<a href="#setheaderdata">setHeaderData</a>() 和 <a href>QHeaderView</a>。</p>
+<h3><span id="index">index</span><a href="#index" class="header-anchor">#</a></h3><p><font size="4">[ pure virtual ]&amp;emsp;<strong><a href>QModelIndex</a></strong> QAbstractItemModel::<strong>index</strong>(<strong>int</strong> row, <strong>int</strong> column, const <a href>QModelIndex</a> &amp;parent = QModelIndex()) const</font> </p>
+<p>返回模型中指定 <code>row</code>、<code>column</code> 和 <code>parent</code> 索引的项的索引。</p>
+<p>在子类中重新实现此函数时，调用 <a href="#createindex">createIndex</a>() 来生成模型索引，其他组件可以使用这些索引来引用模型中的项。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href="#createindex">createIndex</a>()。</p>
+<h3><span id="insertcolumn">insertColumn</span><a href="#insertcolumn" class="header-anchor">#</a></h3><p><font size="4"><strong>bool</strong> QAbstractItemModel::<strong>insertColumn</strong>(<strong>int</strong> column, const <a href>QModelIndex</a> &amp;parent = QModelIndex()) const</font> </p>
+<p>在指定 <code>parent</code> 索引的子项的指定 <code>column</code> 之前插入一列。</p>
+<p>如果插入了该列，则返回 <code>true</code>；否则，返回 <code>false</code>。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href="#insertcolumns">insertColumns</a>()、<a href="#insertrow">insertRow</a>() 和 <a href="#removecolumn">removeColumn</a>()。</p>
+<h3><span id="insertcolumns">insertColumns</span><a href="#insertcolumns" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>insertColumns</strong>(<strong>int</strong> column, <strong>int</strong> count, const <a href>QModelIndex</a> &amp;parent = QModelIndex()) const</font> </p>
+<p>在支持此功能的模型上，在模型中的给定 <code>column</code> 之前插入 <code>count</code> 列新列。每个新列中的项将是由父模型索引 <code>parent</code> 表示的项的子项目。</p>
+<p>如果 <code>column</code> 为 0，则这些列将添加到任何现有列的前面。</p>
+<p>如果 <code>column</code> 为 <a href="#columncount">columnCount</a>()，则将这些列追加到任何现有列之后。</p>
+<p>如果 <code>parent</code> 没有子项，插入带有 <code>count</code> 列的单行。</p>
+<p>如果列成功插入，则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>基类的实现没有做任何事情，并且返回 <code>false</code>。</p>
+<p>如果您实现了自己的模型，希望支持插入，则可以重新实现此函数。或者，您可以提供自己的 <code>API</code> 来更改数据。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href="#insertrows">insertRows</a>()、<a href="#removecolumns">removeColumns</a>()、<a href="#begininsertcolumns">beginInsertColumns</a>() 和 <a href="#begininsertcolumns">endInsertColumns</a>()。</p>
+<h3><span id="insertrow">insertRow</span><a href="#insertrow" class="header-anchor">#</a></h3><p><font size="4"><strong>bool</strong> QAbstractItemModel::<strong>insertRow</strong>(<strong>int</strong> row, const <a href>QModelIndex</a> &amp;parent = QModelIndex()) const</font> </p>
+<p>在指定 <code>parent</code> 索引的子项的指定 <code>row</code> 之前插入一列。</p>
+<p><strong>注意：</strong> 该函数调用了虚函数 <a href="#insertrows">insertRows</a>()。</p>
+<p>如果插入了该行，则返回 <code>true</code>；否则，返回 <code>false</code>。</p>
+<p>参见 <a href="#insertrows">insertRows</a>()、<a href="#insertcolumn">insertColumn</a>() 和 <a href="#removerow">removeRow</a>()。</p>
+<h3><span id="insertrows">insertRows</span><a href="#insertrows" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>insertRows</strong>(<strong>int</strong> row, <strong>int</strong> count, const <a href>QModelIndex</a> &amp;parent = QModelIndex()) const</font> </p>
+<p><strong>注意：</strong> 基类的实现没有做任何事情，并且返回 <code>false</code>。</p>
+<p>在支持此功能的模型上，将 <code>count</code> 行插入模型中给定的行之前。新行中的项将是由父模型索引 <code>parent</code> 表示的项的子项。</p>
+<p>如果 <code>row</code> 为 0，则这些行将添加到任何现有列的前面。</p>
+<p>如果 <code>row</code> 为 <a href="#rowcount">rowCount</a>()，则将这些列追加到任何现有行之后。</p>
+<p>如果 <code>parent</code> 没有子项，插入带有 <code>count</code> 行的单列。</p>
+<p>如果列成功插入，则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>如果您实现了自己的模型，希望支持插入，则可以重新实现此函数。或者，您可以提供自己的 <code>API</code> 来更改数据。在任何一种情况下，您都需要调用 <a href="#begininsertrows">beginInsertRows</a>() 和 <a href="#endinsertrows">endInsertRows</a>() 来通知其他组件模型已经更改</p>
+<p>参见 <a href="#insertcolumns">insertColumns</a>()、<a href="#removerows">removeRows</a>()、<a href="#begininsertrows">beginInsertRows</a>() 和 <a href="#endinsertrows">endInsertRows</a>()。</p>
+<h3><span id="itemdata">itemData</span><a href="#itemdata" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<a href>QMap</a>&lt;**int**, <a href>QVariant</a>&gt; QAbstractItemModel::<strong>itemData</strong>(const <a href>QModelIndex</a> &amp;index) const</font> </p>
+<p>为给定索引 <code>index</code> 处的项返回具有模型中所有预定义角色值的 <code>map</code>。</p>
+<p>如果希望扩展此函数的默认行为以在 <code>map</code> 中包含自定义角色，请重新实现此函数。</p>
+<p>参见 <a href="#setitemdata">setItemData</a>()、<a href>Qt::ItemDataRole</a> 和 <a href="#data">data</a>()。</p>
+<h3><span id="match">match</span><a href="#match" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<a href>QModelIndexList</a> QAbstractItemModel::<strong>match</strong>(const <a href>QModelIndex</a> &amp;start, <strong>int</strong> role, const <a href>QVariant</a> &amp;value, <strong>int</strong> hits = 1, <a href>Qt::MatchFlags</a> flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const</font> </p>
+<p>返回一列项的索引，这些索引在 <code>start</code> 索引的列中并且该索引下的数据在给定角色下存储的数据与指定值匹配。执行搜索的方式由给定的 <code>flags</code> 定义。返回的列表可能是空的。还要注意，如果使用了代理模型，列表中结果的顺序可能与模型中的顺序不一致。不能依赖结果的顺序。</p>
+<p>搜索从 <code>start</code> 索引开始，直到匹配数据项的数量等于 <code>hits</code>，搜索到达最后一行，或者再次搜索到达start—这取决于是否在 <code>flags</code> 中指定了 <code>MatchWrap</code>。如果希望搜索所有匹配项，请使用 <code>hits = -1</code>。</p>
+<p>默认情况下，此函数将对所有项执行基于字符串的包装比较，搜索以 <code>value</code> 指定的搜索项开头的项。</p>
+<p><strong>注意：</strong> 这个函数的默认实现只搜索列。重新实现此函数以包含不同的搜索行为。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<h3><span id="mimedata">mimeData</span><a href="#mimedata" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<a href>QMimeData</a> QAbstractItemModel::<strong>mimeData</strong>(const <a href>QModelIndexList</a> &amp;indexes) const</font> </p>
+<p>返回一个对象，该对象包含与指定索引 <code>indexes</code> 列表对应的序列化数据项。用于描述编码数据的格式是从 <a href="#mimetypes">mimeTypes</a>() 函数获得的。这个默认实现使用 <a href="#mimetypes">mimeTypes</a>() 的默认实现返回的默认 <code>MIME</code> 类型。如果您在自定义模型中重新实现 <a href="#mimetypes">mimeTypes</a>() 以返回更多 <code>MIME</code> 类型，那么重新实现此函数以使用它们。</p>
+<p>如果 <code>indexes</code> 为空，或者没有受支持的 <code>MIME</code> 类型，则返回 0，而不是序列化的空列表。</p>
+<p>参见 <a href="#mimetypes">mimeTypes</a>() 和 <a href="#dropmimedata">dropMimeData</a>()。</p>
+<h3><span id="mimetypes">mimeTypes</span><a href="#mimetypes" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<a href>QStringList</a> QAbstractItemModel::<strong>mimeTypes</strong>() const</font> </p>
+<p>返回允许的 <code>MIME</code> 类型的列表。默认情况下，内置模型和视图使用内部 <code>MIME</code> 类型：<code>application / x-qabstractitemmodeldatalist</code>。</p>
+<p>在自定义模型中实现拖放支持时，如果您将以默认内部 <code>MIME</code> 类型以外的格式返回数据，请重新实现此函数以返回您的 <code>MIME</code> 类型列表。</p>
+<p>如果在自定义模型中重新实现这个函数，还必须重新实现调用它的成员函数: <a href="#mimedata">mimeData</a>() 和 <a href="#dropmimedata">dropMimeData</a>()。</p>
+<p>参见 <a href="#mimedata">mimeData</a>() 和 <a href="#dropmimedata">dropMimeData</a>()。</p>
+<h3><span id="movecolumn">moveColumn</span><a href="#movecolumn" class="header-anchor">#</a></h3><p><font size="4"><strong>bool</strong> QAbstractItemModel::<strong>moveColumn</strong>(const <a href>QModelIndex</a> &amp;sourceParent, <strong>int</strong> sourceColumn, const <a href>QModelIndex</a> &amp;destinationParent, <strong>int</strong> destinationChild)</font> </p>
+<p>在支持此功能的模型上，将 <code>sourceColumn从sourceParent</code> 移到 <code>destinationParent</code> 下的 <code>destinationChild</code>。</p>
+<p>如果列被成功移动，则返回 <code>true</code>;否则返回 <code>false</code>。</p>
+<p>参见 <a href="#movecolumns">moveColumns</a>() 和 <a href="#moverow">moveRow</a>()。</p>
+<h3><span id="movecolumns">moveColumns</span><a href="#movecolumns" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>moveColumns</strong>(const <a href>QModelIndex</a> &amp;sourceParent, <strong>int</strong> sourceColumn, <strong>int</strong> count, const <a href>QModelIndex</a> &amp;destinationParent, <strong>int</strong> destinationChild)</font> </p>
+<p>在支持此功能的模型上，将 <code>count</code> 列从父索引 <code>sourceParent</code> 下的给定 <code>sourceColumn</code> 移到父索引 <code>destinationParent</code> 下的 <code>destinationChild</code> 列。</p>
+<p>如果列被成功移动，则返回 <code>true</code>;否则返回 <code>false</code>。</p>
+<p>基类的实现没有做任何事情，并且返回 <code>false</code>。</p>
+<p>如果实现自己的模型，则如果要支持移动，则可以重新实现此功能。另外，您可以提供自己的 <code>API</code> 来更改数据。</p>
+<p>参见 <a href="#beginmovecolumns">beginMoveColumns</a>() 和 <a href="#endmovecolumns">endMoveColumns</a>()。</p>
+<h3><span id="moverow">moveRow</span><a href="#moverow" class="header-anchor">#</a></h3><p><font size="4"><strong>bool</strong> QAbstractItemModel::<strong>moveRow</strong>(const <a href>QModelIndex</a> &amp;sourceParent, <strong>int</strong> sourceRow const <a href>QModelIndex</a> &amp;destinationParent, <strong>int</strong> destinationChild)</font> </p>
+<p>在支持此功能的模型上，将 <code>sourceColumn从sourceParent</code> 移到 <code>destinationParent</code> 下的 <code>destinationChild</code>。</p>
+<p>如果行被成功移动，则返回 <code>true</code>;否则返回 <code>false</code>。</p>
+<p>参见 <a href="#moverows">moveRows</a>() 和 <a href="#movecolumn">moveColumn</a>()。</p>
+<h3><span id="moverows">moveRows</span><a href="#moverows" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>moveRows</strong>(const <a href>QModelIndex</a> &amp;sourceParent, <strong>int</strong> sourceRow, <strong>int</strong> count, const <a href>QModelIndex</a> &amp;destinationParent, <strong>int</strong> destinationChild)</font> </p>
+<p>在支持此功能的模型上，将 <code>count</code> 行从父索引 <code>sourceParent</code> 下的给定 <code>sourceColumn</code> 移到父索引 <code>destinationParent</code> 下的 <code>destinationChild</code> 行。</p>
+<p>如果行被成功移动，则返回 <code>true</code>;否则返回 <code>false</code>。</p>
+<p>基类的实现没有做任何事情，并且返回 <code>false</code>。</p>
+<p>如果实现自己的模型，则如果要支持移动，则可以重新实现此功能。另外，您可以提供自己的 <code>API</code> 来更改数据。</p>
+<p>参见 <a href="#beginmoverows">beginMoveRows</a>() 和 <a href="#endmoverows">endMoveRows</a>()。</p>
+<h3><span id="parent">parent</span><a href="#parent" class="header-anchor">#</a></h3><p><font size="4">[ pure virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>parent</strong>(const <a href>QModelIndex</a> &amp;index) const</font> </p>
+<p>返回具有给定索引 <code>index</code> 的模型项的父项。如果该项没有父项，则返回无效的 <a href>QModelIndex</a>。</p>
+<p>在公开树数据结构的模型中使用的常见约定是，只有第一列中的项才有子级。对于这种情况，当在子类中重新实现此函数时，返回的 <a href>QModelIndex</a> 的列将为0。</p>
+<p>在子类中重新实现这个函数时，要小心避免调用 <a href>QModelIndex</a> 成员函数，比如 <a href>QModelIndex::parent</a>()，因为模型的索引将简单地调用实现，从而导致无限递归。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href="#createindex">createIndex</a>()。</p>
+<h3><span id="persistentindexlist">persistentIndexList</span><a href="#persistentindexlist" class="header-anchor">#</a></h3><p><font size="4">[ protected ]&amp;emsp;<a href>QModelIndexList</a> QAbstractItemModel::<strong>persistentIndexList</strong>() const</font> </p>
+<p>返回作为模型中的持久索引存储的索引列表。</p>
+<p>该函数在 <code>Qt4.2</code> 中被引入。</p>
+<h3><span id="removecolumn">removeColumn</span><a href="#removecolumn" class="header-anchor">#</a></h3><p><font size="4"><strong>bool</strong> QAbstractItemModel::<strong>removeColumn</strong>(<strong>int</strong> column, const <a href>QModelIndex</a> &amp;parent = QModelIndex())</font> </p>
+<p>从指定的父项 <code>parent</code> 的子项中删除给定的列 <code>column</code>。</p>
+<p>如果删除了该列，则返回 <code>true</code>；否则返回 <code>false</code>。</p>
+<p>参见 <a href="#removecolumns">removeColumns</a>()、<a href="#removerow">removeRow</a>()和<a href="#insertcolumn">insertColumn</a>()。</p>
+<h3><span id="removecolumns">removeColumns</span><a href="#removecolumns" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>removeColumns</strong>(<strong>int</strong> column, <strong>int</strong> count, const <a href>QModelIndex</a> &amp;parent = QModelIndex())</font> </p>
+<p>在支持此功能的模型上，从模型中删除以父项 <code>parent</code> 下给定列 <code>column</code> 开头的 <code>count</code> 列。</p>
+<p>如果列被成功删除，返回头 <code>true</code>；否则返回 <code>false</code>。</p>
+<p>基类的实现没有做任何事情并返回了 <code>false</code>。</p>
+<p>如果实现自己的模型，要支持删除，则可以重新实现此函数。 另外，您可以提供自己的 <code>API</code> 来更改数据。</p>
+<p>参见 <a href="#removecolumn">removeColumn</a>()、<a href="#removerows">removeRows</a>()、<a href="#insertcolumns">insertColumns</a>()、<a href="#beginremovecolumns">beginRemoveColumns</a>() 和 <a href="#endremovecolumns">endRemoveColumns</a>()。</p>
+<h3><span id="removerow">removeRow</span><a href="#removerow" class="header-anchor">#</a></h3><p><font size="4"><strong>bool</strong> QAbstractItemModel::<strong>removeRow</strong>(<strong>int</strong> row, const <a href>QModelIndex</a> &amp;parent = QModelIndex())</font> </p>
+<p>从指定的父项 <code>parent</code> 的子项中删除给定的行 <code>row</code>。</p>
+<p>如果删除了该行，则返回 <code>true</code>；否则返回 <code>false</code>。</p>
+<p>这是一个调用 <a href="#removerows">removeRows</a>()的便利函数。<a href>QAbstractItemModel</a> 的 <a href="#removerows">removeRows</a>()的实现不做任何事情。</p>
+<p>参见 <a href="#removerows">removeRows</a>()、<a href="#removecolumn">removeColumn</a>()和<a href="#insertrow">insertRow</a>()。</p>
+<h3><span id="removerows">removeRows</span><a href="#removerows" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>removeRows</strong>(<strong>int</strong> row, <strong>int</strong> count, const <a href>QModelIndex</a> &amp;parent = QModelIndex())</font> </p>
+<p>在支持此功能的模型上，从模型中删除以父项 <code>parent</code> 下给定列 <code>row</code> 开头的 <code>count</code> 行。</p>
+<p>如果行被成功删除，返回头 <code>true</code>；否则返回 <code>false</code>。</p>
+<p>基类的实现没有做任何事情并返回了 <code>false</code>。</p>
+<p>如果实现自己的模型，要支持删除，则可以重新实现此函数。 另外，您可以提供自己的 <code>API</code> 来更改数据。</p>
+<p>参见 <a href="#removerow">removeRow</a>()、<a href="#removecolumns">removeColumns</a>()、<a href="#insertcolumns">insertColumns</a>()、<a href="#beginremoverows">beginRemoveRows</a>() 和 <a href="#endremoverows">endRemoveRows</a>()。</p>
+<h3><span id="rolenames">roleNames</span><a href="#rolenames" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<a href>QHash</a>&lt;**int**, <a href>QByteArray</a>&gt; QAbstractItemModel::<strong>roleNames</strong>() const</font> </p>
+<p>返回模型的角色名称。</p>
+<p><code>Qt</code> 设置的默认角色名是：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Qt Role</strong></th>
+<th><strong>QML Role Name</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href>Qt::DisplayRole</a></td>
+<td>display</td>
+</tr>
+<tr>
+<td><a href>Qt::DecorationRole</a></td>
+<td>decoration</td>
+</tr>
+<tr>
+<td><a href>Qt::EditRole</a></td>
+<td>edit</td>
+</tr>
+<tr>
+<td><a href>Qt::ToolTipRole</a></td>
+<td>toolTip</td>
+</tr>
+<tr>
+<td><a href>Qt::StatusTipRole</a></td>
+<td>statusTip</td>
+</tr>
+<tr>
+<td><a href>Qt::WhatsThisRole</a></td>
+<td>whatsThis</td>
+</tr>
+</tbody></table>
+<p>参见 <a href="#removerow">removeRow</a>()、<a href="#removecolumns">removeColumns</a>()、<a href="#insertcolumns">insertColumns</a>()、<a href="#beginremoverows">beginRemoveRows</a>() 和 <a href="#endremoverows">endRemoveRows</a>()。</p>
+<p>该函数在 <code>Qt4.6</code> 中被引入。</p>
+<p>参见 <a href>setRoleNames</a>()。</p>
+<h3><span id="rowcount">rowCount</span><a href="#rowcount" class="header-anchor">#</a></h3><p><font size="4">[ pure virtual ]&amp;emsp;<strong>int</strong> QAbstractItemModel::<strong>rowCount</strong>(const <a href>QModelIndex</a> &amp;parent = QModelIndex()) const</font> </p>
+<p>返回给定父节点 <code>parent</code> 下的行数。当父节点有效时，这意味着 <code>rowCount</code> 返回父节点的子节点数。</p>
+<p><strong>注意：</strong> 在实现基于表的模型时，当父节点有效时，<a href="#rowcount">rowCount</a>() 应该返回 0。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href="#columncount">columnCount</a>()。</p>
+<h3><span id="setdata">setData</span><a href="#setdata" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>setData</strong>(const <a href>QModelIndex</a> &amp;index, const <a href>QVariant</a> &amp;value, <strong>int</strong> role = Qt::EditRole)</font> </p>
+<p>将索引 <code>index</code> 处的项的角色数据设置为 <code>value</code>。</p>
+<p>成功返回 <code>true</code>；否则返回 <code>false</code>。</p>
+<p>如果数据被成功设置，应该发出 <a href="#datachanged">dataChanged</a>() 信号。</p>
+<p>基类的实现返回 <code>false</code>。对于可编辑的模型来说，该函数和 <a href="#data">data</a>() 必须被实现。</p>
+<p><strong>注意：</strong>该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href>Qt::ItemDataRole</a>、<a href="#data">data</a>() 和 <a href="#itemdata">itemData</a>()。</p>
+<h3><span id="setheaderdata">setHeaderData</span><a href="#setheaderdata" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>setHeaderData</strong>(<strong>int</strong> section, <a href>Qt::Orientation</a> orientation, const <a href>QVariant</a> &amp;value, <strong>int</strong> role = Qt::EditRole)</font> </p>
+<p>设置指定 <code>section</code>、<code>orientation</code> 和 <code>role</code> 标题的数据为 <code>value</code>。</p>
+<p>标题数据更新完成，返回 <code>true</code>；否则返回 <code>false</code>。</p>
+<p>在重新实现此函数时，必须显式发出 <a href="#headerdatachanged">headerDataChanged</a>() 信号。</p>
+<p><strong>注意：</strong> 该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href>Qt::ItemDataRole</a> 和 <a href="#headerdata">headerData</a>()。</p>
+<h3><span id="setitemdata">setItemData</span><a href="#setitemdata" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>bool</strong> QAbstractItemModel::<strong>setItemData</strong>(const <a href>QModelIndex</a> &amp;index, const <a href>QMap</a>&lt;**int**, <a href>QVariant</a>&gt; &amp;roles)</font> </p>
+<p>对于每个 <a href>Qt::ItemDataRole</a>，将索引 <code>index</code> 处的项目的角色数据设置为角色中的关联值。</p>
+<p>设置成功，返回 <code>true</code>；否则返回 <code>false</code>。</p>
+<p>不在角色中的角色将不会被修改。</p>
+<p>参见 <a href="#setdata">setData</a>()、<a href="#data">data</a>() 和 <a href="#itemdata">itemData</a>()。</p>
+<h3><span id="sibling">sibling</span><a href="#sibling" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<a href>QModelIndex</a> QAbstractItemModel::<strong>sibling</strong>(<strong>int</strong> row, <strong>int</strong> column, const <a href>QModelIndex</a> &amp;) const</font> </p>
+<p>返回索引 <code>index</code> 项的行和列上的同级索引，如果该位置上没有同级索引，则返回无效的 <a href>QModelIndex</a>。</p>
+<p><code>sibling()</code> 只是一个便捷函数，它找到项的父项，并使用它来检索指定行和列中子项的索引。</p>
+<p>可以选择性地重写此方法以进行特定于实现的优化。</p>
+<p><strong>注意：</strong>该函数可以通过元对象系统和 <code>QML</code> 调用。请参阅 <a href>Q_INVOKABLE</a>。</p>
+<p>参见 <a href="#index">index</a>()、<a href>QModelIndex::row</a>() 和 <a href>QModelIndex::column</a>()。</p>
+<h3><span id="sort">sort</span><a href="#sort" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<strong>void</strong> QAbstractItemModel::<strong>sort</strong>(<strong>int</strong> column, <a href>Qt::SortOrder</a> order = Qt::AscendingOrder)</font> </p>
+<p>按给定顺序 <code>order</code> 按列 <code>column</code> 对模型进行排序。</p>
+<p>基类实现不执行任何操作。</p>
+<h3><span id="span">span</span><a href="#span" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<a href>QSize</a> QAbstractItemModel::<strong>span</strong>(const <a href>QModelIndex</a> &amp;index) const</font> </p>
+<p>返回由索引 <code>index</code> 表示的项的行和列跨度。</p>
+<p><strong>注意：</strong> 目前没有使用span。</p>
+<h3><span id="supporteddragactions">supportedDragActions</span><a href="#supporteddragactions" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<a href>Qt::DropActions</a> QAbstractItemModel::<strong>supportedDragActions</strong>() const</font> </p>
+<p>返回此模型中数据支持的操作。</p>
+<p>默认实现返回 <a href="#supporteddropactions">supportedDropActions</a>()。如果希望支持其他操作，请重新实现此函数。</p>
+<p>当发生拖动时，<a href>QAbstractItemView::startDrag</a>() 使用 <code>supportedDragActions()</code> 作为默认值。</p>
+<p><strong>注意：</strong> 目前没有使用span。</p>
+<p>参见 <a href>setSupportedDragActions</a>()、<a href>Qt::DropActions</a> 和 <a href="../../M/Model_View_Programming/Model_View_Programming.md#%E5%9C%A8%E9%A1%B9%E7%9B%AE%E8%A7%86%E5%9B%BE%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%8B%96%E6%94%BE">在项视图中使用拖放</a>。</p>
+<h3><span id="supporteddropactions">supportedDropActions</span><a href="#supporteddropactions" class="header-anchor">#</a></h3><p><font size="4">[ virtual ]&amp;emsp;<a href>Qt::DropActions</a> QAbstractItemModel::<strong>supportedDropActions</strong>() const</font> </p>
+<p>返回此模型支持的放置动作。</p>
+<p>默认实现返回 <a href>Qt::CopyAction</a>。如果希望支持其他操作，请重新实现此函数。您还必须重新实现 <a href="#dropmimedata">dropMimeData</a>() 函数来处理额外的操作。</p>
+<p>该函数在 <code>Qt4.2</code> 中被引入。</p>
+<p>参见 <a href="#dropmimedata">dropMimeData</a>()、<a href>Qt::DropActions</a> 和 <a href="../../M/Model_View_Programming/Model_View_Programming.md#%E5%9C%A8%E9%A1%B9%E8%A7%86%E5%9B%BE%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%8B%96%E6%94%BE">在项视图中使用拖放</a>。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/A/">A</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/A/QAbstractAxis/QAbstractAxis/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QAbstractAxis类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/A/QAbstractSocket/QAbstractSocket/">
+                        <span class="hidden-mobile">QAbstractSocket类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

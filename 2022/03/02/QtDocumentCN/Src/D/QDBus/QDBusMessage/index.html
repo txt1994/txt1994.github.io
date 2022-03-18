@@ -1,0 +1,810 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QDBusMessage 类 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 enum QDBusMessage:: MessageType   成员函数文档编制 QDBusMessage:: QDBusMessage (const QDBusMessage &amp; other ) QDBusMessage:: QDBusMessage () QDBusMessage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QDBusMessage类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusMessage/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QDBusMessage 类 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 enum QDBusMessage:: MessageType   成员函数文档编制 QDBusMessage:: QDBusMessage (const QDBusMessage &amp; other ) QDBusMessage:: QDBusMessage () QDBusMessage">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:12:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:38:12.820Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="D">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QDBusMessage类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QDBusMessage类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:12" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      73 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QDBusMessage类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qdbusmessage-lei">QDBusMessage 类</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#enum-qdbusmessage-messagetype">enum QDBusMessage:: MessageType</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qdbusmessage-qdbusmessage-const-qdbusmessage-qdbusmessage-other">QDBusMessage:: QDBusMessage (const </a><a href="#QDBusMessage">QDBusMessage </a>&amp; <em>other</em> )</li>
+<li><a href="#qdbusmessage-qdbusmessage">QDBusMessage:: QDBusMessage ()</a></li>
+<li><a href="#qdbusmessage-qdbusmessage-qdbusmessage-operator-const-qdbusmessage-qdbusmessage-other">QDBusMessage </a></li>
+<li><a href="#qdbusmessage-qdbusmessage">QDBusMessage:: ~QDBusMessage ()</a></li>
+<li><a href="#qlist-qlist-html-qvariant-qvariant-html-qdbusmessage-arguments-const">QList </a></li>
+<li><a href="#bool-qdbusmessage-autostartservice-const">bool QDBusMessage:: autoStartService () const</a></li>
+<li><a href="#static-qdbusmessage-qdbusmessage-qdbusmessage-createerror-const-qstring-qstring-html-name-const-qstring-qstring-html-msg"><code>[static] </code></a><a href="#QDBusMessage">QDBusMessage </a>QDBusMessage:: createError (const <a href="qstring.html">QString </a>&amp; <em>name</em> , const <a href="qstring.html">QString </a>&amp; <em>msg</em> )</li>
+<li><a href="#static-qdbusmessage-qdbusmessage-qdbusmessage-createerror-const-qdbuserror-qdbuserror-html-error"><code>[static] </code></a><a href="#QDBusMessage">QDBusMessage </a>QDBusMessage:: createError (const <a href="qdbuserror.html">QDBusError </a>&amp; <em>error</em> )</li>
+<li><a href="#static-qdbusmessage-qdbusmessage-qdbusmessage-createerror-qdbuserror-errortype-qdbuserror-html-errortype-enum-type-const-qstring-qstring-html-msg"><code>[static] </code></a><a href="#QDBusMessage">QDBusMessage </a>QDBusMessage:: createError ( <a href="qdbuserror.html#ErrorType-enum">QDBusError::ErrorType </a><em>type</em> , const <a href="qstring.html">QString </a>&amp; <em>msg</em> )</li>
+<li><a href="#qdbusmessage-qdbusmessage-qdbusmessage-createerrorreply-const-qstring-qstring-html-name-const-qstring-qstring-html-msg-const-1">QDBusMessage </a></li>
+<li><a href="#qdbusmessage-qdbusmessage-qdbusmessage-createerrorreply-const-qdbuserror-qdbuserror-html-error-const-2">QDBusMessage </a></li>
+<li><a href="#qdbusmessage-qdbusmessage-qdbusmessage-createerrorreply-qdbuserror-errortype-qdbuserror-html-errortype-enum-type-const-qstring-qstring-html-msg-const-3">QDBusMessage </a></li>
+<li><a href="#static-qdbusmessage-qdbusmessage-qdbusmessage-createmethodcall-const-qstring-qstring-html-service-const-qstring-qstring-html-path-const-qstring-qstring-html-interface-const-qstring-qstring-html-method"><code>[static] </code></a><a href="#QDBusMessage">QDBusMessage </a>QDBusMessage:: createMethodCall (const <a href="qstring.html">QString </a>&amp; <em>service</em> , const <a href="qstring.html">QString </a>&amp; <em>path</em> , const <a href="qstring.html">QString </a>&amp; <em>interface</em> , const <a href="qstring.html">QString </a>&amp; <em>method</em> )</li>
+<li><a href="#qdbusmessage-qdbusmessage-qdbusmessage-createreply-const-qlist-qlist-html-qvariant-qvariant-html-arguments-qlist-qvariant-const-4">QDBusMessage </a></li>
+<li><a href="#qdbusmessage-qdbusmessage-qdbusmessage-createreply-const-qvariant-qvariant-html-argument-const-5">QDBusMessage </a></li>
+<li><a href="#static-qdbusmessage-qdbusmessage-qdbusmessage-createsignal-const-qstring-qstring-html-path-const-qstring-qstring-html-interface-const-qstring-qstring-html-name"><code>[static] </code></a><a href="#QDBusMessage">QDBusMessage </a>QDBusMessage:: createSignal (const <a href="qstring.html">QString </a>&amp; <em>path</em> , const <a href="qstring.html">QString </a>&amp; <em>interface</em> , const <a href="qstring.html">QString </a>&amp; <em>name</em> )</li>
+<li><a href="#static-since-5-6-qdbusmessage-qdbusmessage-qdbusmessage-createtargetedsignal-const-qstring-qstring-html-service-const-qstring-qstring-html-path-const-qstring-qstring-html-interface-const-qstring-qstring-html-name"><code>[static, since 5.6] </code></a><a href="#QDBusMessage">QDBusMessage </a>QDBusMessage:: createTargetedSignal (const <a href="qstring.html">QString </a>&amp; <em>service</em> , const <a href="qstring.html">QString </a>&amp; <em>path</em> , const <a href="qstring.html">QString </a>&amp; <em>interface</em> , const <a href="qstring.html">QString </a>&amp; <em>name</em> )</li>
+<li><a href="#qstring-qstring-html-qdbusmessage-errormessage-const">QString </a></li>
+<li><a href="#qstring-qstring-html-qdbusmessage-errorname-const-1">QString </a></li>
+<li><a href="#qstring-qstring-html-qdbusmessage-interface-const-2">QString </a></li>
+<li><a href="#bool-qdbusmessage-isdelayedreply-const">bool QDBusMessage:: isDelayedReply () const</a></li>
+<li><a href="#since-5-12-bool-qdbusmessage-isinteractiveauthorizationallowed-const"><code>[since 5.12] </code>bool QDBusMessage:: isInteractiveAuthorizationAllowed () const</a></li>
+<li><a href="#bool-qdbusmessage-isreplyrequired-const">bool QDBusMessage:: isReplyRequired () const</a></li>
+<li><a href="#qstring-qstring-html-qdbusmessage-member-const-3">QString </a></li>
+<li><a href="#qstring-qstring-html-qdbusmessage-path-const-4">QString </a></li>
+<li><a href="#qstring-qstring-html-qdbusmessage-service-const-5">QString </a></li>
+<li><a href="#void-qdbusmessage-setarguments-const-qlist-qlist-html-qvariant-qvariant-html-arguments">void QDBusMessage:: setArguments (const </a><a href="qlist.html">QList </a>&lt; <a href="qvariant.html">QVariant </a>&gt; &amp; <em>arguments</em> )</li>
+<li><a href="#void-qdbusmessage-setautostartservice-bool-enable">void QDBusMessage:: setAutoStartService ( bool <em>enable</em> )</a></li>
+<li><a href="#void-qdbusmessage-setdelayedreply-bool-enable-const">void QDBusMessage:: setDelayedReply ( bool <em>enable</em> ) const</a></li>
+<li><a href="#since-5-12-void-qdbusmessage-setinteractiveauthorizationallowed-bool-enable"><code>[since 5.12] </code>void QDBusMessage:: setInteractiveAuthorizationAllowed ( bool <em>enable</em> )</a></li>
+<li><a href="#qstring-qstring-html-qdbusmessage-signature-const-6">QString </a></li>
+<li><a href="#void-qdbusmessage-swap-qdbusmessage-qdbusmessage-other">void QDBusMessage:: swap ( </a><a href="#QDBusMessage">QDBusMessage </a>&amp; <em>other</em> )</li>
+<li><a href="#qdbusmessage-messagetype-messagetype-enum-qdbusmessage-type-const">QDBusMessage::MessageType </a></li>
+<li><a href="#qdbusmessage-qdbusmessage-qdbusmessage-operator-const-qvariant-qvariant-html-arg-6">QDBusMessage </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QDBusMessage 类
+
+<p>QDBusMessage 类表示通过 D-Bus 总线发送 (或接收) 的一条消息。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qdbusmessage></qdbusmessage></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Dbus REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Dbus)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += dbus</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qdbusmessage-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#MessageType-enum">MessageType </a></strong>{ MethodCallMessage, SignalMessage, ReplyMessage, ErrorMessage, InvalidMessage }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QDBusMessage-1">QDBusMessage </a></strong>(const QDBusMessage &amp; <em>other</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QDBusMessage">QDBusMessage </a></strong>()</td>
+</tr>
+<tr>
+<td>QDBusMessage &amp;</td>
+<td><strong><a href="#operator-eq-1">operator= </a></strong>(const QDBusMessage &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QDBusMessage">~QDBusMessage </a></strong>()</td>
+</tr>
+<tr>
+<td>QList<qvariant></qvariant></td>
+<td><strong><a href="#arguments">arguments </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#autoStartService">autoStartService </a></strong>() const</td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#createErrorReply">createErrorReply </a></strong>(const QString &amp; <em>name</em> , const QString &amp; <em>msg</em> ) const</td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#createErrorReply-1">createErrorReply </a></strong>(const QDBusError &amp; <em>error</em> ) const</td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#createErrorReply-2">createErrorReply </a></strong>(QDBusError::ErrorType <em>type</em> , const QString &amp; <em>msg</em> ) const</td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#createReply">createReply </a></strong>(const QList<qvariant> &amp; <em>arguments</em> = QList<qvariant>()) const</qvariant></qvariant></td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#createReply-1">createReply </a></strong>(const QVariant &amp; <em>argument</em> ) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#errorMessage">errorMessage </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#errorName">errorName </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#interface">interface </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isDelayedReply">isDelayedReply </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isInteractiveAuthorizationAllowed">isInteractiveAuthorizationAllowed </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isReplyRequired">isReplyRequired </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#member">member </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#path">path </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#service">service </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setArguments">setArguments </a></strong>(const QList<qvariant> &amp; <em>arguments</em> )</qvariant></td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setAutoStartService">setAutoStartService </a></strong>(bool <em>enable</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setDelayedReply">setDelayedReply </a></strong>(bool <em>enable</em> ) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setInteractiveAuthorizationAllowed">setInteractiveAuthorizationAllowed </a></strong>(bool <em>enable</em> )</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#signature">signature </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#swap">swap </a></strong>(QDBusMessage &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td>QDBusMessage::MessageType</td>
+<td><strong><a href="#type">type </a></strong>() const</td>
+</tr>
+<tr>
+<td>QDBusMessage &amp;</td>
+<td><strong><a href="#operator-lt-lt">operator&lt;&lt; </a></strong>(const QVariant &amp; <em>arg</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QDBusMessage</th>
+<th><strong><a href="#createError">createError </a></strong>(const QString &amp; <em>name</em> , const QString &amp; <em>msg</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#createError-1">createError </a></strong>(const QDBusError &amp; <em>error</em> )</td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#createError-2">createError </a></strong>(QDBusError::ErrorType <em>type</em> , const QString &amp; <em>msg</em> )</td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#createMethodCall">createMethodCall </a></strong>(const QString &amp; <em>service</em> , const QString &amp; <em>path</em> , const QString &amp; <em>interface</em> , const QString &amp; <em>method</em> )</td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#createSignal">createSignal </a></strong>(const QString &amp; <em>path</em> , const QString &amp; <em>interface</em> , const QString &amp; <em>name</em> )</td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#createTargetedSignal">createTargetedSignal </a></strong>(const QString &amp; <em>service</em> , const QString &amp; <em>path</em> , const QString &amp; <em>interface</em> , const QString &amp; <em>name</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>这个对象可以代表总线上可能发生的四种不同类型的消息（<a href="#MessageType-enum">MessageType</a>）中的任何一种。</p>
+<ul>
+<li>方法调用</li>
+<li>方法的返回值</li>
+<li>信号发射</li>
+<li>错误代码</li>
+</ul>
+<p>这种类型的对象是通过静态的<a href="#createError">createError</a>()、<a href="#createMethodCall">createMethodCall</a>()和<a href="#createSignal">createSignal</a>()函数创建的。使用<a href="qdbusconnection.html#send">QDBusConnection::send</a>()函数来发送消息。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="enum-qdbusmessage-messagetype">enum QDBusMessage:: MessageType</span><a href="#enum-qdbusmessage-messagetype" class="header-anchor">#</a></h3><p>可能的信息类型:</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QDBusMessage::MethodCallMessage</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">代表一个传出或传入的方法调用的信息</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusMessage::SignalMessage</code></td>
+<td align="left"><code>4</code></td>
+<td align="left">代表发出或收到的信号发射的信息</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusMessage::ReplyMessage</code></td>
+<td align="left"><code>2</code></td>
+<td align="left">代表方法调用的返回值的信息</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusMessage::ErrorMessage</code></td>
+<td align="left"><code>3</code></td>
+<td align="left">代表响应方法调用的错误条件的信息</td>
+</tr>
+<tr>
+<td align="left"><code>QDBusMessage::InvalidMessage</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">无效信息：在从D-Bus收到的信息中永远不会设置这一点。</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qdbusmessage-qdbusmessage-const-qdbusmessage-amp-other">QDBusMessage:: QDBusMessage (const &amp; <em>other</em> )</span><a href="#qdbusmessage-qdbusmessage-const-qdbusmessage-amp-other" class="header-anchor">#</a></h3><p>构建一个由<em>other</em>给出的对象的副本。</p>
+<p>Note: QDBusMessage对象是共享的。对副本所做的修改也会影响到原始副本。. See <a href="#setDelayedReply">setDelayedReply </a>() 了解更多信息。</p>
+<h3><span id="qdbusmessage-qdbusmessage">QDBusMessage:: QDBusMessage ()</span><a href="#qdbusmessage-qdbusmessage" class="header-anchor">#</a></h3><p>构建一个空的、无效的QDBusMessage对象。</p>
+<p><strong>另请参阅</strong> <a href="#createError">createError </a>(), <a href="#createMethodCall">createMethodCall </a>()，和 <a href="#createSignal">createSignal </a>().</p>
+<h3><span id="qdbusmessage-amp-qdbusmessage-operator-const-qdbusmessage-amp-other">&amp;QDBusMessage:: operator= (const &amp; <em>other</em> )</span><a href="#qdbusmessage-amp-qdbusmessage-operator-const-qdbusmessage-amp-other" class="header-anchor">#</a></h3><p>复制由<em>other</em>给出的对象的内容。</p>
+<p>注意： <a href>QDBusMessage</a>对象是共享的。对副本所做的修改也会影响到原始副本. See <a href="#setDelayedReply">setDelayedReply </a>() 了解更多信息。</p>
+<h3><span id="qdbusmessage-qdbusmessage">QDBusMessage:: ~QDBusMessage ()</span><a href="#qdbusmessage-qdbusmessage" class="header-anchor">#</a></h3><p>处置该对象并释放所有被保留的资源。</p>
+<h3><span id="qlist-lt-qvariant-gt-qdbusmessage-arguments-const">&lt; &gt; QDBusMessage:: arguments () const</span><a href="#qlist-lt-qvariant-gt-qdbusmessage-arguments-const" class="header-anchor">#</a></h3><p>返回将被发送或从D-Bus接收的参数列表。</p>
+<p><strong>另请参阅</strong> <a href="#setArguments">setArguments </a>().</p>
+<h3><span id="bool-qdbusmessage-autostartservice-const">bool QDBusMessage:: autoStartService () const</span><a href="#bool-qdbusmessage-autostartservice-const" class="header-anchor">#</a></h3><p>返回自动启动标志，如<a href="#setAutoStartService">setAutoStartService</a>()所设置。默认情况下，该标志为真，这意味着Qt D-Bus将自动启动一个服务，如果它还没有运行。</p>
+<p><strong>另请参阅</strong> <a href="#setAutoStartService">setAutoStartService </a>().</p>
+<h3><span id="static-qdbusmessage-qdbusmessage-createerror-const-qstring-amp-name-const-qstring-amp-msg"><code>[static] </code>QDBusMessage:: createError (const &amp; <em>name</em> , const &amp; <em>msg</em> )</span><a href="#static-qdbusmessage-qdbusmessage-createerror-const-qstring-amp-name-const-qstring-amp-msg" class="header-anchor">#</a></h3><p>构建一个新的DBus消息，代表一个错误，并给出<em>name</em>和<em>msg</em>。</p>
+<h3><span id="static-qdbusmessage-qdbusmessage-createerror-const-qdbuserror-amp-error"><code>[static] </code>QDBusMessage:: createError (const &amp; <em>error</em> )</span><a href="#static-qdbusmessage-qdbusmessage-createerror-const-qdbuserror-amp-error" class="header-anchor">#</a></h3><p>构造一个新的DBus消息，代表给定的<em>error</em>。</p>
+<h3><span id="static-qdbusmessage-qdbusmessage-createerror-qdbuserror-errortype-type-const-qstring-amp-msg"><code>[static] </code>QDBusMessage:: createError ( <em>type</em> , const &amp; <em>msg</em> )</span><a href="#static-qdbusmessage-qdbusmessage-createerror-qdbuserror-errortype-type-const-qstring-amp-msg" class="header-anchor">#</a></h3><p>使用信息<em>msg</em>为错误类型<em>type</em>构造一个新的DBus信息。返回DBus消息。</p>
+<h3><span id="qdbusmessage-qdbusmessage-createerrorreply-const-qstring-amp-name-const-qstring-amp-msg-const">QDBusMessage:: createErrorReply (const &amp; <em>name</em> , const &amp; <em>msg</em> ) const</span><a href="#qdbusmessage-qdbusmessage-createerrorreply-const-qstring-amp-name-const-qstring-amp-msg-const" class="header-anchor">#</a></h3><p>用给定的<em>name</em>和<em>msg</em>构造一个新的DBus消息，代表一个错误回复消息。</p>
+<h3><span id="qdbusmessage-qdbusmessage-createerrorreply-const-qdbuserror-amp-error-const">QDBusMessage:: createErrorReply (const &amp; <em>error</em> ) const</span><a href="#qdbusmessage-qdbusmessage-createerrorreply-const-qdbuserror-amp-error-const" class="header-anchor">#</a></h3><p>根据给定的<em>error</em>对象，构造一个新的DBus消息，代表一个错误的回复消息。</p>
+<h3><span id="qdbusmessage-qdbusmessage-createerrorreply-qdbuserror-errortype-type-const-qstring-amp-msg-const">QDBusMessage:: createErrorReply ( <em>type</em> , const &amp; <em>msg</em> ) const</span><a href="#qdbusmessage-qdbusmessage-createerrorreply-qdbuserror-errortype-type-const-qstring-amp-msg-const" class="header-anchor">#</a></h3><p>使用消息<em>msg</em>为错误类型<em>type</em>构建一个新的DBus回复消息。返回DBus消息。</p>
+<h3><span id="static-qdbusmessage-qdbusmessage-createmethodcall-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-method"><code>[static] </code>QDBusMessage:: createMethodCall (const &amp; <em>service</em> , const &amp; <em>path</em> , const &amp; <em>interface</em> , const &amp; <em>method</em> )</span><a href="#static-qdbusmessage-qdbusmessage-createmethodcall-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-method" class="header-anchor">#</a></h3><p>构建一个新的DBus消息，代表一个方法调用。一个方法调用总是通知它的目标地址（<em>service</em> , <em>path</em> , <em>interface</em> 和 <em>method</em>）。</p>
+<p>如果方法名称是唯一的，DBus总线允许在一个给定的远程对象上调用一个方法而不指定目标接口。然而，如果远程对象上的两个接口输出了相同的方法名，结果是未定义的（这两个接口中的一个可能被调用或返回错误）。</p>
+<p>当在点对点的环境中使用DBus时（即不是在总线上），<em>service</em>参数是可选的。</p>
+<p><a href="qdbusinterface.html">QDBusInterface</a>类为同步方法的调用提供了一个更简单的抽象。</p>
+<p>这个函数返回一个<a href>QDBusMessage</a>对象，可以用<a href="qdbusconnection.html#call">QDBusConnection::call</a>()发送。</p>
+<h3><span id="qdbusmessage-qdbusmessage-createreply-const-qlist-lt-qvariant-gt-amp-arguments-qlist-const">QDBusMessage:: createReply (const &lt; &gt; &amp; <em>arguments</em> = QList<qvariant>()) const</qvariant></span><a href="#qdbusmessage-qdbusmessage-createreply-const-qlist-lt-qvariant-gt-amp-arguments-qlist-const" class="header-anchor">#</a></h3><p>用给定的<em>参数</em>构造一个新的DBus消息，代表一个回复。</p>
+<h3><span id="qdbusmessage-qdbusmessage-createreply-const-qvariant-amp-argument-const">QDBusMessage:: createReply (const &amp; <em>argument</em> ) const</span><a href="#qdbusmessage-qdbusmessage-createreply-const-qvariant-amp-argument-const" class="header-anchor">#</a></h3><p>用给定的<em>参数</em>构造一个新的DBus消息，代表一个回复。</p>
+<h3><span id="static-qdbusmessage-qdbusmessage-createsignal-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name"><code>[static] </code>QDBusMessage:: createSignal (const &amp; <em>path</em> , const &amp; <em>interface</em> , const &amp; <em>name</em> )</span><a href="#static-qdbusmessage-qdbusmessage-createsignal-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name" class="header-anchor">#</a></h3><p>构造一个新的DBus消息，它具有给定的<em>path</em>、<em>interface</em>和<em>name</em>，代表一个信号发射。</p>
+<p>一个DBus信号从一个应用程序发出，并被所有从该接口监听该信号的应用程序收到。</p>
+<p>返回的<a href>QDBusMessage</a>对象可以使用<a href="qdbusconnection.html#send">QDBusConnection::send</a>()函数发送。</p>
+<h3><span id="static-since-5-6-qdbusmessage-qdbusmessage-createtargetedsignal-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name"><code>[static, since 5.6] </code>QDBusMessage:: createTargetedSignal (const &amp; <em>service</em> , const &amp; <em>path</em> , const &amp; <em>interface</em> , const &amp; <em>name</em> )</span><a href="#static-since-5-6-qdbusmessage-qdbusmessage-createtargetedsignal-const-qstring-amp-service-const-qstring-amp-path-const-qstring-amp-interface-const-qstring-amp-name" class="header-anchor">#</a></h3><p>用给定的<em>path</em>、<em>interface</em>和<em>name</em>构造一个新的DBus消息，代表向特定目的地发射信号。</p>
+<p>一个DBus信号是从一个应用程序发出的，并且只被拥有目标<em>服务</em>名称的应用程序接收。</p>
+<p>返回的<a href>QDBusMessage</a>对象可以使用<a href="qdbusconnection.html#send">QDBusConnection::send</a>()函数发送。</p>
+<p>该函数在 Qt 5.6 引入。</p>
+<h3><span id="qstring-qdbusmessage-errormessage-const">QDBusMessage:: errorMessage () const</span><a href="#qstring-qdbusmessage-errormessage-const" class="header-anchor">#</a></h3><p>返回与接收到的错误相关的人类可读信息。</p>
+<h3><span id="qstring-qdbusmessage-errorname-const">QDBusMessage:: errorName () const</span><a href="#qstring-qdbusmessage-errorname-const" class="header-anchor">#</a></h3><p>返回所收到的错误的名称。</p>
+<h3><span id="qstring-qdbusmessage-interface-const">QDBusMessage:: interface () const</span><a href="#qstring-qdbusmessage-interface-const" class="header-anchor">#</a></h3><p>返回被调用的方法（如果是方法调用）或被接收的信号的接口。</p>
+<h3><span id="bool-qdbusmessage-isdelayedreply-const">bool QDBusMessage:: isDelayedReply () const</span><a href="#bool-qdbusmessage-isdelayedreply-const" class="header-anchor">#</a></h3><p>返回延迟回复标志，如<a href="#setDelayedReply">setDelayedReply</a>()所设定。默认情况下，这个标志是假的，这意味着Qt D-Bus会在必要时产生自动回复。</p>
+<h3><span id="since-5-12-bool-qdbusmessage-isinteractiveauthorizationallowed-const"><code>[since 5.12] </code>bool QDBusMessage:: isInteractiveAuthorizationAllowed () const</span><a href="#since-5-12-bool-qdbusmessage-isinteractiveauthorizationallowed-const" class="header-anchor">#</a></h3><p>返回允许的交互式授权标志，如<a href="#setInteractiveAuthorizationAllowed">setInteractiveAuthorizationAllowed</a>()所设置的。默认情况下，这个标志是假的，另一端应及时做出任何非交互式的授权决定。</p>
+<p>该函数在 Qt 5.12 引入。</p>
+<p><strong>另请参阅</strong> <a href="#setInteractiveAuthorizationAllowed">setInteractiveAuthorizationAllowed </a>().</p>
+<h3><span id="bool-qdbusmessage-isreplyrequired-const">bool QDBusMessage:: isReplyRequired () const</span><a href="#bool-qdbusmessage-isreplyrequired-const" class="header-anchor">#</a></h3><p>返回表明该消息是否应该看到回复的标志。这只对<a href="#MessageType-enum">方法调用消息</a>有意义：任何其他类型的消息都不能有回复，这个函数对它们总是返回false。</p>
+<h3><span id="qstring-qdbusmessage-member-const">QDBusMessage:: member () const</span><a href="#qstring-qdbusmessage-member-const" class="header-anchor">#</a></h3><p>返回被发出的信号的名称或被调用的方法的名称。</p>
+<h3><span id="qstring-qdbusmessage-path-const">QDBusMessage:: path () const</span><a href="#qstring-qdbusmessage-path-const" class="header-anchor">#</a></h3><p>返回该消息被发送到（如果是方法调用）或被接收（对于信号）的对象的路径。</p>
+<h3><span id="qstring-qdbusmessage-service-const">QDBusMessage:: service () const</span><a href="#qstring-qdbusmessage-service-const" class="header-anchor">#</a></h3><p>返回服务的名称或远程方法调用的总线地址。</p>
+<h3><span id="void-qdbusmessage-setarguments-const-qlist-lt-qvariant-gt-amp-arguments">void QDBusMessage:: setArguments (const &lt; &gt; &amp; <em>arguments</em> )</span><a href="#void-qdbusmessage-setarguments-const-qlist-lt-qvariant-gt-amp-arguments" class="header-anchor">#</a></h3><p>将将要通过D-Bus发送的参数设置为<em>arguments</em>。这些将是方法调用的参数或信号中的参数。</p>
+<p><strong>另请参阅</strong> <a href="#arguments">arguments </a>().</p>
+<h3><span id="void-qdbusmessage-setautostartservice-bool-enable">void QDBusMessage:: setAutoStartService ( bool <em>enable</em> )</span><a href="#void-qdbusmessage-setautostartservice-bool-enable" class="header-anchor">#</a></h3><p>将自动启动标志设置为<em>enable</em>。这个标志只对方法调用信息有意义，它告诉D-Bus服务器要么自动启动负责该服务名称的服务，要么不自动启动它。</p>
+<p>默认情况下，这个标志为真，也就是说，一个服务是自动启动的。这意味着。</p>
+<p>当这个方法调用所指向的服务已经在运行时，这个方法调用就会被发送给它。如果该服务还没有运行，D-Bus守护进程被请求自动启动分配给该服务名称的服务。这是由放置在D-Bus服务器已知目录中的.service文件处理的。这些文件都包含一个服务名称和一个程序的路径，当这个服务名称被请求时，这个程序就会被执行。</p>
+<p><strong>另请参阅</strong> <a href="#autoStartService">autoStartService </a>().</p>
+<h3><span id="void-qdbusmessage-setdelayedreply-bool-enable-const">void QDBusMessage:: setDelayedReply ( bool <em>enable</em> ) const</span><a href="#void-qdbusmessage-setdelayedreply-bool-enable-const" class="header-anchor">#</a></h3><p>设置消息是否会在以后被回复（如果<em>enable</em>为真），或者是否应该由Qt D-Bus生成一个自动回复（如果<em>enable</em>为假）。</p>
+<p>在D-Bus中，所有的方法调用都必须生成对调用者的回复，除非调用者明确表示不这样做（见<a href="#isReplyRequired">isReplyRequired</a>()）。<a href="qtdbus-module.html">QtDBus</a>为任何被调用的槽自动生成这样的回复，但它也允许槽表明它们是否将在稍后的时间，在函数完成处理后负责发送回复。</p>
+<p><strong>另请参阅</strong> <a href="#isDelayedReply">isDelayedReply </a>() 和 <a href="qdbusdeclaringslots.html#delayed-replies">Delayed Replies </a>.</p>
+<h3><span id="since-5-12-void-qdbusmessage-setinteractiveauthorizationallowed-bool-enable"><code>[since 5.12] </code>void QDBusMessage:: setInteractiveAuthorizationAllowed ( bool <em>enable</em> )</span><a href="#since-5-12-void-qdbusmessage-setinteractiveauthorizationallowed-bool-enable" class="header-anchor">#</a></h3><p>将交互式授权标志设置为<em>enable</em>。这个标志只对方法调用信息有意义，它告诉D-Bus服务器，方法的调用者准备在实际方法被处理之前等待交互式授权的发生（例如通过Polkit）。</p>
+<p>默认情况下，这个标志是假的，另一端应该及时地做出任何非交互式的授权决定。</p>
+<p><code>org.freedesktop.DBus.Error.InteractiveAuthorizationRequired </code>error表示授权失败，但是如果设置了这个标志就可以成功了。</p>
+<p>该函数在 Qt 5.12 引入。</p>
+<p><strong>另请参阅</strong> <a href="#isInteractiveAuthorizationAllowed">isInteractiveAuthorizationAllowed </a>().</p>
+<h3><span id="qstring-qdbusmessage-signature-const">QDBusMessage:: signature () const</span><a href="#qstring-qdbusmessage-signature-const" class="header-anchor">#</a></h3><p>返回收到的信号的签名，或为方法调用的输出参数的签名。</p>
+<h3><span id="void-qdbusmessage-swap-qdbusmessage-amp-other">void QDBusMessage:: swap ( &amp; <em>other</em> )</span><a href="#void-qdbusmessage-swap-qdbusmessage-amp-other" class="header-anchor">#</a></h3><p>交换此 <a href>QDBusMessage </a>实例与 <em>other</em> .</p>
+<h3><span id="qdbusmessage-messagetype-qdbusmessage-type-const">QDBusMessage:: type () const</span><a href="#qdbusmessage-messagetype-qdbusmessage-type-const" class="header-anchor">#</a></h3><p>返回消息的类型。</p>
+<h3><span id="qdbusmessage-amp-qdbusmessage-operator-lt-lt-const-qvariant-amp-arg">&amp;QDBusMessage:: operator&lt;&lt; (const &amp; <em>arg</em> )</span><a href="#qdbusmessage-amp-qdbusmessage-operator-lt-lt-const-qvariant-amp-arg" class="header-anchor">#</a></h3><p>在方法调用或信号发射中，将参数<em>arg</em>添加到要通过D-Bus发送的参数列表中。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/D/">D</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusPendingCall/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QDBusPendingCall类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusObjectPath/">
+                        <span class="hidden-mobile">QDBusObjectPath类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,615 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QKeyEvent Class 公共函数 详细描述 成员函数文档 QKeyEvent::QKeyEvent(QEvent::Type type, int key, Qt::KeyboardModifiers modifiers, quint32 nativeScanCode, quint32 nativeVirtualKey, quint32 nativeModifiers, const">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QKeyEvent类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/K/QKeyEvent/QKeyEvent/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QKeyEvent Class 公共函数 详细描述 成员函数文档 QKeyEvent::QKeyEvent(QEvent::Type type, int key, Qt::KeyboardModifiers modifiers, quint32 nativeScanCode, quint32 nativeVirtualKey, quint32 nativeModifiers, const">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:45:25.934Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="K">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QKeyEvent类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QKeyEvent类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      37 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QKeyEvent类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qkeyevent-class">QKeyEvent Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qkeyevent-qkeyevent-qevent-type-type-enum-type-int-key-qt-keyboardmodifiers-keyboardmodifier-enum-modifiers-quint32-qtglobal-html-quint32-typedef-nativescancode-quint32-qtglobal-html-quint32-typedef-nativevirtualkey-quint32-qtglobal-html-quint32-typedef-nativemodifiers-const-qstring-qstring-html-text-qstring-bool-autorep-false-quint16-qtglobal-html-quint16-typedef-count-1-const-qinputdevice-qinputdevice-html-device-qinputdevice-primarykeyboard">QKeyEvent::QKeyEvent(</a><a href="#Type-enum">QEvent::Type</a> <em>type</em>, int <em>key</em>, <a href="#KeyboardModifier-enum">Qt::KeyboardModifiers</a> <em>modifiers</em>, <a href="qtglobal.html#quint32-typedef">quint32</a> <em>nativeScanCode</em>, <a href="qtglobal.html#quint32-typedef">quint32</a> <em>nativeVirtualKey</em>, <a href="qtglobal.html#quint32-typedef">quint32</a> <em>nativeModifiers</em>, const <a href="qstring.html">QString</a> &amp;<em>text</em> = QString(), bool <em>autorep</em> = false, <a href="qtglobal.html#quint16-typedef">quint16</a> <em>count</em> = 1, const <a href="qinputdevice.html">QInputDevice</a> *<em>device</em> = QInputDevice::primaryKeyboard())</li>
+<li><a href="#qkeyevent-qkeyevent-qevent-type-type-enum-type-int-key-qt-keyboardmodifiers-keyboardmodifier-enum-modifiers-const-qstring-qstring-html-text-qstring-bool-autorep-false-quint16-qtglobal-html-quint16-typedef-count-1">QKeyEvent::QKeyEvent(</a><a href="#Type-enum">QEvent::Type</a> <em>type</em>, int <em>key</em>, <a href="#KeyboardModifier-enum">Qt::KeyboardModifiers</a> <em>modifiers</em>, const <a href="qstring.html">QString</a> &amp;<em>text</em> = QString(), bool <em>autorep</em> = false, <a href="qtglobal.html#quint16-typedef">quint16</a> <em>count</em> = 1)</li>
+<li><a href="#int-qkeyevent-count-const">int QKeyEvent::count() const</a></li>
+<li><a href="#bool-qkeyevent-isautorepeat-const">bool QKeyEvent::isAutoRepeat() const</a></li>
+<li><a href="#int-qkeyevent-key-const">int QKeyEvent::key() const</a></li>
+<li><a href="#since-6-0-qkeycombination-qkeycombination-html-qkeyevent-keycombination-const"><code>[since 6.0]</code></a><a href="qkeycombination.html">QKeyCombination</a> QKeyEvent::keyCombination() const</li>
+<li><a href="#bool-qkeyevent-matches-qkeysequence-standardkey-qkeysequence-html-standardkey-enum-key-const">bool QKeyEvent::matches(</a><a href="qkeysequence.html#StandardKey-enum">QKeySequence::StandardKey</a> <em>key</em>) const</li>
+<li><a href="#qt-keyboardmodifiers-keyboardmodifier-enum-qkeyevent-modifiers-const">Qt::KeyboardModifiers</a></li>
+<li><a href="#quint32-qtglobal-html-quint32-typedef-qkeyevent-nativemodifiers-const">quint32</a></li>
+<li><a href="#quint32-qtglobal-html-quint32-typedef-qkeyevent-nativescancode-const-1">quint32</a></li>
+<li><a href="#quint32-qtglobal-html-quint32-typedef-qkeyevent-nativevirtualkey-const-2">quint32</a></li>
+<li><a href="#qstring-qstring-html-qkeyevent-text-const">QString</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QKeyEvent Class
+
+<p>QKeyEvent类描述了一个按键事件。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qkeyevent></qkeyevent></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Gui REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Gui)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += gui</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a href="qinputevent.html">QInputEvent</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qkeyevent-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QKeyEvent-3">QKeyEvent</a></strong>(QEvent::Type <em>type</em>, int <em>key</em>, Qt::KeyboardModifiers <em>modifiers</em>, quint32 <em>nativeScanCode</em>, quint32 <em>nativeVirtualKey</em>, quint32 <em>nativeModifiers</em>, const QString &amp;<em>text</em> = QString(), bool <em>autorep</em> = false, quint16 <em>count</em> = 1, const QInputDevice *<em>device</em> = QInputDevice::primaryKeyboard())</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QKeyEvent-2">QKeyEvent</a></strong>(QEvent::Type <em>type</em>, int <em>key</em>, Qt::KeyboardModifiers <em>modifiers</em>, const QString &amp;<em>text</em> = QString(), bool <em>autorep</em> = false, quint16 <em>count</em> = 1)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#count">count</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isAutoRepeat">isAutoRepeat</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#key">key</a></strong>() const</td>
+</tr>
+<tr>
+<td>QKeyCombination</td>
+<td><strong><a href="#keyCombination">keyCombination</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#matches">matches</a></strong>(QKeySequence::StandardKey <em>key</em>) const</td>
+</tr>
+<tr>
+<td>Qt::KeyboardModifiers</td>
+<td><strong><a href="#modifiers">modifiers</a></strong>() const</td>
+</tr>
+<tr>
+<td>quint32</td>
+<td><strong><a href="#nativeModifiers">nativeModifiers</a></strong>() const</td>
+</tr>
+<tr>
+<td>quint32</td>
+<td><strong><a href="#nativeScanCode">nativeScanCode</a></strong>() const</td>
+</tr>
+<tr>
+<td>quint32</td>
+<td><strong><a href="#nativeVirtualKey">nativeVirtualKey</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#text">text</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>当按键被按下或释放时，按键事件被发送到具有键盘输入焦点的部件。</p>
+<p>一个按键事件包含一个特殊的接受标志，表示接收器是否会处理这个按键事件。对于 <a href="#Type-enum">QEvent::KeyPress</a> 和 <a href="#Type-enum">QEvent::KeyRelease</a> ，这个标志是默认设置的，所以在对一个按键事件采取行动时不需要调用 <a href="#accept">accept</a>() 。对于 <a href="#Type-enum">QEvent::ShortcutOverride</a>，接收者需要明确地接受该事件以触发重写。在一个按键事件上调用<a href="#ignore">ignore</a>()会将其传播到父部件。该事件在父部件链上传播，直到一个部件接受它或一个事件过滤器消耗它。</p>
+<p><a href="qwidget.html#enabled-prop">QWidget::setEnabled</a>()函数可以被用来启用或禁用一个小组件的鼠标和键盘事件。</p>
+<p>事件处理程序 <a href="qwidget.html#keyPressEvent">QWidget::keyPressEvent</a>(), <a href="qwidget.html#keyReleaseEvent">QWidget::keyReleaseEvent</a>(), <a href="#keyPressEvent">QGraphicsItem::keyPressEvent</a> () 和 <a href="#keyReleaseEvent">QGraphicsItem::keyReleaseEvent</a> () 接收键事件。</p>
+<p><strong>See also</strong> <a href="qfocusevent.html">QFocusEvent</a> and <a href="qwidget.html#grabKeyboard">QWidget::grabKeyboard</a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qkeyevent-qkeyevent-qevent-type-type-int-key-qt-keyboardmodifiers-modifiers-quint32-nativescancode-quint32-nativevirtualkey-quint32-nativemodifiers-const-qstring-amp-text-qstring-bool-autorep-false-quint16-count-1-const-qinputdevice-device-qinputdevice-primarykeyboard">QKeyEvent::QKeyEvent( <em>type</em>, int <em>key</em>,  <em>modifiers</em>,  <em>nativeScanCode</em>,  <em>nativeVirtualKey</em>,  <em>nativeModifiers</em>, const  &amp;<em>text</em> = QString(), bool <em>autorep</em> = false,  <em>count</em> = 1, const  *<em>device</em> = QInputDevice::primaryKeyboard())</span><a href="#qkeyevent-qkeyevent-qevent-type-type-int-key-qt-keyboardmodifiers-modifiers-quint32-nativescancode-quint32-nativevirtualkey-quint32-nativemodifiers-const-qstring-amp-text-qstring-bool-autorep-false-quint16-count-1-const-qinputdevice-device-qinputdevice-primarykeyboard" class="header-anchor">#</a></h3><p>构建一个按键事件对象。</p>
+<p>参数<em>type</em>必须是<a href="#Type-enum">QEvent::KeyPress</a>, <a href="#Type-enum">QEvent::KeyRelease</a>, 或者<a href="#Type-enum">QEvent::ShortcutOverride</a>。</p>
+<p>Int <em>key</em>是事件循环应该监听的<a href="#Key-enum">Qt::Key</a>的代码。如果<em>key</em>为0，事件就不是一个已知的键的结果；例如，它可能是一个合成序列或键盘宏的结果。<em>modifiers</em>持有键盘修改器，而给定的<em>text</em>是该键产生的Unicode文本。如果<em>autorep</em>为真，<a href="#isAutoRepeat">isAutoRepeat</a>()将为真。<em>count</em>是事件中涉及的键的数量。</p>
+<p>除了正常的按键事件数据外，还包含<em>nativeScanCode</em>、<em>nativeVirtualKey</em>和<em>nativeModifiers</em>。这些额外的数据被快捷键系统使用，以确定哪些快捷键需要触发。</p>
+<h3><span id="qkeyevent-qkeyevent-qevent-type-type-int-key-qt-keyboardmodifiers-modifiers-const-qstring-amp-text-qstring-bool-autorep-false-quint16-count-1">QKeyEvent::QKeyEvent( <em>type</em>, int <em>key</em>,  <em>modifiers</em>, const  &amp;<em>text</em> = QString(), bool <em>autorep</em> = false,  <em>count</em> = 1)</span><a href="#qkeyevent-qkeyevent-qevent-type-type-int-key-qt-keyboardmodifiers-modifiers-const-qstring-amp-text-qstring-bool-autorep-false-quint16-count-1" class="header-anchor">#</a></h3><p>构建一个按键事件对象。</p>
+<p>参数<em>type</em>必须是<a href="#Type-enum">QEvent::KeyPress</a>, <a href="#Type-enum">QEvent::KeyRelease</a>, 或者<a href="#Type-enum">QEvent::ShortcutOverride</a>。</p>
+<p>Int <em>key</em>是事件循环应该监听的<a href="#Key-enum">Qt::Key</a>的代码。如果<em>key</em>为0，事件就不是一个已知的键的结果；例如，它可能是一个合成序列或键盘宏的结果。<em>modifiers</em>持有键盘修改器，而给定的<em>text</em>是该键产生的Unicode文本。如果<em>autorep</em>为真，<a href="#isAutoRepeat">isAutoRepeat</a>()将为真。<em>count</em>是事件中涉及的键的数量。</p>
+<h3><span id="int-qkeyevent-count-const">int QKeyEvent::count() const</span><a href="#int-qkeyevent-count-const" class="header-anchor">#</a></h3><p>返回该事件中涉及的键的数量。如果<a href="#text">text</a>()不是空的，这仅仅是字符串的长度。</p>
+<p><strong>See also</strong> <a href="#WidgetAttribute-enum">Qt::WA_KeyCompression</a>.</p>
+<h3><span id="bool-qkeyevent-isautorepeat-const">bool QKeyEvent::isAutoRepeat() const</span><a href="#bool-qkeyevent-isautorepeat-const" class="header-anchor">#</a></h3><p>如果该事件来自于自动重复的按键，则返回 “true”；如果来自于初始按键，则返回 “false”。</p>
+<p>请注意，如果该事件是一个部分由于自动重复的多键压缩事件，这个函数可以不确定地返回真或假。</p>
+<h3><span id="int-qkeyevent-key-const">int QKeyEvent::key() const</span><a href="#int-qkeyevent-key-const" class="header-anchor">#</a></h3><p>返回被按下或释放的键的代码。</p>
+<p>参见<a href="#Key-enum">Qt::Key</a>中的键盘代码列表。这些代码与底层窗口系统无关。注意，这个函数不区分大写字母和非大写字母，为此请使用<a href="#text">text</a>()函数（返回该键生成的Unicode文本）。</p>
+<p>值为0或<a href="#Key-enum">Qt::Key_unknown</a>意味着该事件不是一个已知键的结果；例如，它可能是一个合成序列、一个键盘宏的结果，或由于键事件压缩。</p>
+<p><strong>See also</strong> <a href="#WidgetAttribute-enum">Qt::WA_KeyCompression</a>.</p>
+<h3><span id="since-6-0-qkeycombination-qkeyevent-keycombination-const"><code>[since 6.0]</code> QKeyEvent::keyCombination() const</span><a href="#since-6-0-qkeycombination-qkeyevent-keycombination-const" class="header-anchor">#</a></h3><p>返回一个<a href="qkeycombination.html">QKeyCombination</a>对象，其中包含该事件携带的<a href="#key">key</a>()和<a href="#modifiers">modifiers</a>()。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<h3><span id="bool-qkeyevent-matches-qkeysequence-standardkey-key-const">bool QKeyEvent::matches( <em>key</em>) const</span><a href="#bool-qkeyevent-matches-qkeysequence-standardkey-key-const" class="header-anchor">#</a></h3><p>如果关键事件与给定的标准<em>key</em>相匹配，返回 “true”；否则返回 “false”。</p>
+<h3><span id="qt-keyboardmodifiers-qkeyevent-modifiers-const"> QKeyEvent::modifiers() const</span><a href="#qt-keyboardmodifiers-qkeyevent-modifiers-const" class="header-anchor">#</a></h3><p>返回事件发生后立即存在的键盘修改器标志。</p>
+<p><strong>警告：</strong>这个函数不能总是被信任。用户可以通过同时按下两个<strong>Shift</strong>键并释放其中一个来混淆它，例如：</p>
+<p><strong>See also</strong> <a href="qguiapplication.html#keyboardModifiers">QGuiApplication::keyboardModifiers</a>().</p>
+<h3><span id="quint32-qkeyevent-nativemodifiers-const"> QKeyEvent::nativeModifiers() const</span><a href="#quint32-qkeyevent-nativemodifiers-const" class="header-anchor">#</a></h3><p>返回一个按键事件的本地修改器。如果键事件不包含这些数据，则返回0。</p>
+<p><strong>注意：</strong>本地修改器可能是0，即使键事件包含扩展信息。</p>
+<h3><span id="quint32-qkeyevent-nativescancode-const"> QKeyEvent::nativeScanCode() const</span><a href="#quint32-qkeyevent-nativescancode-const" class="header-anchor">#</a></h3><p>返回按键事件的本地扫描代码。如果按键事件不包含这些数据，则返回0。</p>
+<p><strong>注意：</strong>本地扫描代码可能是0，即使键事件包含扩展信息。</p>
+<h3><span id="quint32-qkeyevent-nativevirtualkey-const"> QKeyEvent::nativeVirtualKey() const</span><a href="#quint32-qkeyevent-nativevirtualkey-const" class="header-anchor">#</a></h3><p>返回本地虚拟键，或键事件的键符号。如果键事件不包含这些数据，则返回0。</p>
+<p><strong>注意：</strong>本地虚拟键可能是0，即使键事件包含扩展信息。</p>
+<h3><span id="qstring-qkeyevent-text-const"> QKeyEvent::text() const</span><a href="#qstring-qkeyevent-text-const" class="header-anchor">#</a></h3><p>返回该键产生的Unicode文本。</p>
+<p>当按下Shift、Control、Alt和Meta等修饰键时的返回值在不同平台上有所不同，可能会返回一个空字符串。</p>
+<p><strong>注意：</strong> <a href="#key">key</a>()将总是返回一个有效的值，与修改键无关。</p>
+<p><strong>See also</strong> <a href="#WidgetAttribute-enum">Qt::WA_KeyCompression</a>.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/K/">K</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/L/QList/QList_Iterator/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QList_Iterator类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/K/QKeySequence/QKeySequence/">
+                        <span class="hidden-mobile">QKeySequence类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

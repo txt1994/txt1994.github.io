@@ -1,0 +1,1140 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QXmlStreamReader Class Public Types Properties Public Functions Detailed Description Namespaces Incremental Parsing Performance and Memory Consumption   Member Type Documentation enum QXmlStreamR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QXmlStreamReader类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/X/QXmlStreamReader/QXmlStreamReader/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QXmlStreamReader Class Public Types Properties Public Functions Detailed Description Namespaces Incremental Parsing Performance and Memory Consumption   Member Type Documentation enum QXmlStreamR">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:59:26.850Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="X">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QXmlStreamReader类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QXmlStreamReader类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      25k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      210 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QXmlStreamReader类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qxmlstreamreader-class">QXmlStreamReader Class</a><ul>
+<li><a href="#public-types">Public Types</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#public-functions">Public Functions</a></li>
+<li><a href="#detailed-description">Detailed Description</a><ul>
+<li><a href="#namespaces">Namespaces</a></li>
+<li><a href="#incremental-parsing">Incremental Parsing</a></li>
+<li><a href="#performance-and-memory-consumption">Performance and Memory Consumption</a></li>
+</ul>
+</li>
+<li><a href="#member-type-documentation">Member Type Documentation</a><ul>
+<li><a href="#enum-qxmlstreamreader-error">enum QXmlStreamReader::Error</a></li>
+<li><a href="#enum-qxmlstreamreader-readelementtextbehaviour">enum QXmlStreamReader::ReadElementTextBehaviour</a></li>
+<li><a href="#enum-qxmlstreamreader-tokentype">enum QXmlStreamReader::TokenType</a></li>
+</ul>
+</li>
+<li><a href="#property-documentation">Property Documentation</a><ul>
+<li><a href="#namespaceprocessing-bool">namespaceProcessing : bool</a></li>
+</ul>
+</li>
+<li><a href="#member-function-documentation">Member Function Documentation</a><ul>
+<li><a href="#qxmlstreamreader-qxmlstreamreader-const-char-data">QXmlStreamReader::QXmlStreamReader(const char *<em>data</em>)</a></li>
+<li><a href="#qxmlstreamreader-qxmlstreamreader-const-qstring-https-doc-qt-io-qt-6-qstring-html-data">QXmlStreamReader::QXmlStreamReader(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>data</em>)</li>
+<li><a href="#qxmlstreamreader-qxmlstreamreader-const-qbytearray-https-doc-qt-io-qt-6-qbytearray-html-data">QXmlStreamReader::QXmlStreamReader(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbytearray.html">QByteArray</a> &amp;<em>data</em>)</li>
+<li><a href="#qxmlstreamreader-qxmlstreamreader-qiodevice-https-doc-qt-io-qt-6-qiodevice-html-device">QXmlStreamReader::QXmlStreamReader(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html">QIODevice</a> *<em>device</em>)</li>
+<li><a href="#qxmlstreamreader-qxmlstreamreader">QXmlStreamReader::QXmlStreamReader()</a></li>
+<li><a href="#qxmlstreamreader-qxmlstreamreader">QXmlStreamReader::~QXmlStreamReader()</a></li>
+<li><a href="#void-qxmlstreamreader-adddata-const-qbytearray-https-doc-qt-io-qt-6-qbytearray-html-data">void QXmlStreamReader::addData(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbytearray.html">QByteArray</a> &amp;<em>data</em>)</li>
+<li><a href="#void-qxmlstreamreader-adddata-const-qstring-https-doc-qt-io-qt-6-qstring-html-data">void QXmlStreamReader::addData(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>data</em>)</li>
+<li><a href="#void-qxmlstreamreader-adddata-const-char-data">void QXmlStreamReader::addData(const char *<em>data</em>)</a></li>
+<li><a href="#void-qxmlstreamreader-addextranamespacedeclaration-const-qxmlstreamnamespacedeclaration-https-doc-qt-io-qt-6-qxmlstreamnamespacedeclaration-html-extranamespacedeclaration">void QXmlStreamReader::addExtraNamespaceDeclaration(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamnamespacedeclaration.html">QXmlStreamNamespaceDeclaration</a> &amp;<em>extraNamespaceDeclaration</em>)</li>
+<li><a href="#void-qxmlstreamreader-addextranamespacedeclarations-const-qxmlstreamnamespacedeclarations-https-doc-qt-io-qt-6-qxmlstreamnamespacedeclaration-html-qxmlstreamnamespacedeclarations-typedef-extranamespacedeclarations">void QXmlStreamReader::addExtraNamespaceDeclarations(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamnamespacedeclaration.html#QXmlStreamNamespaceDeclarations-typedef">QXmlStreamNamespaceDeclarations</a> &amp;<em>extraNamespaceDeclarations</em>)</li>
+<li><a href="#bool-qxmlstreamreader-atend-const">bool QXmlStreamReader::atEnd() const</a></li>
+<li><a href="#qxmlstreamattributes-https-doc-qt-io-qt-6-qxmlstreamattributes-html-qxmlstreamreader-attributes-const">QXmlStreamAttributes</a></li>
+<li><a href="#qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-qxmlstreamreader-characteroffset-const">qint64</a></li>
+<li><a href="#void-qxmlstreamreader-clear">void QXmlStreamReader::clear()</a></li>
+<li><a href="#qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-qxmlstreamreader-columnnumber-const-1">qint64</a></li>
+<li><a href="#qiodevice-https-doc-qt-io-qt-6-qiodevice-html-qxmlstreamreader-device-const">QIODevice</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-documentencoding-const">QStringView</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-documentversion-const-1">QStringView</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-dtdname-const-2">QStringView</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-dtdpublicid-const-3">QStringView</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-dtdsystemid-const-4">QStringView</a></li>
+<li><a href="#qxmlstreamentitydeclarations-https-doc-qt-io-qt-6-qxmlstreamentitydeclaration-html-qxmlstreamentitydeclarations-typedef-qxmlstreamreader-entitydeclarations-const">QXmlStreamEntityDeclarations</a></li>
+<li><a href="#since-5-15-int-qxmlstreamreader-entityexpansionlimit-const"><code>[since 5.15]</code>int QXmlStreamReader::entityExpansionLimit() const</a></li>
+<li><a href="#qxmlstreamentityresolver-https-doc-qt-io-qt-6-qxmlstreamentityresolver-html-qxmlstreamreader-entityresolver-const">QXmlStreamEntityResolver</a></li>
+<li><a href="#qxmlstreamreader-error-https-doc-qt-io-qt-6-qxmlstreamreader-html-error-enum-qxmlstreamreader-error-const">QXmlStreamReader::Error</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlstreamreader-errorstring-const">QString</a></li>
+<li><a href="#bool-qxmlstreamreader-haserror-const">bool QXmlStreamReader::hasError() const</a></li>
+<li><a href="#bool-qxmlstreamreader-iscdata-const">bool QXmlStreamReader::isCDATA() const</a></li>
+<li><a href="#bool-qxmlstreamreader-ischaracters-const">bool QXmlStreamReader::isCharacters() const</a></li>
+<li><a href="#bool-qxmlstreamreader-iscomment-const">bool QXmlStreamReader::isComment() const</a></li>
+<li><a href="#bool-qxmlstreamreader-isdtd-const">bool QXmlStreamReader::isDTD() const</a></li>
+<li><a href="#bool-qxmlstreamreader-isenddocument-const">bool QXmlStreamReader::isEndDocument() const</a></li>
+<li><a href="#bool-qxmlstreamreader-isendelement-const">bool QXmlStreamReader::isEndElement() const</a></li>
+<li><a href="#bool-qxmlstreamreader-isentityreference-const">bool QXmlStreamReader::isEntityReference() const</a></li>
+<li><a href="#bool-qxmlstreamreader-isprocessinginstruction-const">bool QXmlStreamReader::isProcessingInstruction() const</a></li>
+<li><a href="#bool-qxmlstreamreader-isstandalonedocument-const">bool QXmlStreamReader::isStandaloneDocument() const</a></li>
+<li><a href="#bool-qxmlstreamreader-isstartdocument-const">bool QXmlStreamReader::isStartDocument() const</a></li>
+<li><a href="#bool-qxmlstreamreader-isstartelement-const">bool QXmlStreamReader::isStartElement() const</a></li>
+<li><a href="#bool-qxmlstreamreader-iswhitespace-const">bool QXmlStreamReader::isWhitespace() const</a></li>
+<li><a href="#qint64-https-doc-qt-io-qt-6-qtglobal-html-qint64-typedef-qxmlstreamreader-linenumber-const-2">qint64</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-name-const-5">QStringView</a></li>
+<li><a href="#qxmlstreamnamespacedeclarations-https-doc-qt-io-qt-6-qxmlstreamnamespacedeclaration-html-qxmlstreamnamespacedeclarations-typedef-qxmlstreamreader-namespacedeclarations-const">QXmlStreamNamespaceDeclarations</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-namespaceuri-const-6">QStringView</a></li>
+<li><a href="#qxmlstreamnotationdeclarations-https-doc-qt-io-qt-6-qxmlstreamnotationdeclaration-html-qxmlstreamnotationdeclarations-typedef-qxmlstreamreader-notationdeclarations-const">QXmlStreamNotationDeclarations</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-prefix-const-7">QStringView</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-processinginstructiondata-const-8">QStringView</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-processinginstructiontarget-const-9">QStringView</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-qualifiedname-const-10">QStringView</a></li>
+<li><a href="#void-qxmlstreamreader-raiseerror-const-qstring-https-doc-qt-io-qt-6-qstring-html-message-qstring">void QXmlStreamReader::raiseError(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>message</em> = QString())</li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlstreamreader-readelementtext-qxmlstreamreader-readelementtextbehaviour-https-doc-qt-io-qt-6-qxmlstreamreader-html-readelementtextbehaviour-enum-behaviour-erroronunexpectedelement-1">QString</a></li>
+<li><a href="#qxmlstreamreader-tokentype-https-doc-qt-io-qt-6-qxmlstreamreader-html-tokentype-enum-qxmlstreamreader-readnext">QXmlStreamReader::TokenType</a></li>
+<li><a href="#bool-qxmlstreamreader-readnextstartelement">bool QXmlStreamReader::readNextStartElement()</a></li>
+<li><a href="#void-qxmlstreamreader-setdevice-qiodevice-https-doc-qt-io-qt-6-qiodevice-html-device">void QXmlStreamReader::setDevice(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html">QIODevice</a> *<em>device</em>)</li>
+<li><a href="#since-5-15-void-qxmlstreamreader-setentityexpansionlimit-int-limit"><code>[since 5.15]</code>void QXmlStreamReader::setEntityExpansionLimit(int <em>limit</em>)</a></li>
+<li><a href="#void-qxmlstreamreader-setentityresolver-qxmlstreamentityresolver-https-doc-qt-io-qt-6-qxmlstreamentityresolver-html-resolver">void QXmlStreamReader::setEntityResolver(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamentityresolver.html">QXmlStreamEntityResolver</a> *<em>resolver</em>)</li>
+<li><a href="#void-qxmlstreamreader-skipcurrentelement">void QXmlStreamReader::skipCurrentElement()</a></li>
+<li><a href="#qstringview-https-doc-qt-io-qt-6-qstringview-html-qxmlstreamreader-text-const-11">QStringView</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qxmlstreamreader-tokenstring-const-2">QString</a></li>
+<li><a href="#qxmlstreamreader-tokentype-https-doc-qt-io-qt-6-qxmlstreamreader-html-tokentype-enum-qxmlstreamreader-tokentype-const-1">QXmlStreamReader::TokenType</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QXmlStreamReader Class
+
+<p>The QXmlStreamReader class provides a fast parser for reading well-formed XML via a simple streaming API. <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#details">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qxmlstreamreader></qxmlstreamreader></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader-members.html">List of all members, including inherited members</a></li>
+</ul>
+<p><strong>Note:</strong> All functions in this class are <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/17-qdoc-commands-thread.html#reentrant">reentrant</a>.</p>
+<h2><span id="public-types">Public Types</span><a href="#public-types" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#Error-enum">Error</a></strong> { NoError, CustomError, NotWellFormedError, PrematureEndOfDocumentError, UnexpectedElementError }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#ReadElementTextBehaviour-enum">ReadElementTextBehaviour</a></strong> { ErrorOnUnexpectedElement, IncludeChildElements, SkipChildElements }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">TokenType</a></strong> { NoToken, Invalid, StartDocument, EndDocument, StartElement, …, ProcessingInstruction }</td>
+</tr>
+</tbody></table>
+<h2><span id="properties">Properties</span><a href="#properties" class="header-anchor">#</a></h2><ul>
+<li><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceProcessing-prop">namespaceProcessing</a></strong> : bool</li>
+</ul>
+<h2><span id="public-functions">Public Functions</span><a href="#public-functions" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#QXmlStreamReader-4">QXmlStreamReader</a></strong>(const char *<em>data</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#QXmlStreamReader-3">QXmlStreamReader</a></strong>(const QString &amp;<em>data</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#QXmlStreamReader-2">QXmlStreamReader</a></strong>(const QByteArray &amp;<em>data</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#QXmlStreamReader-1">QXmlStreamReader</a></strong>(QIODevice *<em>device</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#QXmlStreamReader">QXmlStreamReader</a></strong>()</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#dtor.QXmlStreamReader">~QXmlStreamReader</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a></strong>(const QByteArray &amp;<em>data</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData-1">addData</a></strong>(const QString &amp;<em>data</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData-2">addData</a></strong>(const char *<em>data</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addExtraNamespaceDeclaration">addExtraNamespaceDeclaration</a></strong>(const QXmlStreamNamespaceDeclaration &amp;<em>extraNamespaceDeclaration</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addExtraNamespaceDeclarations">addExtraNamespaceDeclarations</a></strong>(const QXmlStreamNamespaceDeclarations &amp;<em>extraNamespaceDeclarations</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#atEnd">atEnd</a></strong>() const</td>
+</tr>
+<tr>
+<td>QXmlStreamAttributes</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#attributes">attributes</a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#characterOffset">characterOffset</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#clear">clear</a></strong>()</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#columnNumber">columnNumber</a></strong>() const</td>
+</tr>
+<tr>
+<td>QIODevice *</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#device">device</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#documentEncoding">documentEncoding</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#documentVersion">documentVersion</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#dtdName">dtdName</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#dtdPublicId">dtdPublicId</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#dtdSystemId">dtdSystemId</a></strong>() const</td>
+</tr>
+<tr>
+<td>QXmlStreamEntityDeclarations</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#entityDeclarations">entityDeclarations</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#entityExpansionLimit">entityExpansionLimit</a></strong>() const</td>
+</tr>
+<tr>
+<td>QXmlStreamEntityResolver *</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#entityResolver">entityResolver</a></strong>() const</td>
+</tr>
+<tr>
+<td>QXmlStreamReader::Error</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#error">error</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#errorString">errorString</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#hasError">hasError</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isCDATA">isCDATA</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isCharacters">isCharacters</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isComment">isComment</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isDTD">isDTD</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isEndDocument">isEndDocument</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isEndElement">isEndElement</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isEntityReference">isEntityReference</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isProcessingInstruction">isProcessingInstruction</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isStandaloneDocument">isStandaloneDocument</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isStartDocument">isStartDocument</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isStartElement">isStartElement</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isWhitespace">isWhitespace</a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#lineNumber">lineNumber</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#name">name</a></strong>() const</td>
+</tr>
+<tr>
+<td>QXmlStreamNamespaceDeclarations</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceDeclarations">namespaceDeclarations</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceProcessing-prop">namespaceProcessing</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceUri">namespaceUri</a></strong>() const</td>
+</tr>
+<tr>
+<td>QXmlStreamNotationDeclarations</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#notationDeclarations">notationDeclarations</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#prefix">prefix</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#processingInstructionData">processingInstructionData</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#processingInstructionTarget">processingInstructionTarget</a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#qualifiedName">qualifiedName</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#raiseError">raiseError</a></strong>(const QString &amp;<em>message</em> = QString())</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#readElementText">readElementText</a></strong>(QXmlStreamReader::ReadElementTextBehaviour <em>behaviour</em> = ErrorOnUnexpectedElement)</td>
+</tr>
+<tr>
+<td>QXmlStreamReader::TokenType</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#readNext">readNext</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#readNextStartElement">readNextStartElement</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setDevice">setDevice</a></strong>(QIODevice *<em>device</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setEntityExpansionLimit">setEntityExpansionLimit</a></strong>(int <em>limit</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setEntityResolver">setEntityResolver</a></strong>(QXmlStreamEntityResolver *<em>resolver</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceProcessing-prop">setNamespaceProcessing</a></strong>(bool)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#skipCurrentElement">skipCurrentElement</a></strong>()</td>
+</tr>
+<tr>
+<td>QStringView</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#text">text</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenString">tokenString</a></strong>() const</td>
+</tr>
+<tr>
+<td>QXmlStreamReader::TokenType</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="detailed-description">Detailed Description</span><a href="#detailed-description" class="header-anchor">#</a></h2><p>QXmlStreamReader provides a simple streaming API to parse well-formed XML. It is an alternative to first loading the complete XML into a DOM tree (see <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qdomdocument.html">QDomDocument</a>). QXmlStreamReader reads data either from a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html">QIODevice</a> (see <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setDevice">setDevice</a>()), or from a raw <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbytearray.html">QByteArray</a> (see <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a>()).</p>
+<p>Qt provides <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamwriter.html">QXmlStreamWriter</a> for writing XML.</p>
+<p>The basic concept of a stream reader is to report an XML document as a stream of tokens, similar to SAX. The main difference between QXmlStreamReader and SAX is <em>how</em> these XML tokens are reported. With SAX, the application must provide handlers (callback functions) that receive so-called XML <em>events</em> from the parser at the parser’s convenience. With QXmlStreamReader, the application code itself drives the loop and pulls <em>tokens</em> from the reader, one after another, as it needs them. This is done by calling <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#readNext">readNext</a>(), where the reader reads from the input stream until it completes the next token, at which point it returns the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>(). A set of convenient functions including <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isStartElement">isStartElement</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#text">text</a>() can then be used to examine the token to obtain information about what has been read. The big advantage of this <em>pulling</em> approach is the possibility to build recursive descent parsers with it, meaning you can split your XML parsing code easily into different methods or classes. This makes it easy to keep track of the application’s own state when parsing XML.</p>
+<p>A typical loop with QXmlStreamReader looks like this:</p>
+<div class="code-wrapper"><pre><code class="hljs lasso">QXmlStreamReader <span class="hljs-built_in">xml</span>;
+<span class="hljs-params">...</span>
+<span class="hljs-keyword">while</span> (!<span class="hljs-built_in">xml</span>.atEnd()) {
+      <span class="hljs-built_in">xml</span>.readNext();
+      <span class="hljs-params">...</span> <span class="hljs-comment">// do processing</span>
+}
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">xml</span>.hasError()) {
+      <span class="hljs-params">...</span> <span class="hljs-comment">// do error handling</span>
+}</code></pre></div>
+
+<p>QXmlStreamReader is a well-formed XML 1.0 parser that does <em>not</em> include external parsed entities. As long as no error occurs, the application code can thus be assured that the data provided by the stream reader satisfies the W3C’s criteria for well-formed XML. For example, you can be certain that all tags are indeed nested and closed properly, that references to internal entities have been replaced with the correct replacement text, and that attributes have been normalized or added according to the internal subset of the DTD.</p>
+<p>If an error occurs while parsing, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#atEnd">atEnd</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#hasError">hasError</a>() return true, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#error">error</a>() returns the error that occurred. The functions <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#errorString">errorString</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#lineNumber">lineNumber</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#columnNumber">columnNumber</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#characterOffset">characterOffset</a>() are for constructing an appropriate error or warning message. To simplify application code, QXmlStreamReader contains a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#raiseError">raiseError</a>() mechanism that lets you raise custom errors that trigger the same error handling described.</p>
+<p>The <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtxml-streambookmarks-example.html">QXmlStream Bookmarks Example</a> illustrates how to use the recursive descent technique to read an XML bookmark file (XBEL) with a stream reader.</p>
+<h3><span id="namespaces">Namespaces</span><a href="#namespaces" class="header-anchor">#</a></h3><p>QXmlStream understands and resolves XML namespaces. E.g. in case of a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartElement</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceUri">namespaceUri</a>() returns the namespace the element is in, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#name">name</a>() returns the element’s <em>local</em> name. The combination of <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceUri">namespaceUri</a> and name uniquely identifies an element. If a namespace prefix was not declared in the XML entities parsed by the reader, the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceUri">namespaceUri</a> is empty.</p>
+<p>If you parse XML data that does not utilize namespaces according to the XML specification or doesn’t use namespaces at all, you can use the element’s <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#qualifiedName">qualifiedName</a>() instead. A qualified name is the element’s <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#prefix">prefix</a>() followed by colon followed by the element’s local <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#name">name</a>() - exactly like the element appears in the raw XML data. Since the mapping <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceUri">namespaceUri</a> to prefix is neither unique nor universal, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#qualifiedName">qualifiedName</a>() should be avoided for namespace-compliant XML data.</p>
+<p>In order to parse standalone documents that do use undeclared namespace prefixes, you can turn off namespace processing completely with the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceProcessing-prop">namespaceProcessing</a> property.</p>
+<h3><span id="incremental-parsing">Incremental Parsing</span><a href="#incremental-parsing" class="header-anchor">#</a></h3><p>QXmlStreamReader is an incremental parser. It can handle the case where the document can’t be parsed all at once because it arrives in chunks (e.g. from multiple files, or over a network connection). When the reader runs out of data before the complete document has been parsed, it reports a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#Error-enum">PrematureEndOfDocumentError</a>. When more data arrives, either because of a call to <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a>() or because more data is available through the network <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#device">device</a>(), the reader recovers from the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#Error-enum">PrematureEndOfDocumentError</a> error and continues parsing the new data with the next call to <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#readNext">readNext</a>().</p>
+<p>For example, if your application reads data from the network using a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkaccessmanager.html">network access manager</a>, you would issue a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkrequest.html">network request</a> to the manager and receive a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkreply.html">network reply</a> in return. Since a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkreply.html">QNetworkReply</a> is a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html">QIODevice</a>, you connect its <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#readyRead">readyRead</a>() signal to a custom slot, e.g. <code>slotReadyRead()</code> in the code snippet shown in the discussion for <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkaccessmanager.html">QNetworkAccessManager</a>. In this slot, you read all available data with <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#readAll">readAll</a>() and pass it to the XML stream reader using <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a>(). Then you call your custom parsing function that reads the XML events from the reader.</p>
+<h3><span id="performance-and-memory-consumption">Performance and Memory Consumption</span><a href="#performance-and-memory-consumption" class="header-anchor">#</a></h3><p>QXmlStreamReader is memory-conservative by design, since it doesn’t store the entire XML document tree in memory, but only the current token at the time it is reported. In addition, QXmlStreamReader avoids the many small string allocations that it normally takes to map an XML document to a convenient and Qt-ish API. It does this by reporting all string data as <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstringview.html">QStringView</a> rather than real <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> objects. Calling <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstringview.html#toString">toString</a>() on any of those objects returns an equivalent real <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> object.</p>
+<h2><span id="member-type-documentation">Member Type Documentation</span><a href="#member-type-documentation" class="header-anchor">#</a></h2><h3><span id="enum-qxmlstreamreader-error">enum QXmlStreamReader::Error</span><a href="#enum-qxmlstreamreader-error" class="header-anchor">#</a></h3><p>This enum specifies different error cases</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QXmlStreamReader::NoError</code></td>
+<td><code>0</code></td>
+<td>No error has occurred.</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::CustomError</code></td>
+<td><code>2</code></td>
+<td>A custom error has been raised with <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#raiseError">raiseError</a>()</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::NotWellFormedError</code></td>
+<td><code>3</code></td>
+<td>The parser internally raised an error due to the read XML not being well-formed.</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::PrematureEndOfDocumentError</code></td>
+<td><code>4</code></td>
+<td>The input stream ended before a well-formed XML document was parsed. Recovery from this error is possible if more XML arrives in the stream, either by calling <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a>() or by waiting for it to arrive on the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#device">device</a>().</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::UnexpectedElementError</code></td>
+<td><code>1</code></td>
+<td>The parser encountered an element that was different to those it expected.</td>
+</tr>
+</tbody></table>
+<h3><span id="enum-qxmlstreamreader-readelementtextbehaviour">enum QXmlStreamReader::ReadElementTextBehaviour</span><a href="#enum-qxmlstreamreader-readelementtextbehaviour" class="header-anchor">#</a></h3><p>This enum specifies the different behaviours of <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#readElementText">readElementText</a>().</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QXmlStreamReader::ErrorOnUnexpectedElement</code></td>
+<td><code>0</code></td>
+<td>Raise an <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#Error-enum">UnexpectedElementError</a> and return what was read so far when a child element is encountered.</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::IncludeChildElements</code></td>
+<td><code>1</code></td>
+<td>Recursively include the text from child elements.</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::SkipChildElements</code></td>
+<td><code>2</code></td>
+<td>Skip child elements.</td>
+</tr>
+</tbody></table>
+<h3><span id="enum-qxmlstreamreader-tokentype">enum QXmlStreamReader::TokenType</span><a href="#enum-qxmlstreamreader-tokentype" class="header-anchor">#</a></h3><p>This enum specifies the type of token the reader just read.</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QXmlStreamReader::NoToken</code></td>
+<td><code>0</code></td>
+<td>The reader has not yet read anything.</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::Invalid</code></td>
+<td><code>1</code></td>
+<td>An error has occurred, reported in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#error">error</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#errorString">errorString</a>().</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::StartDocument</code></td>
+<td><code>2</code></td>
+<td>The reader reports the XML version number in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#documentVersion">documentVersion</a>(), and the encoding as specified in the XML document in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#documentEncoding">documentEncoding</a>(). If the document is declared standalone, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isStandaloneDocument">isStandaloneDocument</a>() returns <code>true</code>; otherwise it returns <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::EndDocument</code></td>
+<td><code>3</code></td>
+<td>The reader reports the end of the document.</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::StartElement</code></td>
+<td><code>4</code></td>
+<td>The reader reports the start of an element with <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceUri">namespaceUri</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#name">name</a>(). Empty elements are also reported as StartElement, followed directly by EndElement. The convenience function <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#readElementText">readElementText</a>() can be called to concatenate all content until the corresponding EndElement. Attributes are reported in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#attributes">attributes</a>(), namespace declarations in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceDeclarations">namespaceDeclarations</a>().</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::EndElement</code></td>
+<td><code>5</code></td>
+<td>The reader reports the end of an element with <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceUri">namespaceUri</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#name">name</a>().</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::Characters</code></td>
+<td><code>6</code></td>
+<td>The reader reports characters in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#text">text</a>(). If the characters are all white-space, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isWhitespace">isWhitespace</a>() returns <code>true</code>. If the characters stem from a CDATA section, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isCDATA">isCDATA</a>() returns <code>true</code>.</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::Comment</code></td>
+<td><code>7</code></td>
+<td>The reader reports a comment in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#text">text</a>().</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::DTD</code></td>
+<td><code>8</code></td>
+<td>The reader reports a DTD in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#text">text</a>(), notation declarations in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#notationDeclarations">notationDeclarations</a>(), and entity declarations in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#entityDeclarations">entityDeclarations</a>(). Details of the DTD declaration are reported in in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#dtdName">dtdName</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#dtdPublicId">dtdPublicId</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#dtdSystemId">dtdSystemId</a>().</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::EntityReference</code></td>
+<td><code>9</code></td>
+<td>The reader reports an entity reference that could not be resolved. The name of the reference is reported in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#name">name</a>(), the replacement text in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#text">text</a>().</td>
+</tr>
+<tr>
+<td><code>QXmlStreamReader::ProcessingInstruction</code></td>
+<td><code>10</code></td>
+<td>The reader reports a processing instruction in <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#processingInstructionTarget">processingInstructionTarget</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#processingInstructionData">processingInstructionData</a>().</td>
+</tr>
+</tbody></table>
+<h2><span id="property-documentation">Property Documentation</span><a href="#property-documentation" class="header-anchor">#</a></h2><h3><span id="namespaceprocessing-bool">namespaceProcessing : bool</span><a href="#namespaceprocessing-bool" class="header-anchor">#</a></h3><p>This property holds the namespace-processing flag of the stream reader.</p>
+<p>This property controls whether or not the stream reader processes namespaces. If enabled, the reader processes namespaces, otherwise it does not.</p>
+<p>By default, namespace-processing is enabled.</p>
+<p><strong>Access functions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>namespaceProcessing</strong>() const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setNamespaceProcessing</strong>(bool)</td>
+</tr>
+</tbody></table>
+<h2><span id="member-function-documentation">Member Function Documentation</span><a href="#member-function-documentation" class="header-anchor">#</a></h2><h3><span id="qxmlstreamreader-qxmlstreamreader-const-char-data">QXmlStreamReader::QXmlStreamReader(const char *<em>data</em>)</span><a href="#qxmlstreamreader-qxmlstreamreader-const-char-data" class="header-anchor">#</a></h3><p>Creates a new stream reader that reads from <em>data</em>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#clear">clear</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setDevice">setDevice</a>().</p>
+<h3><span id="qxmlstreamreader-qxmlstreamreader-const-qstring-amp-data">QXmlStreamReader::QXmlStreamReader(const  &amp;<em>data</em>)</span><a href="#qxmlstreamreader-qxmlstreamreader-const-qstring-amp-data" class="header-anchor">#</a></h3><p>Creates a new stream reader that reads from <em>data</em>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#clear">clear</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setDevice">setDevice</a>().</p>
+<h3><span id="qxmlstreamreader-qxmlstreamreader-const-qbytearray-amp-data">QXmlStreamReader::QXmlStreamReader(const  &amp;<em>data</em>)</span><a href="#qxmlstreamreader-qxmlstreamreader-const-qbytearray-amp-data" class="header-anchor">#</a></h3><p>Creates a new stream reader that reads from <em>data</em>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#clear">clear</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setDevice">setDevice</a>().</p>
+<h3><span id="qxmlstreamreader-qxmlstreamreader-qiodevice-device">QXmlStreamReader::QXmlStreamReader( *<em>device</em>)</span><a href="#qxmlstreamreader-qxmlstreamreader-qiodevice-device" class="header-anchor">#</a></h3><p>Creates a new stream reader that reads from <em>device</em>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setDevice">setDevice</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#clear">clear</a>().</p>
+<h3><span id="qxmlstreamreader-qxmlstreamreader">QXmlStreamReader::QXmlStreamReader()</span><a href="#qxmlstreamreader-qxmlstreamreader" class="header-anchor">#</a></h3><p>Constructs a stream reader.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setDevice">setDevice</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a>().</p>
+<h3><span id="qxmlstreamreader-qxmlstreamreader">QXmlStreamReader::~QXmlStreamReader()</span><a href="#qxmlstreamreader-qxmlstreamreader" class="header-anchor">#</a></h3><p>Destructs the reader.</p>
+<h3><span id="void-qxmlstreamreader-adddata-const-qbytearray-amp-data">void QXmlStreamReader::addData(const  &amp;<em>data</em>)</span><a href="#void-qxmlstreamreader-adddata-const-qbytearray-amp-data" class="header-anchor">#</a></h3><p>Adds more <em>data</em> for the reader to read. This function does nothing if the reader has a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#device">device</a>().</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#readNext">readNext</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#clear">clear</a>().</p>
+<h3><span id="void-qxmlstreamreader-adddata-const-qstring-amp-data">void QXmlStreamReader::addData(const  &amp;<em>data</em>)</span><a href="#void-qxmlstreamreader-adddata-const-qstring-amp-data" class="header-anchor">#</a></h3><p>Adds more <em>data</em> for the reader to read. This function does nothing if the reader has a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#device">device</a>().</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#readNext">readNext</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#clear">clear</a>().</p>
+<h3><span id="void-qxmlstreamreader-adddata-const-char-data">void QXmlStreamReader::addData(const char *<em>data</em>)</span><a href="#void-qxmlstreamreader-adddata-const-char-data" class="header-anchor">#</a></h3><p>Adds more <em>data</em> for the reader to read. This function does nothing if the reader has a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#device">device</a>().</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#readNext">readNext</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#clear">clear</a>().</p>
+<h3><span id="void-qxmlstreamreader-addextranamespacedeclaration-const-qxmlstreamnamespacedeclaration-amp-extranamespacedeclaration">void QXmlStreamReader::addExtraNamespaceDeclaration(const  &amp;<em>extraNamespaceDeclaration</em>)</span><a href="#void-qxmlstreamreader-addextranamespacedeclaration-const-qxmlstreamnamespacedeclaration-amp-extranamespacedeclaration" class="header-anchor">#</a></h3><p>Adds an <em>extraNamespaceDeclaration</em>. The declaration will be valid for children of the current element, or - should the function be called before any elements are read - for the entire XML document.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceDeclarations">namespaceDeclarations</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addExtraNamespaceDeclarations">addExtraNamespaceDeclarations</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceProcessing-prop">setNamespaceProcessing</a>().</p>
+<h3><span id="void-qxmlstreamreader-addextranamespacedeclarations-const-qxmlstreamnamespacedeclarations-amp-extranamespacedeclarations">void QXmlStreamReader::addExtraNamespaceDeclarations(const  &amp;<em>extraNamespaceDeclarations</em>)</span><a href="#void-qxmlstreamreader-addextranamespacedeclarations-const-qxmlstreamnamespacedeclarations-amp-extranamespacedeclarations" class="header-anchor">#</a></h3><p>Adds a vector of declarations specified by <em>extraNamespaceDeclarations</em>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceDeclarations">namespaceDeclarations</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addExtraNamespaceDeclaration">addExtraNamespaceDeclaration</a>().</p>
+<h3><span id="bool-qxmlstreamreader-atend-const">bool QXmlStreamReader::atEnd() const</span><a href="#bool-qxmlstreamreader-atend-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if the reader has read until the end of the XML document, or if an <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#error">error</a>() has occurred and reading has been aborted. Otherwise, it returns <code>false</code>.</p>
+<p>When atEnd() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#hasError">hasError</a>() return true and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#error">error</a>() returns <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#Error-enum">PrematureEndOfDocumentError</a>, it means the XML has been well-formed so far, but a complete XML document has not been parsed. The next chunk of XML can be added with <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a>(), if the XML is being read from a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbytearray.html">QByteArray</a>, or by waiting for more data to arrive if the XML is being read from a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html">QIODevice</a>. Either way, atEnd() will return false once more data is available.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#hasError">hasError</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#error">error</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#device">device</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qiodevice.html#atEnd">QIODevice::atEnd</a>().</p>
+<h3><span id="qxmlstreamattributes-qxmlstreamreader-attributes-const"> QXmlStreamReader::attributes() const</span><a href="#qxmlstreamattributes-qxmlstreamreader-attributes-const" class="header-anchor">#</a></h3><p>Returns the attributes of a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartElement</a>.</p>
+<h3><span id="qint64-qxmlstreamreader-characteroffset-const"> QXmlStreamReader::characterOffset() const</span><a href="#qint64-qxmlstreamreader-characteroffset-const" class="header-anchor">#</a></h3><p>Returns the current character offset, starting with 0.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#lineNumber">lineNumber</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#columnNumber">columnNumber</a>().</p>
+<h3><span id="void-qxmlstreamreader-clear">void QXmlStreamReader::clear()</span><a href="#void-qxmlstreamreader-clear" class="header-anchor">#</a></h3><p>Removes any <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#device">device</a>() or data from the reader and resets its internal state to the initial state.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a>().</p>
+<h3><span id="qint64-qxmlstreamreader-columnnumber-const"> QXmlStreamReader::columnNumber() const</span><a href="#qint64-qxmlstreamreader-columnnumber-const" class="header-anchor">#</a></h3><p>Returns the current column number, starting with 0.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#lineNumber">lineNumber</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#characterOffset">characterOffset</a>().</p>
+<h3><span id="qiodevice-qxmlstreamreader-device-const"> *QXmlStreamReader::device() const</span><a href="#qiodevice-qxmlstreamreader-device-const" class="header-anchor">#</a></h3><p>Returns the current device associated with the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html">QXmlStreamReader</a>, or <code>nullptr</code> if no device has been assigned.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setDevice">setDevice</a>().</p>
+<h3><span id="qstringview-qxmlstreamreader-documentencoding-const"> QXmlStreamReader::documentEncoding() const</span><a href="#qstringview-qxmlstreamreader-documentencoding-const" class="header-anchor">#</a></h3><p>If the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartDocument</a>, this function returns the encoding string as specified in the XML declaration. Otherwise an empty string is returned.</p>
+<h3><span id="qstringview-qxmlstreamreader-documentversion-const"> QXmlStreamReader::documentVersion() const</span><a href="#qstringview-qxmlstreamreader-documentversion-const" class="header-anchor">#</a></h3><p>If the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartDocument</a>, this function returns the version string as specified in the XML declaration. Otherwise an empty string is returned.</p>
+<h3><span id="qstringview-qxmlstreamreader-dtdname-const"> QXmlStreamReader::dtdName() const</span><a href="#qstringview-qxmlstreamreader-dtdname-const" class="header-anchor">#</a></h3><p>If the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">DTD</a>, this function returns the DTD’s name. Otherwise an empty string is returned.</p>
+<h3><span id="qstringview-qxmlstreamreader-dtdpublicid-const"> QXmlStreamReader::dtdPublicId() const</span><a href="#qstringview-qxmlstreamreader-dtdpublicid-const" class="header-anchor">#</a></h3><p>If the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">DTD</a>, this function returns the DTD’s public identifier. Otherwise an empty string is returned.</p>
+<h3><span id="qstringview-qxmlstreamreader-dtdsystemid-const"> QXmlStreamReader::dtdSystemId() const</span><a href="#qstringview-qxmlstreamreader-dtdsystemid-const" class="header-anchor">#</a></h3><p>If the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">DTD</a>, this function returns the DTD’s system identifier. Otherwise an empty string is returned.</p>
+<h3><span id="qxmlstreamentitydeclarations-qxmlstreamreader-entitydeclarations-const"> QXmlStreamReader::entityDeclarations() const</span><a href="#qxmlstreamentitydeclarations-qxmlstreamreader-entitydeclarations-const" class="header-anchor">#</a></h3><p>If the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">DTD</a>, this function returns the DTD’s unparsed (external) entity declarations. Otherwise an empty vector is returned.</p>
+<p>The <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamentitydeclaration.html#QXmlStreamEntityDeclarations-typedef">QXmlStreamEntityDeclarations</a> class is defined to be a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlist.html">QList</a> of <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamentitydeclaration.html">QXmlStreamEntityDeclaration</a>.</p>
+<h3><span id="since-5-15-int-qxmlstreamreader-entityexpansionlimit-const"><code>[since 5.15]</code>int QXmlStreamReader::entityExpansionLimit() const</span><a href="#since-5-15-int-qxmlstreamreader-entityexpansionlimit-const" class="header-anchor">#</a></h3><p>Returns the maximum amount of characters a single entity is allowed to expand into. If a single entity expands past the given limit, the document is not considered well formed.</p>
+<p>This function was introduced in Qt 5.15.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setEntityExpansionLimit">setEntityExpansionLimit</a>.</p>
+<h3><span id="qxmlstreamentityresolver-qxmlstreamreader-entityresolver-const"> *QXmlStreamReader::entityResolver() const</span><a href="#qxmlstreamentityresolver-qxmlstreamreader-entityresolver-const" class="header-anchor">#</a></h3><p>Returns the entity resolver, or <code>nullptr</code> if there is no entity resolver.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#setEntityResolver">setEntityResolver</a>().</p>
+<h3><span id="qxmlstreamreader-error-qxmlstreamreader-error-const"> QXmlStreamReader::error() const</span><a href="#qxmlstreamreader-error-qxmlstreamreader-error-const" class="header-anchor">#</a></h3><p>Returns the type of the current error, or <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#Error-enum">NoError</a> if no error occurred.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#errorString">errorString</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#raiseError">raiseError</a>().</p>
+<h3><span id="qstring-qxmlstreamreader-errorstring-const"> QXmlStreamReader::errorString() const</span><a href="#qstring-qxmlstreamreader-errorstring-const" class="header-anchor">#</a></h3><p>Returns the error message that was set with <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#raiseError">raiseError</a>().</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#error">error</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#lineNumber">lineNumber</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#columnNumber">columnNumber</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#characterOffset">characterOffset</a>().</p>
+<h3><span id="bool-qxmlstreamreader-haserror-const">bool QXmlStreamReader::hasError() const</span><a href="#bool-qxmlstreamreader-haserror-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if an error has occurred, otherwise <code>false</code>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#errorString">errorString</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#error">error</a>().</p>
+<h3><span id="bool-qxmlstreamreader-iscdata-const">bool QXmlStreamReader::isCDATA() const</span><a href="#bool-qxmlstreamreader-iscdata-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if the reader reports characters that stem from a CDATA section; otherwise returns <code>false</code>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isCharacters">isCharacters</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#text">text</a>().</p>
+<h3><span id="bool-qxmlstreamreader-ischaracters-const">bool QXmlStreamReader::isCharacters() const</span><a href="#bool-qxmlstreamreader-ischaracters-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() equals <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">Characters</a>; otherwise returns <code>false</code>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isWhitespace">isWhitespace</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isCDATA">isCDATA</a>().</p>
+<h3><span id="bool-qxmlstreamreader-iscomment-const">bool QXmlStreamReader::isComment() const</span><a href="#bool-qxmlstreamreader-iscomment-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() equals <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">Comment</a>; otherwise returns <code>false</code>.</p>
+<h3><span id="bool-qxmlstreamreader-isdtd-const">bool QXmlStreamReader::isDTD() const</span><a href="#bool-qxmlstreamreader-isdtd-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() equals <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">DTD</a>; otherwise returns <code>false</code>.</p>
+<h3><span id="bool-qxmlstreamreader-isenddocument-const">bool QXmlStreamReader::isEndDocument() const</span><a href="#bool-qxmlstreamreader-isenddocument-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() equals <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EndDocument</a>; otherwise returns <code>false</code>.</p>
+<h3><span id="bool-qxmlstreamreader-isendelement-const">bool QXmlStreamReader::isEndElement() const</span><a href="#bool-qxmlstreamreader-isendelement-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() equals <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EndElement</a>; otherwise returns <code>false</code>.</p>
+<h3><span id="bool-qxmlstreamreader-isentityreference-const">bool QXmlStreamReader::isEntityReference() const</span><a href="#bool-qxmlstreamreader-isentityreference-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() equals <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EntityReference</a>; otherwise returns <code>false</code>.</p>
+<h3><span id="bool-qxmlstreamreader-isprocessinginstruction-const">bool QXmlStreamReader::isProcessingInstruction() const</span><a href="#bool-qxmlstreamreader-isprocessinginstruction-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() equals <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">ProcessingInstruction</a>; otherwise returns <code>false</code>.</p>
+<h3><span id="bool-qxmlstreamreader-isstandalonedocument-const">bool QXmlStreamReader::isStandaloneDocument() const</span><a href="#bool-qxmlstreamreader-isstandalonedocument-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if this document has been declared standalone in the XML declaration; otherwise returns <code>false</code>.</p>
+<p>If no XML declaration has been parsed, this function returns <code>false</code>.</p>
+<h3><span id="bool-qxmlstreamreader-isstartdocument-const">bool QXmlStreamReader::isStartDocument() const</span><a href="#bool-qxmlstreamreader-isstartdocument-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() equals <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartDocument</a>; otherwise returns <code>false</code>.</p>
+<h3><span id="bool-qxmlstreamreader-isstartelement-const">bool QXmlStreamReader::isStartElement() const</span><a href="#bool-qxmlstreamreader-isstartelement-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() equals <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartElement</a>; otherwise returns <code>false</code>.</p>
+<h3><span id="bool-qxmlstreamreader-iswhitespace-const">bool QXmlStreamReader::isWhitespace() const</span><a href="#bool-qxmlstreamreader-iswhitespace-const" class="header-anchor">#</a></h3><p>Returns <code>true</code> if the reader reports characters that only consist of white-space; otherwise returns <code>false</code>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isCharacters">isCharacters</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#text">text</a>().</p>
+<h3><span id="qint64-qxmlstreamreader-linenumber-const"> QXmlStreamReader::lineNumber() const</span><a href="#qint64-qxmlstreamreader-linenumber-const" class="header-anchor">#</a></h3><p>Returns the current line number, starting with 1.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#columnNumber">columnNumber</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#characterOffset">characterOffset</a>().</p>
+<h3><span id="qstringview-qxmlstreamreader-name-const"> QXmlStreamReader::name() const</span><a href="#qstringview-qxmlstreamreader-name-const" class="header-anchor">#</a></h3><p>Returns the local name of a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartElement</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EndElement</a>, or an <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EntityReference</a>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceUri">namespaceUri</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#qualifiedName">qualifiedName</a>().</p>
+<h3><span id="qxmlstreamnamespacedeclarations-qxmlstreamreader-namespacedeclarations-const"> QXmlStreamReader::namespaceDeclarations() const</span><a href="#qxmlstreamnamespacedeclarations-qxmlstreamreader-namespacedeclarations-const" class="header-anchor">#</a></h3><p>If the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartElement</a>, this function returns the element’s namespace declarations. Otherwise an empty vector is returned.</p>
+<p>The <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamnamespacedeclaration.html#QXmlStreamNamespaceDeclarations-typedef">QXmlStreamNamespaceDeclarations</a> class is defined to be a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlist.html">QList</a> of <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamnamespacedeclaration.html">QXmlStreamNamespaceDeclaration</a>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addExtraNamespaceDeclaration">addExtraNamespaceDeclaration</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addExtraNamespaceDeclarations">addExtraNamespaceDeclarations</a>().</p>
+<h3><span id="qstringview-qxmlstreamreader-namespaceuri-const"> QXmlStreamReader::namespaceUri() const</span><a href="#qstringview-qxmlstreamreader-namespaceuri-const" class="header-anchor">#</a></h3><p>Returns the namespaceUri of a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartElement</a> or <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EndElement</a>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#name">name</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#qualifiedName">qualifiedName</a>().</p>
+<h3><span id="qxmlstreamnotationdeclarations-qxmlstreamreader-notationdeclarations-const"> QXmlStreamReader::notationDeclarations() const</span><a href="#qxmlstreamnotationdeclarations-qxmlstreamreader-notationdeclarations-const" class="header-anchor">#</a></h3><p>If the <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">DTD</a>, this function returns the DTD’s notation declarations. Otherwise an empty vector is returned.</p>
+<p>The <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamnotationdeclaration.html#QXmlStreamNotationDeclarations-typedef">QXmlStreamNotationDeclarations</a> class is defined to be a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlist.html">QList</a> of <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamnotationdeclaration.html">QXmlStreamNotationDeclaration</a>.</p>
+<h3><span id="qstringview-qxmlstreamreader-prefix-const"> QXmlStreamReader::prefix() const</span><a href="#qstringview-qxmlstreamreader-prefix-const" class="header-anchor">#</a></h3><p>Returns the prefix of a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartElement</a> or <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EndElement</a>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#name">name</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#qualifiedName">qualifiedName</a>().</p>
+<h3><span id="qstringview-qxmlstreamreader-processinginstructiondata-const"> QXmlStreamReader::processingInstructionData() const</span><a href="#qstringview-qxmlstreamreader-processinginstructiondata-const" class="header-anchor">#</a></h3><p>Returns the data of a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">ProcessingInstruction</a>.</p>
+<h3><span id="qstringview-qxmlstreamreader-processinginstructiontarget-const"> QXmlStreamReader::processingInstructionTarget() const</span><a href="#qstringview-qxmlstreamreader-processinginstructiontarget-const" class="header-anchor">#</a></h3><p>Returns the target of a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">ProcessingInstruction</a>.</p>
+<h3><span id="qstringview-qxmlstreamreader-qualifiedname-const"> QXmlStreamReader::qualifiedName() const</span><a href="#qstringview-qxmlstreamreader-qualifiedname-const" class="header-anchor">#</a></h3><p>Returns the qualified name of a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartElement</a> or <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EndElement</a>;</p>
+<p>A qualified name is the raw name of an element in the XML data. It consists of the namespace prefix, followed by colon, followed by the element’s local name. Since the namespace prefix is not unique (the same prefix can point to different namespaces and different prefixes can point to the same namespace), you shouldn’t use qualifiedName(), but the resolved <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceUri">namespaceUri</a>() and the attribute’s local <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#name">name</a>().</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#name">name</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#prefix">prefix</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#namespaceUri">namespaceUri</a>().</p>
+<h3><span id="void-qxmlstreamreader-raiseerror-const-qstring-amp-message-qstring">void QXmlStreamReader::raiseError(const  &amp;<em>message</em> = QString())</span><a href="#void-qxmlstreamreader-raiseerror-const-qstring-amp-message-qstring" class="header-anchor">#</a></h3><p>Raises a custom error with an optional error <em>message</em>.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#error">error</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#errorString">errorString</a>().</p>
+<h3><span id="qstring-qxmlstreamreader-readelementtext-qxmlstreamreader-readelementtextbehaviour-behaviour-erroronunexpectedelement"> QXmlStreamReader::readElementText( <em>behaviour</em> = ErrorOnUnexpectedElement)</span><a href="#qstring-qxmlstreamreader-readelementtext-qxmlstreamreader-readelementtextbehaviour-behaviour-erroronunexpectedelement" class="header-anchor">#</a></h3><p>Convenience function to be called in case a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartElement</a> was read. Reads until the corresponding <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EndElement</a> and returns all text in-between. In case of no error, the current token (see <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>()) after having called this function is <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EndElement</a>.</p>
+<p>The function concatenates <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#text">text</a>() when it reads either <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">Characters</a> or <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EntityReference</a> tokens, but skips <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">ProcessingInstruction</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">Comment</a>. If the current token is not <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">StartElement</a>, an empty string is returned.</p>
+<p>The <em>behaviour</em> defines what happens in case anything else is read before reaching <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EndElement</a>. The function can include the text from child elements (useful for example for HTML), ignore child elements, or raise an <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#Error-enum">UnexpectedElementError</a> and return what was read so far (default).</p>
+<h3><span id="qxmlstreamreader-tokentype-qxmlstreamreader-readnext"> QXmlStreamReader::readNext()</span><a href="#qxmlstreamreader-tokentype-qxmlstreamreader-readnext" class="header-anchor">#</a></h3><p>Reads the next token and returns its type.</p>
+<p>With one exception, once an <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#error">error</a>() is reported by readNext(), further reading of the XML stream is not possible. Then <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#atEnd">atEnd</a>() returns <code>true</code>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#hasError">hasError</a>() returns <code>true</code>, and this function returns <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">QXmlStreamReader::Invalid</a>.</p>
+<p>The exception is when <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#error">error</a>() returns <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#Error-enum">PrematureEndOfDocumentError</a>. This error is reported when the end of an otherwise well-formed chunk of XML is reached, but the chunk doesn’t represent a complete XML document. In that case, parsing <em>can</em> be resumed by calling <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#addData">addData</a>() to add the next chunk of XML, when the stream is being read from a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qbytearray.html">QByteArray</a>, or by waiting for more data to arrive when the stream is being read from a <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#device">device</a>().</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenString">tokenString</a>().</p>
+<h3><span id="bool-qxmlstreamreader-readnextstartelement">bool QXmlStreamReader::readNextStartElement()</span><a href="#bool-qxmlstreamreader-readnextstartelement" class="header-anchor">#</a></h3><p>Reads until the next start element within the current element. Returns <code>true</code> when a start element was reached. When the end element was reached, or when an error occurred, false is returned.</p>
+<p>The current element is the element matching the most recently parsed start element of which a matching end element has not yet been reached. When the parser has reached the end element, the current element becomes the parent element.</p>
+<p>This is a convenience function for when you’re only concerned with parsing XML elements. The <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtxml-streambookmarks-example.html">QXmlStream Bookmarks Example</a> makes extensive use of this function.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#readNext">readNext</a>().</p>
+<h3><span id="void-qxmlstreamreader-setdevice-qiodevice-device">void QXmlStreamReader::setDevice( *<em>device</em>)</span><a href="#void-qxmlstreamreader-setdevice-qiodevice-device" class="header-anchor">#</a></h3><p>Sets the current device to <em>device</em>. Setting the device resets the stream to its initial state.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#device">device</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#clear">clear</a>().</p>
+<h3><span id="since-5-15-void-qxmlstreamreader-setentityexpansionlimit-int-limit"><code>[since 5.15]</code>void QXmlStreamReader::setEntityExpansionLimit(int <em>limit</em>)</span><a href="#since-5-15-void-qxmlstreamreader-setentityexpansionlimit-int-limit" class="header-anchor">#</a></h3><p>Sets the maximum amount of characters a single entity is allowed to expand into to <em>limit</em>. If a single entity expands past the given limit, the document is not considered well formed.</p>
+<p>The limit is there to prevent DoS attacks when loading unknown XML documents where recursive entity expansion could otherwise exhaust all available memory.</p>
+<p>The default value for this property is 4096 characters.</p>
+<p>This function was introduced in Qt 5.15.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#entityExpansionLimit">entityExpansionLimit</a>.</p>
+<h3><span id="void-qxmlstreamreader-setentityresolver-qxmlstreamentityresolver-resolver">void QXmlStreamReader::setEntityResolver( *<em>resolver</em>)</span><a href="#void-qxmlstreamreader-setentityresolver-qxmlstreamentityresolver-resolver" class="header-anchor">#</a></h3><p>Makes <em>resolver</em> the new <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#entityResolver">entityResolver</a>().</p>
+<p>The stream reader does <em>not</em> take ownership of the resolver. It’s the callers responsibility to ensure that the resolver is valid during the entire life-time of the stream reader object, or until another resolver or <code>nullptr</code> is set.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#entityResolver">entityResolver</a>().</p>
+<h3><span id="void-qxmlstreamreader-skipcurrentelement">void QXmlStreamReader::skipCurrentElement()</span><a href="#void-qxmlstreamreader-skipcurrentelement" class="header-anchor">#</a></h3><p>Reads until the end of the current element, skipping any child nodes. This function is useful for skipping unknown elements.</p>
+<p>The current element is the element matching the most recently parsed start element of which a matching end element has not yet been reached. When the parser has reached the end element, the current element becomes the parent element.</p>
+<h3><span id="qstringview-qxmlstreamreader-text-const"> QXmlStreamReader::text() const</span><a href="#qstringview-qxmlstreamreader-text-const" class="header-anchor">#</a></h3><p>Returns the text of <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">Characters</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">Comment</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">DTD</a>, or <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#TokenType-enum">EntityReference</a>.</p>
+<h3><span id="qstring-qxmlstreamreader-tokenstring-const"> QXmlStreamReader::tokenString() const</span><a href="#qstring-qxmlstreamreader-tokenstring-const" class="header-anchor">#</a></h3><p>Returns the reader’s current token as string.</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenType">tokenType</a>().</p>
+<h3><span id="qxmlstreamreader-tokentype-qxmlstreamreader-tokentype-const"> QXmlStreamReader::tokenType() const</span><a href="#qxmlstreamreader-tokentype-qxmlstreamreader-tokentype-const" class="header-anchor">#</a></h3><p>Returns the type of the current token.</p>
+<p>The current token can also be queried with the convenience functions <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isStartDocument">isStartDocument</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isEndDocument">isEndDocument</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isStartElement">isStartElement</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isEndElement">isEndElement</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isCharacters">isCharacters</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isComment">isComment</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isDTD">isDTD</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isEntityReference">isEntityReference</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#isProcessingInstruction">isProcessingInstruction</a>().</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qxmlstreamreader.html#tokenString">tokenString</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/X/">X</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/X/QXmlDefaultHandler/QXmlDTDHandler/QXmlDTDHandler/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QXmlDTDHandler类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/H/QHostAddress/QHostAddress/">
+                        <span class="hidden-mobile">QHostAddress类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,1117 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QNetworkReply Class 公共类型 公共函数 重新实现的公共函数 公共槽函数 信号 受保护的函数 详细描述 成员类型文档 enum QNetworkReply::NetworkError QNetworkReply::RawHeaderPair   成员函数文档 [protected]QNetworkReply::QNetworkReply(QObject *parent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QNetworkReply类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/N/QNetworkReply/QNetworkReply/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QNetworkReply Class 公共类型 公共函数 重新实现的公共函数 公共槽函数 信号 受保护的函数 详细描述 成员类型文档 enum QNetworkReply::NetworkError QNetworkReply::RawHeaderPair   成员函数文档 [protected]QNetworkReply::QNetworkReply(QObject *parent">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:49:42.173Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="N">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QNetworkReply类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QNetworkReply类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      19k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      155 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QNetworkReply类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qnetworkreply-class">QNetworkReply Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#chong-xin-shi-xian-de-gong-gong-han-shu">重新实现的公共函数</a></li>
+<li><a href="#gong-gong-cao-han-shu">公共槽函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#shou-bao-hu-de-han-shu">受保护的函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qnetworkreply-networkerror">enum QNetworkReply::NetworkError</a></li>
+<li><a href="#qnetworkreply-rawheaderpair">QNetworkReply::RawHeaderPair</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#protected-qnetworkreply-qnetworkreply-qobject-qobject-html-qobject-parent-nullptr"><code>[protected]</code>QNetworkReply::QNetworkReply(</a><a href="qobject.html#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#pure-virtual-slot-void-qnetworkreply-abort"><code>[pure virtual slot]</code>void QNetworkReply::abort()</a></li>
+<li><a href="#signal-void-qnetworkreply-downloadprogress-qint64-qtglobal-html-qint64-typedef-bytesreceived-qint64-qtglobal-html-qint64-typedef-bytestotal"><code>[signal]</code>void QNetworkReply::downloadProgress(</a><a href="qtglobal.html#qint64-typedef">qint64</a> <em>bytesReceived</em>, <a href="qtglobal.html#qint64-typedef">qint64</a> <em>bytesTotal</em>)</li>
+<li><a href="#signal-since-5-1-void-qnetworkreply-encrypted"><code>[signal, since 5.1]</code>void QNetworkReply::encrypted()</a></li>
+<li><a href="#signal-since-5-15-void-qnetworkreply-erroroccurred-qnetworkreply-networkerror-networkerror-enum-code"><code>[signal, since 5.15]</code>void QNetworkReply::errorOccurred(</a><a href="#NetworkError-enum">QNetworkReply::NetworkError</a> <em>code</em>)</li>
+<li><a href="#signal-void-qnetworkreply-finished"><code>[signal]</code>void QNetworkReply::finished()</a></li>
+<li><a href="#virtual-slot-void-qnetworkreply-ignoresslerrors"><code>[virtual slot]</code>void QNetworkReply::ignoreSslErrors()</a></li>
+<li><a href="#signal-void-qnetworkreply-metadatachanged"><code>[signal]</code>void QNetworkReply::metaDataChanged()</a></li>
+<li><a href="#signal-since-5-5-void-qnetworkreply-presharedkeyauthenticationrequired-qsslpresharedkeyauthenticator-qsslpresharedkeyauthenticator-html-authenticator"><code>[signal, since 5.5]</code>void QNetworkReply::preSharedKeyAuthenticationRequired(</a><a href="qsslpresharedkeyauthenticator.html">QSslPreSharedKeyAuthenticator</a> *<em>authenticator</em>)</li>
+<li><a href="#signal-since-5-9-void-qnetworkreply-redirectallowed"><code>[signal, since 5.9]</code>void QNetworkReply::redirectAllowed()</a></li>
+<li><a href="#signal-since-5-6-void-qnetworkreply-redirected-const-qurl-qurl-html-url"><code>[signal, since 5.6]</code>void QNetworkReply::redirected(const </a><a href="qurl.html">QUrl</a> &amp;<em>url</em>)</li>
+<li><a href="#signal-void-qnetworkreply-sslerrors-const-qlist-qlist-html-qsslerror-qsslerror-html-errors"><code>[signal]</code>void QNetworkReply::sslErrors(const </a><a href="qlist.html">QList</a>&lt;<a href="qsslerror.html">QSslError</a>&gt; &amp;<em>errors</em>)</li>
+<li><a href="#signal-void-qnetworkreply-uploadprogress-qint64-qtglobal-html-qint64-typedef-bytessent-qint64-qtglobal-html-qint64-typedef-bytestotal"><code>[signal]</code>void QNetworkReply::uploadProgress(</a><a href="qtglobal.html#qint64-typedef">qint64</a> <em>bytesSent</em>, <a href="qtglobal.html#qint64-typedef">qint64</a> <em>bytesTotal</em>)</li>
+<li><a href="#virtual-qnetworkreply-qnetworkreply"><code>[virtual]</code>QNetworkReply::~QNetworkReply()</a></li>
+<li><a href="#qvariant-qvariant-html-qnetworkreply-attribute-qnetworkrequest-attribute-qnetworkrequest-html-attribute-enum-code-const">QVariant</a></li>
+<li><a href="#override-virtual-void-qnetworkreply-close"><code>[override virtual]</code>void QNetworkReply::close()</a></li>
+<li><a href="#qnetworkreply-networkerror-networkerror-enum-qnetworkreply-error-const">QNetworkReply::NetworkError</a></li>
+<li><a href="#bool-qnetworkreply-hasrawheader-const-qbytearray-qbytearray-html-headername-const">bool QNetworkReply::hasRawHeader(const </a><a href="qbytearray.html">QByteArray</a> &amp;<em>headerName</em>) const</li>
+<li><a href="#qvariant-qvariant-html-qnetworkreply-header-qnetworkrequest-knownheaders-qnetworkrequest-html-knownheaders-enum-header-const-1">QVariant</a></li>
+<li><a href="#void-qnetworkreply-ignoresslerrors-const-qlist-qlist-html-qsslerror-qsslerror-html-errors">void QNetworkReply::ignoreSslErrors(const </a><a href="qlist.html">QList</a>&lt;<a href="qsslerror.html">QSslError</a>&gt; &amp;<em>errors</em>)</li>
+<li><a href="#virtual-protected-since-5-0-void-qnetworkreply-ignoresslerrorsimplementation-const-qlist-qlist-html-qsslerror-qsslerror-html-errors"><code>[virtual protected, since 5.0]</code>void QNetworkReply::ignoreSslErrorsImplementation(const </a><a href="qlist.html">QList</a>&lt;<a href="qsslerror.html">QSslError</a>&gt; &amp;<em>errors</em>)</li>
+<li><a href="#bool-qnetworkreply-isfinished-const">bool QNetworkReply::isFinished() const</a></li>
+<li><a href="#bool-qnetworkreply-isrunning-const">bool QNetworkReply::isRunning() const</a></li>
+<li><a href="#qnetworkaccessmanager-qnetworkaccessmanager-html-qnetworkreply-manager-const">QNetworkAccessManager</a></li>
+<li><a href="#qnetworkaccessmanager-operation-qnetworkaccessmanager-html-operation-enum-qnetworkreply-operation-const">QNetworkAccessManager::Operation</a></li>
+<li><a href="#qbytearray-qbytearray-html-qnetworkreply-rawheader-const-qbytearray-qbytearray-html-headername-const">QByteArray</a></li>
+<li><a href="#qlist-qlist-html-qbytearray-qbytearray-html-qnetworkreply-rawheaderlist-const">QList</a></li>
+<li><a href="#const-qlist-qlist-html-qnetworkreply-rawheaderpair-rawheaderpair-typedef-qnetworkreply-rawheaderpairs-const">const </a><a href="qlist.html">QList</a>&lt;<a href="#RawHeaderPair-typedef">QNetworkReply::RawHeaderPair</a>&gt; &amp;QNetworkReply::rawHeaderPairs() const</li>
+<li><a href="#qint64-qtglobal-html-qint64-typedef-qnetworkreply-readbuffersize-const">qint64</a></li>
+<li><a href="#qnetworkrequest-qnetworkrequest-html-qnetworkreply-request-const">QNetworkRequest</a></li>
+<li><a href="#protected-void-qnetworkreply-setattribute-qnetworkrequest-attribute-qnetworkrequest-html-attribute-enum-code-const-qvariant-qvariant-html-value"><code>[protected]</code>void QNetworkReply::setAttribute(</a><a href="qnetworkrequest.html#Attribute-enum">QNetworkRequest::Attribute</a> <em>code</em>, const <a href="qvariant.html">QVariant</a> &amp;<em>value</em>)</li>
+<li><a href="#protected-void-qnetworkreply-seterror-qnetworkreply-networkerror-networkerror-enum-errorcode-const-qstring-qstring-html-errorstring"><code>[protected]</code>void QNetworkReply::setError(</a><a href="#NetworkError-enum">QNetworkReply::NetworkError</a> <em>errorCode</em>, const <a href="qstring.html">QString</a> &amp;<em>errorString</em>)</li>
+<li><a href="#protected-void-qnetworkreply-setfinished-bool-finished"><code>[protected]</code>void QNetworkReply::setFinished(bool <em>finished</em>)</a></li>
+<li><a href="#protected-void-qnetworkreply-setheader-qnetworkrequest-knownheaders-qnetworkrequest-html-knownheaders-enum-header-const-qvariant-qvariant-html-value"><code>[protected]</code>void QNetworkReply::setHeader(</a><a href="qnetworkrequest.html#KnownHeaders-enum">QNetworkRequest::KnownHeaders</a> <em>header</em>, const <a href="qvariant.html">QVariant</a> &amp;<em>value</em>)</li>
+<li><a href="#protected-void-qnetworkreply-setoperation-qnetworkaccessmanager-operation-qnetworkaccessmanager-html-operation-enum-operation"><code>[protected]</code>void QNetworkReply::setOperation(</a><a href="qnetworkaccessmanager.html#Operation-enum">QNetworkAccessManager::Operation</a> <em>operation</em>)</li>
+<li><a href="#protected-void-qnetworkreply-setrawheader-const-qbytearray-qbytearray-html-headername-const-qbytearray-qbytearray-html-value"><code>[protected]</code>void QNetworkReply::setRawHeader(const </a><a href="qbytearray.html">QByteArray</a> &amp;<em>headerName</em>, const <a href="qbytearray.html">QByteArray</a> &amp;<em>value</em>)</li>
+<li><a href="#virtual-void-qnetworkreply-setreadbuffersize-qint64-qtglobal-html-qint64-typedef-size"><code>[virtual]</code>void QNetworkReply::setReadBufferSize(</a><a href="qtglobal.html#qint64-typedef">qint64</a> <em>size</em>)</li>
+<li><a href="#protected-void-qnetworkreply-setrequest-const-qnetworkrequest-qnetworkrequest-html-request"><code>[protected]</code>void QNetworkReply::setRequest(const </a><a href="qnetworkrequest.html">QNetworkRequest</a> &amp;<em>request</em>)</li>
+<li><a href="#void-qnetworkreply-setsslconfiguration-const-qsslconfiguration-qsslconfiguration-html-config">void QNetworkReply::setSslConfiguration(const </a><a href="qsslconfiguration.html">QSslConfiguration</a> &amp;<em>config</em>)</li>
+<li><a href="#virtual-protected-since-5-0-void-qnetworkreply-setsslconfigurationimplementation-const-qsslconfiguration-qsslconfiguration-html-configuration"><code>[virtual protected, since 5.0]</code>void QNetworkReply::setSslConfigurationImplementation(const </a><a href="qsslconfiguration.html">QSslConfiguration</a> &amp;<em>configuration</em>)</li>
+<li><a href="#protected-void-qnetworkreply-seturl-const-qurl-qurl-html-url"><code>[protected]</code>void QNetworkReply::setUrl(const </a><a href="qurl.html">QUrl</a> &amp;<em>url</em>)</li>
+<li><a href="#qsslconfiguration-qsslconfiguration-html-qnetworkreply-sslconfiguration-const">QSslConfiguration</a></li>
+<li><a href="#virtual-protected-since-5-0-void-qnetworkreply-sslconfigurationimplementation-qsslconfiguration-qsslconfiguration-html-configuration-const"><code>[virtual protected, since 5.0]</code>void QNetworkReply::sslConfigurationImplementation(</a><a href="qsslconfiguration.html">QSslConfiguration</a> &amp;<em>configuration</em>) const</li>
+<li><a href="#qurl-qurl-html-qnetworkreply-url-const">QUrl</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QNetworkReply Class
+
+<p>QNetworkReply类包含了用<a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>发送的请求的数据和头信息。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qnetworkreply></qnetworkreply></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Network REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Network)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += network</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a href="qiodevice.html">QIODevice</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qnetworkreply-members.html">List of all members, including inherited members</a></li>
+</ul>
+<p><strong>注意：</strong>该类中的所有函数都是<a href="threads-reentrancy.html">可重入</a>.</p>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#NetworkError-enum">NetworkError</a></strong> { NoError, ConnectionRefusedError, RemoteHostClosedError, HostNotFoundError, TimeoutError, …, UnknownServerError }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#RawHeaderPair-typedef">RawHeaderPair</a></strong></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual</th>
+<th><strong><a href="#dtor.QNetworkReply">~QNetworkReply</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QVariant</td>
+<td><strong><a href="#attribute">attribute</a></strong>(QNetworkRequest::Attribute <em>code</em>) const</td>
+</tr>
+<tr>
+<td>QNetworkReply::NetworkError</td>
+<td><strong><a href="#error">error</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasRawHeader">hasRawHeader</a></strong>(const QByteArray &amp;<em>headerName</em>) const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#header">header</a></strong>(QNetworkRequest::KnownHeaders <em>header</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#ignoreSslErrors-1">ignoreSslErrors</a></strong>(const QList<qsslerror> &amp;<em>errors</em>)</qsslerror></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isFinished">isFinished</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isRunning">isRunning</a></strong>() const</td>
+</tr>
+<tr>
+<td>QNetworkAccessManager *</td>
+<td><strong><a href="#manager">manager</a></strong>() const</td>
+</tr>
+<tr>
+<td>QNetworkAccessManager::Operation</td>
+<td><strong><a href="#operation">operation</a></strong>() const</td>
+</tr>
+<tr>
+<td>QByteArray</td>
+<td><strong><a href="#rawHeader">rawHeader</a></strong>(const QByteArray &amp;<em>headerName</em>) const</td>
+</tr>
+<tr>
+<td>QList<qbytearray></qbytearray></td>
+<td><strong><a href="#rawHeaderList">rawHeaderList</a></strong>() const</td>
+</tr>
+<tr>
+<td>const QList<a href="QNetworkReply::RawHeaderPair">QNetworkReply::RawHeaderPair</a> &amp;</td>
+<td><strong><a href="#rawHeaderPairs">rawHeaderPairs</a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="#readBufferSize">readBufferSize</a></strong>() const</td>
+</tr>
+<tr>
+<td>QNetworkRequest</td>
+<td><strong><a href="#request">request</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#setReadBufferSize">setReadBufferSize</a></strong>(qint64 <em>size</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setSslConfiguration">setSslConfiguration</a></strong>(const QSslConfiguration &amp;<em>config</em>)</td>
+</tr>
+<tr>
+<td>QSslConfiguration</td>
+<td><strong><a href="#sslConfiguration">sslConfiguration</a></strong>() const</td>
+</tr>
+<tr>
+<td>QUrl</td>
+<td><strong><a href="#url">url</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-xin-shi-xian-de-gong-gong-han-shu">重新实现的公共函数</span><a href="#chong-xin-shi-xian-de-gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual void</th>
+<th><strong><a href="#close">close</a></strong>() override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cao-han-shu">公共槽函数</span><a href="#gong-gong-cao-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual void</th>
+<th><strong><a href="#abort">abort</a></strong>() = 0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual void</td>
+<td><strong><a href="#ignoreSslErrors">ignoreSslErrors</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#downloadProgress">downloadProgress</a></strong>(qint64 <em>bytesReceived</em>, qint64 <em>bytesTotal</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#encrypted">encrypted</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#errorOccurred">errorOccurred</a></strong>(QNetworkReply::NetworkError <em>code</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#finished">finished</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#metaDataChanged">metaDataChanged</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#preSharedKeyAuthenticationRequired">preSharedKeyAuthenticationRequired</a></strong>(QSslPreSharedKeyAuthenticator *<em>authenticator</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#redirectAllowed">redirectAllowed</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#redirected">redirected</a></strong>(const QUrl &amp;<em>url</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#sslErrors">sslErrors</a></strong>(const QList<qsslerror> &amp;<em>errors</em>)</qsslerror></td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#uploadProgress">uploadProgress</a></strong>(qint64 <em>bytesSent</em>, qint64 <em>bytesTotal</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="shou-bao-hu-de-han-shu">受保护的函数</span><a href="#shou-bao-hu-de-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QNetworkReply">QNetworkReply</a></strong>(QObject *<em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual void</td>
+<td><strong><a href="#ignoreSslErrorsImplementation">ignoreSslErrorsImplementation</a></strong>(const QList<qsslerror> &amp;<em>errors</em>)</qsslerror></td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setAttribute">setAttribute</a></strong>(QNetworkRequest::Attribute <em>code</em>, const QVariant &amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setError">setError</a></strong>(QNetworkReply::NetworkError <em>errorCode</em>, const QString &amp;<em>errorString</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setFinished">setFinished</a></strong>(bool <em>finished</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setHeader">setHeader</a></strong>(QNetworkRequest::KnownHeaders <em>header</em>, const QVariant &amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setOperation">setOperation</a></strong>(QNetworkAccessManager::Operation <em>operation</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setRawHeader">setRawHeader</a></strong>(const QByteArray &amp;<em>headerName</em>, const QByteArray &amp;<em>value</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setRequest">setRequest</a></strong>(const QNetworkRequest &amp;<em>request</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#setSslConfigurationImplementation">setSslConfigurationImplementation</a></strong>(const QSslConfiguration &amp;<em>configuration</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setUrl">setUrl</a></strong>(const QUrl &amp;<em>url</em>)</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#sslConfigurationImplementation">sslConfigurationImplementation</a></strong>(QSslConfiguration &amp;<em>configuration</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QNetworkReply类包含了与用<a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>发布的请求相关的数据和元数据。像<a href="qnetworkrequest.html">QNetworkRequest</a>一样，它包含一个URL和头信息（包括解析过的和原始的形式），一些关于回复状态的信息以及回复本身的内容。</p>
+<p>QNetworkReply是一个顺序访问的<a href="qiodevice.html">QIODevice</a>，这意味着一旦从对象中读取数据，它就不再由设备保存。因此，如果需要的话，保留这些数据是应用程序的责任。每当从网络上收到更多的数据并进行处理时，就会发出<a href="qiodevice.html#readyRead">readyRead</a>()信号。</p>
+<p>当收到数据时，<a href="#downloadProgress">downloadProgress</a>()信号也会被发射出来，但其中包含的字节数可能不代表实际收到的字节数，如果对内容做了任何转换（例如，解压和去除协议开销）。</p>
+<p>尽管QNetworkReply是一个与回复内容相连的<a href="qiodevice.html">QIODevice</a>，它也会发出<a href="#uploadProgress">uploadProgress</a>()信号，对于有此类内容的操作，它表示上传的进度。</p>
+<p><strong>注意：</strong>不要删除与<a href="#errorOccurred">errorOccurred</a>()或<a href>finished</a>信号相连的槽中的对象。使用<a href="qobject.html#deleteLater">deleteLater</a>()。</p>
+<p><strong>See also</strong> <a href="qnetworkrequest.html">QNetworkRequest</a> and <a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qnetworkreply-networkerror">enum QNetworkReply::NetworkError</span><a href="#enum-qnetworkreply-networkerror" class="header-anchor">#</a></h3><p>表示在处理请求的过程中发现的所有可能的错误情况。</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QNetworkReply::NoError</code></td>
+<td><code>0</code></td>
+<td>没有错误状况。</td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong>当HTTP协议返回一个重定向时，将不会报告错误。你可以用 <a href="qnetworkrequest.html#Attribute-enum">QNetworkRequest::RedirectionTargetAttribute</a> 属性检查是否有重定向。</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QNetworkReply::ConnectionRefusedError</code></td>
+<td><code>1</code></td>
+<td>远程服务器拒绝连接（该服务器不接受请求）。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::RemoteHostClosedError</code></td>
+<td><code>2</code></td>
+<td>远程服务器在收到和处理整个回复之前过早地关闭了连接。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::HostNotFoundError</code></td>
+<td><code>3</code></td>
+<td>没有找到远程主机名（无效的主机名）。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::TimeoutError</code></td>
+<td><code>4</code></td>
+<td>与远程服务器的连接超时了</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::OperationCanceledError</code></td>
+<td><code>5</code></td>
+<td>在操作完成之前，通过调用<a href="#abort">abort</a>()或<a href="#close">close</a>()取消了该操作。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::SslHandshakeFailedError</code></td>
+<td><code>6</code></td>
+<td>SSL/TLS握手失败，加密通道无法建立。<a href="#sslErrors">sslErrors</a>()信号应该被发射出来。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::TemporaryNetworkFailureError</code></td>
+<td><code>7</code></td>
+<td>连接因与网络断开而中断，但系统已开始漫游到另一个接入点。该请求应重新提交，一旦连接重新建立，将立即得到处理。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::NetworkSessionFailedError</code></td>
+<td><code>8</code></td>
+<td>由于与网络断开连接或未能启动网络而导致连接中断。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::BackgroundRequestNotAllowedError</code></td>
+<td><code>9</code></td>
+<td>由于平台政策，目前不允许背景请求。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::TooManyRedirectsError</code></td>
+<td><code>10</code></td>
+<td>当跟随重定向时，达到了最大的限制。该限制默认设置为50或由QNetworkRequest::setMaxRedirectsAllowed()设置。(这个值是在5.6中引入的）。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::InsecureRedirectError</code></td>
+<td><code>11</code></td>
+<td>当跟随重定向时，网络访问API检测到一个从加密协议（https）到未加密协议（http）的重定向。(这个值是在5.6中引入的）。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ProxyConnectionRefusedError</code></td>
+<td><code>101</code></td>
+<td>与代理服务器的连接被拒绝（代理服务器不接受请求）。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ProxyConnectionClosedError</code></td>
+<td><code>102</code></td>
+<td>代理服务器在收到和处理整个回复之前，过早地关闭了连接。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ProxyNotFoundError</code></td>
+<td><code>103</code></td>
+<td>没有找到代理主机名（无效的代理主机名）。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ProxyTimeoutError</code></td>
+<td><code>104</code></td>
+<td>与代理服务器的连接超时或代理服务器没有及时回复所发送的请求</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ProxyAuthenticationRequiredError</code></td>
+<td><code>105</code></td>
+<td>代理需要认证以满足请求，但不接受提供的任何证书（如果有的话）。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ContentAccessDenied</code></td>
+<td><code>201</code></td>
+<td>对远程内容的访问被拒绝（类似于HTTP错误403）。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ContentOperationNotPermittedError</code></td>
+<td><code>202</code></td>
+<td>对远程内容请求的操作是不允许的</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ContentNotFoundError</code></td>
+<td><code>203</code></td>
+<td>在服务器上没有找到远程内容（类似于HTTP错误404）。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::AuthenticationRequiredError</code></td>
+<td><code>204</code></td>
+<td>远程服务器需要认证才能提供内容，但提供的证书不被接受（如果有的话）。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ContentReSendError</code></td>
+<td><code>205</code></td>
+<td>请求需要再次发送，但失败了，例如，因为上传的数据不能被第二次读取。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ContentConflictError</code></td>
+<td><code>206</code></td>
+<td>由于与资源的当前状态有冲突，请求无法完成。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ContentGoneError</code></td>
+<td><code>207</code></td>
+<td>请求的资源在服务器上不再可用。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::InternalServerError</code></td>
+<td><code>401</code></td>
+<td>服务器遇到了一个意外情况，使其无法完成请求。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::OperationNotImplementedError</code></td>
+<td><code>402</code></td>
+<td>服务器不支持完成该请求所需的功能。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ServiceUnavailableError</code></td>
+<td><code>403</code></td>
+<td>服务器此时无法处理该请求。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ProtocolUnknownError</code></td>
+<td><code>301</code></td>
+<td>网络访问API不能满足该请求，因为该协议是未知的。</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ProtocolInvalidOperationError</code></td>
+<td><code>302</code></td>
+<td>请求的操作对该协议无效</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::UnknownNetworkError</code></td>
+<td><code>99</code></td>
+<td>检测到一个与网络有关的未知错误</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::UnknownProxyError</code></td>
+<td><code>199</code></td>
+<td>检测到一个与代理有关的未知错误</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::UnknownContentError</code></td>
+<td><code>299</code></td>
+<td>检测到一个与远程内容有关的未知错误</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::ProtocolFailure</code></td>
+<td><code>399</code></td>
+<td>检测到协议故障（解析错误、无效或意外响应等）</td>
+</tr>
+<tr>
+<td><code>QNetworkReply::UnknownServerError</code></td>
+<td><code>499</code></td>
+<td>检测到与服务器响应有关的未知错误</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="#error">error</a>() and <a href="#errorOccurred">errorOccurred</a>().</p>
+<h3><span id="qnetworkreply-rawheaderpair">QNetworkReply::RawHeaderPair</span><a href="#qnetworkreply-rawheaderpair" class="header-anchor">#</a></h3><p>RawHeaderPair是一个QPair&lt;<a href="qbytearray.html">QByteArray</a>, <a href="qbytearray.html">QByteArray</a>&gt;，其中第一个<a href="qbytearray.html">QByteArray</a>是头的名称，第二个是头的内容。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="protected-qnetworkreply-qnetworkreply-qobject-parent-nullptr"><code>[protected]</code>QNetworkReply::QNetworkReply( *<em>parent</em> = nullptr)</span><a href="#protected-qnetworkreply-qnetworkreply-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>创建一个QNetworkReply对象，其父级为<em>parent</em>。</p>
+<p>你不能直接实例化QNetworkReply对象。使用<a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>函数来做到这一点。</p>
+<h3><span id="pure-virtual-slot-void-qnetworkreply-abort"><code>[pure virtual slot]</code>void QNetworkReply::abort()</span><a href="#pure-virtual-slot-void-qnetworkreply-abort" class="header-anchor">#</a></h3><p>立即中止操作，并关闭任何仍然开放的网络连接。仍在进行中的上传也会被中止。</p>
+<p><a href="#finished">finished</a>()信号也会被发射出来。</p>
+<p><strong>See also</strong> <a href="#close">close</a>() and <a href="#finished">finished</a>().</p>
+<h3><span id="signal-void-qnetworkreply-downloadprogress-qint64-bytesreceived-qint64-bytestotal"><code>[signal]</code>void QNetworkReply::downloadProgress( <em>bytesReceived</em>,  <em>bytesTotal</em>)</span><a href="#signal-void-qnetworkreply-downloadprogress-qint64-bytesreceived-qint64-bytestotal" class="header-anchor">#</a></h3><p>这个信号的发出是为了表明这个网络请求的下载部分的进展，如果有的话。如果没有与此请求相关的下载，这个信号将被发射一次，<em>bytesReceived</em>和<em>bytesTotal</em>的值都为0。</p>
+<p><em>bytesReceived</em>参数表示收到的字节数，而<em>bytesTotal</em>表示预计下载的总字节数。如果不知道要下载的字节数，<em>bytesTotal</em>将是-1。</p>
+<p>当<em>bytesReceived</em>等于<em>bytesTotal</em>时，下载就结束了。这时，<em>bytesTotal</em>将不会是-1。</p>
+<p>请注意，<em>bytesReceived</em>和<em>bytesTotal</em>的值可能与<a href="qiodevice.html#size">size</a>()、通过<a href="qiodevice.html#read">read</a>()或<a href="qiodevice.html#readAll">readAll</a>()获得的字节总数、或头信息(ContentLengthHeader)的值不同。原因是在下载过程中可能会有协议开销或数据被压缩。</p>
+<p><strong>See also</strong> <a href="#uploadProgress">uploadProgress</a>() and <a href="qiodevice.html#bytesAvailable">bytesAvailable</a>().</p>
+<h3><span id="signal-since-5-1-void-qnetworkreply-encrypted"><code>[signal, since 5.1]</code>void QNetworkReply::encrypted()</span><a href="#signal-since-5-1-void-qnetworkreply-encrypted" class="header-anchor">#</a></h3><p>当一个SSL/TLS会话成功地完成了初始握手时，就会发出这个信号。在这一点上，没有用户数据被传输。该信号可用于对证书链进行额外的检查，例如，当一个网站的证书发生变化时通知用户。如果回复不符合预期的标准，那么应该通过调用<a href="#abort">QNetworkReply::abort</a>()由连接到这个信号的槽来中止。使用中的SSL配置可以通过<a href="#sslConfiguration">QNetworkReply::sslConfiguration</a>()方法进行检查。</p>
+<p>在内部，<a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>可以打开多个连接到一个服务器，以允许它并行地处理请求。这些连接可以被重复使用，这意味着加密()信号将不会被发射出来。这意味着在<a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>的生命周期内，你只能保证在第一次连接到一个网站时收到这个信号。</p>
+<p>这个函数从Qt 5.1 引入。</p>
+<p><strong>See also</strong> <a href="qsslsocket.html#encrypted">QSslSocket::encrypted</a>() and <a href="qnetworkaccessmanager.html#encrypted">QNetworkAccessManager::encrypted</a>().</p>
+<h3><span id="signal-since-5-15-void-qnetworkreply-erroroccurred-qnetworkreply-networkerror-code"><code>[signal, since 5.15]</code>void QNetworkReply::errorOccurred( <em>code</em>)</span><a href="#signal-since-5-15-void-qnetworkreply-erroroccurred-qnetworkreply-networkerror-code" class="header-anchor">#</a></h3><p>这个信号是在回复检测到处理过程中的错误时发出的。随后可能会出现<a href="#finished">finished</a>()信号，表明连接已经结束。</p>
+<p>参数<em>code</em>包含检测到的错误的代码。调用<a href="qiodevice.html#errorString">errorString</a>()来获得错误情况的文字表述。</p>
+<p><strong>注意：</strong>不要删除与该信号相连的槽中的对象。使用[deleteLater]（qobject.html#deleteLater）()。</p>
+<p>这个函数从Qt 5.15 引入。</p>
+<p><strong>See also</strong> <a href="#error">error</a>() and <a href="qiodevice.html#errorString">errorString</a>().</p>
+<h3><span id="signal-void-qnetworkreply-finished"><code>[signal]</code>void QNetworkReply::finished()</span><a href="#signal-void-qnetworkreply-finished" class="header-anchor">#</a></h3><p>这个信号是在回复处理完毕后发出的。在这个信号发出后，回复的数据或元数据将不再有更新。</p>
+<p>除非调用了<a href="#close">close</a>()或<a href="#abort">abort</a>()，否则回复仍将被打开以供阅读，因此可以通过调用<a href="qiodevice.html#read">read</a>()或<a href="qiodevice.html#readAll">readAll</a>()来检索数据。特别是，如果由于<a href="qiodevice.html#readyRead">readyRead</a>()而没有调用<a href="qiodevice.html#read">read</a>()，调用<a href="qiodevice.html#readAll">readAll</a>()将检索出<a href="qbytearray.html">QByteArray</a>中的全部内容。</p>
+<p>这个信号与<a href="qnetworkaccessmanager.html#finished">QNetworkAccessManager::finished</a>()同时发出，该信号的回复参数是这个对象。</p>
+<p><strong>注意：</strong>不要删除连接到这个信号的槽中的对象。使用<a href="qobject.html#deleteLater">deleteLater</a>()。</p>
+<p>你也可以使用<a href="#isFinished">isFinished</a>()来检查一个<a href>QNetworkReply</a>是否已经完成，甚至在你收到finished()信号之前。</p>
+<p><strong>See also</strong> <a href="#setFinished">setFinished</a>(), <a href="qnetworkaccessmanager.html#finished">QNetworkAccessManager::finished</a>(), and <a href="#isFinished">isFinished</a>().</p>
+<h3><span id="virtual-slot-void-qnetworkreply-ignoresslerrors"><code>[virtual slot]</code>void QNetworkReply::ignoreSslErrors()</span><a href="#virtual-slot-void-qnetworkreply-ignoresslerrors" class="header-anchor">#</a></h3><p>如果这个函数被调用，与网络连接有关的SSL错误将被忽略，包括证书验证错误。</p>
+<p><strong>警告：</strong>要确保总是让用户检查<a href="#sslErrors">sslErrors</a>()信号报告的错误，只有在用户确认进行得很好时才调用这个方法。如果有意外的错误，则应中止回复。在没有检查实际错误的情况下调用这个方法，很可能会给你的应用程序带来安全风险。使用它时要非常小心!</p>
+<p>这个函数可以从连接到<a href="#sslErrors">sslErrors</a>()信号的槽中调用，它表明发现了哪些错误。</p>
+<p><strong>注意：</strong>如果<a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>启用了HTTP严格传输安全，这个函数就没有作用。</p>
+<p><strong>See also</strong> <a href="#sslConfiguration">sslConfiguration</a>(), <a href="#sslErrors">sslErrors</a>(), and <a href="qsslsocket.html#ignoreSslErrors">QSslSocket::ignoreSslErrors</a>().</p>
+<h3><span id="signal-void-qnetworkreply-metadatachanged"><code>[signal]</code>void QNetworkReply::metaDataChanged()</span><a href="#signal-void-qnetworkreply-metadatachanged" class="header-anchor">#</a></h3><p>每当这个回复中的元数据发生变化时，就会发出这个信号。元数据是任何不属于内容（数据）本身的信息，包括网络头文件。在大多数情况下，在收到第一个字节的数据时，元数据将被完全知道。然而，在数据的处理过程中，有可能收到头信息或其他元数据的更新。</p>
+<p><strong>See also</strong> <a href="#header">header</a>(), <a href="#rawHeaderList">rawHeaderList</a>(), <a href="#rawHeader">rawHeader</a>(), and <a href="#hasRawHeader">hasRawHeader</a>().</p>
+<h3><span id="signal-since-5-5-void-qnetworkreply-presharedkeyauthenticationrequired-qsslpresharedkeyauthenticator-authenticator"><code>[signal, since 5.5]</code>void QNetworkReply::preSharedKeyAuthenticationRequired( *<em>authenticator</em>)</span><a href="#signal-since-5-5-void-qnetworkreply-presharedkeyauthenticationrequired-qsslpresharedkeyauthenticator-authenticator" class="header-anchor">#</a></h3><p>如果SSL/TLS握手协商了一个PSK密码组，因此需要进行PSK认证，就会发出这个信号。</p>
+<p>当使用PSK时，客户端必须向服务器发送一个有效的身份和一个有效的预共享密钥，以便SSL握手继续进行。应用程序可以在连接到该信号的槽中提供这些信息，根据他们的需要填写传递的<em>authenticator</em>对象。</p>
+<p><strong>注意：</strong>忽略这个信号，或未能提供所需的凭证，将导致握手失败，从而导致连接中止。</p>
+<p>这个函数从Qt 5.5 引入。</p>
+<p><strong>See also</strong> <a href="qsslpresharedkeyauthenticator.html">QSslPreSharedKeyAuthenticator</a>.</p>
+<h3><span id="signal-since-5-9-void-qnetworkreply-redirectallowed"><code>[signal, since 5.9]</code>void QNetworkReply::redirectAllowed()</span><a href="#signal-since-5-9-void-qnetworkreply-redirectallowed" class="header-anchor">#</a></h3><p>当处理<a href="#redirected">redirected</a>()信号的客户端代码已经验证了新的URL，它发出这个信号以允许重定向继续进行。该协议适用于重定向策略被设置为<a href="qnetworkrequest.html#RedirectPolicy-enum">QNetworkRequest::UserVerifiedRedirectPolicy</a> 的网络请求。</p>
+<p>这个函数从Qt 5.9 引入。</p>
+<p><strong>See also</strong> <a href="qnetworkrequest.html#RedirectPolicy-enum">QNetworkRequest::UserVerifiedRedirectPolicy</a>, <a href="qnetworkaccessmanager.html#setRedirectPolicy">QNetworkAccessManager::setRedirectPolicy</a>(), and <a href="qnetworkrequest.html#Attribute-enum">QNetworkRequest::RedirectPolicyAttribute</a>.</p>
+<h3><span id="signal-since-5-6-void-qnetworkreply-redirected-const-qurl-amp-url"><code>[signal, since 5.6]</code>void QNetworkReply::redirected(const  &amp;<em>url</em>)</span><a href="#signal-since-5-6-void-qnetworkreply-redirected-const-qurl-amp-url" class="header-anchor">#</a></h3><p>如果<a href="qnetworkrequest.html#RedirectPolicy-enum">QNetworkRequest::ManualRedirectPolicy</a>在请求中被设置，并且服务器以3xx状态（特别是301、302、303、305、307或308状态代码）回应，并且在location头中有一个有效的url，表明HTTP重定向，则发出此信号。参数<em>url</em>包含服务器在location header中返回的新的重定向url。</p>
+<p>这个函数从Qt 5.6 引入。</p>
+<p><strong>See also</strong> <a href="qnetworkrequest.html#RedirectPolicy-enum">QNetworkRequest::RedirectPolicy</a>.</p>
+<h3><span id="signal-void-qnetworkreply-sslerrors-const-qlist-lt-qsslerror-gt-amp-errors"><code>[signal]</code>void QNetworkReply::sslErrors(const &lt;&gt; &amp;<em>errors</em>)</span><a href="#signal-void-qnetworkreply-sslerrors-const-qlist-lt-qsslerror-gt-amp-errors" class="header-anchor">#</a></h3><p>如果SSL/TLS会话在设置过程中遇到错误，包括证书验证错误，就会发出这个信号。参数<em>errors</em>包含错误列表。</p>
+<p>为了表示这些错误不是致命的，连接应该继续进行，应该从连接到这个信号的槽中调用<a href="#ignoreSslErrors">ignoreSslErrors</a>()函数。如果不调用它，在任何数据交换（包括URL）之前，SSL会话将被撕毁。</p>
+<p>这个信号可以用来向用户显示错误信息，表明安全可能受到影响，并显示SSL设置（见<a href="#sslConfiguration">sslConfiguration</a>()以获得它）。如果用户在分析了远程证书后决定继续进行，槽应该调用<a href="#ignoreSslErrors">ignoreSslErrors</a>()。</p>
+<p><strong>See also</strong> <a href="qsslsocket.html#sslErrors">QSslSocket::sslErrors</a>(), <a href="qnetworkaccessmanager.html#sslErrors">QNetworkAccessManager::sslErrors</a>(), <a href="#sslConfiguration">sslConfiguration</a>(), and <a href="#ignoreSslErrors">ignoreSslErrors</a>().</p>
+<h3><span id="signal-void-qnetworkreply-uploadprogress-qint64-bytessent-qint64-bytestotal"><code>[signal]</code>void QNetworkReply::uploadProgress( <em>bytesSent</em>,  <em>bytesTotal</em>)</span><a href="#signal-void-qnetworkreply-uploadprogress-qint64-bytessent-qint64-bytestotal" class="header-anchor">#</a></h3><p>这个信号的发出是为了表明这个网络请求的上传部分的进展，如果有的话。如果没有与此请求相关的上传，这个信号将不会被发射出来。</p>
+<p>参数<em>bytesSent</em>表示上传的字节数，而<em>bytesTotal</em>表示要上传的总字节数。如果不能确定要上传的字节数，<em>bytesTotal</em>将是-1。</p>
+<p>当<em>bytesSent</em>等于<em>bytesTotal</em>时，上传就结束了。这时，<em>bytesTotal</em>将不会是-1。</p>
+<p><strong>See also</strong> <a href="#downloadProgress">downloadProgress</a>().</p>
+<h3><span id="virtual-qnetworkreply-qnetworkreply"><code>[virtual]</code>QNetworkReply::~QNetworkReply()</span><a href="#virtual-qnetworkreply-qnetworkreply" class="header-anchor">#</a></h3><p>处置此回复并释放与之相关的任何资源。如果任何网络连接仍然开放，它们将被关闭。</p>
+<p><strong>See also</strong> <a href="#abort">abort</a>() and <a href="#close">close</a>().</p>
+<h3><span id="qvariant-qnetworkreply-attribute-qnetworkrequest-attribute-code-const"> QNetworkReply::attribute( <em>code</em>) const</span><a href="#qvariant-qnetworkreply-attribute-qnetworkrequest-attribute-code-const" class="header-anchor">#</a></h3><p>返回与代码<em>code</em>相关的属性。如果该属性没有被设置，它将返回一个无效的 <a href="qvariant.html">QVariant</a> （类型为 <a href="qmetatype.html#Type-enum">QMetaType::UnknownType</a>）。</p>
+<p>你可以期待 <a href="qnetworkrequest.html#Attribute-enum">QNetworkRequest::Attribute</a> 中列出的默认值被应用到这个函数返回的值上。</p>
+<p><strong>See also</strong> <a href="#setAttribute">setAttribute</a>() and <a href="qnetworkrequest.html#Attribute-enum">QNetworkRequest::Attribute</a>.</p>
+<h3><span id="override-virtual-void-qnetworkreply-close"><code>[override virtual]</code>void QNetworkReply::close()</span><a href="#override-virtual-void-qnetworkreply-close" class="header-anchor">#</a></h3><p>重新实现:<a href="qiodevice.html#close">QIODevice::close</a>()。</p>
+<p>关闭这个设备的读取。未读的数据被丢弃，但网络资源不会被丢弃，直到它们被完成。特别是，如果任何上传正在进行，它将继续进行，直到完成。</p>
+<p>当所有操作结束，网络资源被释放时，会发出<a href="#finished">finished</a>()信号。</p>
+<p><strong>See also</strong> <a href="#abort">abort</a>() and <a href="#finished">finished</a>().</p>
+<h3><span id="qnetworkreply-networkerror-qnetworkreply-error-const"> QNetworkReply::error() const</span><a href="#qnetworkreply-networkerror-qnetworkreply-error-const" class="header-anchor">#</a></h3><p>返回在处理此请求时发现的错误。如果没有发现错误，则返回[NoError]（#NetworkError-enum）。</p>
+<p><strong>See also</strong> <a href="#setError">setError</a>().</p>
+<h3><span id="bool-qnetworkreply-hasrawheader-const-qbytearray-amp-headername-const">bool QNetworkReply::hasRawHeader(const  &amp;<em>headerName</em>) const</span><a href="#bool-qnetworkreply-hasrawheader-const-qbytearray-amp-headername-const" class="header-anchor">#</a></h3><p>如果远程服务器发送了名称为<em>headerName</em>的原始标头，则返回<code>true</code>。</p>
+<p><strong>See also</strong> <a href="#rawHeader">rawHeader</a>().</p>
+<h3><span id="qvariant-qnetworkreply-header-qnetworkrequest-knownheaders-header-const"> QNetworkReply::header( <em>header</em>) const</span><a href="#qvariant-qnetworkreply-header-qnetworkrequest-knownheaders-header-const" class="header-anchor">#</a></h3><p>如果远程服务器发送了已知的头信息<em>header</em>，则返回该头信息的值。如果头没有被发送，则返回一个无效的[QVariant]（qvariant.html）。</p>
+<p><strong>See also</strong> <a href="#rawHeader">rawHeader</a>(), <a href="#setHeader">setHeader</a>(), and <a href="qnetworkrequest.html#header">QNetworkRequest::header</a>().</p>
+<h3><span id="void-qnetworkreply-ignoresslerrors-const-qlist-lt-qsslerror-gt-amp-errors">void QNetworkReply::ignoreSslErrors(const &lt;&gt; &amp;<em>errors</em>)</span><a href="#void-qnetworkreply-ignoresslerrors-const-qlist-lt-qsslerror-gt-amp-errors" class="header-anchor">#</a></h3><p>这个一个重载函数。</p>
+<p>如果这个函数被调用，**错误中给出的SSL错误将被忽略。</p>
+<p><strong>注意：</strong>由于大多数SSL错误都与证书有关，对于大多数错误，你必须设置这个SSL错误所涉及的预期证书。例如，如果你想向一个使用自签名证书的服务器发出请求，可以考虑下面的片段:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QList&lt;QSslCertificate&gt; cert = QSslCertificate::<span class="hljs-built_in">fromPath</span>(<span class="hljs-built_in">QLatin1String</span>(<span class="hljs-string">"server-certificate.pem"</span>));
+<span class="hljs-function">QSslError <span class="hljs-title">error</span><span class="hljs-params">(QSslError::SelfSignedCertificate, cert.at(<span class="hljs-number">0</span>))</span></span>;
+QList&lt;QSslError&gt; expectedSslErrors;
+expectedSslErrors.<span class="hljs-built_in">append</span>(error);
+
+QNetworkReply *reply = manager.<span class="hljs-built_in">get</span>(<span class="hljs-built_in">QNetworkRequest</span>(<span class="hljs-built_in">QUrl</span>(<span class="hljs-string">"https://server.tld/index.html"</span>)));
+reply-&gt;<span class="hljs-built_in">ignoreSslErrors</span>(expectedSslErrors);
+<span class="hljs-comment">// here connect signals etc.</span></code></pre></div>
+
+<p>多次调用此函数将替换之前调用时传递的错误列表。你可以用一个空的列表调用这个函数来清除你想忽略的错误列表。</p>
+<p><strong>注意：</strong>如果<a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>启用了HTTP严格传输安全，这个函数就没有作用。</p>
+<p><strong>See also</strong> <a href="#sslConfiguration">sslConfiguration</a>(), <a href="#sslErrors">sslErrors</a>(), <a href="qsslsocket.html#ignoreSslErrors">QSslSocket::ignoreSslErrors</a>(), and <a href="qnetworkaccessmanager.html#setStrictTransportSecurityEnabled">QNetworkAccessManager::setStrictTransportSecurityEnabled</a>().</p>
+<h3><span id="virtual-protected-since-5-0-void-qnetworkreply-ignoresslerrorsimplementation-const-qlist-lt-qsslerror-gt-amp-errors"><code>[virtual protected, since 5.0]</code>void QNetworkReply::ignoreSslErrorsImplementation(const &lt;&gt; &amp;<em>errors</em>)</span><a href="#virtual-protected-since-5-0-void-qnetworkreply-ignoresslerrorsimplementation-const-qlist-lt-qsslerror-gt-amp-errors" class="header-anchor">#</a></h3><p>提供这个虚拟方法是为了能够覆盖<a href="#ignoreSslErrors">ignoreSslErrors</a>()的行为。<a href="#ignoreSslErrors">ignoreSslErrors</a>()是这个方法的一个公共包装。<em>errors</em>包含用户希望忽略的错误。</p>
+<p>这个函数从Qt 5.0 引入。</p>
+<p><strong>See also</strong> <a href="#ignoreSslErrors">ignoreSslErrors</a>().</p>
+<h3><span id="bool-qnetworkreply-isfinished-const">bool QNetworkReply::isFinished() const</span><a href="#bool-qnetworkreply-isfinished-const" class="header-anchor">#</a></h3><p>当回复完成或被中止时，返回 “true”。</p>
+<p><strong>See also</strong> <a href="#isRunning">isRunning</a>().</p>
+<h3><span id="bool-qnetworkreply-isrunning-const">bool QNetworkReply::isRunning() const</span><a href="#bool-qnetworkreply-isrunning-const" class="header-anchor">#</a></h3><p>当请求仍在处理中，且回复尚未完成或被中止时，返回<code>true</code>。</p>
+<p><strong>See also</strong> <a href="#isFinished">isFinished</a>().</p>
+<h3><span id="qnetworkaccessmanager-qnetworkreply-manager-const"> *QNetworkReply::manager() const</span><a href="#qnetworkaccessmanager-qnetworkreply-manager-const" class="header-anchor">#</a></h3><p>返回用于创建此<a href>QNetworkReply</a>对象的[QNetworkAccessManager]（qnetworkaccessmanager.html）。最初，它也是父对象。</p>
+<h3><span id="qnetworkaccessmanager-operation-qnetworkreply-operation-const"> QNetworkReply::operation() const</span><a href="#qnetworkaccessmanager-operation-qnetworkreply-operation-const" class="header-anchor">#</a></h3><p>返回为这个回复所发布的操作。</p>
+<p><strong>See also</strong> <a href="#setOperation">setOperation</a>().</p>
+<h3><span id="qbytearray-qnetworkreply-rawheader-const-qbytearray-amp-headername-const"> QNetworkReply::rawHeader(const  &amp;<em>headerName</em>) const</span><a href="#qbytearray-qnetworkreply-rawheader-const-qbytearray-amp-headername-const" class="header-anchor">#</a></h3><p>返回远程服务器发送的标题<em>headerName</em>的原始内容。如果没有这样的头，则返回一个空的字节数组，这可能与空头无法区分。使用<a href="#hasRawHeader">hasRawHeader</a>()来验证服务器是否发送了这样的头域。</p>
+<p><strong>See also</strong> <a href="#setRawHeader">setRawHeader</a>(), <a href="#hasRawHeader">hasRawHeader</a>(), and <a href="#header">header</a>().</p>
+<h3><span id="qlist-lt-qbytearray-gt-qnetworkreply-rawheaderlist-const">&lt;&gt; QNetworkReply::rawHeaderList() const</span><a href="#qlist-lt-qbytearray-gt-qnetworkreply-rawheaderlist-const" class="header-anchor">#</a></h3><p>返回一个由远程服务器发送的标题字段的列表，按照它们被发送的顺序。重复的头信息会被合并在一起，并取代后一个重复的头信息。</p>
+<h3><span id="const-qlist-lt-qnetworkreply-rawheaderpair-gt-amp-qnetworkreply-rawheaderpairs-const">const &lt;&gt; &amp;QNetworkReply::rawHeaderPairs() const</span><a href="#const-qlist-lt-qnetworkreply-rawheaderpair-gt-amp-qnetworkreply-rawheaderpairs-const" class="header-anchor">#</a></h3><p>返回一个原始头文件对的列表。</p>
+<h3><span id="qint64-qnetworkreply-readbuffersize-const"> QNetworkReply::readBufferSize() const</span><a href="#qint64-qnetworkreply-readbuffersize-const" class="header-anchor">#</a></h3><p>返回读取缓冲区的大小，单位是字节。</p>
+<p><strong>See also</strong> <a href="#setReadBufferSize">setReadBufferSize</a>().</p>
+<h3><span id="qnetworkrequest-qnetworkreply-request-const"> QNetworkReply::request() const</span><a href="#qnetworkrequest-qnetworkreply-request-const" class="header-anchor">#</a></h3><p>返回为这个回复所发布的请求。特别注意的是，请求的URL可能与回复的URL不同。</p>
+<p><strong>See also</strong> <a href="qnetworkrequest.html#url">QNetworkRequest::url</a>(), <a href="#url">url</a>(), and <a href="#setRequest">setRequest</a>().</p>
+<h3><span id="protected-void-qnetworkreply-setattribute-qnetworkrequest-attribute-code-const-qvariant-amp-value"><code>[protected]</code>void QNetworkReply::setAttribute( <em>code</em>, const  &amp;<em>value</em>)</span><a href="#protected-void-qnetworkreply-setattribute-qnetworkrequest-attribute-code-const-qvariant-amp-value" class="header-anchor">#</a></h3><p>设置属性<em>code</em>的值为<em>value</em>。如果<em>code</em>之前被设置过，它将被覆盖。如果<em>value</em>是一个无效的<a href="qvariant.html">QVariant</a>，该属性将被取消设置。</p>
+<p><strong>See also</strong> <a href="#attribute">attribute</a>() and <a href="qnetworkrequest.html#setAttribute">QNetworkRequest::setAttribute</a>().</p>
+<h3><span id="protected-void-qnetworkreply-seterror-qnetworkreply-networkerror-errorcode-const-qstring-amp-errorstring"><code>[protected]</code>void QNetworkReply::setError( <em>errorCode</em>, const  &amp;<em>errorString</em>)</span><a href="#protected-void-qnetworkreply-seterror-qnetworkreply-networkerror-errorcode-const-qstring-amp-errorstring" class="header-anchor">#</a></h3><p>设置错误条件为<em>errorCode</em>。人工阅读的信息用<em>errorString</em>来设置。</p>
+<p>调用setError()不会发出<a href="#errorOccurred">errorOccurred</a>(<a href="#NetworkError-enum">QNetworkReply::NetworkError</a> 信号。</p>
+<p><strong>See also</strong> <a href="#error">error</a>() and <a href="qiodevice.html#errorString">errorString</a>().</p>
+<h3><span id="protected-void-qnetworkreply-setfinished-bool-finished"><code>[protected]</code>void QNetworkReply::setFinished(bool <em>finished</em>)</span><a href="#protected-void-qnetworkreply-setfinished-bool-finished" class="header-anchor">#</a></h3><p>将回复设置为<em>finished</em>。</p>
+<p>在设置了这个之后，回复的数据不得改变。</p>
+<p><strong>See also</strong> <a href="#finished">finished</a>() and <a href="#isFinished">isFinished</a>().</p>
+<h3><span id="protected-void-qnetworkreply-setheader-qnetworkrequest-knownheaders-header-const-qvariant-amp-value"><code>[protected]</code>void QNetworkReply::setHeader( <em>header</em>, const  &amp;<em>value</em>)</span><a href="#protected-void-qnetworkreply-setheader-qnetworkrequest-knownheaders-header-const-qvariant-amp-value" class="header-anchor">#</a></h3><p>将已知的头信息<em>header</em>设置为<em>value</em>的值。相应的原始形式的标头也将被设置。</p>
+<p><strong>See also</strong> <a href="#header">header</a>(), <a href="#setRawHeader">setRawHeader</a>(), and <a href="qnetworkrequest.html#setHeader">QNetworkRequest::setHeader</a>().</p>
+<h3><span id="protected-void-qnetworkreply-setoperation-qnetworkaccessmanager-operation-operation"><code>[protected]</code>void QNetworkReply::setOperation( <em>operation</em>)</span><a href="#protected-void-qnetworkreply-setoperation-qnetworkaccessmanager-operation-operation" class="header-anchor">#</a></h3><p>将此对象的相关操作设置为<em>operation</em>。这个值将由<a href="#operation">operation</a>()返回。</p>
+<p><strong>注意：</strong>操作应该在这个对象被创建时设置，并且不再改变。</p>
+<p><strong>See also</strong> <a href="#operation">operation</a>() and <a href="#setRequest">setRequest</a>().</p>
+<h3><span id="protected-void-qnetworkreply-setrawheader-const-qbytearray-amp-headername-const-qbytearray-amp-value"><code>[protected]</code>void QNetworkReply::setRawHeader(const  &amp;<em>headerName</em>, const  &amp;<em>value</em>)</span><a href="#protected-void-qnetworkreply-setrawheader-const-qbytearray-amp-headername-const-qbytearray-amp-value" class="header-anchor">#</a></h3><p>设置原始标题<em>headerName</em>为<em>value</em>的值。如果<em>headerName</em>之前被设置过，它将被覆盖。多个同名的HTTP头在功能上等同于一个单一的头，其值用逗号隔开后连接起来。</p>
+<p>如果<em>headerName</em>与一个已知的头匹配，那么值<em>value</em>将被解析，相应的解析后的形式也将被设置。</p>
+<p><strong>See also</strong> <a href="#rawHeader">rawHeader</a>(), <a href="#header">header</a>(), <a href="#setHeader">setHeader</a>(), and <a href="qnetworkrequest.html#setRawHeader">QNetworkRequest::setRawHeader</a>().</p>
+<h3><span id="virtual-void-qnetworkreply-setreadbuffersize-qint64-size"><code>[virtual]</code>void QNetworkReply::setReadBufferSize( <em>size</em>)</span><a href="#virtual-void-qnetworkreply-setreadbuffersize-qint64-size" class="header-anchor">#</a></h3><p>设置读取缓冲区的大小为<em>size</em>字节。读取缓冲区是指在用<a href="qiodevice.html#read">QIODevice::read</a>()读取之前，保存从网络上下载的数据的缓冲区。将缓冲区的大小设置为0将使缓冲区的大小不受限制。</p>
+<p>一旦这个缓冲区满了（即<a href="qiodevice.html#bytesAvailable">bytesAvailable</a>()返回<em>size</em>或更多），<a href>QNetworkReply</a>将尝试停止从网络上读取信息，从而导致下载也变得节流了。如果缓冲区的大小不受限制，<a href>QNetworkReply</a>将尝试尽可能快地从网络上下载。</p>
+<p>与<a href="qabstractsocket.html#setReadBufferSize">QAbstractSocket::setReadBufferSize</a>()不同，<a href>QNetworkReply</a>不能保证读取缓冲区的精确性。也就是说，<a href="qiodevice.html#bytesAvailable">bytesAvailable</a>()可以返回超过<em>size</em>。</p>
+<p><strong>See also</strong> <a href="#readBufferSize">readBufferSize</a>().</p>
+<h3><span id="protected-void-qnetworkreply-setrequest-const-qnetworkrequest-amp-request"><code>[protected]</code>void QNetworkReply::setRequest(const  &amp;<em>request</em>)</span><a href="#protected-void-qnetworkreply-setrequest-const-qnetworkrequest-amp-request" class="header-anchor">#</a></h3><p>设置此对象的相关请求为<em>request</em>。这个值将由<a href="#request">request</a>()返回。</p>
+<p><strong>注意：</strong>请求应该在这个对象被创建时设置，并且不能再改变。</p>
+<p><strong>See also</strong> <a href="#request">request</a>() and <a href="#setOperation">setOperation</a>().</p>
+<h3><span id="void-qnetworkreply-setsslconfiguration-const-qsslconfiguration-amp-config">void QNetworkReply::setSslConfiguration(const  &amp;<em>config</em>)</span><a href="#void-qnetworkreply-setsslconfiguration-const-qsslconfiguration-amp-config" class="header-anchor">#</a></h3><p>如果可能的话，将与该请求相关的网络连接的SSL配置设置为<em>config</em>的配置。</p>
+<p><strong>See also</strong> <a href="#sslConfiguration">sslConfiguration</a>().</p>
+<h3><span id="virtual-protected-since-5-0-void-qnetworkreply-setsslconfigurationimplementation-const-qsslconfiguration-amp-configuration"><code>[virtual protected, since 5.0]</code>void QNetworkReply::setSslConfigurationImplementation(const  &amp;<em>configuration</em>)</span><a href="#virtual-protected-since-5-0-void-qnetworkreply-setsslconfigurationimplementation-const-qsslconfiguration-amp-configuration" class="header-anchor">#</a></h3><p>提供这个虚拟方法是为了能够覆盖<a href="#setSslConfiguration">setSslConfiguration</a>()的行为。<a href="#setSslConfiguration">setSslConfiguration</a>()是这个方法的一个公共包装器。如果你覆盖这个方法，使用<em>configuration</em>来设置SSL配置。</p>
+<p>这个函数从Qt 5.0 引入。</p>
+<p><strong>See also</strong> <a href="#sslConfigurationImplementation">sslConfigurationImplementation</a>() and <a href="#setSslConfiguration">setSslConfiguration</a>().</p>
+<h3><span id="protected-void-qnetworkreply-seturl-const-qurl-amp-url"><code>[protected]</code>void QNetworkReply::setUrl(const  &amp;<em>url</em>)</span><a href="#protected-void-qnetworkreply-seturl-const-qurl-amp-url" class="header-anchor">#</a></h3><p>设置正在处理的URL为<em>url</em>。通常情况下，URL与发布的请求相匹配，但由于各种原因，它可能是不同的（例如，一个文件路径被做成绝对的或规范的）。</p>
+<p><strong>See also</strong> <a href="#url">url</a>(), <a href="#request">request</a>(), and <a href="qnetworkrequest.html#url">QNetworkRequest::url</a>().</p>
+<h3><span id="qsslconfiguration-qnetworkreply-sslconfiguration-const"> QNetworkReply::sslConfiguration() const</span><a href="#qsslconfiguration-qnetworkreply-sslconfiguration-const" class="header-anchor">#</a></h3><p>如果使用了SSL，则返回与该回复相关的SSL配置和状态。它将包含远程服务器的证书、通往证书颁发机构的证书链以及使用的加密密码。</p>
+<p>对方的证书及其证书链将在<a href="#sslErrors">sslErrors</a>()发出时知道，如果它被发出。</p>
+<p><strong>See also</strong> <a href="#setSslConfiguration">setSslConfiguration</a>().</p>
+<h3><span id="virtual-protected-since-5-0-void-qnetworkreply-sslconfigurationimplementation-qsslconfiguration-amp-configuration-const"><code>[virtual protected, since 5.0]</code>void QNetworkReply::sslConfigurationImplementation( &amp;<em>configuration</em>) const</span><a href="#virtual-protected-since-5-0-void-qnetworkreply-sslconfigurationimplementation-qsslconfiguration-amp-configuration-const" class="header-anchor">#</a></h3><p>提供这个虚拟方法是为了能够覆盖<a href="#sslConfiguration">sslConfiguration</a>()的行为。<a href="#sslConfiguration">sslConfiguration</a>()是这个方法的一个公共包装器。配置将在<em>configuration</em>中返回。</p>
+<p>这个函数从Qt 5.0 引入。</p>
+<p><strong>See also</strong> <a href="#setSslConfigurationImplementation">setSslConfigurationImplementation</a>() and <a href="#sslConfiguration">sslConfiguration</a>().</p>
+<h3><span id="qurl-qnetworkreply-url-const"> QNetworkReply::url() const</span><a href="#qurl-qnetworkreply-url-const" class="header-anchor">#</a></h3><p>返回下载或上传的内容的URL。请注意，该URL可能与原始请求的URL不同。如果在请求中启用了重定向功能，那么这个函数将返回网络API正在访问的当前URL，即请求被重定向到的资源的URL。</p>
+<p><strong>See also</strong> <a href="#request">request</a>(), <a href="#setUrl">setUrl</a>(), <a href="qnetworkrequest.html#url">QNetworkRequest::url</a>(), and <a href="#redirected">redirected</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/N/">N</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/N/QNetworkProxyQuery/QNetworkProxyQuery/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QNetworkProxyQuery类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/N/QNetworkRequest/QNetworkRequest/">
+                        <span class="hidden-mobile">QNetworkRequest类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

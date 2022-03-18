@@ -1,0 +1,740 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="使用元对象编译器(moc) 使用方式 编写调用 moc 的 make 规则 命令行选项 诊断 限制 多继承要求 QObject 处于首位 函数指针不能为信号槽参数 信号槽参数中的枚举类型和类型别名必须包含完整修饰 嵌套类不能拥有信号槽 信号槽返回值不能为引用 只有信号槽可以出现在类的 signals 和 slots 区域中         # 使用元对象编译器(moc)  元对象编译器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="元对象编译器(moc)">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/M/Using_the_Meta-Object_Compiler_moc/Using_the_Meta-Object_Compiler_moc/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="使用元对象编译器(moc) 使用方式 编写调用 moc 的 make 规则 命令行选项 诊断 限制 多继承要求 QObject 处于首位 函数指针不能为信号槽参数 信号槽参数中的枚举类型和类型别名必须包含完整修饰 嵌套类不能拥有信号槽 信号槽返回值不能为引用 只有信号槽可以出现在类的 signals 和 slots 区域中         # 使用元对象编译器(moc)  元对象编译器">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:48:09.954Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="对象编译器">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>元对象编译器(moc) - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="元对象编译器(moc)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      44 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">元对象编译器(moc)</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#shi-yong-yuan-dui-xiang-bian-yi-qi-moc">使用元对象编译器(moc)</a><ul>
+<li><a href="#shi-yong-fang-shi">使用方式</a></li>
+<li><a href="#bian-xie-diao-yong-moc-de-make-gui-ze">编写调用 <code>moc</code> 的 <code>make</code> 规则</a></li>
+<li><a href="#ming-ling-xing-xuan-xiang">命令行选项</a></li>
+<li><a href="#zhen-duan">诊断</a></li>
+<li><a href="#xian-zhi">限制</a><ul>
+<li><a href="#duo-ji-cheng-yao-qiu-qobject-chu-yu-shou-wei">多继承要求 QObject 处于首位</a></li>
+<li><a href="#han-shu-zhi-zhen-bu-neng-wei-xin-hao-cao-can-shu">函数指针不能为信号槽参数</a></li>
+<li><a href="#xin-hao-cao-can-shu-zhong-de-mei-ju-lei-xing-he-lei-xing-bie-ming-bi-xu-bao-han-wan-zheng-xiu-shi">信号槽参数中的枚举类型和类型别名必须包含完整修饰</a></li>
+<li><a href="#qian-tao-lei-bu-neng-yong-you-xin-hao-cao">嵌套类不能拥有信号槽</a></li>
+<li><a href="#xin-hao-cao-fan-hui-zhi-bu-neng-wei-yin-yong">信号槽返回值不能为引用</a></li>
+<li><a href="#zhi-you-xin-hao-cao-ke-yi-chu-xian-zai-lei-de-signals-he-slots-qu-yu-zhong">只有信号槽可以出现在类的 <code>signals</code> 和 <code>slots</code> 区域中</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# 使用元对象编译器(moc)
+
+<p>元对象编译器 <code>moc</code> 是用于处理 <a href="../The_Meta-Object_System/The_Meta-Object_System.md">Qt 的 C++ 扩展</a> 的程序。</p>
+<p><code>moc</code> 工具会阅读 C++ 头文件。若在类定义中发现了 <a href="../../O/QObject/QObject.md#qobject">Q_OBJECT</a> 宏，则会建立一个 C++ 源文件，在其中包含了这些类的元对象代码。除此之外，元对象代码也被用于信号槽机制、运行时类型信息和动态属性系统。</p>
+<p><code>moc</code> 生成的 C++ 源文件需要随对应类的实现一同参与编译和链接。</p>
+<p>若使用 <a href="../../Q/QMake-Manual/QMake-Manual.md">qmake</a> 来创建构建文件，则会自动生成按需调用 <code>moc</code> 的构建规则，因此无需显示调用 <code>moc</code>。若想了解更多 <code>moc</code> 的背景信息，详见 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/why-moc.html">为何 Qt 使用 Moc 实现信号槽？</a></p>
+<h2><span id="shi-yong-fang-shi">使用方式</span><a href="#shi-yong-fang-shi" class="header-anchor">#</a></h2><p><code>moc</code> 通常会输入一个包含类声明的文件，例如：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> : <span class="hljs-keyword">public</span> QObject
+{
+    Q_OBJECT
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">MyClass</span>(QObject *parent = <span class="hljs-number">0</span>);
+    ~<span class="hljs-built_in">MyClass</span>();
+
+signals:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">mySignal</span><span class="hljs-params">()</span></span>;
+
+<span class="hljs-keyword">public</span> slots:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">mySlot</span><span class="hljs-params">()</span></span>;
+};</code></pre></div>
+
+<p>除了上文中的信号槽，<code>moc</code> 在下一个范例中也被用于实现对象的属性。<a href="../../O/QObject/QObject.md#qproperty">Q_PROPERTY</a>() 宏定义了一条属性，<a href="../../O/QObject/QObject.md#qenum">Q_ENUM</a>() 则定义了一组在类内部可被 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/properties.html">property system</a> 使用的枚举类型。</p>
+<p>在下述范例中，我们声明了一个使用枚举类型 <code>Priority</code> 的属性，该属性同样被命名为 <code>priority</code>，具备一个读函数 <code>priority()</code> 和一个写函数 <code>setPriority()</code>。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> : <span class="hljs-keyword">public</span> QObject
+{
+    <span class="hljs-function">Q_OBJECT</span>
+<span class="hljs-function">    <span class="hljs-title">Q_PROPERTY</span><span class="hljs-params">(Priority priority READ priority WRITE setPriority)</span></span>
+<span class="hljs-function">    <span class="hljs-title">Q_ENUMS</span><span class="hljs-params">(Priority)</span></span>
+<span class="hljs-function"></span>
+<span class="hljs-function"><span class="hljs-keyword">public</span>:</span>
+<span class="hljs-function">    enum Priority {</span> High, Low, VeryHigh, VeryLow };
+
+    <span class="hljs-built_in">MyClass</span>(QObject *parent = <span class="hljs-number">0</span>);
+    ~<span class="hljs-built_in">MyClass</span>();
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setPriority</span><span class="hljs-params">(Priority priority)</span> </span>{ m_priority = priority; }
+    <span class="hljs-function">Priority <span class="hljs-title">priority</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{ <span class="hljs-keyword">return</span> m_priority; }
+
+<span class="hljs-keyword">private</span>:
+    Priority m_priority;
+};</code></pre></div>
+
+<p><code>Q_FLAGS()</code> 宏用于声明被用为标志位的枚举，即可以被<strong>或</strong>操作合并的值。另一个宏 <a href="../../O/QObject/QObject.md#qclassinfoname-value">Q_CLASSINFO</a>() 则允许您为类的元对象添加<code>名称/值 </code>配对的附加信息。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> : <span class="hljs-keyword">public</span> QObject
+{
+    <span class="hljs-function">Q_OBJECT</span>
+<span class="hljs-function">    <span class="hljs-title">Q_CLASSINFO</span><span class="hljs-params">(<span class="hljs-string">"Author"</span>, <span class="hljs-string">"Oscar Peterson"</span>)</span></span>
+<span class="hljs-function">    <span class="hljs-title">Q_CLASSINFO</span><span class="hljs-params">(<span class="hljs-string">"Status"</span>, <span class="hljs-string">"Active"</span>)</span></span>
+<span class="hljs-function"></span>
+<span class="hljs-function"><span class="hljs-keyword">public</span>:</span>
+<span class="hljs-function">    MyClass(QObject *parent =</span> <span class="hljs-number">0</span>);
+    ~<span class="hljs-built_in">MyClass</span>();
+};</code></pre></div>
+
+<p><code>moc</code> 产生的输出必须被编译并链接，就如同程序中的其它 C++ 代码一样，否则构建过程会在最终的链接阶段失败。若使用 <code>qmake</code>，则这些操作会被自动完成。当 <code>qmake</code> 运行时，它会解析项目的所有头文件，为包含 <a href="../../O/QObject/QObject.md#qobject">Q_OBJECT</a> 宏的文件生成调用 <code>moc</code> 的构建规则。</p>
+<p>若类定义在 <code>myclass.h</code> 文件中，则 <code>moc</code> 的输出会被保存在 <code>moc_myclass.cpp</code> 文件中。该文件会如常规源文件一般，被编译生成为对象文件，如 Windows 中的 <code>moc_myclass.obj</code> 。该对象文件应被包含在链接对象文件列表中，用于参与程序最终的链接阶段。</p>
+<h2><span id="bian-xie-diao-yong-moc-de-make-gui-ze">编写调用 <code>moc</code> 的 <code>make</code> 规则</span><a href="#bian-xie-diao-yong-moc-de-make-gui-ze" class="header-anchor">#</a></h2><p>除了最简单的测试程序外，其它情况下都建议自动执行 <code>moc</code>。通过向 <code>makefile</code> 中添加一组规则，<code>make</code> 会在必要时执行 <code>moc</code> 并处理其输出内容。</p>
+<p>我们推荐使用 <a href="../Q/../QMake-Manual/QMake-Manual.html">qmake</a> 生成工具来构建您的 <code>makefile</code>。此工具会生成一个 <code>makefile</code> 文件来处理所有 <code>moc</code> 操作。</p>
+<p>若您打算自行创建 <code>makefile</code>，可以参阅下文的小贴士来添加 <code>moc</code> 操作。</p>
+<p>对于头文件中类声明内的 <a href="../../O/QObject/QObject.md#qobject">Q_OBJECT</a> ，下文是使用 <code>GNU make</code> 的 <code>makefile</code> 规则：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">moc_%.cpp: %.h
+        moc $(DEFINES) $(INCPATH) $&lt; -o $@</code></pre></div>
+
+<p>若想更加灵活，则可以通过如下格式编写独立的规则：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">moc_foo.cpp: foo.h
+        moc $(DEFINES) $(INCPATH) $&lt; -o $@</code></pre></div>
+
+<p>您还需谨记将 <code>moc_foo.cpp</code> 添加到 <code>SOURCES</code> 变量（或者其它您喜欢的名称）中，并将 <code>moc_foo.o</code> 或 <code>moc_foo.obj</code> 添加至 <code>OBJECTS</code> 变量。</p>
+<p>上文的两个范例都假定 <code>$(DEFINES)</code> 和 <code>$(INCPATH)</code> 变量会被展开为传递至 C++ 编译器的宏定义和包含路径，这些被 <code>moc</code> 用于对源文件进行预处理。</p>
+<p>虽然我们倾向于将 C++ 源文件命名为 <code>.cpp</code>，您仍可根据喜好使用其它扩展名，如 <code>.C</code>、<code>.cc</code>、<code>.CC</code>、<code>.cxx</code> 和 <code>.c++</code>。</p>
+<p>对于在实现文件(<code>.cpp</code>)中的类声明内的 <a href="../../O/QObject/QObject.md#qobject">Q_OBJECT</a> ，我们建议使用类似下文的 <code>makefile</code> 规则：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">foo.o: foo.moc
+
+foo.moc: foo.cpp
+        moc $(DEFINES) $(INCPATH) -i $&lt; -o $@</code></pre></div>
+
+<p>这确保了 <code>moc</code> 会在 <code>foo.cpp</code> 编译前执行，于是可以将：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"foo.moc"</span></span></code></pre></div>
+
+<p>添加到 <code>foo.cpp</code>文件末尾，即可以感知到该文件中所有类定义的位置。</p>
+<h2><span id="ming-ling-xing-xuan-xiang">命令行选项</span><a href="#ming-ling-xing-xuan-xiang" class="header-anchor">#</a></h2><p>下表为 <code>moc</code> 提供的命令行选项：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-o&lt;file&gt;</code></td>
+<td>将输出写入 <code>&lt;file&gt;</code>，而非标注输出流(<code>stdout</code>)。</td>
+</tr>
+<tr>
+<td><code>-f[&lt;file&gt;]</code></td>
+<td>强令输出内容中包含一条 <code>#include</code> 语句。对于扩展名是 <code>.h</code> 或 <code>.H</code> 开头的头文件，此选项默认启用。此选项对于不遵循标准命名约定的头文件尤其有用。<code>&lt;file&gt;</code> 部分是可选的。</td>
+</tr>
+<tr>
+<td><code>-i</code></td>
+<td>不生成 <code>#include</code> 语句至输出内容。此选项可被用于对包含一个或多个类声明的 <code>C++</code> 文件执行 <code>moc</code>。您需要在 <code>.cpp</code> 中通过 <code>#include</code> 包含输出的元对象代码。</td>
+</tr>
+<tr>
+<td><code>-nw</code></td>
+<td>不生成任何警告（不建议开启）。</td>
+</tr>
+<tr>
+<td><code>-p&lt;path&gt;</code></td>
+<td>另生成的 <code>#include</code> 语句中附加上 <code>&lt;path&gt;/</code> 前缀。</td>
+</tr>
+<tr>
+<td><code>-I&lt;dir&gt;</code></td>
+<td>为头文件添加包含路径。</td>
+</tr>
+<tr>
+<td><code>-E</code></td>
+<td>仅执行预处理，不生成元对象代码。</td>
+</tr>
+<tr>
+<td><code>-D&lt;macro&gt;[=&lt;def&gt;]</code></td>
+<td>添加宏定义，通过可选参数指定值。</td>
+</tr>
+<tr>
+<td><code>-U&lt;macro&gt;</code></td>
+<td>取消宏定义。</td>
+</tr>
+<tr>
+<td><code>-M&lt;key=value&gt;</code></td>
+<td>为插件附加额外的元信息。若某个类指定了 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtplugin.html#Q_PLUGIN_METADATA">Q_PLUGIN_METADATA</a>，则该键值对会被添加至元数据。这些数据会出现在插件运行时解析的 <code>json</code> 对象中（通过 <a href="../../P/QPluginLoader/QPluginLoader.md">QPluginLoader</a>）。此参数通常被用于为静态插件添加编译系统提供的信息。</td>
+</tr>
+<tr>
+<td><code>@&lt;file&gt;</code></td>
+<td>从 <code>&lt;file&gt;</code> 中读取额外的命令行选项。该文件的每一行文本都被当作一条独立的选项，空行会被忽略。注意，此选项不支持在参数文件内使用（即参数文件不能包含另一个参数文件）。</td>
+</tr>
+<tr>
+<td><code>-h</code></td>
+<td>显示使用说明和选项列表。</td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td>显示 <code>moc</code> 的版本号。</td>
+</tr>
+<tr>
+<td><code>-Fdir</code></td>
+<td>用于 macOS。将 <code>dir</code> 指定的框架路径添加到头文件搜索路径列表顶部。这些路径会和 <code>-I</code> 制定的路径一同排布，以自左向右的顺序检索（详见 <code>gcc</code> 的 manpage）。通常使用 <code>-F /Library/Frameworks/</code></td>
+</tr>
+</tbody></table>
+<p>您可以显示告知 <code>moc</code> 不要解析头文件中的某些部分。<code>moc</code> 会定义预编译宏 <code>Q_MOC_RUN</code>，因此用</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> Q_MOC_RUN</span>
+    ...
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span></code></pre></div>
+
+<p>包裹的代码会被 <code>moc</code> 跳过。</p>
+<h2><span id="zhen-duan">诊断</span><a href="#zhen-duan" class="header-anchor">#</a></h2><p><code>moc</code> 在 <a href="../../O/QObject/QObject.md#qobject">Q_OBJECT</a> 类声明中检测到某些危险的或非法的代码结构时，会发出警告。</p>
+<p>若在程序编译的最终步骤中出现链接错误，内容为 <code>YourClass::className()</code> 未定义，或者 <code>YourClass</code> 缺少虚表(<code>vtable</code>)，则意味着某些步骤出现错误。通常来说，您可能忘记编译 <code>moc</code> 生成的 C++ 代码，或者忘记 <code>#include</code> 它们，或者编译了但忘记将输出的对象文件添加到链接指令。若您是使用 <code>qmake</code>，尝试重新执行它来更新 <code>makefile</code>，这通常会很有用。</p>
+<h2><span id="xian-zhi">限制</span><a href="#xian-zhi" class="header-anchor">#</a></h2><p><code>moc</code> 无法处理所有的 C++ 代码。最大的问题是模板类不能使用 <a href="../../O/QObject/QObject.md#qobject">Q_OBJECT</a> 宏，例如：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SomeTemplate</span>&lt;<span class="hljs-type">int</span>&gt; : <span class="hljs-keyword">public</span> QFrame
+{
+    Q_OBJECT
+    ...
+
+signals:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">mySignal</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;
+};</code></pre></div>
+
+<p>此代码结构是非法的。我们认为这些场合下有其它替代手法，所以移除这些限制的优先级并不高。</p>
+<h3><span id="duo-ji-cheng-yao-qiu-qobject-chu-yu-shou-wei">多继承要求 QObject 处于首位</span><a href="#duo-ji-cheng-yao-qiu-qobject-chu-yu-shou-wei" class="header-anchor">#</a></h3><p>若使用多继承，<code>moc</code> 会假定第一个被继承的类是 <a href="../../O/QObject/QObject.md">QObject</a> 的子类。同样的，必须确保只有第一个被继承的类是 <a href="../../O/QObject/QObject.md">QObject</a>。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// 正确</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SomeClass</span> : <span class="hljs-keyword">public</span> QObject, <span class="hljs-keyword">public</span> OtherClass
+{
+    ...
+};</code></pre></div>
+
+<p><a href="../../O/QObject/QObject.md">QObject</a> <strong>不支持</strong>虚继承。</p>
+<h3><span id="han-shu-zhi-zhen-bu-neng-wei-xin-hao-cao-can-shu">函数指针不能为信号槽参数</span><a href="#han-shu-zhi-zhen-bu-neng-wei-xin-hao-cao-can-shu" class="header-anchor">#</a></h3><p>对于绝大多数使用函数指针作为信号槽参数的场景，我们都认为使用继承是更好的手段。下文是非法语法的示例：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SomeClass</span> : <span class="hljs-keyword">public</span> QObject
+{
+    Q_OBJECT
+
+<span class="hljs-keyword">public</span> slots:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">apply</span><span class="hljs-params">(<span class="hljs-type">void</span> (*apply)(List *, <span class="hljs-type">void</span> *), <span class="hljs-type">char</span> *)</span></span>; <span class="hljs-comment">// 错误</span>
+};</code></pre></div>
+
+<p>但可以通过如下方式绕过限制：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">void</span> <span class="hljs-params">(*ApplyFunction)</span><span class="hljs-params">(List *, <span class="hljs-type">void</span> *)</span></span>;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SomeClass</span> : <span class="hljs-keyword">public</span> QObject
+{
+    Q_OBJECT
+
+<span class="hljs-keyword">public</span> slots:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">apply</span><span class="hljs-params">(ApplyFunction, <span class="hljs-type">char</span> *)</span></span>;
+};</code></pre></div>
+
+<p>有时使用继承和虚函数来代替函数指针，会是更好的选择。</p>
+<blockquote>
+<p>译者注：</p>
+<p><code>moc</code> 并未携带完整的编译器前端，因此在识别函数指针嵌套语法时可能存在障碍。</p>
+<p>因此可以推测，<code>moc</code> 可能无法正确识别过于复杂的模板参数，此时建议使用 <code>typedef</code> 或 <code>using</code> 指定较为简洁的别名。</p>
+</blockquote>
+<h3><span id="xin-hao-cao-can-shu-zhong-de-mei-ju-lei-xing-he-lei-xing-bie-ming-bi-xu-bao-han-wan-zheng-xiu-shi">信号槽参数中的枚举类型和类型别名必须包含完整修饰</span><a href="#xin-hao-cao-can-shu-zhong-de-mei-ju-lei-xing-he-lei-xing-bie-ming-bi-xu-bao-han-wan-zheng-xiu-shi" class="header-anchor">#</a></h3><p><a href="../../O/QObject/QObject.md#static-qmetaobjectconnection-qobjectconnectconst-qobject-sender-const-char-signal-const-qobject-receiver-const-char-method-qtconnectiontype-type--qtautoconnection">QObject::connect</a>() 通过文本对比来检查参数签名是否匹配。因此，<a href="../../Q/Qt_Namespace/Qt_Namespace.md#AlignmentFlag-enum">Alignment</a> and <a href="../../Q/Qt_Namespace/Qt_Namespace.md#AlignmentFlag-enum">Qt::Alignment</a> 被当作两个不同的类型。为绕过此限制，请确保声明信号槽和建立连接时都时使用完整修饰的数据类型。例如：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> : <span class="hljs-keyword">public</span> QObject
+{
+    Q_OBJECT
+
+    <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Error</span> {
+        ConnectionRefused,
+        RemoteHostClosed,
+        UnknownError
+    };
+
+signals:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">stateChanged</span><span class="hljs-params">(MyClass::Error error)</span></span>;
+};</code></pre></div>
+
+<blockquote>
+<p>译者注：</p>
+<p>这是 Qt 4 风格的 <code>connect()</code> 的历史问题，该接口使用 <code>SIGNAL</code> 和 <code>SLOT</code> 宏来生成信号槽参数，这两个宏的返回值是字符串类型，Qt 只能在运行时通过字符串匹配进行校验，极易产生纰漏。</p>
+<p>同理，<code>qRegisterMetaType&lt;TypeName&gt;("TypeName")</code> 的函数参数，也是用于校验信号槽，也需遵循相同规范。</p>
+<p>但若使用 Qt 5 的基于函数指针的方式，则无需考虑本小节的限制，也无需为 <code>qRegisterMetaType&lt;T&gt;()</code> 手动指定字符串名称。</p>
+<p>更多信息，详见 <code>QObject::connect()</code></p>
+</blockquote>
+<h3><span id="qian-tao-lei-bu-neng-yong-you-xin-hao-cao">嵌套类不能拥有信号槽</span><a href="#qian-tao-lei-bu-neng-yong-you-xin-hao-cao" class="header-anchor">#</a></h3><p>下文是错误代码结构的示例：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span>
+    {
+        Q_OBJECT
+
+    <span class="hljs-keyword">public</span> slots:   <span class="hljs-comment">// 错误</span>
+        <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">b</span><span class="hljs-params">()</span></span>;
+    };
+};</code></pre></div>
+
+
+
+<h3><span id="xin-hao-cao-fan-hui-zhi-bu-neng-wei-yin-yong">信号槽返回值不能为引用</span><a href="#xin-hao-cao-fan-hui-zhi-bu-neng-wei-yin-yong" class="header-anchor">#</a></h3><p>信号槽可以具备返回值，但返回引用会被当作返回 <code>void</code>。</p>
+<h3><span id="zhi-you-xin-hao-cao-ke-yi-chu-xian-zai-lei-de-signals-he-slots-qu-yu-zhong">只有信号槽可以出现在类的 <code>signals</code> 和 <code>slots</code> 区域中</span><a href="#zhi-you-xin-hao-cao-ke-yi-chu-xian-zai-lei-de-signals-he-slots-qu-yu-zhong" class="header-anchor">#</a></h3><p>若将信号槽之外的其它代码结构放置类的在 <code>signals</code> 或 <code>slots</code> 区域中，<code>moc</code> 将会报错。</p>
+<blockquote>
+<p>译者注：</p>
+<p>推荐使用 <code>Q_SIGNALS</code> 和 <code>Q_SLOTS</code> 单独标注信号槽，这样可以更精细地排列类成员布局，使得信号槽与其它成员按照能够逻辑关系排布，而非被 <code>signals</code> 或 <code>slots</code> 区域强行隔离开。</p>
+</blockquote>
+<p><strong>另请参阅：</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/metaobjects.html">元对象系统</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/exceptionsafety.html#signals-and-slots">信号槽</a> 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/properties.html">Qt 的属性系统</a>。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AF%B9%E8%B1%A1%E7%BC%96%E8%AF%91%E5%99%A8/">对象编译器</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/M/The_Meta-Object_System/The_Meta-Object_System/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">元对象系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/N/QNetworkAccessManager/QNetworkAccessManager/">
+                        <span class="hidden-mobile">QNetworkAccessManager类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,1919 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QAbstractAxis QAbstractAxis类是用于专门处理坐标轴的类 简述 公共类型 属性 Public Functions 信号   详细说明 成员变量       # **QAbstractAxis**   QAbstractAxis类是用于专门处理坐标轴的类#   属性 方法    头文件:     #include &lt;QAbstractAxis&gt;   实例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QAbstractAxis类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/A/QAbstractAxis/QAbstractAxis/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QAbstractAxis QAbstractAxis类是用于专门处理坐标轴的类 简述 公共类型 属性 Public Functions 信号   详细说明 成员变量       # **QAbstractAxis**   QAbstractAxis类是用于专门处理坐标轴的类#   属性 方法    头文件:     #include &lt;QAbstractAxis&gt;   实例">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T04:52:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:33:28.887Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="A">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QAbstractAxis类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QAbstractAxis类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 12:52" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      13k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      109 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QAbstractAxis类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qabstractaxis"><strong>QAbstractAxis</strong></a><ul>
+<li><a href="#qabstractaxis-lei-shi-yong-yu-zhuan-men-chu-li-zuo-biao-zhou-de-lei"><strong>QAbstractAxis类是用于专门处理坐标轴的类</strong></a></li>
+<li><a href="#jian-shu"><strong>简述</strong></a><ul>
+<li><a href="#gong-gong-lei-xing"><strong>公共类型</strong></a></li>
+<li><a href="#shu-xing"><strong>属性</strong></a></li>
+<li><a href="#public-functions"><strong>Public Functions</strong></a></li>
+<li><a href="#xin-hao"><strong>信号</strong></a></li>
+</ul>
+</li>
+<li><a href="#xiang-xi-shuo-ming"><strong>详细说明</strong></a></li>
+<li><a href="#cheng-yuan-bian-liang"><strong>成员变量</strong></a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# **QAbstractAxis**
+
+<hr>
+<h2><span id="qabstractaxis-lei-shi-yong-yu-zhuan-men-chu-li-zuo-biao-zhou-de-lei"><strong>QAbstractAxis类是用于专门处理坐标轴的类</strong></span><a href="#qabstractaxis-lei-shi-yong-yu-zhuan-men-chu-li-zuo-biao-zhou-de-lei" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th align="right">属性</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">头文件:</td>
+<td align="left"><code>    #include &lt;QAbstractAxis&gt;</code></td>
+</tr>
+<tr>
+<td align="right">实例化:</td>
+<td align="left">AbstractAxis</td>
+</tr>
+<tr>
+<td align="right">继承:</td>
+<td align="left">QObject</td>
+</tr>
+<tr>
+<td align="right">派生:</td>
+<td align="left">QBarCategoryAxis, QDateTimeAxis, QLogValueAxis, and QValueAxis</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><span id="jian-shu"><strong>简述</strong></span><a href="#jian-shu" class="header-anchor">#</a></h2><hr>
+<h3><span id="gong-gong-lei-xing"><strong>公共类型</strong></span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">enum</td>
+<td align="left">AxisType { AxisTypeNoAxis, AxisTypeValue, AxisTypeBarCategory, AxisTypeCategory, AxisTypeDateTime, AxisTypeLogValue }</td>
+</tr>
+<tr>
+<td align="right">flags</td>
+<td align="left">AxisTypes</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="shu-xing"><strong>属性</strong></span><a href="#shu-xing" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="right">函数名</th>
+<th align="left">类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">alignment :</td>
+<td align="left">const Qt::Alignment</td>
+</tr>
+<tr>
+<td align="right">color :</td>
+<td align="left">QColor</td>
+</tr>
+<tr>
+<td align="right">gridLineColor :</td>
+<td align="left">QColor</td>
+</tr>
+<tr>
+<td align="right">gridLinePen :</td>
+<td align="left">QPen</td>
+</tr>
+<tr>
+<td align="right">gridVisible :</td>
+<td align="left">bool</td>
+</tr>
+<tr>
+<td align="right">labelsAngle :</td>
+<td align="left">int</td>
+</tr>
+<tr>
+<td align="right">labelsBrush :</td>
+<td align="left">QBrush</td>
+</tr>
+<tr>
+<td align="right">labelsColor :</td>
+<td align="left">QColor</td>
+</tr>
+<tr>
+<td align="right">labelsFont :</td>
+<td align="left">QFont</td>
+</tr>
+<tr>
+<td align="right">labelsVisible :</td>
+<td align="left">bool</td>
+</tr>
+<tr>
+<td align="right">linePen :</td>
+<td align="left">QPen</td>
+</tr>
+<tr>
+<td align="right">lineVisible :</td>
+<td align="left">bool</td>
+</tr>
+<tr>
+<td align="right">minorGridLineColor :</td>
+<td align="left">QColor</td>
+</tr>
+<tr>
+<td align="right">minorGridLinePen :</td>
+<td align="left">QPen</td>
+</tr>
+<tr>
+<td align="right">minorGridVisible :</td>
+<td align="left">bool</td>
+</tr>
+<tr>
+<td align="right">orientation :</td>
+<td align="left">const Qt::Orientation</td>
+</tr>
+<tr>
+<td align="right">reverse :</td>
+<td align="left">bool</td>
+</tr>
+<tr>
+<td align="right">shadesBorderColor :</td>
+<td align="left">QColor</td>
+</tr>
+<tr>
+<td align="right">shadesBrush :</td>
+<td align="left">QBrush</td>
+</tr>
+<tr>
+<td align="right">shadesColor :</td>
+<td align="left">QColor</td>
+</tr>
+<tr>
+<td align="right">shadesPen :</td>
+<td align="left">QPen</td>
+</tr>
+<tr>
+<td align="right">shadesVisible :</td>
+<td align="left">bool</td>
+</tr>
+<tr>
+<td align="right">titleBrush :</td>
+<td align="left">QBrush</td>
+</tr>
+<tr>
+<td align="right">titleFont :</td>
+<td align="left">QFont</td>
+</tr>
+<tr>
+<td align="right">titleText :</td>
+<td align="left">QString</td>
+</tr>
+<tr>
+<td align="right">titleVisible :</td>
+<td align="left">bool</td>
+</tr>
+<tr>
+<td align="right">visible :</td>
+<td align="left">bool</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="public-functions"><strong>Public Functions</strong></span><a href="#public-functions" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right"></td>
+<td align="left">~QAbstractAxis()</td>
+</tr>
+<tr>
+<td align="right">Qt::Alignment</td>
+<td align="left">alignment() const</td>
+</tr>
+<tr>
+<td align="right">QColor</td>
+<td align="left">gridLineColor()</td>
+</tr>
+<tr>
+<td align="right">QPen</td>
+<td align="left">gridLinePen() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">hide()</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isGridLineVisible() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isLineVisible() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isMinorGridLineVisible() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isReverse() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isTitleVisible() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">isVisible() const</td>
+</tr>
+<tr>
+<td align="right">int</td>
+<td align="left">labelsAngle() const</td>
+</tr>
+<tr>
+<td align="right">QBrush</td>
+<td align="left">labelsBrush() const</td>
+</tr>
+<tr>
+<td align="right">QColor</td>
+<td align="left">labelsColor() const</td>
+</tr>
+<tr>
+<td align="right">QFont</td>
+<td align="left">labelsFont() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">labelsVisible() const</td>
+</tr>
+<tr>
+<td align="right">QPen</td>
+<td align="left">linePen() const</td>
+</tr>
+<tr>
+<td align="right">QColor</td>
+<td align="left">linePenColor() const</td>
+</tr>
+<tr>
+<td align="right">QColor</td>
+<td align="left">minorGridLineColor()</td>
+</tr>
+<tr>
+<td align="right">QPen</td>
+<td align="left">minorGridLinePen() const</td>
+</tr>
+<tr>
+<td align="right">Qt::Orientation</td>
+<td align="left">orientation() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setGridLineColor(const QColor &amp;color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setGridLinePen(const QPen &amp;pen)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setGridLineVisible(bool visible = true)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLabelsAngle(int angle)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLabelsBrush(const QBrush &amp;brush)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLabelsColor(QColor color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLabelsFont(const QFont &amp;font)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLabelsVisible(bool visible = true)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLinePen(const QPen &amp;pen)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLinePenColor(QColor color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLineVisible(bool visible = true)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setMax(const QVariant &amp;max)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setMin(const QVariant &amp;min)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setMinorGridLineColor(const QColor &amp;color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setMinorGridLinePen(const QPen &amp;pen)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setMinorGridLineVisible(bool visible = true)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setRange(const QVariant &amp;min, const QVariant &amp;max)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setReverse(bool reverse = true)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setShadesBorderColor(QColor color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setShadesBrush(const QBrush &amp;brush)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setShadesColor(QColor color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setShadesPen(const QPen &amp;pen)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setShadesVisible(bool visible = true)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setTitleBrush(const QBrush &amp;brush)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setTitleFont(const QFont &amp;font)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setTitleText(const QString &amp;title)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setTitleVisible(bool visible = true)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setVisible(bool visible = true)</td>
+</tr>
+<tr>
+<td align="right">QColor</td>
+<td align="left">shadesBorderColor() const</td>
+</tr>
+<tr>
+<td align="right">QBrush</td>
+<td align="left">shadesBrush() const</td>
+</tr>
+<tr>
+<td align="right">QColor</td>
+<td align="left">shadesColor() const</td>
+</tr>
+<tr>
+<td align="right">QPen</td>
+<td align="left">shadesPen() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left">shadesVisible() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">show()</td>
+</tr>
+<tr>
+<td align="right">QBrush</td>
+<td align="left">titleBrush() const</td>
+</tr>
+<tr>
+<td align="right">QFont</td>
+<td align="left">titleFont() const</td>
+</tr>
+<tr>
+<td align="right">QString</td>
+<td align="left">titleText() const</td>
+</tr>
+<tr>
+<td align="right">virtual AxisType</td>
+<td align="left">type() const = 0</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="xin-hao"><strong>信号</strong></span><a href="#xin-hao" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">colorChanged(QColor color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">gridLineColorChanged(const QColor &amp;color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">gridLinePenChanged(const QPen &amp;pen)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">gridVisibleChanged(bool visible)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">labelsAngleChanged(int angle)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">labelsBrushChanged(const QBrush &amp;brush)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">labelsColorChanged(QColor color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">labelsFontChanged(const QFont &amp;font)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">labelsVisibleChanged(bool visible)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">linePenChanged(const QPen &amp;pen)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">lineVisibleChanged(bool visible)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">minorGridLineColorChanged(const QColor &amp;color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">minorGridLinePenChanged(const QPen &amp;pen)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">minorGridVisibleChanged(bool visible)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">reverseChanged(bool reverse)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">shadesBorderColorChanged(QColor color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">shadesBrushChanged(const QBrush &amp;brush)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">shadesColorChanged(QColor color)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">shadesPenChanged(const QPen &amp;pen)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">shadesVisibleChanged(bool visible)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">titleBrushChanged(const QBrush &amp;brush)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">titleFontChanged(const QFont &amp;font)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">titleTextChanged(const QString &amp;text)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">titleVisibleChanged(bool visible)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">visibleChanged(bool visible)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><span id="xiang-xi-shuo-ming"><strong>详细说明</strong></span><a href="#xiang-xi-shuo-ming" class="header-anchor">#</a></h2><hr>
+<p>QAbstractAxis是专门用于处理坐标轴的基类。</p>
+<p>每一个连续的序列可以绑定到一个或者多个水平轴和垂直轴，但是不同域的混合轴的类型是不支持的。比如在同一个方向指定QValueAxis和QLogValueAxis。</p>
+<p>每个轴的元素（比如轴线，标题，标签，网格线，阴影，可见性）都是可以控制的。</p>
+<hr>
+<h2><span id="cheng-yuan-bian-liang"><strong>成员变量</strong></span><a href="#cheng-yuan-bian-liang" class="header-anchor">#</a></h2><p><strong>enum QAbstractAxis::AxisType</strong><br><strong>flags QAbstractAxis::AxisTypes</strong></p>
+<hr>
+<p><em><strong>这个枚举类型指定了轴对象的类型</strong></em></p>
+<table>
+<thead>
+<tr>
+<th align="right">变量</th>
+<th align="left">值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QAbstractAxis::AxisTypeNoAxis</td>
+<td align="left">0x0</td>
+</tr>
+<tr>
+<td align="right">QAbstractAxis::AxisTypeValue</td>
+<td align="left">0x1</td>
+</tr>
+<tr>
+<td align="right">QAbstractAxis::AxisTypeBarCategory</td>
+<td align="left">0x2</td>
+</tr>
+<tr>
+<td align="right">QAbstractAxis::AxisTypeCategory</td>
+<td align="left">0x4</td>
+</tr>
+<tr>
+<td align="right">QAbstractAxis::AxisTypeDateTime</td>
+<td align="left">0x8</td>
+</tr>
+<tr>
+<td align="right">QAbstractAxis::AxisTypeLogValue</td>
+<td align="left">0x10</td>
+</tr>
+</tbody></table>
+<p><code>AxisTypes</code>是<code>QFlags&lt;AxisType&gt;</code>的typedef。它是AxisType类型的组合。<br>（也就是个宏呗）</p>
+<hr>
+<p><strong>alignment : const Qt::Alignment</strong><br>该属性是轴的对齐属性<br>其值可以为 Qt::AlignLeft, Qt::AlignRight, Qt::AlignBottom, or Qt::AlignTop.<br><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">Qt::Alignment</td>
+<td align="left">alignment() const</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>color : QColor</strong><br>该属性是指坐标轴与刻度的颜色</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QColor</td>
+<td align="left">linePenColor() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLinePenColor(QColor color)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">colorChanged(QColor color)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>gridLineColor : QColor</strong><br>该属性是指网格线的颜色</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QColor</td>
+<td align="left">gridLineColor()</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setGridLineColor(const QColor &amp;color)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">gridLineColorChanged(const QColor &amp;color)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>gridLinePen : QPen</strong><br>该属性是指绘制网格线的笔</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QPen</td>
+<td align="left">gridLinePen() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setGridLinePen(const QPen &amp;pen)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">gridLinePenChanged(const QPen &amp;pen)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>gridVisible : bool</strong><br>该属性是网格线是否可见</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QPen</td>
+<td align="left">gridLinePen() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setGridLinePen(const QPen &amp;pen)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">gridLinePenChanged(const QPen &amp;pen)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>labelsAngle : int</strong><br>该属性以度数保存轴坐标的角度</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">int</td>
+<td align="left">labelsAngle() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLabelsAngle(int angle)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">labelsAngleChanged(int angle)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>labelsBrush : QBrush</strong><br>该属性表示用于绘制标签的画笔<br>只有画刷的颜色是相关的（这句话其实我不太理解Only the color of the brush is relevant.）</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QBrush</td>
+<td align="left">labelsBrush() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLabelsBrush(const QBrush &amp;brush)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">labelsBrushChanged(const QBrush &amp;brush)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>labelsColor : QColor</strong><br>该属性表示轴标签的颜色</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QColor</td>
+<td align="left">labelsColor() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLabelsColor(QColor color)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">labelsColorChanged(QColor color)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>labelsFont : QFont</strong><br>该属性表示轴标签的字体信息</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QFont</td>
+<td align="left">labelsFont() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLabelsFont(const QFont &amp;font)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">labelsFontChanged(const QFont &amp;font)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>labelsVisible : bool</strong><br>该属性表示轴标签是否可见</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">bool</td>
+<td align="left">labelsVisible() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLabelsVisible(bool visible = true)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">labelsVisibleChanged(bool visible)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>linePen : QPen</strong><br>该属性表示绘制轴线的笔相关</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QPen</td>
+<td align="left">linePen() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLinePen(const QPen &amp;pen)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">linePenChanged(const QPen &amp;pen)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>lineVisible : bool</strong><br>该属性表示轴线是否可见</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">bool</td>
+<td align="left">isLineVisible() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setLineVisible(bool visible = true)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">lineVisibleChanged(bool visible)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>minorGridLineColor : QColor</strong><br>该属性表示副格线的颜色<br>仅适用于支持副网格线的轴</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QColor</td>
+<td align="left">minorGridLineColor()</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setMinorGridLineColor(const QColor &amp;color)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">minorGridLineColorChanged(const QColor &amp;color)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>minorGridLinePen : QPen</strong><br>该属性表示副格线的笔<br>仅适用于支持副网格线的轴</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QPen</td>
+<td align="left">minorGridLinePen() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setMinorGridLinePen(const QPen &amp;pen)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">minorGridLinePenChanged(const QPen &amp;pen)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>minorGridVisible : bool</strong><br>该属性表示副格线是否可见<br>仅适用于支持副网格线的轴</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">bool</td>
+<td align="left">isMinorGridLineVisible() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setMinorGridLineVisible(bool visible = true)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">minorGridVisibleChanged(bool visible)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>orientation : const Qt::Orientation</strong><br>该属性表示坐标轴的方向。<br>当坐标轴被添加到图表时，该属性为Qt::Horizontal或者Qt::Vertical</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">Qt::Orientation</td>
+<td align="left">orientation() const</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>reverse : bool</strong><br>该属性表示是否使用反转轴。<br>该值默认为false。<br>反转轴由直线，样条，散列图系列以及笛卡尔图表组成的区域支持。如果一个方向相反，或者行为为定义，则所有相同方向的所有轴必须保持一致。</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">bool</td>
+<td align="left">isReverse() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setReverse(bool reverse = true)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">reverseChanged(bool reverse)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>shadesBorderColor : QColor</strong><br>该属性表示坐标轴阴影的边框（笔）颜色</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QColor</td>
+<td align="left">shadesBorderColor() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setShadesBorderColor(QColor color)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">shadesBorderColorChanged(QColor color)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>shadesBrush : QBrush</strong><br>该属性表示用于绘制轴阴影的画笔（网格线之间的区域）</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QPen</td>
+<td align="left">shadesPen() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setShadesPen(const QPen &amp;pen)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">shadesPenChanged(const QPen &amp;pen)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>shadesVisible : bool</strong><br>该属性表示轴阴影是否可见</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">bool</td>
+<td align="left">shadesVisible() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setShadesVisible(bool visible = true)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">shadesVisibleChanged(bool visible)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>titleBrush : QBrush</strong><br>该属性表示用于绘制坐标轴标题文本的画笔。<br>只影响画刷的颜色。</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QBrush</td>
+<td align="left">titleBrush() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setTitleBrush(const QBrush &amp;brush)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">titleBrushChanged(const QBrush &amp;brush)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>titleFont : QFont</strong><br>该属性表示坐标轴标题的字体。</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QFont</td>
+<td align="left">titleFont() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setTitleFont(const QFont &amp;font)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">titleFontChanged(const QFont &amp;font)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>titleText : QString</strong><br>该属性表示坐标轴的标题<br>默认为空，坐标轴的标题支持HTML的格式。</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QString</td>
+<td align="left">titleText() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setTitleText(const QString &amp;title)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">titleTextChanged(const QString &amp;text)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>titleVisible : bool</strong><br>该属性表示坐标轴的可见性。<br>默认值为true。</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">bool</td>
+<td align="left">isTitleVisible() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setTitleVisible(bool visible = true)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">titleVisibleChanged(bool visible)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>visible : bool</strong><br>该属性表示坐标轴的可见性。</p>
+<p><strong>相关函数</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">bool</td>
+<td align="left">isVisible() const</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left">setVisible(bool visible = true)</td>
+</tr>
+</tbody></table>
+<p><strong>通知信号</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">类型</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">void</td>
+<td align="left">visibleChanged(bool visible)</td>
+</tr>
+</tbody></table>
+<hr>
+<p>##<strong>成员函数</strong></p>
+<hr>
+<p><strong>QAbstractAxis::~QAbstractAxis()</strong><br>析构函数，销毁轴对象，当一个坐标轴添加到图表时，该图表获得该坐标轴的所有权。</p>
+<hr>
+<p><strong>void QAbstractAxis::colorChanged(QColor color) [信号]</strong><br>当坐标轴的颜色变化时，该信号被发射。<br>注意：属性color的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::gridLineColorChanged(const QColor &amp;color) [信号]</strong><br>当绘制网格线的笔的颜色改变时，该信号被发射。<br>注意：属性gridLineColor的通知信号。</p>
+<hr>
+<p><strong>QPen QAbstractAxis::gridLinePen() const</strong><br>返回用于绘制网格的笔。<br>注意:属性gridLinePen的Getter函数。<br>另参见函数setGridLinePen()。</p>
+<hr>
+<p><strong>void QAbstractAxis :: gridLinePenChanged（const QPen＆pen） [信号]</strong><br>当用于绘制网格线的笔变化时，会发出此信号。<br>注意:属性gridLinePen的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::gridVisibleChanged(bool visible) [信号]</strong><br>当坐标轴的网格线的可见性变化时，发出该信号。<br>注意:属性gridVisible的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::hide()</strong><br>使坐标轴，阴影，标签，网格线不可见。</p>
+<hr>
+<p><strong>void QAbstractAxis::labelsAngleChanged(int angle) [信号]</strong><br>当坐标轴标签的角度变化时，发出该信号。<br>注意：属性标签角度的通知信号</p>
+<hr>
+<p><strong>QBrush QAbstractAxis::labelsBrush() const</strong><br>返回用于绘制标签的画笔。<br>注意:属性labelsBrush的Getter函数。<br>另参见setLabelsBrush().</p>
+<hr>
+<p><strong>void QAbstractAxis::labelsBrushChanged(const QBrush &amp;brush) [信号]</strong><br>当用于绘制坐标轴标签的画笔改变时，会发出此信号。<br>属性Brush的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis :: labelsColorChanged（QColor color） [信号signal]</strong><br>当坐标轴标签的颜色改变时，会发出此信号。<br>属性labelsColor的通知信号。</p>
+<hr>
+<p>**QFont QAbstractAxis::labelsFont()const **<br>返回用于绘制标签的字体。<br>注意:属性labelsFont的Getter函数。<br>另参见函数setLabelsFont()。</p>
+<hr>
+<p><strong>void QAbstractAxis :: labelsFontChanged（const QFont＆font）[信号]</strong><br>当坐标轴的字体改变时，会发出此信号。<br>属性labelsFont的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::labelsVisibleChanged(bool visible) [信号]</strong><br>当坐标轴标签的可见性变化时，会发出此信号。<br>属性labelsVisible的通知信号。</p>
+<hr>
+<p><strong>QPen QAbstractAxis::linePen() const</strong><br>返回用于绘制轴线与刻度线的笔。<br>注意:属性linePen的Getter函数。<br>另参阅函数setLinePen()。</p>
+<hr>
+<p><strong>void QAbstractAxis::linePenChanged(const QPen &amp;pen) [信号]</strong><br>当绘制坐标轴的笔变化时，会发出此信号。<br>注意:属性linePen的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::lineVisibleChanged(bool visible) [信号]</strong><br>当坐标轴线的可见性变化时，会发出此信号。<br>注意:属性lineVisible的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::minorGridLineColorChanged(const QColor &amp;color) [信号]</strong><br>当绘制副格线的笔的颜色变化时，该信号被发射。<br>注意:属性minorGridLineColor的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::minorGridLinePenChanged(const QPen &amp;pen) [信号]</strong><br>当绘制副格线的笔变化时，该信号被发射。<br>注意：属性minorGridLinePen的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::minorGridVisibleChanged(bool visible) [信号]</strong><br>当绘制副格线的可见性变化时，该信号被发射。<br>注意:属性minorGridVisible的通知信号。</p>
+<hr>
+<p><strong>Qt::Orientation QAbstractAxis::orientation() const</strong><br>返回坐标轴的方向(垂直或者水平)<br>注意:坐标轴方向的Getter函数。</p>
+<hr>
+<p><strong>void QAbstractAxis::setGridLinePen(const QPen &amp;pen)</strong><br>设置绘制网格线的笔。<br>注意:gridLinePen的Setter函数。<br>另参见函数gridLinePen()。</p>
+<hr>
+<p><strong>void QAbstractAxis::setLabelsBrush(const QBrush &amp;brush)</strong><br>设置用于绘制标签的画笔。<br>注意:属性LabelsBrush的Setter函数。<br>另参阅labelsBrush().</p>
+<hr>
+<p><strong>void QAbstractAxis::setLabelsFont(const QFont &amp;font)</strong><br>设置用于绘制标签的字体相关<br>注意:属性labelsFont的Setter函数。<br>另参阅函数labelsFont()。</p>
+<hr>
+<p><strong>void QAbstractAxis::setLinePen(const QPen &amp;pen)</strong><br>设置用于绘制坐标轴线和刻度线的笔。<br>注意：属性linePen的Setter函数。<br>另参见函数linePen（）。</p>
+<hr>
+<p><strong>void QAbstractAxis::setLineVisible(bool visible = true)</strong><br>设置坐标轴线与刻度线是否可见。<br>注意:属性lineVisible的Setter函数<br>另参见函数isLineVisible()。</p>
+<hr>
+<p><strong>void QAbstractAxis::setMax(const QVariant &amp;max)</strong><br>设置坐标轴上显示的最大值。根据当前坐标轴的类型，最大值参数会被转换为适当的值。如果转化失败，该函数设置无效。</p>
+<hr>
+<p><strong>void QAbstractAxis::setMin(const QVariant &amp;min)</strong><br>设置坐标轴上显示的最小值。根据当前坐标轴的类型，最小值参数会被转换为适当的值。如果转化失败，该函数设置无效。</p>
+<hr>
+<p><strong>void QAbstractAxis::setRange(const QVariant &amp;min, const QVariant &amp;max)</strong><br>设置坐标轴的范围。根据当前坐标轴的类型，最大值最小值会被转换为适当的值。如果转化失败，该函数设置无效。</p>
+<hr>
+<p><strong>void QAbstractAxis::setShadesBrush(const QBrush &amp;brush)</strong><br>设置用于绘制阴影的画笔。<br>注意：属性shadesBrush的Setter函数。<br>另参见函数shadesBrush().</p>
+<hr>
+<p><strong>void QAbstractAxis::setShadesPen(const QPen &amp;pen)</strong><br>设置用于绘制阴影的笔。<br>注意：属性shadesPen的Setter函数。<br>另参见函数shadesPen().</p>
+<hr>
+<p><strong>void QAbstractAxis::setTitleBrush(const QBrush &amp;brush)</strong><br>设置用于绘制标题的画笔。<br>注意：属性titleBrush的Setter函数。<br>另参见函数titleBrush().</p>
+<hr>
+<p><strong>void QAbstractAxis::setTitleFont(const QFont &amp;font)</strong><br>设置用于绘制标题的笔。<br>注意：属性titleFont的Setter函数。<br>另参见函数titleFont().</p>
+<hr>
+<p><strong>void QAbstractAxis::setVisible(bool visible = true)</strong><br>设置坐标轴，阴影，标签，网格线是否可见。<br>注意：属性visible的Setter函数。<br>另参见函数isVisible().</p>
+<hr>
+<p><strong>void QAbstractAxis::shadesBorderColorChanged(QColor color) [信号signal]</strong><br>当绘制坐标轴边框的颜色变化时，会发出此信号。<br>注意:属性shadesBorderColor的通知信号。</p>
+<hr>
+<p><strong>QBrush QAbstractAxis::shadesBrush() const</strong><br>返回用于绘制阴影的画笔。<br>注意：属性shadesBrush()的Getter函数。<br>另参阅函数setShadesBrush().</p>
+<hr>
+<p><strong>void QAbstractAxis::shadesBrushChanged(const QBrush &amp;brush) [信号signal]</strong><br>当绘制坐标轴阴影的画刷变化时，会发出此信号。<br>注意:属性shadesBrush()的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::shadesColorChanged(QColor color) [信号signal]</strong><br>当绘制坐标轴阴影颜色发生变化时，会发出此信号。<br>注意:属性shadesColor()的通知信号。</p>
+<hr>
+<p><strong>QPen QAbstractAxis::shadesPen() const</strong><br>返回用于绘制阴影的笔。<br>注意:属性shadesPen()的Getter函数<br>另参阅函数setShadesPen().</p>
+<hr>
+<p><strong>void QAbstractAxis::shadesPenChanged(const QPen &amp;pen) [信号signal]</strong><br>当绘制坐标轴阴影的笔发生变化时，会发出此信号。<br>注意:属性shadesPen()的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::shadesVisibleChanged(bool visible) [信号signal]</strong><br>当坐标轴的阴影可见性变化时，会发出此信号。<br>注意:属性shadesVisible()的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::show()</strong><br>使坐标轴，阴影，标签，网格线可见。</p>
+<hr>
+<p><strong>QBrush QAbstractAxis::titleBrush() const</strong><br>返回用于绘制标题的画刷<br>注意:属性titleBrush的Getter函数<br>另参阅函数setTitleBrush()</p>
+<hr>
+<p><strong>void QAbstractAxis::titleBrushChanged(const QBrush &amp;brush) [信号signal]</strong><br>当绘制坐标轴标题的画刷变化时，该信号被发射<br>注意:titleBrush的通知信号。</p>
+<hr>
+<p><strong>QFont QAbstractAxis::titleFont() const</strong><br>返回绘制标题的笔相关属性。<br>注意：titleFont的Getter函数<br>另参阅函数setTitleFont()</p>
+<hr>
+<p><strong>void QAbstractAxis::titleFontChanged(const QFont &amp;font) [信号 signal]</strong><br>当坐标轴标题的字体属性更改时，会发出此信号。<br>注意:titleFont的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::titleTextChanged(const QString &amp;text) [信号 signal]</strong><br>当坐标轴标题的文本内容改变时，会发出此信号。<br>注意:titleText的通知信号。</p>
+<hr>
+<p><strong>void QAbstractAxis::titleVisibleChanged(bool visible) [信号 signal]</strong><br>当坐标轴的标题文本的可见性变化时，会发出此信号。<br>注意:titleVisible的通知信号</p>
+<hr>
+<p><strong>AxisType QAbstractAxis::type() const</strong><br>返回坐标轴的类型</p>
+<hr>
+<p><strong>void QAbstractAxis::visibleChanged(bool visible)</strong><br>当坐标轴的可见性变化时，会发出此信号。<br>注意：坐标轴的visible的通知信号</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/A/">A</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/A/QAbstractBarSeries/QAbstractBarSeries/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QAbstractBarSeries类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/A/QAbstractItemModel/QAbstractItemModel/">
+                        <span class="hidden-mobile">QAbstractItemModel类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

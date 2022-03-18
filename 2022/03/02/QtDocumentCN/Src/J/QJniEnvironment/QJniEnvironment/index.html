@@ -1,0 +1,717 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QJniEnvironment Class 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 enum class QJniEnvironment:: OutputMode   成员函数文档编制 QJniEnvironment:: QJniEnvironment () QJniEnvironment:: ~QJniEnvironment () bool QJniEnviron">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QJniEnvironment类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/J/QJniEnvironment/QJniEnvironment/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QJniEnvironment Class 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 enum class QJniEnvironment:: OutputMode   成员函数文档编制 QJniEnvironment:: QJniEnvironment () QJniEnvironment:: ~QJniEnvironment () bool QJniEnviron">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:44:03.772Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="J">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QJniEnvironment类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QJniEnvironment类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      59 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QJniEnvironment类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qjnienvironment-class">QJniEnvironment Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#enum-class-qjnienvironment-outputmode">enum class QJniEnvironment:: OutputMode</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qjnienvironment-qjnienvironment">QJniEnvironment:: QJniEnvironment ()</a></li>
+<li><a href="#qjnienvironment-qjnienvironment">QJniEnvironment:: ~QJniEnvironment ()</a></li>
+<li><a href="#bool-qjnienvironment-checkandclearexceptions-qjnienvironment-outputmode-http-qt6-digitser-net-6-2-zh-cn-qjnienvironment-html-outputmode-enum-outputmode-outputmode-verbose">bool QJniEnvironment:: checkAndClearExceptions ( </a><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#OutputMode-enum">QJniEnvironment::OutputMode </a><em>outputMode</em> = OutputMode::Verbose)</li>
+<li><a href="#static-bool-qjnienvironment-checkandclearexceptions-jnienv-env-qjnienvironment-outputmode-http-qt6-digitser-net-6-2-zh-cn-qjnienvironment-html-outputmode-enum-outputmode-outputmode-verbose"><code>[static] </code>bool QJniEnvironment:: checkAndClearExceptions ( JNIEnv * <em>env</em> , </a><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#OutputMode-enum">QJniEnvironment::OutputMode </a><em>outputMode</em> = OutputMode::Verbose)</li>
+<li><a href="#jclass-qjnienvironment-findclass-const-char-classname">jclass QJniEnvironment:: findClass (const char * <em>className</em> )</a></li>
+<li><a href="#since-6-2-jfieldid-qjnienvironment-findfield-jclass-clazz-const-char-fieldname-const-char-signature"><code>[since 6.2] </code>jfieldID QJniEnvironment:: findField ( jclass <em>clazz</em> , const char * <em>fieldName</em> , const char * <em>signature</em> )</a></li>
+<li><a href="#since-6-2-jmethodid-qjnienvironment-findmethod-jclass-clazz-const-char-methodname-const-char-signature"><code>[since 6.2] </code>jmethodID QJniEnvironment:: findMethod ( jclass <em>clazz</em> , const char * <em>methodName</em> , const char * <em>signature</em> )</a></li>
+<li><a href="#since-6-2-jfieldid-qjnienvironment-findstaticfield-jclass-clazz-const-char-fieldname-const-char-signature"><code>[since 6.2] </code>jfieldID QJniEnvironment:: findStaticField ( jclass <em>clazz</em> , const char * <em>fieldName</em> , const char * <em>signature</em> )</a></li>
+<li><a href="#since-6-2-jmethodid-qjnienvironment-findstaticmethod-jclass-clazz-const-char-methodname-const-char-signature"><code>[since 6.2] </code>jmethodID QJniEnvironment:: findStaticMethod ( jclass <em>clazz</em> , const char * <em>methodName</em> , const char * <em>signature</em> )</a></li>
+<li><a href="#since-6-2-bool-qjnienvironment-isvalid-const"><code>[since 6.2] </code>bool QJniEnvironment:: isValid () const</a></li>
+<li><a href="#static-javavm-qjnienvironment-javavm"><code>[static] </code>JavaVM *QJniEnvironment:: javaVM ()</a></li>
+<li><a href="#jnienv-qjnienvironment-jnienv-const">JNIEnv *QJniEnvironment:: jniEnv () const</a></li>
+<li><a href="#bool-qjnienvironment-registernativemethods-const-char-classname-const-jninativemethod-methods-int-size">bool QJniEnvironment:: registerNativeMethods (const char * <em>className</em> , const JNINativeMethod [] <em>methods</em> , int <em>size</em> )</a></li>
+<li><a href="#bool-qjnienvironment-registernativemethods-jclass-clazz-const-jninativemethod-methods-int-size">bool QJniEnvironment:: registerNativeMethods ( jclass <em>clazz</em> , const JNINativeMethod [] <em>methods</em> , int <em>size</em> )</a></li>
+<li><a href="#jnienv-qjnienvironment-operator-const">JNIEnv &amp;QJniEnvironment:: operator* () const</a></li>
+<li><a href="#jnienv-qjnienvironment-operator-const">JNIEnv *QJniEnvironment:: operator-&gt; () const</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QJniEnvironment Class
+
+<p>QJniEnvironment类提供了对JNI环境（JNIEnv）的访问。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qjnienvironment></qjnienvironment></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 6.1</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment-members.html">所有成员列表，包括继承成员</a></li>
+<li><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment-obsolete.html">弃用成员</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum class</th>
+<th><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#OutputMode-enum">OutputMode </a></strong>{ Silent, Verbose }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#QJniEnvironment">QJniEnvironment </a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#dtor.QJniEnvironment">~QJniEnvironment </a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#checkAndClearExceptions">checkAndClearExceptions </a></strong>(QJniEnvironment::OutputMode <em>outputMode</em> = OutputMode::Verbose)</td>
+</tr>
+<tr>
+<td>jclass</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#findClass">findClass </a></strong>(const char * <em>className</em> )</td>
+</tr>
+<tr>
+<td>jfieldID</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#findField">findField </a></strong>(jclass <em>clazz</em> , const char * <em>fieldName</em> , const char * <em>signature</em> )</td>
+</tr>
+<tr>
+<td>jmethodID</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#findMethod">findMethod </a></strong>(jclass <em>clazz</em> , const char * <em>methodName</em> , const char * <em>signature</em> )</td>
+</tr>
+<tr>
+<td>jfieldID</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#findStaticField">findStaticField </a></strong>(jclass <em>clazz</em> , const char * <em>fieldName</em> , const char * <em>signature</em> )</td>
+</tr>
+<tr>
+<td>jmethodID</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#findStaticMethod">findStaticMethod </a></strong>(jclass <em>clazz</em> , const char * <em>methodName</em> , const char * <em>signature</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#isValid">isValid </a></strong>() const</td>
+</tr>
+<tr>
+<td>JNIEnv *</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#jniEnv">jniEnv </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#registerNativeMethods">registerNativeMethods </a></strong>(const char * <em>className</em> , const JNINativeMethod [] <em>methods</em> , int <em>size</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#registerNativeMethods-1">registerNativeMethods </a></strong>(jclass <em>clazz</em> , const JNINativeMethod [] <em>methods</em> , int <em>size</em> )</td>
+</tr>
+<tr>
+<td>JNIEnv &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#operator-2a">operator* </a></strong>() const</td>
+</tr>
+<tr>
+<td>JNIEnv *</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#operator--gt">operator-&gt; </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#checkAndClearExceptions-1">checkAndClearExceptions </a></strong>(JNIEnv * <em>env</em> , QJniEnvironment::OutputMode <em>outputMode</em> = OutputMode::Verbose)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JavaVM *</td>
+<td><strong><a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#javaVM">javaVM </a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>当使用JNI时，<a target="_blank" rel="noopener" href="https://developer.android.com/training/articles/perf-jni#javavm-and-jnienv">JNIEnv</a>类是一个指向函数表和每个JNI函数的成员函数的指针，这些函数通过该表间接进行。<code>JNIEnv</code>提供了大部分的JNI函数。每个C++本地函数都会收到一个<code>JNIEnv </code>作为第一个参数。JNI环境不能在线程之间共享。</p>
+<p>由于<code>JNIEnv</code>不做很多错误检查，如异常检查和清除，QJniEnvironment可以让你轻松做到这一点。</p>
+<p>关于JNIEnv的更多信息，请参阅<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/13/docs/specs/jni/functions.html#interface-function-table">Java: Interface Function Table</a>。</p>
+<p><strong>注意：</strong>本API是为Android设计和测试的。它还没有为其他平台进行测试。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="enum-class-qjnienvironment-outputmode">enum class QJniEnvironment:: OutputMode</span><a href="#enum-class-qjnienvironment-outputmode" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QJniEnvironment::OutputMode::Silent</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">异常情况被无声地清理掉了</td>
+</tr>
+<tr>
+<td align="left"><code>QJniEnvironment::OutputMode::Verbose</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">将异常及其堆栈回溯作为错误打印到<code>stderr </code>stream。</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qjnienvironment-qjnienvironment">QJniEnvironment:: QJniEnvironment ()</span><a href="#qjnienvironment-qjnienvironment" class="header-anchor">#</a></h3><p>构建一个新的JNI环境对象，并将当前线程附加到Java VM上。</p>
+<h3><span id="qjnienvironment-qjnienvironment">QJniEnvironment:: ~QJniEnvironment ()</span><a href="#qjnienvironment-qjnienvironment" class="header-anchor">#</a></h3><p>分离当前线程从Java VM和销毁<a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html">QJniEnvironment</a>对象。这将通过调用<a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjnienvironment.html#checkAndClearExceptions">checkAndClearExceptions</a>()来清除任何未决的异常。</p>
+<h3><span id="bool-qjnienvironment-checkandclearexceptions-qjnienvironment-outputmode-outputmode-outputmode-verbose">bool QJniEnvironment:: checkAndClearExceptions ( <em>outputMode</em> = OutputMode::Verbose)</span><a href="#bool-qjnienvironment-checkandclearexceptions-qjnienvironment-outputmode-outputmode-outputmode-verbose" class="header-anchor">#</a></h3><p>根据<em>outputMode</em>，默默地清除任何悬而未决的异常，或者报告堆栈回溯。</p>
+<p>与内部处理异常的<a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjniobject.html">QJniObject</a>相比，如果你直接通过<code>JNIEnv</code>进行JNI调用，你需要在调用后使用此函数清除任何潜在的异常。关于可能抛出异常的<code>JNIEnv</code>调用的更多信息，请参阅 <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html">JNI Functions </a>。</p>
+<p>返回 <code>true </code>当一个未决的异常被清除时。</p>
+<h3><span id="static-bool-qjnienvironment-checkandclearexceptions-jnienv-env-qjnienvironment-outputmode-outputmode-outputmode-verbose"><code>[static] </code>bool QJniEnvironment:: checkAndClearExceptions ( JNIEnv * <em>env</em> , <em>outputMode</em> = OutputMode::Verbose)</span><a href="#static-bool-qjnienvironment-checkandclearexceptions-jnienv-env-qjnienvironment-outputmode-outputmode-outputmode-verbose" class="header-anchor">#</a></h3><p>清除<em>env</em>的任何悬而未决的异常，根据<em>outputMode</em>，可以是静默的或报告堆栈回溯。当你已经有一个 “JNIEnv “指针时，这很有用，比如在一个本地函数的实现中。</p>
+<p>与内部处理异常的<a target="_blank" rel="noopener" href="http://qt6.digitser.net/6.2/zh-CN/qjniobject.html">QJniObject</a>相比，如果你直接通过<code>JNIEnv</code>进行JNI调用，你需要在调用后使用此函数清除任何潜在的异常。关于可能抛出异常的<code>JNIEnv</code>调用的更多信息，请参阅 <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html">JNI Functions </a>。</p>
+<p>返回 <code>true </code>当一个未决的异常被清除时。</p>
+<h3><span id="jclass-qjnienvironment-findclass-const-char-classname">jclass QJniEnvironment:: findClass (const char * <em>className</em> )</span><a href="#jclass-qjnienvironment-findclass-const-char-classname" class="header-anchor">#</a></h3><p>搜索 <em>className</em> 使用所有可用的类加载器。Qt on Android使用一个自定义的类加载器来加载所有的.jar文件，必须用它来寻找由该类加载器创建的任何类，因为这些类在使用默认类加载器时是不可见的。</p>
+<p>如果<em>className</em>找不到，则返回类的指针或空。</p>
+<p>这个函数的一个用例是搜索一个类来调用一个需要 “jclass “的JNI方法。当对同一个类对象进行多次JNI调用时，这可能比在每次调用中使用一个类名要快一点。此外，在进行JNI调用之前，这个调用会先寻找内部缓存的类，如果找到的话会返回这样的类。下面的代码片段创建了一个<code>CustomClass'类的实例，然后调用</code>printFromJava() `方法：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QJniEnvironment env;
+jclass javaClass = env.<span class="hljs-built_in">findClass</span>(<span class="hljs-string">"org/qtproject/example/android/CustomClass"</span>);
+QJniObject javaMessage = QJniObject::<span class="hljs-built_in">fromString</span>(<span class="hljs-string">"findClass example"</span>);
+QJniObject::<span class="hljs-built_in">callStaticMethod</span>&lt;<span class="hljs-type">void</span>&gt;(javaClass, <span class="hljs-string">"printFromJava"</span>,
+                                   <span class="hljs-string">"(Ljava/lang/String;)V"</span>, javaMessage.<span class="hljs-built_in">object</span>&lt;jstring&gt;());</code></pre></div>
+
+<p><strong>注意：</strong> 这个调用从内部缓存的类中返回一个对类对象的全局引用。</p>
+<h3><span id="since-6-2-jfieldid-qjnienvironment-findfield-jclass-clazz-const-char-fieldname-const-char-signature"><code>[since 6.2] </code>jfieldID QJniEnvironment:: findField ( jclass <em>clazz</em> , const char * <em>fieldName</em> , const char * <em>signature</em> )</span><a href="#since-6-2-jfieldid-qjnienvironment-findfield-jclass-clazz-const-char-fieldname-const-char-signature" class="header-anchor">#</a></h3><p>搜索<em>clazz</em>类的一个成员字段。该字段由其<em>fieldName</em>和<em>signature</em>指定。</p>
+<p>如果没有找到该字段，则返回该字段的ID或<code>nullptr</code>。</p>
+<p>这个方法的一个用例是搜索类的字段并缓存它们的ID，这样它们以后就可以用来获取/设置字段。</p>
+<p>该函数在 Qt 6.2 引入。</p>
+<h3><span id="since-6-2-jmethodid-qjnienvironment-findmethod-jclass-clazz-const-char-methodname-const-char-signature"><code>[since 6.2] </code>jmethodID QJniEnvironment:: findMethod ( jclass <em>clazz</em> , const char * <em>methodName</em> , const char * <em>signature</em> )</span><a href="#since-6-2-jmethodid-qjnienvironment-findmethod-jclass-clazz-const-char-methodname-const-char-signature" class="header-anchor">#</a></h3><p>搜索类<em>clazz</em>的一个实例方法。该方法由其<em>methodName</em>和<em>signature</em>指定。</p>
+<p>如果没有找到该方法，则返回该方法的ID或<code>nullptr</code>。</p>
+<p>这个方法的一个用例是搜索类的方法并缓存它们的ID，以便以后可以用来调用这些方法。</p>
+<p>该函数在 Qt 6.2 引入。</p>
+<h3><span id="since-6-2-jfieldid-qjnienvironment-findstaticfield-jclass-clazz-const-char-fieldname-const-char-signature"><code>[since 6.2] </code>jfieldID QJniEnvironment:: findStaticField ( jclass <em>clazz</em> , const char * <em>fieldName</em> , const char * <em>signature</em> )</span><a href="#since-6-2-jfieldid-qjnienvironment-findstaticfield-jclass-clazz-const-char-fieldname-const-char-signature" class="header-anchor">#</a></h3><p>搜索<em>clazz</em>类的一个静态字段。该字段由其<em>fieldName</em>和<em>signature</em>指定。</p>
+<p>如果没有找到该字段，则返回该字段的ID或<code>nullptr</code>。</p>
+<p>这个方法的一个用例是搜索类的字段并缓存它们的ID，这样它们以后就可以用来获取/设置字段。</p>
+<p>该函数在 Qt 6.2 引入。</p>
+<h3><span id="since-6-2-jmethodid-qjnienvironment-findstaticmethod-jclass-clazz-const-char-methodname-const-char-signature"><code>[since 6.2] </code>jmethodID QJniEnvironment:: findStaticMethod ( jclass <em>clazz</em> , const char * <em>methodName</em> , const char * <em>signature</em> )</span><a href="#since-6-2-jmethodid-qjnienvironment-findstaticmethod-jclass-clazz-const-char-methodname-const-char-signature" class="header-anchor">#</a></h3><p>搜索类<em>clazz</em>的一个静态方法。该方法由其<em>methodName</em>和<em>signature</em>指定。</p>
+<p>如果没有找到该方法，则返回该方法的ID或<code>nullptr</code>。</p>
+<p>这个方法的一个用例是搜索类的方法并缓存它们的ID，以便以后可以用来调用这些方法。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QJniEnvironment env;
+jclass javaClass = env.<span class="hljs-built_in">findClass</span>(<span class="hljs-string">"org/qtproject/example/android/CustomClass"</span>);
+jmethodID methodId = env.<span class="hljs-built_in">findStaticMethod</span>(javaClass,
+                                          <span class="hljs-string">"staticJavaMethod"</span>,
+                                          <span class="hljs-string">"(Ljava/lang/String;)V"</span>);
+QJniObject javaMessage = QJniObject::<span class="hljs-built_in">fromString</span>(<span class="hljs-string">"findStaticMethod example"</span>);
+QJniObject::<span class="hljs-built_in">callStaticMethod</span>&lt;<span class="hljs-type">void</span>&gt;(javaClass,
+                                   methodId,
+                                   javaMessage.<span class="hljs-built_in">object</span>&lt;jstring&gt;());</code></pre></div>
+
+<p>该函数在 Qt 6.2 引入。</p>
+<h3><span id="since-6-2-bool-qjnienvironment-isvalid-const"><code>[since 6.2] </code>bool QJniEnvironment:: isValid () const</span><a href="#since-6-2-bool-qjnienvironment-isvalid-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个实例持有一个有效的JNIEnv对象。</p>
+<p>该函数在 Qt 6.2 引入。</p>
+<h3><span id="static-javavm-qjnienvironment-javavm"><code>[static] </code>JavaVM *QJniEnvironment:: javaVM ()</span><a href="#static-javavm-qjnienvironment-javavm" class="header-anchor">#</a></h3><p>返回当前进程的Java VM接口。虽然每个进程可能有多个Java VM，但Android只允许一个。</p>
+<h3><span id="jnienv-qjnienvironment-jnienv-const">JNIEnv *QJniEnvironment:: jniEnv () const</span><a href="#jnienv-qjnienvironment-jnienv-const" class="header-anchor">#</a></h3><p>返回JNI环境的 <code>JNIEnv </code>指针。</p>
+<h3><span id="bool-qjnienvironment-registernativemethods-const-char-classname-const-jninativemethod-methods-int-size">bool QJniEnvironment:: registerNativeMethods (const char * <em>className</em> , const JNINativeMethod [] <em>methods</em> , int <em>size</em> )</span><a href="#bool-qjnienvironment-registernativemethods-const-char-classname-const-jninativemethod-methods-int-size" class="header-anchor">#</a></h3><p>注册数组<em>methods</em>中大小为<em>size</em>的Java方法，每个方法都可以调用类<em>className</em>中的本地C++函数。在调用这些方法之前，必须先注册这些方法。</p>
+<p>如果注册成功，返回 “true”，否则返回 “false”。</p>
+<p>方法数组中的每个元素由以下部分组成:</p>
+<ul>
+<li>Java方法的名称</li>
+<li>方法签名</li>
+<li>将被执行的C++函数</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">const</span> JNINativeMethod methods[] =
+                        {{<span class="hljs-string">"callNativeOne"</span>, <span class="hljs-string">"(I)V"</span>, <span class="hljs-built_in">reinterpret_cast</span>&lt;<span class="hljs-type">void</span> *&gt;(fromJavaOne)},
+                        {<span class="hljs-string">"callNativeTwo"</span>, <span class="hljs-string">"(I)V"</span>, <span class="hljs-built_in">reinterpret_cast</span>&lt;<span class="hljs-type">void</span> *&gt;(fromJavaTwo)}};
+QJniEnvironment env;
+env.<span class="hljs-built_in">registerNativeMethods</span>(<span class="hljs-string">"org/qtproject/android/TestJavaClass"</span>, methods, <span class="hljs-number">2</span>);</code></pre></div>
+
+<h3><span id="bool-qjnienvironment-registernativemethods-jclass-clazz-const-jninativemethod-methods-int-size">bool QJniEnvironment:: registerNativeMethods ( jclass <em>clazz</em> , const JNINativeMethod [] <em>methods</em> , int <em>size</em> )</span><a href="#bool-qjnienvironment-registernativemethods-jclass-clazz-const-jninativemethod-methods-int-size" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>这个重载使用了之前缓存的jclass实例<em>clazz</em>。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">JNINativeMethod methods[] {{<span class="hljs-string">"callNativeOne"</span>, <span class="hljs-string">"(I)V"</span>, <span class="hljs-built_in">reinterpret_cast</span>&lt;<span class="hljs-type">void</span> *&gt;(fromJavaOne)},
+                           {<span class="hljs-string">"callNativeTwo"</span>, <span class="hljs-string">"(I)V"</span>, <span class="hljs-built_in">reinterpret_cast</span>&lt;<span class="hljs-type">void</span> *&gt;(fromJavaTwo)}};
+QJniEnvironment env;
+jclass clazz = env.<span class="hljs-built_in">findClass</span>(<span class="hljs-string">"org/qtproject/android/TestJavaClass"</span>);
+env.<span class="hljs-built_in">registerNativeMethods</span>(clazz, methods, <span class="hljs-number">2</span>);</code></pre></div>
+
+<h3><span id="jnienv-amp-qjnienvironment-operator-const">JNIEnv &amp;QJniEnvironment:: operator* () const</span><a href="#jnienv-amp-qjnienvironment-operator-const" class="header-anchor">#</a></h3><p>返回JNI环境的<code>JNIEnv </code>对象。</p>
+<h3><span id="jnienv-qjnienvironment-operator-gt-const">JNIEnv *QJniEnvironment:: operator-&gt; () const</span><a href="#jnienv-qjnienvironment-operator-gt-const" class="header-anchor">#</a></h3><p>提供对JNI环境的<code>JNIEnv </code>指针的访问。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/J/">J</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/J/QJalaliCalendar/QJalaliCalendar/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QJalaliCalendar类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/J/QJniObject/QJniObject/">
+                        <span class="hidden-mobile">QJsonArray类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

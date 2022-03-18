@@ -1,0 +1,1036 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="特性 公共成员函数 重实现公共成员函数 公有槽函数 信号 静态公有成员函数 保护成员函数 重实现保护成员函数 额外继承成员 详细描述 特性文档编制 成员函数文档 QWebEngineView::QWebEngineView(QWidget *parent &#x3D; Q_NULLPTR) [virtual] QWebEngineView::~QWebEngineView() [slot] voi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QWebEngineView类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/W/QWebEngineView/QWebEngineView/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="特性 公共成员函数 重实现公共成员函数 公有槽函数 信号 静态公有成员函数 保护成员函数 重实现保护成员函数 额外继承成员 详细描述 特性文档编制 成员函数文档 QWebEngineView::QWebEngineView(QWidget *parent &#x3D; Q_NULLPTR) [virtual] QWebEngineView::~QWebEngineView() [slot] voi">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:57:29.792Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="W">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QWebEngineView类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QWebEngineView类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      12k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      100 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QWebEngineView类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#te-xing">特性</a></li>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#chong-shi-xian-gong-gong-cheng-yuan-han-shu">重实现公共成员函数</a></li>
+<li><a href="#gong-you-cao-han-shu">公有槽函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#jing-tai-gong-you-cheng-yuan-han-shu">静态公有成员函数</a></li>
+<li><a href="#bao-hu-cheng-yuan-han-shu">保护成员函数</a></li>
+<li><a href="#chong-shi-xian-bao-hu-cheng-yuan-han-shu">重实现保护成员函数</a></li>
+<li><a href="#e-wai-ji-cheng-cheng-yuan">额外继承成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#te-xing-wen-dang-bian-zhi">特性文档编制</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qwebengineview-qwebengineview-qwidget-w-qwidget-md-parent-q-nullptr">QWebEngineView::<strong>QWebEngineView</strong>(</a><a href="../../W/QWidget.md">QWidget</a> *<em>parent</em> = Q_NULLPTR)</li>
+<li><a href="#virtual-qwebengineview-qwebengineview">[virtual] QWebEngineView::~QWebEngineView()</a></li>
+<li><a href="#slot-void-qwebengineview-back">[slot] void QWebEngineView::back()</a></li>
+<li><a href="#override-virtual-protected-void-qwebengineview-contextmenuevent-qcontextmenuevent-c-qcontextmenuevent-md-event">[override virtual protected] void QWebEngineView::contextMenuEvent(</a><a href="../../C/QContextMenuEvent.md">QContextMenuEvent</a> *<em>event</em>)</li>
+<li><a href="#virtual-protected-qwebengineview-qwebengineview-html-qwebengineview-qwebengineview-createwindow-qwebenginepage-webwindowtype-qwebenginepage-html-webwindowtype-enum-type">[virtual protected] </a><a href="qwebengineview.html#QWebEngineView">QWebEngineView</a> *QWebEngineView::createWindow(<a href="qwebenginepage.html#WebWindowType-enum">QWebEnginePage::WebWindowType</a> <em>type</em>)</li>
+<li><a href="#override-virtual-protected-void-qwebengineview-dragenterevent-qdragenterevent-d-qdragenterevent-md-e">[override virtual protected] void QWebEngineView::dragEnterEvent(</a><a href="../../D/QDragEnterEvent.md">QDragEnterEvent</a> *<em>e</em>)</li>
+<li><a href="#override-virtual-protected-void-qwebengineview-dragleaveevent-qdragleaveevent-d-qdragleaveevent-md-e">[override virtual protected] void QWebEngineView::dragLeaveEvent(</a><a href="../../D/QDragLeaveEvent.md">QDragLeaveEvent</a> *<em>e</em>)</li>
+<li><a href="#override-virtual-protected-void-qwebengineview-dragmoveevent-qdragmoveevent-d-qdragmoveevent-md-e">[override virtual protected] void QWebEngineView::dragMoveEvent(</a><a href="../../D/QDragMoveEvent.md">QDragMoveEvent</a> *<em>e</em>)</li>
+<li><a href="#void-qwebengineview-findtext-const-qstring-s-qstring-md-substring-qwebenginepage-findflags-qwebenginepage-html-findflag-enum-options-const-qwebenginecallback-bool-resultcallback">void QWebEngineView::findText(const </a><a href="../../S/QString.md">QString</a> &amp;<em>subString</em>, <a href="qwebenginepage.html#FindFlag-enum">QWebEnginePage::FindFlags</a> <em>options</em> = …, const QWebEngineCallback<bool> &amp;<em>resultCallback</em> = …）</bool></li>
+<li><a href="#slot-void-qwebengineview-forward">[slot] void QWebEngineView::forward()</a></li>
+<li><a href="#override-virtual-protected-void-qwebengineview-hideevent-qhideevent-h-qhideevent-md-event">[override virtual protected] void QWebEngineView::hideEvent(</a><a href="../../H/QHideEvent.md">QHideEvent</a> *<em>event</em>)</li>
+<li><a href="#qwebenginehistory-w-qwebenginehistory-md-qwebengineview-history-const">QWebEngineHistory</a></li>
+<li><a href="#signal-void-qwebengineview-iconchanged-const-qicon-i-qicon-md-icon">[signal] void QWebEngineView::iconChanged(const </a><a href="../../I/QIcon.md">QIcon</a> &amp;<em>icon</em>)</li>
+<li><a href="#signal-void-qwebengineview-iconurlchanged-const-qurl-u-qurl-md-url">[signal] void QWebEngineView::iconUrlChanged(const </a><a href="../../U/QUrl.md">QUrl</a> &amp;<em>url</em>)</li>
+<li><a href="#void-qwebengineview-load-const-qurl-u-qurl-md-url">void QWebEngineView::load(const </a><a href="../../U/QUrl.md">QUrl</a> &amp;<em>url</em>)</li>
+<li><a href="#void-qwebengineview-load-const-qwebenginehttprequest-w-qwebenginehttprequest-md-request">void QWebEngineView::load(const </a><a href="../../W/QWebEngineHttpRequest.md">QWebEngineHttpRequest</a> &amp;<em>request</em>)</li>
+<li><a href="#signal-void-qwebengineview-loadfinished-bool-ok">[signal] void QWebEngineView::loadFinished(bool <em>ok</em>)</a></li>
+<li><a href="#signal-void-qwebengineview-loadprogress-int-progress">[signal] void QWebEngineView::loadProgress(int <em>progress</em>)</a></li>
+<li><a href="#signal-void-qwebengineview-loadstarted">[signal] void QWebEngineView::loadStarted()</a></li>
+<li><a href="#webenginepage-qwebengineview-page-const">WebEnginePage *QWebEngineView::page() const</a></li>
+<li><a href="#qaction-a-qaction-md-qwebengineview-pageaction-qwebenginepage-webaction-action-const">QAction</a></li>
+<li><a href="#slot-void-qwebengineview-reload">[slot] void QWebEngineView::reload()</a></li>
+<li><a href="#signal-void-qwebengineview-renderprocessterminated-qwebenginepage-renderprocessterminationstatus-qwebenginepage-html-renderprocessterminationstatus-enum-terminationstatus-int-exitcode">[signal] void QWebEngineView::renderProcessTerminated(</a><a href="qwebenginepage.html#RenderProcessTerminationStatus-enum">QWebEnginePage::RenderProcessTerminationStatus</a> <em>terminationStatus</em>, int <em>exitCode</em>)</li>
+<li><a href="#signal-void-qwebengineview-selectionchanged">[signal] void QWebEngineView::selectionChanged()</a></li>
+<li><a href="#void-qwebengineview-setcontent-const-qbytearray-qtcore-qbytearray-html-data-const-qstring-qtcore-qstring-html-mimetype-qstring-const-qurl-qtcore-qurl-html-baseurl-qurl">void QWebEngineView::setContent(const </a><a href="../qtcore/qbytearray.html">QByteArray</a> &amp;<em>data</em>, const <a href="../qtcore/qstring.html">QString</a> &amp;<em>mimeType</em> = QString(), const <a href="../qtcore/qurl.html">QUrl</a> &amp;<em>baseUrl</em> = QUrl())</li>
+<li><a href="#void-qwebengineview-sethtml-const-qstring-s-qstring-md-html-const-qurl-u-qurl-md-baseurl-qurl">void QWebEngineView::setHtml(const </a><a href="../../S/QString.md">QString</a> &amp;<em>html</em>, const <a href="../../U/QUrl.md">QUrl</a> &amp;<em>baseUrl</em> = QUrl())</li>
+<li><a href="#void-qwebengineview-setpage-qwebenginepage-w-qwebenginepage-md-page">void QWebEngineView::setPage(</a><a href="../../W/QWebEnginePage.md">QWebEnginePage</a> *<em>page</em>)</li>
+<li><a href="#qwebenginesettings-w-qwebenginesettings-md-qwebengineview-settings-const">QWebEngineSettings</a></li>
+<li><a href="#override-virtual-protected-void-qwebengineview-showevent-qshowevent-s-qshowevent-md-event">[override virtual protected] void QWebEngineView::showEvent(</a><a href="../../S/QShowEvent.md">QShowEvent</a> *<em>event</em>)</li>
+<li><a href="#override-virtual-qsize-s-qsize-md-qwebengineview-sizehint-const">[override virtual] </a><a href="../../S/QSize.md">QSize</a> QWebEngineView::sizeHint() const</li>
+<li><a href="#slot-void-qwebengineview-stop">[slot] void QWebEngineView::stop()</a></li>
+<li><a href="#signal-void-qwebengineview-titlechanged-const-qstring-s-qstring-md-title">[signal] void QWebEngineView::titleChanged(const </a><a href="../../S/QString.md">QString</a> &amp;<em>title</em>)</li>
+<li><a href="#void-qwebengineview-triggerpageaction-qwebenginepage-webaction-qwebenginepage-html-webaction-enum-action-bool-checked-false">void QWebEngineView::triggerPageAction(</a><a href="qwebenginepage.html#WebAction-enum">QWebEnginePage::WebAction</a> <em>action</em>, bool <em>checked</em> = false)</li>
+<li><a href="#signal-void-qwebengineview-urlchanged-const-qurl-u-qurl-md-url">[signal] void QWebEngineView::urlChanged(const </a><a href="../../U/QUrl.md">QUrl</a> &amp;<em>url</em>)</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+#　QWebEngineView Class
+
+<p>QWebEngineView类提供了一个widget, 被使用去查看和编辑web元素。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件</td>
+<td>#include <qwebengineview></qwebengineview></td>
+</tr>
+<tr>
+<td>qmake参数</td>
+<td>QT += webenginewidgets</td>
+</tr>
+<tr>
+<td>继承</td>
+<td>QWidget</td>
+</tr>
+</tbody></table>
+<h2><span id="te-xing">特性</span><a href="#te-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hasSelection</td>
+<td>const bool</td>
+</tr>
+<tr>
+<td>title</td>
+<td>const QString</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>const QIcon</td>
+</tr>
+<tr>
+<td>zoomFactor</td>
+<td>qreal</td>
+</tr>
+<tr>
+<td>selectedText</td>
+<td>const QString</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><a href>QWebEngineView</a>(QWidget *parent = Q_NULLPTR)]</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><a href>~QWebEngineView</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href>findText</a>(const QString &amp;<em>subString</em>, QWebEnginePage::FindFlags <em>options</em> = …, const QWebEngineCallback<bool> &amp;<em>resultCallback</em> = …)]</bool></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><a href>hasSelection</a>() const</td>
+</tr>
+<tr>
+<td>QWebEngineHostory *</td>
+<td><a href>history</a>() const</td>
+</tr>
+<tr>
+<td>QIcon</td>
+<td><a href>icon</a>() const</td>
+</tr>
+<tr>
+<td>QUrl</td>
+<td><a href>iconUrl</a>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href>load</a>(const QUrl &amp;url)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#load-1">load</a>(const QWebEngineHttpRequest &amp;<em>request</em>)</td>
+</tr>
+<tr>
+<td>QWebEnginePage *</td>
+<td><a href>page</a>() const</td>
+</tr>
+<tr>
+<td>QAction *</td>
+<td><a href="qwebengineview.html#pageAction">pageAction</a>(QWebEnginePage::WebAction <em>action</em>) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><a href="qwebengineview.html#selectedText-prop">selectedText</a>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#setContent">setContent</a>(const QByteArray &amp;<em>data</em>, const QString &amp;<em>mimeType</em> = QString(), const QUrl &amp;<em>baseUrl</em> = QUrl())</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#setHtml">setHtml</a>(const QString &amp;<em>html</em>, const QUrl &amp;<em>baseUrl</em> = QUrl())</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#setPage">setPage</a>(QWebEnginePage *<em>page</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#url-prop">setUrl</a>(const QUrl &amp;<em>url</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#zoomFactor-prop">setZoomFactor</a>(qreal <em>factor</em>)</td>
+</tr>
+<tr>
+<td>QWebEngineSettings *</td>
+<td><a href="qwebengineview.html#settings">settings</a>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><a href="qwebengineview.html#title-prop">title</a>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#triggerPageAction">triggerPageAction</a>(QWebEnginePage::WebAction <em>action</em>, bool <em>checked</em> = false)</td>
+</tr>
+<tr>
+<td>QUrl</td>
+<td><a href="qwebengineview.html#url-prop">url</a>() const</td>
+</tr>
+<tr>
+<td>qreal</td>
+<td><a href="qwebengineview.html#zoomFactor-prop">zoomFactor</a>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-shi-xian-gong-gong-cheng-yuan-han-shu">重实现公共成员函数</span><a href="#chong-shi-xian-gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><p>virtual QSize sizeHint() const override</p>
+<ul>
+<li>216 个公共成员函数继承自 QWidget</li>
+<li>31 个公共成员函数继承自 QObject</li>
+<li>14 个公共成员函数继承自 QPaintDevice</li>
+</ul>
+<h2><span id="gong-you-cao-han-shu">公有槽函数</span><a href="#gong-you-cao-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><a href>back()</a></td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href>forward()</a></td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href>reload()</a></td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href>stop()</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li>19 个公共槽函数继承自 QWidget</li>
+<li>1  个公共槽函数继承自 QObject</li>
+</ul>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><a href>iconChanged</a>(const QIcon &amp;icon)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#iconUrlChanged">iconUrlChanged</a>(const QUrl &amp;<em>url</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#iconUrlChanged">iconUrlChanged</a>(const QUrl &amp;<em>url</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#loadProgress">loadProgress</a>(int <em>progress</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#loadStarted">loadStarted</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#renderProcessTerminated">renderProcessTerminated</a>(QWebEnginePage::RenderProcessTerminationStatus <em>terminationStatus</em>, int <em>exitCode</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#selectionChanged">selectionChanged</a>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#titleChanged">titleChanged</a>(const QString &amp;<em>title</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><a href="qwebengineview.html#urlChanged">urlChanged</a>(const QUrl &amp;<em>url</em>)</td>
+</tr>
+</tbody></table>
+<ul>
+<li>3 signals inherited from QWidget</li>
+<li>2 signals inherited from QObject</li>
+</ul>
+<h2><span id="jing-tai-gong-you-cheng-yuan-han-shu">静态公有成员函数</span><a href="#jing-tai-gong-you-cheng-yuan-han-shu" class="header-anchor">#</a></h2><ul>
+<li>5  个静态公有成员函数继承自 QWidget</li>
+<li>9 个静态公有成员函数 QObject</li>
+</ul>
+<h2><span id="bao-hu-cheng-yuan-han-shu">保护成员函数</span><a href="#bao-hu-cheng-yuan-han-shu" class="header-anchor">#</a></h2><p>virtual QWebEngineView *<br><a href>createWindow</a>(QWebEnginePage::WebWindowType type)</p>
+<h2><span id="chong-shi-xian-bao-hu-cheng-yuan-han-shu">重实现保护成员函数</span><a href="#chong-shi-xian-bao-hu-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vitrual void</td>
+<td><a href="qwebengineview.html#contextMenuEvent">contextMenuEvent</a>(QContextMenuEvent *<em>event</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><a href="qwebengineview.html#dragEnterEvent">dragEnterEvent</a>(QDragEnterEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><a href="qwebengineview.html#dragLeaveEvent">dragLeaveEvent</a>(QDragLeaveEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><a href="qwebengineview.html#dragMoveEvent">dragMoveEvent</a>(QDragMoveEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><a href="qwebengineview.html#dropEvent">dropEvent</a>(QDropEvent *<em>e</em>) override</td>
+</tr>
+<tr>
+<td>virtual bool</td>
+<td><a href="qwebengineview.html#event">event</a>(QEvent *<em>ev</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><a href="qwebengineview.html#hideEvent">hideEvent</a>(QHideEvent *<em>event</em>) override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><a href="qwebengineview.html#showEvent">showEvent</a>(QShowEvent *<em>event</em>) override</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>35 个保护成员函数继承自 QWidget</p>
+</li>
+<li><p>9  个保护成员函数继承自 QObject</p>
+</li>
+<li><p>1  个保护成员函数继承自 QPaintDevice</p>
+</li>
+</ul>
+<h2><span id="e-wai-ji-cheng-cheng-yuan">额外继承成员</span><a href="#e-wai-ji-cheng-cheng-yuan" class="header-anchor">#</a></h2><ul>
+<li>一个保护槽继承自QWidget</li>
+</ul>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QWebEngineView类提供了一个小部件, 被用去查看和编辑web文档。</p>
+<p>一个web视图是组成Qt WebEngine web 浏览模块的主要widget之一。它可以被用于多种应用去展示来自Internet的web内容。</p>
+<p>一个web元素可以通过<a href>load</a>()函数加载到web视图。一般总是使用Get方法去加载URLs.</p>
+<p>像所有Qt小部件一样，必须调用<a href>show</a>()函数才能显示Web视图。 下面的代码段说明了这一点：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QWebEngineView *view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QWebEngineView</span>(parent);
+view-&gt;<span class="hljs-built_in">load</span>(<span class="hljs-built_in">QUrl</span>(<span class="hljs-string">"http://qt-project.org/"</span>));
+view-&gt;<span class="hljs-built_in">show</span>();</code></pre></div>
+
+<p>或者, <a href>setUrl</a>() 可以被使用去加载web元素。如果你有可读的 HTML 内容，你可以使用<a href>setHtml</a>() 代替。</p>
+<p>当视图开始加载的时候，发出<a href>loadStarted</a>() 信号，当web视图的一个元素被完整加载的时候，发出<a href>loadProgress</a>()信号，例如一个embedded 图像或一个脚本。当视图被完整加载时，发出<a href>loadFinished</a>()信号。其参数true或false指示加载是成功还是失败。</p>
+<p><a href>page</a>()函数返回一个指向web页对象的指针。一个<a href="qwebengineview.html">QWebEngineView</a> 包含一个<a href="../../W/QWebEnginePage.md">QWebEnginePage</a>, 允许依次访问<a href="../../W/QWebEngineHistory.md">QWebEnginePage</a>在页的内容里。HTML文档的标题可以用<a href="qwebengineview.html#title-prop">title</a>()属性访问。另外，一个web元素可能是一个图标， 可以使用<a href="qwebengineview.html#icon-prop">icon</a>()访问，使用 <a href="qwebengineview.html#iconUrl-prop">iconUrl</a>()访问图标的URL。如果标题或是图标改变，将发出<a href="qwebengineview.html#titleChanged">titleChanged</a>(), <a href="qwebengineview.html#iconChanged">iconChanged</a>() 和 <a href="qwebengineview.html#iconUrlChanged">iconUrlChanged</a>()信号来回应。<a href="qwebengineview.html#zoomFactor-prop">zoomFactor</a>()属性通过缩放因子，能够缩放web页的内容。</p>
+<p>该小部件适合于上下文菜单并包含在浏览器中有用的操作。对于自定义上下文菜单，或将动作嵌入菜单或工具栏中，可通过<a href>pageAction</a>()获得单个动作。web视图维护返回动作的状态，但允许修改动作属性，例如<a href="../qtwidgets/qaction.html#text-prop">text</a> or <a href="../qtwidgets/qaction.html#icon-prop">icon</a>. 动作语义也可以通过 <a href="qwebengineview.html#triggerPageAction">triggerPageAction</a>()直接触发。</p>
+<p>对于web元素，如果你想要提供 支持允许用户去打开新的窗口，例如pop-up windows, 你可以子类化<a href="qwebengineview.html">QWebEngineView</a> 和实现 <a href="qwebengineview.html#createWindow">createWindow</a>() 函数。</p>
+<p>您也可以在 <a href="qtwebengine-webenginewidgets-simplebrowser-example.html">WebEngine Widgets Simple Browser Example</a>, <a href="qtwebengine-webenginewidgets-contentmanipulation-example.html">WebEngine Content Manipulation Example</a>, 和 <a href="qtwebengine-webenginewidgets-markdowneditor-example.html">WebEngine Markdown Editor Example</a>的文档中找到相关的信息。</p>
+<h2><span id="te-xing-wen-dang-bian-zhi">特性文档编制</span><a href="#te-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hasSelection</td>
+<td>const bool</td>
+</tr>
+</tbody></table>
+<p>此属性保存此页面是否包含所选内容。<br>默认情况下，此属性为false。</p>
+<p><strong>访问函数：</strong></p>
+<p>bool **hasSelection() ** const</p>
+<p>另请参见 <a href="qwebengineview.html#selectionChanged">selectionChanged</a>()。</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>icon</td>
+<td>const QIcon</td>
+</tr>
+</tbody></table>
+<p>此属性保存当前可视页面关联的图标。</p>
+<p>默认，这个属性包含一个空图标。</p>
+<p><strong>访问函数：</strong></p>
+<p>QIcon <strong>icon</strong>() const</p>
+<p><strong>通知信号：</strong></p>
+<p>void <a href="qwebengineview.html#iconChanged">iconChanged</a>(const QIcon &amp;<em>icon</em>)</p>
+<p>另请参见<a href="qwebengineview.html#iconChanged">iconChanged</a>(), <a href="qwebengineview.html#iconUrl-prop">iconUrl</a>(), 和 <a href="qwebengineview.html#iconUrlChanged">iconUrlChanged</a>()。</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>iconUrl</td>
+<td>const <a href="../qtcore/qurl.html">QUrl</a></td>
+</tr>
+</tbody></table>
+<p>此属性保存当前可视页面关联图标的URL。</p>
+<p>默认，这个属性包含一个空URL。</p>
+<p>该特性在 Qt 5.7 引入。</p>
+<p><strong>访问函数：</strong></p>
+<p>QIcon <strong>iconUrl</strong>() const</p>
+<p><strong>通知信号：</strong></p>
+<p>void <a href="qwebengineview.html#iconUrlChanged">iconUrlChanged</a>(const QUrl &amp;<em>url</em>)</p>
+<p>另请参见<a href="qwebengineview.html#iconUrlChanged">iconUrlChanged</a>(), <a href="qwebengineview.html#icon-prop">icon</a>(), 和 <a href="qwebengineview.html#iconChanged">iconChanged</a>()。</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>selectedText</td>
+<td>const <a href="../qtcore/qstring.html">QString</a></td>
+</tr>
+</tbody></table>
+<p>此属性保存了当前选中的文本。</p>
+<p>默认，此属性包含一个空字符串。</p>
+<p><strong>访问函数：</strong></p>
+<p>QString <strong>selectionText</strong>() const</p>
+<p>另请参见<a href="qwebengineview.html#findText">findText</a>() 和 <a href="qwebengineview.html#selectionChanged">selectionChanged</a>()。</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>const <a href="../qtcore/qstring.html">QString</a></td>
+</tr>
+</tbody></table>
+<p>此属性保存了定义为HTML<title>元素页面的标题。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;访问函数：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;QString &lt;strong&gt;title&lt;/strong&gt;() const&lt;/p&gt;
+&lt;p&gt;另请参见&lt;a href="qwebengineview.html#titleChanged"&gt;titleChanged&lt;/a&gt;().&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性名&lt;/th&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;url&lt;/td&gt;
+&lt;td&gt;&lt;a href="../qtcore/qurl.html"&gt;QUrl&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;此属性保存了当前可视web页面的URL。&lt;/p&gt;
+&lt;p&gt;设置这个属性会清空此view和加载URL。&lt;/p&gt;
+&lt;p&gt;默认，这个属性包含一个空的，无效的URL。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;访问函数：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;QUrl &lt;strong&gt;url&lt;/strong&gt;() const&lt;/p&gt;
+&lt;p&gt;void &lt;strong&gt;setUrl&lt;/strong&gt;(const QUrl &amp;url)&lt;/p&gt;
+&lt;p&gt;另请参见&lt;a href="qwebengineview.html#load"&gt;load&lt;/a&gt;() 和 &lt;a href="qwebengineview.html#urlChanged"&gt;urlChanged&lt;/a&gt;().&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性名&lt;/th&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;zoomFactor&lt;/td&gt;
+&lt;td&gt;qreal&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;此属性保存了该view的缩放因子。&lt;/p&gt;
+&lt;p&gt;有效数值的范围从 0.25 到 5.0。默认因子是1.0。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;访问函数：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;qreal &lt;a href=""&gt;zoomFactor&lt;/a&gt;() const&lt;br&gt;void &lt;a href=""&gt;setZoomFactor&lt;/a&gt;(qreal factor)&lt;/p&gt;
+&lt;h2 id="成员函数文档"&gt;&lt;a href="#成员函数文档" class="headerlink" title="成员函数文档"&gt;&lt;/a&gt;成员函数文档&lt;/h2&gt;&lt;h3 id="QWebEngineView-QWebEngineView-QWidget-parent-x3D-Q-NULLPTR"&gt;&lt;a href="#QWebEngineView-QWebEngineView-QWidget-parent-x3D-Q-NULLPTR" class="headerlink" title="QWebEngineView::QWebEngineView(QWidget *parent = Q_NULLPTR)"&gt;&lt;/a&gt;QWebEngineView::&lt;strong&gt;QWebEngineView&lt;/strong&gt;(&lt;a href="../../W/QWidget.md"&gt;QWidget&lt;/a&gt; *&lt;em&gt;parent&lt;/em&gt; = Q_NULLPTR)&lt;/h3&gt;&lt;p&gt;与父类parent构造一个空的网页视图。&lt;/p&gt;
+&lt;p&gt;另请参见&lt;a href="qwebengineview.html#load"&gt;load&lt;/a&gt;()。&lt;/p&gt;
+&lt;h3 id="virtual-QWebEngineView-QWebEngineView"&gt;&lt;a href="#virtual-QWebEngineView-QWebEngineView" class="headerlink" title="[virtual] QWebEngineView::~QWebEngineView()"&gt;&lt;/a&gt;[virtual] QWebEngineView::~QWebEngineView()&lt;/h3&gt;&lt;p&gt;销毁网页视图。&lt;/p&gt;
+&lt;h3 id="slot-void-QWebEngineView-back"&gt;&lt;a href="#slot-void-QWebEngineView-back" class="headerlink" title="[slot] void QWebEngineView::back()"&gt;&lt;/a&gt;[slot] void QWebEngineView::back()&lt;/h3&gt;&lt;p&gt;方便的槽函数，加载构建到导航链接的文档列表里的前一个文档。如果没有前一个文档，就不执行任何操作。&lt;/p&gt;
+&lt;p&gt;它等价于&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs c++"&gt;view-&gt;&lt;span class="hljs-built_in"&gt;page&lt;/span&gt;()-&gt;&lt;span class="hljs-built_in"&gt;triggerAction&lt;/span&gt;(QWebEnginePage::Back);&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另请参见&lt;a href="qwebengineview.html#forward"&gt;forward&lt;/a&gt;() 和 &lt;a href="qwebengineview.html#pageAction"&gt;pageAction&lt;/a&gt;()。&lt;/p&gt;
+&lt;h3 id="override-virtual-protected-void-QWebEngineView-contextMenuEvent-QContextMenuEvent-event"&gt;&lt;a href="#override-virtual-protected-void-QWebEngineView-contextMenuEvent-QContextMenuEvent-event" class="headerlink" title="[override virtual protected] void QWebEngineView::contextMenuEvent(QContextMenuEvent *event)"&gt;&lt;/a&gt;[override virtual protected] void QWebEngineView::contextMenuEvent(&lt;a href="../../C/QContextMenuEvent.md"&gt;QContextMenuEvent&lt;/a&gt; *&lt;em&gt;event&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;重实现 &lt;a href="../qtwidgets/qwidget.html#contextMenuEvent"&gt;QWidget::contextMenuEvent&lt;/a&gt;()。&lt;/p&gt;
+&lt;h3 id="virtual-protected-QWebEngineView-QWebEngineView-createWindow-QWebEnginePage-WebWindowType-type"&gt;&lt;a href="#virtual-protected-QWebEngineView-QWebEngineView-createWindow-QWebEnginePage-WebWindowType-type" class="headerlink" title="[virtual protected] QWebEngineView *QWebEngineView::createWindow(QWebEnginePage::WebWindowType type)"&gt;&lt;/a&gt;[virtual protected] &lt;a href="qwebengineview.html#QWebEngineView"&gt;QWebEngineView&lt;/a&gt; *QWebEngineView::createWindow(&lt;a href="qwebenginepage.html#WebWindowType-enum"&gt;QWebEnginePage::WebWindowType&lt;/a&gt; &lt;em&gt;type&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;每当页面想要创建给定类型的新窗口时，都会从关联的QWebEnginePage的createWindow（）方法中调用此函数。 例如，当发出JavaScript请求以在新窗口中打开文档时。&lt;br&gt;&lt;strong&gt;注意：&lt;/strong&gt; 如果重新实现了关联页面的createWindow（）方法，则不会调用此方法，除非在重新实现中明确地这样做。&lt;/p&gt;
+&lt;h3 id="override-virtual-protected-void-QWebEngineView-dragEnterEvent-QDragEnterEvent-e"&gt;&lt;a href="#override-virtual-protected-void-QWebEngineView-dragEnterEvent-QDragEnterEvent-e" class="headerlink" title="[override virtual protected] void QWebEngineView::dragEnterEvent(QDragEnterEvent *e)"&gt;&lt;/a&gt;[override virtual protected] void QWebEngineView::dragEnterEvent(&lt;a href="../../D/QDragEnterEvent.md"&gt;QDragEnterEvent&lt;/a&gt; *&lt;em&gt;e&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;重实现&lt;a href="../qtwidgets/qwidget.html#dragEnterEvent"&gt;QWidget::dragEnterEvent&lt;/a&gt;()。&lt;/p&gt;
+&lt;h3 id="override-virtual-protected-void-QWebEngineView-dragLeaveEvent-QDragLeaveEvent-e"&gt;&lt;a href="#override-virtual-protected-void-QWebEngineView-dragLeaveEvent-QDragLeaveEvent-e" class="headerlink" title="[override virtual protected] void QWebEngineView::dragLeaveEvent(QDragLeaveEvent *e)"&gt;&lt;/a&gt;[override virtual protected] void QWebEngineView::dragLeaveEvent(&lt;a href="../../D/QDragLeaveEvent.md"&gt;QDragLeaveEvent&lt;/a&gt; *&lt;em&gt;e&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;重实现&lt;a href="../qtwidgets/qwidget.html#dragLeaveEvent"&gt;QWidget::dragLeaveEvent&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="override-virtual-protected-void-QWebEngineView-dragMoveEvent-QDragMoveEvent-e"&gt;&lt;a href="#override-virtual-protected-void-QWebEngineView-dragMoveEvent-QDragMoveEvent-e" class="headerlink" title="[override virtual protected] void QWebEngineView::dragMoveEvent(QDragMoveEvent *e)"&gt;&lt;/a&gt;[override virtual protected] void QWebEngineView::dragMoveEvent(&lt;a href="../../D/QDragMoveEvent.md"&gt;QDragMoveEvent&lt;/a&gt; *&lt;em&gt;e&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;重实现&lt;a href="../qtwidgets/qwidget.html#dragMoveEvent"&gt;QWidget::dragMoveEvent&lt;/a&gt;()。&lt;/p&gt;
+&lt;h3 id="override-virtual-protected-void-QWebEngineView-dropEvent-QDropEvent-e"&gt;&lt;a href="#override-virtual-protected-void-QWebEngineView-dropEvent-QDropEvent-e" class="headerlink" title="[override virtual protected] void QWebEngineView::dropEvent(QDropEvent *e)"&gt;&lt;/a&gt;[override virtual protected] void QWebEngineView::dropEvent(&lt;a href="../../D/QDropEvent.md"&gt;QDropEvent&lt;/a&gt; *&lt;em&gt;e&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;重实现&lt;a href="../qtwidgets/qwidget.html#dropEvent"&gt;QWidget::dropEvent&lt;/a&gt;()。&lt;/p&gt;
+&lt;h3 id="override-virtual-protected-bool-QWebEngineView-event-QEvent-ev"&gt;&lt;a href="#override-virtual-protected-bool-QWebEngineView-event-QEvent-ev" class="headerlink" title="[override virtual protected] bool QWebEngineView::event(QEvent *ev)"&gt;&lt;/a&gt;[override virtual protected] bool QWebEngineView::event(&lt;a href="../../E/QEvent.md"&gt;QEvent&lt;/a&gt; *&lt;em&gt;ev&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;重实现&lt;a href="../qtwidgets/qwidget.html#event"&gt;QWidget::event&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="void-QWebEngineView-findText-const-QString-amp-subString-QWebEnginePage-FindFlags-options-x3D-…-const-QWebEngineCallback-amp-resultCallback-x3D-…）"&gt;&lt;a href="#void-QWebEngineView-findText-const-QString-amp-subString-QWebEnginePage-FindFlags-options-x3D-…-const-QWebEngineCallback-amp-resultCallback-x3D-…）" class="headerlink" title="void QWebEngineView::findText(const QString &amp;subString, QWebEnginePage::FindFlags options = …, const QWebEngineCallback &amp;resultCallback = …）"&gt;&lt;/a&gt;void QWebEngineView::findText(const &lt;a href="../../S/QString.md"&gt;QString&lt;/a&gt; &amp;&lt;em&gt;subString&lt;/em&gt;, &lt;a href="qwebenginepage.html#FindFlag-enum"&gt;QWebEnginePage::FindFlags&lt;/a&gt; &lt;em&gt;options&lt;/em&gt; = …, const QWebEngineCallback&lt;bool&gt; &amp;&lt;em&gt;resultCallback&lt;/em&gt; = …）&lt;/h3&gt;&lt;p&gt;在页面里找到特殊的字符串，子字符串，通过使用&lt;em&gt;options&lt;/em&gt;。&lt;/p&gt;
+&lt;p&gt;去清空选中部分，只需要传递一个空的字符串。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;resultCallback&lt;/em&gt;必须带boolean参数， 它将返回true或false, 表明是否找到子字符串。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; 我们保证回调函数总是可以被调用，但可能需要在页面构造完成之后。当&lt;a href="../../W/QWebEnginePage.md"&gt;QWebEnginePage&lt;/a&gt; 被删除时，该回调触发带着一个无效的值且作为 &lt;a href="../../W/QWebEnginePage.md"&gt;QWebEnginePage&lt;/a&gt; or &lt;a href="qwebengineview.html"&gt;QWebEngineView&lt;/a&gt;实例里使用是不安全的。&lt;/p&gt;
+&lt;h3 id="slot-void-QWebEngineView-forward"&gt;&lt;a href="#slot-void-QWebEngineView-forward" class="headerlink" title="[slot] void QWebEngineView::forward()"&gt;&lt;/a&gt;[slot] void QWebEngineView::forward()&lt;/h3&gt;&lt;p&gt;方便的槽函数，加载构建到导航链接的文档列表里的前一个文档。如果没有前一个文档，就不执行任何操作。&lt;/p&gt;
+&lt;p&gt;它等价于&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs c++"&gt;view-&gt;&lt;span class="hljs-built_in"&gt;page&lt;/span&gt;()-&gt;&lt;span class="hljs-built_in"&gt;triggerAction&lt;/span&gt;(QWebEnginePage::Forward);&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另请参见 &lt;a href="qwebengineview.html#back"&gt;back&lt;/a&gt;() 和 &lt;a href="qwebengineview.html#pageAction"&gt;pageAction&lt;/a&gt;()。&lt;/p&gt;
+&lt;h3 id="override-virtual-protected-void-QWebEngineView-hideEvent-QHideEvent-event"&gt;&lt;a href="#override-virtual-protected-void-QWebEngineView-hideEvent-QHideEvent-event" class="headerlink" title="[override virtual protected] void QWebEngineView::hideEvent(QHideEvent *event)"&gt;&lt;/a&gt;[override virtual protected] void QWebEngineView::hideEvent(&lt;a href="../../H/QHideEvent.md"&gt;QHideEvent&lt;/a&gt; *&lt;em&gt;event&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;重实现&lt;a href="../qtwidgets/qwidget.html#hideEvent"&gt;QWidget::hideEvent&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="QWebEngineHistory-QWebEngineView-history-const"&gt;&lt;a href="#QWebEngineHistory-QWebEngineView-history-const" class="headerlink" title="QWebEngineHistory *QWebEngineView::history() const"&gt;&lt;/a&gt;&lt;a href="../../W/QWebEngineHistory.md"&gt;QWebEngineHistory&lt;/a&gt; *QWebEngineView::history() const&lt;/h3&gt;&lt;p&gt;返回指向web导航页面视图历史的指针。&lt;/p&gt;
+&lt;p&gt;它等价于:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs c++"&gt;view-&gt;&lt;span class="hljs-built_in"&gt;page&lt;/span&gt;()-&gt;&lt;span class="hljs-built_in"&gt;history&lt;/span&gt;();&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h3 id="signal-void-QWebEngineView-iconChanged-const-QIcon-amp-icon"&gt;&lt;a href="#signal-void-QWebEngineView-iconChanged-const-QIcon-amp-icon" class="headerlink" title="[signal] void QWebEngineView::iconChanged(const QIcon &amp;icon)"&gt;&lt;/a&gt;[signal] void QWebEngineView::iconChanged(const &lt;a href="../../I/QIcon.md"&gt;QIcon&lt;/a&gt; &amp;&lt;em&gt;icon&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;当与视图关联的图标（“favicon”）更改时，将发出此信号。 新图标由图标指定。&lt;br&gt;此功能在Qt 5.7中引入。&lt;br&gt;注意：属性图标的通知程序信号。&lt;br&gt;另请参见 &lt;a href="qwebengineview.html#icon-prop"&gt;icon&lt;/a&gt;(), &lt;a href="qwebengineview.html#iconUrl-prop"&gt;iconUrl&lt;/a&gt;(), 和 &lt;a href="qwebengineview.html#iconUrlChanged"&gt;iconUrlChanged&lt;/a&gt;()。&lt;/p&gt;
+&lt;h3 id="signal-void-QWebEngineView-iconUrlChanged-const-QUrl-amp-url"&gt;&lt;a href="#signal-void-QWebEngineView-iconUrlChanged-const-QUrl-amp-url" class="headerlink" title="[signal] void QWebEngineView::iconUrlChanged(const QUrl &amp;url)"&gt;&lt;/a&gt;[signal] void QWebEngineView::iconUrlChanged(const &lt;a href="../../U/QUrl.md"&gt;QUrl&lt;/a&gt; &amp;&lt;em&gt;url&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;当与视图关联的图标（“图标”）的URL更改时，将发出此信号。 新URL由url指定。&lt;br&gt;注意：属性iconUrl的通知程序信号。&lt;br&gt;另请参见&lt;a href="qwebengineview.html#icon-prop"&gt;icon&lt;/a&gt;(), &lt;a href="qwebengineview.html#iconUrl-prop"&gt;iconUrl&lt;/a&gt;(), 和 &lt;a href="qwebengineview.html#iconUrlChanged"&gt;iconUrlChanged&lt;/a&gt;()。&lt;/p&gt;
+&lt;h3 id="void-QWebEngineView-load-const-QUrl-amp-url"&gt;&lt;a href="#void-QWebEngineView-load-const-QUrl-amp-url" class="headerlink" title="void QWebEngineView::load(const QUrl &amp;url)"&gt;&lt;/a&gt;void QWebEngineView::load(const &lt;a href="../../U/QUrl.md"&gt;QUrl&lt;/a&gt; &amp;&lt;em&gt;url&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;加载指定的url和显示它。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; 该视图保持相同的内容直到足够多的数据去展示新的URL。&lt;/p&gt;
+&lt;p&gt;另请参见 load(), &lt;a href="qwebengineview.html#url-prop"&gt;setUrl&lt;/a&gt;(), &lt;a href="qwebengineview.html#url-prop"&gt;url&lt;/a&gt;(), &lt;a href="qwebengineview.html#urlChanged"&gt;urlChanged&lt;/a&gt;(), 和 &lt;a href="../qtcore/qurl.html#fromUserInput"&gt;QUrl::fromUserInput&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="void-QWebEngineView-load-const-QWebEngineHttpRequest-amp-request"&gt;&lt;a href="#void-QWebEngineView-load-const-QWebEngineHttpRequest-amp-request" class="headerlink" title="void QWebEngineView::load(const QWebEngineHttpRequest &amp;request)"&gt;&lt;/a&gt;void QWebEngineView::load(const &lt;a href="../../W/QWebEngineHttpRequest.md"&gt;QWebEngineHttpRequest&lt;/a&gt; &amp;&lt;em&gt;request&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;发出指定的请求并加载响应。&lt;br&gt;Qt 5.9中引入了此功能。&lt;br&gt;另请参见&lt;a href="qwebengineview.html#load"&gt;load&lt;/a&gt;(), &lt;a href="qwebengineview.html#url-prop"&gt;setUrl&lt;/a&gt;(), &lt;a href="qwebengineview.html#url-prop"&gt;url&lt;/a&gt;(), &lt;a href="qwebengineview.html#urlChanged"&gt;urlChanged&lt;/a&gt;(), and &lt;a href="../qtcore/qurl.html#fromUserInput"&gt;QUrl::fromUserInput&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="signal-void-QWebEngineView-loadFinished-bool-ok"&gt;&lt;a href="#signal-void-QWebEngineView-loadFinished-bool-ok" class="headerlink" title="[signal] void QWebEngineView::loadFinished(bool ok)"&gt;&lt;/a&gt;[signal] void QWebEngineView::loadFinished(bool &lt;em&gt;ok&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;当加载该页面已经完成的时候，发出该信号。&lt;em&gt;ok&lt;/em&gt; 表明加载是成功还是失败。&lt;/p&gt;
+&lt;h3 id="signal-void-QWebEngineView-loadProgress-int-progress"&gt;&lt;a href="#signal-void-QWebEngineView-loadProgress-int-progress" class="headerlink" title="[signal] void QWebEngineView::loadProgress(int progress)"&gt;&lt;/a&gt;[signal] void QWebEngineView::loadProgress(int &lt;em&gt;progress&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;每当Web视图中的某个元素完成加载（例如嵌入式图像或脚本）时，都会发出此信号。 因此，它跟踪加载Web视图的总体进度。&lt;/p&gt;
+&lt;p&gt;当前值由progress提供，范围为0到100，这是&lt;a href="../qtwidgets/qprogressbar.html"&gt;QProgressBar&lt;/a&gt;的默认范围。&lt;/p&gt;
+&lt;p&gt;另请参见 &lt;a href="qwebengineview.html#loadStarted"&gt;loadStarted&lt;/a&gt;() 和 &lt;a href="qwebengineview.html#loadFinished"&gt;loadFinished&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="signal-void-QWebEngineView-loadStarted"&gt;&lt;a href="#signal-void-QWebEngineView-loadStarted" class="headerlink" title="[signal] void QWebEngineView::loadStarted()"&gt;&lt;/a&gt;[signal] void QWebEngineView::loadStarted()&lt;/h3&gt;&lt;p&gt;当新的页面开始被加载的时候，发出该信号。&lt;/p&gt;
+&lt;h3 id="WebEnginePage-QWebEngineView-page-const"&gt;&lt;a href="#WebEnginePage-QWebEngineView-page-const" class="headerlink" title="WebEnginePage *QWebEngineView::page() const"&gt;&lt;/a&gt;WebEnginePage *QWebEngineView::page() const&lt;/h3&gt;&lt;p&gt;返回指向下划线web网页的指针。&lt;/p&gt;
+&lt;h3 id="QAction-QWebEngineView-pageAction-QWebEnginePage-WebAction-action-const"&gt;&lt;a href="#QAction-QWebEngineView-pageAction-QWebEnginePage-WebAction-action-const" class="headerlink" title="QAction*QWebEngineView::pageAction(QWebEnginePage::WebAction action) const"&gt;&lt;/a&gt;&lt;a href="../../A/QAction.md"&gt;QAction&lt;/a&gt;*QWebEngineView::pageAction(QWebEnginePage::WebAction &lt;em&gt;action&lt;/em&gt;) const&lt;/h3&gt;&lt;p&gt;返回一个指向&lt;a href="../qtwidgets/qaction.html"&gt;QAction&lt;/a&gt;的指针，封装了特定网页的动作。&lt;/p&gt;
+&lt;h3 id="slot-void-QWebEngineView-reload"&gt;&lt;a href="#slot-void-QWebEngineView-reload" class="headerlink" title="[slot] void QWebEngineView::reload()"&gt;&lt;/a&gt;[slot] void QWebEngineView::reload()&lt;/h3&gt;&lt;p&gt;重新加载当前的文档。&lt;/p&gt;
+&lt;h3 id="signal-void-QWebEngineView-renderProcessTerminated-QWebEnginePage-RenderProcessTerminationStatus-terminationStatus-int-exitCode"&gt;&lt;a href="#signal-void-QWebEngineView-renderProcessTerminated-QWebEnginePage-RenderProcessTerminationStatus-terminationStatus-int-exitCode" class="headerlink" title="[signal] void QWebEngineView::renderProcessTerminated(QWebEnginePage::RenderProcessTerminationStatus terminationStatus, int exitCode)"&gt;&lt;/a&gt;[signal] void QWebEngineView::renderProcessTerminated(&lt;a href="qwebenginepage.html#RenderProcessTerminationStatus-enum"&gt;QWebEnginePage::RenderProcessTerminationStatus&lt;/a&gt; &lt;em&gt;terminationStatus&lt;/em&gt;, int &lt;em&gt;exitCode&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;当渲染进程返回非零且中断的时候，发出该信号。&lt;/p&gt;
+&lt;p&gt;当进程中断时，&lt;em&gt;terminationStatus&lt;/em&gt;指进程的中断状态，&lt;em&gt;exitCode&lt;/em&gt;指进程的状态码。&lt;/p&gt;
+&lt;p&gt;该函数在 Qt 5.6 引入。&lt;/p&gt;
+&lt;h3 id="signal-void-QWebEngineView-selectionChanged"&gt;&lt;a href="#signal-void-QWebEngineView-selectionChanged" class="headerlink" title="[signal] void QWebEngineView::selectionChanged()"&gt;&lt;/a&gt;[signal] void QWebEngineView::selectionChanged()&lt;/h3&gt;&lt;p&gt;当选择的部分改变的时候，发出该信号。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; 当使用鼠标左键单击并拖动来选择文本时，将为每个选定的新字符发出信号，而不是在释放鼠标左键时发出信号。&lt;/p&gt;
+&lt;p&gt;另请参见 &lt;a href="qwebengineview.html#selectedText-prop"&gt;selectedText&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="void-QWebEngineView-setContent-const-QByteArray-amp-data-const-QString-amp-mimeType-x3D-QString-const-QUrl-amp-baseUrl-x3D-QUrl"&gt;&lt;a href="#void-QWebEngineView-setContent-const-QByteArray-amp-data-const-QString-amp-mimeType-x3D-QString-const-QUrl-amp-baseUrl-x3D-QUrl" class="headerlink" title="void QWebEngineView::setContent(const QByteArray &amp;data, const QString &amp;mimeType = QString(), const QUrl &amp;baseUrl = QUrl())"&gt;&lt;/a&gt;void QWebEngineView::setContent(const &lt;a href="../qtcore/qbytearray.html"&gt;QByteArray&lt;/a&gt; &amp;&lt;em&gt;data&lt;/em&gt;, const &lt;a href="../qtcore/qstring.html"&gt;QString&lt;/a&gt; &amp;&lt;em&gt;mimeType&lt;/em&gt; = QString(), const &lt;a href="../qtcore/qurl.html"&gt;QUrl&lt;/a&gt; &amp;&lt;em&gt;baseUrl&lt;/em&gt; = QUrl())&lt;/h3&gt;&lt;p&gt;设置网页视图内容到数据里。如果&lt;em&gt;mimeType&lt;/em&gt;是空参数，将假定该内容是text/plain,charset=US-ASCII。外部对象在内容里引用的路径是相对于&lt;em&gt;baseUrl&lt;/em&gt;。&lt;/p&gt;
+&lt;p&gt;该数据会被立刻加载。外部对象会被异步加载。&lt;/p&gt;
+&lt;p&gt;另请参见 &lt;a href="qwebengineview.html#load"&gt;load&lt;/a&gt;(), &lt;a href="qwebengineview.html#setHtml"&gt;setHtml&lt;/a&gt;(), 和 &lt;a href="qwebenginepage.html#toHtml"&gt;QWebEnginePage::toHtml&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="void-QWebEngineView-setHtml-const-QString-amp-html-const-QUrl-amp-baseUrl-x3D-QUrl"&gt;&lt;a href="#void-QWebEngineView-setHtml-const-QString-amp-html-const-QUrl-amp-baseUrl-x3D-QUrl" class="headerlink" title="void QWebEngineView::setHtml(const QString &amp;html, const QUrl &amp;baseUrl = QUrl())"&gt;&lt;/a&gt;void QWebEngineView::setHtml(const &lt;a href="../../S/QString.md"&gt;QString&lt;/a&gt; &amp;&lt;em&gt;html&lt;/em&gt;, const &lt;a href="../../U/QUrl.md"&gt;QUrl&lt;/a&gt; &amp;&lt;em&gt;baseUrl&lt;/em&gt; = QUrl())&lt;/h3&gt;&lt;p&gt;将Web视图的内容设置为指定的html内容。&lt;/p&gt;
+&lt;p&gt;外部对象（例如HTML文档中引用的样式表或图像）相对于baseUrl定位。&lt;br&gt;HTML文档将立即加载，而外部对象则异步加载。&lt;/p&gt;
+&lt;p&gt;使用此方法时，除非另有说明，否则Qt WebEngine假定外部资源（例如JavaScript程序或样式表）均以UTF-8编码。 例如，可以通过HTML脚本标签的charset属性指定外部脚本的编码。 或者，可以由Web服务器指定编码。&lt;br&gt;这是一个等效于setContent（html，“ text / html; charset = UTF-8”，baseUrl）的便利函数。&lt;/p&gt;
+&lt;h3 id="void-QWebEngineView-setPage-QWebEnginePage-page"&gt;&lt;a href="#void-QWebEngineView-setPage-QWebEnginePage-page" class="headerlink" title="void QWebEngineView::setPage(QWebEnginePage *page)"&gt;&lt;/a&gt;void QWebEngineView::setPage(&lt;a href="../../W/QWebEnginePage.md"&gt;QWebEnginePage&lt;/a&gt; *&lt;em&gt;page&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;确保设置page页面到页面视图中。&lt;/p&gt;
+&lt;p&gt;该父类&lt;a href="../qtcore/qobject.html"&gt;QObject&lt;/a&gt;提供页面维护网页视图对象。如果当前页面是该网页视图的子类，它将会被删除。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;警告：&lt;/strong&gt;此功能仅适用于HTML。 对于其他MIME类型（例如XHTML或SVG），应改用setContent（）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; 无法显示大于2 MB的内容，因为setHtml（）会将提供的HTML转换为百分比编码并将数据：放在其前面以创建要导航到的URL。 从而，提供的代码将成为超出Chromium设置的2 MB限制的URL。 如果内容太大，则使用success = false触发loadFinished（）信号。&lt;/p&gt;
+&lt;p&gt;另请参见 &lt;a href="qwebengineview.html#load"&gt;load&lt;/a&gt;(), &lt;a href="qwebengineview.html#setContent"&gt;setContent&lt;/a&gt;(), &lt;a href="qwebenginepage.html#toHtml"&gt;QWebEnginePage::toHtml&lt;/a&gt;(), 和 &lt;a href="qwebenginepage.html#setContent"&gt;QWebEnginePage::setContent&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="QWebEngineSettings-QWebEngineView-settings-const"&gt;&lt;a href="#QWebEngineSettings-QWebEngineView-settings-const" class="headerlink" title="QWebEngineSettings *QWebEngineView::settings() const"&gt;&lt;/a&gt;&lt;a href="../../W/QWebEngineSettings.md"&gt;QWebEngineSettings&lt;/a&gt; *QWebEngineView::settings() const&lt;/h3&gt;&lt;p&gt;返回一个指向该视图或页面特殊设置对象的指针。&lt;/p&gt;
+&lt;p&gt;它等价于:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs c++"&gt;view-&gt;&lt;span class="hljs-built_in"&gt;page&lt;/span&gt;()-&gt;&lt;span class="hljs-built_in"&gt;settings&lt;/span&gt;();&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;p&gt;另请参见 &lt;a href="qwebenginesettings-obsolete.html#globalSettings"&gt;QWebEngineSettings::globalSettings&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="override-virtual-protected-void-QWebEngineView-showEvent-QShowEvent-event"&gt;&lt;a href="#override-virtual-protected-void-QWebEngineView-showEvent-QShowEvent-event" class="headerlink" title="[override virtual protected] void QWebEngineView::showEvent(QShowEvent *event)"&gt;&lt;/a&gt;[override virtual protected] void QWebEngineView::showEvent(&lt;a href="../../S/QShowEvent.md"&gt;QShowEvent&lt;/a&gt; *&lt;em&gt;event&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;重实现 &lt;a href="../qtwidgets/qwidget.html#showEvent"&gt;QWidget::showEvent&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="override-virtual-QSize-QWebEngineView-sizeHint-const"&gt;&lt;a href="#override-virtual-QSize-QWebEngineView-sizeHint-const" class="headerlink" title="[override virtual] QSize QWebEngineView::sizeHint() const"&gt;&lt;/a&gt;[override virtual] &lt;a href="../../S/QSize.md"&gt;QSize&lt;/a&gt; QWebEngineView::sizeHint() const&lt;/h3&gt;&lt;p&gt;重实现 &lt;a href="../qtwidgets/qwidget.html#sizeHint-prop"&gt;QWidget::sizeHint&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="slot-void-QWebEngineView-stop"&gt;&lt;a href="#slot-void-QWebEngineView-stop" class="headerlink" title="[slot] void QWebEngineView::stop()"&gt;&lt;/a&gt;[slot] void QWebEngineView::stop()&lt;/h3&gt;&lt;p&gt;方便的槽函数，停止加载该文档。&lt;/p&gt;
+&lt;p&gt;它等价于:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs c++"&gt;view-&gt;&lt;span class="hljs-built_in"&gt;page&lt;/span&gt;()-&gt;&lt;span class="hljs-built_in"&gt;triggerAction&lt;/span&gt;(QWebEnginePage::Stop);&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另请参见 &lt;a href="qwebengineview.html#reload"&gt;reload&lt;/a&gt;(), &lt;a href="qwebengineview.html#pageAction"&gt;pageAction&lt;/a&gt;(), 和 &lt;a href="qwebengineview.html#loadFinished"&gt;loadFinished&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="signal-void-QWebEngineView-titleChanged-const-QString-amp-title"&gt;&lt;a href="#signal-void-QWebEngineView-titleChanged-const-QString-amp-title" class="headerlink" title="[signal] void QWebEngineView::titleChanged(const QString &amp;title)"&gt;&lt;/a&gt;[signal] void QWebEngineView::titleChanged(const &lt;a href="../../S/QString.md"&gt;QString&lt;/a&gt; &amp;&lt;em&gt;title&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;当该视图的标题改变时，发出该信号。&lt;/p&gt;
+&lt;p&gt;另请参见 &lt;a href="qwebengineview.html#title-prop"&gt;title&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="void-QWebEngineView-triggerPageAction-QWebEnginePage-WebAction-action-bool-checked-x3D-false"&gt;&lt;a href="#void-QWebEngineView-triggerPageAction-QWebEnginePage-WebAction-action-bool-checked-x3D-false" class="headerlink" title="void QWebEngineView::triggerPageAction(QWebEnginePage::WebAction action, bool checked = false)"&gt;&lt;/a&gt;void QWebEngineView::triggerPageAction(&lt;a href="qwebenginepage.html#WebAction-enum"&gt;QWebEnginePage::WebAction&lt;/a&gt; &lt;em&gt;action&lt;/em&gt;, bool &lt;em&gt;checked&lt;/em&gt; = false)&lt;/h3&gt;&lt;p&gt;触发特定的动作。如果它是可以选中的动作，这个特殊的选中状态被设定。&lt;/p&gt;
+&lt;p&gt;接下来的例子触发了复制动作，因此会拷贝任何选中的文本到剪贴板上。&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs c++"&gt;view-&gt;&lt;span class="hljs-built_in"&gt;triggerPageAction&lt;/span&gt;(QWebEnginePage::Copy);&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另请参见 &lt;a href="qwebengineview.html#pageAction"&gt;pageAction&lt;/a&gt;().&lt;/p&gt;
+&lt;h3 id="signal-void-QWebEngineView-urlChanged-const-QUrl-amp-url"&gt;&lt;a href="#signal-void-QWebEngineView-urlChanged-const-QUrl-amp-url" class="headerlink" title="[signal] void QWebEngineView::urlChanged(const QUrl &amp;url)"&gt;&lt;/a&gt;[signal] void QWebEngineView::urlChanged(const &lt;a href="../../U/QUrl.md"&gt;QUrl&lt;/a&gt; &amp;&lt;em&gt;url&lt;/em&gt;)&lt;/h3&gt;&lt;p&gt;当该视图的&lt;em&gt;url&lt;/em&gt;改变时，发出该信号。&lt;/p&gt;
+&lt;p&gt;另请参见 &lt;a href="qwebengineview.html#url-prop"&gt;url&lt;/a&gt;() 和 &lt;a href="qwebengineview.html#load"&gt;load&lt;/a&gt;().&lt;/p&gt;
+</title></p>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/W/">W</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/W/QWebEngineHistory/QWebEngineHistory/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QWebEngineHistory类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/X/QX11Application/QX11Application/">
+                        <span class="hidden-mobile">QX11Application类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

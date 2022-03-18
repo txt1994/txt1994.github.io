@@ -1,0 +1,1077 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QSqlQuery Class 公共类型 公共函数 详细描述 绑定值的方法   成员类型文档 enum QSqlQuery::BatchExecutionMode   成员函数文档 [since 6.2]QSqlQuery::QSqlQuery(QSqlQuery &amp;&amp;other) QSqlQuery::QSqlQuery(const QSqlDatabase &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QSqlQuery类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/QSqlQuery/QSqlQuery/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QSqlQuery Class 公共类型 公共函数 详细描述 绑定值的方法   成员类型文档 enum QSqlQuery::BatchExecutionMode   成员函数文档 [since 6.2]QSqlQuery::QSqlQuery(QSqlQuery &amp;&amp;other) QSqlQuery::QSqlQuery(const QSqlDatabase &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:53:49.876Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="S">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QSqlQuery类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QSqlQuery类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      18k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      150 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QSqlQuery类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qsqlquery-class">QSqlQuery Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#bang-ding-zhi-de-fang-fa">绑定值的方法</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qsqlquery-batchexecutionmode">enum QSqlQuery::BatchExecutionMode</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#since-6-2-qsqlquery-qsqlquery-qsqlquery-qsqlquery-other"><code>[since 6.2]</code>QSqlQuery::QSqlQuery(</a><a href="#QSqlQuery">QSqlQuery</a> &amp;&amp;<em>other</em>)</li>
+<li><a href="#qsqlquery-qsqlquery-const-qsqldatabase-qsqldatabase-html-db">QSqlQuery::QSqlQuery(const </a><a href="qsqldatabase.html">QSqlDatabase</a> &amp;<em>db</em>)</li>
+<li><a href="#qsqlquery-qsqlquery-const-qstring-qstring-html-query-qstring-const-qsqldatabase-qsqldatabase-html-db-qsqldatabase">QSqlQuery::QSqlQuery(const </a><a href="qstring.html">QString</a> &amp;<em>query</em> = QString(), const <a href="qsqldatabase.html">QSqlDatabase</a> &amp;<em>db</em> = QSqlDatabase())</li>
+<li><a href="#qsqlquery-qsqlquery-qsqlresult-qsqlresult-html-result">QSqlQuery::QSqlQuery(</a><a href="qsqlresult.html">QSqlResult</a> *<em>result</em>)</li>
+<li><a href="#since-6-2-qsqlquery-qsqlquery-qsqlquery-operator-qsqlquery-qsqlquery-other"><code>[since 6.2]</code></a><a href="#QSqlQuery">QSqlQuery</a> &amp;QSqlQuery::operator=(<a href="#QSqlQuery">QSqlQuery</a> &amp;&amp;<em>other</em>)</li>
+<li><a href="#qsqlquery-qsqlquery">QSqlQuery::~QSqlQuery()</a></li>
+<li><a href="#void-qsqlquery-addbindvalue-const-qvariant-qvariant-html-val-qsql-paramtype-qsql-html-paramtypeflag-enum-paramtype-qsql-in">void QSqlQuery::addBindValue(const </a><a href="qvariant.html">QVariant</a> &amp;<em>val</em>, <a href="qsql.html#ParamTypeFlag-enum">QSql::ParamType</a> <em>paramType</em> = QSql::In)</li>
+<li><a href="#int-qsqlquery-at-const">int QSqlQuery::at() const</a></li>
+<li><a href="#void-qsqlquery-bindvalue-const-qstring-qstring-html-placeholder-const-qvariant-qvariant-html-val-qsql-paramtype-qsql-html-paramtypeflag-mei-ju-paramtype-qsql-in">void QSqlQuery::bindValue(const </a><a href="qstring.html">QString</a> &amp;<em>placeholder</em>, const <a href="qvariant.html">QVariant</a> &amp;<em>val</em>, <a href="qsql.html#ParamTypeFlag-%E6%9E%9A%E4%B8%BE">QSql::ParamType</a> <em>paramType</em> = QSql::In)</li>
+<li><a href="#void-qsqlquery-bindvalue-int-pos-const-qvariant-qvariant-html-val-qsql-paramtype-qsql-html-paramtypeflag-enum-paramtype-qsql-in">void QSqlQuery::bindValue(int <em>pos</em>, const </a><a href="qvariant.html">QVariant</a> &amp;<em>val</em>, <a href="qsql.html#ParamTypeFlag-enum">QSql::ParamType</a> <em>paramType</em> = QSql::In）</li>
+<li><a href="#qvariant-qvariant-html-qsqlquery-boundvalue-const-qstring-qstring-html-placeholder-const">QVariant</a></li>
+<li><a href="#qvariant-qvariant-html-qsqlquery-boundvalue-int-pos-const-1">QVariant</a></li>
+<li><a href="#since-6-0-qvariantlist-qsqlquery-boundvalues-const"><code>[since 6.0]</code>QVariantList QSqlQuery::boundValues() const</a></li>
+<li><a href="#void-qsqlquery-clear">void QSqlQuery::clear()</a></li>
+<li><a href="#const-qsqldriver-qsqldriver-html-qsqlquery-driver-const">const </a><a href="qsqldriver.html">QSqlDriver</a> *QSqlQuery::driver() const</li>
+<li><a href="#bool-qsqlquery-exec-const-qstring-qstring-html-query">bool QSqlQuery::exec(const </a><a href="qstring.html">QString</a> &amp;<em>query</em>)</li>
+<li><a href="#bool-qsqlquery-exec">bool QSqlQuery::exec()</a></li>
+<li><a href="#bool-qsqlquery-execbatch-qsqlquery-batchexecutionmode-batchexecutionmode-enum-mode-valuesasrows">bool QSqlQuery::execBatch(</a><a href="#BatchExecutionMode-enum">QSqlQuery::BatchExecutionMode</a> <em>mode</em> = ValuesAsRows)</li>
+<li><a href="#qstring-qstring-html-qsqlquery-executedquery-const">QString</a></li>
+<li><a href="#void-qsqlquery-finish">void QSqlQuery::finish()</a></li>
+<li><a href="#bool-qsqlquery-first">bool QSqlQuery::first()</a></li>
+<li><a href="#bool-qsqlquery-isactive-chang-liang">bool QSqlQuery::isActive() 常量</a></li>
+<li><a href="#bool-qsqlquery-isforwardonly-const">bool QSqlQuery::isForwardOnly() const</a></li>
+<li><a href="#bool-qsqlquery-isnull-int-field-const">bool QSqlQuery::isNull(int <em>field</em>) const</a></li>
+<li><a href="#bool-qsqlquery-isnull-const-qstring-qstring-html-name-const">bool QSqlQuery::isNull(const </a><a href="qstring.html">QString</a> &amp;<em>name</em>) const</li>
+<li><a href="#bool-qsqlquery-isselect-const">bool QSqlQuery::isSelect() const</a></li>
+<li><a href="#bool-qsqlquery-isvalid-const">bool QSqlQuery::isValid() const</a></li>
+<li><a href="#bool-qsqlquery-last">bool QSqlQuery::last()</a></li>
+<li><a href="#qsqlerror-qsqlerror-html-qsqlquery-lasterror-const">QSqlError</a></li>
+<li><a href="#qvariant-qvariant-html-qsqlquery-lastinsertid-const-2">QVariant</a></li>
+<li><a href="#qstring-qstring-html-qsqlquery-lastquery-const-1">QString</a></li>
+<li><a href="#bool-qsqlquery-next">bool QSqlQuery::next()</a></li>
+<li><a href="#bool-qsqlquery-nextresult">bool QSqlQuery::nextResult()</a></li>
+<li><a href="#int-qsqlquery-numrowsaffected-chang-liang">int QSqlQuery::numRowsAffected() 常量</a></li>
+<li><a href="#qsql-numericalprecisionpolicy-qsql-html-numericalprecisionpolicy-enum-qsqlquery-numericalprecisionpolicy-const">QSql::NumericalPrecisionPolicy</a></li>
+<li><a href="#bool-qsqlquery-prepare-const-qstring-qstring-html-query">bool QSqlQuery::prepare(const </a><a href="qstring.html">QString</a> &amp;<em>query</em>)</li>
+<li><a href="#bool-qsqlquery-previous">bool QSqlQuery::previous()</a></li>
+<li><a href="#qsqlrecord-qsqlrecord-html-qsqlquery-record-const">QSqlRecord</a></li>
+<li><a href="#const-qsqlresult-qsqlresult-html-qsqlquery-result-const">const </a><a href="qsqlresult.html">QSqlResult</a> *QSqlQuery::result() const</li>
+<li><a href="#bool-qsqlquery-seek-int-index-bool-relative-false">bool QSqlQuery::seek(int <em>index</em>, bool <em>relative</em> = false)</a></li>
+<li><a href="#void-qsqlquery-setforwardonly-bool-forward">void QSqlQuery::setForwardOnly(bool <em>forward</em>)</a></li>
+<li><a href="#void-qsqlquery-setnumericalprecisionpolicy-qsql-numericalprecisionpolicy-qsql-html-numericalprecisionpolicy-enum-precisionpolicy">void QSqlQuery::setNumericalPrecisionPolicy(</a><a href="qsql.html#NumericalPrecisionPolicy-enum">QSql::NumericalPrecisionPolicy</a> <em>precisionPolicy</em>)</li>
+<li><a href="#int-qsqlquery-size-const">int QSqlQuery::size() const</a></li>
+<li><a href="#cong-6-2-kai-shi-void-qsqlquery-swap-qsqlquery-qsqlquery-other"><code>[从 6.2 开始]</code>void QSqlQuery::swap(</a><a href="#QSqlQuery">QSqlQuery</a> &amp;<em>other</em>)</li>
+<li><a href="#qvariant-qvariant-html-qsqlquery-value-int-index-const-3">QVariant</a></li>
+<li><a href="#qvariant-qvariant-html-qsqlquery-value-const-qstring-qstring-html-name-const-4">QVariant</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QSqlQuery Class
+
+<p>QSqlQuery 类提供了一种执行和操作 SQL 语句的方法。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qsqlquery></qsqlquery></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Sql REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Sql)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += sql</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qsqlquery-members.html">List of all members, including inherited members</a></li>
+<li><a href="qsqlquery-obsolete.html">Deprecated members</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#BatchExecutionMode-enum">BatchExecutionMode</a></strong> { ValuesAsRows, ValuesAsColumns }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QSqlQuery-4">QSqlQuery</a></strong>(QSqlQuery &amp;&amp;<em>other</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QSqlQuery-2">QSqlQuery</a></strong>(const QSqlDatabase &amp;<em>db</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QSqlQuery-1">QSqlQuery</a></strong>(const QString &amp;<em>query</em> = QString(), const QSqlDatabase &amp;<em>db</em> = QSqlDatabase())</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QSqlQuery">QSqlQuery</a></strong>(QSqlResult *<em>result</em>)</td>
+</tr>
+<tr>
+<td>QSqlQuery &amp;</td>
+<td><strong><a href="#operator-eq-1">operator=</a></strong>(QSqlQuery &amp;&amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QSqlQuery">~QSqlQuery</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addBindValue">addBindValue</a></strong>(const QVariant &amp;<em>val</em>, QSql::ParamType <em>paramType</em> = QSql::In)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#at">at</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#bindValue">bindValue</a></strong>(const QString &amp;<em>placeholder</em>, const QVariant &amp;<em>val</em>, QSql::ParamType <em>paramType</em> = QSql::In)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#bindValue-1">bindValue</a></strong>(int <em>pos</em>, const QVariant &amp;<em>val</em>, QSql::ParamType <em>paramType</em> = QSql::In)</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#boundValue">boundValue</a></strong>(const QString &amp;<em>placeholder</em>) const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#boundValue-1">boundValue</a></strong>(int <em>pos</em>) const</td>
+</tr>
+<tr>
+<td>QVariantList</td>
+<td><strong><a href="#boundValues">boundValues</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#clear">clear</a></strong>()</td>
+</tr>
+<tr>
+<td>const QSqlDriver *</td>
+<td><strong><a href="#driver">driver</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#exec">exec</a></strong>(const QString &amp;<em>query</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#exec-1">exec</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#execBatch">execBatch</a></strong>(QSqlQuery::BatchExecutionMode <em>mode</em> = ValuesAsRows)</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#executedQuery">executedQuery</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#finish">finish</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#first">first</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isActive">isActive</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isForwardOnly">isForwardOnly</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNull">isNull</a></strong>(int <em>field</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNull-1">isNull</a></strong>(const QString &amp;<em>name</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isSelect">isSelect</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isValid">isValid</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#last">last</a></strong>()</td>
+</tr>
+<tr>
+<td>QSqlError</td>
+<td><strong><a href="#lastError">lastError</a></strong>() const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#lastInsertId">lastInsertId</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#lastQuery">lastQuery</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#next">next</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#nextResult">nextResult</a></strong>()</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#numRowsAffected">numRowsAffected</a></strong>() const</td>
+</tr>
+<tr>
+<td>QSql::NumericalPrecisionPolicy</td>
+<td><strong><a href="#numericalPrecisionPolicy">numericalPrecisionPolicy</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#prepare">prepare</a></strong>(const QString &amp;<em>query</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#previous">previous</a></strong>()</td>
+</tr>
+<tr>
+<td>QSqlRecord</td>
+<td><strong><a href="#record">record</a></strong>() const</td>
+</tr>
+<tr>
+<td>const QSqlResult *</td>
+<td><strong><a href="#result">result</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#seek">seek</a></strong>(int <em>index</em>, bool <em>relative</em> = false)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setForwardOnly">setForwardOnly</a></strong>(bool <em>forward</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setNumericalPrecisionPolicy">setNumericalPrecisionPolicy</a></strong>(QSql::NumericalPrecisionPolicy <em>precisionPolicy</em>)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#size">size</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#swap">swap</a></strong>(QSqlQuery &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#value">value</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#value-1">value</a></strong>(const QString &amp;<em>name</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QSqlQuery 封装了在 <a href="qsqldatabase.html">QSqlDatabase</a> 上执行的 SQL 查询中创建、导航和检索数据所涉及的功能。它可用于执行 DML（数据操作语言）语句，例如 <code>SELECT</code>、<code>INSERT</code>、<code>UPDATE</code> 和 <code>DELETE</code>，以及 DDL（数据定义语言）语句，例如<code>CREATE</code> <code>TABLE </code>。它还可用于执行非标准 SQL 的特定于数据库的命令（例如 PostgreSQL 的 <code>SET DATESTYLE=ISO</code>）。</p>
+<p>成功执行的 SQL 语句将查询的状态设置为活动状态，以便 <a href="#isActive">isActive</a>() 返回 <code>true</code>。否则查询的状态设置为非活动。无论哪种情况，在执行新的 SQL 语句时，查询都会定位在无效记录上。在检索值之前，必须将活动查询导航到有效记录（以便 <a href="#isValid">isValid</a>() 返回 <code>true</code>）。</p>
+<p>对于某些数据库，如果在调用 <a href="qsqldatabase.html#commit">commit</a>() 或 <a href="qsqldatabase.html#rollback">rollback</a>() 时存在 <code>SELECT</code> 语句的活动查询，则提交或回滚将失败。有关详细信息，请参阅 <a href="#isActive">isActive</a>()。</p>
+<p>使用以下功能执行导航记录：</p>
+<ul>
+<li><a href="#next">next</a>()</li>
+<li><a href="#previous">previous</a>()</li>
+<li><a href="#first">first</a>()</li>
+<li><a href="#last">last</a>()</li>
+<li><a href="#seek">seek</a>()</li>
+</ul>
+<p>这些函数允许程序员在查询返回的记录中向前、向后或任意移动。如果您只需要通过结果向前移动（例如，通过使用 <a href="#next">next</a>()），您可以使用 <a href="#setForwardOnly">setForwardOnly</a>()，这将节省大量内存开销并提高在某些数据库上的性能。一旦活动查询定位在有效记录上，就可以使用 <a href="#value">value</a>() 检索数据。所有数据都使用 QVariants 从 SQL 后端传输。</p>
+<p>例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QSqlQuery <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-string">"SELECT country FROM artist"</span>)</span></span>;
+<span class="hljs-keyword">while</span> (query.<span class="hljs-built_in">next</span>()) {
+    QString country = query.<span class="hljs-built_in">value</span>(<span class="hljs-number">0</span>).<span class="hljs-built_in">toString</span>();
+    <span class="hljs-built_in">doSomething</span>(country);
+}</code></pre></div>
+
+<p>要访问查询返回的数据，请使用 value(int)。 <code>SELECT</code> 语句返回的数据中的每个字段都是通过从 0 开始传递字段在语句中的位置来访问的。这使得使用 <code>SELECT *</code> 查询是不可取的，因为返回的字段的顺序是不确定的。</p>
+<p>为了提高效率，没有函数可以按名称访问字段（除非您使用带有名称的准备好的查询，如下所述）。 要将字段名称转换为索引，请使用 <a href="#record">record</a>().<a href="qsqlrecord.html#indexOf">indexOf</a>()，例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QSqlQuery <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-string">"SELECT * FROM artist"</span>)</span></span>;
+<span class="hljs-type">int</span> fieldNo = query.<span class="hljs-built_in">record</span>().<span class="hljs-built_in">indexOf</span>(<span class="hljs-string">"country"</span>);
+<span class="hljs-keyword">while</span> (query.<span class="hljs-built_in">next</span>()) {
+    QString country = query.<span class="hljs-built_in">value</span>(fieldNo).<span class="hljs-built_in">toString</span>();
+    <span class="hljs-built_in">doSomething</span>(country);
+}</code></pre></div>
+
+<p>QSqlQuery 支持准备好的查询执行以及将参数值绑定到占位符。一些数据库不支持这些特性，因此对于这些特性，Qt 模拟了所需的功能。例如，Oracle 和 ODBC 驱动程序具有适当的准备查询支持，Qt 就利用了它；但是对于没有这种支持的数据库，Qt 自己实现了这个特性，例如通过在执行查询时用实际值替换占位符。使用 <a href="#numRowsAffected">numRowsAffected</a>() 找出有多少行受到非 <code>SELECT</code> 查询的影响，使用 <a href="#size">size</a>() 找出有多少行被 <code>SELECT</code> 检索。</p>
+<p>Oracle 数据库使用冒号名称语法来识别占位符，例如 <code>:name</code>。 ODBC 仅使用 <code>?</code> 字符。 Qt 支持这两种语法，但不能在同一个查询中混合使用它们。</p>
+<p>您可以使用 <a href="#boundValues">boundValues</a>() 检索单个变量中所有字段的值。</p>
+<p><strong>注意：</strong> 并非所有 SQL 操作都支持绑定值。请参阅您的数据库系统的文档以检查它们的可用性。</p>
+<h3><span id="bang-ding-zhi-de-fang-fa">绑定值的方法</span><a href="#bang-ding-zhi-de-fang-fa" class="header-anchor">#</a></h3><p>下面我们展示了使用四种不同绑定方法中的每一种的相同示例，以及将值绑定到存储过程的一个示例。</p>
+<p><strong>使用命名占位符的命名绑定：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs c++">QSqlQuery query;
+query.<span class="hljs-built_in">prepare</span>(<span class="hljs-string">"INSERT INTO person (id, forename, surname) "</span>
+              <span class="hljs-string">"VALUES (:id, :forename, :surname)"</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-string">":id"</span>, <span class="hljs-number">1001</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-string">":forename"</span>, <span class="hljs-string">"Bart"</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-string">":surname"</span>, <span class="hljs-string">"Simpson"</span>);
+query.<span class="hljs-built_in">exec</span>();</code></pre></div>
+
+<p><strong>使用命名占位符的位置绑定：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs c++">QSqlQuery query;
+query.<span class="hljs-built_in">prepare</span>(<span class="hljs-string">"INSERT INTO person (id, forename, surname) "</span>
+              <span class="hljs-string">"VALUES (:id, :forename, :surname)"</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1001</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-number">1</span>, <span class="hljs-string">"Bart"</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-number">2</span>, <span class="hljs-string">"Simpson"</span>);
+query.<span class="hljs-built_in">exec</span>();</code></pre></div>
+
+<p><strong>使用位置占位符绑定值（版本 1）：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs c++">QSqlQuery query;
+query.<span class="hljs-built_in">prepare</span>(<span class="hljs-string">"INSERT INTO person (id, forename, surname) "</span>
+              <span class="hljs-string">"VALUES (?, ?, ?)"</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1001</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-number">1</span>, <span class="hljs-string">"Bart"</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-number">2</span>, <span class="hljs-string">"Simpson"</span>);
+query.<span class="hljs-built_in">exec</span>();</code></pre></div>
+
+<p><strong>使用位置占位符绑定值（版本 2）：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs c++">QSqlQuery query;
+query.<span class="hljs-built_in">prepare</span>(<span class="hljs-string">"INSERT INTO person (id, forename, surname) "</span>
+              <span class="hljs-string">"VALUES (?, ?, ?)"</span>);
+query.<span class="hljs-built_in">addBindValue</span>(<span class="hljs-number">1001</span>);
+query.<span class="hljs-built_in">addBindValue</span>(<span class="hljs-string">"Bart"</span>);
+query.<span class="hljs-built_in">addBindValue</span>(<span class="hljs-string">"Simpson"</span>);
+query.<span class="hljs-built_in">exec</span>();</code></pre></div>
+
+<p><strong>将值绑定到存储过程：</strong></p>
+<p>这段代码调用了一个名为 <code>AsciiToInt()</code> 的存储过程，通过它的 in 参数向它传递一个字符，并在 out 参数中获取它的结果。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QSqlQuery query;
+query.<span class="hljs-built_in">prepare</span>(<span class="hljs-string">"CALL AsciiToInt(?, ?)"</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-number">0</span>, <span class="hljs-string">"A"</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, QSql::Out);
+query.<span class="hljs-built_in">exec</span>();
+<span class="hljs-type">int</span> i = query.<span class="hljs-built_in">boundValue</span>(<span class="hljs-number">1</span>).<span class="hljs-built_in">toInt</span>(); <span class="hljs-comment">// i is 65</span></code></pre></div>
+
+<p>请注意，未绑定的参数将保留其值。</p>
+<p>不完全支持使用 return 语句返回值或返回多个结果集的存储过程。 具体细节参见<a href="sql-driver.html">SQL 数据库驱动程序</a>。</p>
+<p><strong>警告：</strong> 在创建 QSqlQuery 之前，您必须加载 SQL 驱动程序并打开连接。 此外，查询存在时连接必须保持打开状态； 否则，QSqlQuery 的行为是未定义的。</p>
+<p><strong>See also</strong> <a href="qsqldatabase.html">QSqlDatabase</a>, <a href="qsqlquerymodel.html">QSqlQueryModel</a>, <a href="qsqltablemodel.html">QSqlTableModel</a>, and <a href="qvariant.html">QVariant</a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qsqlquery-batchexecutionmode">enum QSqlQuery::BatchExecutionMode</span><a href="#enum-qsqlquery-batchexecutionmode" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QSqlQuery::ValuesAsRows</code></td>
+<td><code>0</code></td>
+<td>- 更新多行。 将 QVariantList 中的每个条目视为更新下一行的值。</td>
+</tr>
+<tr>
+<td><code>QSqlQuery::ValuesAsColumns</code></td>
+<td><code>1</code></td>
+<td>- 更新单行。 将 QVariantList 中的每个条目视为数组类型的单个值。</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="since-6-2-qsqlquery-qsqlquery-qsqlquery-amp-amp-other"><code>[since 6.2]</code>QSqlQuery::QSqlQuery( &amp;&amp;<em>other</em>)</span><a href="#since-6-2-qsqlquery-qsqlquery-qsqlquery-amp-amp-other" class="header-anchor">#</a></h3><p>从 <em>other</em> 移动构造一个 QSqlQuery。</p>
+<p>该函数在 Qt 6.2 引入。</p>
+<h3><span id="qsqlquery-qsqlquery-const-qsqldatabase-amp-db">QSqlQuery::QSqlQuery(const  &amp;<em>db</em>)</span><a href="#qsqlquery-qsqlquery-const-qsqldatabase-amp-db" class="header-anchor">#</a></h3><p>使用数据库 <em>db</em> 构造一个 QSqlQuery 对象。 如果 <em>db</em> 无效，将使用应用程序的默认数据库。</p>
+<p><strong>See also</strong> <a href="qsqldatabase.html">QSqlDatabase</a>.</p>
+<h3><span id="qsqlquery-qsqlquery-const-qstring-amp-query-qstring-const-qsqldatabase-amp-db-qsqldatabase">QSqlQuery::QSqlQuery(const  &amp;<em>query</em> = QString(), const  &amp;<em>db</em> = QSqlDatabase())</span><a href="#qsqlquery-qsqlquery-const-qstring-amp-query-qstring-const-qsqldatabase-amp-db-qsqldatabase" class="header-anchor">#</a></h3><p>使用 SQL <em>query</em> 和数据库 <em>db</em> 构造一个 QSqlQuery 对象。 如果 <em>db</em> 未指定或无效，则使用应用程序的默认数据库。 如果 <em>query</em> 不是空字符串，它将被执行。</p>
+<p><strong>See also</strong> <a href="qsqldatabase.html">QSqlDatabase</a>.</p>
+<h3><span id="qsqlquery-qsqlquery-qsqlresult-result">QSqlQuery::QSqlQuery( *<em>result</em>)</span><a href="#qsqlquery-qsqlquery-qsqlresult-result" class="header-anchor">#</a></h3><p>构造一个使用 <a href="qsqlresult.html">QSqlResult</a> <em>result</em> 与数据库通信的 QSqlQuery 对象。</p>
+<h3><span id="since-6-2-qsqlquery-amp-qsqlquery-operator-qsqlquery-amp-amp-other"><code>[since 6.2]</code> &amp;QSqlQuery::operator=( &amp;&amp;<em>other</em>)</span><a href="#since-6-2-qsqlquery-amp-qsqlquery-operator-qsqlquery-amp-amp-other" class="header-anchor">#</a></h3><p>将 <em>other</em> 移动分配给该对象。</p>
+<p>该函数在 Qt 6.2 引入。</p>
+<h3><span id="qsqlquery-qsqlquery">QSqlQuery::~QSqlQuery()</span><a href="#qsqlquery-qsqlquery" class="header-anchor">#</a></h3><p>销毁对象并释放所有分配的资源。</p>
+<h3><span id="void-qsqlquery-addbindvalue-const-qvariant-amp-val-qsql-paramtype-paramtype-qsql-in">void QSqlQuery::addBindValue(const  &amp;<em>val</em>,  <em>paramType</em> = QSql::In)</span><a href="#void-qsqlquery-addbindvalue-const-qvariant-amp-val-qsql-paramtype-paramtype-qsql-in" class="header-anchor">#</a></h3><p>使用位置值绑定时，将值 <em>val</em> 添加到值列表中。 addBindValue() 调用的顺序决定了值将在准备好的查询中绑定到哪个占位符。 如果 <em>paramType</em> 是 <a href="qsql.html#ParamTypeFlag-enum">QSql::Out</a> 或 <a href="qsql.html#ParamTypeFlag-enum">QSql::InOut</a>，则占位符将在 <a href="#exec-1"> exec</a>() 调用。</p>
+<p>要绑定 NULL 值，请使用 null <a href="qvariant.html">QVariant</a>; 例如，如果要绑定字符串，请使用 <code>QVariant(QMetaType::QString)</code>。</p>
+<p><strong>See also</strong> <a href="#bindValue">bindValue</a>(), <a href="#prepare">prepare</a>(), <a href="#exec-1">exec</a>(), <a href="#boundValue">boundValue</a>(), and <a href="#boundValues">boundValues</a>().</p>
+<h3><span id="int-qsqlquery-at-const">int QSqlQuery::at() const</span><a href="#int-qsqlquery-at-const" class="header-anchor">#</a></h3><p>返回查询的当前内部位置。 第一条记录位于零位置。 如果位置无效，函数返回<a href="qsql.html#Location-enum">QSql::BeforeFirstRow</a>或<a href="qsql.html#Location-enum">QSql::AfterLastRow</a>，它们是特殊的负值。</p>
+<p><strong>See also</strong> <a href="#previous">previous</a>(), <a href="#next">next</a>(), <a href="#first">first</a>(), <a href="#last">last</a>(), <a href="#seek">seek</a>(), <a href="#isActive">isActive</a>(), and <a href="#isValid">isValid</a>().</p>
+<h3><span id="void-qsqlquery-bindvalue-const-qstring-amp-placeholder-const-qvariant-amp-val-qsql-paramtype-paramtype-qsql-in">void QSqlQuery::bindValue(const  &amp;<em>placeholder</em>, const  &amp;<em>val</em>,  <em>paramType</em> = QSql::In)</span><a href="#void-qsqlquery-bindvalue-const-qstring-amp-placeholder-const-qvariant-amp-val-qsql-paramtype-paramtype-qsql-in" class="header-anchor">#</a></h3><p>将占位符 <em>placeholder</em> 设置为在准备好的语句中绑定到值 <em>val</em>。请注意，在指定占位符名称时必须包含占位符标记（例如 <code>:</code>）。如果 <em>paramType</em> 是 <a href="qsql.html#ParamTypeFlag-enum">QSql::Out</a> 或 <a href="qsql.html#ParamTypeFlag-enum">QSql::InOut</a>，则占位符将在 <a href="#exec-1"> exec</a>() 调用。在这种情况下，必须预先分配足够的空间来存储结果。</p>
+<p>要绑定 NULL 值，请使用 null <a href="qvariant.html">QVariant</a>;例如，如果要绑定字符串，请使用 <code>QVariant(QMetaType::QString)</code>。</p>
+<p><strong>另请参阅</strong> <a href="#addBindValue">addBindValue</a>()、<a href="#prepare">prepare</a>()、<a href="#exec-1">exec</a>()、<a href="#boundValue">boundValue</a>() 和 <a href="#boundValues"> boundValues</a>()。</p>
+<h3><span id="void-qsqlquery-bindvalue-int-pos-const-qvariant-amp-val-qsql-paramtype-paramtype-qsql-in">void QSqlQuery::bindValue(int <em>pos</em>, const  &amp;<em>val</em>,  <em>paramType</em> = QSql::In）</span><a href="#void-qsqlquery-bindvalue-int-pos-const-qvariant-amp-val-qsql-paramtype-paramtype-qsql-in" class="header-anchor">#</a></h3><p>将位置 <em>pos</em> 中的占位符设置为绑定到准备好的语句中的值 <em>val</em>。字段编号从 0 开始。如果 <em>paramType</em> 为 <a href="qsql.html#ParamTypeFlag-enum">QSql::Out</a> 或 <a href="qsql.html#ParamTypeFlag-enum">QSql::InOut</a>，则占位符将被数据覆盖在 <a href="#exec-1">exec</a>() 调用之后从数据库中获取。</p>
+<h3><span id="qvariant-qsqlquery-boundvalue-const-qstring-amp-placeholder-const"> QSqlQuery::boundValue(const  &amp;<em>placeholder</em>) const</span><a href="#qvariant-qsqlquery-boundvalue-const-qstring-amp-placeholder-const" class="header-anchor">#</a></h3><p>返回 <em>placeholder</em> 的值。</p>
+<p><strong>另请参阅</strong> <a href="#boundValues">boundValues</a>()、<a href="#bindValue">bindValue</a>() 和 <a href="#addBindValue">addBindValue</a>()。</p>
+<h3><span id="qvariant-qsqlquery-boundvalue-int-pos-const"> QSqlQuery::boundValue(int <em>pos</em>) const</span><a href="#qvariant-qsqlquery-boundvalue-int-pos-const" class="header-anchor">#</a></h3><p>返回位置 <em>pos</em> 的占位符的值。</p>
+<h3><span id="since-6-0-qvariantlist-qsqlquery-boundvalues-const"><code>[since 6.0]</code>QVariantList QSqlQuery::boundValues() const</span><a href="#since-6-0-qvariantlist-qsqlquery-boundvalues-const" class="header-anchor">#</a></h3><p>返回绑定值的列表。</p>
+<p>列表的顺序是绑定顺序，不管是使用命名绑定还是位置绑定。</p>
+<p>可以通过以下方式检查绑定值：</p>
+<div class="code-wrapper"><pre><code class="hljs C++">QVariantList list = query.<span class="hljs-built_in">boundValues</span>();
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; list.<span class="hljs-built_in">size</span>(); ++i)
+    cout &lt;&lt; i &lt;&lt; <span class="hljs-string">": "</span> &lt;&lt; list.<span class="hljs-built_in">at</span>(i).<span class="hljs-built_in">toString</span>().<span class="hljs-built_in">toUtf8</span>().<span class="hljs-built_in">data</span>() &lt;&lt; <span class="hljs-string">"\n"</span>;</code></pre></div>
+
+<p>该函数在 Qt 6.0 引入。</p>
+<p><strong>另请参阅</strong> <a href="#boundValue">boundValue</a>()、<a href="#bindValue">bindValue</a>() 和 <a href="#addBindValue">addBindValue</a>()。</p>
+<h3><span id="void-qsqlquery-clear">void QSqlQuery::clear()</span><a href="#void-qsqlquery-clear" class="header-anchor">#</a></h3><p>清除结果集并释放查询持有的所有资源。将查询状态设置为非活动。如果需要，您应该很少调用此函数。</p>
+<h3><span id="const-qsqldriver-qsqlquery-driver-const">const  *QSqlQuery::driver() const</span><a href="#const-qsqldriver-qsqlquery-driver-const" class="header-anchor">#</a></h3><p>返回与查询关联的数据库驱动程序。</p>
+<h3><span id="bool-qsqlquery-exec-const-qstring-amp-query">bool QSqlQuery::exec(const  &amp;<em>query</em>)</span><a href="#bool-qsqlquery-exec-const-qstring-amp-query" class="header-anchor">#</a></h3><p>执行 <em>query</em> 中的 SQL。如果查询成功，则返回 <code>true</code> 并将查询状态设置为 <a href="#isActive">active</a>；否则返回“假”。 <em>query</em> 字符串必须使用适合被查询的 SQL 数据库的语法（例如，标准 SQL）。</p>
+<p>执行查询后，查询将定位在 <em>invalid</em> 记录上，并且必须先导航到有效记录，然后才能检索数据值（例如，使用 <a href="#next">next</a>()）。</p>
+<p>请注意，调用 exec() 时会重置此查询的最后一个错误。</p>
+<p>对于 SQLite，查询字符串一次只能包含一条语句。如果给出了多个语句，则该函数返回 <code>false</code>。</p>
+<p>Example:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QSqlQuery query;
+query.<span class="hljs-built_in">exec</span>(<span class="hljs-string">"INSERT INTO employee (id, name, salary) "</span>
+           <span class="hljs-string">"VALUES (1001, 'Thad Beaumont', 65000)"</span>);</code></pre></div>
+
+<p><strong>See also</strong> <a href="#isActive">isActive</a>(), <a href="#isValid">isValid</a>(), <a href="#next">next</a>(), <a href="#previous">previous</a>(), <a href="#first">first</a>(), <a href="#last">last</a>(), and <a href="#seek">seek</a>().</p>
+<h3><span id="bool-qsqlquery-exec">bool QSqlQuery::exec()</span><a href="#bool-qsqlquery-exec" class="header-anchor">#</a></h3><p>执行先前准备好的 SQL 查询。 如果查询成功执行，则返回 <code>true</code>； 否则返回“假”。</p>
+<p>请注意，调用 exec() 时会重置此查询的最后一个错误。</p>
+<p><strong>另请参阅</strong> <a href="#prepare">prepare</a>()、<a href="#bindValue">bindValue</a>()、<a href="#addBindValue">addBindValue</a>()、<a href="#boundValue">boundValue</a>() 和 [boundValues] (#boundValues)()。</p>
+<h3><span id="bool-qsqlquery-execbatch-qsqlquery-batchexecutionmode-mode-valuesasrows">bool QSqlQuery::execBatch( <em>mode</em> = ValuesAsRows)</span><a href="#bool-qsqlquery-execbatch-qsqlquery-batchexecutionmode-mode-valuesasrows" class="header-anchor">#</a></h3><p>批量执行之前准备好的 SQL 查询。 所有绑定参数都必须是变体列表。 如果数据库不支持批处理执行，驱动程序将使用传统的 <a href="#exec-1">exec</a>() 调用来模拟它。</p>
+<p>如果查询执行成功，则返回 <code>true</code>； 否则返回“假”。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QSqlQuery q;
+q.<span class="hljs-built_in">prepare</span>(<span class="hljs-string">"insert into myTable values (?, ?)"</span>);
+
+QVariantList ints;
+ints &lt;&lt; <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">2</span> &lt;&lt; <span class="hljs-number">3</span> &lt;&lt; <span class="hljs-number">4</span>;
+q.<span class="hljs-built_in">addBindValue</span>(ints);
+
+QVariantList names;
+names &lt;&lt; <span class="hljs-string">"Harald"</span> &lt;&lt; <span class="hljs-string">"Boris"</span> &lt;&lt; <span class="hljs-string">"Trond"</span> &lt;&lt; <span class="hljs-built_in">QVariant</span>(QMetaType::QString);
+q.<span class="hljs-built_in">addBindValue</span>(names);
+
+<span class="hljs-keyword">if</span> (!q.<span class="hljs-built_in">execBatch</span>())
+    <span class="hljs-built_in">qDebug</span>() &lt;&lt; q.<span class="hljs-built_in">lastError</span>();</code></pre></div>
+
+<p>上面的示例在 <code>myTable</code> 中插入了四个新行：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">1  Harald
+2  Boris
+3  Trond
+4  NULL</code></pre></div>
+
+<p>要绑定 NULL 值，必须将相关类型的空 <a href="qvariant.html">QVariant</a> 添加到绑定的 QVariantList；例如，如果您使用字符串，则应使用 <code>QVariant(QMetaType::QString)</code>。</p>
+<p><strong>注意：</strong> 每个绑定的 QVariantList 必须包含相同数量的变体。</p>
+<p><strong>注意：</strong> 列表中 QVariants 的类型不得更改。例如，您不能在 QVariantList 中混合整数和字符串变体。</p>
+<p><em>mode</em> 参数指示绑定的 QVariantList 将如何被解释。如果 <em>mode</em> 是 <code>ValuesAsRows</code>，QVariantList 中的每个变体都将被解释为新行的值。 <code>ValuesAsColumns</code> 是 Oracle 驱动程序的一个特例。在这种模式下，QVariantList 中的每个条目都将被解释为存储过程中 IN 或 OUT 值的数组值。请注意，这仅在 IN 或 OUT 值是仅包含基本类型的一列的表类型时才有效，例如 <code>TYPE myType IS TABLE OF VARCHAR(64) INDEX BY BINARY_INTEGER;</code></p>
+<p><strong>另请参阅</strong> <a href="#prepare">prepare</a>()、<a href="#bindValue">bindValue</a>() 和 <a href="#addBindValue">addBindValue</a>()。</p>
+<h3><span id="qstring-qsqlquery-executedquery-const"> QSqlQuery::executedQuery() const</span><a href="#qstring-qsqlquery-executedquery-const" class="header-anchor">#</a></h3><p>返回成功执行的最后一个查询。</p>
+<p>在大多数情况下，此函数返回与 <a href="#lastQuery">lastQuery</a>() 相同的字符串。如果在不支持它的 DBMS 上执行带有占位符的准备好的查询，则模拟此查询的准备。原始查询中的占位符被它们的绑定值替换以形成一个新的查询。此函数返回修改后的查询。它主要用于调试目的。</p>
+<p><strong>另见</strong> <a href="#lastQuery">lastQuery</a>()。</p>
+<h3><span id="void-qsqlquery-finish">void QSqlQuery::finish()</span><a href="#void-qsqlquery-finish" class="header-anchor">#</a></h3><p>指示数据库驱动程序在重新执行之前不会从此查询中获取更多数据。通常不需要调用此函数，但如果您打算稍后重新使用查询，它可能有助于释放锁或游标等资源。</p>
+<p>将查询设置为非活动状态。绑定值保留其值。</p>
+<p><strong>See also</strong> <a href="#prepare">prepare</a>(), <a href="#exec-1">exec</a>(), and <a href="#isActive">isActive</a>().</p>
+<h3><span id="bool-qsqlquery-first">bool QSqlQuery::first()</span><a href="#bool-qsqlquery-first" class="header-anchor">#</a></h3><p>检索结果中的第一条记录（如果可用），并将查询定位在检索到的记录上。请注意，结果必须处于 <a href="#isActive">active</a> 状态，并且 <a href="#isSelect">isSelect</a>() 必须在调用此函数之前返回 true，否则它将什么也不做并返回 false。如果成功，则返回 <code>true</code>。如果不成功，则将查询位置设置为无效位置并返回 false。</p>
+<p><strong>另请参阅</strong> <a href="#next">下一个</a>()、<a href="#previous">上一个</a>()、<a href="#last">上一个</a>()、<a href="#seek">seek</a>()、<a href="#at">at</a>)()、<a href="#isActive">isActive</a>() 和 <a href="#isValid">isValid</a>()。</p>
+<h3><span id="bool-qsqlquery-isactive-chang-liang">bool QSqlQuery::isActive() 常量</span><a href="#bool-qsqlquery-isactive-chang-liang" class="header-anchor">#</a></h3><p>如果查询是<em>活动的</em>，则返回 <code>true</code>。一个活动的 <a href>QSqlQuery</a> 是一个已成功执行 <a href="#exec-1">exec()’d</a> 但尚未完成的任务。完成活动查询后，可以通过调用 <a href="#finish">finish</a>() 或 <a href="#clear">clear</a>() 使查询不活动，也可以删除 <a href>QSqlQuery</a> 实例。</p>
+<p><strong>注意：</strong> 特别感兴趣的是一个活动查询，它是一个 <code>SELECT</code> 语句。对于某些支持事务的数据库，作为 <code>SELECT</code> 语句的活动查询可能会导致 <a href="qsqldatabase.html#commit">commit</a>() 或 <a href="qsqldatabase.html#rollback">rollback</a>() 失败，因此在提交或回滚之前，您应该使用上面列出的方法之一使您的活动“SELECT”语句查询不活动。</p>
+<p><strong>另请参阅</strong> <a href="#isSelect">isSelect</a>()。</p>
+<h3><span id="bool-qsqlquery-isforwardonly-const">bool QSqlQuery::isForwardOnly() const</span><a href="#bool-qsqlquery-isforwardonly-const" class="header-anchor">#</a></h3><p>如果只能向前滚动结果集，则返回 <code>true</code>；否则返回“假”。</p>
+<p><strong>另请参阅</strong> <a href="#setForwardOnly">setForwardOnly</a>() 和 <a href="#next">next</a>()。</p>
+<h3><span id="bool-qsqlquery-isnull-int-field-const">bool QSqlQuery::isNull(int <em>field</em>) const</span><a href="#bool-qsqlquery-isnull-int-field-const" class="header-anchor">#</a></h3><p>如果查询不是 <a href="#isActive">active</a>、查询未定位在有效记录上、不存在这样的 <em>field</em> 或 <em>field</em> 为空，则返回 <code>true</code>；否则为“假”。请注意，对于某些驱动程序，在尝试检索数据之前，isNull() 不会返回准确的信息。</p>
+<p><strong>另请参阅</strong> <a href="#isActive">isActive</a>()、<a href="#isValid">isValid</a>() 和 <a href="#value">value</a>()。</p>
+<h3><span id="bool-qsqlquery-isnull-const-qstring-amp-name-const">bool QSqlQuery::isNull(const  &amp;<em>name</em>) const</span><a href="#bool-qsqlquery-isnull-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>如果没有具有此 <em>name</em> 的字段，则返回 <code>true</code>；否则返回对应字段索引的 isNull(int index)。</p>
+<p>此重载效率低于 <a href="#isNull">isNull</a>()</p>
+<h3><span id="bool-qsqlquery-isselect-const">bool QSqlQuery::isSelect() const</span><a href="#bool-qsqlquery-isselect-const" class="header-anchor">#</a></h3><p>如果当前查询是 <code>SELECT</code> 语句，则返回 <code>true</code>；否则返回“假”。</p>
+<h3><span id="bool-qsqlquery-isvalid-const">bool QSqlQuery::isValid() const</span><a href="#bool-qsqlquery-isvalid-const" class="header-anchor">#</a></h3><p>如果查询当前位于有效记录上，则返回 <code>true</code>；否则返回“假”。</p>
+<h3><span id="bool-qsqlquery-last">bool QSqlQuery::last()</span><a href="#bool-qsqlquery-last" class="header-anchor">#</a></h3><p>检索结果中的最后一条记录（如果可用），并将查询定位在检索到的记录上。请注意，结果必须处于 <a href="#isActive">active</a> 状态，并且 <a href="#isSelect">isSelect</a>() 必须在调用此函数之前返回 true，否则它将什么也不做并返回 false。如果成功，则返回 <code>true</code>。如果不成功，则将查询位置设置为无效位置并返回 false。</p>
+<p><strong>另见</strong> <a href="#next">next</a>(), <a href="#previous">previous</a>(), <a href="#first">first</a>(), <a href="#seek">seek</a>(), <a href="#at">at</a>)()、<a href="#isActive">isActive</a>() 和 <a href="#isValid">isValid</a>()。</p>
+<h3><span id="qsqlerror-qsqlquery-lasterror-const"> QSqlQuery::lastError() const</span><a href="#qsqlerror-qsqlquery-lasterror-const" class="header-anchor">#</a></h3><p>返回有关此查询发生的最后一个错误（如果有）的错误信息。</p>
+<p><strong>另见</strong> <a href="qsqlerror.html">QSqlError</a> 和 <a href="qsqldatabase.html#lastError">QSqlDatabase::lastError</a>()。</p>
+<h3><span id="qvariant-qsqlquery-lastinsertid-const"> QSqlQuery::lastInsertId() const</span><a href="#qvariant-qsqlquery-lastinsertid-const" class="header-anchor">#</a></h3><p>如果数据库支持，则返回最近插入行的对象 ID。如果查询未插入任何值或数据库未报告 id，则将返回无效的 <a href="qvariant.html">QVariant</a>。如果插入操作多于一行，则行为未定义。</p>
+<p>对于 MySQL 数据库，将返回行的自动增量字段。</p>
+<p><strong>注意：</strong> 要在 PSQL 中使用此功能，表 table 必须包含 OID，默认情况下可能未创建。检查 <code>default_with_oids</code> 配置变量以确保。</p>
+<p><strong>另见</strong> <a href="qsqldriver.html#hasFeature">QSqlDriver::hasFeature</a>()。</p>
+<h3><span id="qstring-qsqlquery-lastquery-const"> QSqlQuery::lastQuery() const</span><a href="#qstring-qsqlquery-lastquery-const" class="header-anchor">#</a></h3><p>返回正在使用的当前查询的文本，如果没有当前查询文本，则返回一个空字符串。</p>
+<p><strong>See also</strong> <a href="#executedQuery">executedQuery</a>().</p>
+<h3><span id="bool-qsqlquery-next">bool QSqlQuery::next()</span><a href="#bool-qsqlquery-next" class="header-anchor">#</a></h3><p>检索结果中的下一条记录（如果可用），并将查询定位在检索到的记录上。请注意，结果必须处于 <a href="#isActive">active</a> 状态，并且 <a href="#isSelect">isSelect</a>() 必须在调用此函数之前返回 true，否则它将什么也不做并返回 false。</p>
+<p>以下规则适用：</p>
+<ul>
+<li>如果结果当前位于第一条记录之前，例如执行查询后立即尝试检索第一条记录。</li>
+<li>如果结果当前位于最后一条记录之后，则没有变化并返回 false。</li>
+<li>如果结果位于中间某处，则尝试检索下一条记录。</li>
+</ul>
+<p>如果无法检索记录，则将结果定位在最后一条记录之后并返回 false。如果成功检索记录，则返回 true。</p>
+<p><strong>另见</strong> <a href="#previous">previous</a>(), <a href="#first">first</a>(), <a href="#last">last</a>(), <a href="#seek">seek</a>(), <a href="#at">at</a>)()、<a href="#isActive">isActive</a>() 和 <a href="#isValid">isValid</a>()。</p>
+<h3><span id="bool-qsqlquery-nextresult">bool QSqlQuery::nextResult()</span><a href="#bool-qsqlquery-nextresult" class="header-anchor">#</a></h3><p>丢弃当前结果集并导航到下一个（如果可用）。</p>
+<p>一些数据库能够为存储过程或 SQL 批处理（包含多个语句的查询字符串）返回多个结果集。如果执行查询后有多个结果集可用，则此函数可用于导航到下一个结果集。</p>
+<p>如果有新的结果集可用，此函数将返回 true。查询将在新结果集中的 <em>invalid</em> 记录上重新定位，并且必须先导航到有效记录，然后才能检索数据值。如果新的结果集不可用，则该函数返回 <code>false</code> 并且查询设置为非活动状态。在任何情况下，旧的结果集都将被丢弃。</p>
+<p>当其中一个语句是非选择语句时，受影响的行数可能可用，而不是结果集。</p>
+<p>请注意，某些数据库（例如 Microsoft SQL Server）在处理多个结果集时需要不可滚动的游标。一些数据库可能会一次执行所有语句，而另一些可能会延迟执行，直到实际访问结果集，并且一些数据库可能对允许在 SQL 批处理中使用哪些语句有限制。</p>
+<p><strong>另见</strong> <a href="qsqldriver.html#hasFeature">QSqlDriver::hasFeature</a>(), <a href="#setForwardOnly">setForwardOnly</a>(), <a href="#next">next</a>(), <a href="#isSelect">isSelect</a>( )、<a href="#numRowsAffected">numRowsAffected</a>()、<a href="#isActive">isActive</a>() 和 <a href="#lastError">lastError</a>()。</p>
+<h3><span id="int-qsqlquery-numrowsaffected-chang-liang">int QSqlQuery::numRowsAffected() 常量</span><a href="#int-qsqlquery-numrowsaffected-chang-liang" class="header-anchor">#</a></h3><p>返回受结果的 SQL 语句影响的行数，如果无法确定，则返回 -1。请注意，对于 <code>SELECT</code> 语句，该值是未定义的；使用 <a href="#size">size</a>() 代替。如果查询不是 <a href="#isActive">active</a>，则返回 -1。</p>
+<p><strong>另见</strong> <a href="#size">size</a>() 和 <a href="qsqldriver.html#hasFeature">QSqlDriver::hasFeature</a>()。</p>
+<h3><span id="qsql-numericalprecisionpolicy-qsqlquery-numericalprecisionpolicy-const"> QSqlQuery::numericalPrecisionPolicy() const</span><a href="#qsql-numericalprecisionpolicy-qsqlquery-numericalprecisionpolicy-const" class="header-anchor">#</a></h3><p>返回当前的精度策略。</p>
+<p><strong>另见</strong> <a href="qsql.html#NumericalPrecisionPolicy-enum">QSql::NumericalPrecisionPolicy</a> 和 <a href="#setNumericalPrecisionPolicy">setNumericalPrecisionPolicy</a>()。</p>
+<h3><span id="bool-qsqlquery-prepare-const-qstring-amp-query">bool QSqlQuery::prepare(const  &amp;<em>query</em>)</span><a href="#bool-qsqlquery-prepare-const-qstring-amp-query" class="header-anchor">#</a></h3><p>准备 SQL 查询 <em>query</em> 以供执行。如果查询准备成功，则返回 <code>true</code>；否则返回“假”。</p>
+<p>查询可能包含绑定值的占位符。支持 Oracle 样式冒号（例如，<code>:surname</code>）和 ODBC 样式（<code>?</code>）占位符；但它们不能在同一个查询中混合使用。有关示例，请参见 <a href="#qsqlquery-examples">详细说明</a>。</p>
+<p>可移植性说明：一些数据库选择延迟准备查询，直到它第一次执行。在这种情况下，准备一个语法错误的查询会成功，但每个连续的 <a href="#exec-1">exec</a>() 都会失败。当数据库不直接支持命名占位符时，占位符只能包含 [a-zA-Z0-9<a href="qromancalendar.html">_</a>] 范围内的字符。</p>
+<p>对于 SQLite，查询字符串一次只能包含一条语句。如果给出了多个语句，则该函数返回 <code>false</code>。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QSqlQuery query;
+query.<span class="hljs-built_in">prepare</span>(<span class="hljs-string">"INSERT INTO person (id, forename, surname) "</span>
+              <span class="hljs-string">"VALUES (:id, :forename, :surname)"</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-string">":id"</span>, <span class="hljs-number">1001</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-string">":forename"</span>, <span class="hljs-string">"Bart"</span>);
+query.<span class="hljs-built_in">bindValue</span>(<span class="hljs-string">":surname"</span>, <span class="hljs-string">"Simpson"</span>);
+query.<span class="hljs-built_in">exec</span>();</code></pre></div>
+
+<p><strong>See also</strong> <a href="#exec-1">exec</a>(), <a href="#bindValue">bindValue</a>(), and <a href="#addBindValue">addBindValue</a>().</p>
+<h3><span id="bool-qsqlquery-previous">bool QSqlQuery::previous()</span><a href="#bool-qsqlquery-previous" class="header-anchor">#</a></h3><p>检索结果中的前一条记录（如果可用），并将查询定位在检索到的记录上。请注意，结果必须处于 <a href="#isActive">active</a> 状态，并且 <a href="#isSelect">isSelect</a>() 必须在调用此函数之前返回 true，否则它将什么也不做并返回 false。</p>
+<p>以下规则适用：</p>
+<ul>
+<li>如果结果当前位于第一条记录之前，则没有变化并返回 false。</li>
+<li>如果结果当前位于最后一条记录之后，则尝试检索最后一条记录。</li>
+<li>如果结果在中间的某个位置，则尝试检索先前的记录。</li>
+</ul>
+<p>如果无法检索记录，则将结果定位在第一条记录之前并返回 false。如果成功检索记录，则返回 true。</p>
+<p><strong>另见</strong> <a href="#next">next</a>(), <a href="#first">first</a>(), <a href="#last">last</a>(), <a href="#seek">seek</a>(), <a href="#at">at</a>)()、<a href="#isActive">isActive</a>() 和 <a href="#isValid">isValid</a>()。</p>
+<h3><span id="qsqlrecord-qsqlquery-record-const"> QSqlQuery::record() const</span><a href="#qsqlrecord-qsqlquery-record-const" class="header-anchor">#</a></h3><p>返回包含当前查询的字段信息的 <a href="qsqlrecord.html">QSqlRecord</a>。如果查询指向有效行（<a href="#isValid">isValid</a>() 返回 true），则使用该行的值填充记录。没有活动查询时返回空记录（<a href="#isActive">isActive</a>() 返回 false）。</p>
+<p>要从查询中检索值，应该使用 <a href="#value">value</a>()，因为它的基于索引的查找速度更快。</p>
+<p>在以下示例中，执行了一个 <code>SELECT * FROM</code> 查询。由于未定义列的顺序，因此使用 <a href="qsqlrecord.html#indexOf">QSqlRecord::indexOf</a>() 来获取列的索引。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QSqlQuery <span class="hljs-title">q</span><span class="hljs-params">(<span class="hljs-string">"select * from employees"</span>)</span></span>;
+QSqlRecord rec = q.<span class="hljs-built_in">record</span>();
+
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"Number of columns: "</span> &lt;&lt; rec.<span class="hljs-built_in">count</span>();
+
+<span class="hljs-type">int</span> nameCol = rec.<span class="hljs-built_in">indexOf</span>(<span class="hljs-string">"name"</span>); <span class="hljs-comment">// index of the field "name"</span>
+<span class="hljs-keyword">while</span> (q.<span class="hljs-built_in">next</span>())
+    <span class="hljs-built_in">qDebug</span>() &lt;&lt; q.<span class="hljs-built_in">value</span>(nameCol).<span class="hljs-built_in">toString</span>(); <span class="hljs-comment">// output all names</span></code></pre></div>
+
+<p><strong>See also</strong> <a href="#value">value</a>().</p>
+<h3><span id="const-qsqlresult-qsqlquery-result-const">const  *QSqlQuery::result() const</span><a href="#const-qsqlresult-qsqlquery-result-const" class="header-anchor">#</a></h3><p>返回与查询关联的结果。</p>
+<h3><span id="bool-qsqlquery-seek-int-index-bool-relative-false">bool QSqlQuery::seek(int <em>index</em>, bool <em>relative</em> = false)</span><a href="#bool-qsqlquery-seek-int-index-bool-relative-false" class="header-anchor">#</a></h3><p>检索位置 <em>index</em> 处的记录（如果可用），并将查询定位在检索到的记录上。第一条记录位于位置 0。请注意，查询必须处于 <a href="#isActive">active</a> 状态，并且 <a href="#isSelect">isSelect</a>() 必须在调用此函数之前返回 true。</p>
+<p>如果 <em>relative</em> 为 false（默认值），则适用以下规则：</p>
+<ul>
+<li>如果<em>index</em> 为负数，则结果位于第一条记录之前并返回false。</li>
+<li>否则，将尝试移动到位置 <em>index</em> 处的记录。如果无法检索到 <em>index</em> 位置的记录，则将结果定位在最后一条记录之后并返回 false。如果成功检索记录，则返回 true。</li>
+</ul>
+<p>如果 <em>relative</em> 为真，则适用以下规则：</p>
+<ul>
+<li>如果结果当前位于第一条记录之前并且：<ul>
+<li><em>index</em> 为负数或零，没有变化，返回 false。</li>
+<li><em>index</em> 为正，尝试将结果定位在绝对位置 <em>index</em> - 1，遵循上述非相对搜索的相同规则。</li>
+</ul>
+</li>
+<li>如果结果当前位于最后一条记录之后并且：<ul>
+<li><em>index</em> 为正数或零，没有变化，返回 false。</li>
+<li><em>index</em> 为负数，尝试将结果定位在 <em>index</em> + 1 相对于最后一条记录的位置，遵循以下规则。</li>
+</ul>
+</li>
+<li>如果结果当前位于中间某处，并且相对偏移 <em>index</em> 将结果移动到零以下，则结果位于第一条记录之前并返回 false。</li>
+<li>否则，尝试移动到当前记录之前的记录 <em>index</em> 记录（如果 <em>index</em> 为负数，则移动到当前记录之后的 <em>index</em> 记录）。如果无法检索到偏移 <em>index</em> 处的记录，则如果 <em>index</em> &gt;= 0，则结果位于最后一条记录之后（如果 <em>index</em> 为负数，则位于第一条记录之前），并返回 false。如果成功检索记录，则返回 true。</li>
+</ul>
+<p><strong>See also</strong> <a href="#next">next</a>(), <a href="#previous">previous</a>(), <a href="#first">first</a>(), <a href="#last">last</a>(), <a href="#at">at</a>(), <a href="#isActive">isActive</a>(), and <a href="#isValid">isValid</a>().</p>
+<h3><span id="void-qsqlquery-setforwardonly-bool-forward">void QSqlQuery::setForwardOnly(bool <em>forward</em>)</span><a href="#void-qsqlquery-setforwardonly-bool-forward" class="header-anchor">#</a></h3><p>将只转发模式设置为 <em>forward</em>。如果 <em>forward</em> 为真，则仅允许具有正值的 <a href="#next">next</a>() 和 <a href="#seek">seek</a>() 用于导航结果。</p>
+<p>仅转发模式可以（取决于驱动程序）更节省内存，因为不需要缓存结果。它还将提高某些数据库的性能。为此，您必须在准备或执行查询之前调用<code>setForwardOnly()</code>。请注意，接受查询和数据库的构造函数可能会执行查询。</p>
+<p>仅转发模式默认关闭。</p>
+<p>将 forward only 设置为 false 是对数据库引擎的建议，它对结果集是仅向前还是可滚动有最终决定权。 <a href="#isForwardOnly">isForwardOnly</a>() 将始终返回结果集的正确状态。</p>
+<p><strong>注意：</strong> 在执行查询后调用 setForwardOnly 充其量会导致意外结果，最坏情况下会导致崩溃。</p>
+<p><strong>注意：</strong> 为确保只进查询成功完成，应用程序不仅应在执行查询后检查 <a href="#lastError">lastError</a>() 错误，而且应在导航查询结果后检查错误。</p>
+<p><strong>警告：</strong> PostgreSQL：在只进模式下浏览查询结果时，不要在同一数据库连接上执行任何其他 SQL 命令。这将导致查询结果丢失。</p>
+<p><strong>另见</strong> <a href="#isForwardOnly">isForwardOnly</a>()、<a href="#next">next</a>()、<a href="#seek">seek</a>() 和 <a href="qsqlresult.html#setForwardOnly">QSqlResult::setForwardOnly</a> ()。</p>
+<h3><span id="void-qsqlquery-setnumericalprecisionpolicy-qsql-numericalprecisionpolicy-precisionpolicy">void QSqlQuery::setNumericalPrecisionPolicy( <em>precisionPolicy</em>)</span><a href="#void-qsqlquery-setnumericalprecisionpolicy-qsql-numericalprecisionpolicy-precisionpolicy" class="header-anchor">#</a></h3><p>指示数据库驱动程序以 <em>precisionPolicy</em> 指定的精度返回数值。</p>
+<p>例如，Oracle 驱动程序可以将数值作为字符串检索，以防止精度损失。如果高精度无关紧要，请使用此方法通过绕过字符串转换来提高执行速度。</p>
+<p>注意：不支持获取低精度数值的驱动程序将忽略精度策略。您可以使用 <a href="qsqldriver.html#hasFeature">QSqlDriver::hasFeature</a>() 来确定驱动程序是否支持此功能。</p>
+<p>注意：设置精度策略不会影响当前活动的查询。调用 <a href="#exec-1">exec</a>(QString) 或 <a href="#prepare">prepare</a>() 以激活策略。</p>
+<p><strong>See also</strong> <a href="qsql.html#NumericalPrecisionPolicy-enum">QSql::NumericalPrecisionPolicy</a> and <a href="#numericalPrecisionPolicy">numericalPrecisionPolicy</a>().</p>
+<h3><span id="int-qsqlquery-size-const">int QSqlQuery::size() const</span><a href="#int-qsqlquery-size-const" class="header-anchor">#</a></h3><p>返回结果的大小（返回的行数），如果无法确定大小或数据库不支持报告有关查询大小的信息，则返回 -1。请注意，对于非 <code>SELECT</code> 语句（<a href="#isSelect">isSelect</a>() 返回 <code>false</code>），size() 将返回 -1。如果查询未激活（<a href="#isActive">isActive</a>() 返回 <code>false</code>），则返回 -1。</p>
+<p>要确定受非“SELECT”语句影响的行数，请使用 <a href="#numRowsAffected">numRowsAffected</a>()。</p>
+<p><strong>另请参阅</strong> <a href="#isActive">isActive</a>()、<a href="#numRowsAffected">numRowsAffected</a>() 和 <a href="qsqldriver.html#hasFeature">QSqlDriver::hasFeature</a>()。</p>
+<h3><span id="cong-6-2-kai-shi-void-qsqlquery-swap-qsqlquery-amp-other"><code>[从 6.2 开始]</code>void QSqlQuery::swap( &amp;<em>other</em>)</span><a href="#cong-6-2-kai-shi-void-qsqlquery-swap-qsqlquery-amp-other" class="header-anchor">#</a></h3><p>将 <em>other</em> 交换到此对象。此操作非常快且永不失败。</p>
+<p>该函数在 Qt 6.2 引入。</p>
+<h3><span id="qvariant-qsqlquery-value-int-index-const"> QSqlQuery::value(int <em>index</em>) const</span><a href="#qvariant-qsqlquery-value-int-index-const" class="header-anchor">#</a></h3><p>返回当前记录中字段 <em>index</em> 的值。</p>
+<p>字段使用“SELECT”语句的文本从左到右编号，例如在</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> forename, surname <span class="hljs-keyword">FROM</span> people;</code></pre></div>
+
+<p>字段 0 是“名字”，字段 1 是“姓”。不建议使用 <code>SELECT *</code>，因为查询中字段的顺序未定义。</p>
+<p>如果字段 <em>index</em> 不存在、查询不活动或查询位于无效记录上，则返回无效的 <a href="qvariant.html">QVariant</a>。</p>
+<p><strong>另见</strong> <a href="#previous">previous</a>(), <a href="#next">next</a>(), <a href="#first">first</a>(), <a href="#last">last</a>(), <a href="#seek">seek</a>)()、<a href="#isActive">isActive</a>() 和 <a href="#isValid">isValid</a>()。</p>
+<h3><span id="qvariant-qsqlquery-value-const-qstring-amp-name-const"> QSqlQuery::value(const  &amp;<em>name</em>) const</span><a href="#qvariant-qsqlquery-value-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>返回当前记录中名为 <em>name</em> 的字段的值。如果字段 <em>name</em> 不存在，则返回无效变体。</p>
+<p>此重载效率低于 <a href="#value">value</a>()</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/S/">S</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSqlQueryModel/QSqlQueryModel/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QSqlQueryModel类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSqlRelation/QSqlRelation/">
+                        <span class="hidden-mobile">QSqlRelation类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,943 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QJSManagedValue Class 公共类型 公共函数 详细描述 成员类型文档编制 enum QJSManagedValue:: 类型   成员函数文档编制 QJSManagedValue:: QJSManagedValue ( QJSManagedValue &amp;&amp; other ) QJSManagedValue:: QJSManagedValue (const">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QJSManagedValue类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/J/QJSManagedValue/QJSManagedValue/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QJSManagedValue Class 公共类型 公共函数 详细描述 成员类型文档编制 enum QJSManagedValue:: 类型   成员函数文档编制 QJSManagedValue:: QJSManagedValue ( QJSManagedValue &amp;&amp; other ) QJSManagedValue:: QJSManagedValue (const">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:44:29.648Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="J">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QJSManagedValue类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QJSManagedValue类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      13k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      113 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QJSManagedValue类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qjsmanagedvalue-class">QJSManagedValue Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#enum-qjsmanagedvalue-lei-xing">enum QJSManagedValue:: 类型</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qjsmanagedvalue-qjsmanagedvalue-qjsmanagedvalue-other">QJSManagedValue:: QJSManagedValue ( QJSManagedValue &amp;&amp; <em>other</em> )</a></li>
+<li><a href="#qjsmanagedvalue-qjsmanagedvalue-const-qstring-qstring-html-string-qjsengine-engine">QJSManagedValue:: QJSManagedValue (const </a><a href="qstring.html">QString </a>&amp; <em>string</em> , <a href>QJSEngine </a>* <em>engine</em> )</li>
+<li><a href="#qjsmanagedvalue-qjsmanagedvalue-const-qvariant-qvariant-html-variant-qjsengine-engine">QJSManagedValue:: QJSManagedValue (const </a><a href="qvariant.html">QVariant </a>&amp; <em>variant</em> , <a href>QJSEngine </a>* <em>engine</em> )</li>
+<li><a href="#qjsmanagedvalue-qjsmanagedvalue-const-qjsprimitivevalue-qjsprimitivevalue-html-value-qjsengine-engine">QJSManagedValue:: QJSManagedValue (const </a><a href="qjsprimitivevalue.html">QJSPrimitiveValue </a>&amp; <em>value</em> , <a href>QJSEngine </a>* <em>engine</em> )</li>
+<li><a href="#qjsmanagedvalue-qjsmanagedvalue-qjsvalue-qjsvalue-html-value-qjsengine-engine">QJSManagedValue:: QJSManagedValue ( </a><a href="qjsvalue.html">QJSValue </a><em>value</em> , <a href>QJSEngine </a>* <em>engine</em> )</li>
+<li><a href="#qjsmanagedvalue-qjsmanagedvalue">QJSManagedValue:: QJSManagedValue ()</a></li>
+<li><a href="#qjsmanagedvalue-qjsmanagedvalue-operator-qjsmanagedvalue-other">QJSManagedValue &amp;QJSManagedValue:: operator= ( QJSManagedValue &amp;&amp; <em>other</em> )</a></li>
+<li><a href="#qjsmanagedvalue-qjsmanagedvalue">QJSManagedValue:: ~QJSManagedValue ()</a></li>
+<li><a href="#qjsvalue-qjsvalue-html-qjsmanagedvalue-call-const-qjsvaluelist-qjsvalue-html-qjsvaluelist-typedef-arguments-const">QJSValue </a></li>
+<li><a href="#qjsvalue-qjsvalue-html-qjsmanagedvalue-callasconstructor-const-qjsvaluelist-qjsvalue-html-qjsvaluelist-typedef-arguments-const-1">QJSValue </a></li>
+<li><a href="#qjsvalue-qjsvalue-html-qjsmanagedvalue-callwithinstance-const-qjsvalue-qjsvalue-html-instance-const-qjsvaluelist-qjsvalue-html-qjsvaluelist-typedef-arguments-const-2">QJSValue </a></li>
+<li><a href="#bool-qjsmanagedvalue-deleteproperty-const-qstring-qstring-html-name">bool QJSManagedValue:: deleteProperty (const </a><a href="qstring.html">QString </a>&amp; <em>name</em> )</li>
+<li><a href="#bool-qjsmanagedvalue-deleteproperty-quint32-qtglobal-html-quint32-typedef-arrayindex">bool QJSManagedValue:: deleteProperty ( </a><a href="qtglobal.html#quint32-typedef">quint32 </a><em>arrayIndex</em> )</li>
+<li><a href="#qjsengine-qjsmanagedvalue-engine-const">QJSEngine </a></li>
+<li><a href="#bool-qjsmanagedvalue-deng-yu-const-qjsmanagedvalue-other-const">bool QJSManagedValue:: 等于 (const QJSManagedValue &amp; <em>other</em> ) const</a></li>
+<li><a href="#bool-qjsmanagedvalue-hasownproperty-const-qstring-qstring-html-name-const">bool QJSManagedValue:: hasOwnProperty (const </a><a href="qstring.html">QString </a>&amp; <em>name</em> ) const</li>
+<li><a href="#bool-qjsmanagedvalue-hasownproperty-quint32-qtglobal-html-quint32-typedef-arrayindex-const">bool QJSManagedValue:: hasOwnProperty ( </a><a href="qtglobal.html#quint32-typedef">quint32 </a><em>arrayIndex</em> ) const</li>
+<li><a href="#bool-qjsmanagedvalue-hasproperty-const-qstring-qstring-html-name-const">bool QJSManagedValue:: hasProperty (const </a><a href="qstring.html">QString </a>&amp; <em>name</em> ) const</li>
+<li><a href="#bool-qjsmanagedvalue-hasproperty-quint32-qtglobal-html-quint32-typedef-arrayindex-const">bool QJSManagedValue:: hasProperty ( </a><a href="qtglobal.html#quint32-typedef">quint32 </a><em>arrayIndex</em> ) const</li>
+<li><a href="#bool-qjsmanagedvalue-isarray-const">bool QJSManagedValue:: isArray () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isboolean-const">bool QJSManagedValue:: isBoolean () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isdate-const">bool QJSManagedValue:: isDate () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-iserror-const">bool QJSManagedValue:: isError () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isfunction-const">bool QJSManagedValue:: isFunction () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isinteger-const">bool QJSManagedValue:: isInteger () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isnull-const">bool QJSManagedValue:: isNull () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isnumber-const">bool QJSManagedValue:: isNumber () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isobject-const">bool QJSManagedValue:: isObject () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isqmetaobject-const">bool QJSManagedValue:: isQMetaObject () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isqobject-const">bool QJSManagedValue:: isQObject () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isregularexpression-const">bool QJSManagedValue:: isRegularExpression () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isstring-const">bool QJSManagedValue:: isString () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-issymbol-const">bool QJSManagedValue:: isSymbol () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isundefined-const">bool QJSManagedValue:: isUndefined () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isurl-const">bool QJSManagedValue:: isUrl () const</a></li>
+<li><a href="#bool-qjsmanagedvalue-isvariant-const">bool QJSManagedValue:: isVariant () const</a></li>
+<li><a href="#qjsvalue-qjsvalue-html-qjsmanagedvalue-property-const-qstring-qstring-html-name-const-3">QJSValue </a></li>
+<li><a href="#qjsvalue-qjsvalue-html-qjsmanagedvalue-property-quint32-qtglobal-html-quint32-typedef-arrayindex-const-4">QJSValue </a></li>
+<li><a href="#qjsmanagedvalue-qjsmanagedvalue-prototype-const">QJSManagedValue QJSManagedValue:: prototype () const</a></li>
+<li><a href="#void-qjsmanagedvalue-setproperty-const-qstring-qstring-html-name-const-qjsvalue-qjsvalue-html-value">void QJSManagedValue:: setProperty (const </a><a href="qstring.html">QString </a>&amp; <em>name</em> , const <a href="qjsvalue.html">QJSValue </a>&amp; <em>value</em> )</li>
+<li><a href="#void-qjsmanagedvalue-setproperty-quint32-qtglobal-html-quint32-typedef-arrayindex-const-qjsvalue-qjsvalue-html-value">void QJSManagedValue:: setProperty ( </a><a href="qtglobal.html#quint32-typedef">quint32 </a><em>arrayIndex</em> , const <a href="qjsvalue.html">QJSValue </a>&amp; <em>value</em> )</li>
+<li><a href="#void-qjsmanagedvalue-setprototype-const-qjsmanagedvalue-prototype">void QJSManagedValue:: setPrototype (const QJSManagedValue &amp; <em>prototype</em> )</a></li>
+<li><a href="#bool-qjsmanagedvalue-strictlyequals-const-qjsmanagedvalue-other-const">bool QJSManagedValue:: strictlyEquals (const QJSManagedValue &amp; <em>other</em> ) const</a></li>
+<li><a href="#bool-qjsmanagedvalue-toboolean-const">bool QJSManagedValue:: toBoolean () const</a></li>
+<li><a href="#qdatetime-qdatetime-html-qjsmanagedvalue-todatetime-const">QDateTime </a></li>
+<li><a href="#int-qjsmanagedvalue-tointeger-const">int QJSManagedValue:: toInteger () const</a></li>
+<li><a href="#qjsvalue-qjsvalue-html-qjsmanagedvalue-tojsvalue-const-5">QJSValue </a></li>
+<li><a href="#double-qjsmanagedvalue-tonumber-const">double QJSManagedValue:: toNumber () const</a></li>
+<li><a href="#qjsprimitivevalue-qjsprimitivevalue-html-qjsmanagedvalue-toprimitive-const">QJSPrimitiveValue </a></li>
+<li><a href="#const-qmetaobject-qmetaobject-html-qjsmanagedvalue-toqmetaobject-const">const </a><a href="qmetaobject.html">QMetaObject </a>*QJSManagedValue:: toQMetaObject () const</li>
+<li><a href="#qobject-qobject-html-qjsmanagedvalue-toqobject-const">QObject </a></li>
+<li><a href="#qregularexpression-qregularexpression-html-qjsmanagedvalue-toregularexpression-const">QRegularExpression </a></li>
+<li><a href="#qstring-qstring-html-qjsmanagedvalue-tostring-const">QString </a></li>
+<li><a href="#qurl-qurl-html-qjsmanagedvalue-tourl-const">QUrl </a></li>
+<li><a href="#qvariant-qvariant-html-qjsmanagedvalue-tovariant-const">QVariant </a></li>
+<li><a href="#qjsmanagedvalue-type-type-enum-qjsmanagedvalue-type-const">QJSManagedValue::Type </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QJSManagedValue Class
+
+<p>QJSManagedValue表示JavaScript堆上属于<a href>QJSEngine</a>的一个值。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qjsmanagedvalue></qjsmanagedvalue></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Qml REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Qml)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += qml</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 6.1</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qjsmanagedvalue-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#Type-enum">类型 </a></strong>{ Undefined, Boolean, Number, String, Object, …, Function }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QJSManagedValue-6">QJSManagedValue </a></strong>(QJSManagedValue &amp;&amp; <em>other</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QJSManagedValue-5">QJSManagedValue </a></strong>(const QString &amp; <em>string</em> , QJSEngine * <em>engine</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSManagedValue-4">QJSManagedValue </a></strong>(const QVariant &amp; <em>variant</em> , QJSEngine * <em>engine</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSManagedValue-3">QJSManagedValue </a></strong>(const QJSPrimitiveValue &amp; <em>value</em> , QJSEngine * <em>engine</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSManagedValue-2">QJSManagedValue </a></strong>(QJSValue <em>value</em> , QJSEngine * <em>engine</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QJSManagedValue-1">QJSManagedValue </a></strong>()</td>
+</tr>
+<tr>
+<td>QJSManagedValue &amp;</td>
+<td><strong><a href="#operator-eq-1">operator= </a></strong>(QJSManagedValue &amp;&amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QJSManagedValue">~QJSManagedValue </a></strong>()</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#call">call </a></strong>(const QJSValueList &amp; <em>arguments</em> = {}) const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#callAsConstructor">callAsConstructor </a></strong>(const QJSValueList &amp; <em>arguments</em> = {}) const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#callWithInstance">callWithInstance </a></strong>(const QJSValue &amp; <em>instance</em> , const QJSValueList &amp; <em>arguments</em> = {}) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#deleteProperty">deleteProperty </a></strong>(const QString &amp; <em>name</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#deleteProperty-1">deleteProperty </a></strong>(quint32 <em>arrayIndex</em> )</td>
+</tr>
+<tr>
+<td>QJSEngine *</td>
+<td><strong><a href="#engine">engine </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#equals">等于 </a></strong>(const QJSManagedValue &amp; <em>other</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasOwnProperty">hasOwnProperty </a></strong>(const QString &amp; <em>name</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasOwnProperty-1">hasOwnProperty </a></strong>(quint32 <em>arrayIndex</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasProperty">hasProperty </a></strong>(const QString &amp; <em>name</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasProperty-1">hasProperty </a></strong>(quint32 <em>arrayIndex</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isArray">isArray </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isBoolean">isBoolean </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isDate">isDate </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isError">isError </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isFunction">isFunction </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isInteger">isInteger </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNull">isNull </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNumber">isNumber </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isObject">isObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isQMetaObject">isQMetaObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isQObject">isQObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isRegularExpression">isRegularExpression </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isString">isString </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isSymbol">isSymbol </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isUndefined">isUndefined </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isUrl">isUrl </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isVariant">isVariant </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#property">property </a></strong>(const QString &amp; <em>name</em> ) const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#property-1">property </a></strong>(quint32 <em>arrayIndex</em> ) const</td>
+</tr>
+<tr>
+<td>QJSManagedValue</td>
+<td><strong><a href="#prototype">prototype </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setProperty">setProperty </a></strong>(const QString &amp; <em>name</em> , const QJSValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setProperty-1">setProperty </a></strong>(quint32 <em>arrayIndex</em> , const QJSValue &amp; <em>value</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setPrototype">setPrototype </a></strong>(const QJSManagedValue &amp; <em>prototype</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#strictlyEquals">strictlyEquals </a></strong>(const QJSManagedValue &amp; <em>other</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#toBoolean">toBoolean </a></strong>() const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="#toDateTime">toDateTime </a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#toInteger">toInteger </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJSValue</td>
+<td><strong><a href="#toJSValue">toJSValue </a></strong>() const</td>
+</tr>
+<tr>
+<td>double</td>
+<td><strong><a href="#toNumber">toNumber </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJSPrimitiveValue</td>
+<td><strong><a href="#toPrimitive">toPrimitive </a></strong>() const</td>
+</tr>
+<tr>
+<td>const QMetaObject *</td>
+<td><strong><a href="#toQMetaObject">toQMetaObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>QObject *</td>
+<td><strong><a href="#toQObject">toQObject </a></strong>() const</td>
+</tr>
+<tr>
+<td>QRegularExpression</td>
+<td><strong><a href="#toRegularExpression">toRegularExpression </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#toString">toString </a></strong>() const</td>
+</tr>
+<tr>
+<td>QUrl</td>
+<td><strong><a href="#toUrl">toUrl </a></strong>() const</td>
+</tr>
+<tr>
+<td>QVariant</td>
+<td><strong><a href="#toVariant">toVariant </a></strong>() const</td>
+</tr>
+<tr>
+<td>QJSManagedValue::Type</td>
+<td><strong><a href="#type">type </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QJSManagedValue类允许与JavaScript值进行交互，其交互方式大多是你可以从JavaScript本身与它们进行交互。你可以获取和设置属性和原型，也可以访问数组。此外，你可以将值转换为JavaScript对象的Qt对应物。例如，一个Url对象可以转化为一个<a href="qurl.html">QUrl</a>。</p>
+<p>一个QJSManagedValue总是被绑定到一个特定的<a href>QJSEngine</a>。你不能单独使用它。这意味着你不能让一个引擎的QJSManagedValue成为另一个引擎的QJSManagedValue的属性或proptotype。</p>
+<p>与<a href="qjsvalue.html">QJSValue</a>相比，几乎所有由QJSManagedValue持有的值都存在于JavaScript堆中。没有内联或非托管存储。因此，你可以得到一个原始值的原型，你也可以得到一个字符串的<code>length</code>property。</p>
+<p>只有默认构建的或从QJSManagedValues中移出的QJSManagedValues在JavaScript堆中不持有一个值。它们代表着<code>undefined</code>，它没有任何属性或原型。</p>
+<p>与<a href="qjsvalue.html">QJSValue</a>相比，QJSManagedValue也不捕捉任何JavaScript异常。如果对QJSManagedValue的操作导致了一个错误，它通常会返回一个<code>未定义的</code>值和<a href="#hasError">QJSEngine::hasError </a>() 会返回<code>true </code>after。然后你可以使用<a href="#catchError">QJSEngine::catchError </a>()来捕获异常，或者把它传到堆栈，由你自己决定。</p>
+<p><strong>注意：</strong>由于JavaScript堆上的值的引用必须在销毁时被释放，你不能将QJSManagedValue移动到不同的线程。销毁将在新的线程中进行，这将与原线程的垃圾收集器产生一个竞赛条件。这也意味着你不能持有一个QJSManagedValue超过其引擎的寿命。</p>
+<p>处理QJSManagedValue的推荐方法是在堆栈中创建它，可能是通过移动一个<a href="qjsvalue.html">QJSValue</a>并添加一个引擎，然后对它执行必要的操作，最后将它移回<a href="qjsvalue.html">QJSValue</a>进行存储。在QJSManagedValue和<a href="qjsvalue.html">QJSValue</a>之间移动是很快的。</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="enum-qjsmanagedvalue-lei-xing">enum QJSManagedValue:: 类型</span><a href="#enum-qjsmanagedvalue-lei-xing" class="header-anchor">#</a></h3><p>这个枚举代表了JavaScript的本地类型，由<a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>规定。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QJSManagedValue::Undefined</code></td>
+<td align="left"><code>0</code></td>
+<td align="left"><code>undefined </code>type</td>
+</tr>
+<tr>
+<td align="left"><code>QJSManagedValue::Boolean</code></td>
+<td align="left"><code>1</code></td>
+<td align="left"><code>boolean </code>type</td>
+</tr>
+<tr>
+<td align="left"><code>QJSManagedValue::Number</code></td>
+<td align="left"><code>2</code></td>
+<td align="left"><code>number </code>type</td>
+</tr>
+<tr>
+<td align="left"><code>QJSManagedValue::String</code></td>
+<td align="left"><code>3</code></td>
+<td align="left"><code>string </code>type</td>
+</tr>
+<tr>
+<td align="left"><code>QJSManagedValue::Object</code></td>
+<td align="left"><code>4</code></td>
+<td align="left"><code>object </code>type</td>
+</tr>
+<tr>
+<td align="left"><code>QJSManagedValue::Symbol</code></td>
+<td align="left"><code>5</code></td>
+<td align="left"><code>symbol </code>type</td>
+</tr>
+<tr>
+<td align="left"><code>QJSManagedValue::Function</code></td>
+<td align="left"><code>6</code></td>
+<td align="left"><code>function </code>type</td>
+</tr>
+</tbody></table>
+<p>注意， <code>null</code>值本身不是一种类型，而是一种特殊的对象。你可以使用<a href="#isNull">isNull</a>()方法查询一个<a href>QJSManagedValue</a>的这个条件。此外，JavaScript没有整数类型，但它知道对数字的特殊处理，为只进行整数操作做准备。你可以使用<a href="#isInteger">isInteger</a>()方法来查询<a href>QJSManagedValue</a>，以了解它是否持有这种处理的结果。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qjsmanagedvalue-qjsmanagedvalue-qjsmanagedvalue-amp-amp-other">QJSManagedValue:: QJSManagedValue ( QJSManagedValue &amp;&amp; <em>other</em> )</span><a href="#qjsmanagedvalue-qjsmanagedvalue-qjsmanagedvalue-amp-amp-other" class="header-anchor">#</a></h3><p>移动–从<em>other</em>构造一个QJSManagedValue。这使得<em>other</em>处于默认构建的状态，它代表未定义的，不属于任何引擎。</p>
+<h3><span id="qjsmanagedvalue-qjsmanagedvalue-const-qstring-amp-string-qjsengine-engine">QJSManagedValue:: QJSManagedValue (const &amp; <em>string</em> , * <em>engine</em> )</span><a href="#qjsmanagedvalue-qjsmanagedvalue-const-qstring-amp-string-qjsengine-engine" class="header-anchor">#</a></h3><p>使用<em>engine</em>的堆，从<em>string</em>创建一个QJSManagedValue。</p>
+<h3><span id="qjsmanagedvalue-qjsmanagedvalue-const-qvariant-amp-variant-qjsengine-engine">QJSManagedValue:: QJSManagedValue (const &amp; <em>variant</em> , * <em>engine</em> )</span><a href="#qjsmanagedvalue-qjsmanagedvalue-const-qvariant-amp-variant-qjsengine-engine" class="header-anchor">#</a></h3><p>使用<em>engine</em>的堆，从<em>variant</em>创建一个QJSManagedValue。</p>
+<h3><span id="qjsmanagedvalue-qjsmanagedvalue-const-qjsprimitivevalue-amp-value-qjsengine-engine">QJSManagedValue:: QJSManagedValue (const &amp; <em>value</em> , * <em>engine</em> )</span><a href="#qjsmanagedvalue-qjsmanagedvalue-const-qjsprimitivevalue-amp-value-qjsengine-engine" class="header-anchor">#</a></h3><p>使用<em>engine</em>的堆从<em>value</em>创建一个QJSManagedValue。</p>
+<h3><span id="qjsmanagedvalue-qjsmanagedvalue-qjsvalue-value-qjsengine-engine">QJSManagedValue:: QJSManagedValue ( <em>value</em> , * <em>engine</em> )</span><a href="#qjsmanagedvalue-qjsmanagedvalue-qjsvalue-value-qjsengine-engine" class="header-anchor">#</a></h3><p>从<em>value</em>创建一个QJSManagedValue，使用<em>engine</em>的堆。如果<em>value</em>本身是被管理的，而它所属的引擎不是<em>engine</em>，结果是一个<code>undefined</code>value，并产生一个警告。</p>
+<h3><span id="qjsmanagedvalue-qjsmanagedvalue">QJSManagedValue:: QJSManagedValue ()</span><a href="#qjsmanagedvalue-qjsmanagedvalue" class="header-anchor">#</a></h3><p>创建一个QJSManagedValue，代表JavaScript的<code>undefined</code>value。这是唯一没有存储在JavaScript堆中的值。在一个默认构建的QJSManagedValue上调用<a href="#engine">engine</a>()将返回nullptr。</p>
+<h3><span id="qjsmanagedvalue-amp-qjsmanagedvalue-operator-qjsmanagedvalue-amp-amp-other">QJSManagedValue &amp;QJSManagedValue:: operator= ( QJSManagedValue &amp;&amp; <em>other</em> )</span><a href="#qjsmanagedvalue-amp-qjsmanagedvalue-operator-qjsmanagedvalue-amp-amp-other" class="header-anchor">#</a></h3><p>移动–从<em>other</em>分配一个<a href>QJSManagedValue</a>。这使得<em>other</em>处于默认构造的状态，它代表未定义的，不属于任何引擎。</p>
+<p><strong>注意：</strong>这释放了这个<a href>QJSManagedValue</a>在JavaScript堆中持有的内存槽。你不能把<a href>QJSManagedValue</a>移动到与它所属的<a href>QJSEngine</a>不同的线程中。</p>
+<h3><span id="qjsmanagedvalue-qjsmanagedvalue">QJSManagedValue:: ~QJSManagedValue ()</span><a href="#qjsmanagedvalue-qjsmanagedvalue" class="header-anchor">#</a></h3><p>销毁 <a href>QJSManagedValue </a>.</p>
+<p><strong>注意：</strong>这将释放它在JavaScript堆上的内存槽。你不能从不同的线程销毁一个<a href>QJSManagedValue</a>，而不是它所属的<a href>QJSEngine</a>。</p>
+<h3><span id="qjsvalue-qjsmanagedvalue-call-const-qjsvaluelist-amp-arguments-const">QJSManagedValue:: call (const &amp; <em>arguments</em> = {}) const</span><a href="#qjsvalue-qjsmanagedvalue-call-const-qjsvaluelist-amp-arguments-const" class="header-anchor">#</a></h3><p>若此 <a href>QJSManagedValue</a>代表一个JavaScript函数对象，用给定的<em>arguments</em> 调用它，并返回结果。否则返回一个JavaScript的 “未定义的 “值。</p>
+<p><em>参数</em>必须是原始值，或者与这个<a href>QJSManagedValue</a>属于同一个[QJSEngine]。否则，调用将不被执行，并返回一个JavaScript<code>undefined</code>值。</p>
+<h3><span id="qjsvalue-qjsmanagedvalue-callasconstructor-const-qjsvaluelist-amp-arguments-const">QJSManagedValue:: callAsConstructor (const &amp; <em>arguments</em> = {}) const</span><a href="#qjsvalue-qjsmanagedvalue-callasconstructor-const-qjsvaluelist-amp-arguments-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若此 <a href>QJSManagedValue </a>has a property <em>name</em> ，否则返回 <code>false </code>. The properties of the prototype chain are not considered.</p>
+<p>若此 <a href>QJSManagedValue</a>表示一个JavaScript FunctionObject，用给定的<em>arguments</em> 调用它作为构造器，并返回结果。否则返回一个JavaScript的 “未定义 “值。</p>
+<p><em>参数</em>必须是原始值，或者与这个<a href>QJSManagedValue</a>属于同一个<a href>QJSEngine</a>。否则，调用不会被执行，并返回一个JavaScript<code>undefined</code>值。</p>
+<h3><span id="qjsvalue-qjsmanagedvalue-callwithinstance-const-qjsvalue-amp-instance-const-qjsvaluelist-amp-arguments-const">QJSManagedValue:: callWithInstance (const &amp; <em>instance</em> , const &amp; <em>arguments</em> = {}) const</span><a href="#qjsvalue-qjsmanagedvalue-callwithinstance-const-qjsvalue-amp-instance-const-qjsvaluelist-amp-arguments-const" class="header-anchor">#</a></h3><p>若此 <a href>QJSManagedValue </a>代表一个JavaScript FunctionObject，在<em>instance</em>上采用给定<em>参数</em>进行调用，并返回结果。否则会返回一个JavaScript的 “未定义的 “值。</p>
+<p><em>参数</em>和<em>instance</em>必须是原始值，或者与这个<a href>QJSManagedValue</a>属于同一个[QJSEngine]。否则，该调用不会被执行，并返回一个JavaScript的 “未定义 “值。</p>
+<h3><span id="bool-qjsmanagedvalue-deleteproperty-const-qstring-amp-name">bool QJSManagedValue:: deleteProperty (const &amp; <em>name</em> )</span><a href="#bool-qjsmanagedvalue-deleteproperty-const-qstring-amp-name" class="header-anchor">#</a></h3><p>删除属性<em>name</em> 从此<a href>QJSManagedValue</a>。返回 <code>true </code>如果删除成功，或者 <code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-deleteproperty-quint32-arrayindex">bool QJSManagedValue:: deleteProperty ( <em>arrayIndex</em> )</span><a href="#bool-qjsmanagedvalue-deleteproperty-quint32-arrayindex" class="header-anchor">#</a></h3><p>删除存储在<em>arrayIndex</em>的值 从此<a href>QJSManagedValue</a>。返回 <code>true </code>如果删除成功，或<code>false </code>否则。</p>
+<h3><span id="qjsengine-qjsmanagedvalue-engine-const">*QJSManagedValue:: engine () const</span><a href="#qjsengine-qjsmanagedvalue-engine-const" class="header-anchor">#</a></h3><p>返回 <a href>QJSEngine</a>这个 <a href>QJSManagedValue</a>所属的引擎。请注意，引擎总是有效的，除非<a href>QJSManagedValue</a>是默认构建的，或者是从中移动的。在后一种情况下，会返回一个空值。</p>
+<h3><span id="bool-qjsmanagedvalue-deng-yu-const-qjsmanagedvalue-amp-other-const">bool QJSManagedValue:: 等于 (const QJSManagedValue &amp; <em>other</em> ) const</span><a href="#bool-qjsmanagedvalue-deng-yu-const-qjsmanagedvalue-amp-other-const" class="header-anchor">#</a></h3><p>对这个<a href>QJSManagedValue</a>和<em>其他</em>调用JavaScript的’==’运算符，并返回结果。</p>
+<p><strong>另请参阅</strong> <a href="#strictlyEquals">strictlyEquals </a>.</p>
+<h3><span id="bool-qjsmanagedvalue-hasownproperty-const-qstring-amp-name-const">bool QJSManagedValue:: hasOwnProperty (const &amp; <em>name</em> ) const</span><a href="#bool-qjsmanagedvalue-hasownproperty-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若此 <a href>QJSManagedValue </a>有一个属性 <em>name</em> ，否则返回 <code>false </code>。原型链的属性不被考虑。</p>
+<h3><span id="bool-qjsmanagedvalue-hasownproperty-quint32-arrayindex-const">bool QJSManagedValue:: hasOwnProperty ( <em>arrayIndex</em> ) const</span><a href="#bool-qjsmanagedvalue-hasownproperty-quint32-arrayindex-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若此 <a href>QJSManagedValue</a>有一个数组索引 <em>arrayIndex</em> ，否则返回 <code>false </code>。原型链的属性不被考虑。</p>
+<h3><span id="bool-qjsmanagedvalue-hasproperty-const-qstring-amp-name-const">bool QJSManagedValue:: hasProperty (const &amp; <em>name</em> ) const</span><a href="#bool-qjsmanagedvalue-hasproperty-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若此 <a href>QJSManagedValue</a>有一个属性 <em>name</em> ，否则返回 <code>false </code>。原型链的属性被考虑。</p>
+<h3><span id="bool-qjsmanagedvalue-hasproperty-quint32-arrayindex-const">bool QJSManagedValue:: hasProperty ( <em>arrayIndex</em> ) const</span><a href="#bool-qjsmanagedvalue-hasproperty-quint32-arrayindex-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若此 <a href>QJSManagedValue</a>有一个数组索引 <em>arrayIndex</em> ，否则返回 <code>false </code>。原型链的属性被考虑。</p>
+<h3><span id="bool-qjsmanagedvalue-isarray-const">bool QJSManagedValue:: isArray () const</span><a href="#bool-qjsmanagedvalue-isarray-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个值代表一个JavaScript数组对象，或者<code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-isboolean-const">bool QJSManagedValue:: isBoolean () const</span><a href="#bool-qjsmanagedvalue-isboolean-const" class="header-anchor">#</a></h3><p>如果这个<a href>QJSManagedValue</a>的类型是 “boolean”，则为 “true “或 “false”，否则。</p>
+<h3><span id="bool-qjsmanagedvalue-isdate-const">bool QJSManagedValue:: isDate () const</span><a href="#bool-qjsmanagedvalue-isdate-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个值代表一个JavaScript Date对象，或者<code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-iserror-const">bool QJSManagedValue:: isError () const</span><a href="#bool-qjsmanagedvalue-iserror-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个值代表一个JavaScript错误对象，或者<code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-isfunction-const">bool QJSManagedValue:: isFunction () const</span><a href="#bool-qjsmanagedvalue-isfunction-const" class="header-anchor">#</a></h3><p>如果这个<a href>QJSManagedValue</a>的类型是 “函数”，则为 “true”，否则为 “false”。</p>
+<h3><span id="bool-qjsmanagedvalue-isinteger-const">bool QJSManagedValue:: isInteger () const</span><a href="#bool-qjsmanagedvalue-isinteger-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若此 <a href>QJSManagedValue</a>持有一个整数值，或<code>false </code>否则。一个数字的存储格式并不影响对其进行的任何操作的结果，但是如果存储的是一个整数，许多操作会更快。</p>
+<h3><span id="bool-qjsmanagedvalue-isnull-const">bool QJSManagedValue:: isNull () const</span><a href="#bool-qjsmanagedvalue-isnull-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若此 <a href>QJSManagedValue</a>持有JavaScript <code>null </code>值，或者 <code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-isnumber-const">bool QJSManagedValue:: isNumber () const</span><a href="#bool-qjsmanagedvalue-isnumber-const" class="header-anchor">#</a></h3><p>如果这个<a href>QJSManagedValue</a>的类型是 “number”，则为 “ture”，或 “false”。</p>
+<h3><span id="bool-qjsmanagedvalue-isobject-const">bool QJSManagedValue:: isObject () const</span><a href="#bool-qjsmanagedvalue-isobject-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个<a href>QJSManagedValue</a>的类型是<code>object </code>，或者 <code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-isqmetaobject-const">bool QJSManagedValue:: isQMetaObject () const</span><a href="#bool-qjsmanagedvalue-isqmetaobject-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个值代表一个<a href="qmetaobject.html">QMetaObject</a>在JavaScript堆上管理的指针，或者 <code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-isqobject-const">bool QJSManagedValue:: isQObject () const</span><a href="#bool-qjsmanagedvalue-isqobject-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个值代表一个<a href="qobject.html">QObject</a>在JavaScript堆上管理的指针，或者 <code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-isregularexpression-const">bool QJSManagedValue:: isRegularExpression () const</span><a href="#bool-qjsmanagedvalue-isregularexpression-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个值代表一个JavaScript正则表达式对象，或者 <code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-isstring-const">bool QJSManagedValue:: isString () const</span><a href="#bool-qjsmanagedvalue-isstring-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个<a href>QJSManagedValue</a>的类型是<code>string </code>，或者 <code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-issymbol-const">bool QJSManagedValue:: isSymbol () const</span><a href="#bool-qjsmanagedvalue-issymbol-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个<a href>QJSManagedValue</a>的类型是<code>Symbol </code>，或 <code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-isundefined-const">bool QJSManagedValue:: isUndefined () const</span><a href="#bool-qjsmanagedvalue-isundefined-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个<a href>QJSManagedValue</a>的类型是<code>Undefined  </code>，或 <code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-isurl-const">bool QJSManagedValue:: isUrl () const</span><a href="#bool-qjsmanagedvalue-isurl-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个值代表一个JavaScript Url对象，或者 <code>false </code>否则。</p>
+<h3><span id="bool-qjsmanagedvalue-isvariant-const">bool QJSManagedValue:: isVariant () const</span><a href="#bool-qjsmanagedvalue-isvariant-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这个值代表一个<a href="qvariant.html">QVariant</a>在JavaScript堆上管理，或者 <code>false </code>否则。</p>
+<h3><span id="qjsvalue-qjsmanagedvalue-property-const-qstring-amp-name-const">QJSManagedValue:: property (const &amp; <em>name</em> ) const</span><a href="#qjsvalue-qjsmanagedvalue-property-const-qstring-amp-name-const" class="header-anchor">#</a></h3><p>返回这个<a href>QJSManagedValue</a>的属性<em>name</em>。如果在实际对象上找不到该属性，则会搜索原型链。</p>
+<p><strong>另请参阅</strong> <a href="#setProperty">setProperty </a>().</p>
+<h3><span id="qjsvalue-qjsmanagedvalue-property-quint32-arrayindex-const">QJSManagedValue:: property ( <em>arrayIndex</em> ) const</span><a href="#qjsvalue-qjsmanagedvalue-property-quint32-arrayindex-const" class="header-anchor">#</a></h3><p>返回存储在这个<a href>QJSManagedValue</a>的<em>arrayIndex</em>的属性。如果在实际对象上没有找到该属性，则会搜索原型链。</p>
+<h3><span id="qjsmanagedvalue-qjsmanagedvalue-prototype-const">QJSManagedValue QJSManagedValue:: prototype () const</span><a href="#qjsmanagedvalue-qjsmanagedvalue-prototype-const" class="header-anchor">#</a></h3><p>返回这个<a href>QJSManagedValue</a>的原型。这对任何值都有效。例如，你可以从一个<code>boolean</code>值中检索到JavaScript的<code>boolean</code>原型。</p>
+<p><strong>另请参阅</strong> <a href="#setPrototype">setPrototype </a>().</p>
+<h3><span id="void-qjsmanagedvalue-setproperty-const-qstring-amp-name-const-qjsvalue-amp-value">void QJSManagedValue:: setProperty (const &amp; <em>name</em> , const &amp; <em>value</em> )</span><a href="#void-qjsmanagedvalue-setproperty-const-qstring-amp-name-const-qjsvalue-amp-value" class="header-anchor">#</a></h3><p>设置特性<em>名称</em>到<em>name</em> 在这个<a href>QJSManagedValue</a>。这只能在 “对象 “类型的JavaScript值上进行。此外，<em>value</em>必须是一个基元，或者与这个值属于同一个引擎。</p>
+<p><strong>另请参阅</strong> <a href="#property">property </a>().</p>
+<h3><span id="void-qjsmanagedvalue-setproperty-quint32-arrayindex-const-qjsvalue-amp-value">void QJSManagedValue:: setProperty ( <em>arrayIndex</em> , const &amp; <em>value</em> )</span><a href="#void-qjsmanagedvalue-setproperty-quint32-arrayindex-const-qjsvalue-amp-value" class="header-anchor">#</a></h3><p>在这个<a href>QJSManagedValue</a>中的<em>arrayIndex</em>处存储<em>value</em>。这只能在 “对象 “类型的JavaScript值上进行，如果该值不是一个数组，则不建议这样做。此外，<em>value</em>必须是一个基元，或者与这个值属于同一个引擎。</p>
+<h3><span id="void-qjsmanagedvalue-setprototype-const-qjsmanagedvalue-amp-prototype">void QJSManagedValue:: setPrototype (const QJSManagedValue &amp; <em>prototype</em> )</span><a href="#void-qjsmanagedvalue-setprototype-const-qjsmanagedvalue-amp-prototype" class="header-anchor">#</a></h3><p>将这个<a href>QJSManagedValue</a>的原型设置为<em>prototype</em>。一个前提条件是，<em>prototype</em>与这个<a href>QJSManagedValue</a>属于同一个<a href>QJSEngine</a>，并且是一个对象（包括空）。此外，这个<a href>QJSManagedValue</a>也必须是一个对象（不包括null），而且你不能创建原型循环。</p>
+<p><strong>另请参阅</strong> <a href="#prototype">prototype </a>().</p>
+<h3><span id="bool-qjsmanagedvalue-strictlyequals-const-qjsmanagedvalue-amp-other-const">bool QJSManagedValue:: strictlyEquals (const QJSManagedValue &amp; <em>other</em> ) const</span><a href="#bool-qjsmanagedvalue-strictlyequals-const-qjsmanagedvalue-amp-other-const" class="header-anchor">#</a></h3><p>对这个<a href>QJSManagedValue</a>和<em>其他</em>调用JavaScript的’==’运算符，并返回结果。</p>
+<p><strong>另请参阅</strong> <a href="#equals">等于 </a>.</p>
+<h3><span id="bool-qjsmanagedvalue-toboolean-const">bool QJSManagedValue:: toBoolean () const</span><a href="#bool-qjsmanagedvalue-toboolean-const" class="header-anchor">#</a></h3><p>将被管理的值转换为布尔值。如果被管理的值是一个布尔值，那么这个值将被返回。否则，将按照JavaScript规则进行布尔值强制转换。</p>
+<h3><span id="qdatetime-qjsmanagedvalue-todatetime-const">QJSManagedValue:: toDateTime () const</span><a href="#qdatetime-qjsmanagedvalue-todatetime-const" class="header-anchor">#</a></h3><p>若此<a href>QJSManagedValue</a>持有一个JavaScript日期对象，则返回一个等价的[QDateTime]（qdatetime.html）。否则返回一个无效的。</p>
+<h3><span id="int-qjsmanagedvalue-tointeger-const">int QJSManagedValue:: toInteger () const</span><a href="#int-qjsmanagedvalue-tointeger-const" class="header-anchor">#</a></h3><p>将管理的值转换为一个整数。首先按照<a href="#toNumber">toNumber</a>()的规则将值转换为数字，然后按照给定的规则将JavaScript位移运算符的参数强制转换为32位整数，将其夹在整数范围内。</p>
+<p>在内部，该值可能已经被存储为一个整数，在这种情况下，会采取快速的方法。</p>
+<p><strong>注意：</strong>将一个被管理的值转换为一个数字可能会抛出一个异常。特别是，符号不能被胁迫成数字，或者自定义valueOf()方法可能会抛出。在这种情况下，结果是0，引擎会在转换后携带一个错误。</p>
+<p><strong>注意：</strong>将数字胁迫成32位整数的JavaScript规则是不直观的。</p>
+<h3><span id="qjsvalue-qjsmanagedvalue-tojsvalue-const">QJSManagedValue:: toJSValue () const</span><a href="#qjsvalue-qjsmanagedvalue-tojsvalue-const" class="header-anchor">#</a></h3><p>将这个<a href>QJSManagedValue</a>复制到一个新的[QJSValue]（qjsvalue.html）。这比从一个<a href>QJSManagedValue</a>移动构建一个<a href="qjsvalue.html">QJSValue</a>的效率要低，但可以保留<a href>QJSManagedValue</a>。</p>
+<h3><span id="double-qjsmanagedvalue-tonumber-const">double QJSManagedValue:: toNumber () const</span><a href="#double-qjsmanagedvalue-tonumber-const" class="header-anchor">#</a></h3><p>将被管理的值转换为一个数字。如果被管理的值持有一个数字，那么这个数字将被返回。否则，将按照JavaScript规则进行数字强制处理。</p>
+<p><strong>注意：</strong>将一个被管理的值转换为一个数字会产生一个异常。特别是，符号不能被强制转换成数字，或者一个自定义的valueOf()方法可能会抛出。在这种情况下，结果是0，并且引擎在转换后携带一个错误。</p>
+<h3><span id="qjsprimitivevalue-qjsmanagedvalue-toprimitive-const">QJSManagedValue:: toPrimitive () const</span><a href="#qjsprimitivevalue-qjsmanagedvalue-toprimitive-const" class="header-anchor">#</a></h3><p>将被管理的值转换为一个<a href="qjsprimitivevalue.html">QJSPrimitiveValue</a>。如果被管理的值持有<a href="qjsprimitivevalue.html">QJSPrimitiveValue</a>所支持的类型，该值就被复制。否则，该值将被转换为一个字符串，并且该字符串被存储在<a href="qjsprimitivevalue.html">QJSPrimitiveValue</a>中。</p>
+<p><strong>注意：</strong>将一个被管理的值转换为一个字符串可能会抛出一个异常。特别是，符号不能被胁迫成字符串，或者自定义的<a href="#toString">toString</a>()方法可能会抛出。在这种情况下，结果是未定义的值，引擎在转换后会携带一个错误。</p>
+<h3><span id="const-qmetaobject-qjsmanagedvalue-toqmetaobject-const">const *QJSManagedValue:: toQMetaObject () const</span><a href="#const-qmetaobject-qjsmanagedvalue-toqmetaobject-const" class="header-anchor">#</a></h3><p>若此 <a href>QJSManagedValue</a>持有一个<a href="qmetaobject.html">QMetaObject</a>指针，则返回该指针。否则返回nullptr。</p>
+<h3><span id="qobject-qjsmanagedvalue-toqobject-const">*QJSManagedValue:: toQObject () const</span><a href="#qobject-qjsmanagedvalue-toqobject-const" class="header-anchor">#</a></h3><p>若此 <a href>QJSManagedValue</a>持有一个<a href="qobject.html">QObject</a>指针，则返回该指针。否则返回nullptr。</p>
+<h3><span id="qregularexpression-qjsmanagedvalue-toregularexpression-const">QJSManagedValue:: toRegularExpression () const</span><a href="#qregularexpression-qjsmanagedvalue-toregularexpression-const" class="header-anchor">#</a></h3><p>若此 <a href>QJSManagedValue</a>持有一个JavaScript正则表达式对象，返回一个等价的<a href="qregularexpression.html">QRegularExpression</a>。否则返回一个无效的。</p>
+<h3><span id="qstring-qjsmanagedvalue-tostring-const">QJSManagedValue:: toString () const</span><a href="#qstring-qjsmanagedvalue-tostring-const" class="header-anchor">#</a></h3><p>将被管理的值转换为一个字符串。如果被管理的值是一个字符串，就会返回这个字符串。否则将按照JavaScript规则进行字符串强制处理。</p>
+<p><strong>注意：</strong>将一个被管理的值转换为一个字符串可能会产生一个异常。特别是，符号不能被强制转换成字符串，或者一个自定义的toString()方法可能会抛出。在这种情况下，结果是一个空字符串，引擎会在转换后携带一个错误。</p>
+<h3><span id="qurl-qjsmanagedvalue-tourl-const">QJSManagedValue:: toUrl () const</span><a href="#qurl-qjsmanagedvalue-tourl-const" class="header-anchor">#</a></h3><p>若此 <a href>QJSManagedValue</a>持有一个JavaScript Url对象，返回一个等价的<a href="qurl.html">QUrl</a>。否则返回一个无效的。</p>
+<h3><span id="qvariant-qjsmanagedvalue-tovariant-const">QJSManagedValue:: toVariant () const</span><a href="#qvariant-qjsmanagedvalue-tovariant-const" class="header-anchor">#</a></h3><p>将这个<a href>QJSManagedValue</a>复制到一个新的<a href="qvariant.html">QVariant</a>。如果<a href="#isVariant">QJSManagedValue::isVariant</a>()返回false，这也会创建一个有用的<a href="qvariant.html">QVariant</a>，<a href="qvariant.html">QVariant</a>可以容纳所有<a href>QJSManagedValue</a>支持的类型。</p>
+<h3><span id="qjsmanagedvalue-type-qjsmanagedvalue-type-const">QJSManagedValue:: type () const</span><a href="#qjsmanagedvalue-type-qjsmanagedvalue-type-const" class="header-anchor">#</a></h3><p>返回这个<a href>QJSManagedValue</a>()的JavaScript类型。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/J/">J</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/J/QJSEngine/QJSEngine/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QJSEngine类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/J/QJSPrimitiveUndefined/QJSPrimitiveUndefined/">
+                        <span class="hidden-mobile">QJSPrimitiveUndefined类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

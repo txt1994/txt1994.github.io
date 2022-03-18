@@ -1,0 +1,1682 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QMetaType 类 公共成员类型 公共成员函数 静态公共成员 相关非成员函数 宏定义 详细描述 成员类型文档 enum QMetaType::Type enum QMetaType::TypeFlag flags QMetaType::TypeFlags   成员函数文档 QMetaType::QMetaType(const int typeId &#x3D; QMetaType::Unkno">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QMetaType类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/M/QMetaType/QMetaType/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QMetaType 类 公共成员类型 公共成员函数 静态公共成员 相关非成员函数 宏定义 详细描述 成员类型文档 enum QMetaType::Type enum QMetaType::TypeFlag flags QMetaType::TypeFlags   成员函数文档 QMetaType::QMetaType(const int typeId &#x3D; QMetaType::Unkno">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:47:38.212Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="M">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QMetaType类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QMetaType类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      24k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      199 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QMetaType类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qmetatype-lei">QMetaType 类</a><ul>
+<li><a href="#gong-gong-cheng-yuan-lei-xing">公共成员类型</a></li>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-guan-fei-cheng-yuan-han-shu">相关非成员函数</a></li>
+<li><a href="#hong-ding-yi">宏定义</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qmetatype-type">enum QMetaType::Type</a></li>
+<li><a href="#enum-qmetatype-typeflag">enum QMetaType::TypeFlag</a></li>
+<li><a href="#flags-qmetatype-typeflags">flags QMetaType::TypeFlags</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qmetatype-qmetatype-const-int-typeid-qmetatype-unknowntype">QMetaType::QMetaType(const int <em>typeId</em> = QMetaType::UnknownType)</a></li>
+<li><a href="#qmetatype-qmetatype">QMetaType::~QMetaType()</a></li>
+<li><a href="#static-bool-qmetatype-compare-const-void-lhs-const-void-rhs-int-typeid-int-result"><em>[static]</em> bool QMetaType::compare(const void *<em>lhs</em>, const void *<em>rhs</em>, int <em>typeId</em>, int *<em>result</em>)</a></li>
+<li><a href="#static-void-qmetatype-construct-int-type-void-where-const-void-copy"><em>[static]</em> void *QMetaType::construct(int <em>type</em>, void *<em>where</em>, const void *<em>copy</em>)</a></li>
+<li><a href="#void-qmetatype-construct-void-where-const-void-copy-0-const">void *QMetaType::construct(void *<em>where</em>, const void *<em>copy</em> = 0) const</a></li>
+<li><a href="#static-bool-qmetatype-convert-const-void-from-int-fromtypeid-void-to-int-totypeid"><em>[static]</em> bool QMetaType::convert(const void *<em>from</em>, int <em>fromTypeId</em>, void *<em>to</em>, int <em>toTypeId</em>)</a></li>
+<li><a href="#static-void-qmetatype-create-int-type-const-void-copy-nullptr"><em>[static]</em> void *QMetaType::create(int <em>type</em>, const void *<em>copy</em> = nullptr)</a></li>
+<li><a href="#void-qmetatype-create-const-void-copy-0-const">void *QMetaType::create(const void *<em>copy</em> = 0) const</a></li>
+<li><a href="#static-bool-qmetatype-debugstream-qdebug-d-qdebug-qdebug-md-dbg-const-void-rhs-int-typeid"><em>[static]</em> bool QMetaType::debugStream(</a><a href="../../D/QDebug/QDebug.md">QDebug</a> &amp;<em>dbg</em>, const void *<em>rhs</em>, int <em>typeId</em>)</li>
+<li><a href="#static-void-qmetatype-destroy-int-type-void-data"><em>[static]</em> void QMetaType::destroy(int <em>type</em>, void *<em>data</em>)</a></li>
+<li><a href="#void-qmetatype-destroy-void-data-const">void QMetaType::destroy(void *<em>data</em>) const</a></li>
+<li><a href="#static-void-qmetatype-destruct-int-type-void-where"><em>[static]</em> void QMetaType::destruct(int <em>type</em>, void *<em>where</em>)</a></li>
+<li><a href="#void-qmetatype-destruct-void-data-const">void QMetaType::destruct(void *<em>data</em>) const</a></li>
+<li><a href="#static-bool-qmetatype-equals-const-void-lhs-const-void-rhs-int-typeid-int-result"><em>[static]</em> bool QMetaType::equals(const void *<em>lhs</em>, const void *<em>rhs</em>, int <em>typeId</em>, int *<em>result</em>)</a></li>
+<li><a href="#qmetatype-typeflags-enum-qmetatypetypeflag-qmetatype-flags-const">QMetaType::TypeFlags</a></li>
+<li><a href="#static-template-typename-t-qmetatype-qmetatypeqmetatypeconst-int-typeid-qmetatypeunknowntype-qmetatype-fromtype"><em>[static]</em> template &lt;typename T&gt; </a><a href="#qmetatypeqmetatypeconst-int-typeid--qmetatypeunknowntype">QMetaType</a> QMetaType::fromType()</li>
+<li><a href="#static-template-typename-t-bool-qmetatype-hasregisteredcomparators"><em>[static]</em> template &lt;typename T&gt; bool QMetaType::hasRegisteredComparators()</a></li>
+<li><a href="#static-bool-qmetatype-hasregisteredcomparators-int-typeid"><em>[static]</em> bool QMetaType::hasRegisteredComparators(int <em>typeId</em>)</a></li>
+<li><a href="#static-bool-qmetatype-hasregisteredconverterfunction-int-fromtypeid-int-totypeid"><em>[static]</em> bool QMetaType::hasRegisteredConverterFunction(int <em>fromTypeId</em>, int <em>toTypeId</em>)</a></li>
+<li><a href="#static-template-typename-from-typename-to-bool-qmetatype-hasregisteredconverterfunction"><em>[static]</em> template &lt;typename From, typename To&gt; bool QMetaType::hasRegisteredConverterFunction()</a></li>
+<li><a href="#static-template-typename-t-bool-qmetatype-hasregistereddebugstreamoperator"><em>[static]</em> template &lt;typename T&gt; bool QMetaType::hasRegisteredDebugStreamOperator()</a></li>
+<li><a href="#static-bool-qmetatype-hasregistereddebugstreamoperator-int-typeid"><em>[static]</em> bool QMetaType::hasRegisteredDebugStreamOperator(int <em>typeId</em>)</a></li>
+<li><a href="#int-qmetatype-id-const">int QMetaType::id() const</a></li>
+<li><a href="#static-bool-qmetatype-isregistered-int-type"><em>[static]</em> bool QMetaType::isRegistered(int <em>type</em>)</a></li>
+<li><a href="#bool-qmetatype-isregistered-const">bool QMetaType::isRegistered() const</a></li>
+<li><a href="#bool-qmetatype-isvalid-const">bool QMetaType::isValid() const</a></li>
+<li><a href="#static-bool-qmetatype-load-qdatastream-d-qdatastream-qdatastream-md-stream-int-type-void-data"><em>[static]</em> bool QMetaType::load(</a><a href="../../D/QDataStream/QDataStream.md">QDataStream</a> &amp;<em>stream</em>, int <em>type</em>, void *<em>data</em>)</li>
+<li><a href="#const-qmetaobject-m-qmetaobject-qmetaobject-md-qmetatype-metaobject-const">const </a><a href="../../M/QMetaObject/QMetaObject.md">QMetaObject</a> *QMetaType::metaObject() const</li>
+<li><a href="#static-const-qmetaobject-m-qmetaobject-qmetaobject-md-qmetatype-metaobjectfortype-int-type"><em>[static]</em> const </a><a href="../../M/QMetaObject/QMetaObject.md">QMetaObject</a> *QMetaType::metaObjectForType(int <em>type</em>)</li>
+<li><a href="#qbytearray-qmetatype-name-const">::QByteArray QMetaType::name() const</a></li>
+<li><a href="#static-template-typename-t-bool-qmetatype-registercomparators"><em>[static]</em> template &lt;typename T&gt; bool QMetaType::registerComparators()</a></li>
+<li><a href="#static-template-typename-from-typename-to-bool-qmetatype-registerconverter"><em>[static]</em> template &lt;typename From, typename To&gt; bool QMetaType::registerConverter()</a></li>
+<li><a href="#static-template-typename-memberfunction-int-bool-qmetatype-registerconverter-memberfunction-function"><em>[static]</em> template &lt;typename MemberFunction, int&gt; bool QMetaType::registerConverter(MemberFunction <em>function</em>)</a></li>
+<li><a href="#static-template-typename-memberfunctionok-char-bool-qmetatype-registerconverter-memberfunctionok-function"><em>[static]</em> template &lt;typename MemberFunctionOk, char&gt; bool QMetaType::registerConverter(MemberFunctionOk <em>function</em>)</a></li>
+<li><a href="#static-template-typename-unaryfunction-bool-qmetatype-registerconverter-unaryfunction-function"><em>[static]</em> template &lt;typename UnaryFunction&gt; bool QMetaType::registerConverter(UnaryFunction <em>function</em>)</a></li>
+<li><a href="#static-template-typename-t-bool-qmetatype-registerdebugstreamoperator"><em>[static]</em> template &lt;typename T&gt; bool QMetaType::registerDebugStreamOperator()</a></li>
+<li><a href="#static-template-typename-t-bool-qmetatype-registerequalscomparator"><em>[static]</em> template &lt;typename T&gt; bool QMetaType::registerEqualsComparator()</a></li>
+<li><a href="#static-bool-qmetatype-save-qdatastream-d-qdatastream-qdatastream-md-stream-int-type-const-void-data"><em>[static]</em> bool QMetaType::save(</a><a href="../../D/QDataStream/QDataStream.md">QDataStream</a> &amp;<em>stream</em>, int <em>type</em>, const void *<em>data</em>)</li>
+<li><a href="#static-int-qmetatype-sizeof-int-type"><em>[static]</em> int QMetaType::sizeOf(int <em>type</em>)</a></li>
+<li><a href="#int-qmetatype-sizeof-const">int QMetaType::sizeOf() const</a></li>
+<li><a href="#static-int-qmetatype-type-const-char-typename"><em>[static]</em> int QMetaType::type(const char *<em>typeName</em>)</a></li>
+<li><a href="#static-int-qmetatype-type-const-qbytearray-typename"><em>[static]</em> int QMetaType::type(const ::QByteArray &amp;<em>typeName</em>)</a></li>
+<li><a href="#static-qmetatype-typeflags-enum-qmetatypetypeflag-qmetatype-typeflags-int-type"><em>[static]</em> </a><a href="#enum-qmetatypetypeflag">QMetaType::TypeFlags</a> QMetaType::typeFlags(int <em>type</em>)</li>
+<li><a href="#static-const-char-qmetatype-typename-int-typeid"><em>[static]</em> const char *QMetaType::typeName(int <em>typeId</em>)</a></li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-cheng-yuan-han-shu-1">相关非成员函数</a><ul>
+<li><a href="#template-typename-t-int-qmetatypeid">template &lt;typename T&gt; int qMetaTypeId()</a></li>
+<li><a href="#template-typename-t-int-qregistermetatype-const-char-typename">template &lt;typename T&gt; int qRegisterMetaType(const char *<em>typeName</em>)</a></li>
+<li><a href="#template-typename-t-int-qregistermetatype">template &lt;typename T&gt; int qRegisterMetaType()</a></li>
+<li><a href="#template-typename-t-void-qregistermetatypestreamoperators-const-char-typename">template &lt;typename T&gt; void qRegisterMetaTypeStreamOperators(const char *<em>typeName</em>)</a></li>
+<li><a href="#bool-operator-const-qmetatype-qmetatypeqmetatypeconst-int-typeid-qmetatypeunknowntype-a-const-qmetatype-qmetatypeqmetatypeconst-int-typeid-qmetatypeunknowntype-b">bool operator!=(const </a><a href="#qmetatypeqmetatypeconst-int-typeid--qmetatypeunknowntype">QMetaType</a> &amp;<em>a</em>, const <a href="#qmetatypeqmetatypeconst-int-typeid--qmetatypeunknowntype">QMetaType</a> &amp;<em>b</em>)</li>
+<li><a href="#bool-operator-const-qmetatype-qmetatypeqmetatypeconst-int-typeid-qmetatypeunknowntype-a-const-qmetatype-qmetatypeqmetatypeconst-int-typeid-qmetatypeunknowntype-b">bool operator==(const </a><a href="#qmetatypeqmetatypeconst-int-typeid--qmetatypeunknowntype">QMetaType</a> &amp;<em>a</em>, const <a href="#qmetatypeqmetatypeconst-int-typeid--qmetatypeunknowntype">QMetaType</a> &amp;<em>b</em>)</li>
+</ul>
+</li>
+<li><a href="#hong-ding-yi-wen-dang">宏定义文档</a><ul>
+<li><a href="#q-declare-associative-container-metatype-container">Q_DECLARE_ASSOCIATIVE_CONTAINER_METATYPE(<em>Container</em>)</a></li>
+<li><a href="#q-declare-metatype-type">Q_DECLARE_METATYPE(<em>Type</em>)</a></li>
+<li><a href="#q-declare-opaque-pointer-pointertype">Q_DECLARE_OPAQUE_POINTER(<em>PointerType</em>)</a></li>
+<li><a href="#q-declare-sequential-container-metatype-container">Q_DECLARE_SEQUENTIAL_CONTAINER_METATYPE(<em>Container</em>)</a></li>
+<li><a href="#q-declare-smart-pointer-metatype-smartpointer">Q_DECLARE_SMART_POINTER_METATYPE(<em>SmartPointer</em>)</a></li>
+</ul>
+</li>
+<li><a href="#yi-fei-qi-cheng-yuan">已废弃成员</a><ul>
+<li><a href="#jing-tai-gong-gong-cheng-yuan-1">静态公共成员</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-1">成员函数文档</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QMetaType 类
+
+<p>QMetaType 类管理元对象系统中的注名类型。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多内容…</a>。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件</td>
+<td><code>#include &lt;QMetaType&gt;</code></td>
+</tr>
+<tr>
+<td>qmake</td>
+<td><code>QT += core</code></td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong> 此类中所有函数都是<a href="../../R/Reentrancy_and_Thread-Safety/Reentrancy_and_Thread-Safety.md">线程安全</a>的。</p>
+<h2><span id="gong-gong-cheng-yuan-lei-xing">公共成员类型</span><a href="#gong-gong-cheng-yuan-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a href="#enum-qmetatypetype">Type</a></strong> { Void, Bool, Int, UInt, Double, …, UnknownType }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#enum-qmetatypetypeflag">TypeFlag</a></strong> { NeedsConstruction, NeedsDestruction, MovableType, IsEnumeration, PointerToQObject }</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><strong><a href="#enum-qmetatypetypeflag">TypeFlags</a></strong></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>返回类型</th>
+<th>函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#qmetatypeqmetatypeconst-int-typeid--qmetatypeunknowntype">QMetaType</a></strong>(const int <em>typeId</em> = QMetaType::UnknownType)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qmetatypeqmetatype">~QMetaType</a></strong>()</td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong><a href="#void-qmetatypeconstructvoid-where-const-void-copy--0-const">construct</a></strong>(void *<em>where</em>, const void *<em>copy</em> = 0) const</td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong><a href="#void-qmetatypecreateconst-void-copy--0-const">create</a></strong>(const void *<em>copy</em> = 0) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#void-qmetatypedestroyvoid-data-const">destroy</a></strong>(void *<em>data</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#void-qmetatypedestructvoid-data-const">destruct</a></strong>(void *<em>data</em>) const</td>
+</tr>
+<tr>
+<td>QMetaType::TypeFlags</td>
+<td><strong><a href="#qmetatypetypeflags-qmetatypeflags-const">flags</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qmetatypeid-const">id</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qmetatypeisregistered-const">isRegistered</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qmetatypeisvalid-const">isValid</a></strong>() const</td>
+</tr>
+<tr>
+<td>const QMetaObject *</td>
+<td><strong><a href="#const-qmetaobject-qmetatypemetaobject-const">metaObject</a></strong>() const</td>
+</tr>
+<tr>
+<td>::QByteArray</td>
+<td><strong><a href="#qbytearray-qmetatypename-const">name</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#int-qmetatypesizeof-const">sizeOf</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>返回类型</th>
+<th>函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bool</td>
+<td><strong><a href="#static-bool-qmetatypecompareconst-void-lhs-const-void-rhs-int-typeid-int-result">compare</a></strong>(const void *<em>lhs</em>, const void *<em>rhs</em>, int <em>typeId</em>, int *<em>result</em>)</td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong><a href="#static-void-qmetatypeconstructint-type-void-where-const-void-copy">construct</a></strong>(int <em>type</em>, void *<em>where</em>, const void *<em>copy</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-bool-qmetatypeconvertconst-void-from-int-fromtypeid-void-to-int-totypeid">convert</a></strong>(const void *<em>from</em>, int <em>fromTypeId</em>, void *<em>to</em>, int <em>toTypeId</em>)</td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong><a href="#static-void-qmetatypecreateint-type-const-void-copy--nullptr">create</a></strong>(int <em>type</em>, const void *<em>copy</em> = nullptr)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-bool-qmetatypedebugstreamqdebug-dbg-const-void-rhs-int-typeid">debugStream</a></strong>(QDebug &amp;<em>dbg</em>, const void *<em>rhs</em>, int <em>typeId</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#static-void-qmetatypedestroyint-type-void-data">destroy</a></strong>(int <em>type</em>, void *<em>data</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#static-void-qmetatypedestructint-type-void-where">destruct</a></strong>(int <em>type</em>, void *<em>where</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-bool-qmetatypeequalsconst-void-lhs-const-void-rhs-int-typeid-int-result">equals</a></strong>(const void *<em>lhs</em>, const void *<em>rhs</em>, int <em>typeId</em>, int *<em>result</em>)</td>
+</tr>
+<tr>
+<td>QMetaType</td>
+<td><strong><a href="#static-template-typename-t-qmetatype-qmetatypefromtype">fromType</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-template-typename-t-bool-qmetatypehasregisteredcomparators">hasRegisteredComparators</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-bool-qmetatypehasregisteredcomparatorsint-typeid">hasRegisteredComparators</a></strong>(int <em>typeId</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-bool-qmetatypehasregisteredconverterfunctionint-fromtypeid-int-totypeid">hasRegisteredConverterFunction</a></strong>(int <em>fromTypeId</em>, int <em>toTypeId</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-template-typename-from-typename-to-bool-qmetatypehasregisteredconverterfunction">hasRegisteredConverterFunction</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-template-typename-t-bool-qmetatypehasregistereddebugstreamoperator">hasRegisteredDebugStreamOperator</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-bool-qmetatypehasregistereddebugstreamoperatorint-typeid">hasRegisteredDebugStreamOperator</a></strong>(int <em>typeId</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-bool-qmetatypeisregisteredint-type">isRegistered</a></strong>(int <em>type</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-bool-qmetatypeloadqdatastream-stream-int-type-void-data">load</a></strong>(QDataStream &amp;<em>stream</em>, int <em>type</em>, void *<em>data</em>)</td>
+</tr>
+<tr>
+<td>const QMetaObject *</td>
+<td><strong><a href="#static-const-qmetaobject-qmetatypemetaobjectfortypeint-type">metaObjectForType</a></strong>(int <em>type</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-template-typename-t-bool-qmetatyperegistercomparators">registerComparators</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-template-typename-from-typename-to-bool-qmetatyperegisterconverter">registerConverter</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-template-typename-memberfunction-int-bool-qmetatyperegisterconvertermemberfunction-function">registerConverter</a></strong>(MemberFunction <em>function</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-template-typename-memberfunctionok-char-bool-qmetatyperegisterconvertermemberfunctionok-function">registerConverter</a></strong>(MemberFunctionOk <em>function</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-template-typename-unaryfunction-bool-qmetatyperegisterconverterunaryfunction-function">registerConverter</a></strong>(UnaryFunction <em>function</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-template-typename-t-bool-qmetatyperegisterdebugstreamoperator">registerDebugStreamOperator</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-template-typename-t-bool-qmetatyperegisterequalscomparator">registerEqualsComparator</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#static-bool-qmetatypesaveqdatastream-stream-int-type-const-void-data">save</a></strong>(QDataStream &amp;<em>stream</em>, int <em>type</em>, const void *<em>data</em>)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#static-int-qmetatypesizeofint-type">sizeOf</a></strong>(int <em>type</em>)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#static-int-qmetatypetypeconst-char-typename">type</a></strong>(const char *<em>typeName</em>)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#static-int-qmetatypetypeconst-qbytearray-typename">type</a></strong>(const ::QByteArray &amp;<em>typeName</em>)</td>
+</tr>
+<tr>
+<td>QMetaType::TypeFlags</td>
+<td><strong><a href="#static-qmetatypetypeflags-qmetatypetypeflagsint-type">typeFlags</a></strong>(int <em>type</em>)</td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong><a href="#static-const-char-qmetatypetypenameint-typeid">typeName</a></strong>(int <em>typeId</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-cheng-yuan-han-shu">相关非成员函数</span><a href="#xiang-guan-fei-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>返回类型</th>
+<th>函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td><strong><a href="#template-typename-t-int-qmetatypeid">qMetaTypeId</a></strong>()</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#template-typename-t-int-qregistermetatypeconst-char-typename">qRegisterMetaType</a></strong>(const char *<em>typeName</em>)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#template-typename-t-int-qregistermetatype">qRegisterMetaType</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#template-typename-t-void-qregistermetatypestreamoperatorsconst-char-typename">qRegisterMetaTypeStreamOperators</a></strong>(const char *<em>typeName</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-operatorconst-qmetatype-a-const-qmetatype-b">operator!=</a></strong>(const QMetaType &amp;<em>a</em>, const QMetaType &amp;<em>b</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-operatorconst-qmetatype-a-const-qmetatype-b">operator==</a></strong>(const QMetaType &amp;<em>a</em>, const QMetaType &amp;<em>b</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="hong-ding-yi">宏定义</span><a href="#hong-ding-yi" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>宏定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><a href="#qdeclareassociativecontainermetatypecontainer">Q_DECLARE_ASSOCIATIVE_CONTAINER_METATYPE</a></strong>(<em>Container</em>)</td>
+</tr>
+<tr>
+<td><strong><a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a></strong>(<em>Type</em>)</td>
+</tr>
+<tr>
+<td><strong><a href="#qdeclareopaquepointerpointertype">Q_DECLARE_OPAQUE_POINTER</a></strong>(<em>PointerType</em>)</td>
+</tr>
+<tr>
+<td><strong><a href="#qdeclaresequentialcontainermetatypecontainer">Q_DECLARE_SEQUENTIAL_CONTAINER_METATYPE</a></strong>(<em>Container</em>)</td>
+</tr>
+<tr>
+<td><strong><a href="#qdeclaresmartpointermetatypesmartpointer">Q_DECLARE_SMART_POINTER_METATYPE</a></strong>(<em>SmartPointer</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>此类是一个辅助类，被用作序列化 <a href="#enum-qmetatypetype">QVariant</a> 以及队列连接信号槽中的类型。它将类型名称关联到对应类型，以支持运行时动态创建和销毁此类型。通过 <a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>() 声明新类型，让它可以被 <a href="#enum-qmetatypetype">QVariant</a> 和其它模板函数（<a href="#template-typename-t-int-qmetatypeid">qMetaTypeId</a>() 等）使用。调用 <a href="#template-typename-t-int-qregistermetatype">qRegisterMetaType</a>() 来让其可以被非模板型函数使用，如信号槽的队列连接。</p>
+<p>任何包含一个公共默认构造函数、一个公共拷贝构造函数、一个默认析构函数的类或结构体都可以被注册为元类型。</p>
+<p>下述代码展示了如何分配和销毁一个 <code>MyClass</code> 的实例：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-type">int</span> id = QMetaType::<span class="hljs-built_in">type</span>(<span class="hljs-string">"MyClass"</span>);
+<span class="hljs-keyword">if</span> (id != QMetaType::UnknownType) {
+    <span class="hljs-type">void</span> *myClassPtr = QMetaType::<span class="hljs-built_in">create</span>(id);
+    ...
+    QMetaType::<span class="hljs-built_in">destroy</span>(id, myClassPtr);
+    myClassPtr = <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>若我们想让流运算符 <code>operator&lt;&lt;()</code> 和 <code>operator&gt;&gt;()</code> 可被用于存储了自定义类型的 <a href="#enum-qmetatypetype">QVariant</a> 对象，则这个自定义类型必须提供 <code>operator&lt;&lt;()</code> 和 <code>operator&gt;&gt;()</code> 运算符重载。</p>
+<p><strong>另请参阅：</strong><a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>()，<a href="../../V/QVariant/QVariant.md#template-typename-t-void-qvariantsetvalueconst-t-value">QVariant::setValue</a>()，<a href="../../V/QVariant/QVariant.md#template-typename-t-t-qvariantvalue-const">QVariant::value</a>() 和 <a href="../../V/QVariant/QVariant.md#static-template-typename-t-qvariant-qvariantfromvalueconst-t-value">QVariant::fromValue</a>().</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qmetatype-type">enum QMetaType::Type</span><a href="#enum-qmetatype-type" class="header-anchor">#</a></h3><p>下表是 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 内置支持的类型：</p>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>数值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QMetaType::Void</code></td>
+<td><code>43</code></td>
+<td><code>void</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::Bool</code></td>
+<td><code>1</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::Int</code></td>
+<td><code>2</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::UInt</code></td>
+<td><code>3</code></td>
+<td><code>unsigned int</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::Double</code></td>
+<td><code>6</code></td>
+<td><code>double</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::QChar</code></td>
+<td><code>7</code></td>
+<td><code>QChar</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::QString</code></td>
+<td><code>10</code></td>
+<td><a href="../../S/QString/QString.md">QString</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QByteArray</code></td>
+<td><code>12</code></td>
+<td><a href="../../B/QByteArray/QByteArray.md">QByteArray</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::Nullptr</code></td>
+<td><code>51</code></td>
+<td><code>std::nullptr_t</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::VoidStar</code></td>
+<td><code>31</code></td>
+<td><code>void *</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::Long</code></td>
+<td><code>32</code></td>
+<td><code>long</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::LongLong</code></td>
+<td><code>4</code></td>
+<td><code>long long</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::Short</code></td>
+<td><code>33</code></td>
+<td><code>short</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::Char</code></td>
+<td><code>34</code></td>
+<td><code>char</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::ULong</code></td>
+<td><code>35</code></td>
+<td><code>unsigned long</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::ULongLong</code></td>
+<td><code>5</code></td>
+<td><code>unsigned long long</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::UShort</code></td>
+<td><code>36</code></td>
+<td><code>unsigned short</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::SChar</code></td>
+<td><code>40</code></td>
+<td><code>signed char</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::UChar</code></td>
+<td><code>37</code></td>
+<td><code>unsigned char</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::Float</code></td>
+<td><code>38</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td><code>QMetaType::QObjectStar</code></td>
+<td><code>39</code></td>
+<td><a href="../../O/QObject/QObject.md">QObject</a> *</td>
+</tr>
+<tr>
+<td><code>QMetaType::QVariant</code></td>
+<td><code>41</code></td>
+<td><a href="../../V/QVariant/QVariant.md">QVariant</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QCursor</code></td>
+<td><code>74</code></td>
+<td><a href="../../C/QCursor/QCursor.md">QCursor</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QDate</code></td>
+<td><code>14</code></td>
+<td><a href="../../D/QDate/QDate.md">QDate</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QSize</code></td>
+<td><code>21</code></td>
+<td><a href="../../S/QSize/QSize.md">QSize</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QTime</code></td>
+<td><code>15</code></td>
+<td><a href="../../T/QTime/QTime.md">QTime</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QVariantList</code></td>
+<td><code>9</code></td>
+<td><a href="../../V/QVariant/QVariant.md#typedef-qvariantlist">QVariantList</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QPolygon</code></td>
+<td><code>71</code></td>
+<td><a href="../../P/QPolygon/QPolygon.md">QPolygon</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QPolygonF</code></td>
+<td><code>86</code></td>
+<td><a href="../../P/QPolygonF/QPolygonF.md">QPolygonF</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QColor</code></td>
+<td><code>67</code></td>
+<td><a href="../../C/QColor/QColor.md">QColor</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QColorSpace</code></td>
+<td><code>87</code></td>
+<td><a href="../../C/QColorSpace/QColorSpace.md">QColorSpace</a>（在 Qt 5.15 中被引入）</td>
+</tr>
+<tr>
+<td><code>QMetaType::QSizeF</code></td>
+<td><code>22</code></td>
+<td><a href="../../S/QSizeF/QSizeF.md">QSizeF</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QRectF</code></td>
+<td><code>20</code></td>
+<td><a href="../../R/QRectF/QRectF.md">QRectF</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QLine</code></td>
+<td><code>23</code></td>
+<td><a href="../../L/QLine/QLine.md">QLine</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QTextLength</code></td>
+<td><code>77</code></td>
+<td><a href="../../T/QTextLength/QTextLength.md">QTextLength</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QStringList</code></td>
+<td><code>11</code></td>
+<td><a href="../../S/QStringList/QStringList.md">QStringList</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QVariantMap</code></td>
+<td><code>8</code></td>
+<td><a href="../../V/QVariant/QVariant.md#typedef-qvariantmap">QVariantMap</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QVariantHash</code></td>
+<td><code>28</code></td>
+<td><a href="../../V/QVariant/QVariant.md#typedef-qvarianthash">QVariantHash</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QIcon</code></td>
+<td><code>69</code></td>
+<td><a href="../../I/QIcon/QIcon.md">QIcon</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QPen</code></td>
+<td><code>76</code></td>
+<td><a href="../../P/QPen/QPen.md">QPen</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QLineF</code></td>
+<td><code>24</code></td>
+<td><a href="../../L/QLineF/QLineF.md">QLineF</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QTextFormat</code></td>
+<td><code>78</code></td>
+<td><a href="../../T/QTextFormat/QTextFormat.md">QTextFormat</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QRect</code></td>
+<td><code>19</code></td>
+<td><a href="../../R/QRect/QRect.md">QRect</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QPoint</code></td>
+<td><code>25</code></td>
+<td><a href="../../P/QPoint/QPoint.md">QPoint</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QUrl</code></td>
+<td><code>17</code></td>
+<td><a href="../../U/QUrl/QUrl.md">QUrl</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QRegExp</code></td>
+<td><code>27</code></td>
+<td><a href="../../R/QRegExp/QRegExp.md">QRegExp</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QRegularExpression</code></td>
+<td><code>44</code></td>
+<td><a href="../../R/QRegularExpression/QRegularExpression.md">QRegularExpression</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QDateTime</code></td>
+<td><code>16</code></td>
+<td><a href="../../D/QDateTime/QDateTime.md">QDateTime</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QPointF</code></td>
+<td><code>26</code></td>
+<td><a href="../../P/QPointF/QPointF.md">QPointF</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QPalette</code></td>
+<td><code>68</code></td>
+<td><a href="../../P/QPalette/QPalette.md">QPalette</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QFont</code></td>
+<td><code>64</code></td>
+<td><a href="../../F/QFont/QFont.md">QFont</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QBrush</code></td>
+<td><code>66</code></td>
+<td><a href="../../B/QBrush/QBrush.md">QBrush</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QRegion</code></td>
+<td><code>72</code></td>
+<td><a href="../../R/QRegion/QRegion.md">QRegion</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QBitArray</code></td>
+<td><code>13</code></td>
+<td><a href="../../B/QBitArray/QBitArray.md">QBitArray</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QImage</code></td>
+<td><code>70</code></td>
+<td><a href="../../I/QImage/QImage.md">QImage</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QKeySequence</code></td>
+<td><code>75</code></td>
+<td><a href="../../K/QKeySequence/QKeySequence.md">QKeySequence</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QSizePolicy</code></td>
+<td><code>121</code></td>
+<td><a href="../../S/QSizePolicy/QSizePolicy.md">QSizePolicy</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QPixmap</code></td>
+<td><code>65</code></td>
+<td><a href="../../P/QPixmap/QPixmap.md">QPixmap</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QLocale</code></td>
+<td><code>18</code></td>
+<td><a href="../../L/QLocale/QLocale.md">QLocale</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QBitmap</code></td>
+<td><code>73</code></td>
+<td><a href="../../B/QBitmap/QBitmap.md">QBitmap</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QMatrix</code></td>
+<td><code>79</code></td>
+<td><a href="../../M/QMatrix/QMatrix.md">QMatrix</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QTransform</code></td>
+<td><code>80</code></td>
+<td><a href="../../T/QTransform/QTransform.md">QTransform</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QMatrix4x4</code></td>
+<td><code>81</code></td>
+<td><a href="../../M/QMatrix4x4/QMatrix4x4.md">QMatrix4x4</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QVector2D</code></td>
+<td><code>82</code></td>
+<td><a href="../../V/QVector2D/QVector2D.md">QVector2D</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QVector3D</code></td>
+<td><code>83</code></td>
+<td><a href="../../V/QVector3D/QVector3D.md">QVector3D</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QVector4D</code></td>
+<td><code>84</code></td>
+<td><a href="../../V/QVector4D/QVector4D.md">QVector4D</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QQuaternion</code></td>
+<td><code>85</code></td>
+<td><a href="../../Q/QQuaternion/QQuaternion.md">QQuaternion</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QEasingCurve</code></td>
+<td><code>29</code></td>
+<td><a href="../../E/QEasingCurve/QEasingCurve.md">QEasingCurve</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QJsonValue</code></td>
+<td><code>45</code></td>
+<td><a href="../../J/QJsonValue/QJsonValue.md">QJsonValue</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QJsonObject</code></td>
+<td><code>46</code></td>
+<td><a href="../../J/QJsonObject/QJsonObject.md">QJsonObject</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QJsonArray</code></td>
+<td><code>47</code></td>
+<td><a href="../../J/QJsonArray/QJsonArray.md">QJsonArray</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QJsonDocument</code></td>
+<td><code>48</code></td>
+<td><a href="../../J/QJsonDocument/QJsonDocument.md">QJsonDocument</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QCborValue</code></td>
+<td><code>53</code></td>
+<td><a href="../../C/QCborValue/QCborValue.md">QCborValue</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QCborArray</code></td>
+<td><code>54</code></td>
+<td><a href="../../C/QCborArray/QCborArray.md">QCborArray</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QCborMap</code></td>
+<td><code>55</code></td>
+<td><a href="../../C/QCborMap/QCborMap.md">QCborMap</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QCborSimpleType</code></td>
+<td><code>52</code></td>
+<td><a href="../../C/QCborCommon/QCborCommon.md#enum-class-qcborsimpletype">QCborSimpleType</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QModelIndex</code></td>
+<td><code>42</code></td>
+<td><a href="../../M/QModelIndex/QModelIndex.md">QModelIndex</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QPersistentModelIndex</code></td>
+<td><code>50</code></td>
+<td><a href="../../P/QPersistentModelIndex/QPersistentModelIndex.md">QPersistentModelIndex</a>（在 Qt 5.5 中被引入）</td>
+</tr>
+<tr>
+<td><code>QMetaType::QUuid</code></td>
+<td><code>30</code></td>
+<td><a href="../../U/QUuid/QUuid.md">QUuid</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::QByteArrayList</code></td>
+<td><code>49</code></td>
+<td><a href="../../B/QByteArrayList/QByteArrayList.md">QByteArrayList</a></td>
+</tr>
+<tr>
+<td><code>QMetaType::User</code></td>
+<td><code>1024</code></td>
+<td>用户类型的基础值（<code>译者注：即起始值</code>）</td>
+</tr>
+<tr>
+<td><code>QMetaType::UnknownType</code></td>
+<td><code>0</code></td>
+<td>这是无效的类型编号，<a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 会在类型未注册时返回此值。</td>
+</tr>
+</tbody></table>
+<p>可以使用 <a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>() 注册额外的类型。</p>
+<p><strong>另请参阅：</strong><a href="#static-int-qmetatypetypeconst-char-typename">type</a>() 和 <a href="#static-const-char-qmetatypetypenameint-typeid">typeName</a>()。</p>
+<hr>
+<h3><span id="enum-qmetatype-typeflag">enum QMetaType::TypeFlag</span><a href="#enum-qmetatype-typeflag" class="header-anchor">#</a></h3><h3><span id="flags-qmetatype-typeflags">flags QMetaType::TypeFlags</span><a href="#flags-qmetatype-typeflags" class="header-anchor">#</a></h3><p>此枚举类型描述了被 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 支持的类型的属性。</p>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>数值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QMetaType::NeedsConstruction</code></td>
+<td><code>0x1</code></td>
+<td>此类型具有<a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/language/default_constructor#Trivial_default_constructor">非平凡的构造函数</a>。若某类型不具备此标志，则可通过 <code>memset</code>() 安全地清零。</td>
+</tr>
+<tr>
+<td><code>QMetaType::NeedsDestruction</code></td>
+<td><code>0x2</code></td>
+<td>此类型<a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/language/destructor#Trivial_destructor">非平凡的析构函数</a>。若某类型不具备此标志，则丢弃对象前不需要调用析构函数（<code>译者注：即可以用 free() 释放对象</code>）</td>
+</tr>
+<tr>
+<td><code>QMetaType::MovableType</code></td>
+<td><code>0x4</code></td>
+<td>具有此标志的类型实例可以通过 <code>memcpy</code>() 安全地移动。</td>
+</tr>
+<tr>
+<td><code>QMetaType::IsEnumeration</code></td>
+<td><code>0x10</code></td>
+<td>此类型是枚举值。</td>
+</tr>
+<tr>
+<td><code>QMetaType::PointerToQObject</code></td>
+<td><code>0x8</code></td>
+<td>此类型是指向继承自 <a href="../../O/QObject/QObject.md">QObject</a> 的类型的指针。</td>
+</tr>
+</tbody></table>
+<p><code>TypeFlags</code> 类型是 <a href="../../F/QFlags/QFlags.md">QFlags</a>&lt;TypeFlag&gt; 的别名，支持通过<strong>或</strong>操作合并不同的 <code>TypeFlag</code> 值。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qmetatype-qmetatype-const-int-typeid-qmetatype-unknowntype">QMetaType::QMetaType(const int <em>typeId</em> = QMetaType::UnknownType)</span><a href="#qmetatype-qmetatype-const-int-typeid-qmetatype-unknowntype" class="header-anchor">#</a></h3><p>构造一个包含 <code>typeId</code> 对应的类型信息的 <code>QMetaType</code> 对象。</p>
+<p><strong>注意：</strong> 默认参数在 Qt 5.15 中被引入。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<hr>
+<h3><span id="qmetatype-qmetatype">QMetaType::~QMetaType()</span><a href="#qmetatype-qmetatype" class="header-anchor">#</a></h3><p>析构此对象。</p>
+<hr>
+<h3><span id="static-bool-qmetatype-compare-const-void-lhs-const-void-rhs-int-typeid-int-result"><em>[static]</em> bool QMetaType::compare(const void *<em>lhs</em>, const void *<em>rhs</em>, int <em>typeId</em>, int *<em>result</em>)</span><a href="#static-bool-qmetatype-compare-const-void-lhs-const-void-rhs-int-typeid-int-result" class="header-anchor">#</a></h3><p>比较 <code>lhs</code> 和 <code>rhs</code> 对象，双方都需要是 <code>typeid</code> 中的类型。<em>result</em> 会被设为小于、等于或大于零，表示 <code>lhs</code> 小于、等于或大于 <code>rhs</code>。若比较成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<hr>
+<h3><span id="static-void-qmetatype-construct-int-type-void-where-const-void-copy"><em>[static]</em> void *QMetaType::construct(int <em>type</em>, void *<em>where</em>, const void *<em>copy</em>)</span><a href="#static-void-qmetatype-construct-int-type-void-where-const-void-copy" class="header-anchor">#</a></h3><p>在给定的内存地址 <code>where</code> 上构造对应 <code>type</code> 类型的对象，该对象是 <code>copy</code> 的副本，并返回 <code>where</code>。若 <code>copy</code> 是空指针，则执行默认构造。</p>
+<p>这是用于显示管理存储 <code>type</code> 类型对象的内存的底层函数。若不需要此类底层控制，则考虑使用 <a href="#static-void-qmetatypecreateint-type-const-void-copy--nullptr">create</a>() 函数（也就是指，使用 <code>new</code> 而非 <code>placement new</code>）。</p>
+<p>您必须确保 <code>where</code> 指向的内存区域大小足够存储 <code>type</code> 对应的数据，并且 <code>where</code> 地址需要对齐，对应类型的大小可通过 <a href="#int-qmetatypesizeof-const">sizeOf</a>() 获取。</p>
+<p>内存对齐的规则是对齐至类型的自然边界，也就是大于等于类型大小的2的n次方值，直至平台有效对齐宽度上限为止。对于特定用途来说，超过 <code>2 * sizeof(void*)</code> 的对齐宽度只是某些特定硬件指令所必需的（例如，x86 平台中对齐后的 SSE 读取和存储）。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#static-void-qmetatypedestructint-type-void-where">destruct</a>() 和 <a href="#int-qmetatypesizeof-const">sizeOf</a>()。</p>
+<hr>
+<h3><span id="void-qmetatype-construct-void-where-const-void-copy-0-const">void *QMetaType::construct(void *<em>where</em>, const void *<em>copy</em> = 0) const</span><a href="#void-qmetatype-construct-void-where-const-void-copy-0-const" class="header-anchor">#</a></h3><p>在给定的内存地址 <code>where</code> 上构造此 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 类型的对象，该对象是 <code>copy</code> 的副本，并返回 <code>where</code>。若 <code>copy</code> 是空指针，则执行默认构造。</p>
+<p>这是用于显示管理存储 <code>type</code> 类型对象的内存的底层函数。若不需要此类底层控制，则考虑使用 <a href="#static-void-qmetatypecreateint-type-const-void-copy--nullptr">create</a>() 函数（也就是指，使用 <code>new</code> 而非 <code>placement new</code>）。</p>
+<p>您必须确保 <code>where</code> 指向的内存区域大小足够存储 <code>type</code> 对应的数据，并且 <code>where</code> 地址需要对齐，对应类型的大小可通过 <a href="#int-qmetatypesizeof-const">sizeOf</a>() 获取。</p>
+<p>内存对齐的规则是对齐至类型的自然边界，也就是大于等于类型大小的2的n次方值，直至平台有效对齐宽度上限为止。对于特定用途来说，超过 <code>2 * sizeof(void*)</code> 的对齐宽度只是某些特定硬件指令所必需的（例如，x86 平台中对齐后的 SSE 读取和存储）。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<hr>
+<h3><span id="static-bool-qmetatype-convert-const-void-from-int-fromtypeid-void-to-int-totypeid"><em>[static]</em> bool QMetaType::convert(const void *<em>from</em>, int <em>fromTypeId</em>, void *<em>to</em>, int <em>toTypeId</em>)</span><a href="#static-bool-qmetatype-convert-const-void-from-int-fromtypeid-void-to-int-totypeid" class="header-anchor">#</a></h3><p>将 <code>from</code> 对象从 <code>fromTypeId</code> 转换至 <code>toTypeId</code> 并存储到预分配空间 <code>to</code> 中。若转换成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<hr>
+<h3><span id="static-void-qmetatype-create-int-type-const-void-copy-nullptr"><em>[static]</em> void *QMetaType::create(int <em>type</em>, const void *<em>copy</em> = nullptr)</span><a href="#static-void-qmetatype-create-int-type-const-void-copy-nullptr" class="header-anchor">#</a></h3><p>假设 <code>copy</code> 的类型是 <code>type</code>，返回它的的拷贝。若 <code>copy</code> 是空指针，则返回默认构造的实例。</p>
+<p><strong>另请参阅：</strong><a href="#static-void-qmetatypedestroyint-type-void-data">destroy</a>()，<a href="#bool-qmetatypeisregistered-const">isRegistered</a>() 和 <a href="#enum-qmetatypetype">Type</a>。</p>
+<hr>
+<h3><span id="void-qmetatype-create-const-void-copy-0-const">void *QMetaType::create(const void *<em>copy</em> = 0) const</span><a href="#void-qmetatype-create-const-void-copy-0-const" class="header-anchor">#</a></h3><p>假设 <code>copy</code> 的类型是此 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> ，返回它的的拷贝。若 <code>copy</code> 是空指针，则返回默认构造的实例。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#static-void-qmetatypedestroyint-type-void-data">QMetaType::destroy</a>()。</p>
+<hr>
+<h3><span id="static-bool-qmetatype-debugstream-qdebug-amp-dbg-const-void-rhs-int-typeid"><em>[static]</em> bool QMetaType::debugStream( &amp;<em>dbg</em>, const void *<em>rhs</em>, int <em>typeId</em>)</span><a href="#static-bool-qmetatype-debugstream-qdebug-amp-dbg-const-void-rhs-int-typeid" class="header-anchor">#</a></h3><p>将 <code>typeId</code> 类型的 <code>rhs</code> 对象输出至调试流 <code>debug</code>，输出成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<hr>
+<h3><span id="static-void-qmetatype-destroy-int-type-void-data"><em>[static]</em> void QMetaType::destroy(int <em>type</em>, void *<em>data</em>)</span><a href="#static-void-qmetatype-destroy-int-type-void-data" class="header-anchor">#</a></h3><p>假设 <code>data</code> 的类型是 <code>type</code>，销毁该对象。</p>
+<p><strong>另请参阅：</strong><a href="#static-void-qmetatypecreateint-type-const-void-copy--nullptr">create</a>()，<a href="#bool-qmetatypeisregistered-const">isRegistered</a>() 和 <a href="#enum-qmetatypetype">Type</a>。</p>
+<hr>
+<h3><span id="void-qmetatype-destroy-void-data-const">void QMetaType::destroy(void *<em>data</em>) const</span><a href="#void-qmetatype-destroy-void-data-const" class="header-anchor">#</a></h3><p>假设 <code>data</code> 的类型是此 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> ，销毁该对象。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#static-void-qmetatypecreateint-type-const-void-copy--nullptr">QMetaType::create</a>()。</p>
+<hr>
+<h3><span id="static-void-qmetatype-destruct-int-type-void-where"><em>[static]</em> void QMetaType::destruct(int <em>type</em>, void *<em>where</em>)</span><a href="#static-void-qmetatype-destruct-int-type-void-where" class="header-anchor">#</a></h3><p>假设 <code>where</code> 地址中存储的对象类型是 <code>type</code>，销毁该对象。</p>
+<p>与 <a href="#static-void-qmetatypedestroyint-type-void-data">destroy</a>() 不同，此函数只会执行该类型的析构函数，但不会执行 <code>delete</code> 运算符（<code>译者注：即不会释放内存，与 placement new 相同机制</code>）。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p><strong>另请参阅：</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qmetatype-obsolete.html#construct">construct</a>()。</p>
+<hr>
+<h3><span id="void-qmetatype-destruct-void-data-const">void QMetaType::destruct(void *<em>data</em>) const</span><a href="#void-qmetatype-destruct-void-data-const" class="header-anchor">#</a></h3><p>假设 <code>data</code> 地址中存储的对象类型是此 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> ，销毁该对象。</p>
+<p>与 <a href="#static-void-qmetatypedestroyint-type-void-data">destroy</a>() 不同，此函数只会执行该类型的析构函数，但不会执行 <code>delete</code> 运算符（<code>译者注：即不会释放内存，与 placement new 相同机制</code>）。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p><strong>另请参阅：</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qmetatype-obsolete.html#construct">QMetaType::construct</a>()。</p>
+<hr>
+<h3><span id="static-bool-qmetatype-equals-const-void-lhs-const-void-rhs-int-typeid-int-result"><em>[static]</em> bool QMetaType::equals(const void *<em>lhs</em>, const void *<em>rhs</em>, int <em>typeId</em>, int *<em>result</em>)</span><a href="#static-bool-qmetatype-equals-const-void-lhs-const-void-rhs-int-typeid-int-result" class="header-anchor">#</a></h3><p>比较 <code>lhs</code> 和 <code>rhs</code> 对象，双方都需要是 <code>typeid</code> 中的类型。若 <code>lhs</code> 等于 <code>rhs</code>，则 <em>result</em> 会被设为零。若比较成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.5 中被引入。</p>
+<hr>
+<h3><span id="qmetatype-typeflags-qmetatype-flags-const"> QMetaType::flags() const</span><a href="#qmetatype-typeflags-qmetatype-flags-const" class="header-anchor">#</a></h3><p>返回此 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 实例的类型标志。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#enum-qmetatypetypeflag">QMetaType::TypeFlags</a> 和 <a href="#static-qmetatypetypeflags-qmetatypetypeflagsint-type">QMetaType::typeFlags</a>()。</p>
+<hr>
+<h3><span id="static-template-lt-typename-t-gt-qmetatype-qmetatype-fromtype"><em>[static]</em> template &lt;typename T&gt;  QMetaType::fromType()</span><a href="#static-template-lt-typename-t-gt-qmetatype-qmetatype-fromtype" class="header-anchor">#</a></h3><p>返回模板类型 <code>T</code> 对应的 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 实例。</p>
+<p>此函数在 Qt 5.15 中被引入。</p>
+<hr>
+<h3><span id="static-template-lt-typename-t-gt-bool-qmetatype-hasregisteredcomparators"><em>[static]</em> template &lt;typename T&gt; bool QMetaType::hasRegisteredComparators()</span><a href="#static-template-lt-typename-t-gt-bool-qmetatype-hasregisteredcomparators" class="header-anchor">#</a></h3><p>若模板类型 <code>T</code> 已被注册至元对象系统则返回 <code>true</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<hr>
+<h3><span id="static-bool-qmetatype-hasregisteredcomparators-int-typeid"><em>[static]</em> bool QMetaType::hasRegisteredComparators(int <em>typeId</em>)</span><a href="#static-bool-qmetatype-hasregisteredcomparators-int-typeid" class="header-anchor">#</a></h3><p>若 <code>typeId</code> 的类型已被注册至元对象系统则返回 <code>true</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<hr>
+<h3><span id="static-bool-qmetatype-hasregisteredconverterfunction-int-fromtypeid-int-totypeid"><em>[static]</em> bool QMetaType::hasRegisteredConverterFunction(int <em>fromTypeId</em>, int <em>toTypeId</em>)</span><a href="#static-bool-qmetatype-hasregisteredconverterfunction-int-fromtypeid-int-totypeid" class="header-anchor">#</a></h3><p>若自 <code>fromTypeId</code> 到 <code>toTypeId</code> 的类型转换已被注册至元对象系统则返回 <code>true</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<hr>
+<h3><span id="static-template-lt-typename-from-typename-to-gt-bool-qmetatype-hasregisteredconverterfunction"><em>[static]</em> template &lt;typename From, typename To&gt; bool QMetaType::hasRegisteredConverterFunction()</span><a href="#static-template-lt-typename-from-typename-to-gt-bool-qmetatype-hasregisteredconverterfunction" class="header-anchor">#</a></h3><p>若自模板类型 <code>From</code> 到 <code>To</code> 的类型转换已被注册至元对象系统则返回 <code>true</code>。</p>
+<p>这是一个重载函数。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<hr>
+<h3><span id="static-template-lt-typename-t-gt-bool-qmetatype-hasregistereddebugstreamoperator"><em>[static]</em> template &lt;typename T&gt; bool QMetaType::hasRegisteredDebugStreamOperator()</span><a href="#static-template-lt-typename-t-gt-bool-qmetatype-hasregistereddebugstreamoperator" class="header-anchor">#</a></h3><p>若自模板类型 <code>T</code> 的 <a href="../../D/QDebug/QDebug.md">QDebug</a> 流运算符已被注册至元对象系统则返回 <code>true</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<hr>
+<h3><span id="static-bool-qmetatype-hasregistereddebugstreamoperator-int-typeid"><em>[static]</em> bool QMetaType::hasRegisteredDebugStreamOperator(int <em>typeId</em>)</span><a href="#static-bool-qmetatype-hasregistereddebugstreamoperator-int-typeid" class="header-anchor">#</a></h3><p>若自 <code>typeId</code> 对应类型的 <a href="../../D/QDebug/QDebug.md">QDebug</a> 流运算符已被注册至元对象系统则返回 <code>true</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<hr>
+<h3><span id="int-qmetatype-id-const">int QMetaType::id() const</span><a href="#int-qmetatype-id-const" class="header-anchor">#</a></h3><p>返回此 QMetatype 实例的类型编号。</p>
+<p>此函数在 Qt 5.13 中被引入。</p>
+<hr>
+<h3><span id="static-bool-qmetatype-isregistered-int-type"><em>[static]</em> bool QMetaType::isRegistered(int <em>type</em>)</span><a href="#static-bool-qmetatype-isregistered-int-type" class="header-anchor">#</a></h3><p>若 <code>typeId</code> 对应已被注册至元对象系统则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p><strong>另请参阅：</strong><a href="#static-int-qmetatypetypeconst-char-typename">type</a>()，<a href="#static-const-char-qmetatypetypenameint-typeid">typeName</a>() 和 <a href="#enum-qmetatypetype">Type</a>。</p>
+<hr>
+<h3><span id="bool-qmetatype-isregistered-const">bool QMetaType::isRegistered() const</span><a href="#bool-qmetatype-isregistered-const" class="header-anchor">#</a></h3><p>若此 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 包含某类型的有效信息则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<hr>
+<h3><span id="bool-qmetatype-isvalid-const">bool QMetaType::isValid() const</span><a href="#bool-qmetatype-isvalid-const" class="header-anchor">#</a></h3><p>若此 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 包含某类型的有效信息则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<hr>
+<h3><span id="static-bool-qmetatype-load-qdatastream-amp-stream-int-type-void-data"><em>[static]</em> bool QMetaType::load( &amp;<em>stream</em>, int <em>type</em>, void *<em>data</em>)</span><a href="#static-bool-qmetatype-load-qdatastream-amp-stream-int-type-void-data" class="header-anchor">#</a></h3><p>从数据流 <code>stream</code> 中读取对应 <code>type</code> 类型的对象至 <code>data</code> 中，若读取成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此类型必须在这之前通过 <a href="#template-typename-t-int-qregistermetatype">qRegisterMetaType</a>() 和 <a href="#template-typename-t-void-qregistermetatypestreamoperatorsconst-char-typename">qRegisterMetaTypeStreamOperators</a>() 完成注册。</p>
+<p>通常来说，您不需要显示调用此函数，而是应使用 <a href="#enum-qmetatypetype">QVariant</a> 的 <code>operator&gt;&gt;()</code>，该运算符依赖 <code>load</code>() 来传递自定义类型。</p>
+<p><strong>另请参阅：</strong><a href="#static-bool-qmetatypesaveqdatastream-stream-int-type-const-void-data">save</a>() 和 <a href="#template-typename-t-void-qregistermetatypestreamoperatorsconst-char-typename">qRegisterMetaTypeStreamOperators</a>()。</p>
+<hr>
+<h3><span id="const-qmetaobject-qmetatype-metaobject-const">const  *QMetaType::metaObject() const</span><a href="#const-qmetaobject-qmetatype-metaobject-const" class="header-anchor">#</a></h3><p>返回此类型对应的 <a href="../../M/QMetaObject/QMetaObject.md">QMetaObject</a>。</p>
+<p>若此类型是 <a href="../../O/QObject/QObject.md">QObject</a> 子类的指针，即 <a href="#qmetatypetypeflags-qmetatypeflags-const">flags</a>() 包含 <a href="#enum-qmetatypetypeflag">QMetaType::PointerToQObject</a>，则此函数会返回对应类型的 <a href="../../M/QMetaObject/QMetaObject.md">QMetaObject</a>。这可被用于结合 <code>QMetaObject::construct</code>（<code>译者注：无此函数，请使用</code> <a href="../../M/QMetaObject/QMetaObject.md#qmetamethod-qmetaobjectconstructorint-index-const">QMetaObject::constructor</a> <code>或</code> <a href="#void-qmetatypeconstructvoid-where-const-void-copy--0-const">QMetaType::construct</a>）来创建此类型的 <a href="../../O/QObject/QObject.md">QObject</a> 实例。</p>
+<p>若此类型是 <a href="../../O/QObject/QObject.md#qgadget">Q_GADGET</a>，即 <a href="#qmetatypetypeflags-qmetatypeflags-const">flags</a>() 包含 <a href="#enum-qmetatypetypeflag">QMetaType::IsGadget</a>（<code>译者注：文档中未给出，但</code> <a href="#enum-qmetatypetypeflag">QMetaType::TypeFlag</a> <code>中的确包含此枚举值</code>），则此函数会返回对应类型的 <a href="../../M/QMetaObject/QMetaObject.md">QMetaObject</a>。这可以被用于获取 <a href="../../M/QMetaMethod/QMetaMethod.md">QMetaMethod</a> 和 <a href="../../M/QMetaProperty/QMetaProperty.md">QMetaProperty</a>，并将其用于此类型的对象指针上（例如通过 QVariant::data 获取指针 <code>译者注：文档中无此函数，但此函数的确存在</code>）。</p>
+<p>若此类型是枚举，即 <a href="#qmetatypetypeflags-qmetatypeflags-const">flags</a>() 包含 <a href="#enum-qmetatypetypeflag">QMetaType::IsEnumeration</a>，且该枚举值是通过 <a href="../../O/QObject/QObject.md#qenum">Q_ENUM</a> 注册的成员枚举类型，则此函数会返回其所属的 <a href="../../O/QObject/QObject.md">QObject</a> 对象的元对象，否则返回 <code>nullptr</code>。</p>
+<p>此函数在 Qt 5.5 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#static-const-qmetaobject-qmetatypemetaobjectfortypeint-type">QMetaType::metaObjectForType</a>() 和 <a href="#qmetatypetypeflags-qmetatypeflags-const">QMetaType::flags</a>()。</p>
+<hr>
+<h3><span id="static-const-qmetaobject-qmetatype-metaobjectfortype-int-type"><em>[static]</em> const  *QMetaType::metaObjectForType(int <em>type</em>)</span><a href="#static-const-qmetaobject-qmetatype-metaobjectfortype-int-type" class="header-anchor">#</a></h3><p>返回 <code>type</code> 类型对应的 <a href="#const-qmetaobject-qmetatypemetaobject-const">QMetaType::metaObject</a>。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#const-qmetaobject-qmetatypemetaobject-const">metaObject</a>()。</p>
+<hr>
+<h3><span id="qbytearray-qmetatype-name-const">::QByteArray QMetaType::name() const</span><a href="#qbytearray-qmetatype-name-const" class="header-anchor">#</a></h3><p>返回此 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 对应的类型名称，若无有效类型则返回空指针。</p>
+<p>此函数在 Qt 5.15 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#static-const-char-qmetatypetypenameint-typeid">typeName</a>()。</p>
+<hr>
+<h3><span id="static-template-lt-typename-t-gt-bool-qmetatype-registercomparators"><em>[static]</em> template &lt;typename T&gt; bool QMetaType::registerComparators()</span><a href="#static-template-lt-typename-t-gt-bool-qmetatype-registercomparators" class="header-anchor">#</a></h3><p>将用户注册类型 <code>T</code> 的比较运算符注册至元对象系统。要求 <code>T</code> 具有 <code>operator==</code> 和 <code>operator&lt;</code> 运算符。若注册成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<hr>
+<h3><span id="static-template-lt-typename-from-typename-to-gt-bool-qmetatype-registerconverter"><em>[static]</em> template &lt;typename From, typename To&gt; bool QMetaType::registerConverter()</span><a href="#static-template-lt-typename-from-typename-to-gt-bool-qmetatype-registerconverter" class="header-anchor">#</a></h3><p>将类型 <code>From</code> 到 <code>To</code> 的可能的隐式转换注册到元对象系统，若注册成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<hr>
+<h3><span id="static-template-lt-typename-memberfunction-int-gt-bool-qmetatype-registerconverter-memberfunction-function"><em>[static]</em> template &lt;typename MemberFunction, int&gt; bool QMetaType::registerConverter(MemberFunction <em>function</em>)</span><a href="#static-template-lt-typename-memberfunction-int-gt-bool-qmetatype-registerconverter-memberfunction-function" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将形如 <code>To From::function() const</code> 的成员方法 <code>function</code> 作为从 <code>From</code> 到 <code>To</code> 的转换函数注册至元对象系统，若注册成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<blockquote>
+<p>译者注：</p>
+<p>第二个模板参数是官方使用 doxygen 生成文档时的变通写法，实际代码中的函数签名是 <code>template&lt;typename From, typename To&gt; static bool registerConverter(To(From::*function)() const)</code>。使用时无需指定 <code>int</code> 模板参数，在函数参数中直接填入用于转换的成员函数指针即可。</p>
+</blockquote>
+<hr>
+<h3><span id="static-template-lt-typename-memberfunctionok-char-gt-bool-qmetatype-registerconverter-memberfunctionok-function"><em>[static]</em> template &lt;typename MemberFunctionOk, char&gt; bool QMetaType::registerConverter(MemberFunctionOk <em>function</em>)</span><a href="#static-template-lt-typename-memberfunctionok-char-gt-bool-qmetatype-registerconverter-memberfunctionok-function" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将形如 <code>To From::function(bool *ok) const</code> 的成员方法 <code>function</code> 作为从 <code>From</code> 到 <code>To</code> 的转换函数注册至元对象系统，若注册成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<blockquote>
+<p>译者注：</p>
+<p>第二个模板参数是官方使用 doxygen 生成文档时的变通写法，实际代码中的函数签名是 <code>template&lt;typename From, typename To&gt; static bool registerConverter(To(From::*function)(bool*) const)</code>。使用时无需指定 <code>char</code> 模板参数，在函数参数中直接填入用于转换的成员函数指针即可。</p>
+</blockquote>
+<hr>
+<h3><span id="static-template-lt-typename-unaryfunction-gt-bool-qmetatype-registerconverter-unaryfunction-function"><em>[static]</em> template &lt;typename UnaryFunction&gt; bool QMetaType::registerConverter(UnaryFunction <em>function</em>)</span><a href="#static-template-lt-typename-unaryfunction-gt-bool-qmetatype-registerconverter-unaryfunction-function" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将把类型 <code>From</code> 转换为类型 <code>To</code> 的一元函数 <code>function</code> 注册至元对象系统，若注册成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.2 中被引入。</p>
+<blockquote>
+<p>译者注：</p>
+<p>原文描述地非常晦涩，实际指的是任何可被 <code>To dst = function(src)</code> 方式调用的函数对象，包括全局函数、类静态函数、仿函数或 lamba 等，比上文另外两个 <code>registerConverter</code> 的约束更为宽松。</p>
+</blockquote>
+<hr>
+<h3><span id="static-template-lt-typename-t-gt-bool-qmetatype-registerdebugstreamoperator"><em>[static]</em> template &lt;typename T&gt; bool QMetaType::registerDebugStreamOperator()</span><a href="#static-template-lt-typename-t-gt-bool-qmetatype-registerdebugstreamoperator" class="header-anchor">#</a></h3><p>将已注册类型 <code>T</code> 的 <a href="../../D/QDebug/QDebug.md">QDebug</a> 流运算符注册至元对象系统，要求类型 <code>T</code> 具备流运算符 <code>operator&lt;&lt;(QDebug dbg, T)</code>。若注册成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<hr>
+<h3><span id="static-template-lt-typename-t-gt-bool-qmetatype-registerequalscomparator"><em>[static]</em> template &lt;typename T&gt; bool QMetaType::registerEqualsComparator()</span><a href="#static-template-lt-typename-t-gt-bool-qmetatype-registerequalscomparator" class="header-anchor">#</a></h3><p>将已注册类型 <code>T</code> 的等号运算符注册至元对象系统，要求类型 <code>T</code> 具备等号运算符 <code>operator==</code>。若注册成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此函数在 Qt 5.5 中被引入。</p>
+<hr>
+<h3><span id="static-bool-qmetatype-save-qdatastream-amp-stream-int-type-const-void-data"><em>[static]</em> bool QMetaType::save( &amp;<em>stream</em>, int <em>type</em>, const void *<em>data</em>)</span><a href="#static-bool-qmetatype-save-qdatastream-amp-stream-int-type-const-void-data" class="header-anchor">#</a></h3><p>从数据流 <code>stream</code> 中读取对应 <code>type</code> 类型的对象至 <code>data</code> 中，若读取成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此类型必须在这之前通过 <a href="#template-typename-t-int-qregistermetatype">qRegisterMetaType</a>() 和 <a href="#template-typename-t-void-qregistermetatypestreamoperatorsconst-char-typename">qRegisterMetaTypeStreamOperators</a>() 完成注册。</p>
+<p>通常来说，您不需要显示调用此函数，而是应使用 <a href="#enum-qmetatypetype">QVariant</a> 的 <code>operator&gt;&gt;()</code>，该运算符依赖 <code>load</code>() 来传递自定义类型。</p>
+<p><strong>另请参阅：</strong><a href="#static-bool-qmetatypesaveqdatastream-stream-int-type-const-void-data">save</a>() 和 <a href="#template-typename-t-void-qregistermetatypestreamoperatorsconst-char-typename">qRegisterMetaTypeStreamOperators</a>()。</p>
+<p>将 <code>type</code> 类型对应的 <code>data</code> 对象输出至数据流 <code>stream</code> 中，若读取成功则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>此类型必须在这之前通过 <a href="#template-typename-t-int-qregistermetatype">qRegisterMetaType</a>() 和 <a href="#template-typename-t-void-qregistermetatypestreamoperatorsconst-char-typename">qRegisterMetaTypeStreamOperators</a>() 完成注册。</p>
+<p>通常来说，您不需要显示调用此函数，而是应使用 <a href="#enum-qmetatypetype">QVariant</a> 的 <code>operator&lt;&lt;()</code>，该运算符依赖 <code>save</code>() 来传递自定义类型。</p>
+<p><strong>另请参阅：</strong><a href="#static-bool-qmetatypeloadqdatastream-stream-int-type-void-data">load</a>() 和 <a href="#template-typename-t-void-qregistermetatypestreamoperatorsconst-char-typename">qRegisterMetaTypeStreamOperators</a>()。</p>
+<hr>
+<h3><span id="static-int-qmetatype-sizeof-int-type"><em>[static]</em> int QMetaType::sizeOf(int <em>type</em>)</span><a href="#static-int-qmetatype-sizeof-int-type" class="header-anchor">#</a></h3><p>返回 <code>type</code> 对应类型的以字节为单位的大小（即 <code>sizeof(T)</code>，其中 <code>T</code> 是 <code>type</code> 对应的实际类型）。</p>
+<p>此函数通常结合 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qmetatype-obsolete.html#construct">construct</a>() 使用，来进行对此类型的更底层的内存管理。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p><strong>另请参阅：</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qmetatype-obsolete.html#construct">construct</a>()。</p>
+<hr>
+<h3><span id="int-qmetatype-sizeof-const">int QMetaType::sizeOf() const</span><a href="#int-qmetatype-sizeof-const" class="header-anchor">#</a></h3><p>返回此类型的以字节为单位的大小（即 <code>sizeof(T)</code>，其中 <code>T</code> 是 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 对应的实际类型）。</p>
+<p>此函数通常结合 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qmetatype-obsolete.html#construct">construct</a>() 使用，来进行对此类型的更底层的内存管理。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p><strong>另请参阅：</strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qmetatype-obsolete.html#construct">QMetaType::construct</a>() 和 <a href="#static-int-qmetatypesizeofint-type">QMetaType::sizeOf</a>()。</p>
+<hr>
+<h3><span id="static-int-qmetatype-type-const-char-typename"><em>[static]</em> int QMetaType::type(const char *<em>typeName</em>)</span><a href="#static-int-qmetatype-type-const-char-typename" class="header-anchor">#</a></h3><p>返回名为 <code>typeName</code> 的类型的元类型编号，若无此元类型则返回 <a href="#enum-qmetatypetype">QMetaType::UnknownType</a>。</p>
+<p><strong>另请参阅：</strong><a href="#bool-qmetatypeisregistered-const">isRegistered</a>()，<a href="#static-const-char-qmetatypetypenameint-typeid">typeName</a>() 和 <a href="#enum-qmetatypetype">Type</a>。</p>
+<hr>
+<h3><span id="static-int-qmetatype-type-const-qbytearray-amp-typename"><em>[static]</em> int QMetaType::type(const ::QByteArray &amp;<em>typeName</em>)</span><a href="#static-int-qmetatype-type-const-qbytearray-amp-typename" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>返回名为 <code>typeName</code> 的类型的元类型编号，若无此元类型则返回 <code>0</code>（<code>译者注：即</code><a href="#enum-qmetatypetype">QMetaType::UnknownType</a>）。</p>
+<p>此函数在 Qt 5.5 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#bool-qmetatypeisregistered-const">isRegistered</a>() 和 <a href="#static-const-char-qmetatypetypenameint-typeid">typeName</a>()。</p>
+<hr>
+<h3><span id="static-qmetatype-typeflags-qmetatype-typeflags-int-type"><em>[static]</em>  QMetaType::typeFlags(int <em>type</em>)</span><a href="#static-qmetatype-typeflags-qmetatype-typeflags-int-type" class="header-anchor">#</a></h3><p>返回 <code>type</code> 类型的类型标志。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#enum-qmetatypetypeflag">QMetaType::TypeFlags</a>。</p>
+<hr>
+<h3><span id="static-const-char-qmetatype-typename-int-typeid"><em>[static]</em> const char *QMetaType::typeName(int <em>typeId</em>)</span><a href="#static-const-char-qmetatype-typename-int-typeid" class="header-anchor">#</a></h3><p>返回 <code>typeId</code> 对应类型的类型名称，若该类型不存在则返回空指针。<strong>返回的指针不可被删除。</strong></p>
+<p><strong>另请参阅：</strong><a href="#static-int-qmetatypetypeconst-char-typename">type</a>()，<a href="#bool-qmetatypeisregistered-const">isRegistered</a>()，<a href="#enum-qmetatypetype">Type</a> 和 <a href="#qbytearray-qmetatypename-const">name</a>()。</p>
+<h2><span id="xiang-guan-fei-cheng-yuan-han-shu">相关非成员函数</span><a href="#xiang-guan-fei-cheng-yuan-han-shu" class="header-anchor">#</a></h2><h3><span id="template-lt-typename-t-gt-int-qmetatypeid">template &lt;typename T&gt; int qMetaTypeId()</span><a href="#template-lt-typename-t-gt-int-qmetatypeid" class="header-anchor">#</a></h3><p>返回类型 <code>T</code> 对应的元类型编号。若该类型未通过 <a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>() 声明，则会引发编译错误。</p>
+<p>典型用法：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-type">int</span> id = <span class="hljs-built_in">qMetaTypeId</span>&lt;QString&gt;();    <span class="hljs-comment">// id 是 QMetaType::QString</span>
+id = <span class="hljs-built_in">qMetaTypeId</span>&lt;MyStruct&gt;();       <span class="hljs-comment">// 若 MyStruct 未被声明，则会产生编译错误</span></code></pre></div>
+
+<p><a href="#static-int-qmetatypetypeconst-char-typename">QMetaType::type</a>() 返回值与 <code>qMetaTypeId()</code> 相同，但会基于类型名称进行运行时检索。<a href="#static-int-qmetatypetypeconst-char-typename">QMetaType::type</a>() 会稍慢一些，但即使类型未注册也能编译成功。</p>
+<p>此函数在 Qt 4.1 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>() 和 <a href="#static-int-qmetatypetypeconst-char-typename">QMetaType::type</a>()。</p>
+<hr>
+<h3><span id="template-lt-typename-t-gt-int-qregistermetatype-const-char-typename">template &lt;typename T&gt; int qRegisterMetaType(const char *<em>typeName</em>)</span><a href="#template-lt-typename-t-gt-int-qregistermetatype-const-char-typename" class="header-anchor">#</a></h3><p>将类型 <code>T</code> 通过类型名称 <code>typeName</code> 注册至元对象系统，并返回 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 使用的类型编号。任何包含一个公共默认构造函数、公共拷贝构造函数、公共析构函数的类或结构体均可被注册。</p>
+<p>此函数要求类型 <code>T</code> 在此函数调用时被完整定义；对于指针类型，同样要求被指向的类型被完整定义（<code>译者注：即不可为前置声明类型</code>）。可以使用 <a href="#qdeclareopaquepointerpointertype">Q_DECLARE_OPAQUE_POINTER</a>() 来注册前置声明类型的指针类型。</p>
+<p>类型被注册后，可以在运行时动态地创建或销毁对象。</p>
+<p>下述为注册 <code>MyClass</code> 类的示例：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-built_in">qRegisterMetaType</span>&lt;MyClass&gt;(<span class="hljs-string">"MyClass"</span>);</code></pre></div>
+
+<p>此函数可被用于注册类型别名，以便于将别名用于 <a href="../../M/QMetaProperty/QMetaProperty.md">QMetaProperty</a> 或<a href="../../Q/Qt_Namespace/Qt_Namespace.md#enum_QtConnectionType">队列连接</a>中。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> QString CustomString;
+<span class="hljs-built_in">qRegisterMetaType</span>&lt;CustomString&gt;(<span class="hljs-string">"CustomString"</span>);</code></pre></div>
+
+<p><strong>警告：</strong>  此函数仅应被用于注册类型别名，其它场合请使用 <a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a> 和 <a href="#template-typename-t-int-qmetatypeid">qMetaTypeId</a>()。</p>
+<p><strong>另请参阅：</strong><a href="#template-typename-t-void-qregistermetatypestreamoperatorsconst-char-typename">qRegisterMetaTypeStreamOperators</a>()，<a href="#bool-qmetatypeisregistered-const">isRegistered</a>() 和 <a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>()。</p>
+<hr>
+<h3><span id="template-lt-typename-t-gt-int-qregistermetatype">template &lt;typename T&gt; int qRegisterMetaType()</span><a href="#template-lt-typename-t-gt-int-qregistermetatype" class="header-anchor">#</a></h3><p>调用此函数来注册类型 <code>T</code>。<code>T</code> 必须被 <a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>() 所声明。返回此类型对应的元类型编号。</p>
+<p>示例：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-type">int</span> id = <span class="hljs-built_in">qRegisterMetaType</span>&lt;MyStruct&gt;();</code></pre></div>
+
+<p>此函数要求类型 <code>T</code> 在此函数调用时被完整定义；对于指针类型，同样要求被指向的类型被完整定义（<code>译者注：即不可为前置声明类型</code>）。可以使用 <a href="#qdeclareopaquepointerpointertype">Q_DECLARE_OPAQUE_POINTER</a>() 来注册前置声明类型的指针类型。</p>
+<p>类型被注册后，可以在运行时动态地创建或销毁对象。</p>
+<p>为了在 <a href="#enum-qmetatypetype">QVariant</a> 中使用类型 <code>T</code>，使用 <a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>() 便已足够。若要在信号槽的队列连接中使用 <code>T</code>，则 <code>qRegisterMetaType&lt;T&gt;()</code> 必须在第一个连接建立前被调用。</p>
+<p>同样地，若要在 <a href="../../O/QObject/QObject.md#qvariant-qobjectpropertyconst-char-name-const">QObject::property</a>() 中使用 <code>T</code>，<code>qRegisterMetaType&lt;T&gt;()</code> 必须在这之前被调用。通常在使用到 <code>T</code> 的类的构造函数中，或在 <code>main()</code> 函数中调用。</p>
+<p>此函数在 Qt 4.2 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>()。</p>
+<hr>
+<h3><span id="template-lt-typename-t-gt-void-qregistermetatypestreamoperators-const-char-typename">template &lt;typename T&gt; void qRegisterMetaTypeStreamOperators(const char *<em>typeName</em>)</span><a href="#template-lt-typename-t-gt-void-qregistermetatypestreamoperators-const-char-typename" class="header-anchor">#</a></h3><p>通过类型名称 <code>typeName</code> 将 <code>T</code> 的流运算符注册至元对象系统。</p>
+<p>在此之后，该类型可通过 <a href="#static-bool-qmetatypeloadqdatastream-stream-int-type-void-data">QMetaType::load</a>() 和 <a href="#static-bool-qmetatypesaveqdatastream-stream-int-type-const-void-data">QMetaType::save</a>() 进行序列化和反序列化。这两个函数在将 <a href="#enum-qmetatypetype">QVariant</a> 传递至数据流时被调用。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-built_in">qRegisterMetaTypeStreamOperators</span>&lt;MyClass&gt;(<span class="hljs-string">"MyClass"</span>);</code></pre></div>
+
+<p>流运算符需要具有下述的函数签名：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">QDataStream &amp;<span class="hljs-keyword">operator</span>&lt;&lt;(QDataStream &amp;out, <span class="hljs-type">const</span> MyClass &amp;myObj);
+QDataStream &amp;<span class="hljs-keyword">operator</span>&gt;&gt;(QDataStream &amp;in, MyClass &amp;myObj);</code></pre></div>
+
+<p><strong>另请参阅：</strong><a href="#template-typename-t-int-qregistermetatype">qRegisterMetaType</a>()，<a href="#bool-qmetatypeisregistered-const">QMetaType::isRegistered</a>() 和 <a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>()。</p>
+<hr>
+<h3><span id="bool-operator-const-qmetatype-amp-a-const-qmetatype-amp-b">bool operator!=(const  &amp;<em>a</em>, const  &amp;<em>b</em>)</span><a href="#bool-operator-const-qmetatype-amp-a-const-qmetatype-amp-b" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>若 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> <em>a</em> 的类型与 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> <em>b</em> 不同则返回 <code>true</code>，否则返回<code>false</code>。</p>
+<p>此函数在 Qt 5.15 中被引入。</p>
+<hr>
+<h3><span id="bool-operator-const-qmetatype-amp-a-const-qmetatype-amp-b">bool operator==(const  &amp;<em>a</em>, const  &amp;<em>b</em>)</span><a href="#bool-operator-const-qmetatype-amp-a-const-qmetatype-amp-b" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>若 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> <em>a</em> 的类型与 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> <em>b</em> 相同则返回 <code>true</code>，否则返回<code>false</code>。</p>
+<p>此函数在 Qt 5.15 中被引入。</p>
+<h2><span id="hong-ding-yi-wen-dang">宏定义文档</span><a href="#hong-ding-yi-wen-dang" class="header-anchor">#</a></h2><h3><span id="q-declare-associative-container-metatype-container">Q_DECLARE_ASSOCIATIVE_CONTAINER_METATYPE(<em>Container</em>)</span><a href="#q-declare-associative-container-metatype-container" class="header-anchor">#</a></h3><p>此宏令容器类型 <code>Container</code> 作为关联型容器被注册至 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a>，即允许将 <code>Container&lt;T, U&gt;</code> 实例存入 <a href="#enum-qmetatypetype">QVariant</a>，前提是 <code>T</code> 和 <code>U</code> 也已经被注册为 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a>。</p>
+<p><strong>注意：</strong> 所有 Qt 的关联型容器已被内置支持，无需使用此宏进行声明。<code>std::map</code> 容器也已被内置支持。</p>
+<p>下述代码展示了 <code>Q_DECLARE_ASSOCIATIVE_CONTAINER_METATYPE</code>() 的典型用法：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unordered_list&gt;</span></span>
+
+<span class="hljs-built_in">Q_DECLARE_ASSOCIATIVE_CONTAINER_METATYPE</span>(std::unordered_map)
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">someFunc</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">bool</span>&gt; container;
+    QVariant var = QVariant::<span class="hljs-built_in">fromValue</span>(container);
+    <span class="hljs-comment">// ...</span>
+}</code></pre></div>
+
+<blockquote>
+<p>译者注：</p>
+<p>用户的自定义类型只需要通过 <code>Q_DECLARE_METATYPE(T)</code> 注册后，即可被已注册的所有容器使用，无需再注册 <code>Q_DECLARE_METATYPE(QMap&lt;QString, T&gt;)</code>。</p>
+</blockquote>
+<hr>
+<h3><span id="q-declare-metatype-type">Q_DECLARE_METATYPE(<em>Type</em>)</span><a href="#q-declare-metatype-type" class="header-anchor">#</a></h3><p>此宏将类型 <code>Type</code> 注册至 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> ，前提是该类型具备一个公共默认构造函数、公共拷贝构造函数和公共析构函数。这是把类型 <code>Type</code> 用于 <a href="#enum-qmetatypetype">QVariant</a> 的前提。</p>
+<p>此宏要求类型 <code>T</code> 在此函数调用时被完整定义；对于指针类型，同样要求被指向的类型被完整定义（<code>译者注：即不可为前置声明类型</code>）。可以使用 <a href="#qdeclareopaquepointerpointertype">Q_DECLARE_OPAQUE_POINTER</a>() 来注册前置声明类型的指针类型。</p>
+<p>理想情况下，此宏应被放置在该类型的声明位置之后。若不可行的话，也可以将其放置在一个私有头文件中，然后在每次在 <a href="#enum-qmetatypetype">QVariant</a> 中使用此类型之前包含该头文件。</p>
+<p><code>Q_DECLARE_METATYPE</code>() 使此类型可被所有基于模板的函数使用，包括 <a href="#enum-qmetatypetype">QVariant</a> 中的模板函数。注意，若想在信号槽的队列连接或 <a href="../../O/QObject/QObject.md">QObject</a> 的属性系统中使用此类型，则还需要调用 <a href="#template-typename-t-int-qregistermetatype">qRegisterMetaType</a>()，因为该类型的名称会在运行时被解析。</p>
+<p>此示例为 <code>Q_DECLARE_METATYPE</code>() 的典型用法：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">MyStruct</span>
+{
+    <span class="hljs-type">int</span> i;
+    ...
+};
+
+<span class="hljs-built_in">Q_DECLARE_METATYPE</span>(MyStruct)</code></pre></div>
+
+<p>若 <code>MyStruct</code> 处于命名空间中，则 <code>Q_DECLARE_METATYPE</code>() 宏必须在命令空间外使用：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">namespace</span> MyNamespace
+{
+    ...
+}
+
+<span class="hljs-built_in">Q_DECLARE_METATYPE</span>(MyNamespace::MyStruct)</code></pre></div>
+
+<p>当 <code>MyStruct</code> 被注册至 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a> 后，便可将其用于 <a href="#enum-qmetatypetype">QVariant</a> 中”</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">MyStruct s;
+QVariant var;
+var.<span class="hljs-built_in">setValue</span>(s); <span class="hljs-comment">// 将 v 拷贝至 QVariant</span>
+
+...
+
+<span class="hljs-comment">// 获取类型值</span>
+MyStruct s2 = var.<span class="hljs-built_in">value</span>&lt;MyStruct&gt;();</code></pre></div>
+
+<p>下述类型已被自动注册，无需使用此宏：</p>
+<ul>
+<li>继承自 <a href="../../O/QObject/QObject.md">QObject</a> 的类型的指针；</li>
+<li><a href="../../L/QList/QList.md">QList</a>&lt;T&gt;，<a href="../../V/QVector/QVector.md">QVector</a>&lt;T&gt;，<a href="../../Q/QQueue/QQueue.md">QQueue</a>&lt;T&gt;，<a href="../../S/QStack/QStack.md">QStack</a>&lt;T&gt;，<a href="../../S/QSet/QSet.md">QSet</a>&lt;T&gt; 或 <a href="../../L/QLinkedList/QLinkedList.md">QLinkedList</a>&lt;T&gt;，前提是 <code>T</code> 被注册为元类型；</li>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qhash.html#qhash">QHash</a>&lt;T1, T2&gt;，<a href="../../M/QMap/QMap.md">QMap</a>&lt;T1, T2&gt; 或 <a href="../../P/QPair/QPair.md">QPair</a>&lt;T1, T2&gt;，前提是 <code>T1</code> 和 <code>T2</code> 都被注册为元类型；</li>
+<li><a href="../../P/QPointer/QPointer.md">QPointer</a>&lt;T&gt;，<a href="../../S/QSharedPointer/QSharedPointer.md">QSharedPointer</a>&lt;T&gt;，<a href="../../W/QWeakPointer/QWeakPointer.md">QWeakPointer</a>&lt;T&gt;，前提是 <code>T</code> 为 <a href="../../O/QObject/QObject.md">QObject</a> 的子类；</li>
+<li>通过 <a href="../../O/QObject/QObject.md#qenum">Q_ENUM</a> 或 <a href="../../O/QObject/QObject.md#qflag">Q_FLAG</a> 注册的枚举类型；</li>
+<li>包含 <a href="../../O/QObject/QObject.md#qgadget">Q_GADGET</a> 宏的类。</li>
+</ul>
+<p><strong>另请参阅：</strong><a href="#template-typename-t-int-qregistermetatype">qRegisterMetaType</a>()。</p>
+<hr>
+<h3><span id="q-declare-opaque-pointer-pointertype">Q_DECLARE_OPAQUE_POINTER(<em>PointerType</em>)</span><a href="#q-declare-opaque-pointer-pointertype" class="header-anchor">#</a></h3><p>此宏使得前置声明类型的指针类型 <code>PointerType</code> 可被 <a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>() 或 <a href="#template-typename-t-int-qregistermetatype">qRegisterMetaType</a>() 注册至 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a>。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p><strong>另请参阅：</strong><a href="#qdeclaremetatypetype">Q_DECLARE_METATYPE</a>() 和 <a href="#template-typename-t-int-qregistermetatype">qRegisterMetaType</a>()。</p>
+<hr>
+<h3><span id="q-declare-sequential-container-metatype-container">Q_DECLARE_SEQUENTIAL_CONTAINER_METATYPE(<em>Container</em>)</span><a href="#q-declare-sequential-container-metatype-container" class="header-anchor">#</a></h3><p>此宏令容器类型 <code>Container</code> 作为顺序容器被注册至 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a>，即允许将 <code>Container&lt;T&gt;</code> 实例存入 <a href="#enum-qmetatypetype">QVariant</a>，前提是 <code>T</code> 已经被注册为 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a>。</p>
+<p><strong>注意：</strong> 所有 Qt 的顺序容器已被内置支持，无需使用此宏进行声明。<code>std::vector</code> 和 <code>std::list</code> 容器已也被内置支持。</p>
+<p>下述代码展示了 <code>Q_DECLARE_SEQUENTIAL_CONTAINER_METATYPE</code>() 的典型用法：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;deque&gt;</span></span>
+
+<span class="hljs-built_in">Q_DECLARE_SEQUENTIAL_CONTAINER_METATYPE</span>(std::deque)
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">someFunc</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::deque&lt;QFile*&gt; container;
+    QVariant var = QVariant::<span class="hljs-built_in">fromValue</span>(container);
+    <span class="hljs-comment">// ...</span>
+}</code></pre></div>
+
+<blockquote>
+<p>译者注：</p>
+<p>用户的自定义类型只需要通过 <code>Q_DECLARE_METATYPE(T)</code> 注册后，即可被已注册的所有容器使用，无需再注册 <code>Q_DECLARE_METATYPE(QVector&lt;T&gt;)</code>。</p>
+</blockquote>
+<hr>
+<h3><span id="q-declare-smart-pointer-metatype-smartpointer">Q_DECLARE_SMART_POINTER_METATYPE(<em>SmartPointer</em>)</span><a href="#q-declare-smart-pointer-metatype-smartpointer" class="header-anchor">#</a></h3><p>此宏令智能指针类型 <code>SmartPointer</code> 作为智能指针被注册至 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a>，即允许将 <code>Container&lt;T&gt;</code> 实例存入 <a href="#enum-qmetatypetype">QVariant</a>，前提是 <code>T</code> 已经被注册为 <a href="../../M/QMetaType/QMetaType.md">QMetaType</a>。</p>
+<p><strong>注意：</strong><a href="../../W/QWeakPointer/QWeakPointer.md">QWeakPointer</a>，<a href="../../S/QSharedPointer/QSharedPointer.md">QSharedPointer</a> 和 <a href="../../P/QPointer/QPointer.md">QPointer</a> 已被内置支持，无需使用此宏进行声明。</p>
+<p>下述代码展示了 <code>Q_DECLARE_SMART_POINTER_METATYPE</code>() 的典型用法：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span>
+
+<span class="hljs-built_in">Q_DECLARE_SMART_POINTER_METATYPE</span>(std::shared_ptr)
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">someFunc</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">auto</span> smart_ptr = std::<span class="hljs-built_in">make_shared</span>&lt;QFile&gt;();
+    QVariant var = QVariant::<span class="hljs-built_in">fromValue</span>(smart_ptr);
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-keyword">if</span> (var.<span class="hljs-built_in">canConvert</span>&lt;QObject*&gt;()) {
+        QObject *sp = var.<span class="hljs-built_in">value</span>&lt;QObject*&gt;();
+        <span class="hljs-built_in">qDebug</span>() &lt;&lt; sp-&gt;<span class="hljs-built_in">metaObject</span>()-&gt;<span class="hljs-built_in">className</span>(); <span class="hljs-comment">// Prints 'QFile'.</span>
+    }
+}</code></pre></div>
+
+<blockquote>
+<p>译者注：</p>
+<p>用户继承自 QObject 的自定义类型可直接被已注册的智能指针使用，无需再注册 <code>Q_DECLARE_METATYPE(QSharedPointer&lt;T&gt;)</code>。</p>
+<p>与容器不同的是，通过 <code>Q_DECLARE_METATYPE(T)</code> 注册的自定义类型无法直接被已注册的智能指针使用，必须单独注册 <code>Q_DECLARE_METATYPE(QSharedPointer&lt;T&gt;)</code>。</p>
+</blockquote>
+<h2><span id="yi-fei-qi-cheng-yuan">已废弃成员</span><a href="#yi-fei-qi-cheng-yuan" class="header-anchor">#</a></h2><p><strong><a href="../QMetaType/QMetaType.md">QMetaType</a> 类的以下成员已被废弃。</strong>它们仅为了保证老代码能够运行而保留，我们强烈反对在新代码中使用。</p>
+<h3><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th>返回类型</th>
+<th>函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>(obsolete) </code>void *</td>
+<td><strong><a href="#static-void-qmetatypeconstructint-type-const-void-copy--nullptr">construct</a></strong>(int <em>type</em>, const void *<em>copy</em> = nullptr)</td>
+</tr>
+</tbody></table>
+<h3><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h3><h4><span id="static-void-qmetatype-construct-int-type-const-void-copy-nullptr"><em>[static]</em> void *QMetaType::construct(int <em>type</em>, const void *<em>copy</em> = nullptr)</span><a href="#static-void-qmetatype-construct-int-type-const-void-copy-nullptr" class="header-anchor">#</a></h4><p>在给定的内存地址 <code>where</code> 上构造对应 <code>type</code> 类型的对象，该对象是 <code>copy</code> 的副本，并返回 <code>where</code>。若 <code>copy</code> 是空指针，则执行默认构造。</p>
+<p>这是用于显示管理存储 <code>type</code> 类型对象的内存的底层函数。若不需要此类底层控制，则考虑使用 <a href="#static-void-qmetatypecreateint-type-const-void-copy--nullptr">create</a>() 函数（也就是指，使用 <code>new</code> 而非 <code>placement new</code>）。</p>
+<p>您必须确保 <code>where</code> 指向的内存区域大小足够存储 <code>type</code> 对应的数据，并且 <code>where</code> 地址需要对齐，对应类型的大小可通过 <a href="#int-qmetatypesizeof-const">sizeOf</a>() 获取。</p>
+<p>内存对齐的规则是对齐至类型的自然边界，也就是大于等于类型大小的2的n次方值，直至平台有效对齐宽度上限为止。对于特定用途来说，超过 <code>2 * sizeof(void*)</code> 的对齐宽度只是某些特定硬件指令所必需的（例如，x86 平台中对齐后的 SSE 读取和存储）。</p>
+<p>此函数在 Qt 5.0 中被引入。</p>
+<p>此函数已被废弃，仅为了保证老代码能够运行而保留，我们强烈反对在新代码中使用。</p>
+<p>构造对应 <code>type</code> 类型的对象，该对象是 <code>copy</code> 的副本。<code>copy</code> 的默认值是 <code>nullptr</code>。</p>
+<p>已弃用，该用新的静态函数 <a href="#static-void-qmetatypecreateint-type-const-void-copy--nullptr">QMetaType::create</a>(int type, const void *copy)。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/M/">M</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/M/QMultiHash/QMultiHash/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QMultiHash类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/M/QMutableMapIterator/QMutableMapIterator/">
+                        <span class="hidden-mobile">QMutableMapIterator类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

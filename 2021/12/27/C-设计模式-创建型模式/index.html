@@ -1,0 +1,1012 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="分类 创建型模式        推荐看👉常用设计模式有哪些？ (refactoringguru.cn) 设计模式描述： 用特定的套路解决现实问题，每一个设计模式对应一个法子 分类#根据意图或目的分类  创建型模式: 提供创建对象机制，增加已有的代码灵活性和可复用性 结构型模式: 介绍如何将对象和类组装成较大的结构， 并同时保持结构的灵活和高效。 行为模式: 负责对象间的高效沟通和职责委">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++设计模式-创建型模式">
+<meta property="og:url" content="https://txt1994.github.io/2021/12/27/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="分类 创建型模式        推荐看👉常用设计模式有哪些？ (refactoringguru.cn) 设计模式描述： 用特定的套路解决现实问题，每一个设计模式对应一个法子 分类#根据意图或目的分类  创建型模式: 提供创建对象机制，增加已有的代码灵活性和可复用性 结构型模式: 介绍如何将对象和类组装成较大的结构， 并同时保持结构的灵活和高效。 行为模式: 负责对象间的高效沟通和职责委">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/R-C.png">
+<meta property="article:published_time" content="2021-12-27T05:48:06.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:02:11.826Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/R-C.png">
+  
+  
+  <title>C++设计模式-创建型模式 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++设计模式-创建型模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-27 13:48" pubdate>
+        2021年12月27日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      67 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++设计模式-创建型模式</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#fen-lei">分类</a><ul>
+<li><a href="#chuang-jian-xing-mo-shi">创建型模式</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<p>推荐看👉<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns">常用设计模式有哪些？ (refactoringguru.cn)</a></p>
+<p>设计模式描述：</p>
+<p>用特定的<code>套路</code>解决现实问题，每一个设计模式对应一个法子</p>
+<h2><span id="fen-lei">分类</span><a href="#fen-lei" class="header-anchor">#</a></h2><p>根据意图或目的分类</p>
+<ul>
+<li><strong>创建型模式</strong>: 提供创建对象机制，增加已有的代码灵活性和可复用性</li>
+<li><strong>结构型模式</strong>: 介绍如何将对象和类组装成较大的结构， 并同时保持结构的灵活和高效。</li>
+<li><strong>行为模式</strong>: 负责对象间的高效沟通和职责委派。</li>
+</ul>
+<h3><span id="chuang-jian-xing-mo-shi">创建型模式</span><a href="#chuang-jian-xing-mo-shi" class="header-anchor">#</a></h3><h4><span id="simple-factory-pattern-jian-dan-gong-han"><strong>simple_factory_pattern(简单工厂)</strong></span><a href="#simple-factory-pattern-jian-dan-gong-han" class="header-anchor">#</a></h4><h4><span id="factory-method-gong-han-fang-fa"><strong>Factory Method(工厂方法)</strong></span><a href="#factory-method-gong-han-fang-fa" class="header-anchor">#</a></h4><blockquote>
+<blockquote>
+<p>在父类中提供一个创建对象的方法， 允许<code>子类决定实例化</code>对象的类型。</p>
+</blockquote>
+</blockquote>
+<p>要解决的问题：</p>
+<blockquote>
+<blockquote>
+<p>当增加一个新类，和其他类<code>低耦合</code></p>
+</blockquote>
+</blockquote>
+<p>解决方案:</p>
+<blockquote>
+<blockquote>
+<p>增加一个子类的抽象类，所有的子类继承于抽象类，并且写父类的实现</p>
+</blockquote>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">product</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">product</span>() {}
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">phone</span> : <span class="hljs-keyword">public</span> product
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">phone</span>()
+    {
+        std::cout &lt;&lt; <span class="hljs-string">"make phone"</span> &lt;&lt; std::endl;
+    }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">tv</span> : <span class="hljs-keyword">public</span> product
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">tv</span>()
+    {
+        std::cout &lt;&lt; <span class="hljs-string">"make tv"</span> &lt;&lt; std::endl;
+    }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">factory</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">factory</span>() {}
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> product* <span class="hljs-title">make_product</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>; 
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">phone_factory</span> : <span class="hljs-keyword">public</span> factory
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> product* <span class="hljs-title">make_product</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">phone</span>();
+    }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">tv_factory</span> : <span class="hljs-keyword">public</span> factory
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> product* <span class="hljs-title">make_product</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">tv</span>();
+    }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    factory* factory1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">phone_factory</span>();
+    product* product1 = factory1-&gt;<span class="hljs-built_in">make_product</span>();
+
+    factory* factory2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">tv_factory</span>();
+    product* product2 = factory2-&gt;<span class="hljs-built_in">make_product</span>();
+
+    <span class="hljs-keyword">delete</span> factory1;
+    <span class="hljs-keyword">delete</span> product1;
+    <span class="hljs-keyword">delete</span> factory2;
+    <span class="hljs-keyword">delete</span> product2;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h4><span id="abstract-factory-chou-xiang-gong-han-mo-shi">Abstract Factory(抽象工厂模式)</span><a href="#abstract-factory-chou-xiang-gong-han-mo-shi" class="header-anchor">#</a></h4><blockquote>
+<blockquote>
+<p>随着业务的发展，更多的类需要创建，比如<strong>美国工厂，欧洲工厂，亚洲工厂，南美工厂</strong>，每个地区工厂又需要<strong>创建各自的产品</strong></p>
+</blockquote>
+</blockquote>
+<p>问题：</p>
+<blockquote>
+<blockquote>
+<p>每个地区生产的产品拥有一个风格，不同地区的产品混杂一起对顾客不友好</p>
+<p>保持核心代码不修改。</p>
+</blockquote>
+</blockquote>
+<p>解决：</p>
+<blockquote>
+<blockquote>
+<p>首先， 抽象工厂模式建议为系列中的每件产品明确声明接口 （例如phone、 tv）。 然后， 确保所有产品变体都继承这些接口。 例如， 所有风格的椅子都实现 <code>phone</code>接口； 所有风格的咖啡桌都实现 <code>tv</code>接口， 以此类推。</p>
+</blockquote>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-comment">// 食草动物.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">herbivore</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">herbivore</span>() {}
+};
+
+<span class="hljs-comment">// 食肉动物.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">carnivore</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">carnivore</span>() {}
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">eat</span><span class="hljs-params">(herbivore* h)</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">// 角马.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">wildebeest</span> : <span class="hljs-keyword">public</span> herbivore
+{
+};
+
+<span class="hljs-comment">// 野牛.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">bison</span> : <span class="hljs-keyword">public</span> herbivore
+{
+};
+
+<span class="hljs-comment">// 狮子.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">lion</span> : <span class="hljs-keyword">public</span> carnivore
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">eat</span><span class="hljs-params">(herbivore*)</span></span>
+<span class="hljs-function">    </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"lion eat wildebeest"</span> &lt;&lt; std::endl;
+    }
+};
+
+<span class="hljs-comment">// 狼.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">wolf</span> : <span class="hljs-keyword">public</span> carnivore
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">eat</span><span class="hljs-params">(herbivore*)</span></span>
+<span class="hljs-function">    </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"wolf eat bison"</span> &lt;&lt; std::endl;
+    }
+};
+
+<span class="hljs-comment">// 抽象工厂.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">factory</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">factory</span>() {}
+    <span class="hljs-comment">// 创建食草动物.</span>
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> herbivore* <span class="hljs-title">create_herbivore</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// 创建食肉动物.</span>
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> carnivore* <span class="hljs-title">create_carnivore</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">// 非洲工厂.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">africa_factory</span> : <span class="hljs-keyword">public</span> factory
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> herbivore* <span class="hljs-title">create_herbivore</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">wildebeest</span>();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> carnivore* <span class="hljs-title">create_carnivore</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">lion</span>();
+    }
+};
+
+<span class="hljs-comment">// 美洲工厂.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">america_factory</span> : <span class="hljs-keyword">public</span> factory
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> herbivore* <span class="hljs-title">create_herbivore</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">bison</span>();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> carnivore* <span class="hljs-title">create_carnivore</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">wolf</span>();
+    }
+};
+
+<span class="hljs-comment">// 动物世界（客户端）.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">animal_world</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">animal_world</span>(factory* f)
+    {
+        _herbivore = f-&gt;<span class="hljs-built_in">create_herbivore</span>(); 
+        _carnivore = f-&gt;<span class="hljs-built_in">create_carnivore</span>();
+    }
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">start</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        _carnivore-&gt;<span class="hljs-built_in">eat</span>(_herbivore);
+    }
+
+<span class="hljs-keyword">private</span>:
+    herbivore* _herbivore;
+    carnivore* _carnivore;
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    factory* factory1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">africa_factory</span>();
+    animal_world* world1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">animal_world</span>(factory1);
+    world1-&gt;<span class="hljs-built_in">start</span>();
+
+    factory* factory2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">america_factory</span>();
+    animal_world* world2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">animal_world</span>(factory2);
+    world2-&gt;<span class="hljs-built_in">start</span>();
+
+    <span class="hljs-keyword">delete</span> factory1;
+    <span class="hljs-keyword">delete</span> world1;
+    <span class="hljs-keyword">delete</span> factory2;
+    <span class="hljs-keyword">delete</span> world2;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h4><span id="singletonton-pattern-dan-li-mo-shi">singletonton_pattern(单例模式)</span><a href="#singletonton-pattern-dan-li-mo-shi" class="header-anchor">#</a></h4><blockquote>
+<blockquote>
+<p>保证一个类<strong>只有一个实例</strong>， 并提供一个访问该<strong>实例的全局节点</strong>。</p>
+</blockquote>
+</blockquote>
+<p>问题：</p>
+<blockquote>
+<blockquote>
+<p>同时解决了两个问题, 但违反了单一职责原则</p>
+</blockquote>
+</blockquote>
+<p>解决：</p>
+<blockquote>
+<blockquote>
+<ul>
+<li><p>将默认构造函数设为私有， 防止其他对象使用单例类的 <code>new</code>运算符。</p>
+</li>
+<li><p>新建一个静态构建方法作为构造函数。 该函数会 “偷偷” 调用私有构造函数来创建对象， 并将其保存在一个静态成员变量中。 此后所有对于该函数的调用都将返回这一缓存对象。</p>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">singleton</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">singleton</span>() = <span class="hljs-keyword">default</span>;
+    <span class="hljs-built_in">singleton</span>(<span class="hljs-type">const</span> singleton&amp;) = <span class="hljs-keyword">delete</span>;
+    singleton&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> singleton&amp;) = <span class="hljs-keyword">delete</span>;
+
+    <span class="hljs-function"><span class="hljs-type">static</span> singleton&amp; <span class="hljs-title">get_instance</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-type">static</span> singleton s;
+        <span class="hljs-keyword">return</span> s;
+    }
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"Hello world"</span> &lt;&lt; std::endl;
+    }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    singleton::<span class="hljs-built_in">get_instance</span>().<span class="hljs-built_in">print</span>();
+    singleton::<span class="hljs-built_in">get_instance</span>().<span class="hljs-built_in">print</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre></div>
+
+<h4><span id="prototype-pattern-yuan-xing-mo-shi">prototype_pattern(原型模式)</span><a href="#prototype-pattern-yuan-xing-mo-shi" class="header-anchor">#</a></h4><blockquote>
+<blockquote>
+<p>使你能够复制已有对象， 而又无需使代码依赖它们所属的类。</p>
+</blockquote>
+</blockquote>
+<p>问题：</p>
+<blockquote>
+<blockquote>
+<p>如果你有一个对象， 并希望生成与其完全相同的一个复制品， 你该如何实现呢？ 首先， 你必须新建一个属于相同类的对象。 然后， 你必须遍历原始对象的所有成员变量， 并将成员变量值复制到新对象中。</p>
+<p>不错！ 但有个小问题。 并非所有对象都能通过这种方式进行复制， 因为有些对象可能拥有私有成员变量， 它们在对象本身以外是不可见的。</p>
+</blockquote>
+<p>直接复制还有另外一个问题。 因为你必须知道对象所属的类才能创建复制品， 所以代码必须依赖该类。 即使你可以接受额外的依赖性， 那还有另外一个问题： 有时你只知道对象所实现的接口， 而不知道其所属的具体类， 比如可向方法的某个参数传入实现了某个接口的任何对象。</p>
+</blockquote>
+<p>解决：</p>
+<blockquote>
+<blockquote>
+<p>原型模式将克隆过程委派给被克隆的实际对象。 模式为所有支持克隆的对象声明了一个通用接口， 该接口让你能够克隆对象， 同时又无需将代码和对象所属类耦合。 通常情况下， 这样的接口中仅包含一个 <code>克隆</code>方法。</p>
+<p>所有的类对 <code>克隆</code>方法的实现都非常相似。 该方法会创建一个当前类的对象， 然后将原始对象所有的成员变量值复制到新建的类中。 你甚至可以复制私有成员变量， 因为绝大部分编程语言都允许对象访问其同类对象的私有成员变量。</p>
+<p>支持克隆的对象即为<em>原型</em>。 当你的对象有几十个成员变量和几百种类型时， 对其进行克隆甚至可以代替子类的构造。</p>
+</blockquote>
+<blockquote>
+<p>其运作方式如下： 创建一系列不同类型的对象并不同的方式对其进行配置。 如果所需对象与预先配置的对象相同， 那么你只需克隆原型即可， 无需新建一个对象。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>可以类比<strong>有丝分裂</strong>：由于工业原型并不是真正意义上的自我复制， 因此细胞有丝分裂 （还记得生物学知识吗？） 或许是更恰当的类比。 有丝分裂会产生一对完全相同的细胞。 原始细胞就是一个原型， 它在复制体的生成过程中起到了推动作用。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-comment">// #include &lt;vector&gt;</span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">resume</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">resume</span>() {}
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">resume</span>() {}
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> resume* <span class="hljs-title">clone</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>; }
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">set</span><span class="hljs-params">(<span class="hljs-type">char</span>*)</span> </span>{}
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> </span>{}
+
+<span class="hljs-keyword">protected</span>:
+    <span class="hljs-type">char</span>* _name = <span class="hljs-literal">nullptr</span>;
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">resume_a</span> : <span class="hljs-keyword">public</span> resume
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">resume_a</span>(<span class="hljs-type">const</span> <span class="hljs-type">char</span>* str)
+    {
+        <span class="hljs-keyword">if</span> (str == <span class="hljs-literal">nullptr</span>)
+        {
+            _name = <span class="hljs-keyword">new</span> <span class="hljs-type">char</span>[<span class="hljs-number">1</span>];
+            _name[<span class="hljs-number">0</span>] = <span class="hljs-string">'\0'</span>;
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            _name = <span class="hljs-keyword">new</span> <span class="hljs-type">char</span>[<span class="hljs-built_in">strlen</span>(str) + <span class="hljs-number">1</span>];
+            <span class="hljs-built_in">strcpy</span>(_name, str);
+        }
+    }
+
+    ~<span class="hljs-built_in">resume_a</span>()
+    {
+        <span class="hljs-keyword">if</span> (_name != <span class="hljs-literal">nullptr</span>)
+        {
+            <span class="hljs-keyword">delete</span> [] _name;
+            _name = <span class="hljs-literal">nullptr</span>;
+        }
+    }
+
+    <span class="hljs-built_in">resume_a</span>(<span class="hljs-type">const</span> resume_a&amp; other)
+    {
+        <span class="hljs-keyword">if</span> (_name != <span class="hljs-literal">nullptr</span>)
+        {
+            <span class="hljs-keyword">delete</span> [] _name;
+            _name = <span class="hljs-literal">nullptr</span>;
+        }
+        _name = <span class="hljs-keyword">new</span> <span class="hljs-type">char</span>[<span class="hljs-built_in">strlen</span>(other._name) + <span class="hljs-number">1</span>];
+        <span class="hljs-built_in">strcpy</span>(_name, other._name);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> resume_a* <span class="hljs-title">clone</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">resume_a</span>(*<span class="hljs-keyword">this</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        std::cout &lt;&lt; <span class="hljs-string">"resume_a name: "</span> &lt;&lt; _name &lt;&lt; std::endl;
+    }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    resume* r1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">resume_a</span>(<span class="hljs-string">"A"</span>);
+    resume* r2 = r1-&gt;<span class="hljs-built_in">clone</span>();
+    r1-&gt;<span class="hljs-built_in">show</span>();
+    <span class="hljs-keyword">delete</span> r1;
+    r2-&gt;<span class="hljs-built_in">show</span>();
+    <span class="hljs-keyword">delete</span> r2;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h4><span id="builder-pattern-sheng-cheng-qi-mo-shi">builder_pattern(生成器模式)</span><a href="#builder-pattern-sheng-cheng-qi-mo-shi" class="header-anchor">#</a></h4><blockquote>
+<blockquote>
+<p>使你能够分步骤创建复杂对象。 该模式允许你使用相同的创建代码生成不同类型和形式的对象。</p>
+</blockquote>
+</blockquote>
+<p>问题：</p>
+<blockquote>
+<blockquote>
+<p>假设有这样一个复杂对象， 在对其进行构造时需要对诸多成员变量和嵌套对象进行繁复的初始化工作。 这些初始化代码通常深藏于一个包含众多参数且让人基本看不懂的构造函数中； 甚至还有更糟糕的情况， 那就是这些代码散落在客户端代码的多个位置。<br>例如， 我们来思考如何创建一个 房屋House对象。 建造一栋简单的房屋， 首先你需要建造四面墙和地板， 安装房门和一套窗户， 然后再建造一个屋顶。 但是如果你想要一栋更宽敞更明亮的房屋， 还要有院子和其他设施 （例如暖气、 排水和供电设备）， 那又该怎么办呢？</p>
+</blockquote>
+</blockquote>
+<p>最简单的方法是扩展 房屋基类， 然后创建一系列涵盖所有参数组合的子类。 但最终你将面对相当数量的子类。 任何新增的参数 （例如门廊类型） 都会让这个层次结构更加复杂。</p>
+<p>另一种方法则无需生成子类。 你可以在 房屋基类中创建一个包括所有可能参数的超级构造函数， 并用它来控制房屋对象。 这种方法确实可以避免生成子类， 但它却会造成另外一个问题。<br>通常情况下， 绝大部分的参数都没有使用， 这使得对于构造函数的调用十分不简洁。 例如， 只有很少的房子有游泳池， 因此与游泳池相关的参数十之八九是毫无用处的。</p>
+<p>解决：</p>
+<blockquote>
+<blockquote>
+<p>生成器模式建议将对象构造代码从产品类中抽取出来， 并将其放在一个名为生成器的独立对象中。<br>该模式会将对象构造过程划分为一组步骤， 比如 build­Walls创建墙壁和 build­Door创建房门创建房门等。 每次创建对象时， 你都需要通过生成器对象执行一系列步骤。 重点在于你无需调用所有步骤， 而只需调用创建特定对象配置所需的那些步骤即可。</p>
+</blockquote>
+</blockquote>
+<p>当你需要创建不同形式的产品时， 其中的一些构造步骤可能需要不同的实现。 例如， 木屋的房门可能需要使用木头制造， 而城堡的房门则必须使用石头制造。</p>
+<p>在这种情况下， 你可以创建多个不同的生成器， 用不同方式实现一组相同的创建步骤。 然后你就可以在创建过程中使用这些生成器 （例如按顺序调用多个构造步骤） 来生成不同类型的对象。</p>
+<blockquote>
+<blockquote>
+<p>例如， 假设第一个建造者使用木头和玻璃制造房屋， 第二个建造者使用石头和钢铁， 而第三个建造者使用黄金和钻石。 在调用同一组步骤后， 第一个建造者会给你一栋普通房屋， 第二个会给你一座小城堡， 而第三个则会给你一座宫殿。 但是， 只有在调用构造步骤的客户端代码可以通过通用接口与建造者进行交互时， 这样的调用才能返回需要的房屋。<br><strong>主管</strong><br>你可以进一步将用于创建产品的一系列生成器步骤调用抽取成为单独的主管类。 主管类可定义创建步骤的执行顺序， 而生成器则提供这些步骤的实现。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>严格来说， 你的程序中并不一定需要主管类。 客户端代码可直接以特定顺序调用创建步骤。 不过， 主管类中非常适合放入各种例行构造流程， 以便在程序中反复使用。</p>
+</blockquote>
+</blockquote>
+<p>此外， 对于客户端代码来说， 主管类完全隐藏了产品构造细节。 客户端只需要将一个生成器与主管类关联， 然后使用主管类来构造产品， 就能从生成器处获得构造结果了。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+
+<span class="hljs-comment">// 产品.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">product</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string&amp; product_name)</span></span>
+<span class="hljs-function">    </span>{
+        _product_name_vec.<span class="hljs-built_in">emplace_back</span>(product_name);
+    }
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; name : _product_name_vec)
+        {
+            std::cout &lt;&lt; name &lt;&lt; std::endl;
+        }
+    }
+
+<span class="hljs-keyword">private</span>:
+    std::vector&lt;std::string&gt; _product_name_vec;
+};
+
+<span class="hljs-comment">// 抽象建造者.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">builder</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">builder</span>() {}
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">build_ricenoodles</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">build_cooldish</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">build_drink</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> product* <span class="hljs-title">get_product</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">// 建造者A.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">builder_a</span> : <span class="hljs-keyword">public</span> builder
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">builder_a</span>()
+    {
+        _product = <span class="hljs-keyword">new</span> product;
+    }
+
+    ~<span class="hljs-built_in">builder_a</span>()
+    {
+        <span class="hljs-keyword">delete</span> _product;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">build_ricenoodles</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        _product-&gt;<span class="hljs-built_in">add</span>(<span class="hljs-string">"ricenoodles a"</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">build_cooldish</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        _product-&gt;<span class="hljs-built_in">add</span>(<span class="hljs-string">"cooldish a"</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">build_drink</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        _product-&gt;<span class="hljs-built_in">add</span>(<span class="hljs-string">"drink a"</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> product* <span class="hljs-title">get_product</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">return</span> _product;
+    }
+
+<span class="hljs-keyword">private</span>:
+    product* _product;
+};
+
+<span class="hljs-comment">// 导演.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">director</span>
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">construct</span><span class="hljs-params">(builder* b)</span></span>
+<span class="hljs-function">    </span>{
+        b-&gt;<span class="hljs-built_in">build_ricenoodles</span>();
+        b-&gt;<span class="hljs-built_in">build_cooldish</span>();
+        b-&gt;<span class="hljs-built_in">build_drink</span>();
+    }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    director* d = <span class="hljs-keyword">new</span> <span class="hljs-built_in">director</span>();
+    builder* b = <span class="hljs-keyword">new</span> <span class="hljs-built_in">builder_a</span>();
+    d-&gt;<span class="hljs-built_in">construct</span>(b);
+    product* p = b-&gt;<span class="hljs-built_in">get_product</span>();
+    p-&gt;<span class="hljs-built_in">show</span>();
+
+    <span class="hljs-keyword">delete</span> b;
+    <span class="hljs-keyword">delete</span> d;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/01/%E7%AE%97%E6%B3%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/26/gdb%E4%BB%A3%E7%A0%81%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/">
+                        <span class="hidden-mobile">gdb代码调试工具</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

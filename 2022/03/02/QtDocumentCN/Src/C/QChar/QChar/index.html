@@ -1,0 +1,2790 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QChar 类 公共类型 公共函数 静态公共成员 相关非成员 宏 详细描述 成员类型文档编制 enum QChar:: Category enum QChar:: Decomposition enum QChar:: Direction enum QChar:: JoiningType [since 5.1] enum QChar:: Script enum QChar:: Specia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QChar类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/C/QChar/QChar/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QChar 类 公共类型 公共函数 静态公共成员 相关非成员 宏 详细描述 成员类型文档编制 enum QChar:: Category enum QChar:: Decomposition enum QChar:: Direction enum QChar:: JoiningType [since 5.1] enum QChar:: Script enum QChar:: Specia">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T05:12:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:36:05.459Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QChar类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QChar类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 13:12" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      29k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      243 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QChar类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qchar-lei">QChar 类</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-guan-fei-cheng-yuan">相关非成员</a></li>
+<li><a href="#hong">宏</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#enum-qchar-category">enum QChar:: Category</a></li>
+<li><a href="#enum-qchar-decomposition">enum QChar:: Decomposition</a></li>
+<li><a href="#enum-qchar-direction">enum QChar:: Direction</a></li>
+<li><a href="#enum-qchar-joiningtype">enum QChar:: JoiningType</a></li>
+<li><a href="#since-5-1-enum-qchar-script"><code>[since 5.1] </code>enum QChar:: Script</a></li>
+<li><a href="#enum-qchar-specialcharacter">enum QChar:: SpecialCharacter</a></li>
+<li><a href="#enum-qchar-unicodeversion">enum QChar:: UnicodeVersion</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qchar-qchar-uchar-qtglobal-html-uchar-typedef-ch">QChar:: QChar ( </a><a href="qtglobal.html#uchar-typedef">uchar </a><em>ch</em> )</li>
+<li><a href="#qchar-qchar-char-ch">QChar:: QChar ( char <em>ch</em> )</a></li>
+<li><a href="#since-5-10-qchar-qchar-wchar-t-ch"><code>[since 5.10] </code>QChar:: QChar ( wchar_t <em>ch</em> )</a></li>
+<li><a href="#since-5-10-qchar-qchar-char16-t-ch"><code>[since 5.10] </code>QChar:: QChar ( char16_t <em>ch</em> )</a></li>
+<li><a href="#qchar-qchar-qlatin1char-qlatin1char-html-ch">QChar:: QChar ( </a><a href="qlatin1char.html">QLatin1Char </a><em>ch</em> )</li>
+<li><a href="#qchar-qchar-qchar-specialcharacter-specialcharacter-enum-ch">QChar:: QChar ( </a><a href="#SpecialCharacter-enum">QChar::SpecialCharacter </a><em>ch</em> )</li>
+<li><a href="#qchar-qchar-int-code">QChar:: QChar ( int <em>code</em> )</a></li>
+<li><a href="#qchar-qchar-uint-qtglobal-html-uint-typedef-code">QChar:: QChar ( </a><a href="qtglobal.html#uint-typedef">uint </a><em>code</em> )</li>
+<li><a href="#qchar-qchar-short-code">QChar:: QChar ( short <em>code</em> )</a></li>
+<li><a href="#qchar-qchar-uchar-qtglobal-html-uchar-typedef-cell-uchar-qtglobal-html-uchar-typedef-row">QChar:: QChar ( </a><a href="qtglobal.html#uchar-typedef">uchar </a><em>cell</em> , <a href="qtglobal.html#uchar-typedef">uchar </a><em>row</em> )</li>
+<li><a href="#qchar-qchar-ushort-qtglobal-html-ushort-typedef-code">QChar:: QChar ( </a><a href="qtglobal.html#ushort-typedef">ushort </a><em>code</em> )</li>
+<li><a href="#qchar-qchar">QChar:: QChar ()</a></li>
+<li><a href="#qchar-category-category-enum-qchar-category-const">QChar::Category </a></li>
+<li><a href="#static-qchar-category-category-enum-qchar-category-char32-t-ucs4"><code>[static] </code></a><a href="#Category-enum">QChar::Category </a>QChar:: category ( char32_t <em>ucs4</em> )</li>
+<li><a href="#uchar-qtglobal-html-uchar-typedef-qchar-cell-const">uchar </a></li>
+<li><a href="#unsigned-char-qchar-combiningclass-const">unsigned char QChar:: combiningClass () const</a></li>
+<li><a href="#static-unsigned-char-qchar-combiningclass-char32-t-ucs4"><code>[static] </code>unsigned char QChar:: combiningClass ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#static-qchar-unicode-ban-ben-unicodeversion-enum-qchar-currentunicode-ban-ben"><code>[static] </code></a><a href="#UnicodeVersion-enum">QChar::Unicode版本 </a>QChar:: currentUnicode版本 ()</li>
+<li><a href="#qstring-qstring-html-qchar-decomposition-const">QString </a></li>
+<li><a href="#static-qstring-qstring-html-qchar-decomposition-char32-t-ucs4"><code>[static] </code></a><a href="qstring.html">QString </a>QChar:: decomposition ( char32_t <em>ucs4</em> )</li>
+<li><a href="#qchar-decomposition-decomposition-enum-qchar-decompositiontag-const">QChar::Decomposition </a></li>
+<li><a href="#static-qchar-decomposition-decomposition-enum-qchar-decompositiontag-char32-t-ucs4"><code>[static] </code></a><a href="#Decomposition-enum">QChar::Decomposition </a>QChar:: decompositionTag ( char32_t <em>ucs4</em> )</li>
+<li><a href="#int-qchar-digitvalue-const">int QChar:: digitValue () const</a></li>
+<li><a href="#static-int-qchar-digitvalue-char32-t-ucs4"><code>[static] </code>int QChar:: digitValue ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#qchar-direction-direction-enum-qchar-direction-const">QChar::Direction </a></li>
+<li><a href="#static-qchar-direction-direction-enum-qchar-direction-char32-t-ucs4"><code>[static] </code></a><a href="#Direction-enum">QChar::Direction </a>QChar:: direction ( char32_t <em>ucs4</em> )</li>
+<li><a href="#static-qchar-qchar-qchar-fromlatin1-char-c"><code>[static] </code></a><a href="#QChar">QChar </a>QChar:: fromLatin1 ( char <em>c</em> )</li>
+<li><a href="#static-since-6-0-qchar-qchar-qchar-fromucs2-char16-t-c"><code>[static, since 6.0] </code></a><a href="#QChar">QChar </a>QChar:: fromUcs2 ( char16_t <em>c</em> )</li>
+<li><a href="#static-since-6-0-r-qchar-fromucs4-char32-t-c"><code>[static, since 6.0] </code>R QChar:: fromUcs4 ( char32_t <em>c</em> )</a></li>
+<li><a href="#bool-qchar-hasmirrored-const">bool QChar:: hasMirrored () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-hasmirrored-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: hasMirrored ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#static-char16-t-qchar-highsurrogate-char32-t-ucs4"><code>[static] </code>char16_t QChar:: highSurrogate ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-isdigit-const">bool QChar:: isDigit () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-isdigit-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isDigit ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-ishighsurrogate-const">bool QChar:: isHighSurrogate () const</a></li>
+<li><a href="#static-bool-qchar-ishighsurrogate-char32-t-ucs4"><code>[static] </code>bool QChar:: isHighSurrogate ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-isletter-const">bool QChar:: isLetter () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-isletter-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isLetter ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-isletterornumber-const">bool QChar:: isLetterOrNumber () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-isletterornumber-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isLetterOrNumber ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-islowsurrogate-const">bool QChar:: isLowSurrogate () const</a></li>
+<li><a href="#static-bool-qchar-islowsurrogate-char32-t-ucs4"><code>[static] </code>bool QChar:: isLowSurrogate ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-islower-const">bool QChar:: isLower () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-islower-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isLower ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-ismark-const">bool QChar:: isMark () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-ismark-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isMark ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#since-5-0-bool-qchar-isnoncharacter-const"><code>[since 5.0] </code>bool QChar:: isNonCharacter () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-isnoncharacter-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isNonCharacter ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-isnull-const">bool QChar:: isNull () const</a></li>
+<li><a href="#bool-qchar-isnumber-const">bool QChar:: isNumber () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-isnumber-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isNumber ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-isprint-const">bool QChar:: isPrint () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-isprint-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isPrint ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-ispunct-const">bool QChar:: isPunct () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-ispunct-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isPunct ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-isspace-const">bool QChar:: isSpace () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-isspace-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isSpace ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#since-5-0-bool-qchar-issurrogate-const"><code>[since 5.0] </code>bool QChar:: isSurrogate () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-issurrogate-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isSurrogate ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-issymbol-const">bool QChar:: isSymbol () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-issymbol-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isSymbol ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-istitlecase-const">bool QChar:: isTitleCase () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-istitlecase-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isTitleCase ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#bool-qchar-isupper-const">bool QChar:: isUpper () const</a></li>
+<li><a href="#static-since-5-0-bool-qchar-isupper-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isUpper ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#since-5-3-qchar-joiningtype-joiningtype-enum-qchar-joiningtype-const"><code>[since 5.3] </code></a><a href="#JoiningType-enum">QChar::JoiningType </a>QChar:: joiningType () const</li>
+<li><a href="#static-since-5-3-qchar-joiningtype-joiningtype-enum-qchar-joiningtype-char32-t-ucs4"><code>[static, since 5.3] </code></a><a href="#JoiningType-enum">QChar::JoiningType </a>QChar:: joiningType ( char32_t <em>ucs4</em> )</li>
+<li><a href="#static-char16-t-qchar-lowsurrogate-char32-t-ucs4"><code>[static] </code>char16_t QChar:: lowSurrogate ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#qchar-qchar-qchar-mirroredchar-const">QChar </a></li>
+<li><a href="#static-char32-t-qchar-mirroredchar-char32-t-ucs4"><code>[static] </code>char32_t QChar:: mirroredChar ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#static-bool-qchar-requiressurrogates-char32-t-ucs4"><code>[static] </code>bool QChar:: requiresSurrogates ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#uchar-qtglobal-html-uchar-typedef-qchar-row-const-1">uchar </a></li>
+<li><a href="#since-5-1-qchar-script-script-enum-qchar-script-const"><code>[since 5.1] </code></a><a href="#Script-enum">QChar::Script </a>QChar:: script () const</li>
+<li><a href="#static-since-5-1-qchar-script-script-enum-qchar-script-char32-t-ucs4"><code>[static, since 5.1] </code></a><a href="#Script-enum">QChar::Script </a>QChar:: script ( char32_t <em>ucs4</em> )</li>
+<li><a href="#static-char32-t-qchar-surrogatetoucs4-char16-t-high-char16-t-low"><code>[static] </code>char32_t QChar:: surrogateToUcs4 ( char16_t <em>high</em> , char16_t <em>low</em> )</a></li>
+<li><a href="#static-char32-t-qchar-surrogatetoucs4-qchar-qchar-high-qchar-qchar-low"><code>[static] </code>char32_t QChar:: surrogateToUcs4 ( </a><a href="#QChar">QChar </a><em>high</em> , <a href="#QChar">QChar </a><em>low</em> )</li>
+<li><a href="#qchar-qchar-qchar-tocasefolded-const-1">QChar </a></li>
+<li><a href="#static-char32-t-qchar-tocasefolded-char32-t-ucs4"><code>[static] </code>char32_t QChar:: toCaseFolded ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#char-qchar-tolatin1-const">char QChar:: toLatin1 () const</a></li>
+<li><a href="#qchar-qchar-qchar-tolower-const-2">QChar </a></li>
+<li><a href="#static-char32-t-qchar-tolower-char32-t-ucs4"><code>[static] </code>char32_t QChar:: toLower ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#qchar-qchar-qchar-totitlecase-const-3">QChar </a></li>
+<li><a href="#static-char32-t-qchar-totitlecase-char32-t-ucs4"><code>[static] </code>char32_t QChar:: toTitleCase ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#qchar-qchar-qchar-toupper-const-4">QChar </a></li>
+<li><a href="#static-char32-t-qchar-toupper-char32-t-ucs4"><code>[static] </code>char32_t QChar:: toUpper ( char32_t <em>ucs4</em> )</a></li>
+<li><a href="#char16-t-qchar-unicode-const">char16_t QChar:: unicode () const</a></li>
+<li><a href="#char16-t-qchar-unicode">char16_t &amp;QChar:: unicode ()</a></li>
+<li><a href="#qchar-unicode-ban-ben-unicodeversion-enum-qchar-unicode-ban-ben-const">QChar::Unicode版本 </a></li>
+<li><a href="#static-qchar-unicode-ban-ben-unicodeversion-enum-qchar-unicode-ban-ben-char32-t-ucs4"><code>[static] </code></a><a href="#UnicodeVersion-enum">QChar::Unicode版本 </a>QChar:: unicode版本 ( char32_t <em>ucs4</em> )</li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-cheng-yuan-1">相关非成员</a><ul>
+<li><a href="#bool-operator-qchar-qchar-c1-qchar-qchar-c2">bool operator!= ( </a><a href="#QChar">QChar </a><em>c1</em> , <a href="#QChar">QChar </a><em>c2</em> )</li>
+<li><a href="#bool-operator-qchar-qchar-c1-qchar-qchar-c2">bool operator&lt; ( </a><a href="#QChar">QChar </a><em>c1</em> , <a href="#QChar">QChar </a><em>c2</em> )</li>
+<li><a href="#qdatastream-qdatastream-html-operator-qdatastream-qdatastream-html-out-qchar-qchar-chr">QDataStream </a></li>
+<li><a href="#bool-operator-qchar-qchar-c1-qchar-qchar-c2">bool operator&lt;= ( </a><a href="#QChar">QChar </a><em>c1</em> , <a href="#QChar">QChar </a><em>c2</em> )</li>
+<li><a href="#bool-operator-qchar-qchar-c1-qchar-qchar-c2">bool operator== ( </a><a href="#QChar">QChar </a><em>c1</em> , <a href="#QChar">QChar </a><em>c2</em> )</li>
+<li><a href="#bool-operator-qchar-qchar-c1-qchar-qchar-c2">bool operator&gt; ( </a><a href="#QChar">QChar </a><em>c1</em> , <a href="#QChar">QChar </a><em>c2</em> )</li>
+<li><a href="#bool-operator-qchar-qchar-c1-qchar-qchar-c2">bool operator&gt;= ( </a><a href="#QChar">QChar </a><em>c1</em> , <a href="#QChar">QChar </a><em>c2</em> )</li>
+<li><a href="#qdatastream-qdatastream-html-operator-qdatastream-qdatastream-html-in-qchar-qchar-chr-1">QDataStream </a></li>
+</ul>
+</li>
+<li><a href="#hong-wen-dang-bian-zhi">宏文档编制</a><ul>
+<li><a href="#since-6-0-qt-implicit-qchar-construction"><code>[since 6.0] </code>QT_IMPLICIT_QCHAR_CONSTRUCTION</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="qchar-lei">QChar 类</span><a href="#qchar-lei" class="header-anchor">#</a></h1><p>QChar 类提供 16 位 Unicode 字符。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qchar></qchar></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qchar-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<p><strong>注意：</strong> 此类的所有函数 <a href="17-qdoc-commands-thread.html#reentrant">可重入 </a>.</p>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#Category-enum">Category </a></strong>{ Mark_NonSpacing, Mark_SpacingCombining, Mark_Enclosing, Number_DecimalDigit, Number_Letter, …, Symbol_Other }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a href="#Decomposition-enum">Decomposition </a></strong>{ NoDecomposition, Canonical, Circle, Compat, Final, …, Wide }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#Direction-enum">Direction </a></strong>{ DirAL, DirAN, DirB, DirBN, DirCS, …, DirWS }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#JoiningType-enum">JoiningType </a></strong>{ Joining_None, Joining_Causing, Joining_Dual, Joining_Right, Joining_Left, Joining_Transparent }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#Script-enum">Script </a></strong>{ Script_Unknown, Script_Inherited, Script_Common, Script_Adlam, Script_Ahom, …, Script_ZanabazarSquare }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#SpecialCharacter-enum">SpecialCharacter </a></strong>{ Null, Tabulation, LineFeed, FormFeed, CarriageReturn, …, LastValidCodePoint }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a href="#UnicodeVersion-enum">Unicode版本 </a></strong>{ Unicode_1_1, Unicode_2_0, Unicode_2_1_2, Unicode_3_0, Unicode_3_1, …, Unicode_Unassigned }</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QChar-11">QChar </a></strong>(uchar <em>ch</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QChar-10">QChar </a></strong>(char <em>ch</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QChar-9">QChar </a></strong>(wchar_t <em>ch</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QChar-8">QChar </a></strong>(char16_t <em>ch</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QChar-7">QChar </a></strong>(QLatin1Char <em>ch</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QChar-6">QChar </a></strong>(QChar::SpecialCharacter <em>ch</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QChar-5">QChar </a></strong>(int <em>code</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QChar-4">QChar </a></strong>(uint <em>code</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QChar-3">QChar </a></strong>(short <em>code</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QChar-2">QChar </a></strong>(uchar <em>cell</em> , uchar <em>row</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QChar-1">QChar </a></strong>(ushort <em>code</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QChar">QChar </a></strong>()</td>
+</tr>
+<tr>
+<td>QChar::Category</td>
+<td><strong><a href="#category">category </a></strong>() const</td>
+</tr>
+<tr>
+<td>uchar</td>
+<td><strong><a href="#cell">cell </a></strong>() const</td>
+</tr>
+<tr>
+<td>unsigned char</td>
+<td><strong><a href="#combiningClass">combiningClass </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#decomposition">decomposition </a></strong>() const</td>
+</tr>
+<tr>
+<td>QChar::Decomposition</td>
+<td><strong><a href="#decompositionTag">decompositionTag </a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#digitValue">digitValue </a></strong>() const</td>
+</tr>
+<tr>
+<td>QChar::Direction</td>
+<td><strong><a href="#direction">direction </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasMirrored">hasMirrored </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isDigit">isDigit </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isHighSurrogate">isHighSurrogate </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isLetter">isLetter </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isLetterOrNumber">isLetterOrNumber </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isLowSurrogate">isLowSurrogate </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isLower">isLower </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isMark">isMark </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNonCharacter">isNonCharacter </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNull">isNull </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNumber">isNumber </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isPrint">isPrint </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isPunct">isPunct </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isSpace">isSpace </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isSurrogate">isSurrogate </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isSymbol">isSymbol </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isTitleCase">isTitleCase </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isUpper">isUpper </a></strong>() const</td>
+</tr>
+<tr>
+<td>QChar::JoiningType</td>
+<td><strong><a href="#joiningType">joiningType </a></strong>() const</td>
+</tr>
+<tr>
+<td>QChar</td>
+<td><strong><a href="#mirroredChar">mirroredChar </a></strong>() const</td>
+</tr>
+<tr>
+<td>uchar</td>
+<td><strong><a href="#row">row </a></strong>() const</td>
+</tr>
+<tr>
+<td>QChar::Script</td>
+<td><strong><a href="#script">script </a></strong>() const</td>
+</tr>
+<tr>
+<td>QChar</td>
+<td><strong><a href="#toCaseFolded">toCaseFolded </a></strong>() const</td>
+</tr>
+<tr>
+<td>char</td>
+<td><strong><a href="#toLatin1">toLatin1 </a></strong>() const</td>
+</tr>
+<tr>
+<td>QChar</td>
+<td><strong><a href="#toLower">toLower </a></strong>() const</td>
+</tr>
+<tr>
+<td>QChar</td>
+<td><strong><a href="#toTitleCase">toTitleCase </a></strong>() const</td>
+</tr>
+<tr>
+<td>QChar</td>
+<td><strong><a href="#toUpper">toUpper </a></strong>() const</td>
+</tr>
+<tr>
+<td>char16_t</td>
+<td><strong><a href="#unicode">unicode </a></strong>() const</td>
+</tr>
+<tr>
+<td>char16_t &amp;</td>
+<td><strong><a href="#unicode-1">unicode </a></strong>()</td>
+</tr>
+<tr>
+<td>QChar::UnicodeVersion</td>
+<td><strong><a href="#unicodeVersion">unicode版本 </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QChar::Category</th>
+<th><strong><a href="#category-1">category </a></strong>(char32_t <em>ucs4</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>unsigned char</td>
+<td><strong><a href="#combiningClass-1">combiningClass </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>QChar::UnicodeVersion</td>
+<td><strong><a href="#currentUnicodeVersion">currentUnicode版本 </a></strong>()</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#decomposition-1">decomposition </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>QChar::Decomposition</td>
+<td><strong><a href="#decompositionTag-1">decompositionTag </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#digitValue-1">digitValue </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>QChar::Direction</td>
+<td><strong><a href="#direction-1">direction </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>QChar</td>
+<td><strong><a href="#fromLatin1">fromLatin1 </a></strong>(char <em>c</em> )</td>
+</tr>
+<tr>
+<td>QChar</td>
+<td><strong><a href="#fromUcs2">fromUcs2 </a></strong>(char16_t <em>c</em> )</td>
+</tr>
+<tr>
+<td>R</td>
+<td><strong><a href="#fromUcs4">fromUcs4 </a></strong>(char32_t <em>c</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#hasMirrored-1">hasMirrored </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>char16_t</td>
+<td><strong><a href="#highSurrogate">highSurrogate </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isDigit-1">isDigit </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isHighSurrogate-1">isHighSurrogate </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isLetter-1">isLetter </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isLetterOrNumber-1">isLetterOrNumber </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isLowSurrogate-1">isLowSurrogate </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isLower-1">isLower </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isMark-1">isMark </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNonCharacter-1">isNonCharacter </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isNumber-1">isNumber </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isPrint-1">isPrint </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isPunct-1">isPunct </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isSpace-1">isSpace </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isSurrogate-1">isSurrogate </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isSymbol-1">isSymbol </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isTitleCase-1">isTitleCase </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isUpper-1">isUpper </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>QChar::JoiningType</td>
+<td><strong><a href="#joiningType-1">joiningType </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>char16_t</td>
+<td><strong><a href="#lowSurrogate">lowSurrogate </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td><strong><a href="#mirroredChar-1">mirroredChar </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#requiresSurrogates">requiresSurrogates </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>QChar::Script</td>
+<td><strong><a href="#script-1">script </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td><strong><a href="#surrogateToUcs4">surrogateToUcs4 </a></strong>(char16_t <em>high</em> , char16_t <em>low</em> )</td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td><strong><a href="#surrogateToUcs4-1">surrogateToUcs4 </a></strong>(QChar <em>high</em> , QChar <em>low</em> )</td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td><strong><a href="#toCaseFolded-1">toCaseFolded </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td><strong><a href="#toLower-1">toLower </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td><strong><a href="#toTitleCase-1">toTitleCase </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td><strong><a href="#toUpper-1">toUpper </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+<tr>
+<td>QChar::UnicodeVersion</td>
+<td><strong><a href="#unicodeVersion-1">unicode版本 </a></strong>(char32_t <em>ucs4</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong><a href="#operator-not-eq">operator!= </a></strong>(QChar <em>c1</em> , QChar <em>c2</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bool</td>
+<td><strong><a href="#operator-lt">operator&lt; </a></strong>(QChar <em>c1</em> , QChar <em>c2</em> )</td>
+</tr>
+<tr>
+<td>QDataStream &amp;</td>
+<td><strong><a href="#operator-lt-lt">operator&lt;&lt; </a></strong>(QDataStream &amp; <em>out</em> , QChar <em>chr</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-lt-eq">operator&lt;= </a></strong>(QChar <em>c1</em> , QChar <em>c2</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-eq-eq">operator== </a></strong>(QChar <em>c1</em> , QChar <em>c2</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-gt">operator&gt; </a></strong>(QChar <em>c1</em> , QChar <em>c2</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#operator-gt-eq">operator&gt;= </a></strong>(QChar <em>c1</em> , QChar <em>c2</em> )</td>
+</tr>
+<tr>
+<td>QDataStream &amp;</td>
+<td><strong><a href="#operator-gt-gt">operator&gt;&gt; </a></strong>(QDataStream &amp; <em>in</em> , QChar &amp; <em>chr</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="hong">宏</span><a href="#hong" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QT_IMPLICIT_QCHAR_CONSTRUCTION">QT_IMPLICIT_QCHAR_CONSTRUCTION</a></strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>在 Qt 中，Unicode 字符是 16 位实体，没有任何标记或结构。 这个类代表这样一个实体。 它重量轻，因此可以在任何地方使用。 大多数编译器将其视为 <code>unsigned short </code>。</p>
+<p>QChar 提供了完整的测试/分类功能，与其他格式相互转换，从组合 Unicode 转换为分解 Unicode，并在您要求时尝试比较和大小写转换。</p>
+<p>分类函数包括标准 C++ 头文件 <cctype>（以前称为 &lt;ctype.h&gt;）中的函数，但对所有 Unicode 字符进行操作，而不仅仅是 ASCII 范围。如果字符是某种类型的字符，它们都返回 true；否则他们返回假。这些分类函数是 <a href="#isNull">isNull </a>()（如果字符是 ‘\0’，则返回 <code>true</code>），<a href="#isPrint">isPrint</a>()（如果字符是任何类型的可打印字符，则返回 true，包括whitespace), <a href="#isPunct">isPunct </a>() (任何类型的标点符号), <a href="#isMark">isMark </a>() (Unicode 标记), <a href="#isLetter">isLetter </a>() (一个字母), <a href="#isNumber">isNumber </a>()  (任何类型的数字字符，不只是 0-9)，<a href="#isLetterOrNumber">isLetterOrNumber </a>()，和 <a href="#isDigit">isDigit </a>() （十进制数字）。所有这些都是 <a href="#category">category </a>() 的包装器，它们返回每个字符的 Unicode 定义的类别。其中一些还计算派生属性（例如 <a href="#isSpace">isSpace </a>() 返回 <code>true </code>，如果字符属于 Separator_* 类别或来自 <a href="#Category-enum">Other_Control </a>category 的异常代码点）。</cctype></p>
+<p>QChar 还提供了<a href="#direction">direction </a>()，表示这个字符的“自然”书写方向。 <a href="#joiningType">joiningType </a>() 函数指示角色如何与其邻居连接（主要用于阿拉伯语或叙利亚语），最后是 <a href="#hasMirrored">hasMirrored </a>()，它指示角色在连接时是否需要镜像 以“不自然”的书写方向打印。</p>
+<p>使用 <a href="#decomposition">decomposition </a>() 可以将组合的 Unicode 字符（如 <em>ring</em> ）转换为分解的 Unicode（“a”后跟“ring above”）。</p>
+<p>在 Unicode 中，比较不一定是可能的，而且大小写转换充其量是非常困难的。 Unicode，覆盖了“整个”世界，也包括了世界上大部分的大小写和排序问题。 operator==() 和朋友会纯粹根据字符的数字 Unicode 值（码位）进行比较，而 <a href="#toUpper">toUpper </a>() 和 <a href="#toLower">toLower </a>() 会在该字符具有明确定义的大写/小写等效项。对于依赖于区域设置的比较，请使用 <a href="qstring.html#localeAwareCompare">QString::localeAwareCompare </a>()。</p>
+<p>转换函数包括 <a href="#unicode">unicode </a>()（转为标量）、<a href="#toLatin1">toLatin1 </a>()（转为标量，但将所有非Latin-1 字符转为0）、[row ](# row)() (给出 Unicode 行), <a href="#cell">cell </a>() (给出 Unicode 单元), <a href="#digitValue">digitValue </a>() (给出任意数字字符的整数值),和许多构造函数。</p>
+<p>QChar 提供了构造函数和强制转换运算符，可以轻松地与传统的 8 位 <code>char </code>s 相互转换。如果您定义了 <code>QT_NO_CAST_FROM_ASCII </code> 和 <code>QT_NO_CAST_TO_ASCII </code>，如 <a href="qstring.html">QString </a> 文档中所述，您将需要显式调用 <a href="#fromLatin1">fromLatin1 </a>()，或使用 <a href="qlatin1char.html">QLatin1Char </a>，要从 8 位 <code>char </code> 构造 QChar，您需要调用 <a href="#toLatin1">toLatin1 </a>() 来取回 8 位值。</p>
+<p>从 Qt 6.0 开始，大多数 QChar 构造函数都是 <code>explicit</code>。 这样做是为了避免意外混合整数类型和字符串时的危险错误。 您可以通过定义宏“QT_IMPLICIT_QCHAR_CONSTRUCTION”来选择退出（并使这些构造函数隐式）。</p>
+<p>更多信息见 <a target="_blank" rel="noopener" href="https://www.unicode.org/ucd/">“About the Unicode Character Database” </a>.</p>
+<p><strong>另请参阅</strong> <a href="12-0-qdoc-commands-miscellaneous.html#unicode">Unicode </a>, <a href="qstring.html">QString </a>，和 <a href="qlatin1char.html">QLatin1Char </a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="enum-qchar-category">enum QChar:: Category</span><a href="#enum-qchar-category" class="header-anchor">#</a></h3><p>此枚举映射 Unicode 字符类别。</p>
+<p>以下字符在 Unicode 中是规范的：</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QChar::Mark_NonSpacing</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">Unicode 类名 Mn</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Mark_SpacingCombining</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">Unicode 类名 Mc</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Mark_Enclosing</code></td>
+<td align="left"><code>2</code></td>
+<td align="left">Unicode 类名 Me</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Number_DecimalDigit</code></td>
+<td align="left"><code>3</code></td>
+<td align="left">Unicode 类名 Nd</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Number_Letter</code></td>
+<td align="left"><code>4</code></td>
+<td align="left">Unicode 类名 Nl</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Number_Other</code></td>
+<td align="left"><code>5</code></td>
+<td align="left">Unicode 类名 No</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Separator_Space</code></td>
+<td align="left"><code>6</code></td>
+<td align="left">Unicode 类名 Zs</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Separator_Line</code></td>
+<td align="left"><code>7</code></td>
+<td align="left">Unicode 类名 Zl</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Separator_Paragraph</code></td>
+<td align="left"><code>8</code></td>
+<td align="left">Unicode 类名 Zp</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Other_Control</code></td>
+<td align="left"><code>9</code></td>
+<td align="left">Unicode 类名 Cc</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Other_Format</code></td>
+<td align="left"><code>10</code></td>
+<td align="left">Unicode 类名 Cf</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Other_Surrogate</code></td>
+<td align="left"><code>11</code></td>
+<td align="left">Unicode 类名 Cs</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Other_PrivateUse</code></td>
+<td align="left"><code>12</code></td>
+<td align="left">Unicode 类名 Co</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Other_NotAssigned</code></td>
+<td align="left"><code>13</code></td>
+<td align="left">Unicode 类名 Cn</td>
+</tr>
+</tbody></table>
+<p>以下类别在 Unicode 中提供信息：</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QChar::Letter_Uppercase</code></td>
+<td align="left"><code>14</code></td>
+<td align="left">Unicode 类名 Lu</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Letter_Lowercase</code></td>
+<td align="left"><code>15</code></td>
+<td align="left">Unicode 类名 Ll</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Letter_Titlecase</code></td>
+<td align="left"><code>16</code></td>
+<td align="left">Unicode 类名 Lt</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Letter_Modifier</code></td>
+<td align="left"><code>17</code></td>
+<td align="left">Unicode 类名 Lm</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Letter_Other</code></td>
+<td align="left"><code>18</code></td>
+<td align="left">Unicode 类名 Lo</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Punctuation_Connector</code></td>
+<td align="left"><code>19</code></td>
+<td align="left">Unicode 类名 Pc</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Punctuation_Dash</code></td>
+<td align="left"><code>20</code></td>
+<td align="left">Unicode 类名 Pd</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Punctuation_Open</code></td>
+<td align="left"><code>21</code></td>
+<td align="left">Unicode 类名 Ps</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Punctuation_Close</code></td>
+<td align="left"><code>22</code></td>
+<td align="left">Unicode 类名 Pe</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Punctuation_InitialQuote</code></td>
+<td align="left"><code>23</code></td>
+<td align="left">Unicode 类名 Pi</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Punctuation_FinalQuote</code></td>
+<td align="left"><code>24</code></td>
+<td align="left">Unicode 类名 Pf</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Punctuation_Other</code></td>
+<td align="left"><code>25</code></td>
+<td align="left">Unicode 类名 Po</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Symbol_Math</code></td>
+<td align="left"><code>26</code></td>
+<td align="left">Unicode 类名 Sm</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Symbol_Currency</code></td>
+<td align="left"><code>27</code></td>
+<td align="left">Unicode 类名 Sc</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Symbol_Modifier</code></td>
+<td align="left"><code>28</code></td>
+<td align="left">Unicode 类名 Sk</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Symbol_Other</code></td>
+<td align="left"><code>29</code></td>
+<td align="left">Unicode 类名 So</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#category">category </a>().</p>
+<h3><span id="enum-qchar-decomposition">enum QChar:: Decomposition</span><a href="#enum-qchar-decomposition" class="header-anchor">#</a></h3><p>此枚举类型定义了 Unicode 分解属性。 有关值的描述，请参阅 <a target="_blank" rel="noopener" href="https://www.unicode.org/">Unicode 标准</a>。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QChar::NoDecomposition</code></td>
+<td align="left"><code>0</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Canonical</code></td>
+<td align="left"><code>1</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Circle</code></td>
+<td align="left"><code>8</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Compat</code></td>
+<td align="left"><code>16</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Final</code></td>
+<td align="left"><code>6</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Font</code></td>
+<td align="left"><code>2</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Fraction</code></td>
+<td align="left"><code>17</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Initial</code></td>
+<td align="left"><code>4</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Isolated</code></td>
+<td align="left"><code>7</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Medial</code></td>
+<td align="left"><code>5</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Narrow</code></td>
+<td align="left"><code>13</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::NoBreak</code></td>
+<td align="left"><code>3</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Small</code></td>
+<td align="left"><code>14</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Square</code></td>
+<td align="left"><code>15</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Sub</code></td>
+<td align="left"><code>10</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Super</code></td>
+<td align="left"><code>9</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Vertical</code></td>
+<td align="left"><code>11</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Wide</code></td>
+<td align="left"><code>12</code></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#decomposition">decomposition </a>().</p>
+<h3><span id="enum-qchar-direction">enum QChar:: Direction</span><a href="#enum-qchar-direction" class="header-anchor">#</a></h3><p>此枚举类型定义 Unicode 方向属性。 有关值的描述，请参阅 <a target="_blank" rel="noopener" href="https://www.unicode.org/reports/tr9/tr9-35.html#Table_Bidirectional_Character_Types">Unicode 标准</a>。</p>
+<p>为了符合 C/C++ 命名约定，“Dir”被添加到 Unicode 标准中使用的代码之前。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QChar::DirAL</code></td>
+<td align="left"><code>13</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirAN</code></td>
+<td align="left"><code>5</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirB</code></td>
+<td align="left"><code>7</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirBN</code></td>
+<td align="left"><code>18</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirCS</code></td>
+<td align="left"><code>6</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirEN</code></td>
+<td align="left"><code>2</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirES</code></td>
+<td align="left"><code>3</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirET</code></td>
+<td align="left"><code>4</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirFSI</code></td>
+<td align="left"><code>21</code></td>
+<td align="left">自 Qt 5.3 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirL</code></td>
+<td align="left"><code>0</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirLRE</code></td>
+<td align="left"><code>11</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirLRI</code></td>
+<td align="left"><code>19</code></td>
+<td align="left">自 Qt 5.3 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirLRO</code></td>
+<td align="left"><code>12</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirNSM</code></td>
+<td align="left"><code>17</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirON</code></td>
+<td align="left"><code>10</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirPDF</code></td>
+<td align="left"><code>16</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirPDI</code></td>
+<td align="left"><code>22</code></td>
+<td align="left">自 Qt 5.3 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirR</code></td>
+<td align="left"><code>1</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirRLE</code></td>
+<td align="left"><code>14</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirRLI</code></td>
+<td align="left"><code>20</code></td>
+<td align="left">自 Qt 5.3 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirRLO</code></td>
+<td align="left"><code>15</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirS</code></td>
+<td align="left"><code>8</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::DirWS</code></td>
+<td align="left"><code>9</code></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#direction">direction </a>().</p>
+<h3><span id="enum-qchar-joiningtype">enum QChar:: JoiningType</span><a href="#enum-qchar-joiningtype" class="header-anchor">#</a></h3><p>自 Qt 5.3 起</p>
+<p>此枚举类型定义了 Unicode 连接类型属性。 有关值的描述，请参阅 <a target="_blank" rel="noopener" href="https://www.unicode.org/">Unicode 标准</a>。</p>
+<p>为了符合 C/C++ 命名约定，“Joining_”被添加到 Unicode 标准中使用的代码之前。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QChar::Joining_None</code></td>
+<td align="left"><code>0</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Joining_Causing</code></td>
+<td align="left"><code>1</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Joining_Dual</code></td>
+<td align="left"><code>2</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Joining_Right</code></td>
+<td align="left"><code>3</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Joining_Left</code></td>
+<td align="left"><code>4</code></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Joining_Transparent</code></td>
+<td align="left"><code>5</code></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#joiningType">joiningType </a>().</p>
+<h3><span id="since-5-1-enum-qchar-script"><code>[since 5.1] </code>enum QChar:: Script</span><a href="#since-5-1-enum-qchar-script" class="header-anchor">#</a></h3><p>此枚举类型定义 Unicode 脚本属性值。</p>
+<p>有关 Unicode 脚本属性值的详细信息，请参阅 <a target="_blank" rel="noopener" href="https://www.unicode.org/reports/tr24/">Unicode 标准附件 #24</a>。</p>
+<p>为了符合 C/C++ 命名约定，“Script_”被添加到 Unicode 标准中使用的代码之前。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QChar::Script_Unknown</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">对于未分配、私人使用、非字符和代理代码点。</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Inherited</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">对于可以与多个脚本一起使用并且从前面的字符继承其脚本的字符。 这些包括非间距标记、封闭标记和零宽度连接符/非连接符。</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Common</code></td>
+<td align="left"><code>2</code></td>
+<td align="left">对于可以与多个脚本一起使用并且不从前面的字符继承其脚本的字符。</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Adlam</code></td>
+<td align="left"><code>132</code></td>
+<td align="left">自 Qt 5.11 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Ahom</code></td>
+<td align="left"><code>126</code></td>
+<td align="left">自 Qt 5.6 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_AnatolianHieroglyphs</code></td>
+<td align="left"><code>127</code></td>
+<td align="left">自 Qt 5.6 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Arabic</code></td>
+<td align="left"><code>8</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Armenian</code></td>
+<td align="left"><code>6</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Avestan</code></td>
+<td align="left"><code>80</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Balinese</code></td>
+<td align="left"><code>62</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Bamum</code></td>
+<td align="left"><code>84</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_BassaVah</code></td>
+<td align="left"><code>104</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Batak</code></td>
+<td align="left"><code>93</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Bengali</code></td>
+<td align="left"><code>12</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Bhaiksuki</code></td>
+<td align="left"><code>133</code></td>
+<td align="left">自 Qt 5.11 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Bopomofo</code></td>
+<td align="left"><code>36</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Brahmi</code></td>
+<td align="left"><code>94</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Braille</code></td>
+<td align="left"><code>54</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Buginese</code></td>
+<td align="left"><code>55</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Buhid</code></td>
+<td align="left"><code>44</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_CanadianAboriginal</code></td>
+<td align="left"><code>29</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Carian</code></td>
+<td align="left"><code>75</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_CaucasianAlbanian</code></td>
+<td align="left"><code>103</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Chakma</code></td>
+<td align="left"><code>96</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Cham</code></td>
+<td align="left"><code>77</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Cherokee</code></td>
+<td align="left"><code>28</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Chorasmian</code></td>
+<td align="left"><code>153</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Coptic</code></td>
+<td align="left"><code>46</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Cuneiform</code></td>
+<td align="left"><code>63</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Cypriot</code></td>
+<td align="left"><code>53</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Cyrillic</code></td>
+<td align="left"><code>5</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Deseret</code></td>
+<td align="left"><code>41</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Devanagari</code></td>
+<td align="left"><code>11</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_DivesAkuru</code></td>
+<td align="left"><code>154</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Dogra</code></td>
+<td align="left"><code>142</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Duployan</code></td>
+<td align="left"><code>105</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_EgyptianHieroglyphs</code></td>
+<td align="left"><code>81</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Elbasan</code></td>
+<td align="left"><code>106</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Elymaic</code></td>
+<td align="left"><code>149</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Ethiopic</code></td>
+<td align="left"><code>27</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Georgian</code></td>
+<td align="left"><code>25</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Glagolitic</code></td>
+<td align="left"><code>57</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Gothic</code></td>
+<td align="left"><code>40</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Grantha</code></td>
+<td align="left"><code>107</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Greek</code></td>
+<td align="left"><code>4</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Gujarati</code></td>
+<td align="left"><code>14</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_GunjalaGondi</code></td>
+<td align="left"><code>143</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Gurmukhi</code></td>
+<td align="left"><code>13</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Han</code></td>
+<td align="left"><code>37</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Hangul</code></td>
+<td align="left"><code>26</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_HanifiRohingya</code></td>
+<td align="left"><code>144</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Hanunoo</code></td>
+<td align="left"><code>43</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Hatran</code></td>
+<td align="left"><code>128</code></td>
+<td align="left">自 Qt 5.6 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Hebrew</code></td>
+<td align="left"><code>7</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Hiragana</code></td>
+<td align="left"><code>34</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_ImperialAramaic</code></td>
+<td align="left"><code>87</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_InscriptionalPahlavi</code></td>
+<td align="left"><code>90</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_InscriptionalParthian</code></td>
+<td align="left"><code>89</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Javanese</code></td>
+<td align="left"><code>85</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Kaithi</code></td>
+<td align="left"><code>92</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Kannada</code></td>
+<td align="left"><code>18</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Katakana</code></td>
+<td align="left"><code>35</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_KayahLi</code></td>
+<td align="left"><code>72</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Kharoshthi</code></td>
+<td align="left"><code>61</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_KhitanSmallScript</code></td>
+<td align="left"><code>155</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Khmer</code></td>
+<td align="left"><code>32</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Khojki</code></td>
+<td align="left"><code>109</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Khudawadi</code></td>
+<td align="left"><code>123</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Lao</code></td>
+<td align="left"><code>22</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Latin</code></td>
+<td align="left"><code>3</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Lepcha</code></td>
+<td align="left"><code>68</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Limbu</code></td>
+<td align="left"><code>47</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_LinearA</code></td>
+<td align="left"><code>110</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_LinearB</code></td>
+<td align="left"><code>49</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Lisu</code></td>
+<td align="left"><code>83</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Lycian</code></td>
+<td align="left"><code>74</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Lydian</code></td>
+<td align="left"><code>76</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Mahajani</code></td>
+<td align="left"><code>111</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Makasar</code></td>
+<td align="left"><code>145</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Malayalam</code></td>
+<td align="left"><code>19</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Mandaic</code></td>
+<td align="left"><code>95</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Manichaean</code></td>
+<td align="left"><code>112</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Marchen</code></td>
+<td align="left"><code>134</code></td>
+<td align="left">自 Qt 5.11 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_MasaramGondi</code></td>
+<td align="left"><code>138</code></td>
+<td align="left">自 Qt 5.11 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Medefaidrin</code></td>
+<td align="left"><code>146</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_MeeteiMayek</code></td>
+<td align="left"><code>86</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_MendeKikakui</code></td>
+<td align="left"><code>113</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_MeroiticCursive</code></td>
+<td align="left"><code>97</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_MeroiticHieroglyphs</code></td>
+<td align="left"><code>98</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Miao</code></td>
+<td align="left"><code>99</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Modi</code></td>
+<td align="left"><code>114</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Mongolian</code></td>
+<td align="left"><code>33</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Mro</code></td>
+<td align="left"><code>115</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Multani</code></td>
+<td align="left"><code>129</code></td>
+<td align="left">自 Qt 5.6 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Myanmar</code></td>
+<td align="left"><code>24</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Nabataean</code></td>
+<td align="left"><code>117</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Nandinagari</code></td>
+<td align="left"><code>150</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Newa</code></td>
+<td align="left"><code>135</code></td>
+<td align="left">自 Qt 5.11 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_NewTaiLue</code></td>
+<td align="left"><code>56</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Nko</code></td>
+<td align="left"><code>66</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Nushu</code></td>
+<td align="left"><code>139</code></td>
+<td align="left">自 Qt 5.11 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_NyiakengPuachueHmong</code></td>
+<td align="left"><code>151</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Ogham</code></td>
+<td align="left"><code>30</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_OlChiki</code></td>
+<td align="left"><code>69</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_OldHungarian</code></td>
+<td align="left"><code>130</code></td>
+<td align="left">自 Qt 5.6 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_OldItalic</code></td>
+<td align="left"><code>39</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_OldNorthArabian</code></td>
+<td align="left"><code>116</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_OldPermic</code></td>
+<td align="left"><code>120</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_OldPersian</code></td>
+<td align="left"><code>60</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_OldSogdian</code></td>
+<td align="left"><code>147</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_OldSouthArabian</code></td>
+<td align="left"><code>88</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_OldTurkic</code></td>
+<td align="left"><code>91</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Oriya</code></td>
+<td align="left"><code>15</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Osage</code></td>
+<td align="left"><code>136</code></td>
+<td align="left">自 Qt 5.11 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Osmanya</code></td>
+<td align="left"><code>52</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_PahawhHmong</code></td>
+<td align="left"><code>108</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Palmyrene</code></td>
+<td align="left"><code>118</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_PauCinHau</code></td>
+<td align="left"><code>119</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_PhagsPa</code></td>
+<td align="left"><code>65</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Phoenician</code></td>
+<td align="left"><code>64</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_PsalterPahlavi</code></td>
+<td align="left"><code>121</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Rejang</code></td>
+<td align="left"><code>73</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Runic</code></td>
+<td align="left"><code>31</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Samaritan</code></td>
+<td align="left"><code>82</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Saurashtra</code></td>
+<td align="left"><code>71</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Sharada</code></td>
+<td align="left"><code>100</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Shavian</code></td>
+<td align="left"><code>51</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Siddham</code></td>
+<td align="left"><code>122</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_SignWriting</code></td>
+<td align="left"><code>131</code></td>
+<td align="left">自 Qt 5.6 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Sinhala</code></td>
+<td align="left"><code>20</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Sogdian</code></td>
+<td align="left"><code>148</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_SoraSompeng</code></td>
+<td align="left"><code>101</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Soyombo</code></td>
+<td align="left"><code>140</code></td>
+<td align="left">自 Qt 5.11 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Sundanese</code></td>
+<td align="left"><code>67</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_SylotiNagri</code></td>
+<td align="left"><code>59</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Syriac</code></td>
+<td align="left"><code>9</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Tagalog</code></td>
+<td align="left"><code>42</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Tagbanwa</code></td>
+<td align="left"><code>45</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_TaiLe</code></td>
+<td align="left"><code>48</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_TaiTham</code></td>
+<td align="left"><code>78</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_TaiViet</code></td>
+<td align="left"><code>79</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Takri</code></td>
+<td align="left"><code>102</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Tamil</code></td>
+<td align="left"><code>16</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Tangut</code></td>
+<td align="left"><code>137</code></td>
+<td align="left">自 Qt 5.11 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Telugu</code></td>
+<td align="left"><code>17</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Thaana</code></td>
+<td align="left"><code>10</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Thai</code></td>
+<td align="left"><code>21</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Tibetan</code></td>
+<td align="left"><code>23</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Tifinagh</code></td>
+<td align="left"><code>58</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Tirhuta</code></td>
+<td align="left"><code>124</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Ugaritic</code></td>
+<td align="left"><code>50</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Vai</code></td>
+<td align="left"><code>70</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Wancho</code></td>
+<td align="left"><code>152</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_WarangCiti</code></td>
+<td align="left"><code>125</code></td>
+<td align="left">自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Yezidi</code></td>
+<td align="left"><code>156</code></td>
+<td align="left">自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_Yi</code></td>
+<td align="left"><code>38</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Script_ZanabazarSquare</code></td>
+<td align="left"><code>141</code></td>
+<td align="left">自 Qt 5.11 起</td>
+</tr>
+</tbody></table>
+<p>该枚举在 Qt 5.1 引入或被修改。</p>
+<p><strong>另请参阅</strong> <a href="#script">script </a>().</p>
+<h3><span id="enum-qchar-specialcharacter">enum QChar:: SpecialCharacter</span><a href="#enum-qchar-specialcharacter" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QChar::Null</code></td>
+<td align="left"><code>0x0000</code></td>
+<td align="left">一个<a href>QChar</a>有这个值的<a href="#isNull">isNull</a>()。</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Tabulation</code></td>
+<td align="left"><code>0x0009</code></td>
+<td align="left">字符表。</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::LineFeed</code></td>
+<td align="left"><code>0x000a</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::FormFeed</code></td>
+<td align="left"><code>0x000c</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::CarriageReturn</code></td>
+<td align="left"><code>0x000d</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Space</code></td>
+<td align="left"><code>0x0020</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Nbsp</code></td>
+<td align="left"><code>0x00a0</code></td>
+<td align="left">非断裂空间。</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::SoftHyphen</code></td>
+<td align="left"><code>0x00ad</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::ReplacementCharacter</code></td>
+<td align="left"><code>0xfffd</code></td>
+<td align="left">当一种字体没有某个代码点的字形时显示的字符。通常使用一个特殊的问号字符。当输入数据不能用Unicode表示时，编解码器会使用这个编码点。</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::ObjectReplacementCharacter</code></td>
+<td align="left"><code>0xfffc</code></td>
+<td align="left">用于表示一个物体，如图像，当这种物体不能被呈现时。</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::ByteOrderMark</code></td>
+<td align="left"><code>0xfeff</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::ByteOrderSwapped</code></td>
+<td align="left"><code>0xfffe</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::ParagraphSeparator</code></td>
+<td align="left"><code>0x2029</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::LineSeparator</code></td>
+<td align="left"><code>0x2028</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>QChar::VisualTabCharacter</code></td>
+<td align="left"><code>0x2192</code></td>
+<td align="left">用来表示一个表格的水平箭头。自6.2起。</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::LastValidCodePoint</code></td>
+<td align="left"><code>0x10ffff</code></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h3><span id="enum-qchar-unicodeversion">enum QChar:: UnicodeVersion</span><a href="#enum-qchar-unicodeversion" class="header-anchor">#</a></h3><p>指定哪个版本的 <a target="_blank" rel="noopener" href="https://www.unicode.org/">Unicode 标准</a> 引入了某个字符。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QChar::Unicode_1_1</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">版本 1.1</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_2_0</code></td>
+<td align="left"><code>2</code></td>
+<td align="left">版本 2.0</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_2_1_2</code></td>
+<td align="left"><code>3</code></td>
+<td align="left">版本 2.1.2</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_3_0</code></td>
+<td align="left"><code>4</code></td>
+<td align="left">版本 3.0</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_3_1</code></td>
+<td align="left"><code>5</code></td>
+<td align="left">版本 3.1</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_3_2</code></td>
+<td align="left"><code>6</code></td>
+<td align="left">版本 3.2</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_4_0</code></td>
+<td align="left"><code>7</code></td>
+<td align="left">版本 4.0</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_4_1</code></td>
+<td align="left"><code>8</code></td>
+<td align="left">版本 4.1</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_5_0</code></td>
+<td align="left"><code>9</code></td>
+<td align="left">版本 5.0</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_5_1</code></td>
+<td align="left"><code>10</code></td>
+<td align="left">版本 5.1</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_5_2</code></td>
+<td align="left"><code>11</code></td>
+<td align="left">版本 5.2</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_6_0</code></td>
+<td align="left"><code>12</code></td>
+<td align="left">版本 6.0</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_6_1</code></td>
+<td align="left"><code>13</code></td>
+<td align="left">版本 6.1</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_6_2</code></td>
+<td align="left"><code>14</code></td>
+<td align="left">版本 6.2</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_6_3</code></td>
+<td align="left"><code>15</code></td>
+<td align="left">版本 6.3 自 Qt 5.3 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_7_0</code></td>
+<td align="left"><code>16</code></td>
+<td align="left">版本 7.0 自 Qt 5.5 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_8_0</code></td>
+<td align="left"><code>17</code></td>
+<td align="left">版本 8.0 自 Qt 5.6 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_9_0</code></td>
+<td align="left"><code>18</code></td>
+<td align="left">版本 9.0 自 Qt 5.11 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_10_0</code></td>
+<td align="left"><code>19</code></td>
+<td align="left">版本 10.0 自 Qt 5.11 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_11_0</code></td>
+<td align="left"><code>20</code></td>
+<td align="left">版本 11.0 自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_12_0</code></td>
+<td align="left"><code>21</code></td>
+<td align="left">版本 12.0 自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_12_1</code></td>
+<td align="left"><code>22</code></td>
+<td align="left">版本 12.1 自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_13_0</code></td>
+<td align="left"><code>23</code></td>
+<td align="left">版本 13.0 自 Qt 5.15 起</td>
+</tr>
+<tr>
+<td align="left"><code>QChar::Unicode_Unassigned</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">该值未分配给 Unicode 8.0 版中的任何字符。</td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#unicodeVersion">unicode版本 </a>() 和 <a href="#currentUnicodeVersion">currentUnicode版本 </a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qchar-qchar-uchar-ch">QChar:: QChar ( <em>ch</em> )</span><a href="#qchar-qchar-uchar-ch" class="header-anchor">#</a></h3><p>构造一个对应于 ASCII/Latin-1 字符 <em>ch</em> 的 QChar。</p>
+<p><strong>注意：</strong> 当 <code>QT_NO_CAST_FROM_ASCII </code> 或 <code>QT_RESTRICTED_CAST_FROM_ASCII </code>被定义时，此构造函数不可用。</p>
+<p><strong>另请参阅</strong> <a href="qstring.html#QT_NO_CAST_FROM_ASCII">QT_NO_CAST_FROM_ASCII </a>and <a href="qstring.html#QT_RESTRICTED_CAST_FROM_ASCII">QT_RESTRICTED_CAST_FROM_ASCII </a>.</p>
+<h3><span id="qchar-qchar-char-ch">QChar:: QChar ( char <em>ch</em> )</span><a href="#qchar-qchar-char-ch" class="header-anchor">#</a></h3><p>构造一个对应于 ASCII/Latin-1 字符 <em>ch</em> 的 QChar。</p>
+<p><strong>注意：</strong> 当定义了 <code>QT_NO_CAST_FROM_ASCII </code>时，此构造函数不可用。</p>
+<p><strong>另请参阅</strong> <a href="qstring.html#QT_NO_CAST_FROM_ASCII">QT_NO_CAST_FROM_ASCII </a>.</p>
+<h3><span id="since-5-10-qchar-qchar-wchar-t-ch"><code>[since 5.10] </code>QChar:: QChar ( wchar_t <em>ch</em> )</span><a href="#since-5-10-qchar-qchar-wchar-t-ch" class="header-anchor">#</a></h3><p>构造一个对应于宽字符 <em>ch</em> 的 QChar。</p>
+<p><strong>注意：</strong> 此构造函数仅在 Windows 上可用。</p>
+<p>该函数在 Qt 5.10 引入。</p>
+<h3><span id="since-5-10-qchar-qchar-char16-t-ch"><code>[since 5.10] </code>QChar:: QChar ( char16_t <em>ch</em> )</span><a href="#since-5-10-qchar-qchar-char16-t-ch" class="header-anchor">#</a></h3><p>构造一个对应于 UTF-16 字符 <em>ch</em> 的 QChar。</p>
+<p>该函数在 Qt 5.10 引入。</p>
+<h3><span id="qchar-qchar-qlatin1char-ch">QChar:: QChar ( <em>ch</em> )</span><a href="#qchar-qchar-qlatin1char-ch" class="header-anchor">#</a></h3><p>构造一个对应于 ASCII/Latin-1 字符 <em>ch</em> 的 QChar。</p>
+<h3><span id="qchar-qchar-qchar-specialcharacter-ch">QChar:: QChar ( <em>ch</em> )</span><a href="#qchar-qchar-qchar-specialcharacter-ch" class="header-anchor">#</a></h3><p>为预定义的字符值 <em>ch</em> 构造一个 QChar。</p>
+<h3><span id="qchar-qchar-int-code">QChar:: QChar ( int <em>code</em> )</span><a href="#qchar-qchar-int-code" class="header-anchor">#</a></h3><p>为具有 Unicode 代码点 <em>code</em> 的字符构造 QChar。 </p>
+<h3><span id="qchar-qchar-uint-code">QChar:: QChar ( <em>code</em> )</span><a href="#qchar-qchar-uint-code" class="header-anchor">#</a></h3><p>为具有 Unicode 代码点 <em>code</em> 的字符构造 QChar。 </p>
+<h3><span id="qchar-qchar-short-code">QChar:: QChar ( short <em>code</em> )</span><a href="#qchar-qchar-short-code" class="header-anchor">#</a></h3><p>为具有 Unicode 代码点 <em>code</em> 的字符构造 QChar。 </p>
+<h3><span id="qchar-qchar-uchar-cell-uchar-row">QChar:: QChar ( <em>cell</em> , <em>row</em> )</span><a href="#qchar-qchar-uchar-cell-uchar-row" class="header-anchor">#</a></h3><p>为行 <em>row</em> 中的 Unicode 单元 <em>cell</em> 构造一个 QChar。</p>
+<p><strong>另请参阅</strong> <a href="#cell">cell </a>() 和 <a href="#row">row </a>().</p>
+<h3><span id="qchar-qchar-ushort-code">QChar:: QChar ( <em>code</em> )</span><a href="#qchar-qchar-ushort-code" class="header-anchor">#</a></h3><p>为具有 Unicode 代码点 <em>code</em> 的字符构造 QChar。 </p>
+<h3><span id="qchar-qchar">QChar:: QChar ()</span><a href="#qchar-qchar" class="header-anchor">#</a></h3><p>构造一个空 QChar (‘\0’)。</p>
+<p><strong>另请参阅</strong> <a href="#isNull">isNull </a>().</p>
+<h3><span id="qchar-category-qchar-category-const">QChar:: category () const</span><a href="#qchar-category-qchar-category-const" class="header-anchor">#</a></h3><p>返回角色的类别。</p>
+<h3><span id="static-qchar-category-qchar-category-char32-t-ucs4"><code>[static] </code>QChar:: category ( char32_t <em>ucs4</em> )</span><a href="#static-qchar-category-qchar-category-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回由 <em>ucs4</em> 指定的 UCS-4 编码字符的类别。</p>
+<p><strong>注意：</strong>在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<h3><span id="uchar-qchar-cell-const">QChar:: cell () const</span><a href="#uchar-qchar-cell-const" class="header-anchor">#</a></h3><p>返回 Unicode 字符的单元格（最低有效字节）。</p>
+<p><strong>另请参阅</strong> <a href="#row">row </a>().</p>
+<h3><span id="unsigned-char-qchar-combiningclass-const">unsigned char QChar:: combiningClass () const</span><a href="#unsigned-char-qchar-combiningclass-const" class="header-anchor">#</a></h3><p>返回 Unicode 标准中定义的字符的组合类。 这主要用作附加到基本字符的标记的定位提示。</p>
+<p>Qt 文本渲染引擎使用此信息来正确定位基本字符周围的非间距标记。</p>
+<h3><span id="static-unsigned-char-qchar-combiningclass-char32-t-ucs4"><code>[static] </code>unsigned char QChar:: combiningClass ( char32_t <em>ucs4</em> )</span><a href="#static-unsigned-char-qchar-combiningclass-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回由 <em>ucs4</em> 指定的 UCS-4 编码字符的组合类，如 Unicode 标准中所定义。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<h3><span id="static-qchar-unicode-ban-ben-qchar-currentunicode-ban-ben"><code>[static] </code>QChar:: currentUnicode版本 ()</span><a href="#static-qchar-unicode-ban-ben-qchar-currentunicode-ban-ben" class="header-anchor">#</a></h3><p>返回最新支持的 Unicode 版本。</p>
+<h3><span id="qstring-qchar-decomposition-const">QChar:: decomposition () const</span><a href="#qstring-qchar-decomposition-const" class="header-anchor">#</a></h3><p>将字符分解为其组成部分。 如果不存在分解，则返回一个空字符串。</p>
+<h3><span id="static-qstring-qchar-decomposition-char32-t-ucs4"><code>[static] </code>QChar:: decomposition ( char32_t <em>ucs4</em> )</span><a href="#static-qstring-qchar-decomposition-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>将<em>ucs4</em>指定的UCS-4编码的字符分解为其组成部分。如果不存在分解，则返回一个空字符串。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<h3><span id="qchar-decomposition-qchar-decompositiontag-const">QChar:: decompositionTag () const</span><a href="#qchar-decomposition-qchar-decompositiontag-const" class="header-anchor">#</a></h3><p>返回定义字符组成的标签。如果不存在分解，则返回<a href="#Decomposition-enum">QChar::NoDecomposition</a>。</p>
+<h3><span id="static-qchar-decomposition-qchar-decompositiontag-char32-t-ucs4"><code>[static] </code>QChar:: decompositionTag ( char32_t <em>ucs4</em> )</span><a href="#static-qchar-decomposition-qchar-decompositiontag-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回定义由<em>ucs4</em>指定的UCS-4编码字符组成的标签。 如果不存在分解，则返回<a href="#Decomposition-enum">QChar::NoDecomposition</a>。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<h3><span id="int-qchar-digitvalue-const">int QChar:: digitValue () const</span><a href="#int-qchar-digitvalue-const" class="header-anchor">#</a></h3><p>返回数字的数值，如果该字符不是数字，则返回-1。</p>
+<h3><span id="static-int-qchar-digitvalue-char32-t-ucs4"><code>[static] </code>int QChar:: digitValue ( char32_t <em>ucs4</em> )</span><a href="#static-int-qchar-digitvalue-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回由UCS-4编码的字符<em>ucs4</em>指定的数字值，如果该字符不是数字，则返回-1。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<h3><span id="qchar-direction-qchar-direction-const">QChar:: direction () const</span><a href="#qchar-direction-qchar-direction-const" class="header-anchor">#</a></h3><p>返回字符的方向。</p>
+<h3><span id="static-qchar-direction-qchar-direction-char32-t-ucs4"><code>[static] </code>QChar:: direction ( char32_t <em>ucs4</em> )</span><a href="#static-qchar-direction-qchar-direction-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回由<em>ucs4</em>指定的UCS-4编码字符的方向。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<h3><span id="static-qchar-qchar-fromlatin1-char-c"><code>[static] </code>QChar:: fromLatin1 ( char <em>c</em> )</span><a href="#static-qchar-qchar-fromlatin1-char-c" class="header-anchor">#</a></h3><p>将Latin-1字符<em>c</em>转换为其对应的<a href>QChar</a>。这主要对非国际化的软件有用。</p>
+<p>另一种方法是使用<a href="qlatin1char.html">QLatin1Char</a>。</p>
+<p><strong>另请参阅</strong> <a href="#toLatin1">toLatin1 </a>() 和 <a href="#unicode">unicode </a>().</p>
+<h3><span id="static-since-6-0-qchar-qchar-fromucs2-char16-t-c"><code>[static, since 6.0] </code>QChar:: fromUcs2 ( char16_t <em>c</em> )</span><a href="#static-since-6-0-qchar-qchar-fromucs2-char16-t-c" class="header-anchor">#</a></h3><p>构造 <a href>QChar</a>来自UTF-16字符<em>c</em>。</p>
+<p>该函数在 Qt 6.0 引入。</p>
+<p><strong>另请参阅</strong> <a href="#fromUcs4">fromUcs4 </a>().</p>
+<h3><span id="static-since-6-0-r-qchar-fromucs4-char32-t-c"><code>[static, since 6.0] </code>R QChar:: fromUcs4 ( char32_t <em>c</em> )</span><a href="#static-since-6-0-r-qchar-fromucs4-char32-t-c" class="header-anchor">#</a></h3><p>返回一个匿名结构，其中</p>
+<ul>
+<li>包含一个<code>char16_t chars[2] </code>array。</li>
+<li>可以隐含地转换为一个<a href="qstringview.html">QStringView</a>，和</li>
+<li>用C++11范围内的for循环进行迭代。</li>
+</ul>
+<p>如果<em>c</em>需要代理，<code>chars[0]</code>包含高位代理，<code>chars[1]</code>包含低位代理，并且<a href="qstringview.html">QStringView</a>大小为2。否则，<code>chars[0] </code>包含<em>c</em>，<code>chars[1] </code>是<a href="#isNull">null</a>，和<a href="qstringview.html">QStringView</a>有大小1。</p>
+<p>这样可以方便地使用结果：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QString s;
+s += QChar::<span class="hljs-built_in">fromUcs4</span>(ch);
+							
+<span class="hljs-keyword">for</span> (<span class="hljs-type">char16_t</span> c16 : QChar::<span class="hljs-built_in">fromUcs4</span>(ch))
+    <span class="hljs-built_in">use</span>(c16);</code></pre></div>
+
+<p>该函数在 Qt 6.0 引入。</p>
+<p><strong>另请参阅</strong> <a href="#fromUcs2">fromUcs2 </a>() 和 <a href="#requiresSurrogates">requiresSurrogates </a>().</p>
+<h3><span id="bool-qchar-hasmirrored-const">bool QChar:: hasMirrored () const</span><a href="#bool-qchar-hasmirrored-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果文本方向颠倒，该字符应被颠倒；否则返回 <code>false </code>。</p>
+<p>相当于(ch.<a href="#mirroredChar">mirroredChar</a>()!=ch)的一点速度。</p>
+<p><strong>另请参阅</strong> <a href="#mirroredChar">mirroredChar </a>().</p>
+<h3><span id="static-since-5-0-bool-qchar-hasmirrored-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: hasMirrored ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-hasmirrored-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码的字符在文本方向相反的情况下应该被反转；否则返回 <code>false </code>。</p>
+<p>相当于( <a href="#mirroredChar">QChar::mirroredChar </a>(ucs4) != ucs4)的速度快一点。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<p><strong>另请参阅</strong> <a href="#mirroredChar">mirroredChar </a>().</p>
+<h3><span id="static-char16-t-qchar-highsurrogate-char32-t-ucs4"><code>[static] </code>char16_t QChar:: highSurrogate ( char32_t <em>ucs4</em> )</span><a href="#static-char16-t-qchar-highsurrogate-char32-t-ucs4" class="header-anchor">#</a></h3><p>返回一个UCS-4编码的高代用部分的代码点。如果<em>ucs4</em>小于0x10000，则返回的结果未定义。</p>
+<p><strong>注意：</strong>在Qt 6之前，这个函数接受一个<code>uint</code>参数并返回<code>ushort</code>。</p>
+<h3><span id="bool-qchar-isdigit-const">bool QChar:: isDigit () const</span><a href="#bool-qchar-isdigit-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该字符是一个十进制数字（<a href="#Category-enum">Number_DecimalDigit</a>）；否则返回<code>false </code>。</p>
+<p><strong>另请参阅</strong> <a href="#isNumber">isNumber </a>().</p>
+<h3><span id="static-since-5-0-bool-qchar-isdigit-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isDigit ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-isdigit-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是一个十进制数字（<a href="#Category-enum">Number_DecimalDigit</a>）；否则返回<code>false </code>。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<p><strong>另请参阅</strong> <a href="#isNumber">isNumber </a>().</p>
+<h3><span id="bool-qchar-ishighsurrogate-const">bool QChar:: isHighSurrogate () const</span><a href="#bool-qchar-ishighsurrogate-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若 <a href>QChar </a>是一个UTF16代理的高位部分（例如，如果它的代码点在[0xd800…0xdbff]范围内）；否则为false。</p>
+<h3><span id="static-bool-qchar-ishighsurrogate-char32-t-ucs4"><code>[static] </code>bool QChar:: isHighSurrogate ( char32_t <em>ucs4</em> )</span><a href="#static-bool-qchar-ishighsurrogate-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是UTF16代理的高位部分（例如，如果其码位在[0xd800…0xdbff]范围内）；否则为false。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<h3><span id="bool-qchar-isletter-const">bool QChar:: isLetter () const</span><a href="#bool-qchar-isletter-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该字符是一个字母（Letter_*类别）；否则返回 <code>false </code>。</p>
+<h3><span id="static-since-5-0-bool-qchar-isletter-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isLetter ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-isletter-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是一个字母（Letter_*类别）；否则返回<code>false </code>。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="bool-qchar-isletterornumber-const">bool QChar:: isLetterOrNumber () const</span><a href="#bool-qchar-isletterornumber-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果字符是字母或数字（Letter_*或Number_*类别）；否则返回 <code>false </code>。</p>
+<h3><span id="static-since-5-0-bool-qchar-isletterornumber-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isLetterOrNumber ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-isletterornumber-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是一个字母或数字（Letter_*或Number_*类别）；否则返回<code>false </code>。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="bool-qchar-islowsurrogate-const">bool QChar:: isLowSurrogate () const</span><a href="#bool-qchar-islowsurrogate-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若 <a href>QChar </a>是一个UTF16代理的低部分（例如，如果它的代码点在[0xdc00…0xdfff]范围内）；否则为false。</p>
+<h3><span id="static-bool-qchar-islowsurrogate-char32-t-ucs4"><code>[static] </code>bool QChar:: isLowSurrogate ( char32_t <em>ucs4</em> )</span><a href="#static-bool-qchar-islowsurrogate-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是UTF16代理的低部分（例如，如果其码位在[0xdc00…0xdfff]范围内）；否则为false。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<h3><span id="bool-qchar-islower-const">bool QChar:: isLower () const</span><a href="#bool-qchar-islower-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该字符是小写字母，例如 <a href="#category">category </a>() 是 <a href="#Category-enum">Letter_Lowercase </a>。</p>
+<p><strong>另请参阅</strong> <a href="#isUpper">isUpper </a>(), <a href="#toLower">toLower </a>()，和 <a href="#toUpper">toUpper </a>().</p>
+<h3><span id="static-since-5-0-bool-qchar-islower-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isLower ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-islower-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是小写字母，例如 <a href="#category">category </a>() 是 <a href="#Category-enum">Letter_Lowercase </a>。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<p><strong>另请参阅</strong> <a href="#isUpper">isUpper </a>(), <a href="#toLower">toLower </a>()，和 <a href="#toUpper">toUpper </a>().</p>
+<h3><span id="bool-qchar-ismark-const">bool QChar:: isMark () const</span><a href="#bool-qchar-ismark-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该字符是一个标记（Mark_* 类别）；否则返回 <code>false </code>。</p>
+<p>见 <a href="#Category-enum">QChar::Category </a>了解更多关于标记的信息。</p>
+<h3><span id="static-since-5-0-bool-qchar-ismark-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isMark ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-ismark-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是一个标记（Mark_*类别）；否则返回<code>false </code>。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="since-5-0-bool-qchar-isnoncharacter-const"><code>[since 5.0] </code>bool QChar:: isNonCharacter () const</span><a href="#since-5-0-bool-qchar-isnoncharacter-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若 <a href>QChar </a>是一个非字符；否则为false。</p>
+<p>Unicode有一定数量的代码点被归类为 “非字符”：也就是说，它们可以在应用程序中用于内部用途，但不能用于文本交换。这些是每个Unicode平面的最后两个条目（[0xfffe…0xffff]，[0x1fffe…0x1ffff]，等等），以及范围[0xfdd0…0xfdef]中的条目。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="static-since-5-0-bool-qchar-isnoncharacter-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isNonCharacter ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-isnoncharacter-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true</code>如果<em>ucs4</em>指定的UCS-4编码字符是非字符； 否则为假。</p>
+<p>Unicode 有一定数量的代码点被归类为“非字符：”，也就是说，它们可以在应用程序中用于内部目的，但不能用于文本交换。 这些是每个 Unicode 平面的最后两个条目（[0xfffe..0xffff]、[0x1fffe..0x1ffff] 等）以及范围 [0xfdd0..0xfdef] 中的条目。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="bool-qchar-isnull-const">bool QChar:: isNull () const</span><a href="#bool-qchar-isnull-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该字符是Unicode字符0x0000 (‘\0’)；否则返回 <code>false </code>。</p>
+<h3><span id="bool-qchar-isnumber-const">bool QChar:: isNumber () const</span><a href="#bool-qchar-isnumber-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该字符是一个数字（Number_*类别，不仅仅是0-9）；否则返回<code>false </code>。</p>
+<p><strong>另请参阅</strong> <a href="#isDigit">isDigit </a>().</p>
+<h3><span id="static-since-5-0-bool-qchar-isnumber-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isNumber ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-isnumber-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是一个数字（Number_*类别，不只是0-9）；否则返回<code>false </code>。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<p><strong>另请参阅</strong> <a href="#isDigit">isDigit </a>().</p>
+<h3><span id="bool-qchar-isprint-const">bool QChar:: isPrint () const</span><a href="#bool-qchar-isprint-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该字符是一个可打印的字符；否则返回 <code>false </code>。这是任何不属于<a href="qjniobject.html#other">Other_</a>*类别的字符。</p>
+<p>请注意，这并不能说明该字符在某一特定字体中是否可用。</p>
+<h3><span id="static-since-5-0-bool-qchar-isprint-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isPrint ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-isprint-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是一个可打印的字符；否则返回<code>false </code>。这是任何不属于<a href="qjniobject.html#other">Other_</a>*类别的字符。</p>
+<p>请注意，这并不能说明该字符在某一特定字体中是否可用。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="bool-qchar-ispunct-const">bool QChar:: isPunct () const</span><a href="#bool-qchar-ispunct-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该字符是一个标点符号（Punctuation_*类别）；否则返回 <code>false </code>。</p>
+<h3><span id="static-since-5-0-bool-qchar-ispunct-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isPunct ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-ispunct-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是一个标点符号（Punctuation_*类别）；否则返回<code>false </code>。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="bool-qchar-isspace-const">bool QChar:: isSpace () const</span><a href="#bool-qchar-isspace-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该字符是一个分隔符（Separator_*类别或<a href="#Category-enum">Other_Control</a>类别中的某些代码点）；否则返回<code>false </code>。</p>
+<h3><span id="static-since-5-0-bool-qchar-isspace-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isSpace ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-isspace-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是一个分隔符（Separator_*类别或<a href="#Category-enum">Other_Control</a>类别中的某些代码点）；否则返回`false。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="since-5-0-bool-qchar-issurrogate-const"><code>[since 5.0] </code>bool QChar:: isSurrogate () const</span><a href="#since-5-0-bool-qchar-issurrogate-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>若 <a href>QChar</a>包含的码位在UTF-16代理范围的高位或低位（例如，如果它的码位在范围[0xd800…0xdfff]）；否则为false。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="static-since-5-0-bool-qchar-issurrogate-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isSurrogate ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-issurrogate-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符包含的码位在UTF-16代理范围的高位或低位（例如，如果其码位在[0xd800…0xdfff]范围内）；否则为false。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="bool-qchar-issymbol-const">bool QChar:: isSymbol () const</span><a href="#bool-qchar-issymbol-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该字符是一个符号（Symbol_*类别）；否则返回 <code>false </code>。</p>
+<h3><span id="static-since-5-0-bool-qchar-issymbol-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isSymbol ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-issymbol-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是一个符号（Symbol_*类别）；否则返回<code>false </code>。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="bool-qchar-istitlecase-const">bool QChar:: isTitleCase () const</span><a href="#bool-qchar-istitlecase-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果该字符是一个大写字母，例如 <a href="#category">category </a>() 是 <a href="#Category-enum">Letter_Titlecase </a>。</p>
+<p><strong>另请参阅</strong> <a href="#isLower">isLower </a>(), <a href="#toUpper">toUpper </a>(), <a href="#toLower">toLower </a>()，和 <a href="#toTitleCase">toTitleCase </a>().</p>
+<h3><span id="static-since-5-0-bool-qchar-istitlecase-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isTitleCase ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-istitlecase-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是一个大写字母，例如 <a href="#category">category </a>() 是 <a href="#Category-enum">Letter_Titlecase </a>。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<p><strong>另请参阅</strong> <a href="#isLower">isLower </a>(), <a href="#toUpper">toUpper </a>(), <a href="#toLower">toLower </a>()，和 <a href="#toTitleCase">toTitleCase </a>().</p>
+<h3><span id="bool-qchar-isupper-const">bool QChar:: isUpper () const</span><a href="#bool-qchar-isupper-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果字符是大写字母，例如 <a href="#category">category </a>() 是 <a href="#Category-enum">Letter_Uppercase </a> 。</p>
+<p><strong>另请参阅</strong> <a href="#isLower">isLower </a>(), <a href="#toUpper">toUpper </a>()，和 <a href="#toLower">toLower </a>().</p>
+<h3><span id="static-since-5-0-bool-qchar-isupper-char32-t-ucs4"><code>[static, since 5.0] </code>bool QChar:: isUpper ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-0-bool-qchar-isupper-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符是一个大写字母，例如<a href="#category">category</a>() 是 <a href="#Category-enum">Letter_Uppercase </a>.</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<p><strong>另请参阅</strong> <a href="#isLower">isLower </a>(), <a href="#toUpper">toUpper </a>()，和 <a href="#toLower">toLower </a>().</p>
+<h3><span id="since-5-3-qchar-joiningtype-qchar-joiningtype-const"><code>[since 5.3] </code>QChar:: joiningType () const</span><a href="#since-5-3-qchar-joiningtype-qchar-joiningtype-const" class="header-anchor">#</a></h3><p>返回关于字符的连接类型属性的信息（对于某些语言如阿拉伯语或叙利亚语需要）。</p>
+<p>该函数在 Qt 5.3 引入。</p>
+<h3><span id="static-since-5-3-qchar-joiningtype-qchar-joiningtype-char32-t-ucs4"><code>[static, since 5.3] </code>QChar:: joiningType ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-3-qchar-joiningtype-qchar-joiningtype-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回由<em>ucs4</em>指定的UCS-4编码字符的连接类型属性信息（某些语言如阿拉伯语或叙利亚语需要）。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.3 引入。</p>
+<h3><span id="static-char16-t-qchar-lowsurrogate-char32-t-ucs4"><code>[static] </code>char16_t QChar:: lowSurrogate ( char32_t <em>ucs4</em> )</span><a href="#static-char16-t-qchar-lowsurrogate-char32-t-ucs4" class="header-anchor">#</a></h3><p>返回一个UCS-4编码的低代用部分。如果<em>ucs4</em>小于0x10000，则返回的结果未定义。</p>
+<p><strong>注意：</strong>在Qt 6之前，这个函数接受一个<code>uint</code>参数并返回<code>ushort</code>。</p>
+<h3><span id="qchar-qchar-mirroredchar-const">QChar:: mirroredChar () const</span><a href="#qchar-qchar-mirroredchar-const" class="header-anchor">#</a></h3><p>如果该字符是一个镜像字符，则返回镜像字符；否则返回字符本身。</p>
+<p><strong>另请参阅</strong> <a href="#hasMirrored">hasMirrored </a>().</p>
+<h3><span id="static-char32-t-qchar-mirroredchar-char32-t-ucs4"><code>[static] </code>char32_t QChar:: mirroredChar ( char32_t <em>ucs4</em> )</span><a href="#static-char32-t-qchar-mirroredchar-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>如果<em>ucs4</em>指定的UCS-4编码字符是一个镜像字符，则返回镜像字符；否则返回字符本身。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数接受一个<code>uint</code>参数并返回<code>uint</code>。</p>
+<p><strong>另请参阅</strong> <a href="#hasMirrored">hasMirrored </a>().</p>
+<h3><span id="static-bool-qchar-requiressurrogates-char32-t-ucs4"><code>[static] </code>bool QChar:: requiresSurrogates ( char32_t <em>ucs4</em> )</span><a href="#static-bool-qchar-requiressurrogates-char32-t-ucs4" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果<em>ucs4</em>指定的UCS-4编码字符可以被分割成UTF16代理的高低部分（例如，如果其码位大于或等于0x10000）；否则为false。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<h3><span id="uchar-qchar-row-const">QChar:: row () const</span><a href="#uchar-qchar-row-const" class="header-anchor">#</a></h3><p>返回Unicode字符的行（最有意义的字节）。</p>
+<p><strong>另请参阅</strong> <a href="#cell">cell </a>().</p>
+<h3><span id="since-5-1-qchar-script-qchar-script-const"><code>[since 5.1] </code>QChar:: script () const</span><a href="#since-5-1-qchar-script-qchar-script-const" class="header-anchor">#</a></h3><p>返回该字符的Unicode脚本属性值。</p>
+<p>该函数在 Qt 5.1 引入。</p>
+<h3><span id="static-since-5-1-qchar-script-qchar-script-char32-t-ucs4"><code>[static, since 5.1] </code>QChar:: script ( char32_t <em>ucs4</em> )</span><a href="#static-since-5-1-qchar-script-qchar-script-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>将其 UCS-4 编码形式中指定的字符的 Unicode 脚本属性值返回为 <em>ucs4</em> 。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<p>该函数在 Qt 5.1 引入。</p>
+<h3><span id="static-char32-t-qchar-surrogatetoucs4-char16-t-high-char16-t-low"><code>[static] </code>char32_t QChar:: surrogateToUcs4 ( char16_t <em>high</em> , char16_t <em>low</em> )</span><a href="#static-char32-t-qchar-surrogatetoucs4-char16-t-high-char16-t-low" class="header-anchor">#</a></h3><p>将一个具有给定<em>high</em> 和<em>low</em> 值的UTF16代理对转换为它的UCS-4编码的码位。</p>
+<p><strong>注意：</strong>在 Qt 6 之前，此函数接受 <code>ushort</code> 参数并返回 <code>uint</code>。</p>
+<h3><span id="static-char32-t-qchar-surrogatetoucs4-qchar-high-qchar-low"><code>[static] </code>char32_t QChar:: surrogateToUcs4 ( <em>high</em> , <em>low</em> )</span><a href="#static-char32-t-qchar-surrogatetoucs4-qchar-high-qchar-low" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>将一个UTF16代理对（<em>高</em> ，<em>低</em> ）转换为它的UCS-4编码的码位。</p>
+<p><strong>注意：</strong>在Qt 6之前，这个函数返回 “uint”。</p>
+<h3><span id="qchar-qchar-tocasefolded-const">QChar:: toCaseFolded () const</span><a href="#qchar-qchar-tocasefolded-const" class="header-anchor">#</a></h3><p>返回该字符的大小写折叠等价物。对于大多数Unicode字符，这与<a href="#toLower">toLower</a>()相同。</p>
+<h3><span id="static-char32-t-qchar-tocasefolded-char32-t-ucs4"><code>[static] </code>char32_t QChar:: toCaseFolded ( char32_t <em>ucs4</em> )</span><a href="#static-char32-t-qchar-tocasefolded-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回由<em>ucs4</em>指定的UCS-4编码字符的大小写折叠等值。对于大多数Unicode字符，这与<a href="#toLower">toLower</a>()相同。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数接受一个<code>uint</code>参数并返回<code>uint</code>。</p>
+<h3><span id="char-qchar-tolatin1-const">char QChar:: toLatin1 () const</span><a href="#char-qchar-tolatin1-const" class="header-anchor">#</a></h3><p>返回相当于<a href>QChar </a>的Latin-1字符，或0。这主要对非国际化的软件有用。</p>
+<p><strong>注意：</strong>无法区分非拉丁-1字符和拉丁-1 0（NUL）字符。倾向于使用<a href="#unicode">unicode</a>()，它不存在这种模糊性。</p>
+<p><strong>另请参阅</strong> <a href="#unicode">unicode </a>().</p>
+<h3><span id="qchar-qchar-tolower-const">QChar:: toLower () const</span><a href="#qchar-qchar-tolower-const" class="header-anchor">#</a></h3><p>如果该字符是大写字母或标题大写字母，则返回小写字母；否则返回该字符本身。</p>
+<h3><span id="static-char32-t-qchar-tolower-char32-t-ucs4"><code>[static] </code>char32_t QChar:: toLower ( char32_t <em>ucs4</em> )</span><a href="#static-char32-t-qchar-tolower-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>如果字符是小写或首字母大写，则返回由 <em>ucs4</em> 指定的 UCS-4 编码字符的大写等效字符； 否则返回字符本身。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数接受一个<code>uint</code>参数并返回<code>uint</code>。</p>
+<h3><span id="qchar-qchar-totitlecase-const">QChar:: toTitleCase () const</span><a href="#qchar-qchar-totitlecase-const" class="header-anchor">#</a></h3><p>如果字符是小写或大写，则返回等效的标题大小写； 否则返回字符本身。</p>
+<h3><span id="static-char32-t-qchar-totitlecase-char32-t-ucs4"><code>[static] </code>char32_t QChar:: toTitleCase ( char32_t <em>ucs4</em> )</span><a href="#static-char32-t-qchar-totitlecase-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>如果字符是小写或大写，则返回与 <em>ucs4</em> 指定的 UCS-4 编码字符等效的标题大小写； 否则返回字符本身。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数接受一个<code>uint</code>参数并返回<code>uint</code>。</p>
+<h3><span id="qchar-qchar-toupper-const">QChar:: toUpper () const</span><a href="#qchar-qchar-toupper-const" class="header-anchor">#</a></h3><p>如果字符是小写或大写，则返回等效的大写； 否则返回字符本身。</p>
+<h3><span id="static-char32-t-qchar-toupper-char32-t-ucs4"><code>[static] </code>char32_t QChar:: toUpper ( char32_t <em>ucs4</em> )</span><a href="#static-char32-t-qchar-toupper-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>如果字符是小写或首字母大写，则返回由 <em>ucs4</em> 指定的 UCS-4 编码字符的大写等效字符； 否则返回字符本身。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数接受一个<code>uint</code>参数并返回<code>uint</code>。</p>
+<h3><span id="char16-t-qchar-unicode-const">char16_t QChar:: unicode () const</span><a href="#char16-t-qchar-unicode-const" class="header-anchor">#</a></h3><p>返回 <a href>QChar </a> 的数字 Unicode 值。</p>
+<h3><span id="char16-t-amp-qchar-unicode">char16_t &amp;QChar:: unicode ()</span><a href="#char16-t-amp-qchar-unicode" class="header-anchor">#</a></h3><p>返回对 <a href>QChar </a> 的数字 Unicode 值的引用。</p>
+<h3><span id="qchar-unicode-ban-ben-qchar-unicode-ban-ben-const">QChar:: unicode版本 () const</span><a href="#qchar-unicode-ban-ben-qchar-unicode-ban-ben-const" class="header-anchor">#</a></h3><p>Returns the Unicode 版本 that introduced this character.</p>
+<h3><span id="static-qchar-unicode-ban-ben-qchar-unicode-ban-ben-char32-t-ucs4"><code>[static] </code>QChar:: unicode版本 ( char32_t <em>ucs4</em> )</span><a href="#static-qchar-unicode-ban-ben-qchar-unicode-ban-ben-char32-t-ucs4" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>返回将其 UCS-4 编码形式中指定的字符作为 <em>ucs4</em> 引入的 Unicode 版本。</p>
+<p><strong>注意：</strong> 在Qt 6之前，这个函数需要一个<code>uint </code>自变量。</p>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><h3><span id="bool-operator-qchar-c1-qchar-c2">bool operator!= ( <em>c1</em> , <em>c2</em> )</span><a href="#bool-operator-qchar-c1-qchar-c2" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果<em>c1</em>的数字Unicode值不等于<em>c2</em>的数字；否则返回 <code>false </code>.</p>
+<h3><span id="bool-operator-lt-qchar-c1-qchar-c2">bool operator&lt; ( <em>c1</em> , <em>c2</em> )</span><a href="#bool-operator-lt-qchar-c1-qchar-c2" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果<em>c1</em>的数字Unicode值小于<em>c2</em>；否则返回 <code>false </code>。</p>
+<h3><span id="qdatastream-amp-operator-lt-lt-qdatastream-amp-out-qchar-chr">&amp; operator&lt;&lt; ( &amp; <em>out</em> , <em>chr</em> )</span><a href="#qdatastream-amp-operator-lt-lt-qdatastream-amp-out-qchar-chr" class="header-anchor">#</a></h3><p>写入char <em>chr</em> 到流 <em>out</em> 。</p>
+<p><strong>另请参阅</strong> <a href="datastreamformat.html">序列化 Qt 数据类型 </a>.</p>
+<h3><span id="bool-operator-lt-qchar-c1-qchar-c2">bool operator&lt;= ( <em>c1</em> , <em>c2</em> )</span><a href="#bool-operator-lt-qchar-c1-qchar-c2" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果<em>c1</em>的数字Unicode值小于或等于<em>c2</em>的数字；否则返回 <code>false </code>.</p>
+<h3><span id="bool-operator-qchar-c1-qchar-c2">bool operator== ( <em>c1</em> , <em>c2</em> )</span><a href="#bool-operator-qchar-c1-qchar-c2" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果<em>c1</em>的数字Unicode值等于<em>c2</em></p>
+<h3><span id="bool-operator-gt-qchar-c1-qchar-c2">bool operator&gt; ( <em>c1</em> , <em>c2</em> )</span><a href="#bool-operator-gt-qchar-c1-qchar-c2" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果<em>c1</em>的数字Unicode值大于<em>c2</em>；否则返回 <code>false </code>。</p>
+<h3><span id="bool-operator-gt-qchar-c1-qchar-c2">bool operator&gt;= ( <em>c1</em> , <em>c2</em> )</span><a href="#bool-operator-gt-qchar-c1-qchar-c2" class="header-anchor">#</a></h3><p>如果 <em>c1</em> 的 Unicode 数值大于等于 <em>c2</em> 的 Unicode 值，则返回 <code>true ；否则返回 </code>false `。</p>
+<h3><span id="qdatastream-amp-operator-gt-gt-qdatastream-amp-in-qchar-amp-chr">&amp; operator&gt;&gt; ( &amp; <em>in</em> , &amp; <em>chr</em> )</span><a href="#qdatastream-amp-operator-gt-gt-qdatastream-amp-in-qchar-amp-chr" class="header-anchor">#</a></h3><p>从流 <em>in</em> 中读取一个 char 到 char <em>chr</em> 中。</p>
+<p><strong>另请参阅</strong> <a href="datastreamformat.html">序列化 Qt 数据类型 </a>.</p>
+<h2><span id="hong-wen-dang-bian-zhi">宏文档编制</span><a href="#hong-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="since-6-0-qt-implicit-qchar-construction"><code>[since 6.0] </code>QT_IMPLICIT_QCHAR_CONSTRUCTION</span><a href="#since-6-0-qt-implicit-qchar-construction" class="header-anchor">#</a></h3><p>定义这个宏使得某些<a href>QChar</a>构造函数成为隐式而非显式。这样做是为了执行安全转换：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QString str = <span class="hljs-built_in">getString</span>();
+<span class="hljs-keyword">if</span> (str == <span class="hljs-number">123</span>) {
+    <span class="hljs-comment">// Oops, meant str == "123". By default does not compile,</span>
+    <span class="hljs-comment">// *unless* this macro is defined, in which case, it's interpreted</span>
+    <span class="hljs-comment">// as `if (str == QChar(123))`, that is, `if (str == '{')`.</span>
+    <span class="hljs-comment">// Likely, not what we meant.</span>
+}</code></pre></div>
+
+<p>提供这个宏是为了保持现有代码的正常运行；建议使用显式转换和/或<a href="qlatin1char.html">QLatin1Char</a>来代替。</p>
+<p>比如说：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QChar c1 =  <span class="hljs-string">'x'</span>; <span class="hljs-comment">// OK，除非定义了QT_NO_CAST_FROM_ASCII。</span>
+QChar c2 = <span class="hljs-string">u'x'</span>; <span class="hljs-comment">// always OK, recommended</span>
+QChar c3 = <span class="hljs-built_in">QLatin1Char</span>(<span class="hljs-string">'x'</span>); <span class="hljs-comment">// always OK, recommended</span>
+<span class="hljs-comment">// from int to 1 UTF-16 code unit: must guarantee that the input is &lt;= 0xFFFF</span>
+QChar c4 = <span class="hljs-number">120</span>;        <span class="hljs-comment">// compile error, unless QT_IMPLICIT_QCHAR_CONSTRUCTION is defined</span>
+<span class="hljs-function">QChar <span class="hljs-title">c5</span><span class="hljs-params">(<span class="hljs-number">120</span>)</span></span>;         <span class="hljs-comment">// OK (direct initialization)</span>
+<span class="hljs-keyword">auto</span>  c6 = <span class="hljs-built_in">QChar</span>(<span class="hljs-number">120</span>); <span class="hljs-comment">// ditto</span>
+<span class="hljs-comment">// from int/char32_t to 1/2 UTF-16 code units:</span>
+<span class="hljs-comment">// 𝄞 'MUSICAL SYMBOL G CLEF' (U+1D11E)</span>
+<span class="hljs-keyword">auto</span> c7 = <span class="hljs-built_in">QChar</span>(<span class="hljs-number">0x1D11E</span>);           <span class="hljs-comment">// compiles, but undefined behavior at runtime</span>
+<span class="hljs-keyword">auto</span> c8 = QChar::<span class="hljs-built_in">fromUcs4</span>(<span class="hljs-number">0x1D11E</span>);       <span class="hljs-comment">// always OK</span>
+<span class="hljs-keyword">auto</span> c9 = QChar::<span class="hljs-built_in">fromUcs4</span>(<span class="hljs-string">U'\U0001D11E'</span>); <span class="hljs-comment">// always OK</span>
+<span class="hljs-comment">// =&gt; use c8/c9 as QStringView objects</span></code></pre></div>
+
+<p>该函数在 Qt 6.0 引入。</p>
+<p><strong>另请参阅</strong> <a href="qlatin1char.html">QLatin1Char </a>, <a href="#fromUcs4">QChar::fromUcs4 </a>，和 <a href="qstring.html#QT_NO_CAST_FROM_ASCII">QT_NO_CAST_FROM_ASCII </a>.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/C/Container_Classes/Container_Classes/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">容器类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/C/QChart/QChart/">
+                        <span class="hidden-mobile">QChart类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

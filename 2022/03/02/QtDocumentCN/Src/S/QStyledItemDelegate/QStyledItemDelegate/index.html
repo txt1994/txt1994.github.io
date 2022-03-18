@@ -1,0 +1,730 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QStyledItemDelegate 公有成员函数 重载实现的公有函数 保护成员函数 重载实现的保护函数 详细描述 子类化QStyledItemDelegate QStyledItemDelegate与QItemDelegate   成员函数文档 QStyledItemDelegate::QStyledItemDelegate(QObject *parent &#x3D; nullptr) [v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QStyledItemDelegate类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/QStyledItemDelegate/QStyledItemDelegate/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QStyledItemDelegate 公有成员函数 重载实现的公有函数 保护成员函数 重载实现的保护函数 详细描述 子类化QStyledItemDelegate QStyledItemDelegate与QItemDelegate   成员函数文档 QStyledItemDelegate::QStyledItemDelegate(QObject *parent &#x3D; nullptr) [v">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:52:21.884Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="S">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QStyledItemDelegate类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QStyledItemDelegate类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      78 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QStyledItemDelegate类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qstyleditemdelegate">QStyledItemDelegate</a><ul>
+<li><a href="#gong-you-cheng-yuan-han-shu">公有成员函数</a></li>
+<li><a href="#chong-zai-shi-xian-de-gong-you-han-shu">重载实现的公有函数</a></li>
+<li><a href="#bao-hu-cheng-yuan-han-shu">保护成员函数</a></li>
+<li><a href="#chong-zai-shi-xian-de-bao-hu-han-shu">重载实现的保护函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#zi-lei-hua-qstyleditemdelegate">子类化QStyledItemDelegate</a></li>
+<li><a href="#qstyleditemdelegate-yu-qitemdelegate">QStyledItemDelegate与QItemDelegate</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qstyleditemdelegate-qstyleditemdelegate-qobject-qobject-html-qobject-parent-nullptr">QStyledItemDelegate::QStyledItemDelegate(</a><a href="qobject.html#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#virtual-qstyleditemdelegate-qstyleditemdelegate"><code>[virtual]</code>QStyledItemDelegate::~QStyledItemDelegate()</a></li>
+<li><a href="#override-virtual-qwidget-qwidget-html-qstyleditemdelegate-createeditor-qwidget-qwidget-html-parent-const-qstyleoptionviewitem-qstyleoptionviewitem-html-option-const-qmodelindex-qmodelindex-html-index-const"><code>[override virtual]</code></a><a href="qwidget.html">QWidget</a> *QStyledItemDelegate::createEditor(<a href="qwidget.html">QWidget</a> *<em>parent</em>, const <a href="qstyleoptionviewitem.html">QStyleOptionViewItem</a> &amp;<em>option</em>, const <a href="qmodelindex.html">QModelIndex</a> &amp;<em>index</em>) const</li>
+<li><a href="#virtual-qstring-qstring-html-qstyleditemdelegate-displaytext-const-qvariant-qvariant-html-value-const-qlocale-qlocale-html-locale-const"><code>[virtual]</code></a><a href="qstring.html">QString</a> QStyledItemDelegate::displayText(const <a href="qvariant.html">QVariant</a> &amp;<em>value</em>, const <a href="qlocale.html">QLocale</a> &amp;<em>locale</em>) const</li>
+<li><a href="#override-virtual-protected-bool-qstyleditemdelegate-editorevent-qevent-qevent-html-event-qabstractitemmodel-qabstractitemmodel-html-model-const-qstyleoptionviewitem-qstyleoptionviewitem-html-option-const-qmodelindex-qmodelindex-html-index"><code>[override virtual protected]</code>bool QStyledItemDelegate::editorEvent(</a><a href="qevent.html">QEvent</a> *<em>event</em>, <a href="qabstractitemmodel.html">QAbstractItemModel</a> *<em>model</em>, const <a href="qstyleoptionviewitem.html">QStyleOptionViewItem</a> &amp;<em>option</em>, const <a href="qmodelindex.html">QModelIndex</a> &amp;<em>index</em>)</li>
+<li><a href="#override-virtual-protected-bool-qstyleditemdelegate-eventfilter-qobject-qobject-html-qobject-editor-qevent-qevent-html-event"><code>[override virtual protected]</code>bool QStyledItemDelegate::eventFilter(</a><a href="qobject.html#QObject">QObject</a> *<em>editor</em>, <a href="qevent.html">QEvent</a> *<em>event</em>)</li>
+<li><a href="#virtual-protected-void-qstyleditemdelegate-initstyleoption-qstyleoptionviewitem-qstyleoptionviewitem-html-option-const-qmodelindex-qmodelindex-html-index-const"><code>[virtual protected]</code>void QStyledItemDelegate::initStyleOption(</a><a href="qstyleoptionviewitem.html">QStyleOptionViewItem</a> *<em>option</em>, const <a href="qmodelindex.html">QModelIndex</a> &amp;<em>index</em>) const</li>
+<li><a href="#qitemeditorfactory-qitemeditorfactory-html-qstyleditemdelegate-itemeditorfactory-const">QItemEditorFactory</a></li>
+<li><a href="#override-virtual-void-qstyleditemdelegate-paint-qpainter-qpainter-html-painter-const-qstyleoptionviewitem-qstyleoptionviewitem-html-option-const-qmodelindex-qmodelindex-html-index-const"><code>[override virtual]</code>void QStyledItemDelegate::paint(</a><a href="qpainter.html">QPainter</a> *<em>painter</em>, const <a href="qstyleoptionviewitem.html">QStyleOptionViewItem</a> &amp;<em>option</em>, const [QModelIndex] (qmodelindex.html) &amp;<em>index</em>) const</li>
+<li><a href="#override-virtual-void-qstyleditemdelegate-seteditordata-qwidget-qwidget-html-editor-const-qmodelindex-qmodelindex-html-index-const"><code>[override virtual]</code>void QStyledItemDelegate::setEditorData(</a><a href="qwidget.html">QWidget</a> *<em>editor</em>, const [QModelIndex] (qmodelindex.html) &amp;<em>index</em>) const</li>
+<li><a href="#void-qstyleditemdelegate-setitemeditorfactory-qitemeditorfactory-qitemeditorfactory-html-factory">void QStyledItemDelegate::setItemEditorFactory(</a><a href="qitemeditorfactory.html">QItemEditorFactory</a> *<em>factory</em>)</li>
+<li><a href="#override-virtual-void-qstyleditemdelegate-setmodeldata-qwidget-qwidget-html-editor-qabstractitemmodel-qabstractitemmodel-html-model-const-qmodelindex-qmodelindex-html-index-const"><code>[override virtual]</code>void QStyledItemDelegate::setModelData(</a><a href="qwidget.html">QWidget</a> *<em>editor</em>, <a href="qabstractitemmodel.html">QAbstractItemModel</a> *<em>model</em>, const [QModelIndex] (qmodelindex.html) &amp;<em>index</em>) const</li>
+<li><a href="#override-virtual-qsize-qsize-html-qstyleditemdelegate-sizehint-const-qstyleoptionviewitem-qstyleoptionviewitem-html-option-const-qmodelindex-qmodelindex-html-index-const"><code>[override virtual]</code></a><a href="qsize.html">QSize</a> QStyledItemDelegate::sizeHint(const <a href="qstyleoptionviewitem.html">QStyleOptionViewItem</a> &amp;<em>option</em>, const [QModelIndex] (qmodelindex.html) &amp;<em>index</em>) const</li>
+<li><a href="#override-virtual-void-qstyleditemdelegate-updateeditorgeometry-qwidget-qwidget-html-editor-const-qstyleoptionviewitem-qstyleoptionviewitem-html-option-const-qmodelindex-qmodelindex-html-index-const"><code>[override virtual]</code>void QStyledItemDelegate::updateEditorGeometry(</a><a href="qwidget.html">QWidget</a> *<em>editor</em>, const <a href="qstyleoptionviewitem.html">QStyleOptionViewItem</a> &amp;<em>option</em>, const [QModelIndex] (qmodelindex.html) &amp;<em>index</em>) const</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QStyledItemDelegate
+
+<p><code>QStyledItemDelegate </code> 类为模型(model)中的数据项提供显示和编辑功能。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件:</td>
+<td>#include <qstyleditemdelegate></qstyleditemdelegate></td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += widgets</td>
+</tr>
+<tr>
+<td>引入版本</td>
+<td>Qt 4.2</td>
+</tr>
+<tr>
+<td>继承的类</td>
+<td><a href>QAbstractItemDelegate</a></td>
+</tr>
+</tbody></table>
+<p>这个类是在Qt 4.2中引入的</p>
+<h2><span id="gong-you-cheng-yuan-han-shu">公有成员函数</span><a href="#gong-you-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QStyledItemDelegate">QStyledItemDelegate</a></strong>(QObject *<em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QStyledItemDelegate">~QStyledItemDelegate</a></strong>()</td>
+</tr>
+<tr>
+<td>virtual QString</td>
+<td><strong><a href="#displayText">displayText</a></strong>(const QVariant &amp;<em>value</em>, const QLocale &amp;<em>locale</em>) const</td>
+</tr>
+<tr>
+<td>QItemEditorFactory *</td>
+<td><strong><a href="#itemEditorFactory">itemEditorFactory</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setItemEditorFactory">setItemEditorFactory</a></strong>(QItemEditorFactory *<em>factory</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-zai-shi-xian-de-gong-you-han-shu">重载实现的公有函数</span><a href="#chong-zai-shi-xian-de-gong-you-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual QWidget *</th>
+<th><strong><a href="#createEditor">createEditor</a></strong>(QWidget *<em>parent</em>, const QStyleOptionViewItem &amp;<em>option</em>, const QModelIndex &amp;<em>index</em>) const override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual void</td>
+<td><strong><a href="#paint">paint</a></strong>(QPainter *<em>painter</em>, const QStyleOptionViewItem &amp;<em>option</em>, const QModelIndex &amp;<em>index</em>) const override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#setEditorData">setEditorData</a></strong>(QWidget *<em>editor</em>, const QModelIndex &amp;<em>index</em>) const override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#setModelData">setModelData</a></strong>(QWidget *<em>editor</em>, QAbstractItemModel *<em>model</em>, const QModelIndex &amp;<em>index</em>) const override</td>
+</tr>
+<tr>
+<td>virtual QSize</td>
+<td><strong><a href="#sizeHint">sizeHint</a></strong>(const QStyleOptionViewItem &amp;<em>option</em>, const QModelIndex &amp;<em>index</em>) const override</td>
+</tr>
+<tr>
+<td>virtual void</td>
+<td><strong><a href="#updateEditorGeometry">updateEditorGeometry</a></strong>(QWidget *<em>editor</em>, const QStyleOptionViewItem &amp;<em>option</em>, const QModelIndex &amp;<em>index</em>) const override</td>
+</tr>
+</tbody></table>
+<h2><span id="bao-hu-cheng-yuan-han-shu">保护成员函数</span><a href="#bao-hu-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual void</th>
+<th><strong><a href="#initStyleOption">initStyleOption</a></strong>(QStyleOptionViewItem *<em>option</em>, const QModelIndex &amp;<em>index</em>) const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="chong-zai-shi-xian-de-bao-hu-han-shu">重载实现的保护函数</span><a href="#chong-zai-shi-xian-de-bao-hu-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual bool</th>
+<th><strong><a href="#editorEvent">editorEvent</a></strong>(QEvent *<em>event</em>, QAbstractItemModel *<em>model</em>, const QStyleOptionViewItem &amp;<em>option</em>, const QModelIndex &amp;<em>index</em>) override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual bool</td>
+<td><strong><a href="#eventFilter">eventFilter</a></strong>(QObject *<em>editor</em>, QEvent *<em>event</em>) override</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>当在Qt项视图中显示来自模型的数据时，各个项都是由委托绘制的，例如 <code>QTableView</code> 。当编辑一个项目时，它提供一个编辑器部件，它被放置在项目视图的顶部。<code>QStyledItemDelegate</code> 是所有Qt项视图的默认委托，在创建时安装在项目上面。</p>
+<p><code>QStyledItemDelegate</code> 类是模型/视图类之一，是Qt的模型/视图框架的一部分。委托允许项目显示和编辑独立于模型和视图进行开发。</p>
+<p>对模型中每一项数据分配一个 <code>ItemDataRole </code>;每个项可以存储一个<code>QVariant</code> 角色。<code>QStyledItemDelegate</code> 实现了用户期望的常见数据类型显示和编辑，包括布尔值(<code>booleans</code>)、整数(<code>integers</code>)和字符串(<code>strings</code>)。</p>
+<p>它们在模型中的角色不同，数据的绘制方式将有所不同。下表描述了角色和委托人可以为每个角色提供的数据处理类型。要确保模型为每个角色返回适当的数据，来确定视图中每一项的外观。</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>接受类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Qt::BackgroundRole</td>
+<td>QBrush</td>
+</tr>
+<tr>
+<td>Qt::BackgroundColorRole</td>
+<td>QColor (已弃用，使用Qt::BackgroundRole)</td>
+</tr>
+<tr>
+<td>Qt::CheckStateRole</td>
+<td>Qt::CheckState</td>
+</tr>
+<tr>
+<td>Qt::DecorationRole</td>
+<td>QIcon, QPixmap, QImage and QColor</td>
+</tr>
+<tr>
+<td>Qt::DisplayRole</td>
+<td>QString和字符串形式表示的类型</td>
+</tr>
+<tr>
+<td>Qt::EditRole</td>
+<td><a href>QItemEditorFactory</a> 查看详情</td>
+</tr>
+<tr>
+<td>Qt::FontRole</td>
+<td>QFont</td>
+</tr>
+<tr>
+<td>Qt::SizeHintRole</td>
+<td>QSize</td>
+</tr>
+<tr>
+<td>Qt::TextAlignmentRole</td>
+<td>Qt::Alignment</td>
+</tr>
+<tr>
+<td>Qt::ForegroundRole</td>
+<td>QBrush</td>
+</tr>
+<tr>
+<td>Qt::TextColorRole</td>
+<td>QColor (已弃用，使用Qt::BackgroundRole)</td>
+</tr>
+</tbody></table>
+<p>使用 <code>QItemEditorFactory</code> 创建编辑器; <code>QItemEditorFactory</code>提供的默认静态实例安装在所有项目委托上。您可以使用<code>setItemEditorFactory()</code> 设置自定义工厂，或者使用 <code>QItemEditorFactory::setDefaultFactory()</code> 设置新的默认工厂。被编辑的是存储在带有 <code>EditRole</code> 的项目模型中的数据。有关项目编辑器工厂的更高级介绍，请参见<a href>QItemEditorFactory</a>类。<a href>Color Editor Factory</a>示例展示了如何使用工厂创建自定义编辑器。</p>
+<h3><span id="zi-lei-hua-qstyleditemdelegate">子类化QStyledItemDelegate</span><a href="#zi-lei-hua-qstyleditemdelegate" class="header-anchor">#</a></h3><p>如果委托不支持绘制您需要的数据类型，或者您想定制项目的绘制，您需要子类化 <code>QStyledItemDelegate</code>，并重新实现 <code>paint()</code> 和 <code>sizeHint()</code> 。<code> paint()</code> 函数是为每个项单独调用，使用 <code>sizeHint()</code>，您可以为每个项指定提示.</p>
+<p>在重新实现 <code>paint()</code> 时，通常会处理自己想要绘制的数据类型，并对其他类型使用超类实现。</p>
+<p>复选框指示器的绘制是由当前的样式来执行的。样式还指定了不同数据角色的大小和绘制数据的边界矩形。项目本身的边界矩形也由样式计算。因此，当绘制已经支持的数据类型时，最好询问这些边框的样式。最好向样式询问这些边界矩形。<a href>QStyle</a>类对此有更详细的描述。</p>
+<p>如果你想改变任何一个由样式计算出的边界矩形或复选框指示器，你可以子类QStyle。但是请注意，重新实现<code>sizeHint()</code> 会影响项的大小。</p>
+<p>自定义委托可以在不使用编辑器项工厂的情况下提供编辑器。在这种情况下，必须重新实现以下虚函数:</p>
+<p>createEditor() 返回用于更改模型数据的小组件，并可重新实现以定制编辑行为。<br>setEditorData()为小组件提供了用于操作的数据。<br>updateEditorGeometry() 确保根据项目视图正确显示编辑器。<br>setModelData()将更新的数据返回给模型。<br><a href>Star Delegate</a>示例通过重新实现这些方法来创建编辑器。</p>
+<h3><span id="qstyleditemdelegate-yu-qitemdelegate">QStyledItemDelegate与QItemDelegate</span><a href="#qstyleditemdelegate-yu-qitemdelegate" class="header-anchor">#</a></h3><p>从Qt 4.4开始，有两个委托类。<a href="qitemdelegate.html">QItemDelegate</a> 和 QStyledItemDelegate。然而，默认的委托是QStyledItemDelegate。这两个类是为视图中的项目绘制和提供编辑器的独立替代品。它们之间的区别是QStyledItemDelegate使用当前的样式来绘制其项目。因此我们建议在实现自定义委托或使用Qt样式表时使用QStyledItemDelegate作为基类。这两个类所需的代码应该是相同的，除非自定义委托需要使用样式进行绘制。</p>
+<p>如果你想自定义项目视图的绘制，你应该实现一个自定义样式。详情请参见<a href="qstyle.html">QStyle</a>类文档。</p>
+<p><strong>See also</strong> <a href="model-view-programming.html#delegate-classes">Delegate Classes</a>, <a href="qitemdelegate.html">QItemDelegate</a>, <a href="qabstractitemdelegate.html">QAbstractItemDelegate</a>, <a href="qstyle.html">QStyle</a>, <a href="qtwidgets-itemviews-spinboxdelegate-example.html">Spin Box Delegate Example</a>, <a href="qtwidgets-itemviews-stardelegate-example.html">Star Delegate Example</a>, and <a href="qtwidgets-itemviews-coloreditorfactory-example.html">Color Editor Factory Example</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qstyleditemdelegate-qstyleditemdelegate-qobject-parent-nullptr">QStyledItemDelegate::QStyledItemDelegate( *<em>parent</em> = nullptr)</span><a href="#qstyleditemdelegate-qstyleditemdelegate-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>构建一个具有给定<em>parent</em>的项目委托。</p>
+<h3><span id="virtual-qstyleditemdelegate-qstyleditemdelegate"><code>[virtual]</code>QStyledItemDelegate::~QStyledItemDelegate()</span><a href="#virtual-qstyleditemdelegate-qstyleditemdelegate" class="header-anchor">#</a></h3><p>销毁项目委托。</p>
+<h3><span id="override-virtual-qwidget-qstyleditemdelegate-createeditor-qwidget-parent-const-qstyleoptionviewitem-amp-option-const-qmodelindex-amp-index-const"><code>[override virtual]</code> *QStyledItemDelegate::createEditor( *<em>parent</em>, const  &amp;<em>option</em>, const  &amp;<em>index</em>) const</span><a href="#override-virtual-qwidget-qstyleditemdelegate-createeditor-qwidget-parent-const-qstyleoptionviewitem-amp-option-const-qmodelindex-amp-index-const" class="header-anchor">#</a></h3><p>重新实现：<a href="qabstractitemdelegate.html#createEditor">QAbstractItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const</a>。</p>
+<p>返回用于编辑由<em>index</em>指定的项目的widget，以进行编辑。<em>parent</em> widget和style <em>option</em>被用来控制编辑器widget的出现方式。</p>
+<p><strong>See also</strong> <a href="qabstractitemdelegate.html#createEditor">QAbstractItemDelegate::createEditor</a>().</p>
+<h3><span id="virtual-qstring-qstyleditemdelegate-displaytext-const-qvariant-amp-value-const-qlocale-amp-locale-const"><code>[virtual]</code> QStyledItemDelegate::displayText(const  &amp;<em>value</em>, const  &amp;<em>locale</em>) const</span><a href="#virtual-qstring-qstyleditemdelegate-displaytext-const-qvariant-amp-value-const-qlocale-amp-locale-const" class="header-anchor">#</a></h3><p>这个函数返回委托人用来显示模型的<a href="qt.html#ItemDataRole-enum">Qt::DisplayRole</a>在<em>locale</em>的字符串。<em>value</em>是模型提供的<a href="qt.html#ItemDataRole-enum">Qt::DisplayRole</a>的值。</p>
+<p>默认实现使用<a href="qlocale.html#toString">QLocale::toString</a>来将<em>value</em>转换为<a href="qstring.html">QString</a>。</p>
+<p>对于空的模型索引，即模型返回无效的 <a href="qvariant.html">QVariant</a> 的索引，这个函数不被调用。</p>
+<p><strong>See also</strong> <a href="qabstractitemmodel.html#data">QAbstractItemModel::data</a>().</p>
+<h3><span id="override-virtual-protected-bool-qstyleditemdelegate-editorevent-qevent-event-qabstractitemmodel-model-const-qstyleoptionviewitem-amp-option-const-qmodelindex-amp-index"><code>[override virtual protected]</code>bool QStyledItemDelegate::editorEvent( *<em>event</em>,  *<em>model</em>, const  &amp;<em>option</em>, const  &amp;<em>index</em>)</span><a href="#override-virtual-protected-bool-qstyleditemdelegate-editorevent-qevent-event-qabstractitemmodel-model-const-qstyleoptionviewitem-amp-option-const-qmodelindex-amp-index" class="header-anchor">#</a></h3><p>重新实现: <a href="qabstractitemdelegate.html#editorEvent">QAbstractItemDelegate::editorEvent</a>(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index).</p>
+<h3><span id="override-virtual-protected-bool-qstyleditemdelegate-eventfilter-qobject-editor-qevent-event"><code>[override virtual protected]</code>bool QStyledItemDelegate::eventFilter( *<em>editor</em>,  *<em>event</em>)</span><a href="#override-virtual-protected-bool-qstyleditemdelegate-eventfilter-qobject-editor-qevent-event" class="header-anchor">#</a></h3><p>重新实现: <a href="qobject.html#eventFilter">QObject::eventFilter</a>(QObject *watched, QEvent *event).</p>
+<p>如果给定的<em>editor</em>是一个有效的<a href="qwidget.html">QWidget</a>并且给定的<em>event</em>被处理，则返回 “true”；否则返回 “false”。以下按键事件默认被处理:</p>
+<ul>
+<li><strong>Tab</strong></li>
+<li><strong>Backtab</strong></li>
+<li><strong>Enter</strong></li>
+<li><strong>Return</strong></li>
+<li><strong>Esc</strong></li>
+</ul>
+<p>如果 <em>editor</em> 的类型是 <a href="qtextedit.html">QTextEdit</a> 或 <a href="qplaintextedit.html">QPlainTextEdit</a>，则 <em>不</em> 处理 <strong>Enter</strong> 和 <strong>Return</strong> 键。</p>
+<p>在 <strong>Tab</strong>、<strong>Backtab</strong>、<strong>Enter</strong> 和 <strong>Return</strong> 按键事件的情况下，<em>editor</em> 的数据被提交到模型并关闭编辑器。 如果 <em>event</em> 是 <strong>Tab</strong> 键，则视图将在视图中的下一个项目上打开一个编辑器。 同样，如果 <em>event</em> 是 <strong>Backtab</strong> 键，则按下视图将在视图中的 <em>previous</em> 项目上打开一个编辑器。</p>
+<p>如果事件是 <strong>Esc</strong> 按键事件，则 <em>editor</em> 将关闭<em>而不</em>提交其数据。</p>
+<p><strong>See also</strong> <a href="qabstractitemdelegate.html#commitData">commitData</a>() and <a href="qabstractitemdelegate.html#closeEditor">closeEditor</a>().</p>
+<h3><span id="virtual-protected-void-qstyleditemdelegate-initstyleoption-qstyleoptionviewitem-option-const-qmodelindex-amp-index-const"><code>[virtual protected]</code>void QStyledItemDelegate::initStyleOption( *<em>option</em>, const  &amp;<em>index</em>) const</span><a href="#virtual-protected-void-qstyleditemdelegate-initstyleoption-qstyleoptionviewitem-option-const-qmodelindex-amp-index-const" class="header-anchor">#</a></h3><p>使用索引<em>index</em>的值初始化<em>option</em>。当子类需要一个<a href="qstyleoptionviewitem.html">QStyleOptionViewItem</a>，但不想自己填写所有信息时，这个方法很有用。</p>
+<p><strong>参见</strong> <a href="qstyleoption.html#initFrom">QStyleOption::initFrom</a>（）。</p>
+<h3><span id="qitemeditorfactory-qstyleditemdelegate-itemeditorfactory-const"> *QStyledItemDelegate::itemEditorFactory() const</span><a href="#qitemeditorfactory-qstyleditemdelegate-itemeditorfactory-const" class="header-anchor">#</a></h3><p>返回项目代理所使用的编辑器工厂。如果没有设置编辑器工厂，该函数将返回null。</p>
+<p><strong>参见</strong> <a href="#setItemEditorFactory">setItemEditorFactory</a>()。</p>
+<h3><span id="override-virtual-void-qstyleditemdelegate-paint-qpainter-painter-const-qstyleoptionviewitem-amp-option-const-qmodelindex-qmodelindex-html-amp-index-const"><code>[override virtual]</code>void QStyledItemDelegate::paint( *<em>painter</em>, const  &amp;<em>option</em>, const [QModelIndex] (qmodelindex.html) &amp;<em>index</em>) const</span><a href="#override-virtual-void-qstyleditemdelegate-paint-qpainter-painter-const-qstyleoptionviewitem-amp-option-const-qmodelindex-qmodelindex-html-amp-index-const" class="header-anchor">#</a></h3><p>重新实现。<a href="qabstractitemdelegate.html#paint">QAbstractItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const</a>。</p>
+<p>使用给定的<em>painter</em>和样式<em>option</em>为<em>index</em>指定的项目渲染委托。</p>
+<p>这个函数使用视图的<a href="qstyle.html">QStyle</a>来绘制项目。</p>
+<p>当在一个子类中重新实现paint时。使用<a href="#initStyleOption">initStyleOption</a>()来设置<em>option</em>，其方式与<a href>QStyledItemDelegate</a>相同。</p>
+<p>只要有可能，就在绘画时使用<em>option</em>。特别是它的<a href="qstyleoption.html#rect-var">rect</a>变量，以决定绘制的位置，以及它的<a href="qstyleoption.html#state-var">state</a>，以决定它是否被启用或选中。</p>
+<p>画完后，你应该确保画师被返回到调用此函数时的状态。例如，在绘制之前调用 <a href="qpainter.html#save">QPainter::save</a>() ，之后调用 <a href="qpainter.html#restore">QPainter::restore</a>() 可能是有用的。</p>
+<p><strong>参见</strong> <a href="qitemdelegate.html#paint">QItemDelegate::paint</a>(), <a href="qstyle.html#drawControl">QStyle::drawControl</a>(), 和 <a href="qstyle.html#ControlElement-enum">QStyle::CE_ItemViewItem</a> 。</p>
+<h3><span id="override-virtual-void-qstyleditemdelegate-seteditordata-qwidget-editor-const-qmodelindex-qmodelindex-html-amp-index-const"><code>[override virtual]</code>void QStyledItemDelegate::setEditorData( *<em>editor</em>, const [QModelIndex] (qmodelindex.html) &amp;<em>index</em>) const</span><a href="#override-virtual-void-qstyleditemdelegate-seteditordata-qwidget-editor-const-qmodelindex-qmodelindex-html-amp-index-const" class="header-anchor">#</a></h3><p>重新实现。<a href="qabstractitemdelegate.html#setEditorData">QAbstractItemDelegate::setEditorData(QWidget *editor, const QModelIndex &amp;index) const</a>。</p>
+<p>设置数据，由<em>editor</em>从模型<em>index</em>指定的数据模型项目中显示和编辑。</p>
+<p>默认实现将数据存储在<em>editor</em>小组件的<a href="properties.html">用户属性</a>中。</p>
+<p><strong>See also</strong> <a href="qmetaproperty.html#isUser">QMetaProperty::isUser</a>().</p>
+<h3><span id="void-qstyleditemdelegate-setitemeditorfactory-qitemeditorfactory-factory">void QStyledItemDelegate::setItemEditorFactory( *<em>factory</em>)</span><a href="#void-qstyleditemdelegate-setitemeditorfactory-qitemeditorfactory-factory" class="header-anchor">#</a></h3><p>将项目委托使用的编辑器工厂设置为指定的<em>factory</em> 。如果没有设置编辑器工厂，项目委托人将使用默认的编辑器工厂。</p>
+<p><strong>参见</strong> <a href="#itemEditorFactory">itemEditorFactory</a>()。</p>
+<h3><span id="override-virtual-void-qstyleditemdelegate-setmodeldata-qwidget-editor-qabstractitemmodel-model-const-qmodelindex-qmodelindex-html-amp-index-const"><code>[override virtual]</code>void QStyledItemDelegate::setModelData( *<em>editor</em>,  *<em>model</em>, const [QModelIndex] (qmodelindex.html) &amp;<em>index</em>) const</span><a href="#override-virtual-void-qstyleditemdelegate-setmodeldata-qwidget-editor-qabstractitemmodel-model-const-qmodelindex-qmodelindex-html-amp-index-const" class="header-anchor">#</a></h3><p>重新实现。<a href="qabstractitemdelegate.html#setModelData">QAbstractItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &amp;index) const</a>。</p>
+<p>从<em>editor</em>部件获取数据，并将其存储在项目<em>index</em>处的指定<em>model</em>中。</p>
+<p>默认实现从<em>editor</em> widget的<a href="properties.html">用户属性</a>中获取要存储在数据模型中的值。</p>
+<p><strong>参见</strong> <a href="qmetaproperty.html#isUser">QMetaProperty::isUser</a>（）。</p>
+<h3><span id="override-virtual-qsize-qstyleditemdelegate-sizehint-const-qstyleoptionviewitem-amp-option-const-qmodelindex-qmodelindex-html-amp-index-const"><code>[override virtual]</code> QStyledItemDelegate::sizeHint(const  &amp;<em>option</em>, const [QModelIndex] (qmodelindex.html) &amp;<em>index</em>) const</span><a href="#override-virtual-qsize-qstyleditemdelegate-sizehint-const-qstyleoptionviewitem-amp-option-const-qmodelindex-qmodelindex-html-amp-index-const" class="header-anchor">#</a></h3><p>重新实现:<a href="qabstractitemdelegate.html#sizeHint">QAbstractItemDelegate::sizeHint(const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const</a>。</p>
+<p>考虑到<em>option</em>提供的样式信息，返回委托人显示由<em>index</em>指定的项目所需的尺寸。</p>
+<p>这个函数使用视图的<a href="qstyle.html">QStyle</a>来决定项目的大小。</p>
+<p><strong>参见</strong> <a href="qstyle.html#sizeFromContents">QStyle::sizeFromContents</a>()和<a href="qstyle.html#ContentsType-enum">QStyle::CT_ItemViewItem</a> 。</p>
+<h3><span id="override-virtual-void-qstyleditemdelegate-updateeditorgeometry-qwidget-editor-const-qstyleoptionviewitem-amp-option-const-qmodelindex-qmodelindex-html-amp-index-const"><code>[override virtual]</code>void QStyledItemDelegate::updateEditorGeometry( *<em>editor</em>, const  &amp;<em>option</em>, const [QModelIndex] (qmodelindex.html) &amp;<em>index</em>) const</span><a href="#override-virtual-void-qstyleditemdelegate-updateeditorgeometry-qwidget-editor-const-qstyleoptionviewitem-amp-option-const-qmodelindex-qmodelindex-html-amp-index-const" class="header-anchor">#</a></h3><p>重新实现:<a href="qabstractitemdelegate.html#updateEditorGeometry">QAbstractItemDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const</a>。</p>
+<p>根据给定的样式 <em>option</em>，为<em>index</em>指定的项目更新<em>editor</em>。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/S/">S</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QStringView/QStringView/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QStringView类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QStringRef/QStringRef%20/">
+                        <span class="hidden-mobile">QStringRef类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

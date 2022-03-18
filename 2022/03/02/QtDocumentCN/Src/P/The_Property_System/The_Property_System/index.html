@@ -1,0 +1,685 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QProperty Class 公共函数 非相关成员 详细描述 成员函数文档 QProperty QProperty void QProperty::setValue(QProperty::parameter_type newValue) void QProperty::setValue(QProperty::rvalue_ref newValue) [default]QProperty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QProperty类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/P/The_Property_System/The_Property_System/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QProperty Class 公共函数 非相关成员 详细描述 成员函数文档 QProperty QProperty void QProperty::setValue(QProperty::parameter_type newValue) void QProperty::setValue(QProperty::rvalue_ref newValue) [default]QProperty">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:51:00.042Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="P">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QProperty类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QProperty类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      47 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QProperty类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qproperty-class">QProperty Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#fei-xiang-guan-cheng-yuan">非相关成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qproperty-qproperty-t-qproperty-operator-qproperty-parameter-type-newvalue">QProperty</a></li>
+<li><a href="#qproperty-qproperty-t-qproperty-operator-qproperty-rvalue-ref-newvalue-1">QProperty</a></li>
+<li><a href="#void-qproperty-setvalue-qproperty-parameter-type-newvalue">void QProperty::setValue(QProperty::parameter_type <em>newValue</em>)</a></li>
+<li><a href="#void-qproperty-setvalue-qproperty-rvalue-ref-newvalue">void QProperty::setValue(QProperty::rvalue_ref <em>newValue</em>)</a></li>
+<li><a href="#default-qproperty-qproperty-t-initialvalue"><code>[default]</code>QProperty::QProperty(T &amp;&amp;<em>initialValue</em>)</a></li>
+<li><a href="#default-qproperty-qproperty-const-t-initialvalue"><code>[default]</code>QProperty::QProperty(const T &amp;<em>initialValue</em>)</a></li>
+<li><a href="#template-typename-functor-qproperty-qproperty-functor-f">template <typename functor> QProperty::QProperty(Functor &amp;&amp;<em>f</em>)</typename></a></li>
+<li><a href="#qproperty-qproperty-const-qpropertybinding-t-binding">QProperty::QProperty(const QPropertyBinding<t> &amp;<em>binding</em>)</t></a></li>
+<li><a href="#qproperty-qproperty">QProperty::QProperty()</a></li>
+<li><a href="#default-qproperty-qproperty-t-qproperty-operator-const-qpropertybinding-t-newbinding"><code>[default]</code></a><a href="#QProperty">QProperty</a><t> &amp;QProperty::operator=(const QPropertyBinding<t> &amp;<em>newBinding</em>)</t></t></li>
+<li><a href="#qproperty-qproperty">QProperty::~QProperty()</a></li>
+<li><a href="#template-typename-functor-qpropertynotifier-qpropertynotifier-html-qproperty-addnotifier-functor-f">template <typename functor> </typename></a><a href="qpropertynotifier.html">QPropertyNotifier</a> QProperty::addNotifier(Functor <em>f</em>)</li>
+<li><a href="#qpropertybinding-t-qproperty-binding-const">QPropertyBinding<t> QProperty::binding() const</t></a></li>
+<li><a href="#template-typename-functor-qpropertychangehandler-qpropertychangehandler-html-functor-qproperty-onvaluechanged-functor-f">template <typename functor> </typename></a><a href="qpropertychangehandler.html">QPropertyChangeHandler</a><functor> QProperty::onValueChanged(Functor <em>f</em>)</functor></li>
+<li><a href="#qpropertybinding-t-qproperty-setbinding-const-qpropertybinding-t-newbinding">QPropertyBinding<t> QProperty::setBinding(const QPropertyBinding<t> &amp;<em>newBinding</em>)</t></t></a></li>
+<li><a href="#bool-qproperty-setbinding-const-quntypedpropertybinding-newbinding">bool QProperty::setBinding(const QUntypedPropertyBinding &amp;<em>newBinding</em>)</a></li>
+<li><a href="#template-typename-functor-qpropertybinding-t-qproperty-setbinding-functor-f">template <typename functor> QPropertyBinding<t> QProperty::setBinding(Functor <em>f</em>)</t></typename></a></li>
+<li><a href="#template-typename-functor-qpropertychangehandler-qpropertychangehandler-html-functor-qproperty-subscribe-functor-f">template <typename functor> </typename></a><a href="qpropertychangehandler.html">QPropertyChangeHandler</a><functor> QProperty::subscribe(Functor <em>f</em>)</functor></li>
+<li><a href="#qpropertybinding-t-qproperty-takebinding">QPropertyBinding<t> QProperty::takeBinding()</t></a></li>
+<li><a href="#qproperty-parameter-type-qproperty-value-const">QProperty::parameter_type QProperty::value() const</a></li>
+</ul>
+</li>
+<li><a href="#fei-xiang-guan-cheng-yuan-1">非相关成员</a><ul>
+<li><a href="#since-6-2-void-beginpropertyupdategroup"><code>[since 6.2]</code>void beginPropertyUpdateGroup()</a></li>
+<li><a href="#since-6-2-void-endpropertyupdategroup"><code>[since 6.2]</code>void endPropertyUpdateGroup()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QProperty Class
+
+<p>template <typename t> class QProperty</typename></p>
+<p>QProperty类是一个模板类，可以实现自动的属性绑定。<a href="#details">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qproperty></qproperty></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 6.0</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a href="qpropertydata.html">QPropertyData</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qproperty-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QProperty-8">QProperty</a></strong>(T &amp;&amp;<em>initialValue</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QProperty-7">QProperty</a></strong>(const T &amp;<em>initialValue</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QProperty-4">QProperty</a></strong>(Functor &amp;&amp;<em>f</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QProperty-3">QProperty</a></strong>(const QPropertyBinding<t> &amp;<em>binding</em>)</t></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QProperty">QProperty</a></strong>()</td>
+</tr>
+<tr>
+<td>QProperty<t> &amp;</t></td>
+<td><strong><a href="#operator-eq-4">operator=</a></strong>(const QPropertyBinding<t> &amp;<em>newBinding</em>)</t></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QProperty">~QProperty</a></strong>()</td>
+</tr>
+<tr>
+<td>QPropertyNotifier</td>
+<td><strong><a href="#addNotifier">addNotifier</a></strong>(Functor <em>f</em>)</td>
+</tr>
+<tr>
+<td>QPropertyBinding<t></t></td>
+<td><strong><a href="#binding">binding</a></strong>() const</td>
+</tr>
+<tr>
+<td>QPropertyChangeHandler<functor></functor></td>
+<td><strong><a href="#onValueChanged">onValueChanged</a></strong>(Functor <em>f</em>)</td>
+</tr>
+<tr>
+<td>QPropertyBinding<t></t></td>
+<td><strong><a href="#setBinding">setBinding</a></strong>(const QPropertyBinding<t> &amp;<em>newBinding</em>)</t></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#setBinding-1">setBinding</a></strong>(const QUntypedPropertyBinding &amp;<em>newBinding</em>)</td>
+</tr>
+<tr>
+<td>QPropertyBinding<t></t></td>
+<td><strong><a href="#setBinding-2">setBinding</a></strong>(Functor <em>f</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setValue">setValue</a></strong>(QProperty::rvalue_ref <em>newValue</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setValue-1">setValue</a></strong>(QProperty::parameter_type <em>newValue</em>)</td>
+</tr>
+<tr>
+<td>QPropertyChangeHandler<functor></functor></td>
+<td><strong><a href="#subscribe">subscribe</a></strong>(Functor <em>f</em>)</td>
+</tr>
+<tr>
+<td>QPropertyBinding<t></t></td>
+<td><strong><a href="#takeBinding">takeBinding</a></strong>()</td>
+</tr>
+<tr>
+<td>QProperty::parameter_type</td>
+<td><strong><a href="#value">value</a></strong>() const</td>
+</tr>
+<tr>
+<td>QProperty<t> &amp;</t></td>
+<td><strong><a href="#operator-eq">operator=</a></strong>(QProperty::rvalue_ref <em>newValue</em>)</td>
+</tr>
+<tr>
+<td>QProperty<t> &amp;</t></td>
+<td><strong><a href="#operator-eq-1">operator=</a></strong>(QProperty::parameter_type <em>newValue</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="fei-xiang-guan-cheng-yuan">非相关成员</span><a href="#fei-xiang-guan-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#beginPropertyUpdateGroup">beginPropertyUpdateGroup</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#endPropertyUpdateGroup">endPropertyUpdateGroup</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QProperty<t> 是实现 [Qt Bindable Properties] (bindableproperties.html) 的类之一。你可以给它赋值，也可以通过<a href="#value">value</a>()函数或T转换操作符读取它。你也可以将该属性与一个动态计算值的表达式绑定，即绑定表达式。它被表示为一个C++的lambda，可以用来表达你的应用程序中不同属性之间的关系。</t></p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qproperty-amp-qproperty-operator-qproperty-parameter-type-newvalue"><t> &amp;QProperty::operator=(QProperty::parameter_type <em>newValue</em>)</t></span><a href="#qproperty-amp-qproperty-operator-qproperty-parameter-type-newvalue" class="header-anchor">#</a></h3><h3><span id="qproperty-amp-qproperty-operator-qproperty-rvalue-ref-newvalue"><t> &amp;QProperty::operator=(QProperty::rvalue_ref <em>newValue</em>)</t></span><a href="#qproperty-amp-qproperty-operator-qproperty-rvalue-ref-newvalue" class="header-anchor">#</a></h3><p>将<em>newValue</em>分配给这个属性，并返回对这个<a href>QProperty</a>的引用。</p>
+<h3><span id="void-qproperty-setvalue-qproperty-parameter-type-newvalue">void QProperty::setValue(QProperty::parameter_type <em>newValue</em>)</span><a href="#void-qproperty-setvalue-qproperty-parameter-type-newvalue" class="header-anchor">#</a></h3><h3><span id="void-qproperty-setvalue-qproperty-rvalue-ref-newvalue">void QProperty::setValue(QProperty::rvalue_ref <em>newValue</em>)</span><a href="#void-qproperty-setvalue-qproperty-rvalue-ref-newvalue" class="header-anchor">#</a></h3><p>将<em>newValue</em>分配给这个属性，并删除该属性的相关绑定（如果存在）。</p>
+<h3><span id="default-qproperty-qproperty-t-amp-amp-initialvalue"><code>[default]</code>QProperty::QProperty(T &amp;&amp;<em>initialValue</em>)</span><a href="#default-qproperty-qproperty-t-amp-amp-initialvalue" class="header-anchor">#</a></h3><p>移动构造-用提供的<em>initialValue</em>构建一个属性。</p>
+<h3><span id="default-qproperty-qproperty-const-t-amp-initialvalue"><code>[default]</code>QProperty::QProperty(const T &amp;<em>initialValue</em>)</span><a href="#default-qproperty-qproperty-const-t-amp-initialvalue" class="header-anchor">#</a></h3><p>用提供的<em>initialValue</em>构建一个属性。</p>
+<h3><span id="template-qproperty-qproperty-functor-amp-amp-f">template <typename functor> QProperty::QProperty(Functor &amp;&amp;<em>f</em>)</typename></span><a href="#template-qproperty-qproperty-functor-amp-amp-f" class="header-anchor">#</a></h3><p>构建一个与所提供的绑定表达式<em>f</em>相联系的属性。第一次读取属性值时，会对绑定进行评估。每当绑定的依赖关系改变时，在下次读取该属性的值时将重新评估绑定。</p>
+<h3><span id="qproperty-qproperty-const-qpropertybinding-amp-binding">QProperty::QProperty(const QPropertyBinding<t> &amp;<em>binding</em>)</t></span><a href="#qproperty-qproperty-const-qpropertybinding-amp-binding" class="header-anchor">#</a></h3><p>构建一个与所提供的<em>绑定</em>表达式相联系的属性。在第一次读取属性值时，会评估绑定。每当绑定的依赖关系发生变化时，在下次读取此属性的值时将重新评估绑定。</p>
+<h3><span id="qproperty-qproperty">QProperty::QProperty()</span><a href="#qproperty-qproperty" class="header-anchor">#</a></h3><p>用一个默认构造的T的实例构造一个属性。</p>
+<h3><span id="default-qproperty-amp-qproperty-operator-const-qpropertybinding-amp-newbinding"><code>[default]</code><t> &amp;QProperty::operator=(const QPropertyBinding<t> &amp;<em>newBinding</em>)</t></t></span><a href="#default-qproperty-amp-qproperty-operator-const-qpropertybinding-amp-newbinding" class="header-anchor">#</a></h3><p>将此属性的值与提供的<em>newBinding</em>表达式联系起来，并返回此属性的一个引用。在第一次读取属性值时，绑定被评估。每当绑定的依赖性改变时，在下次读取该属性的值时，将重新评估绑定。</p>
+<h3><span id="qproperty-qproperty">QProperty::~QProperty()</span><a href="#qproperty-qproperty" class="header-anchor">#</a></h3><p>销毁该属性。</p>
+<h3><span id="template-qpropertynotifier-qproperty-addnotifier-functor-f">template <typename functor> <a href="qpropertynotifier.html">QPropertyNotifier</a> QProperty::addNotifier(Functor <em>f</em>)</typename></span><a href="#template-qpropertynotifier-qproperty-addnotifier-functor-f" class="header-anchor">#</a></h3><p>订阅给定的functor <em>f</em>作为回调，每当属性的值发生变化时就会调用。</p>
+<p>回调<em>f</em>被期望是一个具有普通调用操作符（）的类型，没有任何参数。这意味着你可以提供一个C++ lambda表达式，一个std::函数，甚至一个带有调用操作符的自定义结构。</p>
+<p>返回的属性变化处理程序对象会保持对订阅的跟踪。当它超出范围时，回调会被取消订阅。</p>
+<p>这个方法在某些情况下比<a href="#onValueChanged">onValueChanged</a>()更容易使用，因为返回的对象不是一个模板。因此，它可以更容易地被存储，例如，作为一个类中的成员。</p>
+<p><strong>See also</strong> <a href="#onValueChanged">onValueChanged</a>() and <a href="#subscribe">subscribe</a>().</p>
+<h3><span id="qpropertybinding-qproperty-binding-const">QPropertyBinding<t> QProperty::binding() const</t></span><a href="#qpropertybinding-qproperty-binding-const" class="header-anchor">#</a></h3><p>返回与此属性相关的绑定表达式。如果不存在这样的关联，将返回一个默认构造的QPropertyBinding<t>。</t></p>
+<p><strong>See also</strong> <a href="#setBinding">setBinding</a>().</p>
+<h3><span id="template-qpropertychangehandler-qproperty-onvaluechanged-functor-f">template <typename functor> <a href="qpropertychangehandler.html">QPropertyChangeHandler</a><functor> QProperty::onValueChanged(Functor <em>f</em>)</functor></typename></span><a href="#template-qpropertychangehandler-qproperty-onvaluechanged-functor-f" class="header-anchor">#</a></h3><p>注册给定的漏斗<em>f</em>作为回调，每当属性的值发生变化时就会被调用。在每个值的变化中，处理程序要么被立即调用，要么被推迟，这取决于上下文。</p>
+<p>回调<em>f</em>被期望是一个具有普通调用操作符（）的类型，没有任何参数。这意味着你可以提供一个C++ lambda表达式，一个std::函数，甚至一个带有调用操作符的自定义结构。</p>
+<p>返回的属性变更处理程序对象会保持对注册的跟踪。当它超出范围时，回调被取消注册。</p>
+<h3><span id="qpropertybinding-qproperty-setbinding-const-qpropertybinding-amp-newbinding">QPropertyBinding<t> QProperty::setBinding(const QPropertyBinding<t> &amp;<em>newBinding</em>)</t></t></span><a href="#qpropertybinding-qproperty-setbinding-const-qpropertybinding-amp-newbinding" class="header-anchor">#</a></h3><p>将此属性的值与提供的<em>newBinding</em>表达式联系起来，并返回先前关联的绑定。第一次读取属性值时，绑定被评估。每当绑定的依赖性改变时，绑定将在下次读取此属性的值时被重新评估。</p>
+<p><strong>See also</strong> <a href="#binding">binding</a>().</p>
+<h3><span id="bool-qproperty-setbinding-const-quntypedpropertybinding-amp-newbinding">bool QProperty::setBinding(const QUntypedPropertyBinding &amp;<em>newBinding</em>)</span><a href="#bool-qproperty-setbinding-const-quntypedpropertybinding-amp-newbinding" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将此属性的值与提供的<em>newBinding</em>表达式联系起来。第一次读取属性值时，绑定被评估。每当绑定的依赖性改变时，绑定将在下次读取此属性的值时被重新评估。</p>
+<p>如果该属性的类型与绑定函数返回的类型相同，则返回真；否则返回假。</p>
+<h3><span id="template-qpropertybinding-qproperty-setbinding-functor-f">template <typename functor> QPropertyBinding<t> QProperty::setBinding(Functor <em>f</em>)</t></typename></span><a href="#template-qpropertybinding-qproperty-setbinding-functor-f" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>将此属性的值与所提供的漏斗<em>f</em>相关联，并返回先前关联的绑定。在第一次读取属性值时，通过调用<em>f</em>的调用操作符（）来评估绑定。每当绑定的依赖性改变时，绑定将在下次读取该属性值时被重新评估。</p>
+<p><strong>See also</strong> <a href="bindableproperties.html#formulating-a-property-binding">Formulating a Property Binding</a>.</p>
+<h3><span id="template-qpropertychangehandler-qproperty-subscribe-functor-f">template <typename functor> <a href="qpropertychangehandler.html">QPropertyChangeHandler</a><functor> QProperty::subscribe(Functor <em>f</em>)</functor></typename></span><a href="#template-qpropertychangehandler-qproperty-subscribe-functor-f" class="header-anchor">#</a></h3><p>订阅给定的函数<em>f</em>作为一个回调，该回调会被立即调用，并且在未来该属性的值发生变化时被调用。在每个值的变化中，处理程序要么被立即调用，要么被推迟，这取决于上下文。</p>
+<p>回调<em>f</em>应该是一个可以被复制的类型，并且有一个没有任何参数的普通调用操作符（）。这意味着你可以提供一个C++ lambda表达式，一个std::函数，甚至一个带有调用操作符的自定义结构。</p>
+<p>返回的属性变化处理程序对象会保持对订阅的跟踪。当它超出范围时，回调被取消订阅。</p>
+<h3><span id="qpropertybinding-qproperty-takebinding">QPropertyBinding<t> QProperty::takeBinding()</t></span><a href="#qpropertybinding-qproperty-takebinding" class="header-anchor">#</a></h3><p>将绑定表达式与该属性解除关联并返回。调用这个函数后，只有当你给它分配了一个新的值，或者设置了一个新的绑定时，该属性的值才会改变。</p>
+<h3><span id="qproperty-parameter-type-qproperty-value-const">QProperty::parameter_type QProperty::value() const</span><a href="#qproperty-parameter-type-qproperty-value-const" class="header-anchor">#</a></h3><p>返回该属性的值。在返回值之前，这可能会评估一个与此属性绑定的绑定表达式。</p>
+<p><strong>See also</strong> <a href="#setValue">setValue</a>().</p>
+<h2><span id="fei-xiang-guan-cheng-yuan">非相关成员</span><a href="#fei-xiang-guan-cheng-yuan" class="header-anchor">#</a></h2><h3><span id="since-6-2-void-beginpropertyupdategroup"><code>[since 6.2]</code>void beginPropertyUpdateGroup()</span><a href="#since-6-2-void-beginpropertyupdategroup" class="header-anchor">#</a></h3><p>标志着一个属性更新组的开始。在这个组内，改变一个属性既不会立即更新任何附属属性，也不会触发改变通知。这些都被推迟，直到调用<a href="#endPropertyUpdateGroup">endPropertyUpdateGroup</a>来结束这个组。</p>
+<p>组可以被嵌套。在这种情况下，只有在最外层的组被结束后，延迟才会结束。</p>
+<p><strong>注意：</strong>只有在所有受该组影响的属性值被更新为新值后，才会发送变更通知。这允许在多个属性需要更新时重新建立一个类的不变性，防止任何外部观察者注意到一个不一致的状态。</p>
+<p> 这个函数是在 Qt 6.2 中引入的。</p>
+<p><strong>See also</strong> <a href="#endPropertyUpdateGroup">Qt::endPropertyUpdateGroup</a>.</p>
+<h3><span id="since-6-2-void-endpropertyupdategroup"><code>[since 6.2]</code>void endPropertyUpdateGroup()</span><a href="#since-6-2-void-endpropertyupdategroup" class="header-anchor">#</a></h3><p>结束一个属性更新组。如果最外层的组已经被结束，并且现在发生了延迟的绑定评估和通知。</p>
+<p><strong>警告：</strong>调用endPropertyUpdateGroup而不在前面调用<a href="#beginPropertyUpdateGroup">beginPropertyUpdateGroup</a>会导致未定义行为。</p>
+<p> 这个函数是在 Qt 6.2 中引入的。 </p>
+<p><strong>See also</strong> <a href="#beginPropertyUpdateGroup">Qt::beginPropertyUpdateGroup</a>.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/P/">P</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/P/QPromise/QPromise/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QPromise类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/R/QReadLocker/QReadLocker/">
+                        <span class="hidden-mobile">QReadLocker类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

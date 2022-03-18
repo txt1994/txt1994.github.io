@@ -1,0 +1,1009 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QHostAddress Class 公共类型 公共函数 静态公共成员 相关非会员 详细描述 成员类型文件 [since 5.8]enum QHostAddress::ConversionModeFlag flags QHostAddress::ConversionMode enum QHostAddress::SpecialAddress   成员函数文档 QHostAddress::">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QHostAddress类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/H/QHostAddress/QHostAddress/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QHostAddress Class 公共类型 公共函数 静态公共成员 相关非会员 详细描述 成员类型文件 [since 5.8]enum QHostAddress::ConversionModeFlag flags QHostAddress::ConversionMode enum QHostAddress::SpecialAddress   成员函数文档 QHostAddress::">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:31:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:40:56.479Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="H">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QHostAddress类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QHostAddress类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:31" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      15k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      122 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QHostAddress类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qhostaddress-class">QHostAddress Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-guan-fei-hui-yuan">相关非会员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-jian">成员类型文件</a><ul>
+<li><a href="#since-5-8-enum-qhostaddress-conversionmodeflag-flags-qhostaddress-conversionmode"><code>[since 5.8]</code>enum QHostAddress::ConversionModeFlag flags QHostAddress::ConversionMode</a></li>
+<li><a href="#enum-qhostaddress-specialaddress">enum QHostAddress::SpecialAddress</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qhostaddress-qhostaddress-qhostaddress-specialaddress-https-doc-qt-io-qt-6-qhostaddress-html-specialaddress-enum-address">QHostAddress::QHostAddress(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">QHostAddress::SpecialAddress</a> <em>address</em>)</li>
+<li><a href="#qhostaddress-qhostaddress-const-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-address">QHostAddress::QHostAddress(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a> &amp;<em>address</em>)</li>
+<li><a href="#qhostaddress-qhostaddress-const-qstring-https-doc-qt-io-qt-6-qstring-html-address">QHostAddress::QHostAddress(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>address</em>)</li>
+<li><a href="#qhostaddress-qhostaddress-const-sockaddr-sockaddr">QHostAddress::QHostAddress(const sockaddr *<em>sockaddr</em>)</a></li>
+<li><a href="#qhostaddress-qhostaddress-const-q-ipv6addr-ip6addr">QHostAddress::QHostAddress(const Q_IPV6ADDR &amp;<em>ip6Addr</em>)</a></li>
+<li><a href="#since-5-5-qhostaddress-qhostaddress-const-quint8-https-doc-qt-io-qt-6-qtglobal-html-quint8-typedef-ip6addr"><code>[since 5.5]</code>QHostAddress::QHostAddress(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#quint8-typedef">quint8</a> *<em>ip6Addr</em>)</li>
+<li><a href="#qhostaddress-qhostaddress-quint32-https-doc-qt-io-qt-6-qtglobal-html-quint32-typedef-ip4addr">QHostAddress::QHostAddress(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#quint32-typedef">quint32</a> <em>ip4Addr</em>)</li>
+<li><a href="#qhostaddress-qhostaddress">QHostAddress::QHostAddress()</a></li>
+<li><a href="#qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-qhostaddress-operator-const-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-address">QHostAddress</a></li>
+<li><a href="#qhostaddress-qhostaddress">QHostAddress::~QHostAddress()</a></li>
+<li><a href="#void-qhostaddress-clear">void QHostAddress::clear()</a></li>
+<li><a href="#since-5-11-bool-qhostaddress-isbroadcast-const"><code>[since 5.11]</code>bool QHostAddress::isBroadcast() const</a></li>
+<li><a href="#since-5-8-bool-qhostaddress-isequal-const-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-other-qhostaddress-conversionmode-https-doc-qt-io-qt-6-qhostaddress-html-conversionmodeflag-enum-mode-tolerantconversion-const"><code>[since 5.8]</code>bool QHostAddress::isEqual(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a> &amp;<em>other</em>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#ConversionModeFlag-enum">QHostAddress::ConversionMode</a> <em>mode</em> = TolerantConversion) const</li>
+<li><a href="#since-5-11-bool-qhostaddress-isglobal-const"><code>[since 5.11]</code>bool QHostAddress::isGlobal() const</a></li>
+<li><a href="#bool-qhostaddress-isinsubnet-const-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-subnet-int-netmask-const">bool QHostAddress::isInSubnet(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a> &amp;<em>subnet</em>, int <em>netmask</em>) const</li>
+<li><a href="#bool-qhostaddress-isinsubnet-const-qpair-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-int-subnet-const">bool QHostAddress::isInSubnet(const QPair&lt;</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a>, int&gt; &amp;<em>subnet</em>) const</li>
+<li><a href="#since-5-11-bool-qhostaddress-islinklocal-const"><code>[since 5.11]</code>bool QHostAddress::isLinkLocal() const</a></li>
+<li><a href="#since-5-0-bool-qhostaddress-isloopback-const"><code>[since 5.0]</code>bool QHostAddress::isLoopback() const</a></li>
+<li><a href="#since-5-6-bool-qhostaddress-ismulticast-const"><code>[since 5.6]</code>bool QHostAddress::isMulticast() const</a></li>
+<li><a href="#bool-qhostaddress-isnull-const">bool QHostAddress::isNull() const</a></li>
+<li><a href="#since-5-11-bool-qhostaddress-issitelocal-const"><code>[since 5.11]</code>bool QHostAddress::isSiteLocal() const</a></li>
+<li><a href="#since-5-11-bool-qhostaddress-isuniquelocalunicast-const"><code>[since 5.11]</code>bool QHostAddress::isUniqueLocalUnicast() const</a></li>
+<li><a href="#static-qpair-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-int-qhostaddress-parsesubnet-const-qstring-https-doc-qt-io-qt-6-qstring-html-subnet"><code>[static]</code>QPair&lt;</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a>, int&gt; QHostAddress::parseSubnet(const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>subnet</em>)</li>
+<li><a href="#int-qhostaddress-protocol-const">int QHostAddress::protocol() const</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qhostaddress-scopeid-const">QString</a></li>
+<li><a href="#void-qhostaddress-setaddress-quint32-https-doc-qt-io-qt-6-qtglobal-html-quint32-typedef-ip4addr">void QHostAddress::setAddress(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#quint32-typedef">quint32</a> <em>ip4Addr</em>)</li>
+<li><a href="#since-5-5-void-qhostaddress-setaddress-const-quint8-https-doc-qt-io-qt-6-qtglobal-html-quint8-typedef-ip6addr"><code>[since 5.5]</code>void QHostAddress::setAddress(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtglobal.html#quint8-typedef">quint8</a> *<em>ip6Addr</em>)</li>
+<li><a href="#void-qhostaddress-setaddress-const-q-ipv6addr-ip6addr">void QHostAddress::setAddress(const Q_IPV6ADDR &amp;<em>ip6Addr</em>)</a></li>
+<li><a href="#void-qhostaddress-setaddress-const-sockaddr-sockaddr">void QHostAddress::setAddress(const sockaddr *<em>sockaddr</em>)</a></li>
+<li><a href="#bool-qhostaddress-setaddress-const-qstring-https-doc-qt-io-qt-6-qstring-html-address">bool QHostAddress::setAddress(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>address</em>)</li>
+<li><a href="#since-5-8-void-qhostaddress-setaddress-qhostaddress-specialaddress-https-doc-qt-io-qt-6-qhostaddress-html-specialaddress-enum-address"><code>[since 5.8]</code>void QHostAddress::setAddress(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">QHostAddress::SpecialAddress</a> <em>address</em>)</li>
+<li><a href="#void-qhostaddress-setscopeid-const-qstring-https-doc-qt-io-qt-6-qstring-html-id">void QHostAddress::setScopeId(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>id</em>)</li>
+<li><a href="#since-5-6-void-qhostaddress-swap-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-other"><code>[since 5.6]</code>void QHostAddress::swap(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a> &amp;<em>other</em>)</li>
+<li><a href="#quint32-https-doc-qt-io-qt-6-qtglobal-html-quint32-typedef-qhostaddress-toipv4address-bool-ok-nullptr-const">quint32</a></li>
+<li><a href="#q-ipv6addr-qhostaddress-toipv6address-const">Q_IPV6ADDR QHostAddress::toIPv6Address() const</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qhostaddress-tostring-const-1">QString</a></li>
+<li><a href="#bool-qhostaddress-operator-const-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-other-const">bool QHostAddress::operator!=(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a> &amp;<em>other</em>) const</li>
+<li><a href="#bool-qhostaddress-operator-qhostaddress-specialaddress-https-doc-qt-io-qt-6-qhostaddress-html-specialaddress-enum-other-const">bool QHostAddress::operator!=(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">QHostAddress::SpecialAddress</a> <em>other</em>) const</li>
+<li><a href="#since-5-8-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-qhostaddress-operator-qhostaddress-specialaddress-https-doc-qt-io-qt-6-qhostaddress-html-specialaddress-enum-address"><code>[since 5.8]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a> &amp;QHostAddress::operator=(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">QHostAddress::SpecialAddress</a> <em>address</em>)</li>
+<li><a href="#bool-qhostaddress-operator-const-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-other-const">bool QHostAddress::operator==(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a> &amp;<em>other</em>) const</li>
+<li><a href="#bool-qhostaddress-operator-qhostaddress-specialaddress-https-doc-qt-io-qt-6-qhostaddress-html-specialaddress-enum-other-const">bool QHostAddress::operator==(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">QHostAddress::SpecialAddress</a> <em>other</em>) const</li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-hui-yuan-1">相关非会员</a><ul>
+<li><a href="#since-5-0-size-t-qhash-const-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-key-size-t-seed-0"><code>[since 5.0]</code>size_t qHash(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a> &amp;<em>key</em>, size_t <em>seed</em> = 0)</li>
+<li><a href="#since-5-9-bool-operator-qhostaddress-specialaddress-https-doc-qt-io-qt-6-qhostaddress-html-specialaddress-enum-lhs-const-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-rhs"><code>[since 5.9]</code>bool operator!=(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">QHostAddress::SpecialAddress</a> <em>lhs</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a> &amp;<em>rhs</em>)</li>
+<li><a href="#qdatastream-https-doc-qt-io-qt-6-qdatastream-html-operator-qdatastream-https-doc-qt-io-qt-6-qdatastream-html-out-const-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-address">QDataStream</a></li>
+<li><a href="#bool-operator-qhostaddress-specialaddress-https-doc-qt-io-qt-6-qhostaddress-html-specialaddress-enum-lhs-const-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-rhs">bool operator==(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">QHostAddress::SpecialAddress</a> <em>lhs</em>, const <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a> &amp;<em>rhs</em>)</li>
+<li><a href="#qdatastream-https-doc-qt-io-qt-6-qdatastream-html-operator-qdatastream-https-doc-qt-io-qt-6-qdatastream-html-in-qhostaddress-https-doc-qt-io-qt-6-qhostaddress-html-qhostaddress-address-1">QDataStream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QHostAddress Class
+
+<p>QHostAddress类提供了一个IP地址. <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qhostaddress></qhostaddress></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Network REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Network)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += network</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>flags</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#ConversionModeFlag-enum">ConversionMode</a></strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#ConversionModeFlag-enum">ConversionModeFlag</a></strong> { StrictConversion, ConvertV4MappedToIPv4, ConvertV4CompatToIPv4, ConvertLocalHost, ConvertUnspecifiedAddress, TolerantConversion }</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">SpecialAddress</a></strong> { Null, LocalHost, LocalHostIPv6, Broadcast, AnyIPv4, …, Any }</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress-7">QHostAddress</a></strong>(QHostAddress::SpecialAddress <em>address</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress-6">QHostAddress</a></strong>(const QHostAddress &amp;<em>address</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress-5">QHostAddress</a></strong>(const QString &amp;<em>address</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress-4">QHostAddress</a></strong>(const sockaddr *<em>sockaddr</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress-3">QHostAddress</a></strong>(const Q_IPV6ADDR &amp;<em>ip6Addr</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress-2">QHostAddress</a></strong>(const quint8 *<em>ip6Addr</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress-1">QHostAddress</a></strong>(quint32 <em>ip4Addr</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a></strong>()</td>
+</tr>
+<tr>
+<td>QHostAddress &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#operator-eq-1">operator=</a></strong>(const QHostAddress &amp;<em>address</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#dtor.QHostAddress">~QHostAddress</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#clear">clear</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isBroadcast">isBroadcast</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isEqual">isEqual</a></strong>(const QHostAddress &amp;<em>other</em>, QHostAddress::ConversionMode <em>mode</em> = TolerantConversion) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isGlobal">isGlobal</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isInSubnet">isInSubnet</a></strong>(const QHostAddress &amp;<em>subnet</em>, int <em>netmask</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isInSubnet-1">isInSubnet</a></strong>(const QPair&lt;QHostAddress, int&gt; &amp;<em>subnet</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLinkLocal">isLinkLocal</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLoopback">isLoopback</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isMulticast">isMulticast</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isNull">isNull</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isSiteLocal">isSiteLocal</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isUniqueLocalUnicast">isUniqueLocalUnicast</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#protocol">protocol</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#scopeId">scopeId</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setAddress">setAddress</a></strong>(quint32 <em>ip4Addr</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setAddress-1">setAddress</a></strong>(const quint8 *<em>ip6Addr</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setAddress-2">setAddress</a></strong>(const Q_IPV6ADDR &amp;<em>ip6Addr</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setAddress-3">setAddress</a></strong>(const sockaddr *<em>sockaddr</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setAddress-4">setAddress</a></strong>(const QString &amp;<em>address</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setAddress-5">setAddress</a></strong>(QHostAddress::SpecialAddress <em>address</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setScopeId">setScopeId</a></strong>(const QString &amp;<em>id</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#swap">swap</a></strong>(QHostAddress &amp;<em>other</em>)</td>
+</tr>
+<tr>
+<td>quint32</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#toIPv4Address">toIPv4Address</a></strong>(bool *<em>ok</em> = nullptr) const</td>
+</tr>
+<tr>
+<td>Q_IPV6ADDR</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#toIPv6Address">toIPv6Address</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#toString">toString</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#operator-not-eq">operator!=</a></strong>(const QHostAddress &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#operator-not-eq-1">operator!=</a></strong>(QHostAddress::SpecialAddress <em>other</em>) const</td>
+</tr>
+<tr>
+<td>QHostAddress &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#operator-eq-2">operator=</a></strong>(QHostAddress::SpecialAddress <em>address</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#operator-eq-eq">operator==</a></strong>(const QHostAddress &amp;<em>other</em>) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#operator-eq-eq-1">operator==</a></strong>(QHostAddress::SpecialAddress <em>other</em>) const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QPair&lt;QHostAddress, int&gt;</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#parseSubnet">parseSubnet</a></strong>(const QString &amp;<em>subnet</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-hui-yuan">相关非会员</span><a href="#xiang-guan-fei-hui-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>size_t</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#qHash">qHash</a></strong>(const QHostAddress &amp;<em>key</em>, size_t <em>seed</em> = 0)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#operator-not-eq-2">operator!=</a></strong>(QHostAddress::SpecialAddress <em>lhs</em>, const QHostAddress &amp;<em>rhs</em>)</td>
+</tr>
+<tr>
+<td>QDataStream &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#operator-lt-lt">operator&lt;&lt;</a></strong>(QDataStream &amp;<em>out</em>, const QHostAddress &amp;<em>address</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#operator-eq-eq-2">operator==</a></strong>(QHostAddress::SpecialAddress <em>lhs</em>, const QHostAddress &amp;<em>rhs</em>)</td>
+</tr>
+<tr>
+<td>QDataStream &amp;</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#operator-gt-gt">operator&gt;&gt;</a></strong>(QDataStream &amp;<em>in</em>, QHostAddress &amp;<em>address</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>这个类以一种与平台和协议无关的方式持有一个IPv4或IPv6地址。</p>
+<p>QHostAddress通常与<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtcpsocket.html">QTcpSocket</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtcpserver.html">QTcpServer</a>和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qudpsocket.html">QUdpSocket</a>一起使用，以连接到一个主机或建立一个服务器。</p>
+<p>用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setAddress">setAddress</a>()设置主机地址，用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#toIPv4Address">toIPv4Address</a>()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#toIPv6Address">toIPv6Address</a>()或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#toString">toString</a>()检索。你可以用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#protocol">protocol</a>()来检查该类型。</p>
+<p><strong>注意：</strong>请注意，QHostAddress不做DNS查询。为此需要<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostinfo.html">QHostInfo</a>。</p>
+<p>该类也支持常见的预定义地址。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">Null</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">LocalHost</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">LocalHostIPv6</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">Broadcast</a>, 以及 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">Any</a>。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostinfo.html">QHostInfo</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtcpsocket.html">QTcpSocket</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtcpserver.html">QTcpServer</a>, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qudpsocket.html">QUdpSocket</a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-jian">成员类型文件</span><a href="#cheng-yuan-lei-xing-wen-jian" class="header-anchor">#</a></h2><h3><span id="since-5-8-enum-qhostaddress-conversionmodeflag-flags-qhostaddress-conversionmode"><code>[since 5.8]</code>enum QHostAddress::ConversionModeFlag flags QHostAddress::ConversionMode</span><a href="#since-5-8-enum-qhostaddress-conversionmodeflag-flags-qhostaddress-conversionmode" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QHostAddress::StrictConversion</code></td>
+<td><code>0</code></td>
+<td>在比较两个不同协议的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>对象时，不要将IPv6地址转换为IPv4，因此它们将永远被认为是不同的。</td>
+</tr>
+<tr>
+<td><code>QHostAddress::ConvertV4MappedToIPv4</code></td>
+<td><code>1</code></td>
+<td>在比较时转换IPv4映射的IPv6地址（RFC 4291第2.5.5.2节）。因此，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>(“::fff:192.168.1.1”)将与<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>(“192.168.1.1”)比较，两者相等。</td>
+</tr>
+<tr>
+<td><code>QHostAddress::ConvertV4CompatToIPv4</code></td>
+<td><code>2</code></td>
+<td>在比较时，转换与IPv4兼容的IPv6地址（RFC 4291第2.5.5.1节）。因此，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>(“:192.168.1.1”)将与<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>(“192.168.1.1”)比较，两者相等。</td>
+</tr>
+<tr>
+<td><code>QHostAddress::ConvertLocalHost</code></td>
+<td><code>8</code></td>
+<td>在比较时，将IPv6环回地址转换为其IPv4等价物。因此，例如，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>(“::1”)将与<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>(“127.0.0.1”)进行比较。</td>
+</tr>
+<tr>
+<td><code>QHostAddress::ConvertUnspecifiedAddress</code></td>
+<td><code>4</code></td>
+<td>所有未指定的地址将比较相等，即<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">AnyIPv4</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">AnyIPv6</a> 和Any。</td>
+</tr>
+<tr>
+<td><code>QHostAddress::TolerantConversion</code></td>
+<td><code>0xff</code></td>
+<td>设置前面所有三个标志。</td>
+</tr>
+</tbody></table>
+<p>这个枚举是在Qt 5.8中引入或修改的。</p>
+<p>ConversionMode类型是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qflags.html">QFlags</a><conversionmodeflag>的一个类型定义。它存储了ConversionModeFlag值的OR组合。</conversionmodeflag></p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isEqual">isEqual</a>().</p>
+<h3><span id="enum-qhostaddress-specialaddress">enum QHostAddress::SpecialAddress</span><a href="#enum-qhostaddress-specialaddress" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QHostAddress::Null</code></td>
+<td><code>0</code></td>
+<td><code>0</code>空的地址对象。相当于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#QHostAddress">QHostAddress</a>()。参见<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isNull">QHostAddress::isNull</a>()。</td>
+</tr>
+<tr>
+<td><code>QHostAddress::LocalHost</code></td>
+<td><code>2</code></td>
+<td>IPv4本地主机地址。相当于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>(“127.0.0.1”)。</td>
+</tr>
+<tr>
+<td><code>QHostAddress::LocalHostIPv6</code></td>
+<td><code>3</code></td>
+<td>IPv6的本地主机地址。相当于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>(“::1”)。</td>
+</tr>
+<tr>
+<td><code>QHostAddress::Broadcast</code></td>
+<td><code>1</code></td>
+<td>IPv4广播地址。相当于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>(“255.255.255.255”)。</td>
+</tr>
+<tr>
+<td><code>QHostAddress::AnyIPv4</code></td>
+<td><code>6</code></td>
+<td>IPv4任意地址。相当于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>(“0.0.0.0”)。用这个地址绑定的套接字将只在IPv4接口上监听。</td>
+</tr>
+<tr>
+<td><code>QHostAddress::AnyIPv6</code></td>
+<td><code>5</code></td>
+<td>IPv6的任意地址。相当于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>(“<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qromancalendar.html">:</a>“)。与此地址绑定的套接字将只在IPv6接口上监听。</td>
+</tr>
+<tr>
+<td><code>QHostAddress::Any</code></td>
+<td><code>4</code></td>
+<td>双栈任意地址。用这个地址绑定的套接字将同时监听IPv4和IPv6接口。</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qhostaddress-qhostaddress-qhostaddress-specialaddress-address">QHostAddress::QHostAddress( <em>address</em>)</span><a href="#qhostaddress-qhostaddress-qhostaddress-specialaddress-address" class="header-anchor">#</a></h3><p>为<em>address</em>构建一个QHostAddress对象。</p>
+<h3><span id="qhostaddress-qhostaddress-const-qhostaddress-amp-address">QHostAddress::QHostAddress(const  &amp;<em>address</em>)</span><a href="#qhostaddress-qhostaddress-const-qhostaddress-amp-address" class="header-anchor">#</a></h3><p>构建一个给定<em>address</em>的副本。</p>
+<h3><span id="qhostaddress-qhostaddress-const-qstring-amp-address">QHostAddress::QHostAddress(const  &amp;<em>address</em>)</span><a href="#qhostaddress-qhostaddress-const-qstring-amp-address" class="header-anchor">#</a></h3><p>根据字符串<em>address</em>（例如，”127.0.0.1”）构建一个IPv4或IPv6地址。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setAddress">setAddress</a>().</p>
+<h3><span id="qhostaddress-qhostaddress-const-sockaddr-sockaddr">QHostAddress::QHostAddress(const sockaddr *<em>sockaddr</em>)</span><a href="#qhostaddress-qhostaddress-const-sockaddr-sockaddr" class="header-anchor">#</a></h3><p>使用本地结构<em>sockaddr</em>指定的地址构造一个IPv4或IPv6地址。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setAddress">setAddress</a>().</p>
+<h3><span id="qhostaddress-qhostaddress-const-q-ipv6addr-amp-ip6addr">QHostAddress::QHostAddress(const Q_IPV6ADDR &amp;<em>ip6Addr</em>)</span><a href="#qhostaddress-qhostaddress-const-q-ipv6addr-amp-ip6addr" class="header-anchor">#</a></h3><p>用IPv6地址<em>ip6Addr</em>构造一个主机地址对象。</p>
+<h3><span id="since-5-5-qhostaddress-qhostaddress-const-quint8-ip6addr"><code>[since 5.5]</code>QHostAddress::QHostAddress(const  *<em>ip6Addr</em>)</span><a href="#since-5-5-qhostaddress-qhostaddress-const-quint8-ip6addr" class="header-anchor">#</a></h3><p>用IPv6地址<em>ip6Addr</em>构造一个主机地址对象。</p>
+<p><em>ip6Addr</em>必须是一个按网络字节顺序排列的16字节数组（big endian）。</p>
+<p>这个函数是在Qt 5.5中引入的。</p>
+<h3><span id="qhostaddress-qhostaddress-quint32-ip4addr">QHostAddress::QHostAddress( <em>ip4Addr</em>)</span><a href="#qhostaddress-qhostaddress-quint32-ip4addr" class="header-anchor">#</a></h3><p>用IPv4地址<em>ip4Addr</em>构造一个主机地址对象。</p>
+<h3><span id="qhostaddress-qhostaddress">QHostAddress::QHostAddress()</span><a href="#qhostaddress-qhostaddress" class="header-anchor">#</a></h3><p>构建一个空主机地址对象，即一个对任何主机或接口都无效的地址。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#clear">clear</a>().</p>
+<h3><span id="qhostaddress-amp-qhostaddress-operator-const-qhostaddress-amp-address"> &amp;QHostAddress::operator=(const  &amp;<em>address</em>)</span><a href="#qhostaddress-amp-qhostaddress-operator-const-qhostaddress-amp-address" class="header-anchor">#</a></h3><p>为这个对象分配另一个主机<em>address</em>，并返回这个对象的一个引用。</p>
+<h3><span id="qhostaddress-qhostaddress">QHostAddress::~QHostAddress()</span><a href="#qhostaddress-qhostaddress" class="header-anchor">#</a></h3><p>销毁主机地址对象。</p>
+<h3><span id="void-qhostaddress-clear">void QHostAddress::clear()</span><a href="#void-qhostaddress-clear" class="header-anchor">#</a></h3><p>将主机地址设置为null，并将协议设置为<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qabstractsocket.html#NetworkLayerProtocol-enum">QAbstractSocket::UnknownNetworkLayerProtocol</a>。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">QHostAddress::Null</a>.</p>
+<h3><span id="since-5-11-bool-qhostaddress-isbroadcast-const"><code>[since 5.11]</code>bool QHostAddress::isBroadcast() const</span><a href="#since-5-11-bool-qhostaddress-isbroadcast-const" class="header-anchor">#</a></h3><p>如果地址是IPv4广播地址，返回 “true”，否则返回 “false”。IPv4广播地址是255.255.255.255。</p>
+<p>请注意，对于IPv4网络的本地广播地址，该函数不会返回true。为此，请使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkinterface.html">QNetworkInterface</a>来获取本地机器的广播地址。</p>
+<p>这个函数是在Qt 5.11中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLoopback">isLoopback</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isGlobal">isGlobal</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isMulticast">isMulticast</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLinkLocal">isLinkLocal</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isUniqueLocalUnicast">isUniqueLocalUnicast</a>().</p>
+<h3><span id="since-5-8-bool-qhostaddress-isequal-const-qhostaddress-amp-other-qhostaddress-conversionmode-mode-tolerantconversion-const"><code>[since 5.8]</code>bool QHostAddress::isEqual(const  &amp;<em>other</em>,  <em>mode</em> = TolerantConversion) const</span><a href="#since-5-8-bool-qhostaddress-isequal-const-qhostaddress-amp-other-qhostaddress-conversionmode-mode-tolerantconversion-const" class="header-anchor">#</a></h3><p>如果该主机地址与给定的<em>其他</em>地址相同，则返回 “true”；否则返回 “false”。</p>
+<p>参数<em>mode</em>控制在不同协议的地址之间进行转换的方式。如果没有给出<em>mode</em>，则默认执行<code>TolerantConversion</code>。</p>
+<p>这个函数是在Qt 5.8中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#ConversionModeFlag-enum">ConversionMode</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#operator-eq-eq">operator==</a>().</p>
+<h3><span id="since-5-11-bool-qhostaddress-isglobal-const"><code>[since 5.11]</code>bool QHostAddress::isGlobal() const</span><a href="#since-5-11-bool-qhostaddress-isglobal-const" class="header-anchor">#</a></h3><p>如果地址是IPv4或IPv6全局地址，返回 <code>true</code>，否则返回 <code>false</code>。全局地址是指没有为特殊目的（如环回或组播）或未来目的保留的地址。</p>
+<p>请注意，IPv6唯一的本地单播地址被认为是全局地址（参见<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isUniqueLocalUnicast">isUniqueLocalUnicast</a>()），正如<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc1918">RFC 1918</a>为本地网络保留的IPv4地址。</p>
+<p>还要注意的是，IPv6站点-本地地址已被废弃，在新的应用中应被视为全局地址。这个函数对站点-本地地址也返回true。</p>
+<p>这个函数是在Qt 5.11中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLoopback">isLoopback</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isSiteLocal">isSiteLocal</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isUniqueLocalUnicast">isUniqueLocalUnicast</a>().</p>
+<h3><span id="bool-qhostaddress-isinsubnet-const-qhostaddress-amp-subnet-int-netmask-const">bool QHostAddress::isInSubnet(const  &amp;<em>subnet</em>, int <em>netmask</em>) const</span><a href="#bool-qhostaddress-isinsubnet-const-qhostaddress-amp-subnet-int-netmask-const" class="header-anchor">#</a></h3><p>如果这个IP在网络前缀<em>subnet</em>和网络掩码<em>netmask</em>所描述的子网中，返回<code>true</code>。</p>
+<p>如果一个IP包含在子网中最低和最高的地址之间，那么它就被认为属于一个子网。在IP版本4的情况下，最低地址是网络地址，而最高地址是广播地址。</p>
+<p><em>子网</em>参数不一定是实际的网络地址（子网中的最低地址）。它可以是属于该子网的任何有效IP。特别是，如果它等于这个对象所持有的IP地址，这个函数将总是返回true（前提是netmask是一个有效的值）。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#parseSubnet">parseSubnet</a>().</p>
+<h3><span id="bool-qhostaddress-isinsubnet-const-qpair-lt-qhostaddress-int-gt-amp-subnet-const">bool QHostAddress::isInSubnet(const QPair&lt;, int&gt; &amp;<em>subnet</em>) const</span><a href="#bool-qhostaddress-isinsubnet-const-qpair-lt-qhostaddress-int-gt-amp-subnet-const" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>如果这个IP在<em>subnet</em>所描述的子网中，返回<code>true</code>。<em>subnet</em>的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html">QHostAddress</a>成员包含网络前缀，int(second)成员包含netmask（前缀长度）。</p>
+<h3><span id="since-5-11-bool-qhostaddress-islinklocal-const"><code>[since 5.11]</code>bool QHostAddress::isLinkLocal() const</span><a href="#since-5-11-bool-qhostaddress-islinklocal-const" class="header-anchor">#</a></h3><p>如果地址是IPv4或IPv6链路本地地址，返回 “true”，否则 “false”。</p>
+<p>IPv4链接本地地址是网络169.254.0.0/16中的一个地址。一个IPv6链路本地地址是网络fe80::/10中的一个。更多信息请参见<a target="_blank" rel="noopener" href="https://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xhtml">IANA IPv6地址空间</a>注册表。</p>
+<p>这个函数是在Qt 5.11中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLoopback">isLoopback</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isGlobal">isGlobal</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isMulticast">isMulticast</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isSiteLocal">isSiteLocal</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isUniqueLocalUnicast">isUniqueLocalUnicast</a>().</p>
+<h3><span id="since-5-0-bool-qhostaddress-isloopback-const"><code>[since 5.0]</code>bool QHostAddress::isLoopback() const</span><a href="#since-5-0-bool-qhostaddress-isloopback-const" class="header-anchor">#</a></h3><p>如果地址是IPv6环回地址，或任何IPv4环回地址，则返回<code>true</code>。</p>
+<p>这个函数是在Qt 5.0中引入的。</p>
+<h3><span id="since-5-6-bool-qhostaddress-ismulticast-const"><code>[since 5.6]</code>bool QHostAddress::isMulticast() const</span><a href="#since-5-6-bool-qhostaddress-ismulticast-const" class="header-anchor">#</a></h3><p>如果地址是IPv4或IPv6组播地址，返回<code>true</code>，否则返回<code>false</code>。</p>
+<p>这个函数是在Qt 5.6中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLoopback">isLoopback</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isGlobal">isGlobal</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLinkLocal">isLinkLocal</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isSiteLocal">isSiteLocal</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isUniqueLocalUnicast">isUniqueLocalUnicast</a>().</p>
+<h3><span id="bool-qhostaddress-isnull-const">bool QHostAddress::isNull() const</span><a href="#bool-qhostaddress-isnull-const" class="header-anchor">#</a></h3><p>如果该主机地址对任何主机或接口无效，则返回<code>true</code>。</p>
+<p>默认构造函数创建一个空地址。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">QHostAddress::Null</a>.</p>
+<h3><span id="since-5-11-bool-qhostaddress-issitelocal-const"><code>[since 5.11]</code>bool QHostAddress::isSiteLocal() const</span><a href="#since-5-11-bool-qhostaddress-issitelocal-const" class="header-anchor">#</a></h3><p>如果地址是IPv6站点本地地址，返回 “true”，否则返回 “false”。</p>
+<p>一个IPv6站点本地地址是网络fec0::/10中的一个。更多信息请参见<a target="_blank" rel="noopener" href="https://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xhtml">IANA IPv6地址空间</a>注册表。</p>
+<p>IPv6站点本地地址已被废弃，不应在新的应用中依赖。新的应用程序不应依赖此函数，而应将站点-本地地址视为与全局地址相同（这就是为什么<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isGlobal">isGlobal</a>()也会返回true）。站点-本地地址被唯一本地地址（ULA）所取代。</p>
+<p>这个函数是在Qt 5.11中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLoopback">isLoopback</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isGlobal">isGlobal</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isMulticast">isMulticast</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLinkLocal">isLinkLocal</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isUniqueLocalUnicast">isUniqueLocalUnicast</a>().</p>
+<h3><span id="since-5-11-bool-qhostaddress-isuniquelocalunicast-const"><code>[since 5.11]</code>bool QHostAddress::isUniqueLocalUnicast() const</span><a href="#since-5-11-bool-qhostaddress-isuniquelocalunicast-const" class="header-anchor">#</a></h3><p>如果地址是一个IPv6唯一的本地单播地址，则返回 “true”，否则返回 “false”。</p>
+<p>一个IPv6唯一本地单播地址是网络fc00::/7中的一个。更多信息请参见<a target="_blank" rel="noopener" href="https://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xhtml">IANA IPv6地址空间</a>注册表。</p>
+<p>请注意，唯一本地单播地址也算作全球地址。RFC 4193说，在实践中，”应用程序可以把这些地址当作全局范围的地址”。只有路由器需要关心这种区别。</p>
+<p>这个函数是在Qt 5.11中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLoopback">isLoopback</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isGlobal">isGlobal</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isMulticast">isMulticast</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isLinkLocal">isLinkLocal</a>(), and isUniqueLocalUnicast().</p>
+<h3><span id="static-qpair-lt-qhostaddress-int-gt-qhostaddress-parsesubnet-const-qstring-amp-subnet"><code>[static]</code>QPair&lt;, int&gt; QHostAddress::parseSubnet(const  &amp;<em>subnet</em>)</span><a href="#static-qpair-lt-qhostaddress-int-gt-qhostaddress-parsesubnet-const-qstring-amp-subnet" class="header-anchor">#</a></h3><p>解析<em>subnet</em>中包含的IP和子网信息，并返回该网络的网络前缀和其前缀长度。</p>
+<p>IP地址和网络掩码必须用斜线（/）分开。</p>
+<p>这个函数支持以下形式的参数。</p>
+<ul>
+<li>123.123.123.123/n 其中n是0到32之间的任何数值</li>
+<li>123.123.123.123/255.255.255.255</li>
+<li><ipv6-address>/n 其中n是0到128之间的任何数值</ipv6-address></li>
+</ul>
+<p>对于IP版本4，该函数也接受缺失的尾部组件（即少于4个八位数，如 “192.168.1”），后面是否有一个点。如果在这种情况下，netmask也丢失了，它将被设置为实际传递的八位数（在上面的例子中，它将是24，为3个八位数）。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isInSubnet">isInSubnet</a>().</p>
+<h3><span id="int-qhostaddress-protocol-const">int QHostAddress::protocol() const</span><a href="#int-qhostaddress-protocol-const" class="header-anchor">#</a></h3><p>返回主机地址的网络层协议。</p>
+<h3><span id="qstring-qhostaddress-scopeid-const"> QHostAddress::scopeId() const</span><a href="#qstring-qhostaddress-scopeid-const" class="header-anchor">#</a></h3><p>返回一个IPv6地址的范围ID。对于IPv4地址，或者如果地址不包含范围ID，则返回一个空的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a>。</p>
+<p>IPv6范围ID指定了非全球IPv6地址的*可达范围，限制了该地址可使用的区域。所有的IPv6地址都与这样一个可达范围相关联。作用域ID被用来区分那些不能保证是全球唯一的地址。</p>
+<p>IPv6规定了以下四个级别的可达性。</p>
+<ul>
+<li>Node-local。仅用于与同一接口上的服务进行通信的地址（例如，回环接口”::1”）。</li>
+<li>链路本地。属于网络接口（<em>链接</em>）的本地地址。主机上的每个IPv6接口总是有一个链路本地地址。链路本地地址（”fe80…”）是由本地网络适配器的MAC地址生成的，并不保证是唯一的。</li>
+<li>全局。用于全球可路由的地址，如互联网上的公共服务器。</li>
+</ul>
+<p>当使用链接本地或站点本地地址进行IPv6连接时，你必须指定范围ID。链路本地地址的范围ID通常与接口名称（如 “eth0”、”en1”）或数字（如 “1”、”2”）相同。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setScopeId">setScopeId</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkinterface.html">QNetworkInterface</a>, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkinterface.html#interfaceFromName">QNetworkInterface::interfaceFromName</a>.</p>
+<h3><span id="void-qhostaddress-setaddress-quint32-ip4addr">void QHostAddress::setAddress( <em>ip4Addr</em>)</span><a href="#void-qhostaddress-setaddress-quint32-ip4addr" class="header-anchor">#</a></h3><p>设置由<em>ip4Addr</em>指定的IPv4地址。</p>
+<h3><span id="since-5-5-void-qhostaddress-setaddress-const-quint8-ip6addr"><code>[since 5.5]</code>void QHostAddress::setAddress(const  *<em>ip6Addr</em>)</span><a href="#since-5-5-void-qhostaddress-setaddress-const-quint8-ip6addr" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>设置由<em>ip6Addr</em>指定的IPv6地址。</p>
+<p><em>ip6Addr</em>必须是一个由16个字节组成的数组，按网络字节顺序排列（高阶字节在前）。</p>
+<p>这个函数是在Qt 5.5中引入的。</p>
+<h3><span id="void-qhostaddress-setaddress-const-q-ipv6addr-amp-ip6addr">void QHostAddress::setAddress(const Q_IPV6ADDR &amp;<em>ip6Addr</em>)</span><a href="#void-qhostaddress-setaddress-const-q-ipv6addr-amp-ip6addr" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>设置由<em>ip6Addr</em>指定的IPv6地址。</p>
+<h3><span id="void-qhostaddress-setaddress-const-sockaddr-sockaddr">void QHostAddress::setAddress(const sockaddr *<em>sockaddr</em>)</span><a href="#void-qhostaddress-setaddress-const-sockaddr-sockaddr" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>设置由本地结构<em>sockaddr</em>指定的IPv4或IPv6地址。如果地址被成功解析，返回 “true “并设置地址；否则返回 “false”。</p>
+<h3><span id="bool-qhostaddress-setaddress-const-qstring-amp-address">bool QHostAddress::setAddress(const  &amp;<em>address</em>)</span><a href="#bool-qhostaddress-setaddress-const-qstring-amp-address" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>设置由<em>address</em>指定的字符串表示的IPv4或IPv6地址（例如：”127.0.0.1”）。如果地址被成功解析，返回 “true “并设置地址；否则返回 “false”。</p>
+<h3><span id="since-5-8-void-qhostaddress-setaddress-qhostaddress-specialaddress-address"><code>[since 5.8]</code>void QHostAddress::setAddress( <em>address</em>)</span><a href="#since-5-8-void-qhostaddress-setaddress-qhostaddress-specialaddress-address" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>设置由<em>address</em>指定的特殊地址。</p>
+<p>这个函数是在Qt 5.8中引入的。</p>
+<h3><span id="void-qhostaddress-setscopeid-const-qstring-amp-id">void QHostAddress::setScopeId(const  &amp;<em>id</em>)</span><a href="#void-qhostaddress-setscopeid-const-qstring-amp-id" class="header-anchor">#</a></h3><p>设置该地址的IPv6范围ID为<em>id</em>。如果地址协议不是IPv6，这个函数不做任何事情。范围ID可以被设置为一个接口名称（如 “eth0 “或 “en1”）或代表接口索引的一个整数。如果<em>id</em>是一个接口名称，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtnetwork-module.html">QtNetwork</a>将在调用操作系统的网络功能之前，使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkinterface.html#interfaceIndexFromName">QNetworkInterface::interfaceIndexFromName</a>()转换为一个接口索引。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#scopeId">scopeId</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkinterface.html">QNetworkInterface</a>, and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qnetworkinterface.html#interfaceFromName">QNetworkInterface::interfaceFromName</a>.</p>
+<h3><span id="since-5-6-void-qhostaddress-swap-qhostaddress-amp-other"><code>[since 5.6]</code>void QHostAddress::swap( &amp;<em>other</em>)</span><a href="#since-5-6-void-qhostaddress-swap-qhostaddress-amp-other" class="header-anchor">#</a></h3><p>将这个主机地址与<em>other</em>交换。这个操作是非常快的，而且从不失败。</p>
+<p>这个函数是在Qt 5.6中引入的。</p>
+<h3><span id="quint32-qhostaddress-toipv4address-bool-ok-nullptr-const"> QHostAddress::toIPv4Address(bool *<em>ok</em> = nullptr) const</span><a href="#quint32-qhostaddress-toipv4address-bool-ok-nullptr-const" class="header-anchor">#</a></h3><p>返回IPv4地址为一个数字。</p>
+<p>例如，如果地址是127.0.0.1，返回值是2130706433（即0x7f000001）。</p>
+<p>如果<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#protocol">协议</a>()是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qabstractsocket.html#NetworkLayerProtocol-enum">IPv4Protocol</a>，或者协议是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qabstractsocket.html#NetworkLayerProtocol-enum">IPv6Protocol</a>，并且IPv6地址是IPv4映射的地址(RFC4291)，这个值就有效。在这些情况下，<em>ok</em>将被设置为true。否则，它将被设置为false。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#toString">toString</a>().</p>
+<h3><span id="q-ipv6addr-qhostaddress-toipv6address-const">Q_IPV6ADDR QHostAddress::toIPv6Address() const</span><a href="#q-ipv6addr-qhostaddress-toipv6address-const" class="header-anchor">#</a></h3><p>返回IPv6地址为一个Q_IPV6ADDR结构。该结构由16个无符号字符组成。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">Q_IPV6ADDR addr = hostAddr.<span class="hljs-built_in">toIPv6Address</span>();
+<span class="hljs-comment">// addr contains 16 unsigned characters</span>
+
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">16</span>; ++i) {
+    <span class="hljs-comment">// process addr[i]</span>
+}</code></pre></div>
+
+<p>如果<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#protocol">协议</a>()是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qabstractsocket.html#NetworkLayerProtocol-enum">IPv6Protocol</a>，这个值就有效。如果协议是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qabstractsocket.html#NetworkLayerProtocol-enum">IPv4Protocol</a>，那么返回的地址是一个IPv4映射的IPv6地址。(RFC4291)</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#toString">toString</a>().</p>
+<h3><span id="qstring-qhostaddress-tostring-const"> QHostAddress::toString() const</span><a href="#qstring-qhostaddress-tostring-const" class="header-anchor">#</a></h3><p>返回地址为一个字符串。</p>
+<p>例如，如果地址是IPv4地址127.0.0.1，返回的字符串是 “127.0.0.1”。对于IPv6，字符串的格式将遵循RFC5952的建议。对于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#SpecialAddress-enum">QHostAddress::Any</a>，其IPv4地址将被返回(“0.0.0.0”)</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#toIPv4Address">toIPv4Address</a>().</p>
+<h3><span id="bool-qhostaddress-operator-const-qhostaddress-amp-other-const">bool QHostAddress::operator!=(const  &amp;<em>other</em>) const</span><a href="#bool-qhostaddress-operator-const-qhostaddress-amp-other-const" class="header-anchor">#</a></h3><p>如果该主机地址与所给的<em>其他</em>地址不一致，则返回<code>true</code>；否则返回<code>false</code>。</p>
+<h3><span id="bool-qhostaddress-operator-qhostaddress-specialaddress-other-const">bool QHostAddress::operator!=( <em>other</em>) const</span><a href="#bool-qhostaddress-operator-qhostaddress-specialaddress-other-const" class="header-anchor">#</a></h3><p>如果这个主机地址与给定的<em>其他</em>地址不相同，则返回<code>true</code>；否则返回<code>false</code>。</p>
+<h3><span id="since-5-8-qhostaddress-amp-qhostaddress-operator-qhostaddress-specialaddress-address"><code>[since 5.8]</code> &amp;QHostAddress::operator=( <em>address</em>)</span><a href="#since-5-8-qhostaddress-amp-qhostaddress-operator-qhostaddress-specialaddress-address" class="header-anchor">#</a></h3><p>将特殊地址<em>address</em>分配给这个对象，并返回这个对象的引用。</p>
+<p>这个函数是在Qt 5.8中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#setAddress">setAddress</a>().</p>
+<h3><span id="bool-qhostaddress-operator-const-qhostaddress-amp-other-const">bool QHostAddress::operator==(const  &amp;<em>other</em>) const</span><a href="#bool-qhostaddress-operator-const-qhostaddress-amp-other-const" class="header-anchor">#</a></h3><p>如果这个主机地址与给定的<em>其他</em>地址相同，则返回<code>true</code>；否则返回<code>false</code>。这个操作符只是调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isEqual">isEqual</a>(other, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#ConversionModeFlag-enum">StrictConversion</a>)。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isEqual">isEqual</a>().</p>
+<h3><span id="bool-qhostaddress-operator-qhostaddress-specialaddress-other-const">bool QHostAddress::operator==( <em>other</em>) const</span><a href="#bool-qhostaddress-operator-qhostaddress-specialaddress-other-const" class="header-anchor">#</a></h3><p>如果这个主机地址与给定的<em>其他</em>地址相同，则返回<code>true</code>；否则返回<code>false</code>。</p>
+<h2><span id="xiang-guan-fei-hui-yuan">相关非会员</span><a href="#xiang-guan-fei-hui-yuan" class="header-anchor">#</a></h2><h3><span id="since-5-0-size-t-qhash-const-qhostaddress-amp-key-size-t-seed-0"><code>[since 5.0]</code>size_t qHash(const  &amp;<em>key</em>, size_t <em>seed</em> = 0)</span><a href="#since-5-0-size-t-qhash-const-qhostaddress-amp-key-size-t-seed-0" class="header-anchor">#</a></h3><p>返回主机地址<em>key</em>的哈希值，使用<em>seed</em>作为计算的种子。</p>
+<p>这个函数是在Qt 5.0中引入的。</p>
+<h3><span id="since-5-9-bool-operator-qhostaddress-specialaddress-lhs-const-qhostaddress-amp-rhs"><code>[since 5.9]</code>bool operator!=( <em>lhs</em>, const  &amp;<em>rhs</em>)</span><a href="#since-5-9-bool-operator-qhostaddress-specialaddress-lhs-const-qhostaddress-amp-rhs" class="header-anchor">#</a></h3><p>如果特殊地址<em>lhs</em>与主机地址<em>rhs</em>相同，返回 “false”；否则返回 “true”。</p>
+<p>这个函数是在Qt 5.9中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isEqual">isEqual</a>().</p>
+<h3><span id="qdatastream-amp-operator-lt-lt-qdatastream-amp-out-const-qhostaddress-amp-address"> &amp;operator&lt;&lt;( &amp;<em>out</em>, const  &amp;<em>address</em>)</span><a href="#qdatastream-amp-operator-lt-lt-qdatastream-amp-out-const-qhostaddress-amp-address" class="header-anchor">#</a></h3><p>将主机地址<em>address</em>写入流<em>out</em>，并返回对该流的引用。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/datastreamformat.html">Serializing Qt Data Types</a>.</p>
+<h3><span id="bool-operator-qhostaddress-specialaddress-lhs-const-qhostaddress-amp-rhs">bool operator==( <em>lhs</em>, const  &amp;<em>rhs</em>)</span><a href="#bool-operator-qhostaddress-specialaddress-lhs-const-qhostaddress-amp-rhs" class="header-anchor">#</a></h3><p>如果特殊地址<em>lhs</em>与主机地址<em>rhs</em>相同，返回 “true”；否则返回 “false”。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qhostaddress.html#isEqual">isEqual</a>().</p>
+<h3><span id="qdatastream-amp-operator-gt-gt-qdatastream-amp-in-qhostaddress-amp-address"> &amp;operator&gt;&gt;( &amp;<em>in</em>,  &amp;<em>address</em>)</span><a href="#qdatastream-amp-operator-gt-gt-qdatastream-amp-in-qhostaddress-amp-address" class="header-anchor">#</a></h3><p>从流<em>in</em>读取一个主机地址到<em>address</em>，并返回对该流的引用。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/datastreamformat.html">Serializing Qt Data Types</a>.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/H/">H</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/X/QXmlStreamReader/QXmlStreamReader/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QXmlStreamReader类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/H/QHostInfo/QHostInfo/">
+                        <span class="hidden-mobile">QHostInfo类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

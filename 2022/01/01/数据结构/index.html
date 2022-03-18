@@ -1,0 +1,2598 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数据结构：数据结构是为算法服务而设计的。 数据结构部分 一. 数据结构的存储方式有两种 二 常见数据结构实现        推荐看👉 OI Wiki 数据结构：数据结构是为算法服务而设计的。#算法：充分且合理利用计算机资源处理数据而诞生。 数据结构部分#一. 数据结构的存储方式有两种#1.顺序存储(数组,内存连续)#2.链式存储(链表,内存不连续,依靠节点的指针指向下一个节点)#常见的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据结构：数据结构是为算法服务而设计的。 数据结构部分 一. 数据结构的存储方式有两种 二 常见数据结构实现        推荐看👉 OI Wiki 数据结构：数据结构是为算法服务而设计的。#算法：充分且合理利用计算机资源处理数据而诞生。 数据结构部分#一. 数据结构的存储方式有两种#1.顺序存储(数组,内存连续)#2.链式存储(链表,内存不连续,依靠节点的指针指向下一个节点)#常见的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/t01f58cb18416af8e23.jpg">
+<meta property="article:published_time" content="2022-01-01T11:32:29.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:31:24.546Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="data-structures">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/t01f58cb18416af8e23.jpg">
+  
+  
+  <title>数据结构 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数据结构">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-01 19:32" pubdate>
+        2022年1月1日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      44k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      370 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据结构</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#shu-ju-jie-gou-shu-ju-jie-gou-shi-wei-suan-fa-fu-wu-er-she-ji-de">数据结构：数据结构是为算法服务而设计的。</a></li>
+<li><a href="#shu-ju-jie-gou-bu-fen">数据结构部分</a><ul>
+<li><a href="#yi-shu-ju-jie-gou-de-cun-chu-fang-shi-you-liang-chong">一. 数据结构的存储方式有两种</a></li>
+<li><a href="#er-chang-jian-shu-ju-jie-gou-shi-xian">二 常见数据结构实现</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<p>推荐看👉 <a target="_blank" rel="noopener" href="https://oi-wiki.org/">OI Wiki</a></p>
+<h1><span id="shu-ju-jie-gou-shu-ju-jie-gou-shi-wei-suan-fa-fu-wu-er-she-ji-de">数据结构：数据结构是为算法服务而设计的。</span><a href="#shu-ju-jie-gou-shu-ju-jie-gou-shi-wei-suan-fa-fu-wu-er-she-ji-de" class="header-anchor">#</a></h1><p>算法：充分且合理利用计算机资源处理数据而诞生。</p>
+<h1><span id="shu-ju-jie-gou-bu-fen">数据结构部分</span><a href="#shu-ju-jie-gou-bu-fen" class="header-anchor">#</a></h1><h3><span id="yi-shu-ju-jie-gou-de-cun-chu-fang-shi-you-liang-chong">一. 数据结构的存储方式有两种</span><a href="#yi-shu-ju-jie-gou-de-cun-chu-fang-shi-you-liang-chong" class="header-anchor">#</a></h3><h4><span id="1-shun-xu-cun-chu-shu-zu-nei-cun-lian-xu">1.顺序存储(数组,内存连续)</span><a href="#1-shun-xu-cun-chu-shu-zu-nei-cun-lian-xu" class="header-anchor">#</a></h4><h4><span id="2-lian-shi-cun-chu-lian-biao-nei-cun-bu-lian-xu-yi-kao-jie-dian-de-zhi-zhen-zhi-xiang-xia-yi-ge-jie-dian">2.链式存储(链表,内存不连续,依靠节点的指针指向下一个节点)</span><a href="#2-lian-shi-cun-chu-lian-biao-nei-cun-bu-lian-xu-yi-kao-jie-dian-de-zhi-zhen-zhi-xiang-xia-yi-ge-jie-dian" class="header-anchor">#</a></h4><p>常见的数据结构有： </p>
+<blockquote>
+<p> 数组(array),链表(LinkedList),</p>
+<p> 双向链表(doubly-linked-list),</p>
+<p> 树：</p>
+<ul>
+<li><p>二叉树(Binary tree),</p>
+</li>
+<li><p>二叉查找树(Binary Search Tree),平衡二叉树(AVL),</p>
+</li>
+<li><p>2-3-4树</p>
+</li>
+<li><p>红黑树(Red Black Tree), B树, B+树, B*树, AA-树</p>
+</li>
+<li><p>treap树, k-d树, 伸展树(Splay Tree)</p>
+</li>
+<li><p>最小生成树(<strong>Minimum Spanning Tree</strong>)</p>
+</li>
+<li><p>图(graph),</p>
+</li>
+</ul>
+<p> 栈(stack), 堆(heap),队列(queue),</p>
+<p> 散列表(hash), 位图(bitmap),</p>
+<p> 字典(map)</p>
+</blockquote>
+<h3><span id="er-chang-jian-shu-ju-jie-gou-shi-xian">二 常见数据结构实现</span><a href="#er-chang-jian-shu-ju-jie-gou-shi-xian" class="header-anchor">#</a></h3><h4><span id="1-lian-biao">1.链表</span><a href="#1-lian-biao" class="header-anchor">#</a></h4><ul>
+<li><strong>链表(LinkedList)</strong></li>
+</ul>
+<blockquote>
+<p>避免数组插入和删除的线性开销,我们需要允许表可以不连续存储,防止数据大量移动</p>
+</blockquote>
+<ul>
+<li><strong>链表的设计</strong></li>
+</ul>
+<p>设计成一个链表节点至少包含两部分：</p>
+<blockquote>
+<p>数据部和指针部</p>
+<p>数据部为我们要存储的数据,指针部为指向下一个链表节点</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListElmt_</span>
+{
+    <span class="hljs-type">void</span> *data;
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListElmt_</span> *next;
+} ListElmt;</code></pre></div>
+
+
+
+<h5><span id="dan-xiang-lian-biao">单向链表</span><a href="#dan-xiang-lian-biao" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListElmt_</span>
+{
+    <span class="hljs-type">void</span> *data;
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListElmt_</span> *next;
+} ListElmt;</code></pre></div>
+
+<h6><span id="li-zi">例子</span><a href="#li-zi" class="header-anchor">#</a></h6><div class="code-wrapper"><pre><code class="hljs hpp"><span class="hljs-comment">/*1ist.h*/</span>
+<span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> LIST_H </span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> LIST_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-comment">/* Define a structure for linked list elements. */</span> 
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListElnt_</span>
+{
+    <span class="hljs-type">void</span> *data:
+	<span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListElnt</span> *next;
+} ListElmt;
+
+<span class="hljs-comment">/* Define a structure for linked lists, */</span> 
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">List_</span>
+{
+    <span class="hljs-type">int</span> size:
+	<span class="hljs-built_in">int</span> (*<span class="hljs-built_in">match</span>()<span class="hljs-type">const</span> <span class="hljs-type">void</span> *keyl, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *key2);
+    <span class="hljs-built_in">void</span> (*destroy)(<span class="hljs-type">void</span> *data);
+	ListElmt *head;
+    ListElmt *tail;
+} List;
+
+<span class="hljs-comment">/* Public Interface*/</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">list_init</span><span class="hljs-params">(List *list, <span class="hljs-type">void</span> (*destroy)(<span class="hljs-type">void</span> *data))</span></span>; <span class="hljs-comment">// 初始化一个链表以便于进行后续操作</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">list_destroy</span><span class="hljs-params">(List *list)</span></span>;	
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">list_ins_next</span><span class="hljs-params">(List *list, ListEInt *element, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>; 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">list_rem_next</span><span class="hljs-params">(List *list, ListElnt *element, <span class="hljs-type">void</span> **data)</span></span>; 
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> list_size(list()(list)-&gt;size)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> list_head(list()(list)-&gt;head) </span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> list_tail(1ist()(1ist)-&gt;tail)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> list_is_head(list, element()(element)= (list)-&gt;head ? 1: 0) </span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> list_is_tail(element()(element)-&gt;next  NULL ? 1:0)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> list_data(element()(element)-&gt;data) </span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> list_next(element()(element)-&gt;next)</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span></code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* list.c*/</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"list.h"</span></span>
+<span class="hljs-comment">/*list init */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">list_init</span><span class="hljs-params">(List *list, <span class="hljs-type">void</span> (*destroy)(<span class="hljs-type">void</span> *data))</span> </span>{
+	<span class="hljs-comment">/* Initialize the list. */</span>
+	list-&gt;size = <span class="hljs-number">0</span>;
+	list-&gt;destroy = destroy; 
+    list-&gt;head = <span class="hljs-literal">NULL</span>; 
+    list-&gt;tail = <span class="hljs-literal">NULL</span>;
+}
+
+<span class="hljs-comment">/*listdestroy*/</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">list_destroy</span><span class="hljs-params">(List *list)</span> </span>{
+	<span class="hljs-type">void</span>* data;
+    <span class="hljs-comment">/* Remove each element.*/</span>
+    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">list_size</span>(list) &gt; <span class="hljs-number">0</span>){
+        <span class="hljs-keyword">if</span> (<span class="hljs-number">0</span> == <span class="hljs-built_in">list_rem_next</span>(list, <span class="hljs-literal">NULL</span>, (<span class="hljs-type">void</span> **)&amp;data) &amp;&amp; <span class="hljs-literal">NULL</span> != list-&gt;destroy){
+    <span class="hljs-comment">/* Call a user-defined function to free dynanically allocated data, */</span> 
+        	list-&gt;<span class="hljs-built_in">destroy</span>(data);
+        }
+    }
+	<span class="hljs-comment">/* No operations are allowed now, but clear the structure as a precaution. */</span> 
+    <span class="hljs-built_in">memset</span>(list, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(List));
+}
+
+<span class="hljs-comment">/*list_ins_next*/</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">list_ins_next</span><span class="hljs-params">(List *list, ListElmt *element,<span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>{ 
+    ListElmt*	new_element;
+    <span class="hljs-comment">/*Allocate storage for the element. */</span>
+    <span class="hljs-keyword">if</span>(<span class="hljs-literal">NULL</span> == (new_element-(ListElmt*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(ListElmt))))
+    	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    <span class="hljs-comment">/* Insert the element into the list. */</span> 
+    new_element-&gt;data = (<span class="hljs-type">void</span> *)data; 
+    <span class="hljs-keyword">if</span> (element == <span class="hljs-literal">NULL</span>) {
+    	<span class="hljs-comment">/* Handle insertion at the head of the list. */</span> 
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">list_size</span>(list)==<span class="hljs-number">0</span>)
+        	list-&gt;tail = <span class="hljs-keyword">new</span> _element;
+        new_element-&gt;next = list-&gt;head; 
+        list-&gt;head=new_element; 
+    }
+    <span class="hljs-keyword">else</span>{
+    	<span class="hljs-comment">/* Handle insertion somewhere other than at the head. */</span> 
+        <span class="hljs-keyword">if</span>(element-&gt;next == <span class="hljs-literal">NULL</span>)
+        list-&gt;tail = new_element;
+        new_element-&gt;next = element-&gt;next;
+        element-&gt;next = new_element; 
+    }
+    <span class="hljs-comment">/*Adjust the size of the list to account for the inserted element. */</span> 
+    list-&gt;size++;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* list_rem_next */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">list_rem_next</span><span class="hljs-params">(List *list, ListElmt *element, <span class="hljs-type">void</span> **data)</span> </span>{
+    ListElmt	*old_element;
+    
+    <span class="hljs-comment">/*Do not allow removal from an empty list.*/</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">list_size</span>(list) == <span class="hljs-number">0</span>)
+		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    
+	<span class="hljs-comment">/* Remove the element from the list. */</span> 
+    <span class="hljs-keyword">if</span> (element == <span class="hljs-literal">NULL</span>)
+    {
+        <span class="hljs-comment">/* Handle removal from the head of the list, */</span>
+        *data = list-&gt;head-&gt;data;
+        old_element = list-&gt;head; 
+        list-&gt;head = list-&gt;head-&gt;next;
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">list_size</span>(list) == <span class="hljs-number">1</span>) 
+            list-&gt;tail = <span class="hljs-literal">NULL</span>;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">/* Handle removal from somewhere other than the head. */</span>
+        <span class="hljs-keyword">if</span> (element—&gt;next == <span class="hljs-literal">NULL</span>)
+        	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        *data = element-&gt;next-&gt;data; 
+        old_element = element-&gt;next;
+        element-&gt;next = element-&gt;next-&gt;next;
+        <span class="hljs-keyword">if</span> (element-&gt;next = <span class="hljs-literal">NULL</span>) 
+            list-&gt;tail = element;
+    }
+    
+    <span class="hljs-comment">/* Free the storage allocated by the abstract datatype. */</span> 
+    <span class="hljs-built_in">free</span>(old_element);
+    
+    <span class="hljs-comment">/*Adjust the size of the list to account for the removed element.*/</span> 
+    <span class="hljs-number">1</span>ist—&gt;size--; 
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; 
+}
+</code></pre></div>
+
+<h5><span id="shuang-xiang-lian-biao">双向链表</span><a href="#shuang-xiang-lian-biao" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">DListEImt_</span>
+{
+    <span class="hljs-type">void</span> *data;
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">DListEImt_</span> *prev;
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">DListEImt_</span> *next;
+} DListEImt;</code></pre></div>
+
+<h6><span id="li-zi">例子</span><a href="#li-zi" class="header-anchor">#</a></h6><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/*dlist h */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> DLIST_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> DLIST_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-comment">/* Define a structure for doubly-linked list elements. */</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">DListEImt_</span>
+{
+    <span class="hljs-type">void</span> *data;
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">DListEImt_</span> *prev;
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">DListEImt_</span> *next;
+} DListEImt;
+
+<span class="hljs-comment">/*Define structure for doubly-linked lists. */</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Dlist_</span>
+{
+    <span class="hljs-type">int</span> size;
+    <span class="hljs-built_in">int</span> (*match)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key1, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *key2);
+    <span class="hljs-built_in">void</span> (*destroy)(<span class="hljs-type">void</span> *data);
+    DListEImt *head;
+    DListEImt *tail;
+}DList;
+
+
+<span class="hljs-comment">/* Public Interface */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dlist_init</span><span class="hljs-params">(DList *list, <span class="hljs-type">void</span> (*destroy)(<span class="hljs-type">void</span> *data))</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dlist_destroy</span><span class="hljs-params">(DList *list)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dlist_ins_next</span><span class="hljs-params">(DList *list, DListEImt *element <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dlist_ins_prev</span><span class="hljs-params">(DList *list, DListEImt *element, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dlist_remove</span><span class="hljs-params">(DList *list, DListEImt *element, <span class="hljs-type">void</span> **data)</span></span>;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> dlist_size(list)	((list)-&gt;size)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> dlist_tail(list)	((list)-&gt;tail)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> dlist_is_head(element)	((element)-&gt;prev == NULL ? 1: 0)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> dlist_is_tail(element)	((element)-&gt;next == NULL ? 1: 0)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> dlist_data(element)	((element)-&gt;data)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> diist_next(element)	((element)-&gt;next)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> dlist_prev(element)	(element )-&gt;prev)</span></code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/*d]主st.C*/</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> dlist . h</span>
+<span class="hljs-comment">/* dlist init */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dlist_init</span><span class="hljs-params">(DList *list, <span class="hljs-type">void</span> (*destroy)(<span class="hljs-type">void</span> *data))</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Initialize the list. */</span>
+    list-&gt;size = <span class="hljs-number">0</span>;
+    list-&gt;destory = destroy;
+    list-&gt;head = <span class="hljs-literal">NULL</span>;
+    list-&gt;tail = <span class="hljs-literal">NULL</span>;
+}
+
+<span class="hljs-comment">/* dlist_destory */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dlist_destroy</span> <span class="hljs-params">(DList *list)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">void</span> *data
+    <span class="hljs-comment">/* Remove each element. */</span>
+    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">dlist_size</span>(list) &gt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">dlist_remove</span>(list, <span class="hljs-built_in">dlist_tail</span>(list), (<span class="hljs-type">void</span>**)adata)==<span class="hljs-number">0</span>
+           &amp;&amp; list-&gt;destory != <span class="hljs-literal">NULL</span>)
+        {
+            <span class="hljs-comment">/* Call a user-defined function to free dynamically allocated data. */</span>
+            list-&gt;<span class="hljs-built_in">destroy</span>(data);
+        }
+    }
+        
+    <span class="hljs-comment">/* No operations are allowed now, but clear the structure as a precaution. */</span>
+    <span class="hljs-built_in">memset</span>(list, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(DList));
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dlist_ins_next</span><span class="hljs-params">(DList *list, DListElmt *element, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>
+<span class="hljs-function"></span>{
+    DListElmt *new_element;
+    
+    <span class="hljs-comment">/* Do not allow a NUll element unless the list is empty. */</span>
+    <span class="hljs-keyword">if</span> (element == <span class="hljs-literal">NULL</span> &amp;&amp; <span class="hljs-built_in">dlist_size</span>(list) != <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    
+    <span class="hljs-comment">/* Allocate storage for the element. */</span>
+    <span class="hljs-keyword">if</span> ((new_element = (DListElmt *)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(DListElmt)))== <span class="hljs-literal">NULL</span>)
+    	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>:
+    <span class="hljs-comment">/* Insert the new_element into the list. */</span>
+    new_element-&gt;data = (<span class="hljs-type">void</span> *)data;
+    
+    <span class="hljs-keyword">if</span> (dlist <span class="hljs-built_in">size</span>(list) == <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-comment">/* Handle insertion when the list is empty. */</span>
+        list-&gt;head = new_element;
+        list-&gt;head-&gt;prev = <span class="hljs-literal">NULL</span>;
+        list-&gt;head-&gt;next = <span class="hljs-literal">NULL</span>;
+        list-&gt;tail = new_element;
+    }
+    <span class="hljs-keyword">else</span>{
+         <span class="hljs-comment">/* Handle insertion when the list is not empty. */</span>
+        new_element-&gt;next = element-&gt;next;
+        new_element-&gt;prev = element;
+        <span class="hljs-keyword">if</span>(element-&gt;next == <span class="hljs-literal">NULL</span>)
+            list-&gt;tail = new_element;
+        <span class="hljs-keyword">else</span>
+            element-&gt;next-&gt;prev = new_element;
+        element-&gt;next = new_element;
+    }
+   
+    <span class="hljs-comment">/* Adjust the size of the list to account for the inserted element. */</span>
+    list-&gt;size++;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* dlist ins_ prev */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dlist_ins_prev</span><span class="hljs-params">(DList *list, DListElmt *element, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>
+<span class="hljs-function"></span>{
+    DListElmt *new_element;
+        
+	<span class="hljs-comment">/* Do not allow a NULL element unless the list is empty. */</span>
+    <span class="hljs-keyword">if</span> (element == <span class="hljs-literal">NULL</span> &amp;&amp; <span class="hljs-built_in">dlist_size</span>(list) != <span class="hljs-number">0</span>)
+    	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    
+    <span class="hljs-comment">/* Allocate storage to be managed by the abstract datatype. */</span>
+    <span class="hljs-keyword">if</span>(new_element = (DListElmt *)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(DListElmt))) == <span class="hljs-literal">NULL</span>)
+    	<span class="hljs-keyword">return</span> - <span class="hljs-number">1</span>;
+    
+    <span class="hljs-comment">/* Insert the new_element into the list */</span>
+    new_element-&gt;data =(<span class="hljs-type">void</span> *)data;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">dlist_size</span>(list)== <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-comment">/* Handle insertion when the list is empty. */</span>
+        list-&gt;head = new_element;
+        list-&gt;head-&gt;prev = <span class="hljs-literal">NULL</span>;
+        list-&gt;head-&gt;next = <span class="hljs-literal">NULL</span>;
+        list-&gt;tail = new_element;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">/* Handle inserton when the list is not empty. */</span>
+        new_element = element;
+        new_element-&gt;prev = element-&gt;prev;
+        
+        <span class="hljs-keyword">if</span> (element-&gt;prev == <span class="hljs-literal">NULL</span>)
+        	list-&gt;head = new_element;
+        <span class="hljs-keyword">else</span>
+        	element-&gt;prev-&gt;next = new_element;
+        element-&gt;prev = new_element;
+    }
+    
+    <span class="hljs-comment">/* Adjust the size of the list to account for the new_element. */</span>
+    list-&gt;size++;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* d1ist_remove */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dlist_remove</span><span class="hljs-params">(DList *list, DListElmt. *element, <span class="hljs-type">void</span> s*data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Do not allow a NULL element or removal from an empty list. */</span>
+    <span class="hljs-keyword">if</span> (element == <span class="hljs-literal">NULL</span> || <span class="hljs-built_in">dlist_size</span>(list) == <span class="hljs-number">0</span>)
+    	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>:
+    <span class="hljs-comment">/* remove the element from the list. */</span>
+    *data s element -&gt;data;
+        
+    <span class="hljs-keyword">if</span> (element == list-&gt;head)
+    {
+        <span class="hljs-comment">/* Handle removal from the head of the list. */</span>
+    	list-&gt;head = element-&gt;next;
+        
+        <span class="hljs-keyword">if</span> (list-&gt;head == <span class="hljs-literal">NULL</span>)
+			list-&gt;tail = <span class="hljs-literal">NULL</span>;
+        <span class="hljs-keyword">else</span>
+        	element-&gt;next-&gt;prev = <span class="hljs-literal">NULL</span>;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">/* Handle removal from other than the head of the list. */</span>
+        element-&gt;prev-&gt;next = element-&gt;next;
+
+        <span class="hljs-keyword">if</span> (element-&gt;next == <span class="hljs-literal">NULL</span>)
+            list-&gt;tail = elenent-&gt;prev;
+        <span class="hljs-keyword">else</span>
+            element-&gt;next-&gt;prev = element-&gt;prev;
+    }
+
+    <span class="hljs-comment">/* Free the storage allocated by the abstract datatype. */</span>
+    <span class="hljs-built_in">free</span>(element);
+    
+    <span class="hljs-comment">/* Adjust the size of the list to account for the removed element */</span>
+    list-&gt;size--;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h5><span id="xun-huan-lian-biao">循环链表</span><a href="#xun-huan-lian-biao" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ClistElmt_</span>
+{
+    <span class="hljs-type">void</span> *data;
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ClistElmt_</span> *next;
+}ClistElmt;</code></pre></div>
+
+<h6><span id="li-zi">例子</span><a href="#li-zi" class="header-anchor">#</a></h6><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* clist .h */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> CLIST_H </span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> CLIST_H </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-comment">/* Define a structure for circular list elements .*/</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">CListElmt</span> 
+{
+    <span class="hljs-type">void</span> * data;
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">CListElmt</span> * next;
+} CListElmt;
+
+<span class="hljs-comment">/* Definea structure for circular lists .*/</span> 
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">CList_</span>
+{
+    <span class="hljs-type">int</span> size;
+    <span class="hljs-built_in">int</span> (*match)(constvoid * key1, <span class="hljs-type">const</span> <span class="hljs-type">void</span> * key2);
+    <span class="hljs-built_in">void</span> (*destroy)(<span class="hljs-type">void</span>* data);
+    CListElmt *head;
+}CList;
+
+<span class="hljs-comment">/* Public Interface */</span> 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">clist_init</span><span class="hljs-params">(CList* list,<span class="hljs-type">void</span> ( *destroy)( <span class="hljs-type">void</span>* data))</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">clist_destroy</span><span class="hljs-params">(CList* list)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">clist_ins_next</span> <span class="hljs-params">(CList* list,CListElmt * element,<span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">clist_rem_next</span> <span class="hljs-params">(CList* list,CListElmt * element,<span class="hljs-type">void</span> **data)</span></span>;
+<span class="hljs-meta">#defineclist _size(list)((list)-&gt;size)</span>
+<span class="hljs-meta">#defineclist head (list)(()-&gt;head)</span>
+<span class="hljs-meta">#defineclist data (element)((element)-&gt;data)</span>
+<span class="hljs-meta">#defineclist _next(element)((element)-&gt;next)</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span></code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* clist .c */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h &gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"clist.h"</span></span>
+
+<span class="hljs-comment">/* clist init */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">clist_init</span><span class="hljs-params">(CList* list,<span class="hljs-type">void</span> ( *destroy)( <span class="hljs-type">void</span>* data))</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Initialize the list .*/</span> 
+    list-&gt;size = <span class="hljs-number">0</span>;
+    list-&gt;destroy = destroy ;
+    list-&gt;head = <span class="hljs-literal">NULL</span>;
+}
+
+<span class="hljs-comment">/* clist destroy */</span> 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">clist_destroy</span> <span class="hljs-params">(CList* list)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">void</span> *data;
+    <span class="hljs-comment">/* Remove each element .*/</span> 
+    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">clist_size</span>(list) &gt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">clist_remnext</span> (list,list-&gt;head, (<span class="hljs-type">void</span> **)&amp;data)== <span class="hljs-number">0</span>
+            &amp;&amp; list-&gt;destroy != <span class="hljs-literal">NULL</span>)
+        {
+            <span class="hljs-comment">/* Call a user-defined function to free dynamically allocated data .*/</span> 
+            list-&gt;<span class="hljs-built_in">destroy</span>(data);
+        }
+    }
+        
+    <span class="hljs-comment">/* No operations are allowed now ,but clear the structure as a precaution .*/</span>
+	<span class="hljs-built_in">memset</span> (list, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(CList));
+}
+  
+    <span class="hljs-comment">/* clist ins next */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">clist_insnext</span> <span class="hljs-params">(CList* list,CListElmt * element,<span class="hljs-type">const</span> <span class="hljs-type">void</span> * data)</span></span>
+<span class="hljs-function"></span>{
+    CListElmt* new_element;
+    <span class="hljs-comment">/*Allocate storage for the element .*/</span>
+    <span class="hljs-keyword">if</span> ((new_element = (CListElmt* )<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(CListElmt))) == <span class="hljs-literal">NULL</span>)
+    	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    
+    <span class="hljs-comment">/* Insert the element into the list .*/</span> 
+    new_element-&gt;data = (<span class="hljs-type">void</span> *)data;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">clist_size</span>(list) == <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-comment">/* Handle insertion when the list empty .*/</span>
+        new_element-&gt;next = new_element;
+        list-&gt;head = new_element;
+    }  
+    <span class="hljs-keyword">else</span> 
+    {
+        <span class="hljs-comment">/* Handle insertion when the list is not empty .*/</span>
+        new_element-&gt;next = element-&gt;next;
+        element-&gt;next = new_element;
+    }
+    <span class="hljs-comment">/* Adjust the size of the list to account for the inserted element .*/</span> 
+    list-&gt;size++;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> ;
+}
+
+
+<span class="hljs-comment">/* clist_rem_next */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">clist_rem_next</span><span class="hljs-params">(CList* list, CListElmt *element,<span class="hljs-type">void</span> **data)</span></span>
+<span class="hljs-function"></span>{
+    CListElmt * old_element;
+    
+    <span class="hljs-comment">/* Do not allow removal from an empty list . */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">clist_size</span>(list) == <span class="hljs-number">0</span>)
+    	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    
+    <span class="hljs-comment">/* Remove the element from the list . */</span>
+    *data = element-&gt;next-&gt;data;
+    <span class="hljs-keyword">if</span> (element-&gt;next == element)
+    {
+        <span class="hljs-comment">/* Handle removing the last element . */</span>
+        old_element = element-&gt;next;
+        list-&gt;headNULL;
+    }    
+    <span class="hljs-keyword">else</span> 
+    {
+        <span class="hljs-comment">/* Handle removing other than the last element . */</span>
+        old_element = element-&gt;next;
+        element-&gt;next = element-&gt;next-&gt;next;
+        <span class="hljs-keyword">if</span> (old_element == <span class="hljs-built_in">clist_head</span>(list))
+        	list-&gt;head = old_element-&gt;next;
+    }
+        
+    <span class="hljs-comment">/* Free the storage allocated by the abstract datatype . */</span>
+    <span class="hljs-built_in">free</span>(old_element);
+    
+    <span class="hljs-comment">/* Adjust the size of the list to account for the removed element . */</span>
+    <span class="hljs-number">1</span>ist-&gt;size--;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre></div>
+
+<h4><span id="2-zhan-he-dui-lie">2.栈和队列</span><a href="#2-zhan-he-dui-lie" class="header-anchor">#</a></h4><p>栈和队列是另一种数据的存储方式。</p>
+<p>用于检索数据的常用数据结构称为栈,栈的检索顺序和存储元素相反</p>
+<blockquote>
+<p>栈: 按照后进先出的顺序存储和检索数据的高效数据结构, 它检索数据的顺序和存储数据相反。</p>
+</blockquote>
+<blockquote>
+<p>队列：按照先进先出的顺序存储和检索数据的高效数据结构, 它按照存储元素的顺序检索元素。</p>
+</blockquote>
+<h5><span id="zhan-li-zi">栈例子</span><a href="#zhan-li-zi" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* stack .h*/</span>
+<span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> STACK_H </span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> STACK_H </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"list.h"</span></span>
+<span class="hljs-comment">/* Implement stacks as linked lists .*/</span> 
+<span class="hljs-keyword">typedef</span> List Stack;
+<span class="hljs-comment">/*Public Interface */</span> 
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> stack_init list_init </span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> stack_destroy list_destroy</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">stack_push</span><span class="hljs-params">(Stack* stack,<span class="hljs-type">const</span> <span class="hljs-type">void</span> * data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">stack_pop</span><span class="hljs-params">(Stack* stack,<span class="hljs-type">void</span> ** data)</span></span>;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> stack_peek(stack)	((stack)-&gt;head == NULL ? NULL : (stack)-&gt;head-&gt;data)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> stack_size list_size </span>
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span></code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* Stack.c */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"list.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"Stack.h"</span></span>
+
+<span class="hljs-comment">/* stack_push */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">stack_push</span><span class="hljs-params">(Stack* stack,<span class="hljs-type">const</span> <span class="hljs-type">void</span> * data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* push the data onto the stack. */</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">list_ins_next</span>(stack, <span class="hljs-literal">NULL</span>, data);
+}
+
+<span class="hljs-comment">/* stack_pop */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">stack_pop</span><span class="hljs-params">(Stack* stack,<span class="hljs-type">void</span> ** data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Pop the data off the stack. */</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">list_rem_next</span>(stack, <span class="hljs-literal">NULL</span>, data);
+}</code></pre></div>
+
+<h5><span id="dui-lie-li-zi">队列例子</span><a href="#dui-lie-li-zi" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* queue . h */</span> 
+<span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> QUEUE_H </span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> QUEUE_H </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span> </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"list.h"</span> </span>
+<span class="hljs-comment">/* Implement queues as linked lists . */</span> 
+<span class="hljs-keyword">typedef</span> List Queue ; 
+<span class="hljs-comment">/* Public Interface */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> queue_init list_init </span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> queue_destroy list_destroy </span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">queue_enqueue</span> <span class="hljs-params">(Queue * queue, <span class="hljs-type">const</span> <span class="hljs-type">void</span>* data )</span></span>; 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">queue_dequeue</span> <span class="hljs-params">(Queue * queue, <span class="hljs-type">void</span> **data)</span></span>;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> queue_peek(queue()(queue)-&gt;head == NULL ? NULL : (queue)-&gt;head-&gt;data)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> queue_size list_size </span>
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span> </span></code></pre></div>
+
+
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* queue.c */</span> 
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib&gt;</span>h &gt; </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"list.h"</span> </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"queue.h"</span> </span>
+
+<span class="hljs-comment">/* queue_enqueue */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">queue_enqueue</span> <span class="hljs-params">(Queue* queue, <span class="hljs-type">const</span> <span class="hljs-type">void</span>* data)</span> </span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Enqueue the data . */</span> 
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">list_ins_next</span>(queue, <span class="hljs-built_in">list_tail</span>(queue), data); 
+}
+	
+<span class="hljs-comment">/* queue_dequeue */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">queue_dequeue</span><span class="hljs-params">(Queue* queue, <span class="hljs-type">void</span>** data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Dequeue the data . */</span> 
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">list_rem_next</span>(queue, <span class="hljs-literal">NULL</span>, data); 
+}</code></pre></div>
+
+<h5><span id="dui-lie-shi-li-shi-jian-chu-li">队列示例：事件处理</span><a href="#dui-lie-shi-li-shi-jian-chu-li" class="header-anchor">#</a></h5><p>遵循实时事件发生的顺序执行。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* events.c */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"event.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"events.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"queue.h"</span></span>
+
+<span class="hljs-comment">/* receive_event */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">receive_event</span><span class="hljs-params">(Queue *events, <span class="hljs-type">const</span> Event *event)</span></span>
+<span class="hljs-function"></span>{
+    Event* new_event;
+    
+    <span class="hljs-comment">/* Allocate space for the event. */</span>
+    <span class="hljs-keyword">if</span>(<span class="hljs-literal">NULL</span> == (new_event = (Event*)(<span class="hljs-built_in">sizeof</span>(Event))))
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    
+    <span class="hljs-comment">/* Make a copy of the event and enqueue it. */</span>
+	<span class="hljs-built_in">memcpy</span>(new_event, event, <span class="hljs-built_in">sizeof</span>(Event));
+    
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">queue_enqueue</span>(events, new_event) != <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* process_event */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">process_event</span><span class="hljs-params">(Queue *events, <span class="hljs-type">int</span> (*dispatch)(Event* event))</span></span>
+<span class="hljs-function"></span>{
+    Event* event;
+    
+    <span class="hljs-keyword">if</span>(<span class="hljs-number">0</span> == <span class="hljs-built_in">queue_size</span>(events))
+        <span class="hljs-comment">/* Return that there are no events to dispatch. */</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-keyword">if</span>(<span class="hljs-number">0</span> != <span class="hljs-built_in">queue_deququq</span>(events, (<span class="hljs-type">void</span> **)&amp;event))
+            <span class="hljs-comment">/* Return that an event could not be retrived. */</span>
+    		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">else</span>
+        {
+            <span class="hljs-comment">/* Call a user-defined fintion to dispatch the event. */</span>
+        	<span class="hljs-built_in">dispatch</span>(event);
+        	<span class="hljs-built_in">free</span>(event);
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre></div>
+
+<h4><span id="3-ji-he">3.集合</span><a href="#3-ji-he" class="header-anchor">#</a></h4><p>集合定义：集合是相关联成员的无序组合,且每个成员在集合中只出现一次</p>
+<h5><span id="li-zi">例子</span><a href="#li-zi" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* set.h */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SET_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> SET_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"list.h"</span></span>
+
+<span class="hljs-comment">/* Implement sets as linked lists. */</span>
+<span class="hljs-keyword">typedef</span> List Set;
+
+<span class="hljs-comment">/* Public Interface */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">set_init</span><span class="hljs-params">(Set *set, <span class="hljs-type">int</span> (*match)(<span class="hljs-type">const</span> <span class="hljs-type">void</span> *keyl, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *key2), <span class="hljs-type">void</span> (*destory)(<span class="hljs-type">void</span> *data))</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_insert</span><span class="hljs-params">(Set *set, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_remcve</span><span class="hljs-params">(Set *set, <span class="hljs-type">void</span> **data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_union</span><span class="hljs-params">(Set *setu, <span class="hljs-type">const</span> Set *setl, <span class="hljs-type">const</span> Set *set2)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_intersection</span><span class="hljs-params">(Set*seti, <span class="hljs-type">const</span> Set *seta, <span class="hljs-type">const</span> Set *set2)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_difference</span><span class="hljs-params">(Set *setd, <span class="hljs-type">const</span> Set *setl, <span class="hljs-type">const</span> Set *set2)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_is_memeber</span><span class="hljs-params">(<span class="hljs-type">const</span> Set *set, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_is_subset</span><span class="hljs-params">(<span class="hljs-type">const</span> Set *setl, <span class="hljs-type">const</span> Set *set2)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_is_equal</span><span class="hljs-params">(<span class="hljs-type">const</span> Set *setl, <span class="hljs-type">const</span> Set *set2)</span></span>;
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> set_size(set()(set) osize)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> set_destroy list_destroy</span>
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* set.c */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"list.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"set.h"</span></span>
+
+<span class="hljs-comment">/* set_init */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">set_init</span><span class="hljs-params">(Set *set, <span class="hljs-type">int</span> (*match)(<span class="hljs-type">const</span> <span class="hljs-type">void</span> *keyl, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *key2), <span class="hljs-type">void</span> (*destory)(<span class="hljs-type">void</span> *data))</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Initialize the set. */</span>
+    <span class="hljs-built_in">list_init</span>(set, destory);
+    set-&gt;match = match;
+}
+
+<span class="hljs-comment">/* set_insert */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_insert</span><span class="hljs-params">(Set *set, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Do not allow the insertion of duplicates. */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">set_in_number</span>(set, data))
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">/* Insert the data. */</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">list_ins_tail</span>(set, <span class="hljs-built_in">list_tail</span>(set), data);
+}
+
+<span class="hljs-comment">/* set_remove. */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_remove</span><span class="hljs-params">(Set* set, <span class="hljs-type">void</span> **data)</span></span>
+<span class="hljs-function"></span>{
+    ListE1mt *member, *prev;
+    
+    <span class="hljs-comment">/* Find the member to remove.*/</span>
+    prev = <span class="hljs-literal">NULL</span>;
+    <span class="hljs-keyword">for</span> (member = <span class="hljs-built_in">list_head</span>(set); member != <span class="hljs-literal">NULL</span>; member = <span class="hljs-built_in">list_next</span>(member))
+    {
+        <span class="hljs-function"><span class="hljs-keyword">if</span> <span class="hljs-title">list_data</span><span class="hljs-params">(member)</span>))</span>
+<span class="hljs-function">            <span class="hljs-keyword">break</span></span>;
+        prev = member;
+    }
+       
+    <span class="hljs-comment">/* Return if the member was not found.*/</span>
+    <span class="hljs-keyword">if</span> (member == <span class="hljs-literal">NULL</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span> ;
+    
+    <span class="hljs-comment">/* Remove the member. */</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">list_rem_next</span>(set, prev, data);
+}
+
+<span class="hljs-comment">/* set_union */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_unicn</span><span class="hljs-params">(Set *setu, <span class="hljs-type">const</span> Set *setl, <span class="hljs-type">const</span> Set *set2)</span></span>
+<span class="hljs-function"></span>{
+    ListE1mt *member;
+    <span class="hljs-type">void</span> *data;
+    
+    <span class="hljs-comment">/* Initialize the set for the union. */</span>
+    <span class="hljs-built_in">set_init</span>(setu, set1-&gt;match, <span class="hljs-literal">NULL</span>);
+    
+    <span class="hljs-comment">/* Insert the members of the first set. */</span>
+    <span class="hljs-keyword">for</span> (member = <span class="hljs-built_in">list_head</span>(setl); member != <span class="hljs-literal">NULL</span>; member = <span class="hljs-built_in">list_next</span>(member))   
+	{
+        data = <span class="hljs-built_in">list_data</span>(member);
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">list_ins_next</span>(setu, <span class="hljs-built_in">list_tail</span>(setu), data) != <span class="hljs-number">0</span>) 
+        {
+            <span class="hljs-built_in">set_destroy</span>(setu);
+            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        }
+	}
+    <span class="hljs-comment">/* Insert the members of the second set. */</span>
+    <span class="hljs-keyword">for</span> (member = <span class="hljs-built_in">list_head</span>(set2); member != <span class="hljs-literal">NULL</span>; member = <span class="hljs-built_in">list_next</span>(member)) 
+    {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">set_is_member</span>(setl, <span class="hljs-built_in">list_data</span>(member)))
+        {
+             <span class="hljs-comment">/* Do not allow the insertion of duplicates. */</span> 				
+            <span class="hljs-keyword">continue</span>;
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            data = <span class="hljs-built_in">list_data</span>(member);
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">list_ins_next</span>(setu, <span class="hljs-built_in">list_tail</span>(setu), data) != <span class="hljs-number">0</span>)
+            {
+                <span class="hljs-built_in">set_destroy</span>(setu);
+                <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+            }
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+    
+<span class="hljs-comment">/* set_intersection */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_intersection</span><span class="hljs-params">(Set *seti, <span class="hljs-type">const</span> Set *setl, <span class="hljs-type">const</span> Set *set2)</span></span>
+<span class="hljs-function"></span>{ 
+    ListElmt *member;
+    <span class="hljs-type">void</span> *data;
+    
+    <span class="hljs-comment">/* Initialize the set for the intersection. */</span> 
+    <span class="hljs-built_in">set_init</span>(set1, set1-&gt;match, <span class="hljs-literal">NULL</span>);
+    
+    <span class="hljs-comment">/* Insert the members present in both sets- */</span> 
+    <span class="hljs-keyword">for</span> (member = <span class="hljs-built_in">list_head</span>(set1); member != <span class="hljs-literal">NULL</span>; member = <span class="hljs-built_in">list_next</span>(member))
+    {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">set_is_member</span>(set2, <span class="hljs-built_in">list_data</span>(member)))
+        {
+            data = <span class="hljs-built_in">list_data</span>(member);
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">list_ins_next</span>(seti, <span class="hljs-built_in">list_tail</span>(seti), data) != <span class="hljs-number">0</span>)
+                {
+                    <span class="hljs-built_in">set_destroy</span>(seti);
+                    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+                }
+		}
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* set_difference */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_difference</span><span class="hljs-params">(Set *setd, <span class="hljs-type">const</span> Set *seti, <span class="hljs-type">const</span> Set *set2)</span></span>
+<span class="hljs-function"></span>{ 
+    ListElmt *member;
+    <span class="hljs-type">void</span> *data;
+
+    <span class="hljs-comment">/* Initialize the set for the difference. */</span>
+    $<span class="hljs-built_in">et_init</span>(setd, set1-Mnatch, <span class="hljs-literal">NULL</span>);
+
+    <span class="hljs-comment">/* Insert the members from setl not in set2 */</span>
+    <span class="hljs-keyword">for</span> (member = <span class="hljs-built_in">list_head</span>(setl); member != <span class="hljs-literal">NULL</span>; member = <span class="hljs-built_in">list_next</span>(member))
+    { 
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">lset_is_member</span>(set2, <span class="hljs-built_in">list_data</span>(member)))
+        { 
+             data = <span class="hljs-built_in">list_data</span>(member);
+             <span class="hljs-keyword">if</span> (<span class="hljs-built_in">list_ins_next</span>(setd, <span class="hljs-built_in">list_tail</span>(setd), data) != <span class="hljs-number">0</span>)
+             { 
+                <span class="hljs-built_in">set_destroy</span>(setd);
+                <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+             }
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+
+<span class="hljs-comment">/* set_ls_member */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_is_member</span><span class="hljs-params">(<span class="hljs-type">const</span> Set *set <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>
+<span class="hljs-function"></span>{ 
+    ListElmt *member;
+    <span class="hljs-comment">/* Determine if the data is a member of the set. */</span> 
+    <span class="hljs-keyword">for</span> (member = <span class="hljs-built_in">list_head</span>(set); member != <span class="hljs-literal">NULL</span>; member = <span class="hljs-built_in">list_next</span>(member))
+    {
+        <span class="hljs-keyword">if</span> (set-&gt;<span class="hljs-built_in">match</span>(dataj <span class="hljs-built_in">listdata</span>(member))) 
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> o;
+}
+
+<span class="hljs-comment">/* set_is_subset */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_is_subset</span><span class="hljs-params">(<span class="hljs-type">const</span> Set *setl, <span class="hljs-type">const</span> Set *set2)</span></span>
+<span class="hljs-function"></span>{
+    ListElmt	*加ember;
+    <span class="hljs-comment">/* Do a quick test to rule out some cases. */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">set_size</span>(setl) &gt; <span class="hljs-built_in">set_size</span>(set2)) 
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    
+    <span class="hljs-comment">/* Determine if setl is a subset of set2, */</span>
+    <span class="hljs-keyword">for</span> (member = <span class="hljs-built_in">list_head</span>(set1); member != <span class="hljs-literal">NULL</span>; member = <span class="hljs-built_in">list_next</span>(member))
+    {
+        <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">list_is_member</span>(set2, <span class="hljs-built_in">list_data</span>(member)))
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+    	
+	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-comment">/* setis_equal */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">set_is_equal</span><span class="hljs-params">(<span class="hljs-type">const</span> Set *setl, <span class="hljs-type">const</span> Set *set2)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Do a quick test to rule out some cases. */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">set_size</span>(setl) != <span class="hljs-built_in">set_size</span>(set2))
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-comment">/* Sets of the same size are equal if they are subsets, */</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">set_is_subset</span>(set1, set2);
+}</code></pre></div>
+
+<h5><span id="set-shi-li-ji-he-fu-gai">Set示例：集合覆盖</span><a href="#set-shi-li-ji-he-fu-gai" class="header-anchor">#</a></h5><p>集合覆盖是一种优化求解问题, 对很多组合数学和资源选择问题给出了漂亮的抽象模型</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* cover,c */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"cover.h”</span></span>
+<span class="hljs-string"><span class="hljs-meta">#include "</span>list<span class="hljs-string">'h"</span></span>
+<span class="hljs-string"><span class="hljs-meta">#include "set.h"</span></span>
+<span class="hljs-string"><span class="hljs-meta">/* cover */</span></span>
+<span class="hljs-string"><span class="hljs-meta">int cover(Set *members&gt; Set 率subsets, Set *covering) </span></span>
+<span class="hljs-string"><span class="hljs-meta">{</span></span>
+<span class="hljs-string"><span class="hljs-meta">   Set intersection;</span></span>
+<span class="hljs-string"><span class="hljs-meta">   KSet *subset;</span></span>
+<span class="hljs-string"><span class="hljs-meta">   ListElflit "member,</span></span>
+<span class="hljs-string"><span class="hljs-meta">              *max_member;</span></span>
+<span class="hljs-string"><span class="hljs-meta">   void *data;</span></span>
+<span class="hljs-string"><span class="hljs-meta">   int max_size;</span></span>
+<span class="hljs-string"><span class="hljs-meta">    </span></span>
+<span class="hljs-string"><span class="hljs-meta">   /* Initialize the covering» */</span></span>
+<span class="hljs-string"><span class="hljs-meta">   set_init(covering, subsets-&gt;match, NULL);</span></span>
+<span class="hljs-string"><span class="hljs-meta">    </span></span>
+<span class="hljs-string"><span class="hljs-meta">   /* Continue while there are noncovered members and candidate subsets. */ </span></span>
+<span class="hljs-string"><span class="hljs-meta">    while (set_size(members) &gt; 0 &amp;&amp; set_size(subset) &gt; 0)</span></span>
+<span class="hljs-string"><span class="hljs-meta">    {</span></span>
+<span class="hljs-string"><span class="hljs-meta">       </span></span>
+<span class="hljs-string"><span class="hljs-meta">        /* Find the subset that covers the most members.*/</span></span>
+<span class="hljs-string"><span class="hljs-meta">        max_size = 0;</span></span>
+<span class="hljs-string"><span class="hljs-meta">        for (member = list_head(subsets); member != NULL;</span></span>
+<span class="hljs-string"><span class="hljs-meta">                    member = list_next(member))</span></span>
+<span class="hljs-string"><span class="hljs-meta">        { </span></span>
+<span class="hljs-string"><span class="hljs-meta">           if (set-intersectionC&amp;intersection, &amp;((KSet *)list_data(member))-&gt;set, members) != 0)</span></span>
+<span class="hljs-string"><span class="hljs-meta">           {</span></span>
+<span class="hljs-string"><span class="hljs-meta">              return -1;</span></span>
+<span class="hljs-string"><span class="hljs-meta">           }</span></span>
+<span class="hljs-string"><span class="hljs-meta">           if (set_size(&amp;inteisection) &gt; max_size)</span></span>
+<span class="hljs-string"><span class="hljs-meta">           {</span></span>
+<span class="hljs-string"><span class="hljs-meta">              max_member = member;</span></span>
+<span class="hljs-string"><span class="hljs-meta">              max_size = set_size(&amp;intersection);</span></span>
+<span class="hljs-string"><span class="hljs-meta">           }</span></span>
+<span class="hljs-string"><span class="hljs-meta">           set_destroy(&amp;intersection);</span></span>
+<span class="hljs-string"><span class="hljs-meta">        }</span></span>
+<span class="hljs-string"><span class="hljs-meta">        /* A covering is not possible if there was no intersection♦ */</span></span>
+<span class="hljs-string"><span class="hljs-meta">        if (max_size == 0)</span></span>
+<span class="hljs-string"><span class="hljs-meta">           return 1;</span></span>
+<span class="hljs-string"><span class="hljs-meta"></span></span>
+<span class="hljs-string"><span class="hljs-meta">        /* Insert the selected subset into the covering» */</span></span>
+<span class="hljs-string"><span class="hljs-meta">        subset = (KSet *)list_data(max_nember);</span></span>
+<span class="hljs-string"><span class="hljs-meta"></span></span>
+<span class="hljs-string"><span class="hljs-meta">        if (set_insert(coverings, subset) != 0)</span></span>
+<span class="hljs-string"><span class="hljs-meta">           return -1;</span></span>
+<span class="hljs-string"><span class="hljs-meta"></span></span>
+<span class="hljs-string"><span class="hljs-meta">        /* Remove each covered member -from the set of noncovered members. */</span></span>
+<span class="hljs-string"><span class="hljs-meta">        for (member = list_head(&amp;((KSet *)list_data(max_member))-&gt;set);</span></span>
+<span class="hljs-string"><span class="hljs-meta">              member != NULL; member = list_next(member)))</span></span>
+<span class="hljs-string"><span class="hljs-meta">        {</span></span>
+<span class="hljs-string"><span class="hljs-meta">            data = list_data(member);</span></span>
+<span class="hljs-string"><span class="hljs-meta">            if(set_remove(members, (void*)&amp;data) == 0 &amp;&amp; members-&gt;destory != NULL)</span></span>
+<span class="hljs-string"><span class="hljs-meta">                members-&gt;destory(data);</span></span>
+<span class="hljs-string"><span class="hljs-meta">        }</span></span>
+<span class="hljs-string"><span class="hljs-meta"></span></span>
+<span class="hljs-string"><span class="hljs-meta">        /* Remove the subset from the set of cnadidate subsets. */</span></span>
+<span class="hljs-string"><span class="hljs-meta">		if(set_remove(subsets, (void**)&amp;subset) != 0)</span></span>
+<span class="hljs-string"><span class="hljs-meta">    		return -1;</span></span>
+<span class="hljs-string"><span class="hljs-meta">    }</span></span>
+<span class="hljs-string"><span class="hljs-meta">    </span></span>
+<span class="hljs-string"><span class="hljs-meta">    /* No covering is possible if there are still noncoverd member */</span></span>
+<span class="hljs-string"><span class="hljs-meta">	if(set_size(members) &gt; 0)</span></span>
+<span class="hljs-string"><span class="hljs-meta">        return -1;</span></span>
+<span class="hljs-string"><span class="hljs-meta">    </span></span>
+<span class="hljs-string"><span class="hljs-meta">    return 0;</span></span>
+<span class="hljs-string"><span class="hljs-meta">}</span></span>
+<span class="hljs-string"><span class="hljs-meta"></span></span></code></pre></div>
+
+<h4><span id="4-ha-xi-biao">4.哈希表</span><a href="#4-ha-xi-biao" class="header-anchor">#</a></h4><p>哈希表是一种最有效的检索方法：<code>散列</code>。</p>
+<p>从根本上来说,一个哈希表包含一个数组, 通过特殊的索引值(键)来访问数组中的元素,哈希表的主要思想是通过一个哈希函 数,在所有可能的键与槽位之间建立一张映射表。哈希函数每次接受一个键将返回与 键相对应的哈希编码或哈希值。键的数据类型可能多种多样,但哈希值的类型只能是整型。</p>
+<h5><span id="lian-shi-ha-xi-biao">链式哈希表</span><a href="#lian-shi-ha-xi-biao" class="header-anchor">#</a></h5><p>将数据存储在 <code>桶</code> (bucket)中的哈希表。每个 “桶” 都是都是一个链表; 且链表的<br>容量能够随着冲突的增加而增大。</p>
+<h6><span id="jie-jue-ha-xi-biao-chong-tu">解决哈希表冲突</span><a href="#jie-jue-ha-xi-biao-chong-tu" class="header-anchor">#</a></h6><p>如果想插入表中的元素数量远大于<code>桶</code>数量,那么即使是在一个均匀散列过的程中,表的性能会迅速降低。这种情况下<code>桶</code>会变得越来越深。因此我们要注意一个哈希表的<code>负载因子</code>。</p>
+<p>其定义为：</p>
+<p>​                <code>α = n/m</code></p>
+<p>​                n为表中的元素数量,m是桶中的数量(数组元素数量)。</p>
+<p>​                在均匀散列情况下,链式哈希表的负载因子告诉我们表中<code>桶</code>能装元素的最大值</p>
+<h6><span id="xuan-ze-ha-xi-han-shu">选择哈希函数</span><a href="#xuan-ze-ha-xi-han-shu" class="header-anchor">#</a></h6><p>  这是哈希算法的核心问题：将键随机地分散到表中,使冲突最小化。因此,选择一 个能够实现这一过程的哈希函数尤为重要。</p>
+<p>其定义为：</p>
+<p>​                <code>h(k) = x</code></p>
+<p>​                k为要被映射的值,h()为哈希函数,x为哈希表的位置</p>
+<h6><span id="li-zi">例子</span><a href="#li-zi" class="header-anchor">#</a></h6><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">/* chtbl.h */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> CHTBL_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> CHTBL_H</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"list.h"</span></span>
+
+<span class="hljs-comment">/* Define a structure for chained hash table. */</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">CHTBL_</span>
+{
+    <span class="hljs-type">int</span> buckets;
+    
+    <span class="hljs-built_in">int</span> (*h)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>* key);
+    <span class="hljs-built_in">int</span> (*match)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>* key1, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *key2);
+    
+    <span class="hljs-type">int</span> size;
+    List* table;
+} CHTbl;
+
+<span class="hljs-comment">/* Public interface */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">chtbl_init</span><span class="hljs-params">(CHTbl* htbl, <span class="hljs-type">int</span> buckets, <span class="hljs-type">int</span> (*h)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>* key), <span class="hljs-type">int</span> (*match)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>* key1, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *key2), <span class="hljs-type">void</span> (*destory)(<span class="hljs-type">void</span>* data))</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">chtbl_destory</span><span class="hljs-params">(CHTbl *htbl)</span></span>;
+  
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">chtbl_insert</span><span class="hljs-params">(CHTbl *htbl, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">chtbl_remove</span><span class="hljs-params">(CHTbl *htbl, <span class="hljs-type">void</span> **data)</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">chtbl_lookup</span><span class="hljs-params">(CHTbl *htbl, <span class="hljs-type">void</span> **data)</span></span>;
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> chtbl_size(htbl()(chtbl)-&gt;size)</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span></code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/*chtbl.c*/</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"list.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"chtbl.h"</span></span>
+
+<span class="hljs-comment">/* chtbl_init */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">chtbl_init</span><span class="hljs-params">(CHTbl* htbl, <span class="hljs-type">int</span> buckets, <span class="hljs-type">int</span> (*h)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>* key), <span class="hljs-type">int</span> (*match)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>* key1, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *key2), <span class="hljs-type">void</span> (*destory)(<span class="hljs-type">void</span>* data))</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">int</span> i;
+    
+   	<span class="hljs-comment">/* Allocate space for the hash table.*/</span>
+    <span class="hljs-keyword">if</span> ((htbl-&gt;table = (List *)<span class="hljs-built_in">malloc</span>(buckets * <span class="hljs-built_in">sizeof</span>(List))) == <span class="hljs-literal">NULL</span>) 	
+    	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+
+    <span class="hljs-comment">/* Initialize the buckets. */</span>
+    htbl-&gt;buckets = buckets;
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; htbl-&gt;buckets; i++)
+    	<span class="hljs-built_in">list_init</span>(&amp;htbl-&gt;table[i], destroy);
+    
+    <span class="hljs-comment">/* Encapsulate the functions. */</span>
+    htbl-&gt;h = h
+    htbl-&gt;match match;
+    htbl-&gt;destroy = destroy;
+    
+    <span class="hljs-comment">/* Initialize the number of elements in the table. */</span>
+    htbl-&gt;size = o;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* chtbl_destroy */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">chtbl_destory</span><span class="hljs-params">(CHTbl *htbl)</span></span>
+<span class="hljs-function"></span>{   
+    <span class="hljs-comment">/* Destroy each bucket. */</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = O; i &lt; htbl-&gt;buckets; i++)
+    {
+        <span class="hljs-built_in">list_destroy</span> (&amp;htbl -&gt;tableßl) ;
+    }
+    	
+    <span class="hljs-comment">/*Free the storage allocated for the hash table. */</span>
+    <span class="hljs-built_in">free</span>(htbl-&gt;table);
+    
+    <span class="hljs-comment">/* No operations are allowed now, but clear the structure as a precaution.*/</span>
+    <span class="hljs-built_in">memset</span>(htbl, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(CHTbl));
+
+}
+
+<span class="hljs-comment">/* chtbl insert */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">chtbl_insert</span><span class="hljs-params">(CHTbl *htbl, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">void</span>* temp;
+    <span class="hljs-type">int</span> bucket,
+        retval;
+    <span class="hljs-comment">/* Do nothing if the data is already in the table. */</span>
+    temp = (<span class="hljs-type">void</span> *)data;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">chtbl_lookup</span>(htbl, &amp;temp) == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> ;
+    
+    <span class="hljs-comment">/* Hash the key. */</span>
+    bucket = htbl-&gt;<span class="hljs-built_in">h</span>(data) % htbl-&gt;buckets;
+
+    <span class="hljs-comment">/* Insert the data into the bucket. */</span>
+	<span class="hljs-keyword">if</span> (<span class="hljs-number">0</span> == (retval = <span class="hljs-built_in">list_ins_next</span>(&amp;htbl-&gt;table[bucket], <span class="hljs-literal">NULL</span>, data)))
+        htbl-&gt;size++;
+    <span class="hljs-keyword">return</span> retval; 
+}
+
+<span class="hljs-comment">/* chtbl remove */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">chtb1_remove</span><span class="hljs-params">(CHTbl* htbl, <span class="hljs-type">void</span> **data)</span></span>
+<span class="hljs-function"></span>{
+    ListEImt*	element,
+				*prev;
+    <span class="hljs-type">int</span> 		bucket;
+    
+    <span class="hljs-comment">/* Hash the key. */</span>
+	bucket = htbl-&gt;<span class="hljs-built_in">h</span>(*data) % htbl-&gt;buckets;
+    
+    <span class="hljs-comment">/* Search fcy the data in the bucket. */</span>
+	prev = <span class="hljs-literal">NULL</span>;
+    
+    <span class="hljs-keyword">for</span> (element = <span class="hljs-built_in">list_head</span>(&amp;htbl-&gt;table[bucket]); element != <span class="hljs-literal">NULL</span>; element = <span class="hljs-built_in">list_next</span>(element))
+    {
+		<span class="hljs-keyword">if</span> (htbl-&gt;<span class="hljs-built_in">match</span>(*data, <span class="hljs-built_in">list_data</span>(element)))
+        {
+        	<span class="hljs-comment">/* Remove the data from the bucket. */</span>
+            <span class="hljs-keyword">if</span>(<span class="hljs-number">0</span> == <span class="hljs-built_in">list_rem_next</span>(&amp;htbl-&gt;table[bucket], prev, data))
+            {
+                htbl-&gt;size--;
+                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+            }
+        	<span class="hljs-keyword">else</span>
+                <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        }
+        prev = element;
+    }
+    
+    <span class="hljs-comment">/* Return that the data was not found. */</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+}
+
+<span class="hljs-comment">/* chtbl lookup */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">chtbl_lookup</span><span class="hljs-params">(CHTbl *htbl, <span class="hljs-type">void</span> **data)</span></span>
+<span class="hljs-function"></span>{
+    ListE1mt *element;
+    <span class="hljs-type">int</span> 	bucket;
+    
+    <span class="hljs-comment">/* Hash the key.*/</span>
+    bucket = htbl-&gt;<span class="hljs-built_in">h</span>(*data) % htbl-&gt;buckets;
+
+    <span class="hljs-comment">/* Search for the data in the bucket.*/</span>
+    <span class="hljs-keyword">for</span>(element = <span class="hljs-built_in">list_head</span>(&amp;htbl-&gt;table[bucket]); element = <span class="hljs-built_in">list_next</span>(eleemnt))
+    {
+        <span class="hljs-keyword">if</span>(htbl-&gt;<span class="hljs-built_in">match</span>(*data, <span class="hljs-built_in">list_data</span>(element)))
+        {
+            <span class="hljs-comment">/* Pass back the data from the table. */</span>
+            *data = <span class="hljs-built_in">list_data</span>(element);
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+    }
+    
+    <span class="hljs-comment">/* Return that the was not found. */</span> 
+	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+}</code></pre></div>
+
+<h5><span id="kai-di-zhi-ha-xi-biao">开地址哈希表</span><a href="#kai-di-zhi-ha-xi-biao" class="header-anchor">#</a></h5><p>  将数据存储在表本身中,而不是<code>桶</code>中的哈希表。它通过各种探查方法来避免冲突问题。</p>
+<h6><span id="li-zi">例子</span><a href="#li-zi" class="header-anchor">#</a></h6><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* ohtbl.h */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> OHTBL_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> OHTBL_H</span>
+<span class="hljs-meta">#incluge<span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-comment">/*Define astructure for open-addressed hash tables.*/</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">OHTbl_</span>
+{
+    <span class="hljs-type">int</span> 	positions; 
+    <span class="hljs-function"><span class="hljs-type">void</span>* 	vacateds</span>
+<span class="hljs-function"></span>
+<span class="hljs-function">    <span class="hljs-title">int</span> <span class="hljs-params">(*h1)</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key)</span></span>;
+    <span class="hljs-built_in">int</span> (*h2)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key);
+    <span class="hljs-built_in">int</span> (*match)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key1,<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key2);
+    <span class="hljs-built_in">int</span> (*destroy)(<span class="hljs-type">void</span>*data);
+
+    <span class="hljs-type">int</span> sizes;
+    <span class="hljs-type">void</span> **table;
+}OHTbl;
+
+<span class="hljs-comment">/*Public Interface*/</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ohtbl_init</span><span class="hljs-params">(oHTbl*htbl,<span class="hljs-type">int</span> positions,<span class="hljs-type">int</span>{*hi)</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key)</span>,<span class="hljs-title">int</span> <span class="hljs-params">(*h2)</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key)</span>,<span class="hljs-title">int</span> <span class="hljs-params">(*match)</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key1, <span class="hljs-type">const</span> <span class="hljs-type">void</span>*key2)</span></span>;
+<span class="hljs-built_in">void</span> (*destroy)(<span class="hljs-type">void</span>*data));
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ohtbl_destroy</span><span class="hljs-params">(OHTbl*htbl)</span></span>; 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ohtbl_insert</span><span class="hljs-params">(OHTbl*htbl,<span class="hljs-type">const</span> <span class="hljs-type">void</span>*data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ohtbl_remove</span><span class="hljs-params">(OHTbl*htbl,<span class="hljs-type">void</span>**data)</span></span>; 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ohtbl_lookup</span><span class="hljs-params">(<span class="hljs-type">const</span> OHTbl *htbl,<span class="hljs-type">void</span> **data)</span></span>; 
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ohtbl_size(htbl()(htbl)-&gt;size)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* ohtbl.c */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"ohtbl.h"</span></span>
+
+<span class="hljs-comment">/*Reserveasentinelmemoxy address for vacated elements.*/</span>
+<span class="hljs-type">static</span> <span class="hljs-type">char</span> vacated;
+
+<span class="hljs-comment">/*ohtb_linit*/</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ohtb_linit</span><span class="hljs-params">(oHTbl*htbl,<span class="hljs-type">int</span> positions,<span class="hljs-type">int</span> (*h1)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key),<span class="hljs-type">int</span> (*h2)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key),<span class="hljs-type">int</span> (*match)(<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key1,<span class="hljs-type">const</span> <span class="hljs-type">void</span>*key2),<span class="hljs-type">void</span> (*destroy)(voi*data))</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">int</span> i;
+    
+    <span class="hljs-comment">/*Allocate space for the hash table.*/</span>
+    <span class="hljs-keyword">if</span> ((htbl-&gt;table= (<span class="hljs-type">void</span>**)<span class="hljs-built_in">malloc</span>(positions*<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">void</span>*)))==<span class="hljs-literal">NULL</span>)
+		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    
+    <span class="hljs-comment">/*Initializeeachposition、*/</span>
+    htbl-&gt;positicns = pasitions;
+    <span class="hljs-keyword">for</span> (i=<span class="hljs-number">0</span>; i&lt; htbl-&gt;positions；i++)
+        htbl-&gt;table[i] = <span class="hljs-literal">NULL</span>;
+    
+    <span class="hljs-comment">/*Set the vacated member tothe sentinel memory address reserved for this,*/</span>
+    htbl-&gt;vacated= &amp;vacated;
+    
+    <span class="hljs-comment">/*Encapsulate the functions.*/</span>
+    htbl-&gt;h1 = h1;
+    htbl-&gt;h2 = h2;
+    htbl-match = match;
+    htbl-&gt;destroy = destroy;
+    
+    <span class="hljs-comment">/*Initialize the number of elements in the table.*/</span>
+    htbl-&gt;size = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/*ohtbl_destroy*/</span>
+<span class="hljs-function">vold <span class="hljs-title">ohtbl_destroy</span><span class="hljs-params">(OHTbl*htbl)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">int</span> i;
+
+    <span class="hljs-keyword">if</span>(htbl-&gt;destroy != <span class="hljs-literal">NULL</span>)
+    {
+		<span class="hljs-comment">/*Calla user-defined function to free dynamically allocated data.*/</span>
+        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; htbl-&gt;positions; i++)
+        {
+            <span class="hljs-keyword">if</span>(htbl-&gt;table[i] != <span class="hljs-literal">NULL</span> &amp;&amp; htbl-&gt;table[i] != htbl-&gt;vacated)
+            	htbl-&gt;<span class="hljs-built_in">destroy</span>(htbl-&gt;table[i]); 
+        }
+    }
+    
+    <span class="hljs-comment">/*Free the storage allocated for the hash table，*/</span>
+    <span class="hljs-built_in">free</span>(htbl-&gt;table);
+    
+    <span class="hljs-comment">/*No operations are allowed nowybut clear the structure asaprecautlon.*/</span>
+	<span class="hljs-built_in">memset</span>(htbl, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(OHTbl));
+}
+               
+<span class="hljs-comment">/*ohtblinsert*/</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ohtb_linsert</span><span class="hljs-params">(OHTbl*htbl，constvoid *data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">void</span>* temp;
+	<span class="hljs-type">int</span> position, i;
+         
+    <span class="hljs-comment">/*Do not exceed the number of positions in the table.*/</span>
+    <span class="hljs-keyword">if</span> (htbl-&gt;size == htbl-&gt;positions)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+
+    <span class="hljs-comment">/*Do nothing ifthe data is already in the table.*/</span>
+    temp= (<span class="hljs-type">void</span>*)data;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">ohtbl_fookup</span>(htbl, &amp;temp) == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    
+    <span class="hljs-comment">/*Use double hashing to hash the key.*/</span>
+    <span class="hljs-keyword">for</span> (i=<span class="hljs-number">0</span>; i &lt; htbl-&gt;positions; i++)
+    {
+        position = (htbl-&gt;<span class="hljs-built_in">h1</span>(data) + (i * htbl-&gt;<span class="hljs-built_in">h2</span>(data))) % htbl-&gt;positions;
+        <span class="hljs-keyword">if</span> (htbl-&gt;table[position] == <span class="hljs-literal">NULL</span> || htbl-&gt;table[position] == htbl-&gt;vacated)
+        {
+            <span class="hljs-comment">/* Insert the data into the table.*/</span>
+            htbl-&gt;table[position] = (<span class="hljs-type">void</span>*)data;
+            htbl-&gt;size++;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+        }
+    }
+    
+    <span class="hljs-comment">/* Return that the hash funtions were selected incorrectly. */</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+}
+	
+<span class="hljs-comment">/*ohtbl_remove */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ohtbl_remove</span><span class="hljs-params">(OHTbl *htbl，<span class="hljs-type">void</span>**data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">int</span> position, i;
+    
+    <span class="hljs-comment">/*Use touble hashingtohashthekey.*/</span>
+    <span class="hljs-keyword">for</span> (i=<span class="hljs-number">0</span>; i &lt; htbl-&gt;positions; i++) 
+    {
+        position = (htbl-&gt;<span class="hljs-built_in">h1</span>(*data) + (i * htbl-&gt;<span class="hljs-built_in">h2</span>(*data))) % htbl-&gt;positions;
+    }
+
+    <span class="hljs-keyword">if</span> (htbl-&gt;table[position] == <span class="hljs-literal">NULL</span>) 
+    {
+        <span class="hljs-comment">/* Returnthat the data was not found，*/</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>；
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (htbl-&gt;table[position]==htbl-&gt;vacated) 
+    {
+        <span class="hljs-comment">/*Seaxch beyond vacated pasitions.*/</span>
+        <span class="hljs-keyword">continue</span>;
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (htbl-&gt;<span class="hljs-built_in">match</span>(htbl-&gt;table[position],*data))
+    {
+        <span class="hljs-comment">/* Pass back the data from the table，*/</span>
+        *data = htbl-&gt;table[position];
+        htbl-&gt;table[positian] = htbl-&gt;vacated;
+        htbl-&gt;size--;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; 
+    }
+    
+    <span class="hljs-comment">/*Return that the data wasnot found，*/</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+}
+
+<span class="hljs-comment">/* ohtbI_lookup */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ohtbl_lcokup</span><span class="hljs-params">(<span class="hljs-type">const</span> OHTbl *htbl, <span class="hljs-type">void</span> **data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">int</span> positiong, i;
+
+    <span class="hljs-comment">/* Use double hashing to hash the key.*/</span>
+    <span class="hljs-keyword">for</span> (i = O; i &lt; htbl-&gt;positions; i++)
+    {
+        positicn = (htb1-&gt;<span class="hljs-built_in">hz</span>(*data) + (i * htb1-&gt;<span class="hljs-built_in">h2</span>(*data))) % htb1-&gt;positions;
+
+        <span class="hljs-keyword">if</span> (htbl-&gt;table[position] == <span class="hljs-literal">NULL</span>)
+        {
+            <span class="hljs-comment">/* Return that the data was not found.*/</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(htbl-&gt;<span class="hljs-built_in">match</span>(htbl-&gt;table[position], *data))
+        {
+            <span class="hljs-comment">/* Pass back the data from the table. */</span>
+            *data = htbl-&gt;table[positipon];
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+    }
+    
+    <span class="hljs-comment">/* Return that the data was not found. */</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+}</code></pre></div>
+
+<h4><span id="5-shu">5.树</span><a href="#5-shu" class="header-anchor">#</a></h4><h5><span id="shu-de-ding-yi">树的定义：</span><a href="#shu-de-ding-yi" class="header-anchor">#</a></h5><blockquote>
+<p>在计算机科学中，树由称之为节点的元素按照层次结构方式组织而成。层次最顶端为根(root)。与根相连的为子节点，通常子节点也有自己的子节点。二叉树是分支因子为2的树。二叉搜索树是专门用于查找的树。</p>
+</blockquote>
+<h5><span id="er-cha-shu">二叉树</span><a href="#er-cha-shu" class="header-anchor">#</a></h5><p><img src="https://gitee.com/txt1994/images/raw/master/img/Algorithmic_refinement/%E4%BA%8C%E5%8F%89%E6%A0%91.png" srcset="/img/loading.gif" lazyload></p>
+<p>二叉树的一个节点包含三部分：一个<code>数据部</code>和两个左右<code>指针部</code></p>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/Algorithmic_refinement/%E8%8A%82%E7%82%B9%E4%BA%8C%E5%8F%89%E6%A0%91.png" srcset="/img/loading.gif" lazyload></p>
+<h6><span id="shu-de-bian-li-suan-fa">树的遍历算法</span><a href="#shu-de-bian-li-suan-fa" class="header-anchor">#</a></h6><p>先序遍历：根(root)，左，右</p>
+<p>中层遍历：左，根(root)，右</p>
+<p>后序遍历：左，右，根(root)</p>
+<p>层序遍历：根(root), 一层一层遍历到叶子</p>
+<h5><span id="shu-de-ping-heng">树的平衡</span><a href="#shu-de-ping-heng" class="header-anchor">#</a></h5><p>树的平衡是指对于给定数量的节点，保证树的高度尽可能短的过程。这意味着在结点加入下一层之前必须保证本层结点满额。也就是说树的叶子都在倒数两层，且倒数第二层叶子是满的，则称这棵树是平衡的。最后一层叶子结点靠左，则称这棵树是左平衡的。</p>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/Algorithmic_refinement/%E5%B7%A6%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91.png" srcset="/img/loading.gif" lazyload></p>
+<h5><span id="er-cha-shu-de-jie-kou-ding-yi">二叉树的接口定义：</span><a href="#er-cha-shu-de-jie-kou-ding-yi" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* bitree.h */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> BITREE_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> BITREE_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-comment">/* Define a structure for binary tree nodes.*/</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">BiTreeNode_</span>
+{
+    <span class="hljs-type">void</span> *data;
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">BiTreeNode</span> *left;
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">BiTreeNode_</span>*right;
+}BiTreeNode;
+
+<span class="hljs-comment">/* Defmne a structure for binary trees.*/</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">BiTree_</span>
+{
+    <span class="hljs-type">int</span> size;
+    <span class="hljs-built_in">int</span> (*compare)(<span class="hljs-type">const</span> <span class="hljs-type">void</span> *key1, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *key2);
+    <span class="hljs-built_in">void</span> (*destroy)(<span class="hljs-type">void</span> *data);
+    BiTreeNode *root;
+}BiTree;
+
+<span class="hljs-comment">/* Public Interface */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bitree_init</span><span class="hljs-params">(BiTree *tree, <span class="hljs-type">void</span> (*destroy)(<span class="hljs-type">void</span> *data))</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bitree_destroy</span><span class="hljs-params">(BiTree *tree)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bitree_ins_left</span><span class="hljs-params">(BiTree *tree, BiTreeNode *node, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bitree_ins_right</span><span class="hljs-params">(BiTree *tree, BiTreeNode *node, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bitree_rem_left</span><span class="hljs-params">(BiTree *tree, BiTreeNode *node)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bitree_rem_right</span><span class="hljs-params">(BiTree *tree,BiTreeNode *node)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bitree_merge</span><span class="hljs-params">(BiTree *merge, BiTree *left,BiTree *right,<span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>;
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> bitree_size(tree)	 ((tree)-&gt;size)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> bitree root(tree)	 ((tree)-&gt;root))</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> bitxee_is_eob(node)	 ((node) == NULL)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> bitree_is_leaf(node) ((node)-&gt;left == NULL &amp;&amp; (node)-&gt;right == NULL)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> bitree_data(node) ((node)-&gt;data)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> bitree left(node) ((node)-&gt;left)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> bitree_right(node) ((node)-&gt;right)</span>
+
+<span class="hljs-meta">#edif</span></code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* bitree.c */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"bitree.h"</span></span>
+
+<span class="hljs-comment">/*bitree init*/</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bitree_init</span><span class="hljs-params">(BiTree *tree, <span class="hljs-type">void</span> (*destroy)(<span class="hljs-type">void</span> *data))</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Initialize the binary tree.*/</span>
+    tree-&gt;size = <span class="hljs-number">0</span>;
+    tree-&gt;destroy = destroy;
+    tree-&gt;root = <span class="hljs-literal">NULL</span>;
+}
+
+<span class="hljs-comment">/* bitree_destroy*/</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bitree_destroy</span><span class="hljs-params">(BiTree *tree)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Remove all the nodes from the tree.*/</span>
+    <span class="hljs-built_in">bitree_rem_left</span>(tree, <span class="hljs-literal">NULL</span>);
+    <span class="hljs-comment">/* No operations are aIlowed now, but clear the structure as a precaution. */</span>
+    <span class="hljs-built_in">memset</span>(tree, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(BiTree);
+}
+
+<span class="hljs-comment">/* bitree ins left */</span>
+<span class="hljs-type">int</span> <span class="hljs-built_in">bitree_ins_left</span>(BiTree *tree, BiTreeNode *node, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)
+{
+    BiTreeNode new_node, **position;
+
+    <span class="hljs-comment">/* Determine where to insert the node.*/</span>
+    <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">NULL</span>)
+    {
+        <span class="hljs-comment">/* Allow insertion at the root only in an empty tree.*/</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_size</span>(tree) &gt; <span class="hljs-number">0</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+
+        position = &amp;tree-&gt;root;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">/* Normally allow insertion only at the end of a branch.*/</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_left</span>(node) != <span class="hljs-literal">NULL</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+
+        position = &amp;node-&gt;left;
+    }
+
+    <span class="hljs-comment">/* Allocate storage for the node.*/</span>
+    <span class="hljs-keyword">if</span> ((new_node = (BiTreeNode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(BiTreeNcde))) == <span class="hljs-literal">NULL</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+
+    <span class="hljs-comment">/* Insert the node into the tree.*/</span>
+    new_node-&gt;data = (<span class="hljs-type">void</span> *)data;
+    new_node-&gt;ieft = <span class="hljs-literal">NULL</span>;
+    new_node-&gt;right = <span class="hljs-literal">NULL</span>;
+    *position = new_node;
+
+    <span class="hljs-comment">/* Adjust the size of the tree to account for the inserted node.*/</span>
+    tree-&gt;size++;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* bitree_ins_right */</span>
+<span class="hljs-type">int</span> <span class="hljs-built_in">bitree_ins_right</span>(BiTree *tree, BiTreeNode *node, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)
+{
+    BiTreeNode *new_node, **position;
+
+    <span class="hljs-comment">/* Determine where to insert the node.*/</span>
+    <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">NULL</span>)
+    {
+        <span class="hljs-comment">/* Allow insertion at the root only in an empty tree.*/</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_size</span>(tree) &gt; <span class="hljs-number">0</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+
+        position = &amp;tree-&gt;root;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">/* Normally allow insertion only at the end of a branch. */</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_right</span>(node) != <span class="hljs-literal">NULL</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+
+        position = &amp;node-&gt;right;
+    }
+
+    <span class="hljs-comment">/* Allocate storage for the node.*/</span>
+    <span class="hljs-keyword">if</span> ((new_node = (BiTreeNode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(BiTreeNode))) == <span class="hljs-literal">NULL</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+
+    <span class="hljs-comment">/* Insert the node into the tree.*/</span>
+    new_node-&gt;data = (<span class="hljs-type">void</span> *)data;
+    new_node-&gt;left = <span class="hljs-literal">NULL</span>;
+    new_node-&gt;right = <span class="hljs-literal">NULL</span>;
+    *position = new_node;
+
+    <span class="hljs-comment">/* Adjust the size of the tree to account for the inserted node.*/</span>
+    tree-&gt;size++;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* bitree_rem_left */</span>
+<span class="hljs-type">void</span> <span class="hljs-built_in">bitree_rem_left</span>(BiTree *tree, BiTreeNode *node)
+{
+    BiTreeNode **position;
+    <span class="hljs-comment">/* Do not allow removal from an empty tree.*/</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_size</span>(tree) == <span class="hljs-number">0</span>)
+    <span class="hljs-keyword">return</span>;
+
+    <span class="hljs-comment">/*Determine where to remove nodes.*/</span>
+    <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">NULL</span>)
+        position = &amp;tree-&gt;root;
+    <span class="hljs-keyword">else</span>
+        position = &amp;node-&gt;left;
+
+    <span class="hljs-comment">/*Remove the nodes.*/</span>
+    <span class="hljs-keyword">if</span> (*position != <span class="hljs-literal">NULL</span>)
+    {
+        <span class="hljs-built_in">bitree_rem_left</span>(tree, *position);
+        <span class="hljs-built_in">bitree_rem_right</span>(tree, *position);
+        <span class="hljs-keyword">if</span> (tree-&gt;destroy != <span class="hljs-literal">NULL</span>)
+        {
+            <span class="hljs-comment">/* Call a user-defined function to free dynamically allocated data.*/</span>
+            tree-&gt;<span class="hljs-built_in">destroy</span>((*position-&gt;data);   
+        }
+
+        <span class="hljs-built_in">free</span>(*position);
+        *position = <span class="hljs-literal">NULL</span>;
+
+        <span class="hljs-comment">/* Adjust the size of the tree to account for the removed node.*/</span>
+        tree-&gt;size--;
+    }
+    <span class="hljs-keyword">return</span>;
+}
+
+<span class="hljs-comment">/* bitree_rem_right */</span>
+<span class="hljs-type">void</span> <span class="hljs-built_in">bitree_rem_right</span>(BiTzee *tree, BiTreeNode *node)
+{
+    BiTreeNode **position;
+    
+    <span class="hljs-comment">/* Do not allow removal from an empty tree. */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_size</span>(tree) == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span>;
+
+    <span class="hljs-comment">/* Determine where to remove nodes.*/</span>
+    <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">NULL</span>)
+        position = &amp;tree-&gt;root;
+    <span class="hljs-keyword">else</span>
+        position = &amp;node-&gt;right;
+
+    <span class="hljs-comment">/* Remove the nodes.*/</span>
+    <span class="hljs-keyword">if</span> (*position != <span class="hljs-literal">NULL</span>)
+    {
+        <span class="hljs-built_in">bitree_rem_left</span>(txee,*position);
+        <span class="hljs-built_in">bitree_rem_right</span>(tree,*position);
+        <span class="hljs-keyword">if</span> (tree-&gt;destroy != <span class="hljs-literal">NULL</span>)
+        {
+            <span class="hljs-comment">/* CalI a user-defined function to free dynamically allocated data.*/</span>
+            tree-&gt;<span class="hljs-built_in">destroy</span>((*position)-&gt;data);
+        }
+
+        <span class="hljs-built_in">free</span>(*position);
+        *position = <span class="hljs-literal">NULL</span>;
+
+        <span class="hljs-comment">/* Adjust the size of the tree to account for the removed node.*/</span>
+        tree-&gt;size--;
+    }
+    <span class="hljs-keyword">return</span>;
+}
+
+<span class="hljs-comment">/* bitree_merge*/</span>
+<span class="hljs-type">int</span> <span class="hljs-built_in">bitree_merge</span>(BiTree *merge, BiTree *left, BiTree *right, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)
+{
+    <span class="hljs-comment">/* Initialize the merged tree.*/</span>
+    <span class="hljs-built_in">bitree_init</span>(merge, left-&gt;destroy);
+
+    <span class="hljs-comment">/* Insert the data for the root node of the merged tree.*/</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_ins_left</span>(merge, <span class="hljs-literal">NULL</span>, data) != <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-built_in">bitree_destroy</span>(merge);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    }
+
+    <span class="hljs-comment">/* Merge the two binary trees into a single binary tree.*/</span>
+    <span class="hljs-built_in">bitree_root</span>(merge)-&gt;left = <span class="hljs-built_in">bitree_root</span>(left);
+    <span class="hljs-built_in">bitree_root</span>(merge)-&gt;right = <span class="hljs-built_in">bitree_root</span>(right);
+
+    <span class="hljs-comment">/* Adjust the size of the new binary tree.*/</span>
+    merge-&gt;size = merge-&gt;size + <span class="hljs-built_in">bitree_size</span>(left) + <span class="hljs-built_in">bitree_size</span>(right);
+
+    <span class="hljs-comment">/* Do not let the original trees access the merged nodes.*/</span>
+    left-&gt;root = <span class="hljs-literal">NULL</span>;
+    left-&gt;size = <span class="hljs-number">0</span>;
+    right-&gt;root = <span class="hljs-literal">NULL</span>;
+    right-&gt;size = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h5><span id="er-cha-sou-suo-shu">二叉搜索树</span><a href="#er-cha-sou-suo-shu" class="header-anchor">#</a></h5><h6><span id="ding-yi">定义：</span><a href="#ding-yi" class="header-anchor">#</a></h6><blockquote>
+<p>二叉搜索树是有二叉树组成的专用于查找和搜索目的的一种数据结构。</p>
+<p>数据插入遵循：比根节点(root)大的数插入根右边，比根节点小的数插入左边。</p>
+<p>数据搜索遵循：要查询的值比根(root)大的数向右子节点查，比根节点小向左节点查。</p>
+<p>不允许有重复值出现</p>
+<p>二叉搜素树应尽量保持平衡，但比较困难。非平衡树会造成搜索的节点数量过多，最多O(n)</p>
+</blockquote>
+<p>二叉搜索树要保持平衡最好的方法是</p>
+<h5><span id="avl-shu"><strong>AVL</strong>树</span><a href="#avl-shu" class="header-anchor">#</a></h5><p>其定义为：</p>
+<blockquote>
+<p>AVL树每个节点都保持了一个平衡因子。</p>
+<p>插入结点时AVL树需要自我调整。</p>
+<p>平衡因子：结点的右子树高度-左子树高度，其值为+1, 0，-1。</p>
+<p>+1：代表树是左倾斜的</p>
+<p>-1：代表树是右倾斜的</p>
+</blockquote>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/Algorithmic_refinement/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91.png" srcset="/img/loading.gif" lazyload></p>
+<p>平衡因子改变：</p>
+<blockquote>
+<p>插入新的结点会造成平衡因子改变，因此这棵树需要重新平衡，我们称这种平衡为<code>AVL树的旋转</code></p>
+</blockquote>
+<p><code>AVL树</code>旋转方法：</p>
+<blockquote>
+<p>LL(left-left)，LR(left-right)，RR(right-right)，RL(right-left)</p>
+</blockquote>
+<blockquote>
+<p>avl树旋转有一个更简单的方法:</p>
+<blockquote>
+<ol>
+<li><p>把这颗树抽象成一棵自然界的树，节点的平衡因子不是-1，0，+1时，RR和LL的节点小于-1或大于+1时树的树梢向下落一层；</p>
+</li>
+<li><p>RL和LR的节点小于-1或大于+1时是因为不平衡的子节点引起的，找到不平衡的子节点重复LL或RR的过程，不平衡子节点旋转之后父节点重复LL或RR.</p>
+</li>
+</ol>
+</blockquote>
+</blockquote>
+<h6><span id="jie-kou-ding-yi">接口定义：</span><a href="#jie-kou-ding-yi" class="header-anchor">#</a></h6><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* bistree.h */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> BISTREE_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> BISTREE_R</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"bitree.h"</span></span>
+
+<span class="hljs-comment">/* Define balance factors for AVL trees. */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> AVL_LFT_HEAVY   1</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> AVL_BALANCED    0</span>
+<span class="hljs-meta">#deftne AVERGT_HEAVY    -1</span>
+
+<span class="hljs-comment">/* Define a structure for nodes in AVL trees. */</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">AvlNode_</span>
+{
+    <span class="hljs-type">void</span> *data;
+    <span class="hljs-type">int</span> hidden;
+    <span class="hljs-type">int</span> factor;
+}Av1Node;
+
+<span class="hljs-comment">/* Implement binary search trees as binary trees. */</span>
+<span class="hljs-keyword">typedef</span> BiTree BisTree;
+
+<span class="hljs-comment">/* Public Interface */</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bistree_init</span><span class="hljs-params">(Bistree *tree, <span class="hljs-type">int</span> (*compare)(<span class="hljs-type">const</span> <span class="hljs-type">void</span> *key1, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *key2), <span class="hljs-type">void</span> (*destroy)(<span class="hljs-type">void</span> *data))</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bistree_destroy</span><span class="hljs-params">(BisTree *tree)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bistree_insert</span><span class="hljs-params">(BisTree *tree, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bistree_remove</span><span class="hljs-params">(BisTree *tree, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bistree_lookup</span><span class="hljs-params">(BisTree *tree, <span class="hljs-type">void</span> **data)</span></span>;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> bistree_size(tree) ((txee) -&gt;size)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* bistree.c */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"bistree.h"</span></span>
+
+<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">destroy_right</span><span class="hljs-params">(BisTree *tree, BiTreeNode *node)</span></span>;
+
+/ * rotate_left */
+<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">rotate_left</span><span class="hljs-params">(BiTreeNode **node)</span></span>
+<span class="hljs-function"></span>{
+    BiTreeNode *left, *grandchild;
+
+    left = <span class="hljs-built_in">bitree_left</span>(*node);
+    <span class="hljs-keyword">if</span> (((AvlNode *)<span class="hljs-built_in">bitree_data</span>(left))-&gt;factor == AVL_LFT_HEAVY)
+    {
+        <span class="hljs-comment">/* Perform an LL rotation. */</span>
+        <span class="hljs-built_in">bitree_left</span>(*node) = <span class="hljs-built_in">bitree_right</span>(left);
+        <span class="hljs-built_in">bitree_right</span>(left) = *node;
+        ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_BALANCED;
+        ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(left))-&gt;factor = AVL_BALANCED;
+        *node = left;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">/* Perform an LR rotation. */</span>
+        grandchild = <span class="hljs-built_in">bitree_right</span>(left);
+        <span class="hljs-built_in">bitree_right</span>(left) = <span class="hljs-built_in">bitree_left</span>(grandchild);
+        <span class="hljs-built_in">bitree_left</span>(grandchild) = left;
+        <span class="hljs-built_in">bitree_left</span>(*node) = <span class="hljs-built_in">bitree_right</span>(grandchild);
+        <span class="hljs-built_in">bitree_right</span>(grandchild) = *node;
+
+        <span class="hljs-keyword">switch</span> (((AvlNode *)<span class="hljs-built_in">bitree_data</span>(left))-&gt;factor)
+        {
+            <span class="hljs-keyword">case</span> AVL_LFT_HEAVY:
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_RGT_HEAVY;
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(left))-&gt;factor = AVL_BALANCED;
+                <span class="hljs-keyword">break</span>;
+            
+            <span class="hljs-keyword">case</span> AVL_BALANCED:
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_BALANCED;
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(left))-&gt;factor = AVL_BALANCED;
+                <span class="hljs-keyword">break</span>;
+            
+            <span class="hljs-keyword">case</span> AVL_RGT_HEAVY:
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_BALANCED;
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(left))-&gt;factor = AVL_LFT_HEAVY;
+                <span class="hljs-keyword">break</span>;
+        }
+
+        ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(grandchild))-&gt;factor = AVL_BALANCED;
+        *node = grandchild;
+    }
+}
+
+/ * rotate_right */
+<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">rotate_right</span><span class="hljs-params">(BiTreeNode **node)</span></span>
+<span class="hljs-function"></span>{
+    BiTreeNode *right, *grandchild;
+    right = <span class="hljs-built_in">bitree_right</span>(*node);
+
+    <span class="hljs-keyword">if</span> (((AvlNode *)<span class="hljs-built_in">bitree_data</span>(right))-&gt;factor == AVL_RGT_HEAVY)
+    {
+        <span class="hljs-comment">/* Perform an RR rotation. */</span>
+        <span class="hljs-built_in">bitree_right</span>(*node) = <span class="hljs-built_in">bitree_right</span>(right);
+        <span class="hljs-built_in">bitree_left</span>(right) = *node;
+        ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_BALANCED;
+        ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(right))-&gt;factor = AVL_BALANCED;
+        *node = right;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">/* Perform an RL rotation. */</span>
+        grandchild = <span class="hljs-built_in">bitree_left</span>(right);
+        <span class="hljs-built_in">bitree_right</span>(right) = <span class="hljs-built_in">bitree_right</span>(grandchild);
+        <span class="hljs-built_in">bitree_right</span>(grandchild) = right;
+        <span class="hljs-built_in">bitree_right</span>(*node) = <span class="hljs-built_in">bitree_left</span>(grandchild);
+        <span class="hljs-built_in">bitree_left</span>(grandchild) = *node;
+
+        <span class="hljs-keyword">switch</span> (((AvlNode *)<span class="hljs-built_in">bitree_data</span>(grandchild))-&gt;factor)
+        {
+            <span class="hljs-keyword">case</span> AVL_LFT_HEAVY:
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_BALANCED;
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(right))-&gt;factor = AVL_RGT_HEAVY;
+                <span class="hljs-keyword">break</span>;
+            
+            <span class="hljs-keyword">case</span> AVL_BALANCED:
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_BALANCED;
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(right))-&gt;factor = AVL_BALANCED;
+                <span class="hljs-keyword">break</span>;
+            
+            <span class="hljs-keyword">case</span> AVL_RGT_HEAVY:
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_LFT_HEAVY;
+                ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(right))-&gt;factor = AVL_BALANCED ;
+                <span class="hljs-keyword">break</span>;
+        }
+
+        ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(grandchild))-&gt;factor = AVL_BALANCED;
+        *node = grandchild;
+    }
+}
+
+<span class="hljs-comment">/* destroy_left */</span>
+<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">destroy_left</span><span class="hljs-params">(BisTree *tree, BiTreeNode *node)</span></span>
+<span class="hljs-function"></span>{
+    BiTreeNode **position;
+
+    <span class="hljs-comment">/* Do not allow destruction of an empty tree. */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_size</span>(tree) == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span>;
+
+    <span class="hljs-comment">/* Determine where to destroy nodes.*/</span>
+    <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">NULL</span>)
+        position = &amp;tree-&gt;root;
+    <span class="hljs-keyword">else</span>
+        position = &amp;tree-&gt;left;
+
+    <span class="hljs-comment">/* Destroy the nodes. */</span>
+    <span class="hljs-keyword">if</span> (*position != <span class="hljs-literal">NULL</span>)
+    {
+        <span class="hljs-built_in">destroy_left</span>(tree, *position);
+        <span class="hljs-built_in">destroy_right</span>(tree, *position);
+
+        <span class="hljs-keyword">if</span> (tree-&gt;destroy != <span class="hljs-literal">NULL</span>)
+        {
+            <span class="hljs-comment">/* Call a user-defined function to free dynamically allocated data. */</span>
+            tree-&gt;<span class="hljs-built_in">destory</span>(((AvlNode *)(*position)-&gt;data)-&gt;data);
+        }
+        
+        <span class="hljs-comment">/* Free the AVL data in the node, then free the node itself. */</span>
+        <span class="hljs-built_in">free</span>((*position)-&gt;data);
+        <span class="hljs-built_in">free</span>(*position);
+        *position = <span class="hljs-literal">NULL</span>;
+
+        <span class="hljs-comment">/* Adjust the size of the tree to account for the destroyed node. */</span>
+        tree-&gt;size--;
+    }
+}
+
+/ * destroy_right */
+<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">destroy_right</span><span class="hljs-params">(BisTree *tree, BiTreeNode *node)</span></span>
+<span class="hljs-function"></span>{
+     BiTreeNode **position;
+
+    <span class="hljs-comment">/* Do not allow destruction of an empty tree. */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_size</span>(tree) == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span>;
+
+    <span class="hljs-comment">/* Determine where to destroy nodes.*/</span>
+    <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">NULL</span>)
+        position = &amp;tree-&gt;root;
+    <span class="hljs-keyword">else</span>
+        position = &amp;tree-&gt;right;
+
+    <span class="hljs-comment">/* Destroy the nodes. */</span>
+    <span class="hljs-keyword">if</span> (*position != <span class="hljs-literal">NULL</span>)
+    {
+        <span class="hljs-built_in">destroy_left</span>(tree, *position);
+        <span class="hljs-built_in">destroy_right</span>(tree, *position);
+
+        <span class="hljs-keyword">if</span> (tree-&gt;destroy != <span class="hljs-literal">NULL</span>)
+        {
+            <span class="hljs-comment">/* Call a user-defined function to free dynamically allocated data. */</span>
+            tree-&gt;<span class="hljs-built_in">destory</span>(((AvlNode *)(*position)-&gt;data)-&gt;data);
+        }
+        
+        <span class="hljs-comment">/* Free the AVL data in the node, then free the node itself. */</span>
+        <span class="hljs-built_in">free</span>((*position)-&gt;data);
+        <span class="hljs-built_in">free</span>(*position);
+        *position = <span class="hljs-literal">NULL</span>;
+
+        <span class="hljs-comment">/* Adjust the size of the tree to account for the destroyed node. */</span>
+        tree-&gt;size--;
+    }
+}
+
+<span class="hljs-comment">/* insert */</span>
+<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">int</span> <span class="hljs-title">insert</span><span class="hljs-params">(BisTree *tree, BiTreeNode **node, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data, <span class="hljs-type">int</span> *balanced)</span></span>
+<span class="hljs-function"></span>{
+    AvlNode *avl_data;
+    <span class="hljs-type">int</span> cmpval, retval;
+
+    <span class="hljs-comment">/* Insert the data into the tree. */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_is_eob</span>(*node))
+    {
+        <span class="hljs-comment">/* Handle insertion into an empty tree.*/</span>
+        <span class="hljs-keyword">if</span> ((avl_data = (AvlNode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(AvlNode))) == <span class="hljs-literal">NULL</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        avl data-&gt;factor = AVL_BALANCED;
+        avi data-&gt;hidden = <span class="hljs-number">0</span>;
+        avl_data-&gt;data = (<span class="hljs-type">void</span> *)data;
+        
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">bitree_ins_left</span>(tree, *node, avl_data);
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">/* Handle insertion into a tree that is not empty. */</span>
+        cmpval = tree-&gt;<span class="hljs-built_in">compare</span>(data, ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;data);
+        <span class="hljs-keyword">if</span> (cmpval &lt; <span class="hljs-number">0</span>)
+        {
+            <span class="hljs-comment">/* Move to the left. */</span>
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_is_eob</span>(<span class="hljs-built_in">bitree_left</span>(*node)))
+            {
+                <span class="hljs-keyword">if</span> ((avl_data = (AvlNode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(AvlNode))) == <span class="hljs-literal">NULL</span>)
+                    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+                
+                avl_data-&gt;factor = AVL_BALANCED;
+                avl_data-&gt;hidden = <span class="hljs-number">0</span>;
+                avl_data-&gt;data = (<span class="hljs-type">void</span> *)data;
+
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_ins_left</span>(tree, *node, avl_data) != <span class="hljs-number">0</span>)
+                    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+                
+                *balance = <span class="hljs-number">0</span>;
+            }
+            <span class="hljs-keyword">else</span>
+            {
+                <span class="hljs-keyword">if</span> ((retval = <span class="hljs-built_in">insert</span>(tree, &amp;<span class="hljs-built_in">bitree_left</span>(*node), data, balanced)) != <span class="hljs-number">0</span>)
+                <span class="hljs-keyword">return</span> retval;
+            }
+
+            <span class="hljs-comment">/* Ensure that the tree remains balanced. */</span>
+            <span class="hljs-keyword">if</span> (!(*balanced))
+            {
+                <span class="hljs-keyword">switch</span> (((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor)
+                {
+                    <span class="hljs-keyword">case</span> AVL_LFT_HEAVY:
+                        <span class="hljs-built_in">rotate_left</span>(node) ;
+                        *balanced = <span class="hljs-number">1</span>;
+                        <span class="hljs-keyword">break</span>;
+                    <span class="hljs-keyword">case</span> AVL_BALANCED:
+                        ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_LFT_HEAVY;
+                        <span class="hljs-keyword">break</span>;
+                    <span class="hljs-keyword">case</span> AVL_RGT_HEAVY:
+                        ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_BALANCED;
+                        *balanced = <span class="hljs-number">1</span>;
+                        <span class="hljs-keyword">break</span>;
+                }
+                
+            }
+        } <span class="hljs-comment">/* if (cmpval &lt; 0) */</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cmpval &gt; <span class="hljs-number">0</span>)
+        {
+            <span class="hljs-comment">/* move to the right. */</span>
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_is_eob</span>(<span class="hljs-built_in">bitree_right</span>(*node)))
+            {
+                <span class="hljs-keyword">if</span> ((avl_data = (AvlNode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(AvlNode))) == <span class="hljs-literal">NULL</span>)
+                    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+                
+                avl_data-&gt;factor = AVL_BALANCED;
+                avl_data-&gt;hidden = <span class="hljs-number">0</span>;
+                avl_data-&gt;data = (<span class="hljs-type">void</span> *)data;
+
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_ins_right</span>(tree, *node, avl_data) != <span class="hljs-number">0</span>)
+                    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+                
+                *balance = <span class="hljs-number">0</span>;
+            }
+            <span class="hljs-keyword">else</span> 
+            {
+                <span class="hljs-keyword">if</span> ((retval = <span class="hljs-built_in">insert</span>(tree, &amp;<span class="hljs-built_in">bitree_right</span>(*node), data, balanced)) != <span class="hljs-number">0</span>)
+                    <span class="hljs-keyword">return</span> retval;
+            }
+
+            <span class="hljs-comment">/* Ensure that the tree remains balanced. */</span>
+            <span class="hljs-keyword">if</span> (!(*balanced))
+            {
+                <span class="hljs-keyword">switch</span> (((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor)
+                {
+                    <span class="hljs-keyword">case</span> AVL_LFT_HEAVY:
+                        ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_BALANCED;
+                        *balanced = <span class="hljs-number">1</span>;
+                        <span class="hljs-keyword">break</span>;
+                    <span class="hljs-keyword">case</span> AVL_BALANCED:
+                        ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;factor = AVL_RGT_HEAVY;
+                        <span class="hljs-keyword">break</span>;
+                    <span class="hljs-keyword">case</span> AVL_RGT_HEAVY:
+                        <span class="hljs-built_in">rotate_right</span>(node) ;
+                        *balanced = <span class="hljs-number">1</span>;
+                        <span class="hljs-keyword">break</span>;
+                }
+                
+            } <span class="hljs-comment">/* if (cmpval) &gt; 0 */</span>
+            <span class="hljs-keyword">else</span>
+            { 
+                <span class="hljs-comment">/* Handle finding a copy of the data. */</span>
+                <span class="hljs-keyword">if</span> (!((Av1Node *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;hodden)
+                {
+                    <span class="hljs-comment">/* Do nothing since the data is in the tree and not hidden. */</span>
+                    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+                }
+                <span class="hljs-keyword">else</span>
+                {
+                    <span class="hljs-comment">/* Insert the new data and mark it as not hidden. */</span>
+                    <span class="hljs-keyword">if</span> (tree-&gt;destroy != <span class="hljs-literal">NULL</span>)
+                    {
+                        <span class="hljs-comment">/* Destroy the hidden data since it is being replaced. */</span>
+                        tree-&gt;<span class="hljs-built_in">destory</span>(((Av1Node *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;data);
+                    }
+                    ((Av1Node *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;data = (<span class="hljs-type">void</span> *)data;
+                    ((Av1Node *)<span class="hljs-built_in">bitree_data</span>(*node))-&gt;hidden = <span class="hljs-number">0</span>;
+                    
+                    <span class="hljs-comment">/* Do not rebalance because the tree structure is unchanged. */</span>
+                    *balanced = <span class="hljs-number">1</span>;
+                }
+            }
+        }                     
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* hide */</span>
+<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">int</span> <span class="hljs-title">hide</span><span class="hljs-params">(BisTree *tree, BiTreeNode *node, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">int</span> cmpval, retval;
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_is_eob</span>(node))
+    {
+        <span class="hljs-comment">/* Return that the data was not found. */</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    }
+
+    cmpval = tree-&gt;<span class="hljs-built_in">compare</span>(data, ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(node))-&gt;data);
+    <span class="hljs-keyword">if</span> (cmpval &lt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-comment">/* Move to the left.*/</span>
+        retval = <span class="hljs-built_in">hide</span>(tree, <span class="hljs-built_in">bitree_left</span>(node), data);
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cmpval &gt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-comment">/* Move to the right.*/</span>
+        retval = <span class="hljs-built_in">hide</span>(tree, <span class="hljs-built_in">bitree_right</span>(node), data);
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">/* Mark the node as hidden. */</span>
+        ((AvLNode *)<span class="hljs-built_in">bitree_data</span>(node))-&gt;hidden = <span class="hljs-number">1</span>;
+        retvaL = <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-keyword">return</span> retval;
+}
+
+<span class="hljs-comment">/* lookup */</span>
+<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">int</span> <span class="hljs-title">lookup</span><span class="hljs-params">(BisTree *tree, BiTreeNode *node, <span class="hljs-type">void</span> *data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">int</span> cmpval, retval;
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bitree_is_eob</span>(node))
+    {
+        <span class="hljs-comment">/* Return that the data was not found. */</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    }
+
+    cmpval = tree-&gt;<span class="hljs-built_in">compare</span>(data, ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(node))-&gt;data);
+    <span class="hljs-keyword">if</span> (cmpval &lt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-comment">/* Move to the left.*/</span>
+        retval = <span class="hljs-built_in">lookup</span>(tree, <span class="hljs-built_in">bitree_left</span>(node), data);
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cmpval &gt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-comment">/* Move to the right.*/</span>
+        retval = <span class="hljs-built_in">lookup</span>(tree, <span class="hljs-built_in">bitree_right</span>(node), data);
+    }
+     <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-keyword">if</span>(!((AvlNode *)<span class="hljs-built_in">bitree_data</span>(node))-&lt;hidden)
+        {
+            <span class="hljs-comment">/* Pass back the data from the tree. */</span>
+            *data = ((AvlNode *)<span class="hljs-built_in">bitree_data</span>(node))-&gt;data;
+            retval = <span class="hljs-number">0</span>;
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            <span class="hljs-comment">/* Return that the data was not found. */</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>; 
+        }
+    }
+    <span class="hljs-keyword">return</span> retval;
+}
+
+<span class="hljs-comment">/* bistree_init */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bistree_init</span><span class="hljs-params">(BisTree *tree, <span class="hljs-type">int</span> (*cpmpare)(<span class="hljs-type">void</span> *keyl, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *key2), <span class="hljs-type">void</span> (*destory)(*data))</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Initialize the tree. */</span>
+    <span class="hljs-built_in">bitree_init</span>(tree, destory);
+    tree-&gt;compare = compare;
+}
+
+<span class="hljs-comment">/* bistree_destroy */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bistree_destroy</span><span class="hljs-params">(BisTree *tree)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">/* Destroy all nodes in the tree. */</span>
+    <span class="hljs-built_in">destory_left</span>(tree, <span class="hljs-literal">NULL</span>);
+
+    <span class="hljs-comment">/* No operations are allowed now, but clear the structure as a precaution. */</span>
+    <span class="hljs-built_in">memset</span>(tree, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(BisTree));
+}
+
+<span class="hljs-comment">/* bistree_insert */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bistree_insert</span><span class="hljs-params">(BisTree *tree, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">int</span> balanced = O;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">insert</span>(tree, &amp;<span class="hljs-built_in">bitree_rot</span>(tree), data, &amp;balanced);
+}
+
+<span class="hljs-comment">/* bitree_remove */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bitree_remove</span><span class="hljs-params">(BisTree *tree, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">hide</span>(tree, <span class="hljs-built_in">bitree_root</span>(tree), data);
+}
+
+<span class="hljs-comment">/* bistree_lookup */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bistree_lookup</span><span class="hljs-params">(BisTree *tree, <span class="hljs-type">void</span> *data)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">lookup</span>(tree, <span class="hljs-built_in">bitree_root</span>(tree), data);
+}
+</code></pre></div>
+
+<h5><span id="hong-hei-shu-r-b-shu">红黑树（R-B树）</span><a href="#hong-hei-shu-r-b-shu" class="header-anchor">#</a></h5><p><img src="https://gitee.com/txt1994/images/raw/master/img/R_B_tree/R_B_tree.png" srcset="/img/loading.gif" lazyload></p>
+<h6><span id="ding-yi">定义：</span><a href="#ding-yi" class="header-anchor">#</a></h6><p><strong>红黑树</strong> 为妥协的AVL树，平衡要求没AVL树严格，因此适用范围比AVL树多</p>
+<p>红黑树是每个结点都带有颜色属性的二叉查找树，颜色或红色或黑色。待插入结点默认为红色结点，插入时按照二分插入。</p>
+<ul>
+<li><p>性质1. 结点是红色或黑色。</p>
+</li>
+<li><p>性质2. 根结点是黑色。 </p>
+</li>
+<li><p>性质3. 所有叶子都是黑色。（叶子是NIL结点）</p>
+</li>
+<li><p>性质4. 每个红色结点的两个子结点都是黑色。（从每个叶子到根的所有路径上不能有两个连续的红色结点）</p>
+</li>
+<li><p>性质5. 从任一节结点其每个叶子的所有路径都包含相同数目的黑色结点。</p>
+</li>
+</ul>
+<h6><span id="r-b-shu-de-cha-ru-xuan-zhuan-fa"><strong><code>R_B树的插入旋转法</code></strong></span><a href="#r-b-shu-de-cha-ru-xuan-zhuan-fa" class="header-anchor">#</a></h6><blockquote>
+<p> RR或LL，刚插入的结点的父节点是红色，叔叔结点也是红色，那么父节点和叔叔变为黑色，祖父结点变为红色</p>
+<blockquote>
+<p>刚插入的结点的父节点是红色，叔叔结点是黑色，那么父节点和叔叔结点需要左旋或右旋，然后原父结点变为黑色，叔叔结点变为红色。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p> LR或RL，刚插入结点父结点是红色，叔叔结点也是红色，那么父节点和叔叔结点变为黑色，祖父结点变为红色，</p>
+<blockquote>
+<p>刚插入结点父结点是红色，叔叔结点为黑色，那么刚插入结点和父节点需要左旋或右旋，再次执行RR或LL步骤。</p>
+</blockquote>
+</blockquote>
+<h6><span id="r-b-shu-de-shan-chu-xuan-zhuan-fa"><strong>R_B树的删除旋转法</strong>：</span><a href="#r-b-shu-de-shan-chu-xuan-zhuan-fa" class="header-anchor">#</a></h6><p>​        R_B树的删除为红黑树最复杂部分</p>
+<p>1、红黑树删除的情形</p>
+<p>​    一、从树中删除节点X（以寻找后继节点的方式进行删除）</p>
+<p>​        情况①：如果X没有孩子，且如果X是红色，直接删除X；如果X是黑色，则以X为当前节点进行旋转调色，最后删掉X</p>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/R_B_tree/R_B_Tree_leaf.svg" srcset="/img/loading.gif" lazyload></p>
+<p>​        情况②：如果X只有一个孩子C，交换X和C的数值，再对新X进行删除。根据红黑树特性，此时X不可能为红色，因为红色节点要么没有孩子，要么有两个黑孩子。此时以新X为当前节点进行情况①的判断</p>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/R_B_tree/R_B_Tree_one_node.svg" srcset="/img/loading.gif" lazyload></p>
+<p>​        情况③：如果X有两个孩子，则从后继中找到最小节点D，交换X和D的数值，再对新X进行删除。此时以新X为当前节点进行情况①或②的判断</p>
+<p>​    二、旋转调色（N=旋转调色的当前节点[等于情况①中的X]，P=N的父亲，W=N的兄弟，Nf=N的远侄子，Nn=N的近侄子）</p>
+<p>​        情况1：N是根或者N是红色，则：直接将N设为黑色</p>
+<p>​        情况2：N不是根且N是黑色，且W为红色，则：将W设为黑色，P设为红色，对P进行旋转(N为P的左子时进行左旋，N为P的右子时进行右旋)，将情况转化为情况1、2、3、4、5</p>
+<p>​        情况3：N不是根且N是黑色，且W为黑色，且W的左右子均为黑色，则：将W设为红色，将P设为当前节点进行旋转调色，将情况转化为情况1、2、3、4、5</p>
+<p>​        情况4：N不是根且N是黑色，且W为黑色，且Nf为黑色，Nn为红色，则：交换W与Nn的颜色，并对W进行旋转(N为P的左子进行右旋，N为P的右子进行左旋)，旋转后N的新兄弟W有一个红色WR，则转换为情况5</p>
+<p>​        情况5：N不是根且N是黑色，且W为黑色，且Nf为红色，Nn为黑色，则：将W设为P的颜色，P和Nf设为黑色，并对P进行旋转(N为P的左子进行左旋，N为P的右子进行右旋)，N设为根</p>
+<h5><span id="b-shu-b-shu-b-shu">B树，B+树，B*树</span><a href="#b-shu-b-shu-b-shu" class="header-anchor">#</a></h5><p>当数据量非常大时，二叉树已经不能满足需求，如果还用二叉树那么树的深度过大，一个节点存储多个数据就应运而生了。</p>
+<p>定义：</p>
+<p>B树是一种平衡的多分树，通常我们说m阶的B树，它必须满足如下条件： </p>
+<ul>
+<li><p>每个节点最多只有m个子节点。</p>
+</li>
+<li><p>每个非叶子节点（除了根）具有至少⌈ m/2⌉子节点。</p>
+</li>
+<li><p>如果根不是叶节点，则根至少有两个子节点。</p>
+</li>
+<li><p>具有<em>k</em>个子节点的非叶节点包含<em>k</em> -1个键。</p>
+</li>
+<li><p>所有叶子都出现在同一水平，没有任何信息（高度一致）。</p>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/data-structure/997909-20190727111522935-981534929.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<p>此树的一个节点最多有4个结点，一个节点最多有三个值，</p>
+<p>插入如删除方法：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lianzhilei/p/11250589.html"><strong>B树插入与删除</strong></a></p>
+<p><strong>B+树</strong></p>
+<p>在B树的基础上增加了数据遍历优点，想要遍历整个树的数据只要把叶子节点便完毕就行，因为B+树的叶子节点数据是整棵树数据，非叶子节点是叶子节点索引。</p>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/data-structure/997909-20190728114240297-169990922.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>B*树</strong></p>
+<p>B*树在B+树的基础上增加了非叶子结点之间链表相联系。</p>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/data-structure/171056_sAnR_135650.jpg" srcset="/img/loading.gif" lazyload></p>
+<h5><span id="2-3-4-shu"><strong>2-3-4树</strong></span><a href="#2-3-4-shu" class="header-anchor">#</a></h5><p>2-3-4树是4阶B树，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/sfencs-hcy/p/10363259.html"><strong>2-3-4树插入与删除</strong></a></p>
+<h5><span id="treap-shu">treap树</span><a href="#treap-shu" class="header-anchor">#</a></h5><p>所谓的Treap树堆其实就是树 + 堆。树是二叉查找树BST，堆是二叉堆，大根堆小根堆都可以。</p>
+<p>树堆既是一棵二叉查找树，也是一个二叉堆。但是这两种数据结构貌似还是矛盾的存在，如果是二叉查找树，就不能是一个堆，如果是一个堆，那么必然不是二叉查找树。</p>
+<p>所以树堆用了一个很巧妙的方式解决这个问题：<strong>给每个键值一个随机附加的优先级</strong>，让键值满足二叉查找树的结构，让优先级满足二叉堆的结构。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fusiwei/p/12884254.html"><strong>treap树的详解，插入与删除</strong></a></p>
+<h5><span id="k-d-shu"><strong>k-d树</strong></span><a href="#k-d-shu" class="header-anchor">#</a></h5><p><strong>k-d树</strong>常用来作空间划分及近邻搜索，是二叉空间划分树的一个特例。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/flyinggod/p/8727584.html">K-D TREE算法原理及实现</a></p>
+<h5><span id="zui-xiao-sheng-cheng-shu-minimum-spanning-tree">最小生成树(Minimum Spanning Tree)</span><a href="#zui-xiao-sheng-cheng-shu-minimum-spanning-tree" class="header-anchor">#</a></h5><p>对于有n个顶点的连通图，生成树有n-1条边，若边数小于此数就不可能将各顶点连通，如果边的数量多于n-1条边，必定会产生回路。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dengfaheng/p/9245794.html">最小生成树(Minimum Spanning Tree理解</a></p>
+<h4><span id="6-dui-he-you-xian-dui-lie">6.堆和优先队列</span><a href="#6-dui-he-you-xian-dui-lie" class="header-anchor">#</a></h4><p>在许多问题中，当对数据集进行频繁的插入和删除操作时，往往需要快速确定最大或最小的元素。处理这个问题的方法之一，就是使用一个已排好序的数据集，通过这种方法，最大或最小的元素总是处在数据集的头部（这取决于使用升序还是降序排列）。然而将数据集一遍又一遍地进行排序的代价是非常高的。并且许多情况下，将元素排序并不是超越的目的，最终我们可能在真正要做的工作之外做了很多其他工作，想要快速的找到最大或最小的元素，只需要让元素储存在可以找到它的位置上就行。堆和优先队列，就是一种处理这种问题的有效方法。</p>
+<p>本章内容包括：</p>
+<h5><span id="dui"><strong>堆</strong>：</span><a href="#dui" class="header-anchor">#</a></h5><blockquote>
+<p>它是一种树形组织，使我们能够迅速确定包含最大值的结点。维持一棵树的代价低于维持一个有序数据集。同样，我们可以确定通过堆快速地找到包含最小值的元素。</p>
+</blockquote>
+<h5><span id="you-xian-dui-lie"><strong>优先队列</strong></span><a href="#you-xian-dui-lie" class="header-anchor">#</a></h5><blockquote>
+<p>它是一个从堆自然衍生而来的数据结构。在优先队列中，数据保存在一个堆中，这样我们能够迅速确定下一个最高优先级的结点。所谓元素的“优先级”在不同的问题中有不同的意义。</p>
+</blockquote>
+<p>队和优先队列的一些应用：</p>
+<h5><span id="pai-xu-dui-pai-xu">排序：堆排序</span><a href="#pai-xu-dui-pai-xu" class="header-anchor">#</a></h5><h5><span id="ren-wu-diao-du">任务调度</span><a href="#ren-wu-diao-du" class="header-anchor">#</a></h5><blockquote>
+<p>任务调度会告诉操作系统接下来哪个进程将在CPU上运行。操作系统会不断调整进 程的优先级，用优先队列来存储进程是相对比较高效的方法，因为它可以确保下一 个将在CPU中运行的进程的优先级是最高的。</p>
+</blockquote>
+<h5><span id="bao-qian-fen-jian-jian-ben-zhang-xiang-guan-zhang-jie">包褰分拣（见本章相关章节）</span><a href="#bao-qian-fen-jian-jian-ben-zhang-xiang-guan-zhang-jie" class="header-anchor">#</a></h5><blockquote>
+<p>快递公司通常用包裹分拣法来确定包裹递送的优先级。当扫描包裹时，高优先级的 包裹将作为急快件投递出去。而非急快件将作为较低优先级的包裹投递出去。计算 机系统通常使用优先队列来保证最高优先级的包在系统中运行最顺畅，因为这种方 法十分高效。</p>
+</blockquote>
+<h5><span id="huo-fu-man-bian-ma">霍夫曼编码</span><a href="#huo-fu-man-bian-ma" class="header-anchor">#</a></h5><blockquote>
+<p>这是一种数据压缩方法，它使用霍夫曼树为数据符号分配编码（见第14章）。向出 现频率较高的符号分配较短的编码,向出现频率较低的符号分配较长的编码。霍夫 曼树是由较小的二叉树两两合并构成。由于每次都必须合并键值最小的二叉树，因 此每次合并的两棵树都是从一个优先队列中取出的。</p>
+</blockquote>
+<h5><span id="fu-zai-jun-heng">负载均衡</span><a href="#fu-zai-jun-heng" class="header-anchor">#</a></h5><blockquote>
+<p>它用来维护管理一系列处理类似任务的服务。当连接请求到达时，优先队列可以确定哪 个服务器能够最好地处理到达的任务。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/txt1994/images/raw/master/img/Heap_tree/heap.svg">堆排序</a></p>
+<p><img src="https://gitee.com/txt1994/images/raw/master/img/Heap_tree/heap.svg" srcset="/img/loading.gif" lazyload></p>
+<p><strong>优先队列的描述:</strong></p>
+<p>   优先队列将数据按照优先级顺序排列。一个优先队列由许多有序的元素构成，所以优先级最高的元素可以有效而快速地确定,例如，我们看一组用来做负载均衡的服务器，时时观察它们的使用情况。当连接请求到达时，优先队列可以告知当前哪个服务器是处理 此连接请求的最佳服务器。在这种情况下，最空闲的服务器获取的优先级最高，因为它 可以最好地处理服务请求。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/data-structures/">data-structures</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/03/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++设计模式-结构型模式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/01/%E7%AE%97%E6%B3%95/">
+                        <span class="hidden-mobile">算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

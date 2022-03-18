@@ -1,0 +1,630 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="安装 编写CMakeLists.txt 单文件单目录CMakeLists.txt编写 多文件单目录CMakeLists.txt编写 多文件多文件夹CMakeLists.txt编写 库文件CMakeLists.txt编写 库文件安装CMakeLists.txt编写 库文件指定输出路径与编译后的工程目录        安装#cmake是自动化项目编译工具，可以编译源代码、制作程序库、产生适配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cmake的安装与CMakeLists.txt的编写">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/03/Cmake%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8ECMakeLists-txt%E7%9A%84%E7%BC%96%E5%86%99/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装 编写CMakeLists.txt 单文件单目录CMakeLists.txt编写 多文件单目录CMakeLists.txt编写 多文件多文件夹CMakeLists.txt编写 库文件CMakeLists.txt编写 库文件安装CMakeLists.txt编写 库文件指定输出路径与编译后的工程目录        安装#cmake是自动化项目编译工具，可以编译源代码、制作程序库、产生适配">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/687d0a3113daf3f52e36633146b95858.png">
+<meta property="article:published_time" content="2022-01-03T08:24:52.000Z">
+<meta property="article:modified_time" content="2022-03-18T15:59:50.944Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="CMake">
+<meta property="article:tag" content="CMakeLists.txt">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/687d0a3113daf3f52e36633146b95858.png">
+  
+  
+  <title>Cmake的安装与CMakeLists.txt的编写 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Cmake的安装与CMakeLists.txt的编写">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-03 16:24" pubdate>
+        2022年1月3日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Cmake的安装与CMakeLists.txt的编写</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月18日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#an-zhuang">安装</a></li>
+<li><a href="#bian-xie-cmakelists-txt">编写CMakeLists.txt</a><ul>
+<li><a href="#dan-wen-jian-dan-mu-lu-cmakelists-txt-bian-xie"><code>单文件单目录CMakeLists.txt编写</code></a></li>
+<li><a href="#duo-wen-jian-dan-mu-lu-cmakelists-txt-bian-xie"><code>多文件单目录CMakeLists.txt编写</code></a></li>
+<li><a href="#duo-wen-jian-duo-wen-jian-jia-cmakelists-txt-bian-xie"><code>多文件多文件夹CMakeLists.txt编写</code></a></li>
+<li><a href="#ku-wen-jian-cmakelists-txt-bian-xie"><code>库文件CMakeLists.txt编写</code></a></li>
+<li><a href="#ku-wen-jian-an-zhuang-cmakelists-txt-bian-xie"><code>库文件安装CMakeLists.txt编写</code></a></li>
+<li><a href="#ku-wen-jian-zhi-ding-shu-chu-lu-jing-yu-bian-yi-hou-de-gong-cheng-mu-lu"><code>库文件指定输出路径与编译后的工程目录</code></a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor">#</a></h1><p>cmake是自动化项目编译工具，可以编译<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%BA%90%E4%BB%A3%E7%A0%81">源代码</a>、制作程序库、产生<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%80%82%E9%85%8D%E5%99%A8/908851">适配器</a>（wrapper）、还可以用任意的顺序建构<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%A7%E8%A1%8C%E6%A1%A3">执行档</a>。CMake 支持 in-place 建构（二进档和源代码在同一个目录树中）和 out-of-place 建构（二进档在别的目录里），因此可以很容易从同一个源代码目录树中建构出多个二进档。CMake 也支持静态与动态<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%A8%8B%E5%BC%8F%E5%BA%93/9957874">程式库</a>的建构。</p>
+<p>下载地址👉<a target="_blank" rel="noopener" href="https://cmake.org/download/">Download | CMake</a>， 建议二进制安装。</p>
+<p>win:</p>
+<div class="code-wrapper"><pre><code class="hljs shell">https://github.com/Kitware/CMake/releases/download/v3.22.1/cmake-3.22.1-windows-x86_64.zip</code></pre></div>
+
+<p>ubuntu:</p>
+<div class="code-wrapper"><pre><code class="hljs shell">sudo apt install cmake</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs shell">wget https://github.com/Kitware/CMake/releases/download/v3.22.1/cmake-3.22.1-linux-x86_64.tar.gz</code></pre></div>
+
+<p>centos:</p>
+<div class="code-wrapper"><pre><code class="hljs shell">sudo yum install cmake</code></pre></div>
+
+<p>arch:</p>
+<div class="code-wrapper"><pre><code class="hljs shell">sudo pacman -S cmake</code></pre></div>
+
+<h1><span id="bian-xie-cmakelists-txt">编写CMakeLists.txt</span><a href="#bian-xie-cmakelists-txt" class="header-anchor">#</a></h1><h2><span id="dan-wen-jian-dan-mu-lu-cmakelists-txt-bian-xie"><code>单文件单目录CMakeLists.txt编写</code></span><a href="#dan-wen-jian-dan-mu-lu-cmakelists-txt-bian-xie" class="header-anchor">#</a></h2><div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-comment"># 指定cmake版本</span>
+<span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.22</span>)
+
+<span class="hljs-comment"># 工程名</span>
+<span class="hljs-keyword">project</span>(demo1)
+
+<span class="hljs-comment"># 指定编译后文件名</span>
+<span class="hljs-keyword">set</span>(OUTPUTNAME demo1)
+<span class="hljs-keyword">set</span>(CMAKE_CXX_FLAGS <span class="hljs-string">"${CMAKE_CXX_FLAGS} -Wall -g -O2 -std=c++20"</span>) <span class="hljs-comment"># 指定编译参数</span>
+
+<span class="hljs-comment"># 指定源文件夹</span>
+<span class="hljs-keyword">aux_source_directory</span>(. DIR_SRCS)
+
+<span class="hljs-comment"># 编译文件</span>
+<span class="hljs-keyword">add_executable</span>(<span class="hljs-variable">${OUTPUTNAME}</span> <span class="hljs-variable">${DIR_SRCS}</span>)</code></pre></div>
+
+<p>此文件加编写完毕后，创建一个build文件夹，cd进去，执行<code>cmake ..</code>，会生成Makefile文件，再然后执行<code>make</code>编译，最终生成项目文件。</p>
+<h2><span id="duo-wen-jian-dan-mu-lu-cmakelists-txt-bian-xie"><code>多文件单目录CMakeLists.txt编写</code></span><a href="#duo-wen-jian-dan-mu-lu-cmakelists-txt-bian-xie" class="header-anchor">#</a></h2><p>和demo1相同</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-comment"># 指定cmake版本</span>
+<span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.22</span>)
+
+<span class="hljs-comment"># 工程名</span>
+<span class="hljs-keyword">project</span>(demo2)
+
+<span class="hljs-comment"># 指定编译后文件名</span>
+<span class="hljs-keyword">set</span>(OUTPUTNAME demo2)
+<span class="hljs-keyword">set</span>(CMAKE_CXX_FLAGS <span class="hljs-string">"${CMAKE_CXX_FLAGS} -Wall -g -O2 -std=c++20"</span>) <span class="hljs-comment"># 指定编译参数</span>
+
+<span class="hljs-comment"># 指定源文件夹</span>
+<span class="hljs-keyword">aux_source_directory</span>(. DIR_SRCS)
+
+<span class="hljs-comment"># 编译文件</span>
+<span class="hljs-keyword">add_executable</span>(<span class="hljs-variable">${OUTPUTNAME}</span> <span class="hljs-variable">${DIR_SRCS}</span>)</code></pre></div>
+<h2><span id="duo-wen-jian-duo-wen-jian-jia-cmakelists-txt-bian-xie"><code>多文件多文件夹CMakeLists.txt编写</code></span><a href="#duo-wen-jian-duo-wen-jian-jia-cmakelists-txt-bian-xie" class="header-anchor">#</a></h2><p>每一个项目都要建一个CMakeLists.txt，并且每一个文件夹都要有一个CMakeLists.txt文件</p>
+<p><strong>项目根目录的CMakeLists.txt</strong></p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-comment"># 指定cmake版本</span>
+<span class="hljs-keyword">cmake_minimum_required</span> (VERSION <span class="hljs-number">3.22</span>)
+
+<span class="hljs-comment"># 项目信息</span>
+<span class="hljs-keyword">project</span> (Demo3)
+
+<span class="hljs-comment"># 指定编译后文件名</span>
+<span class="hljs-keyword">set</span>(OUTPUTNAME demo3)
+<span class="hljs-keyword">set</span>(CMAKE_CXX_FLAGS <span class="hljs-string">"${CMAKE_CXX_FLAGS} -Wall -g -O2 -std=c++20"</span>) <span class="hljs-comment"># 指定编译参数</span>
+
+<span class="hljs-comment"># 查找当前目录下的所有源文件</span>
+<span class="hljs-comment"># 并将名称保存到 DIR_SRCS 变量</span>
+<span class="hljs-keyword">aux_source_directory</span>(. DIR_SRCS)
+
+<span class="hljs-comment"># 添加 math 子目录</span>
+<span class="hljs-keyword">add_subdirectory</span>(<span class="hljs-keyword">math</span>)
+
+<span class="hljs-comment"># 指定生成目标 </span>
+<span class="hljs-keyword">add_executable</span>(<span class="hljs-variable">${OUTPUTNAME}</span> <span class="hljs-variable">${DIR_SRCS}</span>)
+
+<span class="hljs-comment"># 添加链接库</span>
+<span class="hljs-keyword">target_link_libraries</span>(<span class="hljs-variable">${OUTPUTNAME}</span> MathFunctions)</code></pre></div>
+
+<p><strong>项目其他目录的CMakeLists.txt</strong></p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-comment"># 查找当前目录下的所有源文件</span>
+<span class="hljs-comment"># 并将名称保存到 DIR_LIB_SRCS 变量</span>
+<span class="hljs-keyword">aux_source_directory</span>(. DIR_LIB_SRCS)
+
+<span class="hljs-comment"># 生成链接库,动态库</span>
+<span class="hljs-comment"># 静态库add_library (MathFunctions STATIC ${DIR_LIB_SRCS})</span>
+<span class="hljs-keyword">add_library</span> (MathFunctions SHARED <span class="hljs-variable">${DIR_LIB_SRCS}</span>)</code></pre></div>
+
+<h2><span id="ku-wen-jian-cmakelists-txt-bian-xie"><code>库文件CMakeLists.txt编写</code></span><a href="#ku-wen-jian-cmakelists-txt-bian-xie" class="header-anchor">#</a></h2><div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-comment"># 查找当前目录下的所有源文件</span>
+<span class="hljs-comment"># 并将名称保存到 DIR_LIB_SRCS 变量</span>
+<span class="hljs-keyword">aux_source_directory</span>(. DIR_LIB_SRCS)
+
+<span class="hljs-comment"># 生成链接库,动态库</span>
+<span class="hljs-comment"># 静态库add_library (MathFunctions STATIC ${DIR_LIB_SRCS})</span>
+<span class="hljs-keyword">add_library</span> (MathFunctions SHARED <span class="hljs-variable">${DIR_LIB_SRCS}</span>)</code></pre></div>
+
+<h2><span id="ku-wen-jian-an-zhuang-cmakelists-txt-bian-xie"><code>库文件安装CMakeLists.txt编写</code></span><a href="#ku-wen-jian-an-zhuang-cmakelists-txt-bian-xie" class="header-anchor">#</a></h2><p>在指定的库源文件目录添加：</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-comment"># 指定 MathFunctions 库的安装路径</span>
+<span class="hljs-keyword">install</span> (TARGETS MathFunctions DESTINATION bin)
+<span class="hljs-keyword">install</span> (FILES MathFunctions.h DESTINATION <span class="hljs-keyword">include</span>)</code></pre></div>
+
+<p>demo会被放到bin，<code>*.h</code>会被放到<code>/usr/local/include</code></p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-comment"># 指定安装路径</span>
+<span class="hljs-keyword">install</span> (TARGETS Demo DESTINATION bin)
+<span class="hljs-keyword">install</span> (FILES <span class="hljs-string">"${PROJECT_BINARY_DIR}/config.h"</span>
+         DESTINATION <span class="hljs-keyword">include</span>)</code></pre></div>
+
+<h2><span id="ku-wen-jian-zhi-ding-shu-chu-lu-jing-yu-bian-yi-hou-de-gong-cheng-mu-lu"><code>库文件指定输出路径与编译后的工程目录</code></span><a href="#ku-wen-jian-zhi-ding-shu-chu-lu-jing-yu-bian-yi-hou-de-gong-cheng-mu-lu" class="header-anchor">#</a></h2><p>库文件输出目录设置</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-comment"># 查找当前目录下的所有源文件</span>
+<span class="hljs-comment"># 并将名称保存到 DIR_LIB_SRCS 变量</span>
+<span class="hljs-keyword">aux_source_directory</span>(. DIR_LIB_SRCS)
+
+<span class="hljs-comment"># 把库文件的输出路径设置为lib</span>
+<span class="hljs-keyword">set</span>(LIBRARY_OUTPUT_PATH <span class="hljs-variable">${PROJECT_BINARY_DIR}</span>/lib)
+
+<span class="hljs-comment"># 生成链接库,动态库</span>
+<span class="hljs-comment"># 静态库add_library (MathFunctions STATIC ${DIR_LIB_SRCS})</span>
+<span class="hljs-keyword">add_library</span> (MathFunctions SHARED <span class="hljs-variable">${DIR_LIB_SRCS}</span>)</code></pre></div>
+
+<p>项目工程目录设置</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.22</span>)
+
+<span class="hljs-keyword">project</span>(abstract_factory_pattern)
+
+<span class="hljs-keyword">set</span>(OUTPUTNAME <span class="hljs-keyword">test</span>)
+<span class="hljs-keyword">set</span>(CMAKE_CXX_FLAGS <span class="hljs-string">"${CMAKE_CXX_FLAGS} -Wall -g -O2 -std=c++20"</span>)
+
+<span class="hljs-comment"># 声明库文件目录</span>
+<span class="hljs-keyword">include_directories</span>(<span class="hljs-variable">${PROJECT_SOURCE_DIR}</span>/mylib)
+
+<span class="hljs-keyword">set</span>(EXECUTABLE_OUTPUT_PATH <span class="hljs-variable">${PROJECT_BINARY_DIR}</span>/bin) <span class="hljs-comment"># 设置可执行文件输出目录为bin</span>
+
+<span class="hljs-keyword">aux_source_directory</span>(. DIR_SRCS)
+
+<span class="hljs-keyword">add_executable</span>(<span class="hljs-variable">${OUTPUTNAME}</span> <span class="hljs-variable">${DIR_SRCS}</span>)
+
+<span class="hljs-keyword">target_link_libraries</span>(<span class="hljs-variable">${OUTPUTNAME}</span> Mylib) <span class="hljs-comment"># 链接mylib目录下的Mylib库</span></code></pre></div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/CMake/">CMake</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CMakeLists-txt/">CMakeLists.txt</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/04/Visual-Studio-2022%E6%B7%BB%E5%8A%A0%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Visual_Studio_2022添加第三方库</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/03/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A1%8C%E4%B8%BA%E6%A8%A1%E5%BC%8F/">
+                        <span class="hidden-mobile">C++设计模式-行为模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

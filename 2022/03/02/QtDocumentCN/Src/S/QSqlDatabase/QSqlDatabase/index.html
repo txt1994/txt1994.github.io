@@ -1,0 +1,1343 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QSqlDatabase 类 公共类型 静态公共成员 受保护的成员函数 详细的介绍 成员函数文档 [protected] QSqlDatabase::QSqlDatabase(QSqlDriver *driver) [protected] QSqlDatabase::QSqlDatabase(const QString &amp;type) QSqlDatabase::QSqlDatab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QSqlDatabase类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/S/QSqlDatabase/QSqlDatabase/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QSqlDatabase 类 公共类型 静态公共成员 受保护的成员函数 详细的介绍 成员函数文档 [protected] QSqlDatabase::QSqlDatabase(QSqlDriver *driver) [protected] QSqlDatabase::QSqlDatabase(const QString &amp;type) QSqlDatabase::QSqlDatab">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:53:18.470Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="S">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QSqlDatabase类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QSqlDatabase类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      20k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      163 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QSqlDatabase类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qsqldatabase-lei">QSqlDatabase 类</a><ul>
+<li><a href="#gong-gong-lei-xing"><strong>公共类型</strong></a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan"><strong>静态公共成员</strong></a></li>
+<li><a href="#shou-bao-hu-de-cheng-yuan-han-shu"><strong>受保护的成员函数</strong></a></li>
+<li><a href="#xiang-xi-de-jie-shao"><strong>详细的介绍</strong></a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang"><strong>成员函数文档</strong></a></li>
+<li><a href="#protected-qsqldatabase-qsqldatabase-qsqldriver-driver"><em>[protected]</em> QSqlDatabase::QSqlDatabase(QSqlDriver *driver)</a></li>
+<li><a href="#protected-qsqldatabase-qsqldatabase-const-qstring-qstring-qstring-md-type"><em>[protected]</em> QSqlDatabase::QSqlDatabase(const </a><a href="../QString/QString.md">QString</a> &amp;<em>type</em>)</li>
+<li><a href="#qsqldatabase-qsqldatabase-const-qsqldatabase-other">QSqlDatabase::QSqlDatabase(const QSqlDatabase &amp;<em>other</em>)</a></li>
+<li><a href="#qsqldatabase-qsqldatabase">QSqlDatabase::QSqlDatabase()</a></li>
+<li><a href="#qsqldatabase-qsqldatabase-operator-const-qsqldatabase-other">QSqlDatabase &amp;QSqlDatabase::operator=(const QSqlDatabase &amp;<em>other</em>)</a></li>
+<li><a href="#qsqldatabase-qsqldatabase">QSqlDatabase::~QSqlDatabase()</a></li>
+<li><a href="#static-qsqldatabase-qsqldatabase-adddatabase-const-qstring-type-const-qstring-connectionname-qlatin1string-defaultconnection"><em>[static]</em> QSqlDatabase QSqlDatabase::addDatabase(const QString &amp;type, const QString &amp;connectionName = QLatin1String(defaultConnection))</a></li>
+<li><a href="#static-qsqldatabase-qsqldatabase-adddatabase-qsqldriver-driver-const-qstring-connectionname-qlatin1string-defaultconnection"><em>[static]</em> QSqlDatabase QSqlDatabase::addDatabase(QSqlDriver *driver, const QString &amp;connectionName = QLatin1String(defaultConnection))</a></li>
+<li><a href="#protected-qsqldatabase-qsqldatabase-clonedatabase-const-qstring-qstring-qstring-md-other-const-qstring-qstring-qstring-md-connectionname"><em>[protected]</em> QSqlDatabase QSqlDatabase::cloneDatabase(const </a><a href="../QString/QString.md">QString</a> &amp;<em>other</em>, const <a href="../QString/QString.md">QString</a> &amp;<em>connectionName</em>)</li>
+<li><a href="#static-qsqldatabase-qsqldatabase-clonedatabase-const-qstring-qstring-qstring-md-other-const-qstring-qstring-qstring-md-connectionname"><em>[static]</em> QSqlDatabase QSqlDatabase::cloneDatabase(const </a><a href="../QString/QString.md">QString</a> &amp;<em>other</em>, const <a href="../QString/QString.md">QString</a> &amp;<em>connectionName</em>)</li>
+<li><a href="#void-qsqldatabase-close">void QSqlDatabase::close()</a></li>
+<li><a href="#bool-qsqldatabase-commit">bool QSqlDatabase::commit()</a></li>
+<li><a href="#qstring-qstring-qstring-md-qsqldatabase-connectoptions-const">QString</a></li>
+<li><a href="#qstring-qstring-qstring-md-qsqldatabase-connectionname-const-1">QString</a></li>
+<li><a href="#static-qstringlist-qstring-qstringlist-qstringlist-md-qsqldatabase-connectionnames"><em>[static]</em> </a><a href="%5BQString%5D(../QStringList/QStringList.md)">QStringList</a> QSqlDatabase::connectionNames()</li>
+<li><a href="#static-bool-qsqldatabase-contains-const-qstring-connectionname-qlatin1string-defaultconnection"><em>[static]</em> bool QSqlDatabase::contains(const QString &amp;<em>connectionName</em> = QLatin1String(defaultConnection))</a></li>
+<li><a href="#static-qsqldatabase-qsqldatabase-database-const-qstring-connectionname-qlatin1string-defaultconnection-bool-open-true"><em>[static]</em> QSqlDatabase QSqlDatabase::database(const QString &amp;connectionName = QLatin1String(defaultConnection), bool open = true)</a></li>
+<li><a href="#qstring-qsqldatabase-databasename-const">QString QSqlDatabase::databaseName() const</a></li>
+<li><a href="#qsqldriver-qsqldatabase-driver-const">QSqlDriver *QSqlDatabase::driver() const</a></li>
+<li><a href="#qstring-qsqldatabase-drivername-const">QString QSqlDatabase::driverName() const</a></li>
+<li><a href="#static-qstringlist-qstringlist-qstringlist-md-qsqldatabase-drivers"><em>[static]</em> </a><a href="../QStringList/QStringList.md">QStringList</a> QSqlDatabase::drivers()</li>
+<li><a href="#qsqlquery-qsqldatabase-exec-const-qstring-query-qstring-const">QSqlQuery QSqlDatabase::exec(const QString &amp;<em>query</em> = QString()) const</a></li>
+<li><a href="#qstring-qstring-qstring-md-qsqldatabase-hostname-const-2">QString</a></li>
+<li><a href="#static-bool-qsqldatabase-isdriveravailable-const-qstring-name"><em>[static]</em> bool QSqlDatabase::isDriverAvailable(const QString &amp;<em>name</em>)</a></li>
+<li><a href="#bool-qsqldatabase-isopen-const">bool QSqlDatabase::isOpen() const</a></li>
+<li><a href="#bool-qsqldatabase-isopenerror-const">bool QSqlDatabase::isOpenError() const</a></li>
+<li><a href="#bool-qsqldatabase-isvalid-const">bool QSqlDatabase::isValid() const</a></li>
+<li><a href="#qsqlerror-https-doc-qt-io-qt-5-qsqlerror-html-qsqldatabase-lasterror-const">QSqlError</a></li>
+<li><a href="#qsql-numericalprecisionpolicy-https-doc-qt-io-qt-5-qsql-html-numericalprecisionpolicy-enum-qsqldatabase-numericalprecisionpolicy-const">QSql::NumericalPrecisionPolicy</a></li>
+<li><a href="#bool-qsqldatabase-open">bool QSqlDatabase::open()</a></li>
+<li><a href="#bool-qsqldatabase-open-const-qstring-qstring-qstring-md-user-const-qstring-qstring-qstring-md-password">bool QSqlDatabase::open(const </a><a href="../QString/QString.md">QString</a> &amp;<em>user</em>, const <a href="../QString/QString.md">QString</a> &amp;<em>password</em>)</li>
+<li><a href="#qstring-https-doc-qt-io-qt-5-qstring-html-qsqldatabase-password-const-3">QString</a></li>
+<li><a href="#int-qsqldatabase-port-const">int QSqlDatabase::port() const</a></li>
+<li><a href="#qsqlindex-qsqlindex-qsqlindex-md-qsqldatabase-primaryindex-const-qstring-qstring-qstring-md-tablename-const">QSqlIndex</a></li>
+<li><a href="#qsqlrecord-qsqlrecord-qsqlrecord-md-qsqldatabase-record-const-qstring-qstring-qstring-md-tablename-const">QSqlRecord</a></li>
+<li><a href="#static-void-qsqldatabase-registersqldriver-const-qstring-qstring-qstring-md-name-qsqldrivercreatorbase-qsqldrivercreatorbase-qsqldrivercreatorbase-md-creator"><em>[static]</em> void QSqlDatabase::registerSqlDriver(const </a><a href="../QString/QString.md">QString</a> &amp;<em>name</em>, <a href="../QSqlDriverCreatorBase/QSqlDriverCreatorBase.md">QSqlDriverCreatorBase</a> *<em>creator</em>)</li>
+<li><a href="#static-void-qsqldatabase-removedatabase-const-qstring-qstring-qstring-md-connectionname"><em>[static]</em> void QSqlDatabase::removeDatabase(const </a><a href="../QString/QString.md">QString</a> &amp;<em>connectionName</em>)</li>
+<li><a href="#bool-qsqldatabase-rollback">bool QSqlDatabase::rollback()</a></li>
+<li><a href="#void-qsqldatabase-setconnectoptions-const-qstring-qstring-qstring-md-options-qstring">void QSqlDatabase::setConnectOptions(const </a><a href="../QString/QString.md">QString</a> &amp;<em>options</em> = QString())</li>
+<li><a href="#void-qsqldatabase-setdatabasename-const-qstring-qstring-qstring-md-name">void QSqlDatabase::setDatabaseName(const </a><a href="../QString/QString.md">QString</a> &amp;<em>name</em>)</li>
+<li><a href="#void-qsqldatabase-sethostname-const-qstring-qstring-qstring-md-host">void QSqlDatabase::setHostName(const </a><a href="../QString/QString.md">QString</a> &amp;<em>host</em>)</li>
+<li><a href="#void-qsqldatabase-setnumericalprecisionpolicy-qsql-numericalprecisionpolicy-s-qsql-md-enum-qsqlnumericalprecisionpolicy-precisionpolicy">void QSqlDatabase::setNumericalPrecisionPolicy(</a><a href="../S/QSql.md#enum-qsqlnumericalprecisionpolicy">QSql::NumericalPrecisionPolicy</a> <em>precisionPolicy</em>)</li>
+<li><a href="#void-qsqldatabase-setpassword-const-qstring-qstring-qstring-md-password">void QSqlDatabase::setPassword(const </a><a href="../QString/QString.md">QString</a> &amp;<em>password</em>)</li>
+<li><a href="#void-qsqldatabase-setport-int-port">void QSqlDatabase::setPort(int <em>port</em>)</a></li>
+<li><a href="#void-qsqldatabase-setusername-const-qstring-qstring-qstring-md-name">void QSqlDatabase::setUserName(const </a><a href="../QString/QString.md">QString</a> &amp;<em>name</em>)</li>
+<li><a href="#qstringlist-qstringlist-qstringlist-md-qsqldatabase-tables-qsql-tabletype-https-doc-qt-io-qt-5-qsql-html-tabletype-enum-type-qsql-tables-const">QStringList</a></li>
+<li><a href="#bool-qsqldatabase-transaction">bool QSqlDatabase::transaction()</a></li>
+<li><a href="#qstring-qstring-qstring-md-qsqldatabase-username-const-4">QString</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QSqlDatabase 类
+
+<p>QSqlDatabase 类 用于处理数据库的连接</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件</td>
+<td><code>#include &lt;QSqlDatabase&gt;</code></td>
+</tr>
+<tr>
+<td>qmake</td>
+<td>QT += sql</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqldatabase-members.html">列出所有的成员，包括继承成员</a></p>
+<hr>
+<h3><span id="gong-gong-lei-xing"><strong>公共类型</strong></span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="right">返回值</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right"></td>
+<td align="left">[QSqlDatabase](#QSqlDatabase::QSqlDatabase(const QSqlDatabase &amp;*other*))(const <a href="#qsqldatabaseqsqldatabaseconst-qsqldatabase-other">QSqlDatabase</a> &amp;other)</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><a href="#qsqldatabaseqsqldatabase">QSqlDatabase</a>()</td>
+</tr>
+<tr>
+<td align="right">QSqlDatabase &amp;</td>
+<td align="left"><a href="#qsqldatabase-qsqldatabaseoperatorconst-qsqldatabase-other">operator=</a>(const QSqlDatabase &amp;other)</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><a href="#qsqldatabase-qsqldatabaseoperatorconst-qsqldatabase-other">~QSqlDatabase</a>()</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="#void-qsqldatabaseclose">close</a>()</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><a href="#bool-qsqldatabasecommit">commit</a>()</td>
+</tr>
+<tr>
+<td align="right">QString</td>
+<td align="left"><a href="#qstring-qsqldatabaseconnectoptions-const">connectOptions</a>() const</td>
+</tr>
+<tr>
+<td align="right">QString</td>
+<td align="left"><a href="#qstring-qsqldatabaseconnectionname-const">connectionName</a>() const</td>
+</tr>
+<tr>
+<td align="right">QString</td>
+<td align="left"><a href="#qstring-qsqldatabasedatabasename-const">databaseName</a>() const</td>
+</tr>
+<tr>
+<td align="right">QSqlDriver *</td>
+<td align="left"><a href="#qsqldriver-qsqldatabasedriver-const">driver()</a> const</td>
+</tr>
+<tr>
+<td align="right">QString</td>
+<td align="left"><a href="#qstring-qsqldatabasedrivername-const">driverName()</a> const</td>
+</tr>
+<tr>
+<td align="right">QSqlQuery</td>
+<td align="left"><a href="#qsqlquery-qsqldatabaseexecconst-qstring-query--qstring-const">exec</a>(const QString &amp;query = QString()) const</td>
+</tr>
+<tr>
+<td align="right">QString</td>
+<td align="left"><a href="#qstring-qsqldatabasehostname-const">hostName()</a> const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><a href="#bool-qsqldatabaseisopen-const">isOpen</a>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><a href="#bool-qsqldatabaseisopenerror-const">isOpenError</a>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><a href="#bool-qsqldatabaseisvalid-const">isValid</a>() const</td>
+</tr>
+<tr>
+<td align="right">QSqlError</td>
+<td align="left"><a href="#qsqlerror-qsqldatabaselasterror-const">lastError</a>() const</td>
+</tr>
+<tr>
+<td align="right">QSql::NumericalPrecisionPolicy</td>
+<td align="left"><a href="#qsqlnumericalprecisionpolicy-qsqldatabasenumericalprecisionpolicy-const">numericalPrecisionPolicy</a>() const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><a href="#bool-qsqldatabaseopen">open</a>()</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><a href="#bool-qsqldatabaseopenconst-qstring-user-const-qstring-password">open</a>(const QString &amp;user, const QString &amp;password)</td>
+</tr>
+<tr>
+<td align="right">QString</td>
+<td align="left"><a href="#qstring-qsqldatabasepassword-const">password</a>() const</td>
+</tr>
+<tr>
+<td align="right">int</td>
+<td align="left"><a href="#int-qsqldatabaseport-const">port</a>() const</td>
+</tr>
+<tr>
+<td align="right">QSqlIndex</td>
+<td align="left"><a href="#qsqlindex-qsqldatabaseprimaryindexconst-qstring-tablename-const">primaryIndex</a>(const QString &amp;tablename) const</td>
+</tr>
+<tr>
+<td align="right">QSqlRecord</td>
+<td align="left"><a href="#qsqlrecord-qsqldatabaserecordconst-qstring-tablename-const">record</a>(const QString &amp;tablename) const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><a href="#bool-qsqldatabaserollback">rollback</a>()</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="#void-qsqldatabasesetconnectoptionsconst-qstring-options--qstring">setConnectOptions</a>(const QString &amp;options = QString())</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="#void-qsqldatabasesetdatabasenameconst-qstring-name">setDatabaseName</a>(const QString &amp;name)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="#void-qsqldatabasesethostnameconst-qstring-host">setHostName</a>(const QString &amp;host)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/JackLovel/QtDocumentCN/blob/master/Src/S/QSqlDatabase/#void-qsqldatabasesetnumericalprecisionpolicyqsqlnumericalprecisionpolicy-precisionpolicy">setNumericalPrecisionPolicy</a>(QSql::NumericalPrecisionPolicy precisionPolicy)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="#void-qsqldatabasesetpasswordconst-qstring-password">setPassword</a>(const QString &amp;password)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="#void-qsqldatabasesetportint-port">setPort</a>(int port)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="#void-qsqldatabasesetusernameconst-qstring-name">setUserName</a>(const QString &amp;name)</td>
+</tr>
+<tr>
+<td align="right">QStringList</td>
+<td align="left"><a href="#qstringlist-qsqldatabasetablesqsqltabletype-type--qsqltables-const">tables</a>(QSql::TableType type = QSql::Tables) const</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/JackLovel/QtDocumentCN/blob/master/Src/S/QSqlDatabase/#bool-qsqldatabasetransaction">transaction</a>()</td>
+</tr>
+<tr>
+<td align="right">QString</td>
+<td align="left"><a href="#qstring-qsqldatabaseusername-const">userName</a>() const</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="jing-tai-gong-gong-cheng-yuan"><strong>静态公共成员</strong></span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="right">返回值</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QSqlDatabase</td>
+<td align="left"><a href="#static-qsqldatabase-qsqldatabaseadddatabaseconst-qstring-type-const-qstring-connectionname--qlatin1stringdefaultconnection">addDatabase</a>(const QString &amp;type, const QString &amp;connectionName = QLatin1String(defaultConnection))</td>
+</tr>
+<tr>
+<td align="right">QSqlDatabase</td>
+<td align="left"><a href="#static-qsqldatabase-qsqldatabaseadddatabaseqsqldriver-driver-const-qstring-connectionname--qlatin1stringdefaultconnection">addDatabase</a>(QSqlDriver *driver, const QString &amp;connectionName = QLatin1String(defaultConnection))</td>
+</tr>
+<tr>
+<td align="right">QSqlDatabase</td>
+<td align="left"><a href="#protected-qsqldatabase-qsqldatabaseclonedatabaseconst-qstring-other-const-qstring-connectionname">cloneDatabase</a>(const QSqlDatabase &amp;other, const QString &amp;connectionName)</td>
+</tr>
+<tr>
+<td align="right">QSqlDatabase</td>
+<td align="left"><a href="#static-qsqldatabase-qsqldatabaseclonedatabaseconst-qstring-other-const-qstring-connectionname">cloneDatabase</a>(const QString &amp;other, const QString &amp;connectionName)</td>
+</tr>
+<tr>
+<td align="right">QStringList</td>
+<td align="left"><a href="#static-qstringlist-qsqldatabaseconnectionnames">connectionNames</a>()</td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><a href="#static-bool-qsqldatabasecontainsconst-qstring-connectionname--qlatin1stringdefaultconnection">contains</a>(const QString &amp;connectionName = QLatin1String(defaultConnection))</td>
+</tr>
+<tr>
+<td align="right">QSqlDatabase</td>
+<td align="left"><a href="#static-qsqldatabase-qsqldatabasedatabaseconst-qstring-connectionname--qlatin1stringdefaultconnection-bool-open--true">database</a>(const QString &amp;connectionName = QLatin1String(defaultConnection), bool open = true)</td>
+</tr>
+<tr>
+<td align="right">QStringList</td>
+<td align="left"><a href="#static-qstringlist-qsqldatabasedrivers">drivers()</a></td>
+</tr>
+<tr>
+<td align="right">bool</td>
+<td align="left"><a href="#static-bool-qsqldatabaseisdriveravailableconst-qstring-name">isDriverAvailable</a>(const QString &amp;name)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="#static-void-qsqldatabaseregistersqldriverconst-qstring-name-qsqldrivercreatorbase-creator">registerSqlDriver</a>(const QString &amp;name, QSqlDriverCreatorBase *creator)</td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="#static-void-qsqldatabaseremovedatabaseconst-qstring-connectionname">removeDatabase</a>(const QString &amp;connectionName)</td>
+</tr>
+</tbody></table>
+<h3><span id="shou-bao-hu-de-cheng-yuan-han-shu"><strong>受保护的成员函数</strong></span><a href="#shou-bao-hu-de-cheng-yuan-han-shu" class="header-anchor">#</a></h3><table>
+<thead>
+<tr>
+<th align="right">返回值</th>
+<th align="left">函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right"></td>
+<td align="left"><a href="#protected-qsqldatabaseqsqldatabaseqsqldriver-driver">QSqlDatabase</a>(QSqlDriver *<em>driver</em>)</td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><a href="#protected-qsqldatabaseqsqldatabaseconst-qstring-type">QSqlDatabase</a>(const QString &amp;<em>type</em>)</td>
+</tr>
+</tbody></table>
+<h3><span id="xiang-xi-de-jie-shao"><strong>详细的介绍</strong></span><a href="#xiang-xi-de-jie-shao" class="header-anchor">#</a></h3><p>QSqlDatabase 类提供接口用于数据库的连接 。一个 QSqlDatabase 实例对象表示连接。<br>这个连接提供  数据库 所需要的 驱动，这个驱动来自于  QSqlDriver。<br>换而言之，您可以实现自己的数据库驱动，通过继承 QSqlDriver。查看 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/sql-driver.html#how-to-write-your-own-database-driver">如何实现自己的数据库驱动</a> 来获取更多的信息。</p>
+<p>通过调用一个静态的 <code>addDatabase()</code>函数，来创建一个连接（即：实例化一个QSqlDatabase类）,并且可以指定驱动或者驱动类型去使用（依赖于数据库的类型 ）和 一个连接的名称。<br>一个连接是通过它自已的名称，而不是通过数据库的名称去连接的。对于一个数据库您可以有多个连接。<code>QSqlDatabase</code> 也支持默认连接，您可以不<br>传递连接名参数给 <code>addDatabase()</code> 来创建 它。随后，这个默认连接假定您 在调用任何静态函数情况下，而不去指定连接名称。<br>下面的一段代码片段展示了 如何去创建 和打开一个默认连接，去连接 <code>PostgreSQL </code>数据库：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">QSqlDatabase db = QSqlDatabase::<span class="hljs-built_in">addDatabase</span>(<span class="hljs-string">"QPSQL"</span>);
+db.<span class="hljs-built_in">setHostName</span>(<span class="hljs-string">"acidalia"</span>);
+db.<span class="hljs-built_in">setDatabaseName</span>(<span class="hljs-string">"customdb"</span>);
+db.<span class="hljs-built_in">setUserName</span>(<span class="hljs-string">"mojito"</span>);
+db.<span class="hljs-built_in">setPassword</span>(<span class="hljs-string">"J0a1m8"</span>);
+<span class="hljs-type">bool</span> ok = db.<span class="hljs-built_in">open</span>();</code></pre></div>
+
+<p>当您创建  <code>QSqlDatabase</code> 对象后，您就可以通过 <code>setDatabaseName()</code>、<code>setUserName()</code>、<code>setPassword()</code>、<code>setHostName()</code>,<code>setPort()</code> 以及 <code>setConnectOptions()</code>来设置连接的相关的参数。最后，通过调用 <code>open()</code>函数来实现数据库的连接。这里，您只有通过调用 <code>open()</code> 函数 才能 连接到数据库。</p>
+<p>经过上面一系列的操作，最终实现的是默认连接，因为您没有给<code>addDatabase()</code>函数 传递 一个叫 连接名 的参数。<br>最终，您可以调用 <code>addDatabase()</code>并且没有传递参数（即：连接名）来实现默认连接：</p>
+<div class="code-wrapper"><pre><code class="hljs CPP">QSqlDatabase db = QSqlDatabase::<span class="hljs-built_in">database</span>();</code></pre></div>
+<p><code>QSqlDatabase</code>是一个值类。通过一个 <code>QSqlDatabase</code> 实例对数据库连接所做的操作将影响表示相同连接的其他 <code>QSqlDatabase</code> 实例。<br>使用 <code>cloneDatabase()</code>  在基于已存在数据库的连接 来 创建 独立的数据库的连接。</p>
+<p>警告：强烈建议不要将QSqlDatabase的拷贝作为类成员，因为这将阻止关闭时正确清理实例。<br>如果需要访问已经存在QSqlDatabase，应该使用database()访问。如果您选择使用作为成员变量的QSqlDatabase，则需要在删除QCoreApplication实例之前删除它，否则可能会导致未定义的行为。</p>
+<p>如果您想创建多个数据库连接，可以调用 <code>addDatabase()</code>, 并且给一个独一无二的参数(即：连接名称)。使用 带有连接名的<code>database() </code> 函数，来获取该连接。使用 带有连接名的<code>removeDatabase()</code> 函数，来删除 一个连接。如果尝试删除由其他<code>QSqlDatabase</code>对象引用的连接，<code>QSqlDatabase</code>将输出警告。可以使用 <a href="#static-bool-qsqldatabasecontainsconst-qstring-connectionname--qlatin1stringdefaultconnection">contains()</a>查看给定的连接名是否在连接列表中。</p>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">一些实用的方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right"><a href="#qstringlist-qsqldatabasetablesqsqltabletype-type--qsqltables-const">tables</a>()</td>
+<td align="left">返回 数据表的列表</td>
+</tr>
+<tr>
+<td align="right"><a href="#qsqlindex-qsqldatabaseprimaryindexconst-qstring-tablename-const">primaryIndex</a>()</td>
+<td align="left">返回数据表的主索引</td>
+</tr>
+<tr>
+<td align="right"><a href="#qsqlrecord-qsqldatabaserecordconst-qstring-tablename-const">record</a>()</td>
+<td align="left">返回数据表字段的元信息</td>
+</tr>
+<tr>
+<td align="right"><a href="#bool-qsqldatabasetransaction">transaction</a>()</td>
+<td align="left">开始一个事务</td>
+</tr>
+<tr>
+<td align="right"><a href="#bool-qsqldatabasecommit">commit</a>()</td>
+<td align="left">保存并完成一个事务</td>
+</tr>
+<tr>
+<td align="right"><a href="#bool-qsqldatabaserollback">rollback</a>()</td>
+<td align="left">取消一个事务</td>
+</tr>
+<tr>
+<td align="right">hasFeature()</td>
+<td align="left">检查驱动程序是否支持事务</td>
+</tr>
+<tr>
+<td align="right"><a href="#qsqlerror-qsqldatabaselasterror-const">lastError</a>()</td>
+<td align="left">返回有关上一个错误的信息</td>
+</tr>
+<tr>
+<td align="right"><a href="#static-qstringlist-qsqldatabasedrivers">drivers</a>()</td>
+<td align="left">返回可用的数据库驱动名称</td>
+</tr>
+<tr>
+<td align="right"><a href="#static-bool-qsqldatabaseisdriveravailableconst-qstring-name">isDriverAvailable</a>()</td>
+<td align="left">检查特定驱动程序是否可用</td>
+</tr>
+<tr>
+<td align="right"><a href="#static-void-qsqldatabaseregistersqldriverconst-qstring-name-qsqldrivercreatorbase-creator">registerSqlDriver</a>()</td>
+<td align="left">注册自定义驱动程序</td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong> <code>QSqlDatabase::exec() </code> 方法已经被弃用。请使用 <code>QSqlQuery::exec() </code></p>
+<p><strong>注意：</strong> 使用事务时，必须在创建查询之前启动事务。</p>
+<h3><span id="cheng-yuan-han-shu-wen-dang"><strong>成员函数文档</strong></span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h3><h3><span id="protected-qsqldatabase-qsqldatabase-qsqldriver-driver"><em>[protected]</em> QSqlDatabase::QSqlDatabase(QSqlDriver *driver)</span><a href="#protected-qsqldatabase-qsqldatabase-qsqldriver-driver" class="header-anchor">#</a></h3><hr>
+<p>这是一个重载函数</p>
+<p>使用给定驱动程序来创建连接</p>
+<h3><span id="protected-qsqldatabase-qsqldatabase-const-qstring-amp-type"><em>[protected]</em> QSqlDatabase::QSqlDatabase(const  &amp;<em>type</em>)</span><a href="#protected-qsqldatabase-qsqldatabase-const-qstring-amp-type" class="header-anchor">#</a></h3><hr>
+<p>这是一个重载函数</p>
+<p>通过引用所给的数据库驱动类型来创建一个连接。如果不给定 数据库驱动类型 ，那么这个数据库连接将会没有什么作用。</p>
+<p>当前可用的驱动类型：</p>
+<table>
+<thead>
+<tr>
+<th align="right">驱动类别</th>
+<th align="left">介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">QDB2</td>
+<td align="left">IBM DB2</td>
+</tr>
+<tr>
+<td align="right">QIBASE</td>
+<td align="left">Borland InterBase 驱动</td>
+</tr>
+<tr>
+<td align="right">QMYSQL</td>
+<td align="left">MySQL 驱动</td>
+</tr>
+<tr>
+<td align="right">QOCI</td>
+<td align="left">Oracle 调用的接口驱动</td>
+</tr>
+<tr>
+<td align="right">QODBC</td>
+<td align="left">ODBC 驱动 (包含 Microsoft SQL Server)</td>
+</tr>
+<tr>
+<td align="right">QPSQL</td>
+<td align="left">PostgreSQL 驱动</td>
+</tr>
+<tr>
+<td align="right">QSQLITE</td>
+<td align="left">SQLite 第三版本 或者 以上</td>
+</tr>
+<tr>
+<td align="right">QSQLITE2</td>
+<td align="left">SQLite 第二版本</td>
+</tr>
+<tr>
+<td align="right">QTDS</td>
+<td align="left">Sybase Adaptive Server</td>
+</tr>
+</tbody></table>
+<p>其他第三方驱动程序，包括自己自定义的驱动程序，都可以动态加载。</p>
+<p>请参阅 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/sql-driver.html">SQL Database Drivers</a>, <a href="#static-void-qsqldatabaseregistersqldriverconst-qstring-name-qsqldrivercreatorbase-creator">registerSqlDriver()</a> 和 <a href="#static-qstringlist-qsqldatabasedrivers">drivers()</a>。</p>
+<h3><span id="qsqldatabase-qsqldatabase-const-qsqldatabase-amp-other">QSqlDatabase::QSqlDatabase(const QSqlDatabase &amp;<em>other</em>)</span><a href="#qsqldatabase-qsqldatabase-const-qsqldatabase-amp-other" class="header-anchor">#</a></h3><hr>
+<p>创建一个其它的副本</p>
+<h3><span id="qsqldatabase-qsqldatabase">QSqlDatabase::QSqlDatabase()</span><a href="#qsqldatabase-qsqldatabase" class="header-anchor">#</a></h3><hr>
+<p>创建一个 无效的 <code>QSqlDatabase</code> 空对象。使用 <a href="#static-qsqldatabase-qsqldatabaseadddatabaseconst-qstring-type-const-qstring-connectionname--qlatin1stringdefaultconnection">addDatabase()</a>, <a href="#static-void-qsqldatabaseremovedatabaseconst-qstring-connectionname">removeDatabase()</a> 和 <a href="#static-qsqldatabase-qsqldatabasedatabaseconst-qstring-connectionname--qlatin1stringdefaultconnection-bool-open--true">database()</a> 来获得一个有效的 <code>QSqlDatabase</code> 对象。</p>
+<h3><span id="qsqldatabase-amp-qsqldatabase-operator-const-qsqldatabase-amp-other">QSqlDatabase &amp;QSqlDatabase::operator=(const QSqlDatabase &amp;<em>other</em>)</span><a href="#qsqldatabase-amp-qsqldatabase-operator-const-qsqldatabase-amp-other" class="header-anchor">#</a></h3><hr>
+<p>给这个对象赋一个其他其他对象的值</p>
+<h3><span id="qsqldatabase-qsqldatabase">QSqlDatabase::~QSqlDatabase()</span><a href="#qsqldatabase-qsqldatabase" class="header-anchor">#</a></h3><hr>
+<p>销毁这个对象，并且释放所有配置的资源<br><strong>注意：</strong> 当最后的连接被销毁，这个折构函数就会暗中的调用 <code>close()</code>函数，去删除这个数据库的其他连接。</p>
+<p>另请参阅 <a href="#void-qsqldatabaseclose">close()</a>。</p>
+<h3><span id="static-qsqldatabase-qsqldatabase-adddatabase-const-qstring-amp-type-const-qstring-amp-connectionname-qlatin1string-defaultconnection"><em>[static]</em> QSqlDatabase QSqlDatabase::addDatabase(const QString &amp;type, const QString &amp;connectionName = QLatin1String(defaultConnection))</span><a href="#static-qsqldatabase-qsqldatabase-adddatabase-const-qstring-amp-type-const-qstring-amp-connectionname-qlatin1string-defaultconnection" class="header-anchor">#</a></h3><hr>
+<p>使用驱动程序类型和连接名称，将数据库添加到数据库连接列表中。如果存在相同的连接名，那么这个连接将会被删除。</p>
+<p>通过引用连接名，来返回一个新的连接。</p>
+<p>如果数据库的类别不存在或者没有被加载，那么 <code>isValid()</code>函数将会返回 <code>false</code></p>
+<p>如果我们没有指定连接名参数，那么应用程序就会返回默认连接。<br>如果我们提供了连接名参数，那么可以使用<code>database(connectionName)</code> 函数来获取该连接。</p>
+<p><strong>警告：</strong> 如果您指定了 相同的连接名参数，那么就会替换之前的那个相同的连接。如果您多次调用这个函数而不指定 <code>连接名参数</code>，则默认连接将被替换。</p>
+<p>在使用连接之前，它必须经过初始化。比如：<br>调用下面一些或者全部 <a href="#void-qsqldatabasesetdatabasenameconst-qstring-name"> setDatabaseName()</a>、<br><a href="#void-qsqldatabasesetusernameconst-qstring-name">setUserName()</a>、 <a href="#void-qsqldatabasesetpasswordconst-qstring-password">setPassword()</a> 、<br><a href="#void-qsqldatabasesethostnameconst-qstring-host">setHostName()</a>、<br><a href="#void-qsqldatabasesetportint-port">setPort()</a><br>和 <a href="#void-qsqldatabasesetconnectoptionsconst-qstring-options--qstring">setConnectOptions()</a>，并最终调用 <a href="#bool-qsqldatabaseopen">open()</a></p>
+<p><strong>注意：</strong> 这个函数是线程安全的</p>
+<p>请查看 <a href="#static-qsqldatabase-qsqldatabasedatabaseconst-qstring-connectionname--qlatin1stringdefaultconnection-bool-open--true">database()</a>, <a href="#static-void-qsqldatabaseremovedatabaseconst-qstring-connectionname">removeDatabase()</a> 以及 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/threads-modules.html#threads-and-the-sql-module">线程和SQL 单元</a>。</p>
+<h3><span id="static-qsqldatabase-qsqldatabase-adddatabase-qsqldriver-driver-const-qstring-amp-connectionname-qlatin1string-defaultconnection"><em>[static]</em> QSqlDatabase QSqlDatabase::addDatabase(QSqlDriver *driver, const QString &amp;connectionName = QLatin1String(defaultConnection))</span><a href="#static-qsqldatabase-qsqldatabase-adddatabase-qsqldriver-driver-const-qstring-amp-connectionname-qlatin1string-defaultconnection" class="header-anchor">#</a></h3><hr>
+<p>这个重载函数是非常有用的，当您想创建一个带有<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqldriver.html">驱动</a> 连接时，您可以实例化它。有可能您想拥有自己的数据库驱动，或者去实例化 Qt自带的驱动。如果您真的想这样做，我非常建议您把驱动的代码导入到您的应用程序中。例如，您可用自已的  QPSQL 驱动来创建一个 PostgreSQL 连接，像下面这样：</p>
+<div class="code-wrapper"><pre><code class="hljs CPP">PGconn *con = <span class="hljs-built_in">PQconnectdb</span>(<span class="hljs-string">"host=server user=bart password=simpson dbname=springfield"</span>);
+QPSQLDriver *drv = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QPSQLDriver</span>(con);
+QSqlDatabase db = QSqlDatabase::<span class="hljs-built_in">addDatabase</span>(drv); <span class="hljs-comment">// 产生成新的默认连接</span>
+QSqlQuery query;
+query.<span class="hljs-built_in">exec</span>(<span class="hljs-string">"SELECT NAME, ID FROM STAFF"</span>);</code></pre></div>
+<p>上面的代码用于设置一个 PostgreSQL 连接和实例化一个 QPSQLDriver 对象。接下来，<code>addDatabase()</code> 被调用产生一个已知的连接，以便于它可以使用 <code>Qt SQL</code> 相关的类。Qt假定您已经打开了数据库连接，当使用连接句柄（或一组句柄）实例化驱动程序时。</p>
+<p><strong>注意：</strong> 我们假设qtdir是安装Qt的目录。假定您的<code>PostgreSQL</code>头文件己经包含在搜索路径中，然后这里才能引用所需要的<code>PostgreSQL</code>客户端库和去实例化<code>QPSQLDriver</code>对象。</p>
+<p>请记住，必须将数据库客户端库到您的程序里。确保客户端库在您的链接器的搜索路径中，并且像下面这样添加到您的 <code>.pro</code> 文件里：</p>
+<div class="code-wrapper"><pre><code class="hljs vbnet"><span class="hljs-symbol">unix:</span>LIBS += -lpq
+<span class="hljs-symbol">win32:</span>LIBS += libpqdll.<span class="hljs-keyword">lib</span></code></pre></div>
+<p>这里介绍了所有驱动支持的方法。只有驱动的构造参数有所不同。列举了一个关于 Qt附带的程序，以及它们的源代码文件，和它们的构造函数参数的列表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">驱动</th>
+<th align="left">类名</th>
+<th align="left">构造器参数</th>
+<th align="left">用于导入的文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">QPSQL</td>
+<td align="left">QPSQLDriver</td>
+<td align="left">PGconn *connection</td>
+<td align="left">qsql_psql.cpp</td>
+</tr>
+<tr>
+<td align="left">QMYSQL</td>
+<td align="left">QMYSQLDriver</td>
+<td align="left">MYSQL *connection</td>
+<td align="left">qsql_mysql.cpp</td>
+</tr>
+<tr>
+<td align="left">QOCI</td>
+<td align="left">QOCIDriver</td>
+<td align="left">OCIEnv *environment, OCISvcCtx *serviceContext</td>
+<td align="left">qsql_oci.cpp</td>
+</tr>
+<tr>
+<td align="left">QODBC</td>
+<td align="left">QODBCDriver</td>
+<td align="left">SQLHANDLE environment, SQLHANDLE connection</td>
+<td align="left">qsql_odbc.cpp</td>
+</tr>
+<tr>
+<td align="left">QDB2</td>
+<td align="left">QDB2</td>
+<td align="left">SQLHANDLE environment, SQLHANDLE connection</td>
+<td align="left">qsql_db2.cpp</td>
+</tr>
+<tr>
+<td align="left">QTDS</td>
+<td align="left">QTDSDriver</td>
+<td align="left">LOGINREC *loginRecord, DBPROCESS *dbProcess, const <a href="../QString/QString.md">QString</a> &amp;<a href="#qstring-qsqldatabasehostname-const">hostName</a></td>
+<td align="left">qsql_tds.cpp</td>
+</tr>
+<tr>
+<td align="left">QSQLITE</td>
+<td align="left">QSQLiteDriver</td>
+<td align="left">sqlite *connection</td>
+<td align="left">qsql_sqlite.cpp</td>
+</tr>
+<tr>
+<td align="left">QIBASE</td>
+<td align="left">QIBaseDriver</td>
+<td align="left">isc_db_handle connection</td>
+<td align="left">qsql_ibase.cpp</td>
+</tr>
+</tbody></table>
+<p>当构造用于为内部查询创建新连接的<code>QTDSDriver</code>时，需要主机名（或服务名）。这是为了防止在同时使用多个<code>QSqlQuery</code>对象时发生阻塞。</p>
+<p><strong>警告：</strong> 添加一个存在连接名的连接时，这个新添加的连接将会替换另一个。<br><strong>警告：</strong> SQL框架拥有驱动程序的所有权。它不能被删除。可以使用<a href="#static-void-qsqldatabaseremovedatabaseconst-qstring-connectionname">removeDatabase()</a>，去删除这个连接。<br><strong>另请参阅</strong><a href="#static-qstringlist-qsqldatabasedrivers">drivers()</a></p>
+<h3><span id="protected-qsqldatabase-qsqldatabase-clonedatabase-const-qstring-amp-other-const-qstring-amp-connectionname"><em>[protected]</em> QSqlDatabase QSqlDatabase::cloneDatabase(const  &amp;<em>other</em>, const  &amp;<em>connectionName</em>)</span><a href="#protected-qsqldatabase-qsqldatabase-clonedatabase-const-qstring-amp-other-const-qstring-amp-connectionname" class="header-anchor">#</a></h3><hr>
+<p>克隆其他数据库连接并将其存储为<code>connectionName</code>。原始数据库中的所有设置，例如<a href="#qstring-qsqldatabasedatabasename-const">databaseName()</a>、<a href="#qstring-qsqldatabasehostname-const">hostName()</a>等，都会被复制。如果其他数据库无效，则不执行任何操作。返回最新被创建的数据库连接。</p>
+<p><strong>注意：</strong> 这个新的连接不能被打开。您必须调用 <a href="#bool-qsqldatabaseopen">open()</a>,才能使用这个新的连接。</p>
+<h3><span id="static-qsqldatabase-qsqldatabase-clonedatabase-const-qstring-amp-other-const-qstring-amp-connectionname"><em>[static]</em> QSqlDatabase QSqlDatabase::cloneDatabase(const  &amp;<em>other</em>, const  &amp;<em>connectionName</em>)</span><a href="#static-qsqldatabase-qsqldatabase-clonedatabase-const-qstring-amp-other-const-qstring-amp-connectionname" class="header-anchor">#</a></h3><hr>
+<p>这是个重载函数。</p>
+<p>克隆其他数据库连接并将其存储为<code>connectionName</code>。原始数据库中的所有设置，例如<a href="#qstring-qsqldatabasedatabasename-const">databaseName()</a>、<a href="#qstring-qsqldatabasehostname-const">hostName()</a>等，都会被复制。如果其他数据库无效，则不执行任何操作。返回最新被创建的数据库连接。</p>
+<p><strong>注意：</strong> 这个新的连接不能被打开。您必须调用 <a href="#bool-qsqldatabaseopen">open()</a>,才能使用这个新的连接。</p>
+<p>当我们在另一个线程克隆这个数据库，这个重载是非常有用的。</p>
+<p>qt5.13中引入了这个函数。</p>
+<h3><span id="void-qsqldatabase-close">void QSqlDatabase::close()</span><a href="#void-qsqldatabase-close" class="header-anchor">#</a></h3><hr>
+<p>关闭数据库连接，释放获取的所有资源，并使与数据库一起使用的任何现有QSqlQuery对象无效</p>
+<p>这个函数也会影响它的<a href>QSqlDatabase</a>对象副本。</p>
+<p><strong>另请参阅</strong> <a href="#static-void-qsqldatabaseremovedatabaseconst-qstring-connectionname">removeDatabase()</a></p>
+<h3><span id="bool-qsqldatabase-commit">bool QSqlDatabase::commit()</span><a href="#bool-qsqldatabase-commit" class="header-anchor">#</a></h3><hr>
+<p>如果驱动支持事务和一个<a href="#bool-qsqldatabasetransaction">transaction()</a>已经被启动，那就可以提交一个事务到这个数据库中。如果这个操作成功，就会返回 <code>true</code>。否则返回 <code>false</code>。</p>
+<p><strong>注意：</strong> 对于一些数据库，如果对数据库使用<code>SELECT</code>进行查询操作，将会提交失败并且返回<code>false</code>。在执行提交之前，使查询处于非活动状态。</p>
+<p>调用 <a href="#qsqlerror-qsqldatabaselasterror-const">lastError()</a> 函数获取错误信息。</p>
+<p><strong>另请参阅</strong>  <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlquery.html#isActive">QSqlQuery::isActive()</a>， <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqldriver.html#hasFeature">QSqlDriver::hasFeature()</a>，和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqldatabase.html#rollback">rollback()</a>。</p>
+<h3><span id="qstring-qsqldatabase-connectoptions-const"> QSqlDatabase::connectOptions() const</span><a href="#qstring-qsqldatabase-connectoptions-const" class="header-anchor">#</a></h3><hr>
+<p>返回用于此连接的连接选项字符串。这个字符串可能是空。</p>
+<p><strong>另请参阅</strong> <a href="#void-qsqldatabasesetconnectoptionsconst-qstring-options--qstring">setConnectOptions()</a></p>
+<h3><span id="qstring-qsqldatabase-connectionname-const"> QSqlDatabase::connectionName() const</span><a href="#qstring-qsqldatabase-connectionname-const" class="header-anchor">#</a></h3><hr>
+<p>返回连接名，它有可能为空。</p>
+<p><strong>注意：</strong> 这个连接名不是 <a href="#qstring-qsqldatabasedatabasename-const">数据库名</a></p>
+<p><code>qt4.4</code> 中引入了这个函数。</p>
+<p><strong>另请参阅</strong> <a href="#static-qsqldatabase-qsqldatabaseadddatabaseconst-qstring-type-const-qstring-connectionname--qlatin1stringdefaultconnection">addDatabase()</a></p>
+<h3><span id="static-qstringlist-qsqldatabase-connectionnames"><em>[static]</em>  QSqlDatabase::connectionNames()</span><a href="#static-qstringlist-qsqldatabase-connectionnames" class="header-anchor">#</a></h3><hr>
+<p>返回包含所有连接名称的列表。</p>
+<p><strong>注意：</strong> 这个函数是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/threads-reentrancy.html">线程安全</a>的。</p>
+<p><strong>另请参阅</strong> <a href="#static-bool-qsqldatabasecontainsconst-qstring-connectionname--qlatin1stringdefaultconnection">contains</a>()，<a href="#static-qsqldatabase-qsqldatabasedatabaseconst-qstring-connectionname--qlatin1stringdefaultconnection-bool-open--true">database</a>()， 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/threads-modules.html#threads-and-the-sql-module">线程和SQL模块</a></p>
+<h3><span id="static-bool-qsqldatabase-contains-const-qstring-amp-connectionname-qlatin1string-defaultconnection"><em>[static]</em> bool QSqlDatabase::contains(const QString &amp;<em>connectionName</em> = QLatin1String(defaultConnection))</span><a href="#static-bool-qsqldatabase-contains-const-qstring-amp-connectionname-qlatin1string-defaultconnection" class="header-anchor">#</a></h3><hr>
+<p>如果所给的连接名，包含在所给的数据库连接列表里，那么就返回 <code>true</code>；否则返回 <code>false</code>。</p>
+<p><strong>注意：</strong> 这个函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/threads-reentrancy.html">线程安全的</a></p>
+<p><strong>另请参阅</strong> <a href="#static-qstringlist-qsqldatabaseconnectionnames">connectionNames()</a>, <a href="#static-qsqldatabase-qsqldatabasedatabaseconst-qstring-connectionname--qlatin1stringdefaultconnection-bool-open--true">database</a>() 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/threads-modules.html#threads-and-the-sql-module">线程和SQL模块</a>。</p>
+<h3><span id="static-qsqldatabase-qsqldatabase-database-const-qstring-amp-connectionname-qlatin1string-defaultconnection-bool-open-true"><em>[static]</em> QSqlDatabase QSqlDatabase::database(const QString &amp;connectionName = QLatin1String(defaultConnection), bool open = true)</span><a href="#static-qsqldatabase-qsqldatabase-database-const-qstring-amp-connectionname-qlatin1string-defaultconnection-bool-open-true" class="header-anchor">#</a></h3><hr>
+<p>返回一个调用 <code>connectionName</code> 参数的数据库连接。这个数据库连接使用之前，必须已经通过 <a href="#static-qsqldatabase-qsqldatabaseadddatabaseconst-qstring-type-const-qstring-connectionname--qlatin1stringdefaultconnection">addDatabase()</a> 函数进行添加。如果open为true（默认值），并且数据库连接尚未打开，则现在打开它。如果未指定连接名参数，则使用默认连接。如果连接名不存在数据库列表中，那么将会返回一个非法的连接。</p>
+<p><strong>注意：</strong> 这个函数是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/threads-reentrancy.html">线程安全的</a></p>
+<p><strong>另请参阅</strong> <a href="#bool-qsqldatabaseisopen-const">isOpen()</a> 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/threads-modules.html#threads-and-the-sql-module">线程和SQL模块</a>。</p>
+<h3><span id="qstring-qsqldatabase-databasename-const">QString QSqlDatabase::databaseName() const</span><a href="#qstring-qsqldatabase-databasename-const" class="header-anchor">#</a></h3><hr>
+<p>返回连接的连接数据库名称，当然它也可能是空的。</p>
+<p><strong>注意：</strong> 这个数据库名不是连接名</p>
+<p><strong>另请参阅</strong> <a href="#void-qsqldatabasesetdatabasenameconst-qstring-name">setDatabaseName()</a>。</p>
+<h3><span id="qsqldriver-qsqldatabase-driver-const">QSqlDriver *QSqlDatabase::driver() const</span><a href="#qsqldriver-qsqldatabase-driver-const" class="header-anchor">#</a></h3><hr>
+<p>返回被使用的数据库连接的所使用的数据库驱动。</p>
+<p><strong>另请参阅</strong> <a href="#static-qsqldatabase-qsqldatabaseadddatabaseconst-qstring-type-const-qstring-connectionname--qlatin1stringdefaultconnection">addDatabase()</a> 和 <a href="#static-qstringlist-qsqldatabasedrivers">drivers()</a></p>
+<h3><span id="qstring-qsqldatabase-drivername-const">QString QSqlDatabase::driverName() const</span><a href="#qstring-qsqldatabase-drivername-const" class="header-anchor">#</a></h3><hr>
+<p>返回连接的驱动名称</p>
+<p><strong>另请参阅</strong> <a href="#static-qsqldatabase-qsqldatabaseadddatabaseconst-qstring-type-const-qstring-connectionname--qlatin1stringdefaultconnection">addDatabase()</a> 和 <a href="#static-qstringlist-qsqldatabasedrivers">driver()</a></p>
+<h3><span id="static-qstringlist-qsqldatabase-drivers"><em>[static]</em>  QSqlDatabase::drivers()</span><a href="#static-qstringlist-qsqldatabase-drivers" class="header-anchor">#</a></h3><hr>
+<p>返回一个可使用的数据库驱动列表<br><strong>另请参阅</strong> <a href="#static-void-qsqldatabaseregistersqldriverconst-qstring-name-qsqldrivercreatorbase-creator">registerSqlDriver()</a></p>
+<h3><span id="qsqlquery-qsqldatabase-exec-const-qstring-amp-query-qstring-const">QSqlQuery QSqlDatabase::exec(const QString &amp;<em>query</em> = QString()) const</span><a href="#qsqlquery-qsqldatabase-exec-const-qstring-amp-query-qstring-const" class="header-anchor">#</a></h3><hr>
+<p>在这个数据库里执行 <code>SQL</code> 表达式和 返回一个 QSq<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlquery.html">https://doc.qt.io/qt-5/qsqlquery.html</a> 对象。使用 <a href="#qsqlerror-qsqldatabaselasterror-const"> lastError()</a> 来获取错误的信息。</p>
+<p>如果查询为空，则返回一个空的、无效的查询。并且 <a href="#qsqlerror-qsqldatabaselasterror-const">lastError()</a>。</p>
+<p><strong>另请参阅</strong> <a href>QSqlQuery</a> 和 <a href="#qsqlerror-qsqldatabaselasterror-const">lastError()</a>。</p>
+<h3><span id="qstring-qsqldatabase-hostname-const"> QSqlDatabase::hostName() const</span><a href="#qstring-qsqldatabase-hostname-const" class="header-anchor">#</a></h3><hr>
+<p>返回连接的主机名；它有可能为空。</p>
+<p><strong>另请参阅</strong> <a href="#void-qsqldatabasesethostnameconst-qstring-host">setHostName()</a></p>
+<h3><span id="static-bool-qsqldatabase-isdriveravailable-const-qstring-amp-name"><em>[static]</em> bool QSqlDatabase::isDriverAvailable(const QString &amp;<em>name</em>)</span><a href="#static-bool-qsqldatabase-isdriveravailable-const-qstring-amp-name" class="header-anchor">#</a></h3><hr>
+<p>如果调用一个叫 <code>name</code> 的驱动，是可以使用的，那么就返回 <code>true</code>；反之返回 <code>false</code>。</p>
+<p><strong>另请参阅</strong> <a href="#static-qstringlist-qsqldatabasedrivers">drivers()</a>。</p>
+<h3><span id="bool-qsqldatabase-isopen-const">bool QSqlDatabase::isOpen() const</span><a href="#bool-qsqldatabase-isopen-const" class="header-anchor">#</a></h3><hr>
+<p>如果当前数据库连接是打开的，那么就返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<h3><span id="bool-qsqldatabase-isopenerror-const">bool QSqlDatabase::isOpenError() const</span><a href="#bool-qsqldatabase-isopenerror-const" class="header-anchor">#</a></h3><hr>
+<p>如果打开数据库的连接有错误，那么就返回 <code>true</code>，否则返回 <code>false</code>。可以调用 <a href="#qsqlerror-qsqldatabaselasterror-const">lastError()</a> 函数去获取相关的错误信息。</p>
+<h3><span id="bool-qsqldatabase-isvalid-const">bool QSqlDatabase::isValid() const</span><a href="#bool-qsqldatabase-isvalid-const" class="header-anchor">#</a></h3><hr>
+<p>如果 <a href>QSqlDatabase()</a> 有一个有效的驱动，那么就返回 <code>true</code>。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs CPP">QSqlDatabase db;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; db.<span class="hljs-built_in">isValid</span>();    <span class="hljs-comment">// 返回 false</span>
+
+db = QSqlDatabase::<span class="hljs-built_in">database</span>(<span class="hljs-string">"sales"</span>);
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; db.<span class="hljs-built_in">isValid</span>();    <span class="hljs-comment">// 如果 "sales" 连接存在，就返回 true</span>
+
+QSqlDatabase::<span class="hljs-built_in">removeDatabase</span>(<span class="hljs-string">"sales"</span>);
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; db.<span class="hljs-built_in">isValid</span>();    <span class="hljs-comment">// 返回 false</span></code></pre></div>
+
+<h3><span id="qsqlerror-qsqldatabase-lasterror-const"> QSqlDatabase::lastError() const</span><a href="#qsqlerror-qsqldatabase-lasterror-const" class="header-anchor">#</a></h3><p>返回这个数据库出现的最新错误信息。</p>
+<p>使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlquery.html#lastError">QSqlQuery::lastError()</a> 函数来获取一个单个查询上的错误。</p>
+<p><strong>另请参阅</strong>  <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlerror.html">QSqlError</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlquery.html#lastError">QSqlQuery::lastError()</a>。</p>
+<h3><span id="qsql-numericalprecisionpolicyqsqldatabase-numericalprecisionpolicy-const">QSqlDatabase::numericalPrecisionPolicy() const</span><a href="#qsql-numericalprecisionpolicyqsqldatabase-numericalprecisionpolicy-const" class="header-anchor">#</a></h3><p>返回数据库连接的当前默认精度策略。</p>
+<p>qt4.6中引入了这个函数。</p>
+<p><strong>另请参阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqldatabase.html#setNumericalPrecisionPolicy">QSql::NumericalPrecisionPolicy, setNumericalPrecisionPolicy()</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlquery.html#numericalPrecisionPolicy">QSqlQuery::numericalPrecisionPolicy()</a> 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlquery.html#setNumericalPrecisionPolicy">QSqlQuery::setNumericalPrecisionPolicy()</a>。</p>
+<h3><span id="bool-qsqldatabase-open">bool QSqlDatabase::open()</span><a href="#bool-qsqldatabase-open" class="header-anchor">#</a></h3><hr>
+<p>使用当前连接值打开数据库连接。如果操作成功就返回 <code>true</code>; 反之返回 <code>false</code>。可以调用 <a href="#qsqlerror-qsqldatabaselasterror-const">lastError()</a>来获取错误的信息。</p>
+<p><strong>另请参阅</strong> <a href="#qsqlerror-qsqldatabaselasterror-const">lastError()</a>、 <a href="#void-qsqldatabasesetdatabasenameconst-qstring-name">setDatabaseName()</a>、<a href="#void-qsqldatabasesetusernameconst-qstring-name">setUserName()</a>、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqldatabase.html#setPassword">setPassword()</a>、<a href="#void-qsqldatabasesethostnameconst-qstring-host">setHostName()</a>、<a href="#void-qsqldatabasesetportint-port">setPort()</a>和 <a href="#void-qsqldatabasesetconnectoptionsconst-qstring-options--qstring">setConnectOptions()</a>。</p>
+<h3><span id="bool-qsqldatabase-open-const-qstring-amp-user-const-qstring-amp-password">bool QSqlDatabase::open(const  &amp;<em>user</em>, const  &amp;<em>password</em>)</span><a href="#bool-qsqldatabase-open-const-qstring-amp-user-const-qstring-amp-password" class="header-anchor">#</a></h3><hr>
+<p>这是一个重载函数。</p>
+<p>使用所给的 <code>username</code> 和 <code>password</code> 两个参数，打开数据连接，如果成功就返回 <code>true</code>; 反之返回 <code>false</code>。使用 [lastError()]#qsqlerror-qsqldatabaselasterror-const) 来获取错误的信息。</p>
+<p>这个函数不存放所给的 <code>password</code> 参数，相反的它会把 <code>password</code> 参数直接传给驱动用于打连接，然后销毁这个参数。</p>
+<p><strong>另请参阅</strong> <a href="#qsqlerror-qsqldatabaselasterror-const">lastError()</a></p>
+<h3><span id="qstring-qsqldatabase-password-const"> QSqlDatabase::password() const</span><a href="#qstring-qsqldatabase-password-const" class="header-anchor">#</a></h3><hr>
+<p>返回连接的密码。如果没有使用<a href="#void-qsqldatabasesetpasswordconst-qstring-password">setPassword()</a> 函数进行密码的设置 并且 没有调用 <a href="#bool-qsqldatabaseopen">open()</a> 以及 没有使用密码，那么就返回空的字符串。</p>
+<p><strong>另请参阅</strong> <a href="#void-qsqldatabasesetpasswordconst-qstring-password">setPassword()</a></p>
+<h3><span id="int-qsqldatabase-port-const">int QSqlDatabase::port() const</span><a href="#int-qsqldatabase-port-const" class="header-anchor">#</a></h3><hr>
+<p>返回连接的端口号。如果端口号没有设置，那么这个值就是未定义的。</p>
+<p><strong>另请参阅</strong> <a href="#void-qsqldatabasesetportint-port">setPort()</a></p>
+<p>../QString/QString.md</p>
+<h3><span id="qsqlindex-qsqldatabase-primaryindex-const-qstring-amp-tablename-const"> QSqlDatabase::primaryIndex(const  &amp;<em>tablename</em>) const</span><a href="#qsqlindex-qsqldatabase-primaryindex-const-qstring-amp-tablename-const" class="header-anchor">#</a></h3><hr>
+<p>返回所给表格名的索引。如果索引不存在，那么就返回一个空的 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlindex.html">QSqlIndex</a></p>
+<p><strong>注意：</strong> 如果表在创建时没有被引用，一些驱动程序（如 <code>QPSQL</code> 驱动程序）可能要求您以小写的形式传递表格名。</p>
+<p>查看关于 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/sql-driver.html">Qt SQL driver</a> 文档的更多信息。</p>
+<p><strong>另请参阅</strong>  <a href="#qstringlist-qsqldatabasetablesqsqltabletype-type--qsqltables-const">tables()</a> 和 <a href="#qsqlrecord-qsqldatabaserecordconst-qstring-tablename-const">record()</a>。</p>
+<h3><span id="qsqlrecord-qsqldatabase-record-const-qstring-amp-tablename-const"> QSqlDatabase::record(const  &amp;<em>tablename</em>) const</span><a href="#qsqlrecord-qsqldatabase-record-const-qstring-amp-tablename-const" class="header-anchor">#</a></h3><hr>
+<p>返回一个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlrecord.html">QSqlRecord</a>，其中填充了名为tablename的表（或视图）中所有字段的名称。字段在记录中出现的顺序未定义。如果没有这样的表格（或者视图）存在，将会返回一个空的记录。</p>
+<p><strong>注意：</strong> 如果表在创建时没有被引用，一些驱动程序（如 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/sql-driver.html#qpsql-case-sensitivity">QPSQL</a> 驱动程序）可能要求您以小写的形式传递表格名。</p>
+<p>查看 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/sql-driver.html">Qt SQL driver</a> 文档的更多信息。</p>
+<h3><span id="static-void-qsqldatabase-registersqldriver-const-qstring-amp-name-qsqldrivercreatorbase-creator"><em>[static]</em> void QSqlDatabase::registerSqlDriver(const  &amp;<em>name</em>,  *<em>creator</em>)</span><a href="#static-void-qsqldatabase-registersqldriver-const-qstring-amp-name-qsqldrivercreatorbase-creator" class="header-anchor">#</a></h3><hr>
+<p>这个函数在 <code>SQL</code>框架中注册一个名为 <code>name</code> 的新 <code>SQL</code> 驱动程序。这个是非常有用的，如果您有一个自定义的驱动，并且您并不想把它编译作为一个插件。</p>
+<p>例如：</p>
+<div class="code-wrapper"><pre><code class="hljs CPP">QSqlDatabase::<span class="hljs-built_in">registerSqlDriver</span>(<span class="hljs-string">"MYDRIVER"</span>, <span class="hljs-keyword">new</span> QSqlDriverCreator&lt;QSqlDriver&gt;);
+<span class="hljs-built_in">QVERIFY</span>(QSqlDatabase::<span class="hljs-built_in">drivers</span>().<span class="hljs-built_in">contains</span>(<span class="hljs-string">"MYDRIVER"</span>));
+QSqlDatabase db = QSqlDatabase::<span class="hljs-built_in">addDatabase</span>(<span class="hljs-string">"MYDRIVER"</span>);
+<span class="hljs-built_in">QVERIFY</span>(db.<span class="hljs-built_in">isValid</span>());</code></pre></div>
+<p><a href>QSqlDatabase</a>拥有 <code>creator</code> 指针的所有权，因此您不能自己删除它。</p>
+<p><strong>另请参阅</strong> <a href="#static-qstringlist-qsqldatabasedrivers">drivers()</a>。</p>
+<h3><span id="static-void-qsqldatabase-removedatabase-const-qstring-amp-connectionname"><em>[static]</em> void QSqlDatabase::removeDatabase(const  &amp;<em>connectionName</em>)</span><a href="#static-void-qsqldatabase-removedatabase-const-qstring-amp-connectionname" class="header-anchor">#</a></h3><hr>
+<p>从数据库列表中，删除一个叫 <code>connectionName</code> 数据库连接。</p>
+<p><strong>警告：</strong> 不应在数据库连接上打开查询的情况下调用此函数，否则将发生资源泄漏。</p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs CPP"><span class="hljs-comment">// 错误</span>
+QSqlDatabase db = QSqlDatabase::<span class="hljs-built_in">database</span>(<span class="hljs-string">"sales"</span>);
+<span class="hljs-function">QSqlQuery <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-string">"SELECT NAME, DOB FROM EMPLOYEES"</span>, db)</span></span>;
+QSqlDatabase::<span class="hljs-built_in">removeDatabase</span>(<span class="hljs-string">"sales"</span>); <span class="hljs-comment">// 将会输出警告</span>
+<span class="hljs-comment">// “db”现在是一个悬而未决的无效数据库连接，</span>
+<span class="hljs-comment">// “查询”包含无效的结果集</span></code></pre></div>
+
+<p>正确的做法：</p>
+<div class="code-wrapper"><pre><code class="hljs CPP">{
+    QSqlDatabase db = QSqlDatabase::<span class="hljs-built_in">database</span>(<span class="hljs-string">"sales"</span>);
+    <span class="hljs-function">QSqlQuery <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-string">"SELECT NAME, DOB FROM EMPLOYEES"</span>, db)</span></span>;
+}
+<span class="hljs-comment">// “db”和“query”都被销毁，因为它们超出了范围</span>
+QSqlDatabase::<span class="hljs-built_in">removeDatabase</span>(<span class="hljs-string">"sales"</span>); <span class="hljs-comment">// 正确的</span></code></pre></div>
+
+<p>如果要删除默认连接，这个连接可能是通过调用 <a href="#static-qsqldatabase-qsqldatabaseadddatabaseconst-qstring-type-const-qstring-connectionname--qlatin1stringdefaultconnection">addDatabase()</a> 函数而创建的，但未指定连接名称，可以通过对<a href="#static-qsqldatabase-qsqldatabasedatabaseconst-qstring-connectionname--qlatin1stringdefaultconnection-bool-open--true">database()</a>返回的数据库调用<a href="#qstring-qsqldatabaseconnectionname-const">connectionName()</a> 来检索默认连接名称。注意，如果没有创建默认数据库，将返回一个无效的数据库。</p>
+<p><strong>注意：</strong> 这个函数是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/threads-reentrancy.html">线程安全的</a></p>
+<p><strong>另请查阅</strong> <a href="#static-qsqldatabase-qsqldatabasedatabaseconst-qstring-connectionname--qlatin1stringdefaultconnection-bool-open--true">database()</a>，<a href="#qstring-qsqldatabaseconnectionname-const">connectionName()</a>，和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/threads-modules.html#threads-and-the-sql-module">线程和SQL模块</a>。</p>
+<h3><span id="bool-qsqldatabase-rollback">bool QSqlDatabase::rollback()</span><a href="#bool-qsqldatabase-rollback" class="header-anchor">#</a></h3><hr>
+<p>在数据库里回滚一个事务，如果驱动支持一个事务以及一个 <a href="#bool-qsqldatabasetransaction">transaction()</a> 已经被启动。如果操作成功返回 <code>true</code>。否则返回 <code>false</code>。</p>
+<p><strong>注意：</strong> 对于某些数据库，如果存在使用数据库进行选择的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlquery.html#isActive">活动查询</a>，则回滚将失败并返回false。确保在执行回滚操作之前，查询是 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlquery.html#isActive">非活动</a> 的状态。</p>
+<p>调用 <a href="#qsqlerror-qsqldatabaselasterror-const">lastError()</a> 操作获得错误的相关信息。</p>
+<p><strong>另请查阅</strong>  <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlquery.html#isActive">QSqlQuery::isActive()</a>，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqldriver.html#hasFeature">QSqlDriver::hasFeature()</a> 和 <a href="#bool-qsqldatabasecommit">commit()</a>。</p>
+<h3><span id="void-qsqldatabase-setconnectoptions-const-qstring-amp-options-qstring">void QSqlDatabase::setConnectOptions(const  &amp;<em>options</em> = QString())</span><a href="#void-qsqldatabase-setconnectoptions-const-qstring-amp-options-qstring" class="header-anchor">#</a></h3><hr>
+<p>设置一组数据库的具体的可选项。它必须在打之这个连接之前执行这个操作，否则是无效的。另一个可能的原因是调用 <code>QSqlDatabase::setConnectOptions()</code> 去关闭这个连接，并且调用 <a href="#bool-qsqldatabaseopen">open()</a> 再次关闭这个连接。</p>
+<p>选项字符串的格式是以分号分隔的选项名称，或选项=值对的列表。这个选项依赖于所使用的客户端：</p>
+<table>
+<thead>
+<tr>
+<th align="left">ODBC</th>
+<th align="left">MySQL</th>
+<th align="left">PostgreSQL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">SQL_ATTR_ACCESS_MODE</td>
+<td align="left">CLIENT_COMPRESS</td>
+<td align="left">connect_timeout</td>
+</tr>
+<tr>
+<td align="left">SQL_ATTR_LOGIN_TIMEOUT</td>
+<td align="left">CLIENT_FOUND_ROWS</td>
+<td align="left">options</td>
+</tr>
+<tr>
+<td align="left">SQL_ATTR_CONNECTION_TIMEOUT</td>
+<td align="left">CLIENT_IGNORE_SPACE</td>
+<td align="left">tty</td>
+</tr>
+<tr>
+<td align="left">SQL_ATTR_CURRENT_CATALOG</td>
+<td align="left">CLIENT_ODBC</td>
+<td align="left">requiressl</td>
+</tr>
+<tr>
+<td align="left">SQL_ATTR_METADATA_ID</td>
+<td align="left">CLIENT_NO_SCHEMA</td>
+<td align="left">service</td>
+</tr>
+<tr>
+<td align="left">SQL_ATTR_PACKET_SIZE</td>
+<td align="left">CLIENT_INTERACTIVE</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">SQL_ATTR_TRACEFILE</td>
+<td align="left">UNIX_SOCKET</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">SQL_ATTR_TRACE</td>
+<td align="left">MYSQL_OPT_RECONNECT</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">SQL_ATTR_CONNECTION_POOLING</td>
+<td align="left">MYSQL_OPT_CONNECT_TIMEOUT</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">SQL_ATTR_ODBC_VERSION</td>
+<td align="left">MYSQL_OPT_READ_TIMEOUT</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">MYSQL_OPT_WRITE_TIMEOUT</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">SSL_KEY</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">SSL_CERT</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">SSL_CA</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">SSL_CAPATH</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">SSL_CIPHER</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">DB2</th>
+<th align="left">OCI</th>
+<th align="left">TDS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">SQL_ATTR_ACCESS_MODE</td>
+<td align="left">OCI_ATTR_PREFETCH_ROWS</td>
+<td align="left">无</td>
+</tr>
+<tr>
+<td align="left">SQL_ATTR_LOGIN_TIMEOUT</td>
+<td align="left">OCI_ATTR_PREFETCH_MEMORY</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left"><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtsql-attribution-sqlite.html#sqlite">SQLite</a></th>
+<th align="left">Interbase</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">QSQLITE_BUSY_TIMEOUT</td>
+<td align="left">ISC_DPB_LC_CTYPE</td>
+</tr>
+<tr>
+<td align="left">QSQLITE_OPEN_READONLY</td>
+<td align="left">ISC_DPB_SQL_ROLE_NAME</td>
+</tr>
+<tr>
+<td align="left">QSQLITE_OPEN_URI</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">QSQLITE_ENABLE_SHARED_CACHE</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">QSQLITE_ENABLE_REGEXP</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs CPP">db.<span class="hljs-built_in">setConnectOptions</span>(<span class="hljs-string">"SSL_KEY=client-key.pem;SSL_CERT=client-cert.pem;SSL_CA=ca-cert.pem;CLIENT_IGNORE_SPACE=1"</span>); <span class="hljs-comment">// 使用安全套连字进行连接</span>
+<span class="hljs-keyword">if</span> (!db.<span class="hljs-built_in">open</span>()) {
+    db.<span class="hljs-built_in">setConnectOptions</span>(); <span class="hljs-comment">// 清除连接的字符串</span>
+    <span class="hljs-comment">// ...</span>
+}
+<span class="hljs-comment">// ...</span>
+<span class="hljs-comment">// PostgreSQL 连接</span>
+db.<span class="hljs-built_in">setConnectOptions</span>(<span class="hljs-string">"requiressl=1"</span>); <span class="hljs-comment">// 确保 PostgreSQL 安全套接字连接</span>
+<span class="hljs-keyword">if</span> (!db.<span class="hljs-built_in">open</span>()) {
+    db.<span class="hljs-built_in">setConnectOptions</span>(); <span class="hljs-comment">// 清除可选</span>
+    <span class="hljs-comment">// ...</span>
+}
+<span class="hljs-comment">// ...</span>
+<span class="hljs-comment">// ODBC 连接</span>
+db.<span class="hljs-built_in">setConnectOptions</span>(<span class="hljs-string">"SQL_ATTR_ACCESS_MODE=SQL_MODE_READ_ONLY;SQL_ATTR_TRACE=SQL_OPT_TRACE_ON"</span>); <span class="hljs-comment">// 设置 ODBC 连项</span>
+<span class="hljs-keyword">if</span> (!db.<span class="hljs-built_in">open</span>()) {
+    db.<span class="hljs-built_in">setConnectOptions</span>(); <span class="hljs-comment">// 不要尝试去设置这个选项。</span>
+    <span class="hljs-comment">// ...</span>
+}
+}</code></pre></div>
+
+<p>查阅这个客户端库文档，获得更多关于不同可选项的更多信息。</p>
+<p><strong>另请查阅</strong> <a href="#qstring-qsqldatabaseconnectoptions-const">connectOptions()</a>。</p>
+<h3><span id="void-qsqldatabase-setdatabasename-const-qstring-amp-name">void QSqlDatabase::setDatabaseName(const  &amp;<em>name</em>)</span><a href="#void-qsqldatabase-setdatabasename-const-qstring-amp-name" class="header-anchor">#</a></h3><hr>
+<p>通过所给的 <code>name</code> 参数来设置所连接的数据库名称。必须在<a href="#bool-qsqldatabaseopen">打开</a>连接之前设置数据库名称。<br>或者，可以调用<a href="#void-qsqldatabaseclose">close()</a>函数关闭连接，设置数据库名称，然后再次调用<a href="#bool-qsqldatabaseopen">open()</a> 。</p>
+<p><strong>注意：</strong> 这个数据库名不是连接名。必须在创建连接对象时将连接名称传递给 <a href="#static-qsqldatabase-qsqldatabaseadddatabaseconst-qstring-type-const-qstring-connectionname--qlatin1stringdefaultconnection">addDatabase()</a>。</p>
+<p>对于 <code>QSQLITE</code> 驱动，如果数据库名指定的名字不存在，然后它将会创建这个文件，除非您设置了 <code>QSQLITE_OPEN_READONLY</code></p>
+<p>此外，可以把 <code>name</code> 参数设置为 <code>:memory:</code>, 可以创建一个临时数据库，该数据库仅在应用程序的生命周期内可用。</p>
+<p>对于 <code>QOCI (Oracle)</code> 驱动，这个数据库名是 <code> TNS Service Name</code>。</p>
+<p>对于 <code>QODBC</code> 驱动程序，名称可以是<code>DSN</code>，<code>DSN</code>文件名（在这种情况下，文件扩展名必须为<code>.DSN</code>）或者是一个连接字符串。</p>
+<p>例如，<code>Microsoft Access</code> 可以使用下面的连接方式来直接打开 <code>.mdb</code> 文件，而不是在 <code>ODBC</code> 管理工具里创建一个 <code>DSN</code> 对象：</p>
+<div class="code-wrapper"><pre><code class="hljs CPP"><span class="hljs-comment">// ...</span>
+QSqlDatabase db = QSqlDatabase::<span class="hljs-built_in">addDatabase</span>(<span class="hljs-string">"QODBC"</span>);
+db.<span class="hljs-built_in">setDatabaseName</span>(<span class="hljs-string">"DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};FIL={MS Access};DBQ=myaccessfile.mdb"</span>);
+<span class="hljs-keyword">if</span> (db.<span class="hljs-built_in">open</span>()) {
+    <span class="hljs-comment">// 成功!</span>
+}
+<span class="hljs-comment">// ...</span></code></pre></div>
+
+<p>这个没有默认的值</p>
+<p><strong>另请查阅</strong> <a href="#qstring-qsqldatabasedatabasename-const">databaseName()</a>、<a href="#void-qsqldatabasesetusernameconst-qstring-name">setUserName()</a>、 <a href="#void-qsqldatabasesetpasswordconst-qstring-password">setPassword()</a>、 <a href="#void-qsqldatabasesethostnameconst-qstring-host">setHostName()</a>、 <a href="#void-qsqldatabasesetportint-port">setPort()</a>、<a href="#void-qsqldatabasesetconnectoptionsconst-qstring-options--qstring">setConnectOptions()</a> 和 <a href="#bool-qsqldatabaseopen">open()</a>。</p>
+<h3><span id="void-qsqldatabase-sethostname-const-qstring-amp-host">void QSqlDatabase::setHostName(const  &amp;<em>host</em>)</span><a href="#void-qsqldatabase-sethostname-const-qstring-amp-host" class="header-anchor">#</a></h3><hr>
+<p>通过 <code>host</code> 参数来设置连接的主机名。为了生效，必须在<a href="#bool-qsqldatabaseopen">打开</a>连接之前，设置主机名。或者，可以调用<a href="#void-qsqldatabaseclose">close()</a>关闭连接，然后设置主机名，再次调用<a href="#bool-qsqldatabaseopen">open()</a>函数。</p>
+<p>这个没有默认值。</p>
+<p><strong>另请查阅</strong> <a href="#qstring-qsqldatabasehostname-const">hostName()</a>， <a href="#void-qsqldatabasesetusernameconst-qstring-name">setUserName()</a>, <a href="#void-qsqldatabasesetpasswordconst-qstring-password">setPassword()</a>，<a href="#void-qsqldatabasesetdatabasenameconst-qstring-nam">setDatabaseName()</a>，<a href="#void-qsqldatabasesetportint-port">setPort()</a>， <a href="#void-qsqldatabasesetconnectoptionsconst-qstring-options--qstring">setConnectOptions()</a> 和 <a href="#bool-qsqldatabaseopen">open()</a>。</p>
+<h3><span id="void-qsqldatabase-setnumericalprecisionpolicy-qsql-numericalprecisionpolicy-precisionpolicy">void QSqlDatabase::setNumericalPrecisionPolicy( <em>precisionPolicy</em>)</span><a href="#void-qsqldatabase-setnumericalprecisionpolicy-qsql-numericalprecisionpolicy-precisionpolicy" class="header-anchor">#</a></h3><hr>
+<p>设置在此数据库连接上创建的查询使用的默认数值精度策略。</p>
+<p><strong>注意：</strong> 驱动程序不支持以低精度获取数值，将忽略精度策略。您可以使用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqldriver.html#hasFeature">QSqlDriver::hasFeature()</a>来查找一个驱动是否支持这个功能。</p>
+<p><strong>注意：</strong> 通过 <code>precisionPolicy</code> 来设置这个默认的精度策略，将不会响影任何当前的活动查询。</p>
+<p>qt4.6中引入了这个函数。</p>
+<p><strong>另请查阅</strong> <a href="../QSql/QSql.md#enum-qsqlnumericalprecisionpolicy">QSql::NumericalPrecisionPolicy</a>， <a href="#qsqlnumericalprecisionpolicy-qsqldatabasenumericalprecisionpolicy-const">numericalPrecisionPolicy()</a>，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlquery.html#setNumericalPrecisionPolicy">QSqlQuery::setNumericalPrecisionPolicy</a> 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqlquery.html#numericalPrecisionPolicy">QSqlQuery::numericalPrecisionPolicy</a>.</p>
+<h3><span id="void-qsqldatabase-setpassword-const-qstring-amp-password">void QSqlDatabase::setPassword(const  &amp;<em>password</em>)</span><a href="#void-qsqldatabase-setpassword-const-qstring-amp-password" class="header-anchor">#</a></h3><hr>
+<p>通过 <code>password</code> 参数来设置连接的密码。为了生效，必须在<a href="#bool-qsqldatabaseopen">打开</a>连接之前来设置密码。或者，您可以调用<a href="#void-qsqldatabaseclose">close()</a>关闭连接，然后设置密码，再次调用<a href="#bool-qsqldatabaseopen">open()</a>函数。</p>
+<p>这个没有默认值。</p>
+<p><strong>警告：</strong> 这个函数以明文的形式把密码存放到qt里。 将密码作为参数来避免这个行为，然后使用 <a href="#bool-qsqldatabaseopen">open()</a>进行调用。</p>
+<p><strong>另请查阅</strong> <a href="#qstring-qsqldatabasepassword-const">password()</a>，<a href="#void-qsqldatabasesetusernameconst-qstring-name">setUserName()</a>，<a href="#void-qsqldatabasesetdatabasenameconst-qstring-name">setDatabaseName()</a>，<a href="#void-qsqldatabasesethostnameconst-qstring-host">setHostName()</a>, <a href="#void-qsqldatabasesetportint-port">setPort()</a>, <a href="#void-qsqldatabasesetconnectoptionsconst-qstring-options--qstring">setConnectOptions()</a>和 <a href="#bool-qsqldatabaseopen">open()</a>。</p>
+<h3><span id="void-qsqldatabase-setport-int-port">void QSqlDatabase::setPort(int <em>port</em>)</span><a href="#void-qsqldatabase-setport-int-port" class="header-anchor">#</a></h3><hr>
+<p>通过<code>port</code>参数设置连接的端口号。为了生效，您必须在<a href="#bool-qsqldatabaseopen">打开</a>连接之前，进行端口号的设置。或者，您可以调用<a href="#void-qsqldatabaseclose">close()</a>关闭连接，然后设置端口号，再次调用<a href="#bool-qsqldatabaseopen">open()</a>函数</p>
+<p>这个没有默认的值。</p>
+<p><strong>另请查阅</strong> <a href="#int-qsqldatabaseport-const">port()</a>, <a href="#void-qsqldatabasesetusernameconst-qstring-name">setUserName()</a>， <a href="#void-qsqldatabasesetpasswordconst-qstring-password">setPassword()</a>, <a href="#void-qsqldatabasesethostnameconst-qstring-host">setHostName()</a>，<a href="#void-qsqldatabasesetdatabasenameconst-qstring-name">setDatabaseName()</a>, <a href="#void-qsqldatabasesetconnectoptionsconst-qstring-options--qstring">setConnectOptions()</a> 和 <a href="#bool-qsqldatabaseopen">open()</a>。</p>
+<h3><span id="void-qsqldatabase-setusername-const-qstring-amp-name">void QSqlDatabase::setUserName(const  &amp;<em>name</em>)</span><a href="#void-qsqldatabase-setusername-const-qstring-amp-name" class="header-anchor">#</a></h3><hr>
+<p>通过 <code>name</code> 参数来设置连接的用户名。为了生效，必须在<a href="#bool-qsqldatabaseopen">打开</a>连接之前设置用户名。或者，您可以调用 <a href="#void-qsqldatabaseclose">close()</a>函数来关闭连接，设置用户，然后再次调用 <a href="#bool-qsqldatabaseopen">open()</a></p>
+<p>这个没有默认值。</p>
+<p><strong>另请查阅</strong> <a href="#qstring-qsqldatabaseusername-const">userName()</a>，<a href="#void-qsqldatabasesetdatabasenameconst-qstring-name">setDatabaseName()</a>，<a href="#void-qsqldatabasesetpasswordconst-qstring-password">setPassword()</a>， <a href="#void-qsqldatabasesethostnameconst-qstring-host">setHostName()</a>，<a href="#void-qsqldatabasesetportint-port">setPort()</a>，<a href="#void-qsqldatabasesetconnectoptionsconst-qstring-options--qstring">setConnectOptions()</a> 和 <a href="#bool-qsqldatabaseopen">open()</a>。</p>
+<h3><span id="qstringlist-qsqldatabase-tables-qsql-tabletype-type-qsql-tables-const"> QSqlDatabase::tables( <em>type</em> = QSql::Tables) const</span><a href="#qstringlist-qsqldatabase-tables-qsql-tabletype-type-qsql-tables-const" class="header-anchor">#</a></h3><hr>
+<p>返回由 <code>parameter type</code> 参数 指定的数据库的表格、系统表和视图的列表。</p>
+<p><strong>另请查阅</strong> <a href="#qsqlindex-qsqldatabaseprimaryindexconst-qstring-tablename-const">primaryIndex()</a> 和 <a href="#qsqlrecord-qsqldatabaserecordconst-qstring-tablename-const">record()</a>。</p>
+<h3><span id="bool-qsqldatabase-transaction">bool QSqlDatabase::transaction()</span><a href="#bool-qsqldatabase-transaction" class="header-anchor">#</a></h3><hr>
+<p>如果驱动程序支持事务，则在数据库上开始事务。如果操作成功的话，返回 <code>true</code>, 否则返回 <code>false</code>。</p>
+<p><strong>另请查阅</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qsqldriver.html#hasFeature">QSqlDriver::hasFeature()</a>， <a href="#bool-qsqldatabasecommit">commit()</a> 和 <a href="#bool-qsqldatabaserollback">rollback()</a>。</p>
+<h3><span id="qstring-qsqldatabase-username-const"> QSqlDatabase::userName() const</span><a href="#qstring-qsqldatabase-username-const" class="header-anchor">#</a></h3><hr>
+<p>返回连接的用户名; 它也许为空。</p>
+<p><strong>另请查阅</strong> <a href="#void-qsqldatabasesetusernameconst-qstring-name">setUserName()</a>。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/S/">S</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSql/QSql/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QSql类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/S/QSqlDriver/QSqlDriver/">
+                        <span class="hidden-mobile">QSqlDriver类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

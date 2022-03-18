@@ -1,0 +1,939 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Arch安装 一.准备工作 二.安装 三.设置时区 四.配置主机名 五.配置hosts 六.引导系统 |安装微码 七. 用户设置 八.设置默认编辑器 九.安装网络驱动 十.退出chroot并重启   配置系统 （一）网络配置 1）Wi-Fi 2）dhcp 3) timezone 4) set-ntp 5) &#x2F;etc&#x2F;skel&#x2F;.bashrc   （二）安装驱动 1）显卡驱动 2）触摸板驱">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arch安装">
+<meta property="og:url" content="https://txt1994.github.io/2021/12/24/Arch%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Arch安装 一.准备工作 二.安装 三.设置时区 四.配置主机名 五.配置hosts 六.引导系统 |安装微码 七. 用户设置 八.设置默认编辑器 九.安装网络驱动 十.退出chroot并重启   配置系统 （一）网络配置 1）Wi-Fi 2）dhcp 3) timezone 4) set-ntp 5) &#x2F;etc&#x2F;skel&#x2F;.bashrc   （二）安装驱动 1）显卡驱动 2）触摸板驱">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/chrome_vvrUsig2GN.png">
+<meta property="article:published_time" content="2021-12-24T11:34:05.000Z">
+<meta property="article:modified_time" content="2022-03-18T15:57:25.040Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/chrome_vvrUsig2GN.png">
+  
+  
+  <title>Arch安装 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Arch安装">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-24 19:34" pubdate>
+        2021年12月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      63 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Arch安装</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月18日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#arch-an-zhuang">Arch安装</a><ul>
+<li><a href="#yi-zhun-bei-gong-zuo">一.准备工作</a></li>
+<li><a href="#er-an-zhuang">二.安装</a></li>
+<li><a href="#san-she-zhi-shi-qu">三.设置时区</a></li>
+<li><a href="#si-pei-zhi-zhu-ji-ming">四.配置主机名</a></li>
+<li><a href="#wu-pei-zhi-hosts">五.配置hosts</a></li>
+<li><a href="#liu-yin-dao-xi-tong">六.引导系统</a></li>
+<li><a href="#an-zhuang-wei-ma">|安装微码</a></li>
+<li><a href="#qi-yong-hu-she-zhi">七. 用户设置</a></li>
+<li><a href="#ba-she-zhi-mo-ren-bian-ji-qi">八.设置默认编辑器</a></li>
+<li><a href="#jiu-an-zhuang-wang-luo-qu-dong">九.安装网络驱动</a></li>
+<li><a href="#shi-tui-chu-chroot-bing-chong-qi">十.退出chroot并重启</a></li>
+</ul>
+</li>
+<li><a href="#pei-zhi-xi-tong">配置系统</a></li>
+<li><a href="#yi-wang-luo-pei-zhi">（一）网络配置</a><ul>
+<li><a href="#1-wi-fi">1）Wi-Fi</a></li>
+<li><a href="#2-dhcp">2）dhcp</a></li>
+<li><a href="#3-timezone">3) timezone</a></li>
+<li><a href="#4-set-ntp">4) set-ntp</a></li>
+<li><a href="#5-etc-skel-bashrc">5) /etc/skel/.bashrc</a></li>
+</ul>
+</li>
+<li><a href="#er-an-zhuang-qu-dong">（二）安装驱动</a><ul>
+<li><a href="#1-xian-qia-qu-dong">1）显卡驱动</a></li>
+<li><a href="#2-hong-mo-ban-qu-dong">2）触摸板驱动</a></li>
+<li><a href="#3-an-zhuang-sheng-qia-qu-dong">3）安装声卡驱动</a></li>
+</ul>
+</li>
+<li><a href="#san-an-zhuang-zhuo-mian-yi-gnome-zhuo-mian-wei-li">（三）安装桌面（以gnome桌面为例）</a></li>
+<li><a href="#si-an-zhuang-aur-bao-ruan-jian-guan-li">（四）安装AUR包软件管理</a></li>
+<li><a href="#wu-arch-linux-gnome-zhuo-mian-huan-jing-guan-li-extensions">（五）Arch Linux Gnome桌面环境管理extensions</a></li>
+<li><a href="#liu-gnome-ying-yong-qi-dong-qi">（六）Gnome应用启动器</a></li>
+<li><a href="#qi-shu-ru-fa-an-zhuang">（七）输入法安装</a></li>
+</ul>
+<ul>
+<li><a href="#jian-pan-bu-ju-pei-zhi">键盘布局配置</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h2><span id="arch-an-zhuang">Arch安装</span><a href="#arch-an-zhuang" class="header-anchor">#</a></h2><h3><span id="yi-zhun-bei-gong-zuo">一.准备工作</span><a href="#yi-zhun-bei-gong-zuo" class="header-anchor">#</a></h3><h4><span id="1-1-xia-zai-jing-xiang">1.1下载镜像</span><a href="#1-1-xia-zai-jing-xiang" class="header-anchor">#</a></h4><p>地址：</p>
+<div class="code-wrapper"><pre><code class="hljs css">清华：https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso/latest/
+<span class="hljs-number">163</span>:https://mirrors.<span class="hljs-number">163</span>.com/archlinux/iso/latest/
+中科大：https://mirrors.ustc.edu.cn/archlinux/iso/latest/
+上海交通：https://mirror.sjtu.edu.cn/archlinux/iso/latest/
+北大：https://mirrors.pku.edu.cn/archlinux/iso/latest/</code></pre></div>
+
+<p>本文是Arch官方文档的再次梳理版</p>
+<div class="code-wrapper"><pre><code class="hljs css">https://wiki.archlinux.org/title/<span class="hljs-built_in">Installation_guide_</span>(%E7%AE%<span class="hljs-number">80%</span>E4%BD%<span class="hljs-number">93%</span>E4%B8%AD%E6%<span class="hljs-number">96%</span><span class="hljs-number">87</span>)</code></pre></div>
+
+<p>安装方法有很多种比如脚本，实体机，虚拟机</p>
+<p>本文采用虚拟机+SSH安装+UEFI，SSH方便复制命令</p>
+<h3><span id="er-an-zhuang">二.安装</span><a href="#er-an-zhuang" class="header-anchor">#</a></h3><h4><span id="1-jian-pan-bu-ju-mo-ren-wei-us-bu-xu-yao-geng-gai">1.键盘布局,默认为us，不需要更改</span><a href="#1-jian-pan-bu-ju-mo-ren-wei-us-bu-xu-yao-geng-gai" class="header-anchor">#</a></h4><h4><span id="2-yan-zheng-yin-dao-mo-shi">2.验证引导模式</span><a href="#2-yan-zheng-yin-dao-mo-shi" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> /sys/firmware/efi/efivars</code></pre></div>
+
+<p>结果无错误切有目录则是UEFI，反之是BIOS引导</p>
+<h4><span id="3-lian-jie-wang-luo">3.连接网络</span><a href="#3-lian-jie-wang-luo" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs shell">ip link</code></pre></div>
+
+<p> 用 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ping_(networking_utility)">ping</a> 检查网络连接 </p>
+<div class="code-wrapper"><pre><code class="hljs shell">ping archlinux.org</code></pre></div>
+
+<h4><span id="4-geng-xin-xi-tong-shi-jian">4.更新系统时间</span><a href="#4-geng-xin-xi-tong-shi-jian" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs shell">timedatectl set-ntp true</code></pre></div>
+
+<p>可用 timedatectl status 检查服务状态</p>
+<h4><span id="5-jian-li-ying-pan-fen-qu">5.建立硬盘分区</span><a href="#5-jian-li-ying-pan-fen-qu" class="header-anchor">#</a></h4><p>cfdisk比fdisk配置简单许多，因此本文采用cfdisk</p>
+<div class="code-wrapper"><pre><code class="hljs bash">cfdisk -l
+
+cfdisk</code></pre></div>
+
+<p>UEFI采用GPT分区，一般情况下需要创建</p>
+<table>
+<thead>
+<tr>
+<th><strong>挂载点</strong></th>
+<th>分区</th>
+<th>分区类型</th>
+<th>建议大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/mnt/boot</code> 或 <code>/mnt/efi</code></td>
+<td>/dev/<em>efi_system_partition（efi 系统分区）</em></td>
+<td>EFI 系统分区</td>
+<td>至少 260 MiB</td>
+</tr>
+<tr>
+<td>[SWAP]</td>
+<td>/dev/<em>swap_partition（交换空间分区）</em></td>
+<td>Linux swap (交换空间)</td>
+<td>大于 512 MiB</td>
+</tr>
+<tr>
+<td>/mnt</td>
+<td>/dev/<em>root_partition（根分区）</em></td>
+<td>Linux x86-64 根目录 (/)</td>
+<td>剩余空间</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">文件系统</th>
+<th align="center">创建命令</th>
+<th align="center">工具</th>
+<th align="center"><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Archiso">Archiso</a> [<a target="_blank" rel="noopener" href="https://gitlab.archlinux.org/archlinux/archiso/blob/master/configs/releng/packages.x86_64">1]</a></th>
+<th align="center">内核文档 [<a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/filesystems/">2]</a></th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Btrfs">Btrfs</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mkfs.btrfs.8">mkfs.btrfs(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=btrfs-progs">btrfs-progs</a></td>
+<td align="center">是</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/filesystems/btrfs.html">btrfs.html</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://btrfs.wiki.kernel.org/index.php/Status">可靠性</a></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/VFAT">VFAT</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mkfs.fat.8">mkfs.fat(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=dosfstools">dosfstools</a></td>
+<td align="center">是</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/filesystems/vfat.html">vfat.html</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/exFAT">exFAT</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mkexfatfs.8">mkexfatfs(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=exfat-utils">exfat-utils</a></td>
+<td align="center">是</td>
+<td align="center">N/A (FUSE-based)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/F2FS">F2FS</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mkfs.f2fs.8">mkfs.f2fs(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=f2fs-tools">f2fs-tools</a></td>
+<td align="center">是</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/filesystems/f2fs.html">f2fs.html</a></td>
+<td align="center">基于闪存的设备</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Ext3">ext3</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mke2fs.8">mke2fs(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=e2fsprogs">e2fsprogs</a></td>
+<td align="center">是 (<a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=base">base</a>)</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/filesystems/ext3.html">ext3.html</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Ext4">ext4</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mke2fs.8">mke2fs(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=e2fsprogs">e2fsprogs</a></td>
+<td align="center">是 (<a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=base">base</a>)</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/filesystems/ext4.txt">ext4.txt</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hierarchical_File_System">HFS</a></td>
+<td align="center">mkfs.hfsplus(8)</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/hfsprogs/">hfsprogs</a>AUR</td>
+<td align="center">否</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/filesystems/hfs.html">hfs.html</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/macOS">macOS</a> (8.x-10.12.x) 文件系统</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/JFS">JFS</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mkfs.jfs.8">mkfs.jfs(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=jfsutils">jfsutils</a></td>
+<td align="center">是 (<a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=base">base</a>)</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/filesystems/jfs.txt">jfs.txt</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/NILFS">NILFS2</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mkfs.nilfs2.8">mkfs.nilfs2(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=nilfs-utils">nilfs-utils</a></td>
+<td align="center">是</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/filesystems/nilfs2.html">nilfs2.html</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/NTFS">NTFS</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mkfs.ntfs.8">mkfs.ntfs(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=ntfs-3g">ntfs-3g</a></td>
+<td align="center">是</td>
+<td align="center">N/A (FUSE-based)</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Microsoft_Windows">Windows</a> 文件系统</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Reiser4">Reiser4</a></td>
+<td align="center">mkfs.reiser4(8)</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/reiser4progs/">reiser4progs</a>AUR</td>
+<td align="center">否</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ReiserFS">ReiserFS</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mkfs.reiserfs.8">mkfs.reiserfs(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=reiserfsprogs">reiserfsprogs</a></td>
+<td align="center">是 (<a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=base">base</a>)</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Universal_Disk_Format">UDF</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mkfs.udf.8">mkfs.udf(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=udftools">udftools</a></td>
+<td align="center">Optional</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/filesystems/udf.html">udf.html</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/XFS">XFS</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://man.archlinux.org/man/mkfs.xfs.8">mkfs.xfs(8)</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=xfsprogs">xfsprogs</a></td>
+<td align="center">是 (<a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=base">base</a>)</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/filesystems/xfs.txt">xfs.txt</a> <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/filesystems/xfs-delayed-logging-design.html">xfs-delayed-logging-design.html</a> <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/filesystems/xfs-self-describing-metadata.html">xfs-self-describing-metadata.html</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/ZFS">ZFS</a></td>
+<td align="center"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/zfs-linux/">zfs-linux</a>AUR</td>
+<td align="center">否</td>
+<td align="center">N/A (<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/OpenZFS">OpenZFS</a> 移植)</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>本文创建俩分区：根分区和ESP分区，ESP分区300M，根分区剩余全部空间</p>
+<h4><span id="6-ge-shi-hua-shang-bian-chuang-jian-de-fen-qu">6.格式化上边创建的分区</span><a href="#6-ge-shi-hua-shang-bian-chuang-jian-de-fen-qu" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs bash">mkfs.ext4 /dev/sda2 //根分区
+mkfs.vfat /dev/sda1	//ESP分区</code></pre></div>
+
+<h4><span id="7-gua-zai-ge-shi-hua-hou-de-fen-qu">7.挂载格式化后的分区</span><a href="#7-gua-zai-ge-shi-hua-hou-de-fen-qu" class="header-anchor">#</a></h4><p>挂载有先后顺序， 先挂载根（root）分区（到 <code>/mnt</code>），再挂载引导（boot）分区（到 <code>/mnt/boot</code> 或 <code>/mnt/efi</code> ， 否则您可能遇到安装完成后无法启动系统的问题 </p>
+<div class="code-wrapper"><pre><code class="hljs bash">mount /dev/sda2 /mnt
+<span class="hljs-built_in">mkdir</span> /mnt/efi
+mount /dev/sda1 /mnt/efi</code></pre></div>
+
+<h4><span id="8-geng-huan-ruan-jian-yuan">8.更换软件源</span><a href="#8-geng-huan-ruan-jian-yuan" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs bash">curl -L -o /etc/pacman.d/mirrorlist <span class="hljs-string">"https://www.archlinux.org/mirrorlist/?country=CN"</span></code></pre></div>
+
+<p> 编辑<code>/etc/pacman.d/mirrorlist</code>，反注释其中一个或多个链接 </p>
+<p>本文采用中科大和清华源</p>
+<div class="code-wrapper"><pre><code class="hljs bash">vim /etc/pacman.d/mirrorlist
+
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/<span class="hljs-variable">$repo</span>/os/<span class="hljs-variable">$arch</span>
+Server = https://mirrors.ustc.edu.cn/archlinux/<span class="hljs-variable">$repo</span>/os/<span class="hljs-variable">$arch</span></code></pre></div>
+
+<h4><span id="9-an-zhuang-xi-tong-dao-ci-pan">9.安装系统到磁盘</span><a href="#9-an-zhuang-xi-tong-dao-ci-pan" class="header-anchor">#</a></h4><p>基础包：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">pacstrap /mnt base base-devel linux linux-firmware  <span class="hljs-comment">#base-devel在AUR包的安装是必须的</span></code></pre></div>
+
+<p> 功能性软件 :</p>
+<div class="code-wrapper"><pre><code class="hljs bash">pacstrap /mnt vim nano ctags wget clang clangd gcc g++ cmake make git networkmanager dhcpcd iwd sudo bash-completion openssh   <span class="hljs-comment">#一个有线所需 一个无线所需 一个编辑器  一个提权工具 一个补全工具 iwd也需要dhcpcd</span></code></pre></div>
+
+<h4><span id="10-pei-zhi-xi-tong">10.配置系统</span><a href="#10-pei-zhi-xi-tong" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs bash">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+<span class="hljs-built_in">cat</span> /mnt/etc/fstab</code></pre></div>
+
+<h4><span id="11-qie-huan-dao-xin-xi-tong">11.切换到新系统</span><a href="#11-qie-huan-dao-xin-xi-tong" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs bash">arch-chroot /mnt</code></pre></div>
+
+<h3><span id="san-she-zhi-shi-qu">三.设置时区</span><a href="#san-she-zhi-shi-qu" class="header-anchor">#</a></h3><p> 本地时区配置 </p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></pre></div>
+
+<p> 生成 <code>/etc/adjtime</code> </p>
+<div class="code-wrapper"><pre><code class="hljs bash">hwclock --systohc --utc</code></pre></div>
+
+<p>本地化： 明确规定了地域、货币、时区日期的格式、字符排列方式和其他本地化标准。</p>
+<p> 需在这两个文件设置：<code>locale.gen</code> 与 <code>locale.conf</code>。 </p>
+<p>编辑 <code>/etc/locale.gen</code>，然后取消掉 <code>en_US.UTF-8 UTF-8</code>，<code>zh_CN.UTF-8 UTF-8</code> 和其他需要的 <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Locale_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">地区</a> 前的注释（#）。</p>
+<p>接着执行 <code>locale-gen</code> 以生成 locale 信息：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">locale-gen</code></pre></div>
+
+<p> 编辑： /etc/locale.conf  </p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">'LANG=en_US.UTF-8'</span>  &gt; /etc/locale.conf</code></pre></div>
+
+<h3><span id="si-pei-zhi-zhu-ji-ming">四.配置主机名</span><a href="#si-pei-zhi-zhu-ji-ming" class="header-anchor">#</a></h3><p> 编辑<code>/etc/hostname</code>，写入<code>myhostname</code>  默认为archlinux </p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">"archlinux"</span> &gt;&gt; /etc/hostname</code></pre></div>
+
+<h3><span id="wu-pei-zhi-hosts">五.配置hosts</span><a href="#wu-pei-zhi-hosts" class="header-anchor">#</a></h3><p> 编辑<code>/etc/hosts</code>，把<code>myhostname</code>改为你自己的主机名 </p>
+<div class="code-wrapper"><pre><code class="hljs bash">127.0.0.1   localhost
+::1         localhost
+127.0.1.1   archlinux.localdomain  archlinux</code></pre></div>
+
+<h3><span id="liu-yin-dao-xi-tong">六.引导系统</span><a href="#liu-yin-dao-xi-tong" class="header-anchor">#</a></h3><h4><span id="1-grub-yin-dao-windows-huo-qi-ta-linux">1）Grub引导Windows或其他Linux</span><a href="#1-grub-yin-dao-windows-huo-qi-ta-linux" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs bash">pacman -S os-prober</code></pre></div>
+
+<h4><span id="2-zhu-ban-zhi-chi-uefi-yin-dao">2)    主板支持UEFI引导</span><a href="#2-zhu-ban-zhi-chi-uefi-yin-dao" class="header-anchor">#</a></h4><h3><span id="an-zhuang-wei-ma">|安装微码</span><a href="#an-zhuang-wei-ma" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs bash">pacman -S intel-ucode   <span class="hljs-comment">#Intel</span>
+pacman -S amd-ucode     <span class="hljs-comment">#AMD</span></code></pre></div>
+
+<h5><span id="2-1-xia-zai-grub-an-zhuang-shi-suo-bi-xu-de-wen-jian">2.1)    下载grub安装时所必需的文件</span><a href="#2-1-xia-zai-grub-an-zhuang-shi-suo-bi-xu-de-wen-jian" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs bash">pacman -S grub efibootmgr</code></pre></div>
+
+<h5><span id="2-2-an-zhuang-grub">2.2)    安装grub</span><a href="#2-2-an-zhuang-grub" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs bash">grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB</code></pre></div>
+
+<p> 编辑/etc/default/grub 文件，去掉<code>GRUB_CMDLINE_LINUX_DEFAULT</code>一行中最后的 quiet 参数，同时把 log level 的数值从 3 改成 5。这样是为了后续如果出现系统错误，方便排错。同时加入 nowatchdog 参数，这可以显著提高开关机速度 </p>
+<h5><span id="2-3-geng-xin-grub">2.3)     更新grub</span><a href="#2-3-geng-xin-grub" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs bash">grub-mkconfig -o /boot/grub/grub.cfg</code></pre></div>
+
+<h3><span id="qi-yong-hu-she-zhi">七.    用户设置</span><a href="#qi-yong-hu-she-zhi" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs bash">vim /etc/hostname <span class="hljs-comment">#输入主机名，只能输入字母</span>
+passwd root <span class="hljs-comment">#设置root密码</span>
+useradd -m -g <span class="hljs-built_in">users</span> -G wheel -s /bin/bash username <span class="hljs-comment">#添加用户</span>
+passwd username <span class="hljs-comment">#设置用户密码</span>
+vim /etc/sudoers <span class="hljs-comment">#为用户添加sudo权限 反注释%wheel ALL=(ALL) ALL</span>
+
+<span class="hljs-comment">#如果想在输入密码时显示星号，可以追加Defaults env_reset,pwfeedback</span></code></pre></div>
+
+<h3><span id="ba-she-zhi-mo-ren-bian-ji-qi">八.设置默认编辑器</span><a href="#ba-she-zhi-mo-ren-bian-ji-qi" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -f /usr/bin/vim /usr/bin/vi</code></pre></div>
+
+<h3><span id="jiu-an-zhuang-wang-luo-qu-dong">九.安装网络驱动</span><a href="#jiu-an-zhuang-wang-luo-qu-dong" class="header-anchor">#</a></h3><h4><span id="1-wifi">1）wifi</span><a href="#1-wifi" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs bash">pacman -S netctl iw wpa_supplicant dialog networkmanager
+pacman -S broadcom-wl <span class="hljs-comment">#博通无线网卡驱动</span></code></pre></div>
+
+<h4><span id="2-you-xian-lian-jie-dhcp">2）有线连接dhcp</span><a href="#2-you-xian-lian-jie-dhcp" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs bash">pacman -S dhcp dhcpcd</code></pre></div>
+
+<h3><span id="shi-tui-chu-chroot-bing-chong-qi">十.退出chroot并重启</span><a href="#shi-tui-chu-chroot-bing-chong-qi" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 退出chroot</span>
+<span class="hljs-built_in">exit</span>
+<span class="hljs-comment"># 卸载 /mnt</span>
+umount -R /mnt
+<span class="hljs-comment"># 重启电脑</span>
+reboot</code></pre></div>
+
+<blockquote>
+<p><strong>注意</strong><br>运行reboot命令后，请拔掉U盘<br>使用ssh或其他Linux发行版本安装的用户请在新系统中配置好ssh环境，重启后可以直接ssh连接（需要安装net-tools软件包，不然无法运行ifconfig命令）</p>
+</blockquote>
+<h2><span id="pei-zhi-xi-tong">配置系统</span><a href="#pei-zhi-xi-tong" class="header-anchor">#</a></h2><h2><span id="yi-wang-luo-pei-zhi">（一）网络配置</span><a href="#yi-wang-luo-pei-zhi" class="header-anchor">#</a></h2><h3><span id="1-wi-fi">1）Wi-Fi</span><a href="#1-wi-fi" class="header-anchor">#</a></h3><p> 最新版的arch可能没有wifi-menu命令 </p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo wifi-menu</code></pre></div>
+
+<h3><span id="2-dhcp">2）dhcp</span><a href="#2-dhcp" class="header-anchor">#</a></h3><p>有线连接</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo systemctl <span class="hljs-built_in">enable</span> --now dhcpcd</code></pre></div>
+<h3><span id="3-timezone">3) timezone</span><a href="#3-timezone" class="header-anchor">#</a></h3><p>设置系统时区</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo timedatectl set-timezone Asia/Shanghai</code></pre></div>
+<h3><span id="4-set-ntp">4) set-ntp</span><a href="#4-set-ntp" class="header-anchor">#</a></h3><p>网络时间同步</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo timedatectl set-ntp <span class="hljs-literal">true</span></code></pre></div>
+
+<p>查看时间状态</p>
+<div class="code-wrapper"><pre><code class="hljs bash">timedatectl status</code></pre></div>
+<h3><span id="5-etc-skel-bashrc">5) /etc/skel/.bashrc</span><a href="#5-etc-skel-bashrc" class="header-anchor">#</a></h3><p>编辑用户配置文件.bashrc以在终端显示文件夹，以颜色</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /etc/skel/
+<span class="hljs-built_in">ls</span> -la
+vim .bashrc</code></pre></div>
+
+<p>在PS1之前添加如下文本</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> EDITOR=vim
+
+<span class="hljs-built_in">alias</span> <span class="hljs-built_in">ls</span>=<span class="hljs-string">'ls --color=auto'</span>
+<span class="hljs-built_in">alias</span> grep=<span class="hljs-string">'grep --color=auto'</span>
+<span class="hljs-built_in">alias</span> egrep=<span class="hljs-string">'egrep --color=auto'</span>
+<span class="hljs-built_in">alias</span> fgrep=<span class="hljs-string">'fgrep --color=auto'</span>
+
+[ ! -e ~/.dircolors ] &amp;&amp; <span class="hljs-built_in">eval</span> $(<span class="hljs-built_in">dircolors</span> -p &gt; ~/.dircolors)
+[ -e /bin/dircolors ] &amp;&amp; <span class="hljs-built_in">eval</span> $(<span class="hljs-built_in">dircolors</span> -b &gt; ~/.dircolors)
+</code></pre></div>
+<p>覆盖家目录的文件</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> -a . ~</code></pre></div>
+
+<h2><span id="er-an-zhuang-qu-dong">（二）安装驱动</span><a href="#er-an-zhuang-qu-dong" class="header-anchor">#</a></h2><h3><span id="1-xian-qia-qu-dong">1）显卡驱动</span><a href="#1-xian-qia-qu-dong" class="header-anchor">#</a></h3><p> 运行<code>lspci | grep VGA</code>查看显卡型号 按照自己的显卡型号安装相应驱动 </p>
+<table>
+<thead>
+<tr>
+<th align="center">显卡</th>
+<th align="center">驱动名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Intel</td>
+<td align="center">xf86-video-intel vulkan-intel mesa</td>
+</tr>
+<tr>
+<td align="center">NVIDIA</td>
+<td align="center">nvidia nvidia-utils nvidia-settings opencl-nvidia lib32-opencl-nvidia lib32-nvidia-utils</td>
+</tr>
+<tr>
+<td align="center"><del>开源NVIDIA(不推荐)</del></td>
+<td align="center"><del>xf86-video-nouveau</del></td>
+</tr>
+<tr>
+<td align="center">AMD</td>
+<td align="center">xf86-video-amdgpu xf86-video-ati mesa vulkan-radeom</td>
+</tr>
+</tbody></table>
+<p> <strong>FBI Warning</strong><br>千万不要安装nouveau，千万不要安装nouveau，千万不要安装nouveau！重要的事情说三遍。如果你不怕电脑莫名卡死，当我没说。（doge）<br>ps：博主受过nouveau的折磨 </p>
+<h3><span id="2-hong-mo-ban-qu-dong">2）触摸板驱动</span><a href="#2-hong-mo-ban-qu-dong" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs bash">sudo pacman -S xf86-input-synaptics //笔记本,外置触摸</code></pre></div>
+<h3><span id="3-an-zhuang-sheng-qia-qu-dong">3）安装声卡驱动</span><a href="#3-an-zhuang-sheng-qia-qu-dong" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs bash">pacman -S alsa-utils pulseaudio pulseaudio-bluetooth cups</code></pre></div>
+
+<h2><span id="san-an-zhuang-zhuo-mian-yi-gnome-zhuo-mian-wei-li">（三）安装桌面（以gnome桌面为例）</span><a href="#san-an-zhuang-zhuo-mian-yi-gnome-zhuo-mian-wei-li" class="header-anchor">#</a></h2><p>安装x窗口系统</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment">#安装英文字体</span>
+sudo pacman -S ttf-dejavu ttf-droid ttf-hack ttf-fonts-awesome otf-font-awesome ttf-lato ttf-liberation ttf-linux-libertine ttf-opensans ttf-roboto ttf-ubuntu-font-family 
+
+<span class="hljs-comment">#安装中文字体</span>
+sudo pacman -S ttf-hannom noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji adobe-source-code-oro-fonts adobe-source-sans-fonts adobe-source-serif-fonts adobe-source-han-serif-cn-fonts adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts adobe-source-han-sans-tw-fonts  wqy-zenhei wqy-microhei
+sudo vim /etc/locale.conf <span class="hljs-comment">#将语言改成中文</span>
+<span class="hljs-comment"># 将英语注释掉，添加以下内容LANG=zh_CN.UTF-8</span>
+locale-gen
+sudo pacman -S xorg <span class="hljs-comment">#安装x窗口系统</span></code></pre></div>
+
+<p>安装kde桌面</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo pacman -S plasma-meta plasma-nm konsole dolphin kde-connect firefox <span class="hljs-comment">#简洁的kde桌面</span>
+sudo pacman -S plasma plasma-nm kde-applications <span class="hljs-comment">#kde全家桶</span>
+sudo systemctl <span class="hljs-built_in">enable</span> sddm <span class="hljs-comment">#启动sddm服务</span>
+sudo systemctl <span class="hljs-built_in">enable</span> NetworkManager <span class="hljs-comment">#启动网络管理器</span>
+sudo reboot重启</code></pre></div>
+
+<p>安装gnome桌面</p>
+<div class="code-wrapper"><pre><code class="hljs bash">pacman -S gnome gnome-extra gdm<span class="hljs-comment">#(gdb是登陆管理器)</span>
+systemctl <span class="hljs-built_in">enable</span> gdm.service
+reboot</code></pre></div>
+
+<p>开启字体渲染引擎</p>
+<div class="code-wrapper"><pre><code class="hljs bash">vim /etc/profile.d/freetype2.sh</code></pre></div>
+
+<p>去掉 <code>#export FREETYPE_PROPERTIES="truetype:interpreter-version=40"</code> 的 <code>#</code> 号</p>
+<p>清空无用缓存和语言</p>
+<div class="code-wrapper"><pre><code class="hljs bash">pacman -Scc</code></pre></div>
+
+<h2><span id="si-an-zhuang-aur-bao-ruan-jian-guan-li">（四）安装AUR包软件管理</span><a href="#si-an-zhuang-aur-bao-ruan-jian-guan-li" class="header-anchor">#</a></h2><div class="code-wrapper"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://aur.archlinux.org/paru.git</code></pre></div>
+
+<p>打包工具</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo vim /etc/makepkg.conf</code></pre></div>
+
+<p>取消注释<code>#MAKEFLAGS="-j$(nproc)"</code></p>
+<div class="code-wrapper"><pre><code class="hljs bash">makepkg -si</code></pre></div>
+
+<p>此时<code>paru</code>已经被安装了</p>
+<p>修改paru排序的相关性，倒序</p>
+<div class="code-wrapper"><pre><code class="hljs bash">vim /etc/paru.conf
+
+<span class="hljs-comment"># 取消注释#BottomUp</span></code></pre></div>
+
+<h2><span id="wu-arch-linux-gnome-zhuo-mian-huan-jing-guan-li-extensions">（五）Arch Linux Gnome桌面环境管理extensions</span><a href="#wu-arch-linux-gnome-zhuo-mian-huan-jing-guan-li-extensions" class="header-anchor">#</a></h2><p>Gnome桌面管理extensions是内置的，但主题较少，在archwiki可以用-theme搜索到想要的主题<br>然后用：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo pacman -S 主题名</code></pre></div>
+
+<h2><span id="liu-gnome-ying-yong-qi-dong-qi">（六）Gnome应用启动器</span><a href="#liu-gnome-ying-yong-qi-dong-qi" class="header-anchor">#</a></h2><p>要使用Gnome启动器要先安装connector,此文件在AUR里，所以要使用paru安装<br><code>https://extensions.gnome.org</code></p>
+<div class="code-wrapper"><pre><code class="hljs bash">paru chrome-gnome-shell</code></pre></div>
+
+<p>安装<code>dash to dock</code><br><code>blur my shell</code></p>
+<p><code>ArcMenu</code></p>
+<p><code>Vitals</code></p>
+<p><code>Just Perfection</code></p>
+<h2><span id="qi-shu-ru-fa-an-zhuang">（七）输入法安装</span><a href="#qi-shu-ru-fa-an-zhuang" class="header-anchor">#</a></h2><p>fcitx5</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo pacman -S fcitx5-im fcitx5-chinese-addons fcitx5-material-color</code></pre></div>
+
+<p>环境变量与故障处理,wps和firefox无法正确输入<br>编辑<code>~/.pam_environment</code></p>
+<div class="code-wrapper"><pre><code class="hljs bash">GTK_IM_MODULE DEFAULT=fcitx
+QT_IM_MODULE  DEFAULT=fcitx
+XMODIFIERS    DEFAULT=@im=fcitx</code></pre></div>
+
+<p>主题安装</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo pacman -S fcitx5-nord</code></pre></div>
+
+<p>输入法联想与准确度</p>
+<ol>
+<li>fcitx5-config-qt配置工具选择Input Method下Pinyin,选择Enable Cloud Pinyin，字库(Cloud Pinyin)来自Baidu。</li>
+<li>离线字库Dictionaries<br>加入清华的源需要编辑<code>/etc/pacman.conf</code><div class="code-wrapper"><pre><code class="hljs bash">[archlinuxcn]
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span></code></pre></div></li>
+</ol>
+<p>更新数据库</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo pacman -Syy</code></pre></div>
+
+<p>安装拼音联想词库</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo pacman -S archlinuxcn-keyring fcitx5-pinyin-moegirl fcitx5-pinyin-zhwiki</code></pre></div>
+
+<h1><span id="jian-pan-bu-ju-pei-zhi">键盘布局配置</span><a href="#jian-pan-bu-ju-pei-zhi" class="header-anchor">#</a></h1><p>编辑：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">/etc/vconsole.conf
+KEYMAP=de-latin1</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/26/OpenLib-c/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">OpenLib-c++</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/24/C-%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+                        <span class="hidden-mobile">C++线程池</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

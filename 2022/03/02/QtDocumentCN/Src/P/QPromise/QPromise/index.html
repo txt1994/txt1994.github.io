@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QPromise Class 公共函数 详细描述 成员函数文档 bool QPromise::addResult(T &amp;&amp;result, int index &#x3D; -1) bool QPromise::addResult(const T &amp;result, int index &#x3D; -1) QPromise::QPromise(QPromise &amp;&amp;ot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QPromise类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/P/QPromise/QPromise/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QPromise Class 公共函数 详细描述 成员函数文档 bool QPromise::addResult(T &amp;&amp;result, int index &#x3D; -1) bool QPromise::addResult(const T &amp;result, int index &#x3D; -1) QPromise::QPromise(QPromise &amp;&amp;ot">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:50:50.494Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="P">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QPromise类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QPromise类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      59 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QPromise类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qpromise-class">QPromise Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#bool-qpromise-addresult-t-result-int-index-1">bool QPromise::addResult(T &amp;&amp;<em>result</em>, int <em>index</em> = -1)</a></li>
+<li><a href="#bool-qpromise-addresult-const-t-result-int-index-1">bool QPromise::addResult(const T &amp;<em>result</em>, int <em>index</em> = -1)</a></li>
+<li><a href="#qpromise-qpromise-qpromise-qpromise-t-other">QPromise::QPromise(</a><a href="#QPromise">QPromise</a><t> &amp;&amp;<em>other</em>)</t></li>
+<li><a href="#qpromise-qpromise">QPromise::QPromise()</a></li>
+<li><a href="#qpromise-qpromise-t-qpromise-operator-qpromise-qpromise-t-other">QPromise</a></li>
+<li><a href="#qpromise-qpromise">QPromise::~QPromise()</a></li>
+<li><a href="#void-qpromise-finish">void QPromise::finish()</a></li>
+<li><a href="#qfuture-t-qpromise-future-const">QFuture</a></li>
+<li><a href="#bool-qpromise-iscanceled-const">bool QPromise::isCanceled() const</a></li>
+<li><a href="#void-qpromise-setexception-const-qexception-qexception-html-e">void QPromise::setException(const </a><a href="qexception.html">QException</a> &amp;<em>e</em>)</li>
+<li><a href="#void-qpromise-setexception-std-exception-ptr-e">void QPromise::setException(std::exception_ptr <em>e</em>)</a></li>
+<li><a href="#void-qpromise-setprogressrange-int-minimum-int-maximum">void QPromise::setProgressRange(int <em>minimum</em>, int <em>maximum</em>)</a></li>
+<li><a href="#void-qpromise-setprogressvalue-int-progressvalue">void QPromise::setProgressValue(int <em>progressValue</em>)</a></li>
+<li><a href="#void-qpromise-setprogressvalueandtext-int-progressvalue-const-qstring-qstring-html-progresstext">void QPromise::setProgressValueAndText(int <em>progressValue</em>, const </a><a href="qstring.html">QString</a> &amp;<em>progressText</em>)</li>
+<li><a href="#void-qpromise-start">void QPromise::start()</a></li>
+<li><a href="#void-qpromise-suspendifrequested">void QPromise::suspendIfRequested()</a></li>
+<li><a href="#void-qpromise-swap-qpromise-qpromise-t-other">void QPromise::swap(</a><a href="#QPromise">QPromise</a><t> &amp;<em>other</em>)</t></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QPromise Class
+
+<p>template <typename t> class QPromise</typename></p>
+<p>QPromise类提供了一种存储计算结果的方法，可以被<a href="../F/QFuture.md">QFuture</a>访问。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qpromise></qpromise></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Since:</td>
+<td>Qt 6.0</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qpromise-members.html">List of all members, including inherited members</a></li>
+</ul>
+<p><strong>注意：</strong>这个类中的所有函数都是<a href="hreads-reentrancy.html">线程安全的</a>。</p>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QPromise-2">QPromise</a></strong>(QPromise<t> &amp;&amp;<em>other</em>)</t></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QPromise">QPromise</a></strong>()</td>
+</tr>
+<tr>
+<td>QPromise<t> &amp;</t></td>
+<td><strong><a href="#operator-eq-1">operator=</a></strong>(QPromise<t> &amp;&amp;<em>other</em>)</t></td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QPromise">~QPromise</a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#addResult-1">addResult</a></strong>(const T &amp;<em>result</em>, int <em>index</em> = -1)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#addResult-2">addResult</a></strong>(T &amp;&amp;<em>result</em>, int <em>index</em> = -1)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#finish">finish</a></strong>()</td>
+</tr>
+<tr>
+<td>QFuture<t></t></td>
+<td><strong><a href="#future">future</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isCanceled">isCanceled</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setException">setException</a></strong>(const QException &amp;<em>e</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setException-1">setException</a></strong>(std::exception_ptr <em>e</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setProgressRange">setProgressRange</a></strong>(int <em>minimum</em>, int <em>maximum</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setProgressValue">setProgressValue</a></strong>(int <em>progressValue</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setProgressValueAndText">setProgressValueAndText</a></strong>(int <em>progressValue</em>, const QString &amp;<em>progressText</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#start">start</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#suspendIfRequested">suspendIfRequested</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#swap">swap</a></strong>(QPromise<t> &amp;<em>other</em>)</t></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QPromise提供了一种简单的方法，以异步的方式将用户定义的计算的进度和结果传达给<a href>QFuture</a>。为了使通信发挥作用，<a href>QFuture</a>必须由QPromise构建。</p>
+<p>当需要细粒度的控制或者需要高水平的通信基元来配合<a href>QFuture</a>时，你可以使用基于QPromise的工作负载作为<a href="qtconcurrent-index.html">Qt Concurrent</a>框架的一个替代。</p>
+<p>promise和future协作的最简单的情况是一个单一的结果通信:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QPromise&lt;<span class="hljs-type">int</span>&gt; promise;
+QFuture&lt;<span class="hljs-type">int</span>&gt; future = promise.<span class="hljs-built_in">future</span>();
+
+<span class="hljs-function">QScopedPointer&lt;QThread&gt; <span class="hljs-title">thread</span><span class="hljs-params">(QThread::create([] (QPromise&lt;<span class="hljs-type">int</span>&gt; promise) {</span></span>
+<span class="hljs-params"><span class="hljs-function">    promise.start();   <span class="hljs-comment">// notifies QFuture that the computation is started</span></span></span>
+<span class="hljs-params"><span class="hljs-function">    promise.addResult(<span class="hljs-number">42</span>);</span></span>
+<span class="hljs-params"><span class="hljs-function">    promise.finish();  <span class="hljs-comment">// notifies QFuture that the computation is finished</span></span></span>
+<span class="hljs-params"><span class="hljs-function">}, std::move(promise)))</span></span>;
+thread-&gt;<span class="hljs-built_in">start</span>();
+
+future.<span class="hljs-built_in">waitForFinished</span>();  <span class="hljs-comment">// blocks until QPromise::finish is called</span>
+future.<span class="hljs-built_in">result</span>();  <span class="hljs-comment">// returns 42</span></code></pre></div>
+
+<p>根据设计，QPromise是一个只移动的对象。这种行为有助于确保每当承诺被销毁时，相关的未来对象会得到通知，而不会永远等待结果的出现。然而，如果想用同一个承诺来报告不同线程的结果，这就不太方便了。目前还没有具体的方法来做到这一点，但已知的机制是存在的，例如使用智能指针或原始指针/引用。如果你想复制你的承诺并在多个地方同时使用它，<a href="qsharedpointer.html">QSharedPointer</a>是一个不错的默认选择。从某种意义上说，原始指针或引用更容易，而且可能表现得更好（因为不需要做资源管理），但可能导致悬空。</p>
+<p>下面是一个关于如何在多个线程中使用承诺的例子:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QSharedPointer&lt;QPromise&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">sharedPromise</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">QPromise</span>&lt;<span class="hljs-type">int</span>&gt;());
+QFuture&lt;<span class="hljs-type">int</span>&gt; future = sharedPromise-&gt;<span class="hljs-built_in">future</span>();
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// here, QPromise is shared between threads via a smart pointer</span>
+QScopedPointer&lt;QThread&gt; threads[] = {
+    <span class="hljs-built_in">QScopedPointer</span>&lt;QThread&gt;(QThread::<span class="hljs-built_in">create</span>([] (<span class="hljs-keyword">auto</span> sharedPromise) {
+        sharedPromise-&gt;<span class="hljs-built_in">addResult</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);  <span class="hljs-comment">// adds value 0 by index 0</span>
+    }, sharedPromise)),
+    <span class="hljs-built_in">QScopedPointer</span>&lt;QThread&gt;(QThread::<span class="hljs-built_in">create</span>([] (<span class="hljs-keyword">auto</span> sharedPromise) {
+        sharedPromise-&gt;<span class="hljs-built_in">addResult</span>(<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>);  <span class="hljs-comment">// adds value -1 by index 1</span>
+    }, sharedPromise)),
+    <span class="hljs-built_in">QScopedPointer</span>&lt;QThread&gt;(QThread::<span class="hljs-built_in">create</span>([] (<span class="hljs-keyword">auto</span> sharedPromise) {
+        sharedPromise-&gt;<span class="hljs-built_in">addResult</span>(<span class="hljs-number">-2</span>, <span class="hljs-number">2</span>);  <span class="hljs-comment">// adds value -2 by index 2</span>
+    }, sharedPromise)),
+    <span class="hljs-comment">// ...</span>
+};
+<span class="hljs-comment">// start all threads</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; t : threads)
+    t-&gt;<span class="hljs-built_in">start</span>();
+
+<span class="hljs-comment">// ...</span>
+
+future.<span class="hljs-built_in">resultAt</span>(<span class="hljs-number">0</span>);  <span class="hljs-comment">// waits until result at index 0 becomes available. returns value  0</span>
+future.<span class="hljs-built_in">resultAt</span>(<span class="hljs-number">1</span>);  <span class="hljs-comment">// waits until result at index 1 becomes available. returns value -1</span>
+future.<span class="hljs-built_in">resultAt</span>(<span class="hljs-number">2</span>);  <span class="hljs-comment">// waits until result at index 2 becomes available. returns value -2</span></code></pre></div>
+
+<p><strong>See also</strong> <a href>QFuture</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="bool-qpromise-addresult-t-amp-amp-result-int-index-1">bool QPromise::addResult(T &amp;&amp;<em>result</em>, int <em>index</em> = -1)</span><a href="#bool-qpromise-addresult-t-amp-amp-result-int-index-1" class="header-anchor">#</a></h3><h3><span id="bool-qpromise-addresult-const-t-amp-result-int-index-1">bool QPromise::addResult(const T &amp;<em>result</em>, int <em>index</em> = -1)</span><a href="#bool-qpromise-addresult-const-t-amp-result-int-index-1" class="header-anchor">#</a></h3><p>将<em>result</em>添加到内部结果集合的<em>index</em>位置。如果没有指定索引，<em>result</em>将被添加到集合的末端。</p>
+<p>当<em>result</em>被添加到集合中时返回<code>true</code>。</p>
+<p>当这个承诺处于取消或完成状态时，或者当<em>result</em>被拒绝时，返回<code>false</code>。<a href="#addResult-1">addResult</a>() 如果在集合中已经有另一个结果存储在相同的索引中，则拒绝<em>result</em>。</p>
+<p>你可以通过调用<a href="#resultAt">QFuture::resultAt</a>()来获得一个特定索引的结果。</p>
+<p><strong>注意：</strong>可以指定一个任意的索引并请求该索引的结果。然而，一些<a href>QFuture</a>方法是用连续的结果来操作的。例如，使用<a href="#resultCount">QFuture::resultCount</a>()或<a href="qfuture-const-iterator.html">QFuture::const_iterator</a> 的迭代方法。为了获得所有可用的结果，而不考虑是否存在索引间隙，使用<a href="#results">QFuture::results</a>()。</p>
+<h3><span id="qpromise-qpromise-qpromise-amp-amp-other">QPromise::QPromise(<t> &amp;&amp;<em>other</em>)</t></span><a href="#qpromise-qpromise-qpromise-amp-amp-other" class="header-anchor">#</a></h3><p>从<em>other</em>移动构造一个新的QPromise。</p>
+<p><strong>See also</strong> <a href="#operator-eq-1">operator=</a>().</p>
+<h3><span id="qpromise-qpromise">QPromise::QPromise()</span><a href="#qpromise-qpromise" class="header-anchor">#</a></h3><p>构建一个具有默认状态的QPromise。</p>
+<h3><span id="qpromise-amp-qpromise-operator-qpromise-amp-amp-other"><t> &amp;QPromise::operator=(<a href="#QPromise">QPromise</a><t> &amp;&amp;<em>other</em>)</t></t></span><a href="#qpromise-amp-qpromise-operator-qpromise-amp-amp-other" class="header-anchor">#</a></h3><p>Move将<em>other</em>分配给这个承诺，并返回对这个承诺的引用。</p>
+<h3><span id="qpromise-qpromise">QPromise::~QPromise()</span><a href="#qpromise-qpromise" class="header-anchor">#</a></h3><p>销毁该承诺。</p>
+<p><strong>注意：</strong>承诺在销毁时隐含地过渡到取消状态，除非用户事先调用<a href="#finish">finish</a>()。</p>
+<h3><span id="void-qpromise-finish">void QPromise::finish()</span><a href="#void-qpromise-finish" class="header-anchor">#</a></h3><p>报告计算完成。 完成后，调用 <a href="#addResult-1">addResult</a>() 时不会添加新结果。 此方法伴随 <a href="#start">start</a>()。</p>
+<p><strong>See also</strong> <a href="#isFinished">QFuture::isFinished</a>(), <a href="#waitForFinished">QFuture::waitForFinished</a>(), and <a href="#start">start</a>().</p>
+<h3><span id="qfuture-qpromise-future-const"><t> QPromise::future() const</t></span><a href="#qfuture-qpromise-future-const" class="header-anchor">#</a></h3><p>返回与此承诺关联的未来。</p>
+<h3><span id="bool-qpromise-iscanceled-const">bool QPromise::isCanceled() const</span><a href="#bool-qpromise-iscanceled-const" class="header-anchor">#</a></h3><p>返回计算是否已经被<a href="#cancel">QFuture::cancel</a>()函数取消。返回值 “true “表示计算应该结束并调用<a href="#finish">finish</a>()。</p>
+<p><strong>注意：</strong>取消后，当前可用的结果仍然可以被future访问，但在调用<a href="#addResult-1">addResult</a>()时，新的结果将不会被添加。</p>
+<h3><span id="void-qpromise-setexception-const-qexception-amp-e">void QPromise::setException(const  &amp;<em>e</em>)</span><a href="#void-qpromise-setexception-const-qexception-amp-e" class="header-anchor">#</a></h3><p>设置异常<em>e</em>为计算的结果。</p>
+<p><strong>注：</strong>在整个计算执行过程中，你最多可以设置一个异常。</p>
+<p><strong>注意：</strong>这个方法不能在<a href="#cancel">QFuture::cancel</a>()或<a href="#finish">finish</a>()之后使用。</p>
+<p><strong>See also</strong> <a href="#isCanceled">isCanceled</a>().</p>
+<h3><span id="void-qpromise-setexception-std-exception-ptr-e">void QPromise::setException(std::exception_ptr <em>e</em>)</span><a href="#void-qpromise-setexception-std-exception-ptr-e" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<h3><span id="void-qpromise-setprogressrange-int-minimum-int-maximum">void QPromise::setProgressRange(int <em>minimum</em>, int <em>maximum</em>)</span><a href="#void-qpromise-setprogressrange-int-minimum-int-maximum" class="header-anchor">#</a></h3><p>设置计算的进度范围为<em>minimum</em>和<em>maximum</em>之间。</p>
+<p>如果<em>maximum</em>小于<em>minimum</em>，则<em>minimum</em>成为唯一合法的值。</p>
+<p>进度值被重置为<em>minimum</em>。</p>
+<p>进度范围的使用可以通过setProgressRange(0, 0)禁用。在这种情况下，进度值也会被重置为0。</p>
+<p><strong>See also</strong> <a href="#progressMinimum">QFuture::progressMinimum</a>(), <a href="#progressMaximum">QFuture::progressMaximum</a>(), and <a href="#progressValue">QFuture::progressValue</a>().</p>
+<h3><span id="void-qpromise-setprogressvalue-int-progressvalue">void QPromise::setProgressValue(int <em>progressValue</em>)</span><a href="#void-qpromise-setprogressvalue-int-progressvalue" class="header-anchor">#</a></h3><p>将计算的进度值设置为<em>progressValue</em>。有可能只递增进度值。这是一个调用<a href="#setProgressValueAndText">setProgressValueAndText</a>(progressValue, QString())的方便方法。</p>
+<p>如果<em>progressValue</em>跌出了进度范围，这个方法就没有效果。</p>
+<p><strong>See also</strong> <a href="#progressValue">QFuture::progressValue</a>() and <a href="#setProgressRange">setProgressRange</a>().</p>
+<h3><span id="void-qpromise-setprogressvalueandtext-int-progressvalue-const-qstring-amp-progresstext">void QPromise::setProgressValueAndText(int <em>progressValue</em>, const  &amp;<em>progressText</em>)</span><a href="#void-qpromise-setprogressvalueandtext-int-progressvalue-const-qstring-amp-progresstext" class="header-anchor">#</a></h3><p>将计算的进度值和进度文本分别设置为<em>progressValue</em>和<em>progressText</em>。可以只增加进度值。</p>
+<p><strong>注意：</strong>如果承诺处于取消或完成状态，该函数没有效果。</p>
+<p><strong>See also</strong> <a href="#progressValue">QFuture::progressValue</a>(), <a href="#progressText">QFuture::progressText</a>(), <a href="#cancel">QFuture::cancel</a>(), and <a href="#finish">finish</a>().</p>
+<h3><span id="void-qpromise-start">void QPromise::start()</span><a href="#void-qpromise-start" class="header-anchor">#</a></h3><p>报告计算已经开始。调用这个方法对于说明计算的开始是很重要的，因为<a href>QFuture</a>方法依赖于这个信息。</p>
+<p><strong>注意：</strong>当start()被从一个新创建的线程调用时，需要特别注意。在这种情况下，由于线程调度的实现细节，该调用可能会自然地被延迟。</p>
+<p><strong>See also</strong> <a href="#isStarted">QFuture::isStarted</a>(), <a href="#waitForFinished">QFuture::waitForFinished</a>(), and <a href="#finish">finish</a>().</p>
+<h3><span id="void-qpromise-suspendifrequested">void QPromise::suspendIfRequested()</span><a href="#void-qpromise-suspendifrequested" class="header-anchor">#</a></h3><p>有条件地暂停当前的执行线程并等待，直到被<a href>QFuture</a>的相应方法恢复或取消。除非计算被<a href="#suspend">QFuture::suspend</a>()或其他相关方法请求暂停，否则该方法不会阻塞。如果你想检查执行是否已经被暂停，请使用<a href="#isSuspended">QFuture::isSuspended</a>()。</p>
+<p><strong>注意：</strong>当在多个线程中使用同一个承诺时，只要至少有一个使用该承诺的线程暂停，<a href="#isSuspended">QFuture::isSuspended</a>()就会变成<code>true</code>。</p>
+<p>下面的代码片断显示了暂停机制的用法:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// Create promise and future</span>
+QPromise&lt;<span class="hljs-type">int</span>&gt; promise;
+QFuture&lt;<span class="hljs-type">int</span>&gt; future = promise.<span class="hljs-built_in">future</span>();
+
+promise.<span class="hljs-built_in">start</span>();
+<span class="hljs-comment">// Start a computation thread that supports suspension and cancellation</span>
+<span class="hljs-function">QScopedPointer&lt;QThread&gt; <span class="hljs-title">thread</span><span class="hljs-params">(QThread::create([] (QPromise&lt;<span class="hljs-type">int</span>&gt; promise) {</span></span>
+<span class="hljs-params"><span class="hljs-function">    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; ++i) {</span></span>
+<span class="hljs-params"><span class="hljs-function">        promise.addResult(i);</span></span>
+<span class="hljs-params"><span class="hljs-function">        promise.suspendIfRequested();   <span class="hljs-comment">// support suspension</span></span></span>
+<span class="hljs-params"><span class="hljs-function">        <span class="hljs-keyword">if</span> (promise.isCanceled())       <span class="hljs-comment">// support cancellation</span></span></span>
+<span class="hljs-params"><span class="hljs-function">            <span class="hljs-keyword">break</span>;</span></span>
+<span class="hljs-params"><span class="hljs-function">    }</span></span>
+<span class="hljs-params"><span class="hljs-function">    promise.finish();</span></span>
+<span class="hljs-params"><span class="hljs-function">}, std::move(promise)))</span></span>;
+thread-&gt;<span class="hljs-built_in">start</span>();</code></pre></div>
+
+<p><a href="#suspend">QFuture::suspend</a>()请求暂停相关的承诺:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">future.<span class="hljs-built_in">suspend</span>();</code></pre></div>
+
+<p>在<a href="#isSuspended">QFuture::isSuspended</a>()变成<code>true</code>之后，你可以得到中间结果。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">future.<span class="hljs-built_in">resultCount</span>();  <span class="hljs-comment">// returns some number between 0 and 100</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; future.<span class="hljs-built_in">resultCount</span>(); ++i) {
+    <span class="hljs-comment">// process results available before suspension</span>
+}</code></pre></div>
+
+<p>暂停时，您可以恢复或取消等待的计算：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">future.<span class="hljs-built_in">resume</span>();  <span class="hljs-comment">// resumes computation, this call will unblock the promise</span>
+<span class="hljs-comment">// alternatively, call future.cancel() to stop the computation</span>
+
+future.<span class="hljs-built_in">waitForFinished</span>();
+future.<span class="hljs-built_in">results</span>();  <span class="hljs-comment">// returns all computation results - array of values from 0 to 99</span></code></pre></div>
+
+<p><strong>See also</strong> <a href="#resume">QFuture::resume</a>(), <a href="#cancel">QFuture::cancel</a>(), <a href="#setSuspended">QFuture::setSuspended</a>(), and <a href="#toggleSuspended">QFuture::toggleSuspended</a>().</p>
+<h3><span id="void-qpromise-swap-qpromise-amp-other">void QPromise::swap(<t> &amp;<em>other</em>)</t></span><a href="#void-qpromise-swap-qpromise-amp-other" class="header-anchor">#</a></h3><p>用这个承诺交换other承诺。这个操作非常快，而且从不失败。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/P/">P</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/P/QtPlugin/QtPlugin/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QtPlugin类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/P/The_Property_System/The_Property_System/">
+                        <span class="hidden-mobile">QProperty类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

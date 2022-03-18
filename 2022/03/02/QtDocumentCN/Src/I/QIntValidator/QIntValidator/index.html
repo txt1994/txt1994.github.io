@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QIntValidator 类 特性 公共函数 重实现公共函数 信号 详细描述 特性文档编制 bottom : int top : int   成员函数文档编制 QIntValidator:: QIntValidator ( int minimum , int maximum , QObject * parent &#x3D; nullptr) QIntValidator:: QIntValida">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QIntValidator类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/I/QIntValidator/QIntValidator/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QIntValidator 类 特性 公共函数 重实现公共函数 信号 详细描述 特性文档编制 bottom : int top : int   成员函数文档编制 QIntValidator:: QIntValidator ( int minimum , int maximum , QObject * parent &#x3D; nullptr) QIntValidator:: QIntValida">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:31:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:43:00.690Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="I">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QIntValidator类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QIntValidator类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:31" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QIntValidator类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qintvalidator-lei">QIntValidator 类</a><ul>
+<li><a href="#te-xing">特性</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#chong-shi-xian-gong-gong-han-shu">重实现公共函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#te-xing-wen-dang-bian-zhi">特性文档编制</a><ul>
+<li><a href="#bottom-int">bottom : int</a></li>
+<li><a href="#top-int">top : int</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qintvalidator-qintvalidator-int-minimum-int-maximum-qobject-qobject-html-qobject-parent-nullptr">QIntValidator:: QIntValidator ( int <em>minimum</em> , int <em>maximum</em> , </a><a href="qobject.html#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#qintvalidator-qintvalidator-qobject-qobject-html-qobject-parent-nullptr">QIntValidator:: QIntValidator ( </a><a href="qobject.html#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#virtual-qintvalidator-qintvalidator"><code>[virtual] </code>QIntValidator:: ~QIntValidator ()</a></li>
+<li><a href="#override-virtual-void-qintvalidator-fixup-qstring-qstring-html-input-const"><code>[override virtual] </code>void QIntValidator:: fixup ( </a><a href="qstring.html">QString </a>&amp; <em>input</em> ) const</li>
+<li><a href="#void-qintvalidator-setrange-int-bottom-int-top">void QIntValidator:: setRange ( int <em>bottom</em> , int <em>top</em> )</a></li>
+<li><a href="#override-virtual-qvalidator-state-qvalidator-html-state-enum-qintvalidator-validate-qstring-qstring-html-input-int-pos-const"><code>[override virtual] </code></a><a href="qvalidator.html#State-enum">QValidator::State </a>QIntValidator:: validate ( <a href="qstring.html">QString </a>&amp; <em>input</em> , int &amp; <em>pos</em> ) const</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QIntValidator 类
+
+<p>QIntValidator 类提供确保字符串包含指定范围内有效整数的验证器。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qintvalidator></qintvalidator></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Gui REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Gui)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += gui</td>
+</tr>
+<tr>
+<td>继承：</td>
+<td><a href="qvalidator.html">QValidator</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qintvalidator-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<h2><span id="te-xing">特性</span><a href="#te-xing" class="header-anchor">#</a></h2><ul>
+<li><strong><a href="#bottom-prop">bottom </a></strong>: int</li>
+<li><strong><a href="#top-prop">top </a></strong>: int</li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QIntValidator-1">QIntValidator </a></strong>(int <em>minimum</em> , int <em>maximum</em> , QObject * <em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QIntValidator">QIntValidator </a></strong>(QObject * <em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QIntValidator">~QIntValidator </a></strong>()</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#bottom-prop">bottom </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#bottom-prop">setBottom </a></strong>(int)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setRange">setRange </a></strong>(int <em>bottom</em> , int <em>top</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#top-prop">setTop </a></strong>(int)</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#top-prop">top </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="chong-shi-xian-gong-gong-han-shu">重实现公共函数</span><a href="#chong-shi-xian-gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual void</th>
+<th><strong><a href="#fixup">fixup </a></strong>(QString &amp; <em>input</em> ) const override</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual QValidator::State</td>
+<td><strong><a href="#validate">validate </a></strong>(QString &amp; <em>input</em> , int &amp; <em>pos</em> ) const override</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#bottom-prop">bottomChanged </a></strong>(int <em>bottom</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#top-prop">topChanged </a></strong>(int <em>top</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>用法范例：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QValidator *validator = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QIntValidator</span>(<span class="hljs-number">100</span>, <span class="hljs-number">999</span>, <span class="hljs-keyword">this</span>);
+QLineEdit *edit = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QLineEdit</span>(<span class="hljs-keyword">this</span>);
+<span class="hljs-comment">// the edit lineedit will only accept integers between 100 and 999</span>
+edit-&gt;<span class="hljs-built_in">setValidator</span>(validator);</code></pre></div>
+
+<p>下面我们介绍一些验证器的例子。在实践中，它们通常会像上面的例子一样，与一个小部件相关联。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QString str;
+<span class="hljs-type">int</span> pos = <span class="hljs-number">0</span>;
+<span class="hljs-function">QIntValidator <span class="hljs-title">v</span><span class="hljs-params">(<span class="hljs-number">100</span>, <span class="hljs-number">900</span>, <span class="hljs-keyword">this</span>)</span></span>;
+str = <span class="hljs-string">"1"</span>;
+v.<span class="hljs-built_in">validate</span>(str, pos);     <span class="hljs-comment">// returns Intermediate</span>
+str = <span class="hljs-string">"012"</span>;
+v.<span class="hljs-built_in">validate</span>(str, pos);     <span class="hljs-comment">// returns Intermediate</span>
+str = <span class="hljs-string">"123"</span>;
+v.<span class="hljs-built_in">validate</span>(str, pos);     <span class="hljs-comment">// returns Acceptable</span>
+str = <span class="hljs-string">"678"</span>;
+v.<span class="hljs-built_in">validate</span>(str, pos);     <span class="hljs-comment">// returns Acceptable</span>
+str = <span class="hljs-string">"999"</span>;
+v.<span class="hljs-built_in">validate</span>(str, pos);    <span class="hljs-comment">// returns Intermediate</span>
+str = <span class="hljs-string">"1234"</span>;
+v.<span class="hljs-built_in">validate</span>(str, pos);     <span class="hljs-comment">// returns Invalid</span>
+str = <span class="hljs-string">"-123"</span>;
+v.<span class="hljs-built_in">validate</span>(str, pos);     <span class="hljs-comment">// returns Invalid</span>
+str = <span class="hljs-string">"abc"</span>;
+v.<span class="hljs-built_in">validate</span>(str, pos);     <span class="hljs-comment">// returns Invalid</span>
+str = <span class="hljs-string">"12cm"</span>;
+v.<span class="hljs-built_in">validate</span>(str, pos);     <span class="hljs-comment">// returns Invalid</span></code></pre></div>
+
+<p>预告，值 <code>999 </code>返回中间值。由等于或小于最大值的数字组成的值被认为是中间值。这是因为阻止一个数字进入范围的数字不一定是最后输入的数字。这也意味着，一个中间数可以有前导零。</p>
+<p>最小值和最大值可以用<a href="#setRange">setRange</a>()一次设置，或者用<a href="#bottom-prop">setBottom</a>()和<a href="#top-prop">setTop</a>()单独设置。</p>
+<p>QIntValidator使用其<a href="qvalidator.html#locale">locale</a>()来解释该数字。例如，在阿拉伯地区，QIntValidator将接受阿拉伯数字。</p>
+<p><strong>注意：</strong> <a href="#NumberOption-enum">QLocale::NumberOptions</a>在<a href="qvalidator.html#locale">locale</a>()上的设置也会影响数字被解释的方式。例如，由于<a href="#NumberOption-enum">QLocale::RejectGroupSeparator</a>默认没有设置，验证器将接受分组分隔符。因此建议使用<a href="#toInt">QLocale::toInt</a>()来获得数值。</p>
+<p><strong>另请参阅</strong> <a href="qdoublevalidator.html">QDoubleValidator </a>, <a href="qregularexpressionvalidator.html">QRegularExpressionValidator </a>, <a href="#toInt">QLocale::toInt </a>()，和 <a href="qtwidgets-widgets-lineedits-example.html">行编辑范例 </a>.</p>
+<h2><span id="te-xing-wen-dang-bian-zhi">特性文档编制</span><a href="#te-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="bottom-int">bottom : int</span><a href="#bottom-int" class="header-anchor">#</a></h3><p>此属性持有验证器的最低可接受值</p>
+<p>默认情况下，这个属性的值来自于最低的有符号整数（通常是-2147483647）。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>int</th>
+<th><strong>bottom</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setBottom</strong> (int)</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>bottomChanged</strong> (int <em>bottom</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#setRange">setRange </a>().</p>
+<h3><span id="top-int">top : int</span><a href="#top-int" class="header-anchor">#</a></h3><p>此属性持有验证器的最高可接受值</p>
+<p>默认情况下，此特性值派生自最高可用有符号整数 (通常为 2147483647)。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>int</th>
+<th><strong>top</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setTop</strong> (int)</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>topChanged</strong> (int <em>top</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#setRange">setRange </a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qintvalidator-qintvalidator-int-minimum-int-maximum-qobject-parent-nullptr">QIntValidator:: QIntValidator ( int <em>minimum</em> , int <em>maximum</em> , * <em>parent</em> = nullptr)</span><a href="#qintvalidator-qintvalidator-int-minimum-int-maximum-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>构造验证器采用 <em>parent</em> ，接受整数从 <em>minimum</em> to <em>maximum</em> 包含在内。</p>
+<h3><span id="qintvalidator-qintvalidator-qobject-parent-nullptr">QIntValidator:: QIntValidator ( * <em>parent</em> = nullptr)</span><a href="#qintvalidator-qintvalidator-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>构造验证器采用 <em>parent</em> 对象接受所有整数。</p>
+<h3><span id="virtual-qintvalidator-qintvalidator"><code>[virtual] </code>QIntValidator:: ~QIntValidator ()</span><a href="#virtual-qintvalidator-qintvalidator" class="header-anchor">#</a></h3><p>销毁验证器。</p>
+<h3><span id="override-virtual-void-qintvalidator-fixup-qstring-amp-input-const"><code>[override virtual] </code>void QIntValidator:: fixup ( &amp; <em>input</em> ) const</span><a href="#override-virtual-void-qintvalidator-fixup-qstring-amp-input-const" class="header-anchor">#</a></h3><p>重实现： <a href="qvalidator.html#fixup">QValidator::fixup </a>(QString &amp;input) const.</p>
+<h3><span id="void-qintvalidator-setrange-int-bottom-int-top">void QIntValidator:: setRange ( int <em>bottom</em> , int <em>top</em> )</span><a href="#void-qintvalidator-setrange-int-bottom-int-top" class="header-anchor">#</a></h3><p>设置验证器的范围，只接受<em>bottom</em> 和<em>top</em> 之间的整数，包含在其中。</p>
+<h3><span id="override-virtual-qvalidator-state-qintvalidator-validate-qstring-amp-input-int-amp-pos-const"><code>[override virtual] </code>QIntValidator:: validate ( &amp; <em>input</em> , int &amp; <em>pos</em> ) const</span><a href="#override-virtual-qvalidator-state-qintvalidator-validate-qstring-amp-input-int-amp-pos-const" class="header-anchor">#</a></h3><p>重实现： <a href="qvalidator.html#validate">QValidator::validate </a>(QString &amp;input, int &amp;pos) const.</p>
+<p>返回 <a href="qvalidator.html#State-enum">Acceptable</a>若<em>input</em>是有效范围内的一个整数。如果<em>input</em>的位数最多与范围的顶部一样多，或者是有效范围内整数的前缀，则返回 <a href="qvalidator.html#State-enum">中间体</a>。否则，返回 <a href="qvalidator.html#State-enum">无效</a>。</p>
+<p>如果有效范围只是由正整数组成（例如，32到100），而<em>input</em>是一个负整数，那么返回Invalid。(另一方面，如果范围由负整数组成（例如，-100到-32），并且<em>input</em>是一个正整数，那么返回Intermediate，因为用户可能正要输入减号（特别是对于从右到左的语言）。</p>
+<p>同样，如果有效范围在46和53之间，那么41和59将被评估为<a href="qvalidator.html#State-enum">中间体</a>，因为否则用户就无法将一个值从49改为51。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> pos = <span class="hljs-number">0</span>;
+s = <span class="hljs-string">"abc"</span>;
+v.<span class="hljs-built_in">validate</span>(s, pos);    <span class="hljs-comment">// returns Invalid</span>
+s = <span class="hljs-string">"5"</span>;
+v.<span class="hljs-built_in">validate</span>(s, pos);    <span class="hljs-comment">// returns Intermediate</span>
+s = <span class="hljs-string">"50"</span>;
+v.<span class="hljs-built_in">validate</span>(s, pos);    <span class="hljs-comment">// returns Acceptable</span></code></pre></div>
+
+<p>默认情况下，<em>pos</em>参数不被该验证器使用。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/I/">I</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/I/QInputMethodEvent/QInputMethodEvent/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QInputMethodEvent类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/I/QInputSettings%20(%20Qt3DInput%20)/QInputSettings%20(%20Qt3DInput%20)/">
+                        <span class="hidden-mobile">QInputSettings类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

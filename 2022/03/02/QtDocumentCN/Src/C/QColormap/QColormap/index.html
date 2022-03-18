@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QColormap 类 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 enum QColormap:: Mode   成员函数文档编制 QColormap:: QColormap (const QColormap &amp; colormap ) QColormap  QColormap:: ~QColormap () const QColor QColormap:: c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QColormap类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/C/QColormap/QColormap/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QColormap 类 公共类型 公共函数 静态公共成员 详细描述 成员类型文档编制 enum QColormap:: Mode   成员函数文档编制 QColormap:: QColormap (const QColormap &amp; colormap ) QColormap  QColormap:: ~QColormap () const QColor QColormap:: c">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T05:27:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:36:45.046Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QColormap类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QColormap类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 13:27" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QColormap类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qcolormap-lei">QColormap 类</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#enum-qcolormap-mode">enum QColormap:: Mode</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qcolormap-qcolormap-const-qcolormap-qcolormap-colormap">QColormap:: QColormap (const </a><a href="#QColormap">QColormap </a>&amp; <em>colormap</em> )</li>
+<li><a href="#qcolormap-qcolormap-qcolormap-operator-const-qcolormap-qcolormap-colormap">QColormap </a></li>
+<li><a href="#qcolormap-qcolormap">QColormap:: ~QColormap ()</a></li>
+<li><a href="#const-qcolor-qcolor-html-qcolormap-colorat-uint-qtglobal-html-uint-typedef-pixel-const">const </a><a href="qcolor.html">QColor </a>QColormap:: colorAt ( <a href="qtglobal.html#uint-typedef">uint </a><em>pixel</em> ) const</li>
+<li><a href="#const-qlist-qlist-html-qcolor-qcolor-html-qcolormap-colormap-const">const </a><a href="qlist.html">QList </a>&lt; <a href="qcolor.html">QColor </a>&gt; QColormap:: colormap () const</li>
+<li><a href="#int-qcolormap-depth-const">int QColormap:: depth () const</a></li>
+<li><a href="#static-qcolormap-qcolormap-qcolormap-instance-int-screen-1"><code>[static] </code></a><a href="#QColormap">QColormap </a>QColormap:: instance ( int <em>screen</em> = -1)</li>
+<li><a href="#qcolormap-mode-mode-enum-qcolormap-mode-const">QColormap::Mode </a></li>
+<li><a href="#uint-qtglobal-html-uint-typedef-qcolormap-pixel-const-qcolor-qcolor-html-color-const">uint </a></li>
+<li><a href="#int-qcolormap-size-const">int QColormap:: size () const</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="qcolormap-lei">QColormap 类</span><a href="#qcolormap-lei" class="header-anchor">#</a></h1><p>QColormap 类将设备无关 QColor 映射到设备从属像素值。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qcolormap></qcolormap></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Widgets REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Widgets)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += widgets</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qcolormap-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#Mode-enum">Mode</a></strong> { Direct, Indexed, Gray }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QColormap">QColormap </a></strong>(const QColormap &amp; <em>colormap</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QColormap &amp;</td>
+<td><strong><a href="#operator-eq">operator= </a></strong>(const QColormap &amp; <em>colormap</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#dtor.QColormap">~QColormap </a></strong>()</td>
+</tr>
+<tr>
+<td>const QColor</td>
+<td><strong><a href="#colorAt">colorAt </a></strong>(uint <em>pixel</em> ) const</td>
+</tr>
+<tr>
+<td>const QList<qcolor></qcolor></td>
+<td><strong><a href="#colormap">colormap </a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#depth">depth </a></strong>() const</td>
+</tr>
+<tr>
+<td>QColormap::Mode</td>
+<td><strong><a href="#mode">mode </a></strong>() const</td>
+</tr>
+<tr>
+<td>uint</td>
+<td><strong><a href="#pixel">pixel </a></strong>(const QColor &amp; <em>color</em> ) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#size">size </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QColormap</th>
+<th><strong><a href="#instance">instance </a></strong>(int <em>screen</em> = -1)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="enum-qcolormap-mode">enum QColormap:: Mode</span><a href="#enum-qcolormap-mode" class="header-anchor">#</a></h3><p>此枚举描述如何 <a href>QColormap</a>将独立于设备的RGB值映射为独立于设备的像素值。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QColormap::Direct</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">像素值直接来源于RGB值，也被称为 “真彩色”。</td>
+</tr>
+<tr>
+<td align="left"><code>QColormap::Indexed</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">像素值代表可用颜色列表的索引，即<a href>QColormap</a>使用与RGB值最接近的颜色的索引。</td>
+</tr>
+<tr>
+<td align="left"><code>QColormap::Gray</code></td>
+<td align="left"><code>2</code></td>
+<td align="left"><code>类似 </code>索引 `，像素值代表可用的灰调列表。<a href>QColormap</a>使用与一个RGB值的计算灰度最接近的灰度的索引。</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qcolormap-qcolormap-const-qcolormap-amp-colormap">QColormap:: QColormap (const &amp; <em>colormap</em> )</span><a href="#qcolormap-qcolormap-const-qcolormap-amp-colormap" class="header-anchor">#</a></h3><p>构造副本为另一 <em>colormap</em> .</p>
+<h3><span id="qcolormap-amp-qcolormap-operator-const-qcolormap-amp-colormap">&amp;QColormap:: operator= (const &amp; <em>colormap</em> )</span><a href="#qcolormap-amp-qcolormap-operator-const-qcolormap-amp-colormap" class="header-anchor">#</a></h3><p>赋值给定<em>colormap</em>到<em>this</em>颜色地图，并返回对<em>this</em>颜色地图的引用。</p>
+<h3><span id="qcolormap-qcolormap">QColormap:: ~QColormap ()</span><a href="#qcolormap-qcolormap" class="header-anchor">#</a></h3><p>销毁颜色映射。</p>
+<h3><span id="const-qcolor-qcolormap-colorat-uint-pixel-const">const QColormap:: colorAt ( <em>pixel</em> ) const</span><a href="#const-qcolor-qcolormap-colorat-uint-pixel-const" class="header-anchor">#</a></h3><p>返回 <a href="qcolor.html">QColor </a>为 <em>pixel</em> .</p>
+<p><strong>另请参阅</strong> <a href="#pixel">pixel </a>().</p>
+<h3><span id="const-qlist-lt-qcolor-gt-qcolormap-colormap-const">const &lt; &gt; QColormap:: colormap () const</span><a href="#const-qlist-lt-qcolor-gt-qcolormap-colormap-const" class="header-anchor">#</a></h3><p>返回一个颜色列表，代表 “Indexed “和 “Gray “模式的设备颜色映射。对于 “直接 “模式，该函数返回一个空列表。</p>
+<p><strong>另请参阅</strong> <a href="#size">size </a>().</p>
+<h3><span id="int-qcolormap-depth-const">int QColormap:: depth () const</span><a href="#int-qcolormap-depth-const" class="header-anchor">#</a></h3><p>返回设备的深度。</p>
+<p><strong>另请参阅</strong> <a href="#size">size </a>().</p>
+<h3><span id="static-qcolormap-qcolormap-instance-int-screen-1"><code>[static] </code>QColormap:: instance ( int <em>screen</em> = -1)</span><a href="#static-qcolormap-qcolormap-instance-int-screen-1" class="header-anchor">#</a></h3><p>返回颜色映射为指定 <em>screen</em> 。若<em>screen</em>为-1，该函数将返回默认屏幕的颜色图。</p>
+<h3><span id="qcolormap-mode-qcolormap-mode-const">QColormap:: mode () const</span><a href="#qcolormap-mode-qcolormap-mode-const" class="header-anchor">#</a></h3><p>返回此颜色映射的模式。</p>
+<p><strong>另请参阅</strong> <a href="#Mode-enum">QColormap::Mode </a>.</p>
+<h3><span id="uint-qcolormap-pixel-const-qcolor-amp-color-const">QColormap:: pixel (const &amp; <em>color</em> ) const</span><a href="#uint-qcolormap-pixel-const-qcolor-amp-color-const" class="header-anchor">#</a></h3><p>返回设备从属像素值为 <em>color</em> .</p>
+<p><strong>另请参阅</strong> <a href="#colorAt">colorAt </a>().</p>
+<h3><span id="int-qcolormap-size-const">int QColormap:: size () const</span><a href="#int-qcolormap-size-const" class="header-anchor">#</a></h3><p>返回颜色映射大小对于 <code>Indexed </code>and <code>Gray </code>模式；返回 -1 对于 <code>Direct </code>模式。</p>
+<p><strong>另请参阅</strong> <a href="#colormap">colormap </a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/C/QColorTransform/QColorTransform/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QColorTransform类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/C/QCoreApplication/QCoreApplication/">
+                        <span class="hidden-mobile">QCoreApplication类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

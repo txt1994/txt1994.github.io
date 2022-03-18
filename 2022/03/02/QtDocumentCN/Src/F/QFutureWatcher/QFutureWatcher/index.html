@@ -1,0 +1,785 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QFutureWatcher Class 公共函数 公共槽函数 信号 详细描述 成员函数文档 QFutureWatcher::QFutureWatcher(QObject *parent &#x3D; nullptr) [slot]void QFutureWatcher::cancel() [signal]void QFutureWatcher::canceled() [signal]void Q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QFutureWatcher类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/F/QFutureWatcher/QFutureWatcher/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QFutureWatcher Class 公共函数 公共槽函数 信号 详细描述 成员函数文档 QFutureWatcher::QFutureWatcher(QObject *parent &#x3D; nullptr) [slot]void QFutureWatcher::cancel() [signal]void QFutureWatcher::canceled() [signal]void Q">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:21:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:40:10.458Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="F">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QFutureWatcher类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QFutureWatcher类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:21" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      76 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QFutureWatcher类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qfuturewatcher-class">QFutureWatcher Class</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#gong-gong-cao-han-shu">公共槽函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qfuturewatcher-qfuturewatcher-qobject-https-doc-qt-io-qt-6-qobject-html-qobject-parent-nullptr">QFutureWatcher::QFutureWatcher(</a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#slot-void-qfuturewatcher-cancel"><code>[slot]</code>void QFutureWatcher::cancel()</a></li>
+<li><a href="#signal-void-qfuturewatcher-canceled"><code>[signal]</code>void QFutureWatcher::canceled()</a></li>
+<li><a href="#signal-void-qfuturewatcher-finished"><code>[signal]</code>void QFutureWatcher::finished()</a></li>
+<li><a href="#signal-void-qfuturewatcher-progressrangechanged-int-minimum-int-maximum"><code>[signal]</code>void QFutureWatcher::progressRangeChanged(int <em>minimum</em>, int <em>maximum</em>)</a></li>
+<li><a href="#signal-void-qfuturewatcher-progresstextchanged-const-qstring-https-doc-qt-io-qt-6-qstring-html-progresstext"><code>[signal]</code>void QFutureWatcher::progressTextChanged(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qstring.html">QString</a> &amp;<em>progressText</em>)</li>
+<li><a href="#signal-void-qfuturewatcher-progressvaluechanged-int-progressvalue"><code>[signal]</code>void QFutureWatcher::progressValueChanged(int <em>progressValue</em>)</a></li>
+<li><a href="#signal-void-qfuturewatcher-resultreadyat-int-index"><code>[signal]</code>void QFutureWatcher::resultReadyAt(int <em>index</em>)</a></li>
+<li><a href="#signal-void-qfuturewatcher-resultsreadyat-int-beginindex-int-endindex"><code>[signal]</code>void QFutureWatcher::resultsReadyAt(int <em>beginIndex</em>, int <em>endIndex</em>)</a></li>
+<li><a href="#slot-void-qfuturewatcher-resume"><code>[slot]</code>void QFutureWatcher::resume()</a></li>
+<li><a href="#signal-void-qfuturewatcher-resumed"><code>[signal]</code>void QFutureWatcher::resumed()</a></li>
+<li><a href="#slot-since-6-0-void-qfuturewatcher-setsuspended-bool-suspend"><code>[slot, since 6.0]</code>void QFutureWatcher::setSuspended(bool <em>suspend</em>)</a></li>
+<li><a href="#signal-void-qfuturewatcher-started"><code>[signal]</code>void QFutureWatcher::started()</a></li>
+<li><a href="#slot-since-6-0-void-qfuturewatcher-suspend"><code>[slot, since 6.0]</code>void QFutureWatcher::suspend()</a></li>
+<li><a href="#signal-since-6-0-void-qfuturewatcher-suspended"><code>[signal, since 6.0]</code>void QFutureWatcher::suspended()</a></li>
+<li><a href="#signal-since-6-0-void-qfuturewatcher-suspending"><code>[signal, since 6.0]</code>void QFutureWatcher::suspending()</a></li>
+<li><a href="#slot-since-6-0-void-qfuturewatcher-togglesuspended"><code>[slot, since 6.0]</code>void QFutureWatcher::toggleSuspended()</a></li>
+<li><a href="#virtual-qfuturewatcher-qfuturewatcher"><code>[virtual]</code>QFutureWatcher::~QFutureWatcher()</a></li>
+<li><a href="#qfuture-https-doc-qt-io-qt-6-qfuture-html-t-qfuturewatcher-future-const">QFuture</a></li>
+<li><a href="#bool-qfuturewatcher-iscanceled-const">bool QFutureWatcher::isCanceled() const</a></li>
+<li><a href="#bool-qfuturewatcher-isfinished-const">bool QFutureWatcher::isFinished() const</a></li>
+<li><a href="#bool-qfuturewatcher-isrunning-const">bool QFutureWatcher::isRunning() const</a></li>
+<li><a href="#bool-qfuturewatcher-isstarted-const">bool QFutureWatcher::isStarted() const</a></li>
+<li><a href="#since-6-0-bool-qfuturewatcher-issuspended-const"><code>[since 6.0]</code>bool QFutureWatcher::isSuspended() const</a></li>
+<li><a href="#since-6-0-bool-qfuturewatcher-issuspending-const"><code>[since 6.0]</code>bool QFutureWatcher::isSuspending() const</a></li>
+<li><a href="#int-qfuturewatcher-progressmaximum-const">int QFutureWatcher::progressMaximum() const</a></li>
+<li><a href="#int-qfuturewatcher-progressminimum-const">int QFutureWatcher::progressMinimum() const</a></li>
+<li><a href="#qstring-https-doc-qt-io-qt-6-qstring-html-qfuturewatcher-progresstext-const">QString</a></li>
+<li><a href="#int-qfuturewatcher-progressvalue-const">int QFutureWatcher::progressValue() const</a></li>
+<li><a href="#template-typename-u-typename-t-qfuturewatcher-result-const">template &lt;typename U, typename&gt; T QFutureWatcher::result() const</a></li>
+<li><a href="#template-typename-u-typename-t-qfuturewatcher-resultat-int-index-const">template &lt;typename U, typename&gt; T QFutureWatcher::resultAt(int <em>index</em>) const</a></li>
+<li><a href="#void-qfuturewatcher-setfuture-const-qfuture-https-doc-qt-io-qt-6-qfuture-html-t-future">void QFutureWatcher::setFuture(const </a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a><t> &amp;<em>future</em>)</t></li>
+<li><a href="#void-qfuturewatcher-setpendingresultslimit-int-limit">void QFutureWatcher::setPendingResultsLimit(int <em>limit</em>)</a></li>
+<li><a href="#void-qfuturewatcher-waitforfinished">void QFutureWatcher::waitForFinished()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QFutureWatcher Class
+
+<p>template <typename t> class QFutureWatcher</typename></p>
+<p>QFutureWatcher类允许使用信号和槽来监控一个<a href="QFuture.md">QFuture</a>。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qfuturewatcher></qfuturewatcher></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qobject.html">QObject</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher-members.html">List of all members, including inherited members</a></li>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher-obsolete.html">Deprecated members</a></li>
+</ul>
+<p><strong>注意：</strong>该类中的所有函数都是<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/17-qdoc-commands-thread.html#reentrant">reentrant</a>。</p>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#QFutureWatcher">QFutureWatcher</a></strong>(QObject *<em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#dtor.QFutureWatcher">~QFutureWatcher</a></strong>()</td>
+</tr>
+<tr>
+<td>QFuture<t></t></td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#future">future</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isCanceled">isCanceled</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isFinished">isFinished</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isRunning">isRunning</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isStarted">isStarted</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isSuspended">isSuspended</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isSuspending">isSuspending</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressMaximum">progressMaximum</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressMinimum">progressMinimum</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressText">progressText</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressValue">progressValue</a></strong>() const</td>
+</tr>
+<tr>
+<td>T</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#result">result</a></strong>() const</td>
+</tr>
+<tr>
+<td>T</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultAt">resultAt</a></strong>(int <em>index</em>) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setFuture">setFuture</a></strong>(const QFuture<t> &amp;<em>future</em>)</t></td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setPendingResultsLimit">setPendingResultsLimit</a></strong>(int <em>limit</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#waitForFinished">waitForFinished</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-cao-han-shu">公共槽函数</span><a href="#gong-gong-cao-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#cancel">cancel</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resume">resume</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setSuspended">setSuspended</a></strong>(bool <em>suspend</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspend">suspend</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#toggleSuspended">toggleSuspended</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#canceled">canceled</a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#finished">finished</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressRangeChanged">progressRangeChanged</a></strong>(int <em>minimum</em>, int <em>maximum</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressTextChanged">progressTextChanged</a></strong>(const QString &amp;<em>progressText</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressValueChanged">progressValueChanged</a></strong>(int <em>progressValue</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultReadyAt">resultReadyAt</a></strong>(int <em>index</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultsReadyAt">resultsReadyAt</a></strong>(int <em>beginIndex</em>, int <em>endIndex</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resumed">resumed</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#started">started</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspended">suspended</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspending">suspending</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QFutureWatcher提供关于一个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>的信息和通知。使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setFuture">setFuture</a>()函数来开始观察一个特定的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#future">future</a>()函数用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setFuture">setFuture</a>()返回所设定的未来。</p>
+<p>为了方便起见，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>的几个函数在QFutureWatcher中也可用。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressValue">progressValue</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressMinimum">progressMinimum</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressMaximum">progressMaximum</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressText">progressText</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isStarted">isStarted</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isFinished">isFinished</a>(), [isRunning](<a target="_blank" rel="noopener" href="https://doc/">https://doc</a>. qt.io/qt-6/qfuturewatcher.html#isRunning)(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isCanceled">isCanceled</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isSuspending">isSuspending</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isSuspended">isSuspended</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#waitForFinished">waitForFinished</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#result">result</a> (), 以及 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultAt">resultAt</a> () 。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#cancel">cancel</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setSuspended">setSuspended</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspend">suspend</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resume">resume</a>(), 和 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#toggleSuspended">toggleSuspended</a>() 函数是QFutureWatcher的槽。</p>
+<p>状态变化通过<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#started">started</a>()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#finished">finished</a>()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#canceled">canceled</a>()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspending">suspending</a>()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspended">suspended</a>()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resumed">resumed</a>()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultReadyAt">resultReadyAt</a> ()和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultsReadyAt">resultsReadyAt</a>() 信号报告。进度信息由<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressRangeChanged">progressRangeChanged</a>()、void <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressValueChanged">progressValueChanged</a>()和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressTextChanged">progressTextChanged</a>() 信号提供。</p>
+<p>节流控制是由<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setPendingResultsLimit">setPendingResultsLimit</a>()函数提供的。当等待的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultReadyAt">resultReadyAt</a>()或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultsReadyAt">resultsReadyAt</a>()信号的数量超过限制，未来所代表的计算将被自动节流。一旦待定信号的数量降到极限以下，计算就会恢复。</p>
+<p>例子。启动一个计算，完成后得到一个槽的回调:</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// Instantiate the objects and connect to the finished signal.</span>
+MyClass myObject;
+QFutureWatcher&lt;<span class="hljs-type">int</span>&gt; watcher;
+<span class="hljs-built_in">connect</span>(&amp;watcher, &amp;QFutureWatcher&lt;<span class="hljs-type">int</span>&gt;::finished, &amp;myObject, &amp;MyClass::handleFinished);
+
+<span class="hljs-comment">// Start the computation.</span>
+QFuture&lt;<span class="hljs-type">int</span>&gt; future = QtConcurrent::<span class="hljs-built_in">run</span>(...);
+watcher.<span class="hljs-built_in">setFuture</span>(future);</code></pre></div>
+
+<p>请注意，并非所有正在运行的异步计算都可以被取消或暂停。例如，由QtConcurrent::run()返回的fulture不能被取消；但由QtConcurrent::mappedReduced()返回的fulture可以。</p>
+<p>QFutureWatcher<void>被专门化，不包含任何获取结果的函数。任何<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a><t>也可以被一个QFutureWatcher<void>所监视。如果只需要状态或进度信息，而不需要实际的结果数据，这就很有用。</void></t></void></p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a> and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qtconcurrent-index.html">Qt Concurrent</a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qfuturewatcher-qfuturewatcher-qobject-parent-nullptr">QFutureWatcher::QFutureWatcher( *<em>parent</em> = nullptr)</span><a href="#qfuturewatcher-qfuturewatcher-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>构建一个新的QFutureWatcher，并给定<em>parent</em>。在用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setFuture">setFuture</a>()设置fulture之前，函数<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isStarted">isStarted</a>()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isCanceled">isCanceled</a>()和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isFinished">isFinished</a>()返回<code>true</code>。</p>
+<h3><span id="slot-void-qfuturewatcher-cancel"><code>[slot]</code>void QFutureWatcher::cancel()</span><a href="#slot-void-qfuturewatcher-cancel" class="header-anchor">#</a></h3><p>取消由<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#future">future</a>()代表的异步计算。注意，该取消是异步的。当你需要同步取消时，在调用cancel()后使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#waitForFinished">waitForFinished</a>()。</p>
+<p>目前可用的结果仍然可以在被取消的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>上被访问，但是新的结果在调用这个函数后将不会*变得可用。此外，这个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html">QFutureWatcher</a>一旦被取消，就不会传递进度和结果的准备信号。这包括<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressValueChanged">progressValueChanged</a>()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressRangeChanged">progressRangeChanged</a>()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressTextChanged">progressTextChanged</a>()、<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultReadyAt">resultReadyAt</a>()和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultsReadyAt">resultsReadyAt</a> ()信号。</p>
+<p>请注意，并非所有正在运行的异步计算都可以被取消。例如，由QtConcurrent::run()返回的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>不能被取消；但由QtConcurrent::mappedReduced()返回的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>可以。</p>
+<h3><span id="signal-void-qfuturewatcher-canceled"><code>[signal]</code>void QFutureWatcher::canceled()</span><a href="#signal-void-qfuturewatcher-canceled" class="header-anchor">#</a></h3><p>如果被监视的<code>fulture</code>被取消，就会发出这个信号。</p>
+<h3><span id="signal-void-qfuturewatcher-finished"><code>[signal]</code>void QFutureWatcher::finished()</span><a href="#signal-void-qfuturewatcher-finished" class="header-anchor">#</a></h3><p>这个信号在被监视的<code>fulture</code>完成时发出。</p>
+<h3><span id="signal-void-qfuturewatcher-progressrangechanged-int-minimum-int-maximum"><code>[signal]</code>void QFutureWatcher::progressRangeChanged(int <em>minimum</em>, int <em>maximum</em>)</span><a href="#signal-void-qfuturewatcher-progressrangechanged-int-minimum-int-maximum" class="header-anchor">#</a></h3><p>被观察的<code>fulture</code>的进度范围 已改为<em>minimum</em>和<em>maximum</em>。</p>
+<h3><span id="signal-void-qfuturewatcher-progresstextchanged-const-qstring-amp-progresstext"><code>[signal]</code>void QFutureWatcher::progressTextChanged(const  &amp;<em>progressText</em>)</span><a href="#signal-void-qfuturewatcher-progresstextchanged-const-qstring-amp-progresstext" class="header-anchor">#</a></h3><p>当被观察的未来报告文本进度信息<em>progressText</em>时，该信号被发射出来。</p>
+<h3><span id="signal-void-qfuturewatcher-progressvaluechanged-int-progressvalue"><code>[signal]</code>void QFutureWatcher::progressValueChanged(int <em>progressValue</em>)</span><a href="#signal-void-qfuturewatcher-progressvaluechanged-int-progressvalue" class="header-anchor">#</a></h3><p>当被监视的未来报告进展时，这个信号被发射出来，<em>progressValue</em>给出了当前的进展。为了避免GUI事件循环的重载，<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html">QFutureWatcher</a>限制了进度信号的发射率。这意味着连接到这个槽的听众可能不会得到未来的所有进度报告。最后的进度更新（其中<em>progressValue</em>等于最大值）将始终被传递。</p>
+<h3><span id="signal-void-qfuturewatcher-resultreadyat-int-index"><code>[signal]</code>void QFutureWatcher::resultReadyAt(int <em>index</em>)</span><a href="#signal-void-qfuturewatcher-resultreadyat-int-index" class="header-anchor">#</a></h3><p>当被监视的future在<em>index</em>处报告一个准备好的结果时，这个信号会被发出。如果future报告了多个结果，索引将表明是哪一个。结果可以不按顺序报告。要获得结果，请调用 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultAt">resultAt</a>(index)。</p>
+<h3><span id="signal-void-qfuturewatcher-resultsreadyat-int-beginindex-int-endindex"><code>[signal]</code>void QFutureWatcher::resultsReadyAt(int <em>beginIndex</em>, int <em>endIndex</em>)</span><a href="#signal-void-qfuturewatcher-resultsreadyat-int-beginindex-int-endindex" class="header-anchor">#</a></h3><p>当被观察的<code>fulture</code>报告准备好的结果时，这个信号被发射出来。这些结果的索引是从<em>beginIndex</em>到<em>endIndex</em>。</p>
+<h3><span id="slot-void-qfuturewatcher-resume"><code>[slot]</code>void QFutureWatcher::resume()</span><a href="#slot-void-qfuturewatcher-resume" class="header-anchor">#</a></h3><p>恢复由<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#future">future</a>()代表的异步计算。这是一个方便的方法，简单地调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setSuspended">setSuspended</a>(false)。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspend">suspend</a>().</p>
+<h3><span id="signal-void-qfuturewatcher-resumed"><code>[signal]</code>void QFutureWatcher::resumed()</span><a href="#signal-void-qfuturewatcher-resumed" class="header-anchor">#</a></h3><p>当被监视的<code>fulture</code>被恢复时，这个信号被发射出来。</p>
+<h3><span id="slot-since-6-0-void-qfuturewatcher-setsuspended-bool-suspend"><code>[slot, since 6.0]</code>void QFutureWatcher::setSuspended(bool <em>suspend</em>)</span><a href="#slot-since-6-0-void-qfuturewatcher-setsuspended-bool-suspend" class="header-anchor">#</a></h3><p>如果<em>suspend</em>为真，这个函数将暂停由<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#future">future</a>()代表的异步计算。如果计算已经暂停，这个函数不做任何事情。<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html">QFutureWatcher</a>在暂停未来时不会立即停止传递进度和结果就绪信号。在暂停的那一刻，可能仍然有正在进行的计算，并且不能被停止。这些计算的信号仍将被传递。</p>
+<p>如果<em>suspend</em>为false，这个函数将恢复异步计算。如果计算之前没有被暂停，这个函数什么也不做。</p>
+<p>请注意，不是所有的计算都可以被暂停。例如，由QtConcurrent::run()返回的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>不能被暂停；但由QtConcurrent::mappedReduced()返回的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuture.html">QFuture</a>可以。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspended">suspended</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspend">suspend</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resume">resume</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#toggleSuspended">toggleSuspended</a>().</p>
+<h3><span id="signal-void-qfuturewatcher-started"><code>[signal]</code>void QFutureWatcher::started()</span><a href="#signal-void-qfuturewatcher-started" class="header-anchor">#</a></h3><p>当这个<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html">QFutureWatcher</a>开始观察用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setFuture">setFuture</a>()设置的<code>fulture</code>时，这个信号就会发出来。</p>
+<h3><span id="slot-since-6-0-void-qfuturewatcher-suspend"><code>[slot, since 6.0]</code>void QFutureWatcher::suspend()</span><a href="#slot-since-6-0-void-qfuturewatcher-suspend" class="header-anchor">#</a></h3><p>暂停这个future所代表的异步计算。这是一个方便的方法，简单地调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setSuspended">setSuspended</a>(true)。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resume">resume</a>().</p>
+<h3><span id="signal-since-6-0-void-qfuturewatcher-suspended"><code>[signal, since 6.0]</code>void QFutureWatcher::suspended()</span><a href="#signal-since-6-0-void-qfuturewatcher-suspended" class="header-anchor">#</a></h3><p>这个信号是在<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspend">suspend</a>()生效时发出的，意味着不再有运行中的计算。在收到这个信号后，就不会再有结果准备或进度报告信号了。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setSuspended">setSuspended</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspend">suspend</a>(), and suspended().</p>
+<h3><span id="signal-since-6-0-void-qfuturewatcher-suspending"><code>[signal, since 6.0]</code>void QFutureWatcher::suspending()</span><a href="#signal-since-6-0-void-qfuturewatcher-suspending" class="header-anchor">#</a></h3><p>当被监视的<code>fulture</code>的状态被设置为暂停时，这个信号就会被发射出来。</p>
+<p><strong>注意：</strong>该信号仅通知已请求暂停。它并不表示所有的后台操作都停止了。在暂停时正在进行的计算的信号仍将被传递。要想获知暂停实际生效的时间，请使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspended">susabled</a>()信号。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setSuspended">setSuspended</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspend">suspend</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspended">suspended</a>().</p>
+<h3><span id="slot-since-6-0-void-qfuturewatcher-togglesuspended"><code>[slot, since 6.0]</code>void QFutureWatcher::toggleSuspended()</span><a href="#slot-since-6-0-void-qfuturewatcher-togglesuspended" class="header-anchor">#</a></h3><p>切换异步计算的暂停状态。换句话说，如果计算当前正在暂停或中止，调用这个函数就可以恢复计算；如果计算正在运行，则是暂停。这是调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setSuspended">setSuspended</a>(!(<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isSuspending">isSuspending</a>() || <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isSuspended">isSuspended</a>())的一个方便方法。）</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setSuspended">setSuspended</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspend">suspend</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resume">resume</a>().</p>
+<h3><span id="virtual-qfuturewatcher-qfuturewatcher"><code>[virtual]</code>QFutureWatcher::~QFutureWatcher()</span><a href="#virtual-qfuturewatcher-qfuturewatcher" class="header-anchor">#</a></h3><p>销毁这个 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html">QFutureWatcher</a>.</p>
+<h3><span id="qfuture-qfuturewatcher-future-const"><t> QFutureWatcher::future() const</t></span><a href="#qfuture-qfuturewatcher-future-const" class="header-anchor">#</a></h3><p>返回被监视的<code>fulture</code>。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setFuture">setFuture</a>().</p>
+<h3><span id="bool-qfuturewatcher-iscanceled-const">bool QFutureWatcher::isCanceled() const</span><a href="#bool-qfuturewatcher-iscanceled-const" class="header-anchor">#</a></h3><p>如果异步计算已经被<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#cancel">cancel</a>()函数取消，或者没有设置<code>fulture</code>，则返回<code>true</code>；否则返回<code>false</code>。</p>
+<p>请注意，即使这个函数返回 “true”，计算可能仍然在运行。更多细节见<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#cancel">cancel</a>()。</p>
+<h3><span id="bool-qfuturewatcher-isfinished-const">bool QFutureWatcher::isFinished() const</span><a href="#bool-qfuturewatcher-isfinished-const" class="header-anchor">#</a></h3><p>如果<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#future">future</a>()所代表的异步计算已经完成，或者没有设置future，则返回<code>true</code>；否则返回<code>false</code>。</p>
+<h3><span id="bool-qfuturewatcher-isrunning-const">bool QFutureWatcher::isRunning() const</span><a href="#bool-qfuturewatcher-isrunning-const" class="header-anchor">#</a></h3><p>如果<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#future">future</a>()所代表的异步计算目前正在运行，则返回 “true”；否则返回 “false”。</p>
+<h3><span id="bool-qfuturewatcher-isstarted-const">bool QFutureWatcher::isStarted() const</span><a href="#bool-qfuturewatcher-isstarted-const" class="header-anchor">#</a></h3><p>如果<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#future">future</a>()所代表的异步计算已经开始，或者没有设置future，则返回<code>true</code>；否则返回<code>false</code>。</p>
+<h3><span id="since-6-0-bool-qfuturewatcher-issuspended-const"><code>[since 6.0]</code>bool QFutureWatcher::isSuspended() const</span><a href="#since-6-0-bool-qfuturewatcher-issuspended-const" class="header-anchor">#</a></h3><p>如果请求暂停异步计算，则返回 “true”，并且它是有效的，这意味着没有更多的结果或进度变化被期待。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspended">suspended</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setSuspended">setSuspended</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isSuspending">isSuspending</a>().</p>
+<h3><span id="since-6-0-bool-qfuturewatcher-issuspending-const"><code>[since 6.0]</code>bool QFutureWatcher::isSuspending() const</span><a href="#since-6-0-bool-qfuturewatcher-issuspending-const" class="header-anchor">#</a></h3><p>如果异步计算已经用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#suspend">suspend</a>()函数中止，但工作尚未中止，计算仍在运行，则返回<code>true</code>。否则返回 “false”。</p>
+<p>要检查暂停是否真的生效，请使用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isSuspended">isSuspended</a>()代替。</p>
+<p>这个函数是在Qt 6.0中引入的。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#setSuspended">setSuspended</a>(), <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#toggleSuspended">toggleSuspended</a>(), and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isSuspended">isSuspended</a>().</p>
+<h3><span id="int-qfuturewatcher-progressmaximum-const">int QFutureWatcher::progressMaximum() const</span><a href="#int-qfuturewatcher-progressmaximum-const" class="header-anchor">#</a></h3><p>返回最大<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressValue">progressValue</a>()。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressValue">progressValue</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressMinimum">progressMinimum</a>().</p>
+<h3><span id="int-qfuturewatcher-progressminimum-const">int QFutureWatcher::progressMinimum() const</span><a href="#int-qfuturewatcher-progressminimum-const" class="header-anchor">#</a></h3><p>返回最大 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressValue">progressValue</a>().</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressValue">progressValue</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressMaximum">progressMaximum</a>().</p>
+<h3><span id="qstring-qfuturewatcher-progresstext-const"> QFutureWatcher::progressText() const</span><a href="#qstring-qfuturewatcher-progresstext-const" class="header-anchor">#</a></h3><p>返回由异步计算报告的进度的（可选）文本表示。</p>
+<p>请注意，并不是所有的计算都提供进度的文本表示，因此，这个函数可能返回一个空字符串。</p>
+<h3><span id="int-qfuturewatcher-progressvalue-const">int QFutureWatcher::progressValue() const</span><a href="#int-qfuturewatcher-progressvalue-const" class="header-anchor">#</a></h3><p>返回当前的进度值，它介于<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressMinimum">progressMinimum</a>()和<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressMaximum">progressMaximum</a>()之间。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressMinimum">progressMinimum</a>() and <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#progressMaximum">progressMaximum</a>().</p>
+<h3><span id="template-lt-typename-u-typename-gt-t-qfuturewatcher-result-const">template &lt;typename U, typename&gt; T QFutureWatcher::result() const</span><a href="#template-lt-typename-u-typename-gt-t-qfuturewatcher-result-const" class="header-anchor">#</a></h3><p>返回<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#future">future</a>()中的第一个结果。如果结果不是立即可用的，这个函数将阻塞并等待结果变得可用。这是一个调用<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultAt">resultAt</a>(0)的方便方法。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultAt">resultAt</a>().</p>
+<h3><span id="template-lt-typename-u-typename-gt-t-qfuturewatcher-resultat-int-index-const">template &lt;typename U, typename&gt; T QFutureWatcher::resultAt(int <em>index</em>) const</span><a href="#template-lt-typename-u-typename-gt-t-qfuturewatcher-resultat-int-index-const" class="header-anchor">#</a></h3><p>返回<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#future">future</a>()中<em>index</em>处的结果。如果结果不是立即可用的，这个函数将阻塞并等待结果变得可用。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#result">result</a>().</p>
+<h3><span id="void-qfuturewatcher-setfuture-const-qfuture-amp-future">void QFutureWatcher::setFuture(const <t> &amp;<em>future</em>)</t></span><a href="#void-qfuturewatcher-setfuture-const-qfuture-amp-future" class="header-anchor">#</a></h3><p>开始监视给定的<em>future</em>。</p>
+<p>其中一个信号可能会针对<em>future</em>的当前状态而被发射出来。例如，如果fulture已经停止，将发出完成信号。</p>
+<p>为了避免竞赛条件，重要的是在*做完连接后调用这个函数。</p>
+<p><strong>See also</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#future">future</a>().</p>
+<h3><span id="void-qfuturewatcher-setpendingresultslimit-int-limit">void QFutureWatcher::setPendingResultsLimit(int <em>limit</em>)</span><a href="#void-qfuturewatcher-setpendingresultslimit-int-limit" class="header-anchor">#</a></h3><p>setPendingResultsLimit()提供节流控制。当等待的<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultReadyAt">resultReadyAt</a>()或<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#resultsReadyAt">resultsReadyAt</a>()信号的数量超过<em>limit</em>时，未来所代表的计算将被自动节流。一旦等待信号的数量下降到<em>限制</em>以下，计算将恢复。</p>
+<h3><span id="void-qfuturewatcher-waitforfinished">void QFutureWatcher::waitForFinished()</span><a href="#void-qfuturewatcher-waitforfinished" class="header-anchor">#</a></h3><p>等待异步计算完成（包括<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#cancel">cancel</a>()ed计算），即直到<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qfuturewatcher.html#isFinished">isFinished</a>()返回<code>true</code>。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/F/">F</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/H/QHash/QHash-const-iterator/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">const_iterator类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/H/QHash/QHash-iterator/">
+                        <span class="hidden-mobile">iterator类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,665 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QDBusAbstractInterface 类 公共函数 详细描述 成员函数文档编制 [virtual] QDBusAbstractInterface:: ~QDBusAbstractInterface () template  QDBusPendingCall QDBusAbstractInterface:: asyncCall (const QString &amp; method">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QDBusAbstractInterface类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusAbstractInterface/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QDBusAbstractInterface 类 公共函数 详细描述 成员函数文档编制 [virtual] QDBusAbstractInterface:: ~QDBusAbstractInterface () template  QDBusPendingCall QDBusAbstractInterface:: asyncCall (const QString &amp; method">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:12:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:37:40.297Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="D">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QDBusAbstractInterface类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QDBusAbstractInterface类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:12" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      55 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QDBusAbstractInterface类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qdbusabstractinterface-lei">QDBusAbstractInterface 类</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#virtual-qdbusabstractinterface-qdbusabstractinterface"><code>[virtual] </code>QDBusAbstractInterface:: ~QDBusAbstractInterface ()</a></li>
+<li><a href="#template-typename-args-qdbuspendingcall-qdbuspendingcall-html-qdbusabstractinterface-asynccall-const-qstring-qstring-html-method-args-args">template <typename args> </typename></a><a href="qdbuspendingcall.html">QDBusPendingCall </a>QDBusAbstractInterface:: asyncCall (const <a href="qstring.html">QString </a>&amp; <em>method</em> , Args &amp;&amp;… <em>args</em> )</li>
+<li><a href="#qdbuspendingcall-qdbuspendingcall-html-qdbusabstractinterface-asynccallwithargumentlist-const-qstring-qstring-html-method-const-qlist-qlist-html-qvariant-qvariant-html-args">QDBusPendingCall </a></li>
+<li><a href="#template-typename-args-qdbusmessage-qdbusmessage-html-qdbusabstractinterface-call-const-qstring-qstring-html-method-args-args">template <typename args> </typename></a><a href="qdbusmessage.html">QDBusMessage </a>QDBusAbstractInterface:: call (const <a href="qstring.html">QString </a>&amp; <em>method</em> , Args &amp;&amp;… <em>args</em> )</li>
+<li><a href="#template-typename-args-qdbusmessage-qdbusmessage-html-qdbusabstractinterface-call-qdbus-callmode-qdbus-html-callmode-enum-mode-const-qstring-qstring-html-method-args-args">template <typename args> </typename></a><a href="qdbusmessage.html">QDBusMessage </a>QDBusAbstractInterface:: call ( <a href="qdbus.html#CallMode-enum">QDBus::CallMode </a><em>mode</em> , const <a href="qstring.html">QString </a>&amp; <em>method</em> , Args &amp;&amp;… <em>args</em> )</li>
+<li><a href="#qdbusmessage-qdbusmessage-html-qdbusabstractinterface-callwithargumentlist-qdbus-callmode-qdbus-html-callmode-enum-mode-const-qstring-qstring-html-method-const-qlist-qlist-html-qvariant-qvariant-html-args">QDBusMessage </a></li>
+<li><a href="#bool-qdbusabstractinterface-callwithcallback-const-qstring-qstring-html-method-const-qlist-qlist-html-qvariant-qvariant-html-args-qobject-qobject-html-qobject-receiver-const-char-returnmethod-const-char-errormethod">bool QDBusAbstractInterface:: callWithCallback (const </a><a href="qstring.html">QString </a>&amp; <em>method</em> , const <a href="qlist.html">QList </a>&lt; <a href="qvariant.html">QVariant </a>&gt; &amp; <em>args</em> , <a href="qobject.html#QObject">QObject </a>* <em>receiver</em> , const char * <em>returnMethod</em> , const char * <em>errorMethod</em> )</li>
+<li><a href="#bool-qdbusabstractinterface-callwithcallback-const-qstring-qstring-html-method-const-qlist-qlist-html-qvariant-qvariant-html-args-qobject-qobject-html-qobject-receiver-const-char-slot">bool QDBusAbstractInterface:: callWithCallback (const </a><a href="qstring.html">QString </a>&amp; <em>method</em> , const <a href="qlist.html">QList </a>&lt; <a href="qvariant.html">QVariant </a>&gt; &amp; <em>args</em> , <a href="qobject.html#QObject">QObject </a>* <em>receiver</em> , const char * <em>slot</em> )</li>
+<li><a href="#qdbusconnection-qdbusconnection-html-qdbusabstractinterface-connection-const">QDBusConnection </a></li>
+<li><a href="#qstring-qstring-html-qdbusabstractinterface-interface-const">QString </a></li>
+<li><a href="#bool-qdbusabstractinterface-isvalid-const">bool QDBusAbstractInterface:: isValid () const</a></li>
+<li><a href="#qdbuserror-qdbuserror-html-qdbusabstractinterface-lasterror-const">QDBusError </a></li>
+<li><a href="#qstring-qstring-html-qdbusabstractinterface-path-const-1">QString </a></li>
+<li><a href="#qstring-qstring-html-qdbusabstractinterface-service-const-2">QString </a></li>
+<li><a href="#void-qdbusabstractinterface-settimeout-int-timeout">void QDBusAbstractInterface:: setTimeout ( int <em>timeout</em> )</a></li>
+<li><a href="#int-qdbusabstractinterface-timeout-const">int QDBusAbstractInterface:: timeout () const</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="qdbusabstractinterface-lei">QDBusAbstractInterface 类</span><a href="#qdbusabstractinterface-lei" class="header-anchor">#</a></h1><p>QDBusAbstractInterface 类是 Qt D-Bus 绑定中所有 D-Bus 接口的基类 (允许访问远程接口)。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qdbusabstractinterface></qdbusabstractinterface></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Dbus REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Dbus)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += dbus</td>
+</tr>
+<tr>
+<td>继承：</td>
+<td><a href="qobject.html">QObject</a></td>
+</tr>
+<tr>
+<td>继承者：</td>
+<td><a href="qdbusconnectioninterface.html">QDBusConnectionInterface </a>and <a href="qdbusinterface.html">QDBusInterface</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qdbusabstractinterface-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual</th>
+<th><strong><a href="#dtor.QDBusAbstractInterface">~QDBusAbstractInterface </a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QDBusPendingCall</td>
+<td><strong><a href="#asyncCall-1">asyncCall </a></strong>(const QString &amp; <em>method</em> , Args &amp;&amp;… <em>args</em> )</td>
+</tr>
+<tr>
+<td>QDBusPendingCall</td>
+<td><strong><a href="#asyncCallWithArgumentList">asyncCallWithArgumentList </a></strong>(const QString &amp; <em>method</em> , const QList<qvariant> &amp; <em>args</em> )</qvariant></td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#call-1">call </a></strong>(const QString &amp; <em>method</em> , Args &amp;&amp;… <em>args</em> )</td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#call-3">call </a></strong>(QDBus::CallMode <em>mode</em> , const QString &amp; <em>method</em> , Args &amp;&amp;… <em>args</em> )</td>
+</tr>
+<tr>
+<td>QDBusMessage</td>
+<td><strong><a href="#callWithArgumentList">callWithArgumentList </a></strong>(QDBus::CallMode <em>mode</em> , const QString &amp; <em>method</em> , const QList<qvariant> &amp; <em>args</em> )</qvariant></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#callWithCallback">callWithCallback </a></strong>(const QString &amp; <em>method</em> , const QList<qvariant> &amp; <em>args</em> , QObject * <em>receiver</em> , const char * <em>returnMethod</em> , const char * <em>errorMethod</em> )</qvariant></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#callWithCallback-1">callWithCallback </a></strong>(const QString &amp; <em>method</em> , const QList<qvariant> &amp; <em>args</em> , QObject * <em>receiver</em> , const char * <em>slot</em> )</qvariant></td>
+</tr>
+<tr>
+<td>QDBusConnection</td>
+<td><strong><a href="#connection">connection </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#interface">interface </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isValid">isValid </a></strong>() const</td>
+</tr>
+<tr>
+<td>QDBusError</td>
+<td><strong><a href="#lastError">lastError </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#path">path </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#service">service </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setTimeout">setTimeout </a></strong>(int <em>timeout</em> )</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#timeout">timeout </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>生成的代码类也派生自QDBusAbstractInterface，这里描述的所有方法也对生成的代码类有效。除了这里描述的方法，生成的代码类还为远程方法提供了成员函数，这使得编译时可以检查正确的参数和返回值，以及属性类型匹配和信号参数匹配。</p>
+<p><strong>另请参阅</strong> <a href="qdbusxml2cpp.html">The QDBus compiler </a>and <a href="qdbusinterface.html">QDBusInterface </a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="virtual-qdbusabstractinterface-qdbusabstractinterface"><code>[virtual] </code>QDBusAbstractInterface:: ~QDBusAbstractInterface ()</span><a href="#virtual-qdbusabstractinterface-qdbusabstractinterface" class="header-anchor">#</a></h3><p>释放此对象的资源。</p>
+<h3><span id="template-qdbuspendingcall-qdbusabstractinterface-asynccall-const-qstring-amp-method-args-amp-amp-args">template <typename args> <a href="qdbuspendingcall.html">QDBusPendingCall </a>QDBusAbstractInterface:: asyncCall (const <a href="qstring.html">QString </a>&amp; <em>method</em> , Args &amp;&amp;… <em>args</em> )</typename></span><a href="#template-qdbuspendingcall-qdbusabstractinterface-asynccall-const-qstring-amp-method-args-amp-amp-args" class="header-anchor">#</a></h3><p>调用此接口上的方法<em>method</em>，并将<em>args</em>传给该方法。所有的<em>args</em>必须可以转换为[QVariant]（qvariant.html）。</p>
+<p>呼叫 “的参数通过D-Bus作为输入参数传递给远程函数。返回的<a href="qdbuspendingcall.html">QDBusPendingCall</a>对象可以用来找出关于回复的信息。</p>
+<p>它可以按以下方式使用：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QString value = <span class="hljs-built_in">retrieveValue</span>();
+QDBusPendingCall pcall = interface-&gt;<span class="hljs-built_in">asyncCall</span>(<span class="hljs-built_in">QLatin1String</span>(<span class="hljs-string">"Process"</span>), value);
+QDBusPendingCallWatcher *watcher = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QDBusPendingCallWatcher</span>(pcall);
+QObject::<span class="hljs-built_in">connect</span>(watcher, <span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">finished</span>(QDBusPendingCallWatcher*)),
+                <span class="hljs-keyword">this</span>, <span class="hljs-built_in">SLOT</span>(<span class="hljs-built_in">callFinishedSlot</span>(QDBusPendingCallWatcher*)));</code></pre></div>
+
+<p>这个例子说明了带0、1和2个参数的函数调用，并说明了每个参数传递的不同类型（第一次调用<code>"ProcessWorkUnicode"</code>将包含一个Unicode字符串，第二次调用<code>"ProcessWork"</code>将包含一个字符串和一个字节阵列）。</p>
+<p><strong>注意：</strong>在Qt 5.14之前，这个函数最多只接受八（8）个参数。</p>
+<p><strong>另请参阅</strong> <a href="#asyncCallWithArgumentList">asyncCallWithArgumentList </a>().</p>
+<h3><span id="qdbuspendingcall-qdbusabstractinterface-asynccallwithargumentlist-const-qstring-amp-method-const-qlist-lt-qvariant-gt-amp-args">QDBusAbstractInterface:: asyncCallWithArgumentList (const &amp; <em>method</em> , const &lt; &gt; &amp; <em>args</em> )</span><a href="#qdbuspendingcall-qdbusabstractinterface-asynccallwithargumentlist-const-qstring-amp-method-const-qlist-lt-qvariant-gt-amp-args" class="header-anchor">#</a></h3><p>在此接口上放置一个对<em>method</em>指定的远程方法的调用，使用<em>args</em>作为参数。这个函数返回一个<a href="qdbuspendingcall.html">QDBusPendingCall</a>对象，可以用来跟踪回复的状态，并在回复到达时访问其内容。</p>
+<p>通常情况下，你应该使用<a href="#asyncCall-1">asyncCall</a>()来放置调用。</p>
+<p><strong>注意：</strong> 此函数是 <a href="threads-reentrancy.html">thread-safe </a>.</p>
+<h3><span id="template-qdbusmessage-qdbusabstractinterface-call-const-qstring-amp-method-args-amp-amp-args">template <typename args> <a href="qdbusmessage.html">QDBusMessage </a>QDBusAbstractInterface:: call (const <a href="qstring.html">QString </a>&amp; <em>method</em> , Args &amp;&amp;… <em>args</em> )</typename></span><a href="#template-qdbusmessage-qdbusabstractinterface-call-const-qstring-amp-method-args-amp-amp-args" class="header-anchor">#</a></h3><p>调用此接口上的方法<em>method</em>，并将<em>args</em>传给该方法。所有的<em>args</em>必须可以转换为[QVariant]（qvariant.html）。</p>
+<p>呼叫 “的参数通过D-Bus传递给远程函数作为输入参数。输出参数在<a href="qdbusmessage.html">QDBusMessage</a>回复中返回。如果回复是一个错误回复，<a href="#lastError">lastError</a>()也将被设置为错误信息的内容。</p>
+<p>它可以按以下方式使用:</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QString value = <span class="hljs-built_in">retrieveValue</span>();
+QDBusMessage reply;
+QDBusReply&lt;<span class="hljs-type">int</span>&gt; api = interface-&gt;<span class="hljs-built_in">call</span>(<span class="hljs-built_in">QLatin1String</span>(<span class="hljs-string">"GetAPIVersion"</span>));
+<span class="hljs-keyword">if</span> (api &gt;= <span class="hljs-number">14</span>)
+  reply = interface-&gt;<span class="hljs-built_in">call</span>(<span class="hljs-built_in">QLatin1String</span>(<span class="hljs-string">"ProcessWorkUnicode"</span>), value);
+<span class="hljs-keyword">else</span>
+  reply = interface-&gt;<span class="hljs-built_in">call</span>(<span class="hljs-built_in">QLatin1String</span>(<span class="hljs-string">"ProcessWork"</span>), <span class="hljs-built_in">QLatin1String</span>(<span class="hljs-string">"UTF-8"</span>), value.<span class="hljs-built_in">toUtf8</span>());</code></pre></div>
+
+<p>这个例子说明了带0、1和2个参数的函数调用，并说明了每个参数传递的不同类型（第一次调用<code>"ProcessWorkUnicode"</code>将包含一个Unicode字符串，第二次调用<code>"ProcessWork"</code>将包含一个字符串和一个字节阵列）。</p>
+<p><strong>注意：</strong>在Qt 5.14之前，这个函数最多只接受八（8）个参数。</p>
+<p><strong>另请参阅</strong> <a href="#callWithArgumentList">callWithArgumentList </a>().</p>
+<h3><span id="template-qdbusmessage-qdbusabstractinterface-call-qdbus-callmode-mode-const-qstring-amp-method-args-amp-amp-args">template <typename args> <a href="qdbusmessage.html">QDBusMessage </a>QDBusAbstractInterface:: call ( <a href="qdbus.html#CallMode-enum">QDBus::CallMode </a><em>mode</em> , const <a href="qstring.html">QString </a>&amp; <em>method</em> , Args &amp;&amp;… <em>args</em> )</typename></span><a href="#template-qdbusmessage-qdbusabstractinterface-call-qdbus-callmode-mode-const-qstring-amp-method-args-amp-amp-args" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>调用此接口上的方法<em>method</em>，并将<em>args</em>传给该方法。所有的<em>args</em>必须可以转换为[QVariant]（qvariant.html）。</p>
+<p>如果<em>mode</em>是 “NoWaitForReply”，那么这个函数在发出调用后将立即返回，而不等待远程方法的回复。否则，<em>mode</em>表示该函数是否应该在等待回复时激活Qt Event Loop。</p>
+<p>如果这个函数为了等待回复而重新进入Qt事件循环，它将排除用户输入。在等待过程中，它可能向你的应用程序传递信号和其他方法调用。因此，每当用call()进行调用时，它必须准备好处理重入的问题。</p>
+<p><strong>注意：</strong> 在Qt 5.14之前，这个函数最多只接受八（8）个参数。</p>
+<p><strong>另请参阅</strong> <a href="#callWithArgumentList">callWithArgumentList </a>().</p>
+<h3><span id="qdbusmessage-qdbusabstractinterface-callwithargumentlist-qdbus-callmode-mode-const-qstring-amp-method-const-qlist-lt-qvariant-gt-amp-args">QDBusAbstractInterface:: callWithArgumentList ( <em>mode</em> , const &amp; <em>method</em> , const &lt; &gt; &amp; <em>args</em> )</span><a href="#qdbusmessage-qdbusabstractinterface-callwithargumentlist-qdbus-callmode-mode-const-qstring-amp-method-const-qlist-lt-qvariant-gt-amp-args" class="header-anchor">#</a></h3><p>在这个接口上对<em>method</em>指定的远程方法进行调用，使用<em>args</em>作为参数。这个函数返回收到的回复信息，可以是普通的<a href="qdbusmessage.html#MessageType-enum">QDBusMessage::ReplyMessage </a>（表示成功）或者<a href="qdbusmessage.html#MessageType-enum">QDBusMessage::ErrorMessage </a> （如果调用失败）。参数<em>mode</em>指定了这个调用应该如何放置。</p>
+<p>如果调用成功，<a href="#lastError">lastError</a>()将被清除；否则，它将包含这个调用产生的错误。</p>
+<p>通常，你应该使用<a href="#call-1">call</a>()来放置调用。</p>
+<p><strong>警告：</strong> 若使用 <code>UseEventLoop </code>，你的代码必须准备好处理任何重入：在这个函数返回之前，其他方法调用和信号可能被传递，以及其他Qt队列信号和事件。</p>
+<p><strong>注意：</strong> 此函数是 <a href="threads-reentrancy.html">thread-safe </a>.</p>
+<h3><span id="bool-qdbusabstractinterface-callwithcallback-const-qstring-amp-method-const-qlist-lt-qvariant-gt-amp-args-qobject-receiver-const-char-returnmethod-const-char-errormethod">bool QDBusAbstractInterface:: callWithCallback (const &amp; <em>method</em> , const &lt; &gt; &amp; <em>args</em> , * <em>receiver</em> , const char * <em>returnMethod</em> , const char * <em>errorMethod</em> )</span><a href="#bool-qdbusabstractinterface-callwithcallback-const-qstring-amp-method-const-qlist-lt-qvariant-gt-amp-args-qobject-receiver-const-char-returnmethod-const-char-errormethod" class="header-anchor">#</a></h3><p>在这个接口上对<em>method</em>指定的远程方法进行调用，使用<em>args</em>作为参数。这个函数在排队调用后立即返回。来自远程函数的回复被传递给对象<em>receiver</em>的<em>returnMethod</em>。如果发生错误，会调用对象<em>receiver</em>上的<em>errorMethod</em>。</p>
+<p>此函数返回 <code>true </code>如果排队成功。它并不表示执行的调用成功了。如果失败，则调用<em>errorMethod</em>。如果排队失败，此函数返回 <code>false </code>，没有槽会被调用。</p>
+<p><em>returnMethod</em>必须有函数调用所返回的类型作为其参数。可以选择，它可以有一个<a href="qdbusmessage.html">QDBusMessage</a>参数作为它的最后或唯一的参数。<em>errorMethod</em>必须有一个<a href="qdbuserror.html">QDBusError</a>作为它的唯一参数。</p>
+<p><strong>另请参阅</strong> <a href="qdbuserror.html">QDBusError </a>and <a href="qdbusmessage.html">QDBusMessage </a>.</p>
+<h3><span id="bool-qdbusabstractinterface-callwithcallback-const-qstring-amp-method-const-qlist-lt-qvariant-gt-amp-args-qobject-receiver-const-char-slot">bool QDBusAbstractInterface:: callWithCallback (const &amp; <em>method</em> , const &lt; &gt; &amp; <em>args</em> , * <em>receiver</em> , const char * <em>slot</em> )</span><a href="#bool-qdbusabstractinterface-callwithcallback-const-qstring-amp-method-const-qlist-lt-qvariant-gt-amp-args-qobject-receiver-const-char-slot" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>这个函数已被废弃。请使用重载版本。</p>
+<p>使用<em>args</em>作为参数，在此接口上放置对<em>method</em>指定的远程方法的调用。该函数在排队调用后立即返回。来自远程函数的回复或其发出的任何错误都会被传递到对象<em>receiver</em>的<em>slot</em>槽中。</p>
+<p>此函数返回 <code>true </code>如果排队成功：这并不表示调用成功。如果失败，槽将被调用，并有一个错误信息。在这种情况下，<a href="#lastError">lastError</a>()将不会被设置。</p>
+<p><strong>另请参阅</strong> <a href="qdbuserror.html">QDBusError </a>and <a href="qdbusmessage.html">QDBusMessage </a>.</p>
+<h3><span id="qdbusconnection-qdbusabstractinterface-connection-const">QDBusAbstractInterface:: connection () const</span><a href="#qdbusconnection-qdbusabstractinterface-connection-const" class="header-anchor">#</a></h3><p>返回这个接口所关联的连接。</p>
+<h3><span id="qstring-qdbusabstractinterface-interface-const">QDBusAbstractInterface:: interface () const</span><a href="#qstring-qdbusabstractinterface-interface-const" class="header-anchor">#</a></h3><p>返回该接口的名称。</p>
+<h3><span id="bool-qdbusabstractinterface-isvalid-const">bool QDBusAbstractInterface:: isValid () const</span><a href="#bool-qdbusabstractinterface-isvalid-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果这是对一个远程对象的有效引用。如果在创建这个接口的过程中出现了错误（例如，如果远程应用程序不存在），它将返回`alse。</p>
+<p>注意：当处理远程对象时，在创建<a href="qdbusinterface.html">QDBusInterface</a>时不一定能确定它是否存在。</p>
+<h3><span id="qdbuserror-qdbusabstractinterface-lasterror-const">QDBusAbstractInterface:: lastError () const</span><a href="#qdbuserror-qdbusabstractinterface-lasterror-const" class="header-anchor">#</a></h3><p>返回最后一次操作产生的错误，如果最后一次操作没有产生错误，则返回一个无效的错误。</p>
+<h3><span id="qstring-qdbusabstractinterface-path-const">QDBusAbstractInterface:: path () const</span><a href="#qstring-qdbusabstractinterface-path-const" class="header-anchor">#</a></h3><p>返回这个接口所关联的对象路径。</p>
+<h3><span id="qstring-qdbusabstractinterface-service-const">QDBusAbstractInterface:: service () const</span><a href="#qstring-qdbusabstractinterface-service-const" class="header-anchor">#</a></h3><p>返回这个接口所关联的服务的名称。</p>
+<h3><span id="void-qdbusabstractinterface-settimeout-int-timeout">void QDBusAbstractInterface:: setTimeout ( int <em>timeout</em> )</span><a href="#void-qdbusabstractinterface-settimeout-int-timeout" class="header-anchor">#</a></h3><p>将未来所有DBus调用的超时时间以毫秒为单位设置为<em>timeout</em>。-1表示默认的DBus超时（通常是25秒）。</p>
+<p><strong>另请参阅</strong> <a href="#timeout">timeout </a>().</p>
+<h3><span id="int-qdbusabstractinterface-timeout-const">int QDBusAbstractInterface:: timeout () const</span><a href="#int-qdbusabstractinterface-timeout-const" class="header-anchor">#</a></h3><p>返回超时的当前值，单位是毫秒。-1表示默认的DBus超时（通常是25秒）。</p>
+<p><strong>另请参阅</strong> <a href="#setTimeout">setTimeout </a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/D/">D</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDate/QDate/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QDate类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDBus/QDBusAbstractAdaptor/">
+                        <span class="hidden-mobile">QDBusAbstractAdaptor类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

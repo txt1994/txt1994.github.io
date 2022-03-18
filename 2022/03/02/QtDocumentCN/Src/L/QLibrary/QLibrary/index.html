@@ -1,0 +1,866 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QLibrary Class 公共成员类型 属性 公共成员函数 静态公共成员 详细描述 成员类型介绍 enum QLibrary::LoadHint flags QLibrary::LoadHints   属性文档 fileName : QString loadHints : LoadHints   成员函数文档 QLibrary::QLibrary(const QString &amp;amp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QLibrary类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/L/QLibrary/QLibrary/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QLibrary Class 公共成员类型 属性 公共成员函数 静态公共成员 详细描述 成员类型介绍 enum QLibrary::LoadHint flags QLibrary::LoadHints   属性文档 fileName : QString loadHints : LoadHints   成员函数文档 QLibrary::QLibrary(const QString &amp;amp">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:45:48.614Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="L">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QLibrary类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QLibrary类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      74 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QLibrary类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qlibrary-class">QLibrary Class</a><ul>
+<li><a href="#gong-gong-cheng-yuan-lei-xing">公共成员类型</a></li>
+<li><a href="#shu-xing">属性</a></li>
+<li><a href="#gong-gong-cheng-yuan-han-shu">公共成员函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-jie-shao">成员类型介绍</a><ul>
+<li><a href="#enum-qlibrary-loadhint-flags-qlibrary-loadhints">enum QLibrary::LoadHint flags QLibrary::LoadHints</a></li>
+</ul>
+</li>
+<li><a href="#shu-xing-wen-dang">属性文档</a><ul>
+<li><a href="#filename-qstring-s-qstring-qstring-md">fileName : </a><a href="../../S/QString/QString.md">QString</a></li>
+<li><a href="#loadhints-loadhints-enum-qlibraryloadhint-flags-qlibraryloadhints">loadHints : </a><a href="#enum-qlibraryloadhint-flags-qlibraryloadhints">LoadHints</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qlibrary-qlibrary-const-qstring-s-qstring-qstring-md-filename-const-qstring-s-qstring-qstring-md-version-qobject-s-qobject-qqbject-md-qobject-parent-nullptr">QLibrary::QLibrary(const </a><a href="../../S/QString/QString.md">QString</a> &amp;<em>fileName</em>, const <a href="../../S/QString/QString.md">QString</a> &amp;<em>version</em>, <a href="../../S/QObject/QQbject.md#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#qlibrary-qlibrary-const-qstring-s-qstring-qstring-md-filename-int-vernum-qobject-s-qobject-qqbject-md-qobject-parent-nullptr">QLibrary::QLibrary(const </a><a href="../../S/QString/QString.md">QString</a> &amp;<em>fileName</em>, int <em>verNum</em>, <a href="../../S/QObject/QQbject.md#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#qlibrary-qlibrary-const-qstring-s-qstring-qstring-md-filename-qobject-s-qobject-qqbject-md-qobject-parent-nullptr">QLibrary::QLibrary(const </a><a href="../../S/QString/QString.md">QString</a> &amp;<em>fileName</em>, <a href="../../S/QObject/QQbject.md#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#qlibrary-qlibrary-qobject-s-qobject-qqbject-md-qobject-parent-nullptr">QLibrary::QLibrary(</a><a href="../../S/QObject/QQbject.md#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#virtual-qlibrary-qlibrary"><code>[virtual]</code>QLibrary::~QLibrary()</a></li>
+<li><a href="#qstring-s-qstring-qstring-md-qlibrary-errorstring-const">QString</a></li>
+<li><a href="#static-bool-qlibrary-islibrary-const-qstring-s-qstring-qstring-md-filename"><code>[static]</code>bool QLibrary::isLibrary(const </a><a href="../../S/QString/QString.md">QString</a> &amp;<em>fileName</em>)</li>
+<li><a href="#bool-qlibrary-isloaded-const">bool QLibrary::isLoaded() const</a></li>
+<li><a href="#bool-qlibrary-load">bool QLibrary::load()</a></li>
+<li><a href="#qfunctionpointer-https-doc-qt-io-qt-5-qtglobal-html-qfunctionpointer-typedef-qlibrary-resolve-const-char-symbol">QFunctionPointer</a></li>
+<li><a href="#static-qfunctionpointer-https-doc-qt-io-qt-5-qtglobal-html-qfunctionpointer-typedef-qlibrary-resolve-const-qstring-s-qstring-qstring-md-filename-const-char-symbol"><code>[static]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#QFunctionPointer-typedef">QFunctionPointer</a> QLibrary::resolve(const <a href="../../S/QString/QString.md">QString</a> &amp;<em>fileName</em>, const char *<em>symbol</em>)</li>
+<li><a href="#static-qfunctionpointer-https-doc-qt-io-qt-5-qtglobal-html-qfunctionpointer-typedef-qlibrary-resolve-const-qstring-s-qstring-qstring-md-filename-int-vernum-const-char-symbol"><code>[static]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#QFunctionPointer-typedef">QFunctionPointer</a> QLibrary::resolve(const <a href="../../S/QString/QString.md">QString</a> &amp;<em>fileName</em>, int <em>verNum</em>, const char*<em>symbol</em>)</li>
+<li><a href="#static-qfunctionpointer-https-doc-qt-io-qt-5-qtglobal-html-qfunctionpointer-typedef-qlibrary-resolve-const-qstring-s-qstring-qstring-md-filename-const-qstring-s-qstring-qstring-md-version-const-char-symbol"><code>[static]</code></a><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtglobal.html#QFunctionPointer-typedef">QFunctionPointer</a> QLibrary::resolve(const <a href="../../S/QString/QString.md">QString</a> &amp;<em>fileName</em>, const <a href="../../S/QString/QString.md">QString</a> &amp;<em>version</em>, const char *<em>symbol</em>)</li>
+<li><a href="#void-qlibrary-setfilenameandversion-const-qstring-s-qstring-qstring-md-filename-int-versionnumber">void QLibrary::setFileNameAndVersion(const </a><a href="../../S/QString/QString.md">QString</a> &amp;<em>fileName</em>, int <em>versionNumber</em>)</li>
+<li><a href="#void-qlibrary-setfilenameandversion-const-qstring-s-qstring-qstring-md-filename-const-qstring-s-qstring-qstring-md-version">void QLibrary::setFileNameAndVersion(const </a><a href="../../S/QString/QString.md">QString</a> &amp;<em>fileName</em>, const <a href="../../S/QString/QString.md">QString</a> &amp;<em>version</em>)</li>
+<li><a href="#bool-qlibrary-unload">bool QLibrary::unload()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QLibrary Class
+
+<p>Qlibrary用于运行时加载库。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头文件:</td>
+<td><code>#include &lt;QLibrary&gt;</code></td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+<tr>
+<td>继承于:</td>
+<td><a href="../../S/QObject/QQbject.md">QObject</a></td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong> 此类中全部函数可重入。</p>
+<h2><span id="gong-gong-cheng-yuan-lei-xing">公共成员类型</span><a href="#gong-gong-cheng-yuan-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enum</td>
+<td><strong><a href="#enum-qlibraryloadhint-flags-qlibraryloadhints">LoadHint</a></strong> { ResolveAllSymbolsHint, ExportExternalSymbolsHint, LoadArchiveMemberHint, PreventUnloadHint, DeepBindHint }</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><strong><a href="#enum-qlibraryloadhint-flags-qlibraryloadhints">LoadHints</a></strong></td>
+</tr>
+</tbody></table>
+<h2><span id="shu-xing">属性</span><a href="#shu-xing" class="header-anchor">#</a></h2><ul>
+<li><strong><a href="#filename--qstring">fileName</a></strong> : QString</li>
+<li><strong><a href="#loadhints--loadhints">loadHints</a></strong> : LoadHints</li>
+</ul>
+<h2><span id="gong-gong-cheng-yuan-han-shu">公共成员函数</span><a href="#gong-gong-cheng-yuan-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#qlibraryqlibraryconst-qstring-filename-const-qstring-version-qobject-parent--nullptr">QLibrary</a></strong>(const QString &amp;<em>fileName</em>, const QString &amp;<em>version</em>, QObject *<em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qlibraryqlibraryconst-qstring-filename-int-vernum-qobject-parent--nullptr">QLibrary</a></strong>(const QString &amp;<em>fileName</em>, int <em>verNum</em>, QObject *<em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qlibraryqlibraryconst-qstring-filename-qobject-parent--nullptr">QLibrary</a></strong>(const QString &amp;<em>fileName</em>, QObject *<em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#qlibraryqlibraryqobject-parent--nullptr">QLibrary</a></strong>(QObject *<em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="#virtualqlibraryqlibrary">~QLibrary</a></strong>()</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#qstring-qlibraryerrorstring-const">errorString</a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#filename--qstring">fileName</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qlibraryisloaded-const">isLoaded</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qlibraryload">load</a></strong>()</td>
+</tr>
+<tr>
+<td>QLibrary::LoadHints</td>
+<td><strong><a href="#loadhints--loadhints">loadHints</a></strong>() const</td>
+</tr>
+<tr>
+<td>QFunctionPointer</td>
+<td><strong>[resolve](-&gt; #qfunctionpointer-qlibraryresolveconst-char-symbol)</strong>(const char *<em>symbol</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#filename--qstring">setFileName</a></strong>(const QString &amp;<em>fileName</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#void-qlibrarysetfilenameandversionconst-qstring-filename-int-versionnumber">setFileNameAndVersion</a></strong>(const QString &amp;<em>fileName</em>, int <em>versionNumber</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#void-qlibrarysetfilenameandversionconst-qstring-filename-const-qstring-version">setFileNameAndVersion</a></strong>(const QString &amp;<em>fileName</em>, const QString &amp;<em>version</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#loadhints--loadhints">setLoadHints</a></strong>(QLibrary::LoadHints <em>hints</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#bool-qlibraryunload">unload</a></strong>()</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bool</td>
+<td><strong><a href="#isLibrary">isLibrary</a></strong>(const QString &amp;<em>fileName</em>)</td>
+</tr>
+<tr>
+<td>QFunctionPointer</td>
+<td><strong><a href="#staticqfunctionpointer-qlibraryresolveconst-qstring-filename-const-char-symbol">resolve</a></strong>(const QString &amp;<em>fileName</em>, const char *<em>symbol</em>)</td>
+</tr>
+<tr>
+<td>QFunctionPointer</td>
+<td><strong><a href="#staticqfunctionpointer-qlibraryresolveconst-qstring-filename-int-vernum-const-charsymbol">resolve</a></strong>(const QString &amp;<em>fileName</em>, int <em>verNum</em>, const char *<em>symbol</em>)</td>
+</tr>
+<tr>
+<td>QFunctionPointer</td>
+<td><strong><a href="#staticqfunctionpointer-qlibraryresolveconst-qstring-filename-const-qstring-version-const-char-symbol">resolve</a></strong>(const QString &amp;<em>fileName</em>, const QString &amp;<em>version</em>, const char *<em>symbol</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QLibrary的实例用于操作一个动态链接库文件（文中称为库，也就是DLL）。QLibrary提供访问库中函数的一种平台无关方式。您可以在构造时传递库文件名，也可以通过 <a href="#filename--qstring">setFileName</a>() 给对象显式设置。加载库时，QLibrary在所有系统指定的位置搜索 (例如： Unix上的 <code>LD_LIBRARY_PATH</code>), 除非文件名是绝对路径。</p>
+<p>如果文件路径是绝对路径，则会首先尝试在这个位置加载。如果找不到，QLibrary尝试不同系统相关的前后缀的文件名，比如Unix系的前缀“lib”，后缀“.so”，Mac及IOS的后缀”.dylib”，Windows的后缀”.dll”。</p>
+<p>如果文件路径不是绝对路径，Qlibrary改变搜索顺序，首先尝试系统特定的前后缀，之后是特定文件路径。</p>
+<p>这让使用除去前后缀的库基本名称来指定库文件变得可能。因此代码可以在不同操作系统里执行，但不用太多代码尝试各种文件名称。</p>
+<p>最重要的函数是 <a href="#bool-qlibraryload">load</a>() 用于动态加载库，<a href="#bool-qlibraryisloaded-const">isLoaded</a>() 用于检查是否加载成功，以及 <a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>() 来解析库中的符号。如果库还没加载，<a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>() 函数隐式地加载这个库。多个QLibrary实例访问同一个物理库文件是可行的。一旦被加载，库在内存中一直保留到程序结束。您可以通过 <a href="#bool-qlibraryunload">unload</a>() 尝试卸载一个库，但如果有其他QLibrary实例在使用同一个库文件，调用会失败。只有在每一个实例都调用过 <a href="#bool-qlibraryunload">unload</a>() 后，库才会真正卸载。</p>
+<p>Qlibrary 的一种典型用法是解析库中的导出符号，并调用其对应的C语言函数。这叫做显式链接，对应于隐式链接。隐式链接是构建中的链接可执行文件和静态库的步骤。</p>
+<p>下面的代码片段加载了个库，解析”mysymbol”符号，并在一切就绪的情况下调用这个函数。如果出现了问题， 例如库文件不存在或者符号未定义，函数指针将会是<code>nullptr</code>，且不会调用。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QLibrary <span class="hljs-title">myLib</span><span class="hljs-params">(<span class="hljs-string">"mylib"</span>)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">void</span> <span class="hljs-params">(*MyPrototype)</span><span class="hljs-params">()</span></span>;
+MyPrototype myFunction = (MyPrototype) myLib.<span class="hljs-built_in">resolve</span>(<span class="hljs-string">"mysymbol"</span>);
+<span class="hljs-keyword">if</span> (myFunction)
+    <span class="hljs-built_in">myFunction</span>();</code></pre></div>
+
+<p>符号必须作为C函数导出，<a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>()才能工作。这意味着用C++编译器编译的函数必须由<code>extern "C"</code>块包裹。在Windows上，还要求导出函数要使用<code>dllexport</code>宏；实现详情见 <a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>()。方便起见，<a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>() 函数有静态形式，您可以在不现实加载库的情况下使用：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">void</span> <span class="hljs-params">(*MyPrototype)</span><span class="hljs-params">()</span></span>;
+MyPrototype myFunction =
+        (MyPrototype) QLibrary::<span class="hljs-built_in">resolve</span>(<span class="hljs-string">"mylib"</span>, <span class="hljs-string">"mysymbol"</span>);
+<span class="hljs-keyword">if</span> (myFunction)
+    <span class="hljs-built_in">myFunction</span>();</code></pre></div>
+
+<p><strong>另请参阅：</strong> <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qpluginloader.html">QPluginLoader</a>.</p>
+<h2><span id="cheng-yuan-lei-xing-jie-shao">成员类型介绍</span><a href="#cheng-yuan-lei-xing-jie-shao" class="header-anchor">#</a></h2><h3><span id="enum-qlibrary-loadhint-flags-qlibrary-loadhints">enum QLibrary::LoadHint flags QLibrary::LoadHints</span><a href="#enum-qlibrary-loadhint-flags-qlibrary-loadhints" class="header-anchor">#</a></h3><p>这个枚举描述了可能的可以用来改变库的加载行为的指示。这些取值指示在库加载后如何解析符号，通过 <a href="#loadhints--loadhints">setLoadHints</a>() 指定。</p>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QLibrary::ResolveAllSymbolsHint</code></td>
+<td><code>0x01</code></td>
+<td>在加载库的时候解析符号，而不是简单等到 <a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>() 调用。</td>
+</tr>
+<tr>
+<td><code>QLibrary::ExportExternalSymbolsHint</code></td>
+<td><code>0x02</code></td>
+<td>导出库中未解析的符号和外部符号，这些符号可以在后续动态加载的库中解析。</td>
+</tr>
+<tr>
+<td><code>QLibrary::LoadArchiveMemberHint</code></td>
+<td><code>0x04</code></td>
+<td>运行库的文件名指定压缩包中的特定对象。如果设置了这个指示，文件名包含一个路径，其指向归档文件，接着是其中的成员名称。</td>
+</tr>
+<tr>
+<td><code>QLibrary::PreventUnloadHint</code></td>
+<td><code>0x08</code></td>
+<td>阻止库从地址空间通过close()卸载。如果之后再有open()调用，库中的静态变量不会重新初始化。</td>
+</tr>
+<tr>
+<td><code>QLibrary::DeepBindHint</code></td>
+<td><code>0x10</code></td>
+<td>Instructs the linker to prefer definitions in the loaded library over exported definitions in the loading application when resolving external symbols in the loaded library. This option is only supported on Linux.<br>命令链接器在解析加载过的库中的外部符号时，优先使用加载了的库中的定义，而不是在应用程序加载中的定义。【译者注：翻译存疑，故保留原文参考，详情参考globc–dlopen()–RTLD_DEEPBIND】</td>
+</tr>
+</tbody></table>
+<p>LoadHints是一个 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qflags.html">QFlags</a><code>&lt;LoadHint&gt;</code> 类型的typedef。 它储存了LoadHint取值的<strong>OR</strong>（位或）方式的组合。</p>
+<p><strong>另请参阅：</strong> <a href="#loadhints--loadhints">loadHints</a>.</p>
+<h2><span id="shu-xing-wen-dang">属性文档</span><a href="#shu-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="filename-qstring">fileName : </span><a href="#filename-qstring" class="header-anchor">#</a></h3><p>这个属性容纳库的文件名。</p>
+<p>我们建议忽略库的后缀名，因为Qlibrary会自动寻找带有合适后缀名的文件。 (参见 <a href="#isLibrary">isLibrary</a>())</p>
+<p>当加载库时，在所有系统指定的位置搜索 (例如： Unix上的 <code>LD_LIBRARY_PATH</code>)，除非文件名是绝对路径。加载成功后，fileName() 返回返回库文件的全名。如果在构造对象或setFileName() 中包含路径，讲返回文件的全路径。</p>
+<p>例如在Unix平台成功加载”GL”库后，fileName() 会返回 “libGL.so”。如果传递参数的文件路径是 “/usr/lib/libGL”, fileName() 会返回 “/usr/lib/libGL.so”。</p>
+<p><strong>访问函数:</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QString</td>
+<td><strong>fileName</strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong>setFileName</strong>(const QString &amp;<em>fileName</em>)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3><span id="loadhints-loadhints">loadHints : </span><a href="#loadhints-loadhints" class="header-anchor">#</a></h3><p>给 <a href="#bool-qlibraryload">load</a>() 函数一些关于如何执行的指示。</p>
+<p>您可以对于符号如何解析做指示。通常来说，符号不是在加载库时解析的，而是惰性解析的（也就是调用 <a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>() 时）。如果您设置loadHints 为<a href="#enum-qlibraryloadhint-flags-qlibraryloadhints">ResolveAllSymbolsHint</a>，那么如果平台支持，所有符号会在库加载时一齐解析。</p>
+<p>设置 <a href="#enum-qlibraryloadhint-flags-qlibraryloadhints">ExportExternalSymbolsHint</a> 会使库中的外部符号在后续库解析中可用。</p>
+<p>如果设置了 <a href="#enum-qlibraryloadhint-flags-qlibraryloadhints">LoadArchiveMemberHint</a> ，文件名会被分解为两部分：归档文件的路径和归档成员的名称. 例如,  <a href="#filename--qstring">fileName</a> <code>libGL.a(shr_64.o)</code> 指向归档文件 <code>libGL.a</code>中的库文件 <code>shr_64.o</code> . 这个特性只在AIX平台生效。</p>
+<p>loadHints 的解释是平台相关的，如果您用这些特效，您大概已经对编译的系统平台做了一些假设。因此请仅在您明白您这些操作的结果的情况下设置这些指示。</p>
+<p>默认情况下，此属性没有设置任何flag，所有库文件会惰性加载，并且不会导出共其他动态链接库使用的外部符号。</p>
+<p><strong>注意：</strong> 在库已经加载后设置这个属性没有效果。 并且 loadHints() 不会体现出这些修改。</p>
+<p><strong>注意：</strong> 这个属性是所有指向同一个库的 <a href="#QLibrary-Class">QLibrary</a> 实例共享的。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QLibrary::LoadHints</td>
+<td><strong>loadHints</strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong>setLoadHints</strong>(QLibrary::LoadHints <em>hints</em>)</td>
+</tr>
+</tbody></table>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qlibrary-qlibrary-const-qstring-amp-filename-const-qstring-amp-version-qobject-parent-nullptr">QLibrary::QLibrary(const  &amp;<em>fileName</em>, const  &amp;<em>version</em>,  *<em>parent</em> = nullptr)</span><a href="#qlibrary-qlibrary-const-qstring-amp-filename-const-qstring-amp-version-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>基于给定的父对象 <em>parent</em> 构造一个库对象。它会加载文件名<em>fileName</em>、完整版本号 <em>version</em> 指定的库文件。如今，版本号在Windows上被忽略。</p>
+<p>我们建议在 <em>fileName</em> 中忽略文件名的前后缀，因为QLibrary会基于不同平台自动寻找合适的前后缀。比如Unix系的前缀“lib”，后缀“.so”，Mac及IOS的后缀”.dylib”，Windows的后缀”.dll”。（参见<a href="#filename--qstring">fileName</a> ）</p>
+<hr>
+<h3><span id="qlibrary-qlibrary-const-qstring-amp-filename-int-vernum-qobject-parent-nullptr">QLibrary::QLibrary(const  &amp;<em>fileName</em>, int <em>verNum</em>,  *<em>parent</em> = nullptr)</span><a href="#qlibrary-qlibrary-const-qstring-amp-filename-int-vernum-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>基于给定的父对象 <em>parent</em> 构造一个库对象。它会加载文件名<em>fileName</em>、主版本号 <em>verNum</em> 指定的库文件。如今，版本号在Windows上被忽略。</p>
+<p>我们建议在 <em>fileName</em> 中忽略文件名的前后缀，因为QLibrary会基于不同平台自动寻找合适的前后缀。比如Unix系的前缀“lib”，后缀“.so”，Mac及IOS的后缀”.dylib”，Windows的后缀”.dll”。（参见<a href="#filename--qstring">fileName</a> ）</p>
+<hr>
+<h3><span id="qlibrary-qlibrary-const-qstring-amp-filename-qobject-parent-nullptr">QLibrary::QLibrary(const  &amp;<em>fileName</em>,  *<em>parent</em> = nullptr)</span><a href="#qlibrary-qlibrary-const-qstring-amp-filename-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>基于给定的父对象 <em>parent</em> 构造一个库对象。它会加载文件名<em>fileName</em> 指定的库文件。</p>
+<p>我们建议在 <em>fileName</em> 中忽略文件名的前后缀，因为QLibrary会基于不同平台自动寻找合适的前后缀。比如Unix系的前缀“lib”，后缀“.so”，Mac及IOS的后缀”.dylib”，Windows的后缀”.dll”。（参见<a href="#filename--qstring">fileName</a> ）</p>
+<hr>
+<h3><span id="qlibrary-qlibrary-qobject-parent-nullptr">QLibrary::QLibrary( *<em>parent</em> = nullptr)</span><a href="#qlibrary-qlibrary-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>基于给定的父对象 <em>parent</em> 构造一个库对象。</p>
+<hr>
+<h3><span id="virtual-qlibrary-qlibrary"><code>[virtual]</code>QLibrary::~QLibrary()</span><a href="#virtual-qlibrary-qlibrary" class="header-anchor">#</a></h3><p>删除此QLibrary对象。</p>
+<p>除非显式调用 <a href="#bool-qlibraryunload">unload</a>()，库会在一直驻留在内存中，知道应用结束。</p>
+<p><strong>另请参阅：</strong> <a href="#bool-qlibraryisloaded-const">isLoaded</a>() 和 <a href="#bool-qlibraryunload">unload</a>().</p>
+<hr>
+<h3><span id="qstring-qlibrary-errorstring-const"> QLibrary::errorString() const</span><a href="#qstring-qlibrary-errorstring-const" class="header-anchor">#</a></h3><p>返回一个描述上一个发生的错误的文本字符串。截至现在，errorString 只会在 <a href="#bool-qlibraryload">load</a>(), <a href="#bool-qlibraryunload">unload</a>() 或 <a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>() 调用由于一些原因失败时才会设置。</p>
+<p>此函数引入自：Qt 4.2.</p>
+<hr>
+<h3><span id="static-bool-qlibrary-islibrary-const-qstring-amp-filename"><code>[static]</code>bool QLibrary::isLibrary(const  &amp;<em>fileName</em>)</span><a href="#static-bool-qlibrary-islibrary-const-qstring-amp-filename" class="header-anchor">#</a></h3><p>如果 <em>fileName</em> 包含一个合法的可加载的后缀，返回true；否则返回false。</p>
+<table>
+<thead>
+<tr>
+<th align="center">平台</th>
+<th align="center">合法后缀</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Windows</td>
+<td align="center"><code>.dll</code>, <code>.DLL</code></td>
+</tr>
+<tr>
+<td align="center">Unix/Linux</td>
+<td align="center"><code>.so</code></td>
+</tr>
+<tr>
+<td align="center">AIX</td>
+<td align="center"><code>.a</code></td>
+</tr>
+<tr>
+<td align="center">HP-UX</td>
+<td align="center"><code>.sl</code>, <code>.so</code> (HP-UXi)</td>
+</tr>
+<tr>
+<td align="center">macOS and iOS</td>
+<td align="center"><code>.dylib</code>, <code>.bundle</code>, <code>.so</code></td>
+</tr>
+</tbody></table>
+<p>Unix平台上的名字后的版本号会被忽略。</p>
+<hr>
+<h3><span id="bool-qlibrary-isloaded-const">bool QLibrary::isLoaded() const</span><a href="#bool-qlibrary-isloaded-const" class="header-anchor">#</a></h3><p>如果库已经被加载，返回true，否则返回false。</p>
+<p><strong>另请参阅：</strong> <a href="#bool-qlibraryload">load</a>().</p>
+<hr>
+<h3><span id="bool-qlibrary-load">bool QLibrary::load()</span><a href="#bool-qlibrary-load" class="header-anchor">#</a></h3><p>加载一个库，如果成功加载则返回true；否则返回false。因为 <a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>() 内部会自动调用此方法，您没必要显示调用这个函数。如果在某些情况下您想提前加载库，您可以主动调用它。</p>
+<p><strong>另请参阅：</strong> <a href="#bool-qlibraryunload">unload</a>().</p>
+<hr>
+<h3><span id="qfunctionpointer-qlibrary-resolve-const-char-symbol"> QLibrary::resolve(const char *<em>symbol</em>)</span><a href="#qfunctionpointer-qlibrary-resolve-const-char-symbol" class="header-anchor">#</a></h3><p>返回导出符号 <em>symbol</em> 对应的地址。如果需要，库会自动加载。如果库无法加载或符号无法解析，返回 <code>nullptr</code> 。</p>
+<p>例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int</span> <span class="hljs-params">(*AvgFunction)</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span></span>;
+
+AvgFunction avg = (AvgFunction) library-&gt;<span class="hljs-built_in">resolve</span>(<span class="hljs-string">"avg"</span>);
+<span class="hljs-keyword">if</span> (avg)
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">avg</span>(<span class="hljs-number">5</span>, <span class="hljs-number">8</span>);
+<span class="hljs-keyword">else</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;</code></pre></div>
+
+<p>符号必须作为C语言函数导出。这意味着如果使用C++编译器，函数必须由 <code>extern "C"</code> 包裹。在Windows平台，您还必须显式通过 <code>__declspec(dllexport)</code> 指导编译器导出符号，例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-function">MY_EXPORT <span class="hljs-type">int</span> <span class="hljs-title">avg</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">return</span> (a + b) / <span class="hljs-number">2</span>;
+}</code></pre></div>
+
+<p>宏 <code>MY_EXPORT</code> 定义如下</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> Q_OS_WIN</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> MY_EXPORT __declspec(dllexport)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">else</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> MY_EXPORT</span>
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span></code></pre></div>
+
+<hr>
+<h3><span id="static-qfunctionpointer-qlibrary-resolve-const-qstring-amp-filename-const-char-symbol"><code>[static]</code> QLibrary::resolve(const  &amp;<em>fileName</em>, const char *<em>symbol</em>)</span><a href="#static-qfunctionpointer-qlibrary-resolve-const-qstring-amp-filename-const-char-symbol" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>加载文件名 <em>fileName</em> 对应的库，并返回 <em>symbol</em> 对应导出符号的地址。注意 <em>fileName</em> 不应该包含平台相关前后缀（详情见 <a href="#filename--qstring">fileName</a>）. 库会一直保留到应用程序退出。</p>
+<p>如果库无法加载或符号无法解析，返回 <code>nullptr</code> 。</p>
+<p><strong>另请参阅：</strong> <a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>().</p>
+<hr>
+<h3><span id="static-qfunctionpointer-qlibrary-resolve-const-qstring-amp-filename-int-vernum-const-char-symbol"><code>[static]</code> QLibrary::resolve(const  &amp;<em>fileName</em>, int <em>verNum</em>, const char*<em>symbol</em>)</span><a href="#static-qfunctionpointer-qlibrary-resolve-const-qstring-amp-filename-int-vernum-const-char-symbol" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>加载文件名 <em>fileName</em> 、主版本号 <em>verNum</em> 对应的库，并返回 <em>symbol</em> 对应导出符号的地址。注意 <em>fileName</em> 不应该包含平台相关前后缀（详情见 <a href="#filename--qstring">fileName</a>）. 库会一直保留到应用程序退出。<em>version</em> 参数在 Windows 上无效。</p>
+<p>如果库无法加载或符号无法解析，返回 <code>nullptr</code> 。</p>
+<p><strong>另请参阅：</strong> <a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>().</p>
+<hr>
+<h3><span id="static-qfunctionpointer-qlibrary-resolve-const-qstring-amp-filename-const-qstring-amp-version-const-char-symbol"><code>[static]</code> QLibrary::resolve(const  &amp;<em>fileName</em>, const  &amp;<em>version</em>, const char *<em>symbol</em>)</span><a href="#static-qfunctionpointer-qlibrary-resolve-const-qstring-amp-filename-const-qstring-amp-version-const-char-symbol" class="header-anchor">#</a></h3><p>这是一个重载函数。</p>
+<p>加载文件名 <em>fileName</em> 、完整版本号 <em>version</em> 对应的库，并返回 <em>symbol</em> 对应导出符号的地址。注意 <em>fileName</em> 不应该包含平台相关前后缀（详情见 <a href="#filename--qstring">fileName</a>）. 库会一直保留到应用程序退出。<em>version</em> 参数在 Windows 上无效。</p>
+<p>如果库无法加载或符号无法解析，返回 <code>nullptr</code> 。</p>
+<p>此函数引入自：Qt 4.4.</p>
+<p><strong>另请参阅：</strong> <a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>().</p>
+<h3><span id="void-qlibrary-setfilenameandversion-const-qstring-amp-filename-int-versionnumber">void QLibrary::setFileNameAndVersion(const  &amp;<em>fileName</em>, int <em>versionNumber</em>)</span><a href="#void-qlibrary-setfilenameandversion-const-qstring-amp-filename-int-versionnumber" class="header-anchor">#</a></h3><p>设置 <a href="#filename--qstring">fileName</a> 属性，以及相对应的文件名和版本号信息。<em>versionNumber</em> 参数在 Windows 上无效。</p>
+<p><strong>另请参阅：</strong> <a href="#filename--qstring">setFileName</a>().</p>
+<h3><span id="void-qlibrary-setfilenameandversion-const-qstring-amp-filename-const-qstring-amp-version">void QLibrary::setFileNameAndVersion(const  &amp;<em>fileName</em>, const  &amp;<em>version</em>)</span><a href="#void-qlibrary-setfilenameandversion-const-qstring-amp-filename-const-qstring-amp-version" class="header-anchor">#</a></h3><p>设置 <a href="#filename--qstring">fileName</a> 属性，以及相对应的文件名和完整版本号信息。<em>version</em> 参数在 Windows 上无效。</p>
+<p>此函数引入自：Qt 4.4.</p>
+<p><strong>另请参阅：</strong> <a href="#filename--qstring">setFileName</a>().</p>
+<h3><span id="bool-qlibrary-unload">bool QLibrary::unload()</span><a href="#bool-qlibrary-unload" class="header-anchor">#</a></h3><p>卸载一个库；如果成功返回<code>true</code>，否则<code>false</code>。</p>
+<p>在应用程序结束是，此函数自动调用，因此您不应该手动调用。</p>
+<p>如果有其他 <a href="#QLibrary-Class">QLibrary</a> 示例在使用同一个库，调用会失败。卸载只会在所有实例都调用过此函数之后发生。</p>
+<p>注意：在 Mac OS X 10.3 (Panther)，无法卸载动态链接库。</p>
+<p><strong>另请参阅：</strong> <a href="#qfunctionpointer-qlibraryresolveconst-char-symbol">resolve</a>() 和 <a href="#bool-qlibraryload">load</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/L/">L</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/N/QNetworkRequest/QNetworkRequest/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QNetworkRequest类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/L/QLabel/QLabel/">
+                        <span class="hidden-mobile">QLabel类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

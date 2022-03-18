@@ -1,0 +1,795 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="HttpServer Url Get cpr::Post std::string expected_text{“”}; EXPECT_EQ()        本文介绍的HTTP库👉libcpr&#x2F;cpr: C++ Requests: Curl for People, a spiritual port of Python Requests. (github.com) HttpServer#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cpr请求库">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/13/cpr%20HTTP%E8%AF%B7%E6%B1%82%E5%BA%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="HttpServer Url Get cpr::Post std::string expected_text{“”}; EXPECT_EQ()        本文介绍的HTTP库👉libcpr&#x2F;cpr: C++ Requests: Curl for People, a spiritual port of Python Requests. (github.com) HttpServer#">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/http-y-https-e1547501523497.jpg">
+<meta property="article:published_time" content="2022-01-13T12:43:31.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:00:01.165Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="TCP&#x2F;IP">
+<meta property="article:tag" content="HTTP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/http-y-https-e1547501523497.jpg">
+  
+  
+  <title>cpr请求库 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="cpr请求库">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-13 20:43" pubdate>
+        2022年1月13日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      23k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      195 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">cpr请求库</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#httpserver"><strong>HttpServer</strong></a><ul>
+<li><a href="#url">Url</a></li>
+<li><a href="#get">Get</a></li>
+<li><a href="#cpr-post">cpr::Post</a></li>
+<li><a href="#std-string-expected-text"><strong>std</strong>::<strong>string</strong> expected_text{“”};</a></li>
+<li><a href="#expect-eq">EXPECT_EQ()</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<p>本文介绍的HTTP库👉<a target="_blank" rel="noopener" href="https://github.com/libcpr/cpr">libcpr/cpr: C++ Requests: Curl for People, a spiritual port of Python Requests. (github.com)</a></p>
+<h2><span id="httpserver"><strong>HttpServer</strong></span><a href="#httpserver" class="header-anchor">#</a></h2><h3><span id="url">Url</span><a href="#url" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs c++">Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/hello.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/basic.json"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/error.html"</span>};
+
+Url url{<span class="hljs-string">"http://bad_host/"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/basic_cookies.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/empty_cookies.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/check_cookies.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/v1_cookies.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/check_v1_cookies.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/basic_auth.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/bearer_token.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/digest_auth.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/header_reflect.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/temporary_redirect.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/permanent_redirect.html"</span>};
+
+Url url{server-&gt;<span class="hljs-built_in">GetBaseUrl</span>() + <span class="hljs-string">"/body_get.html"</span>};</code></pre></div>
+
+<h3><span id="get">Get</span><a href="#get" class="header-anchor">#</a></h3><h4><span id="response-response-cpr-get-url">Response response = cpr::Get(url)</span><a href="#response-response-cpr-get-url" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-iface">Response response = cpr::Get(url, iface);</span><a href="#response-response-cpr-get-url-iface" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-timeout-0l">Response response = cpr::Get(url, Timeout{0L});</span><a href="#response-response-cpr-get-url-timeout-0l" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-cookies">Response response = cpr::Get(url, cookies);</span><a href="#response-response-cpr-get-url-cookies" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-parameters">Response response = cpr::Get(url, parameters{});</span><a href="#response-response-cpr-get-url-parameters" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-authentication">Response response = cpr::Get(url, Authentication{});</span><a href="#response-response-cpr-get-url-authentication" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-header">Response response = cpr::Get(url, Header{});</span><a href="#response-response-cpr-get-url-header" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-bearer">Response response = cpr::Get(url, Bearer{});</span><a href="#response-response-cpr-get-url-bearer" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-digest">Response response = cpr::Get(url, Digest{});</span><a href="#response-response-cpr-get-url-digest" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-authentication-parameters">Response response = cpr::Get(url, Authentication{}, Parameters{});</span><a href="#response-response-cpr-get-url-authentication-parameters" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-parameters-authentication">Response response = cpr::Get(url, Parameters{}, Authentication{});</span><a href="#response-response-cpr-get-url-parameters-authentication" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-authentication-header">Response response = cpr::Get(url, Authentication{}, Header{});</span><a href="#response-response-cpr-get-url-authentication-header" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-authentication-header">Response response = cpr::Get(url, Authentication{}, Header{});</span><a href="#response-response-cpr-get-url-authentication-header" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-header-authentication">Response response = cpr::Get(url, Header{}, Authentication{});</span><a href="#response-response-cpr-get-url-header-authentication" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-header-parameters">Response response = cpr::Get(url, Header{}, Parameters{});</span><a href="#response-response-cpr-get-url-header-parameters" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-parameters-header">Response response = cpr::Get(url, Parameters{}, Header{});</span><a href="#response-response-cpr-get-url-parameters-header" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-authentication-parameters-header">Response response = cpr::Get(url, Authentication{}, Parameters{}, Header{});</span><a href="#response-response-cpr-get-url-authentication-parameters-header" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-parameters-header-authentication">Response response = cpr::Get(url, Parameters{}, Header{}, Authentication{});</span><a href="#response-response-cpr-get-url-parameters-header-authentication" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-header-authentication-parameters">Response response = cpr::Get(url, Header{}, Authentication{}, Parameters{});</span><a href="#response-response-cpr-get-url-header-authentication-parameters" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-authentication-header-parameters">Response response = cpr::Get(url, Authentication{}, Header{}, Parameters{});</span><a href="#response-response-cpr-get-url-authentication-header-parameters" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-parameters-authentication-header">Response response = cpr::Get(url, Parameters{}, Authentication{}, Header{});</span><a href="#response-response-cpr-get-url-parameters-authentication-header" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-redirect-false">Response response = cpr::Get(url, Redirect(false));</span><a href="#response-response-cpr-get-url-redirect-false" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-redirect-0l">Response response = cpr::Get(url, Redirect(0L));</span><a href="#response-response-cpr-get-url-redirect-0l" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-authentication-header-redirect-true-true">Response response = cpr::Get(url, Authentication{}, Header{}, Redirect(true, true));</span><a href="#response-response-cpr-get-url-authentication-header-redirect-true-true" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-body">Response response = cpr::Get(url, body);</span><a href="#response-response-cpr-get-url-body" class="header-anchor">#</a></h4><h4><span id="response-response-cpr-get-url-limitrate-1024-1024">Response response = cpr::Get(url, LimitRate(1024, 1024));</span><a href="#response-response-cpr-get-url-limitrate-1024-1024" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs c++">Response response = cpr::<span class="hljs-built_in">Get</span>(url);
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, iface);
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Timeout{<span class="hljs-number">0L</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, cookies);
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, parameters);
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"key"</span>, <span class="hljs-string">"value"</span>}, {<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}, {<span class="hljs-string">"test"</span>, <span class="hljs-string">"case"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"Authorization"</span>, <span class="hljs-string">"Bearer the_token"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Bearer{<span class="hljs-string">"the_token"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Digest{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Parameters{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Parameters{{<span class="hljs-string">"key"</span>, <span class="hljs-string">"value"</span>}, {<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}, {<span class="hljs-string">"test"</span>, <span class="hljs-string">"case"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"key"</span>, <span class="hljs-string">"value"</span>}, {<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}, {<span class="hljs-string">"test"</span>, <span class="hljs-string">"case"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Header{{<span class="hljs-string">"key"</span>, <span class="hljs-string">"value"</span>}, {<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}, {<span class="hljs-string">"test"</span>, <span class="hljs-string">"case"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"key"</span>, <span class="hljs-string">"value"</span>}, {<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}, {<span class="hljs-string">"test"</span>, <span class="hljs-string">"case"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Parameters{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Parameters{{<span class="hljs-string">"key"</span>, <span class="hljs-string">"value"</span>}, {<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}, {<span class="hljs-string">"test"</span>, <span class="hljs-string">"case"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"content-type"</span>, <span class="hljs-string">"application/json"</span>}});
+
+Response = session.<span class="hljs-built_in">Get</span>();
+
+cpr::Response response = session-&gt;<span class="hljs-built_in">Post</span>();
+
+Response response = session.<span class="hljs-built_in">Get</span>();
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}, {<span class="hljs-string">"key"</span>, <span class="hljs-string">"value"</span>}, {<span class="hljs-string">"test"</span>, <span class="hljs-string">"case"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"HeLlO"</span>, <span class="hljs-string">"wOrLd"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">""</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}, {<span class="hljs-string">"three"</span>, <span class="hljs-string">"four"</span>}, {<span class="hljs-string">"five"</span>, <span class="hljs-string">"six"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}, {<span class="hljs-string">"three"</span>, <span class="hljs-string">"four"</span>}, {<span class="hljs-string">"five"</span>, <span class="hljs-string">"six"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}, {<span class="hljs-string">"three"</span>, <span class="hljs-string">"four"</span>}, {<span class="hljs-string">"five"</span>, <span class="hljs-string">"six"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}, {<span class="hljs-string">"key"</span>, <span class="hljs-string">"value"</span>}, {<span class="hljs-string">"test"</span>, <span class="hljs-string">"case"</span>}}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}, {<span class="hljs-string">"three"</span>, <span class="hljs-string">"four"</span>}, {<span class="hljs-string">"five"</span>, <span class="hljs-string">"six"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}, {<span class="hljs-string">"three"</span>, <span class="hljs-string">"four"</span>}, {<span class="hljs-string">"five"</span>, <span class="hljs-string">"six"</span>}}, Header{});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}, {<span class="hljs-string">"three"</span>, <span class="hljs-string">"four"</span>}, {<span class="hljs-string">"five"</span>, <span class="hljs-string">"six"</span>}}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}, {<span class="hljs-string">"three"</span>, <span class="hljs-string">"four"</span>}, {<span class="hljs-string">"five"</span>, <span class="hljs-string">"six"</span>}}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}, {<span class="hljs-string">"key"</span>, <span class="hljs-string">"value"</span>}, {<span class="hljs-string">"test"</span>, <span class="hljs-string">"case"</span>}});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}, {<span class="hljs-string">"three"</span>, <span class="hljs-string">"four"</span>}, {<span class="hljs-string">"five"</span>, <span class="hljs-string">"six"</span>}}, Header{{<span class="hljs-string">"HeLlO"</span>, <span class="hljs-string">"wOrLd"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Parameters{}, Header{});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Parameters{}, Header{});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Header{});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Header{});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Parameters{}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Parameters{}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{}, Header{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{}, Header{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Header{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Header{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Parameters{});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Parameters{});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Parameters{});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Parameters{});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Header{}, Parameters{});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Header{}, Parameters{});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Header{}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Header{}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Parameters{});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Parameters{});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{}, Parameters{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{}, Parameters{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Parameters{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Parameters{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}}, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Header{});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Header{});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Header{});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Header{});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Parameters{{<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>}}, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"bad_password"</span>}, Header{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, <span class="hljs-built_in">Redirect</span>(<span class="hljs-literal">false</span>));
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, <span class="hljs-built_in">Redirect</span>(<span class="hljs-number">0L</span>));
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, Authentication{<span class="hljs-string">"user"</span>, <span class="hljs-string">"password"</span>}, Header{{<span class="hljs-string">"RedirectLocation"</span>, <span class="hljs-string">"basic_auth.html"</span>}}, <span class="hljs-built_in">Redirect</span>(<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>));
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, body);
+
+Response response = cpr::<span class="hljs-built_in">Get</span>(url, <span class="hljs-built_in">LimitRate</span>(<span class="hljs-number">1024</span>, <span class="hljs-number">1024</span>));</code></pre></div>
+
+<h3><span id="cpr-post">cpr::Post</span><a href="#cpr-post" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs c++">Response response = cpr::<span class="hljs-built_in">Post</span>(url, Payload{{<span class="hljs-string">"x"</span>, <span class="hljs-string">"5"</span>}});
+
+Payload payload{{<span class="hljs-string">"x"</span>, <span class="hljs-string">"1"</span>}};
+    payload.<span class="hljs-built_in">Add</span>({<span class="hljs-string">"y"</span>, <span class="hljs-string">"2"</span>});
+    Response response = cpr::<span class="hljs-built_in">Post</span>(url, payload);
+
+std::vector&lt;Pair&gt; payloadData;
+    payloadData.<span class="hljs-built_in">emplace_back</span>(<span class="hljs-string">"x"</span>, <span class="hljs-string">"1"</span>);
+    payloadData.<span class="hljs-built_in">emplace_back</span>(<span class="hljs-string">"y"</span>, <span class="hljs-string">"2"</span>);
+    Response response = cpr::<span class="hljs-built_in">Post</span>(url, <span class="hljs-built_in">Payload</span>(payloadData.<span class="hljs-built_in">begin</span>(), payloadData.<span class="hljs-built_in">end</span>()));
+    
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Payload{{<span class="hljs-string">"x"</span>, <span class="hljs-string">"hello world!!~"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Payload{{<span class="hljs-string">"x"</span>, <span class="hljs-string">"5"</span>}, {<span class="hljs-string">"y"</span>, <span class="hljs-string">"13"</span>}});
+
+Url url{<span class="hljs-string">"http://bad_host/"</span>};
+    Response response = cpr::<span class="hljs-built_in">Post</span>(url, Payload{{<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>}});
+    
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Multipart{{<span class="hljs-string">"x"</span>, <span class="hljs-number">5</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Multipart{{<span class="hljs-string">"x"</span>, File{filename}}});
+
+Multipart multipart{{<span class="hljs-string">"x"</span>, File{filename}}};
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, multipart);
+
+cpr::Response response = cpr::<span class="hljs-built_in">Post</span>(url, cpr::Header{{<span class="hljs-string">"Content-Type"</span>, <span class="hljs-string">"application/json"</span>}}, cpr::Body{body}, cpr::ConnectTimeout{<span class="hljs-number">3000</span>}, cpr::Timeout{<span class="hljs-number">3000</span>});
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Multipart{{<span class="hljs-string">"x"</span>, Buffer{content.<span class="hljs-built_in">begin</span>(), content.<span class="hljs-built_in">end</span>(), <span class="hljs-string">"test_file"</span>}}});
+
+Multipart multipart{{<span class="hljs-string">"x"</span>, Buffer{content.<span class="hljs-built_in">begin</span>(), content.<span class="hljs-built_in">end</span>(), <span class="hljs-string">"test_file"</span>}}};
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, multipart);
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Multipart{{<span class="hljs-string">"x"</span>, Buffer{content, <span class="hljs-number">11</span> + content, <span class="hljs-string">"test_file"</span>}}});
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Multipart{{<span class="hljs-string">"x"</span>, Buffer{std::<span class="hljs-built_in">begin</span>(content), std::<span class="hljs-built_in">end</span>(content) - <span class="hljs-number">1</span>, <span class="hljs-string">"test_file"</span>}}});
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Multipart{{<span class="hljs-string">"x"</span>, <span class="hljs-number">5</span>}, {<span class="hljs-string">"y"</span>, <span class="hljs-number">13</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, multipart);
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Multipart{{<span class="hljs-string">"x"</span>, <span class="hljs-number">5</span>, <span class="hljs-string">"application/number"</span>}});
+
+Multipart multipart{{<span class="hljs-string">"x"</span>, <span class="hljs-number">5</span>, <span class="hljs-string">"application/number"</span>}};
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, multipart);
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(cpr::<span class="hljs-built_in">Url</span>(uri), cpr::Header{{<span class="hljs-string">"content-type"</span>, contentType}, {<span class="hljs-string">"Authorization"</span>, signature}, {<span class="hljs-string">"log-type"</span>, logType}, {<span class="hljs-string">"x-ms-date"</span>, date}, {<span class="hljs-string">"content-length"</span>, std::<span class="hljs-built_in">to_string</span>(body.<span class="hljs-built_in">length</span>())}}, cpr::<span class="hljs-built_in">Body</span>(body));
+
+cpr::Payload payload = cpr::Payload{{<span class="hljs-string">"email"</span>, <span class="hljs-string">""</span>}, {<span class="hljs-string">"password"</span>, <span class="hljs-string">""</span>}, {<span class="hljs-string">"devicetoken"</span>, <span class="hljs-string">""</span>}};
+    cpr::Response response = cpr::<span class="hljs-built_in">Post</span>(cpr::<span class="hljs-built_in">Url</span>(uri), cpr::Timeout{<span class="hljs-number">10000</span>}, payload);
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Payload{{<span class="hljs-string">"x"</span>, <span class="hljs-string">"5"</span>}}, Header{{<span class="hljs-string">"RedirectLocation"</span>, <span class="hljs-string">"url_post.html"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Payload{{<span class="hljs-string">"x"</span>, <span class="hljs-string">"5"</span>}}, Header{{<span class="hljs-string">"RedirectLocation"</span>, <span class="hljs-string">"url_post.html"</span>}}, <span class="hljs-built_in">Redirect</span>(PostRedirectFlags::NONE));
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Payload{{<span class="hljs-string">"x"</span>, <span class="hljs-string">"5"</span>}}, Header{{<span class="hljs-string">"RedirectLocation"</span>, <span class="hljs-string">"url_post.html"</span>}});
+
+Response response = cpr::<span class="hljs-built_in">Post</span>(url, Payload{{<span class="hljs-string">"x"</span>, <span class="hljs-string">"5"</span>}}, Header{{<span class="hljs-string">"RedirectLocation"</span>, <span class="hljs-string">"url_post.html"</span>}}, <span class="hljs-built_in">Redirect</span>(PostRedirectFlags::NONE));</code></pre></div>
+
+<h3><span id="std-string-expected-text"><strong>std</strong>::<strong>string</strong> expected_text{“”};</span><a href="#std-string-expected-text" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs c++">std::string expected_text{<span class="hljs-string">"Hello world!"</span>};
+
+std::string expected_text{
+            <span class="hljs-string">"[\n"</span>
+            <span class="hljs-string">"  {\n"</span>
+            <span class="hljs-string">"    \"first_key\": \"first_value\",\n"</span>
+            <span class="hljs-string">"    \"second_key\": \"second_value\"\n"</span>
+            <span class="hljs-string">"  }\n"</span>
+            <span class="hljs-string">"]"</span>};
+
+std::string expected_text{<span class="hljs-string">"Not Found"</span>};
+
+std::string expected_text{<span class="hljs-string">"Header reflect GET"</span>};</code></pre></div>
+
+<h3><span id="expect-eq">EXPECT_EQ()</span><a href="#expect-eq" class="header-anchor">#</a></h3><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">EXPECT_EQ</span>(expected_text, response.text);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(std::string{}, response.text);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(<span class="hljs-string">"Unauthorized"</span>, response.text);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(std::string{<span class="hljs-string">"Header reflect POST"</span>}, response.text);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(std::string{<span class="hljs-string">"Header reflect POST"</span>}, response.text);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(url, response.url);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(<span class="hljs-string">"text/plain"</span>, response.header[<span class="hljs-string">"content-type"</span>]);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(std::string{<span class="hljs-string">"text/html"</span>}, response.header[<span class="hljs-string">"content-type"</span>]);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(std::string{<span class="hljs-string">"application/json"</span>}, response.header[<span class="hljs-string">"Content-Type"</span>]);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(std::string{<span class="hljs-string">"Value1"</span>}, response.header[<span class="hljs-string">"Header1"</span>]);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(std::string{<span class="hljs-string">"Value2"</span>}, response.header[<span class="hljs-string">"Header2"</span>]);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(std::string{}, response.header[<span class="hljs-string">"Header2"</span>]);
+
+cookies = response.cookies;
+<span class="hljs-built_in">EXPECT_EQ</span>(cookies[<span class="hljs-string">"cookie"</span>], response.cookies[<span class="hljs-string">"cookie"</span>]);
+<span class="hljs-built_in">EXPECT_EQ</span>(cookies[<span class="hljs-string">"icecream"</span>], response.cookies[<span class="hljs-string">"icecream"</span>]);
+<span class="hljs-built_in">EXPECT_EQ</span>(cookies[<span class="hljs-string">"expires"</span>], response.cookies[<span class="hljs-string">"expires"</span>]);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(<span class="hljs-string">""</span>, response.cookies[<span class="hljs-string">"cookie"</span>]);
+<span class="hljs-built_in">EXPECT_EQ</span>(<span class="hljs-string">""</span>, response.cookies[<span class="hljs-string">"icecream"</span>]);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(<span class="hljs-number">200</span>, response.status_code);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(<span class="hljs-number">401</span>, response.status_code);
+
+<span class="hljs-built_in">EXPECT_EQ</span>(ErrorCode::OK, response.error.code);</code></pre></div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/TCP-IP/">TCP/IP</a>
+                    
+                      <a class="hover-with-bg" href="/tags/HTTP/">HTTP</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/15/C++%E5%85%B3%E9%94%AE%E8%AF%8D/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++关键词</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/13/Socket_Cpp%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <span class="hidden-mobile">Socket_Cpp库的使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

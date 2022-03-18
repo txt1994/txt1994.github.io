@@ -1,0 +1,1044 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QNetworkAccessManager Class 公共类型 公共函数 信号 受保护的函数 详细描述 成员类型文档 enum QNetworkAccessManager::Operation   成员函数文档 QNetworkAccessManager::QNetworkAccessManager(QObject *parent &#x3D; nullptr) [signal]void QNe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QNetworkAccessManager类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/N/QNetworkAccessManager/QNetworkAccessManager/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QNetworkAccessManager Class 公共类型 公共函数 信号 受保护的函数 详细描述 成员类型文档 enum QNetworkAccessManager::Operation   成员函数文档 QNetworkAccessManager::QNetworkAccessManager(QObject *parent &#x3D; nullptr) [signal]void QNe">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:48:46.379Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="N">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QNetworkAccessManager类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QNetworkAccessManager类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:47" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      23k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      196 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QNetworkAccessManager类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qnetworkaccessmanager-class">QNetworkAccessManager Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#shou-bao-hu-de-han-shu">受保护的函数</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang">成员类型文档</a><ul>
+<li><a href="#enum-qnetworkaccessmanager-operation">enum QNetworkAccessManager::Operation</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang">成员函数文档</a><ul>
+<li><a href="#qnetworkaccessmanager-qnetworkaccessmanager-qobject-qobject-html-qobject-parent-nullptr">QNetworkAccessManager::QNetworkAccessManager(</a><a href="qobject.html#QObject">QObject</a> *<em>parent</em> = nullptr)</li>
+<li><a href="#signal-void-qnetworkaccessmanager-authenticationrequired-qnetworkreply-qnetworkreply-html-reply-qauthenticator-qauthenticator-html-authenticator"><code>[signal]</code>void QNetworkAccessManager::authenticationRequired(</a><a href="qnetworkreply.html">QNetworkReply</a> *<em>reply</em>, <a href="qauthenticator.html">QAuthenticator</a> *<em>authenticator</em>)</li>
+<li><a href="#signal-since-5-1-void-qnetworkaccessmanager-encrypted-qnetworkreply-qnetworkreply-html-reply"><code>[signal, since 5.1]</code>void QNetworkAccessManager::encrypted(</a><a href="qnetworkreply.html">QNetworkReply</a> *<em>reply</em>)</li>
+<li><a href="#signal-void-qnetworkaccessmanager-finished-qnetworkreply-qnetworkreply-html-reply"><code>[signal]</code>void QNetworkAccessManager::finished(</a><a href="qnetworkreply.html">QNetworkReply</a> *<em>reply</em>)</li>
+<li><a href="#signal-since-5-5-void-qnetworkaccessmanager-presharedkeyauthenticationrequired-qnetworkreply-qnetworkreply-html-reply-qsslpresharedkeyauthenticator-qsslpresharedkeyauthenticator-html-authenticator"><code>[signal, since 5.5]</code>void QNetworkAccessManager::preSharedKeyAuthenticationRequired(</a><a href="qnetworkreply.html">QNetworkReply</a> *<em>reply</em>, <a href="qsslpresharedkeyauthenticator.html">QSslPreSharedKeyAuthenticator</a> *<em>authenticator</em>)</li>
+<li><a href="#signal-void-qnetworkaccessmanager-proxyauthenticationrequired-const-qnetworkproxy-qnetworkproxy-html-proxy-qauthenticator-qauthenticator-html-authenticator"><code>[signal]</code>void QNetworkAccessManager::proxyAuthenticationRequired(const </a><a href="qnetworkproxy.html">QNetworkProxy</a> &amp;<em>proxy</em>, <a href="qauthenticator.html">QAuthenticator</a> *<em>authenticator</em>)</li>
+<li><a href="#signal-void-qnetworkaccessmanager-sslerrors-qnetworkreply-qnetworkreply-html-reply-const-qlist-qlist-html-qsslerror-qsslerror-html-errors"><code>[signal]</code>void QNetworkAccessManager::sslErrors(</a><a href="qnetworkreply.html">QNetworkReply</a> *<em>reply</em>, const <a href="qlist.html">QList</a>&lt;<a href="qsslerror.html">QSslError</a>&gt; &amp;<em>errors</em>)</li>
+<li><a href="#virtual-qnetworkaccessmanager-qnetworkaccessmanager"><code>[virtual]</code>QNetworkAccessManager::~QNetworkAccessManager()</a></li>
+<li><a href="#since-5-9-void-qnetworkaccessmanager-addstricttransportsecurityhosts-const-qlist-qlist-html-qhstspolicy-qhstspolicy-html-knownhosts"><code>[since 5.9]</code>void QNetworkAccessManager::addStrictTransportSecurityHosts(const </a><a href="qlist.html">QList</a>&lt;<a href="qhstspolicy.html">QHstsPolicy</a>&gt; &amp;<em>knownHosts</em>)</li>
+<li><a href="#since-5-14-bool-qnetworkaccessmanager-autodeletereplies-const"><code>[since 5.14]</code>bool QNetworkAccessManager::autoDeleteReplies() const</a></li>
+<li><a href="#qabstractnetworkcache-qabstractnetworkcache-html-qnetworkaccessmanager-cache-const">QAbstractNetworkCache</a></li>
+<li><a href="#since-5-0-void-qnetworkaccessmanager-clearaccesscache"><code>[since 5.0]</code>void QNetworkAccessManager::clearAccessCache()</a></li>
+<li><a href="#since-5-9-void-qnetworkaccessmanager-clearconnectioncache"><code>[since 5.9]</code>void QNetworkAccessManager::clearConnectionCache()</a></li>
+<li><a href="#since-5-2-void-qnetworkaccessmanager-connecttohost-const-qstring-qstring-html-hostname-quint16-qtglobal-html-quint16-typedef-port-80"><code>[since 5.2]</code>void QNetworkAccessManager::connectToHost(const </a><a href="qstring.html">QString</a> &amp;<em>hostName</em>, <a href="qtglobal.html#quint16-typedef">quint16</a> <em>port</em> = 80)</li>
+<li><a href="#since-5-2-void-qnetworkaccessmanager-connecttohostencrypted-const-qstring-qstring-html-hostname-quint16-qtglobal-html-quint16-typedef-port-443-const-qsslconfiguration-qsslconfiguration-html-sslconfiguration-qsslconfiguration-defaultconfiguration"><code>[since 5.2]</code>void QNetworkAccessManager::connectToHostEncrypted(const </a><a href="qstring.html">QString</a> &amp;<em>hostName</em>, <a href="qtglobal.html#quint16-typedef">quint16</a> <em>port</em> = 443, const <a href="qsslconfiguration.html">QSslConfiguration</a> &amp;<em>sslConfiguration</em> = QSslConfiguration::defaultConfiguration())</li>
+<li><a href="#since-5-13-void-qnetworkaccessmanager-connecttohostencrypted-const-qstring-qstring-html-hostname-quint16-qtglobal-html-quint16-typedef-port-const-qsslconfiguration-qsslconfiguration-html-sslconfiguration-const-qstring-qstring-html-peername"><code>[since 5.13]</code>void QNetworkAccessManager::connectToHostEncrypted(const </a><a href="qstring.html">QString</a> &amp;<em>hostName</em>, <a href="qtglobal.html#quint16-typedef">quint16</a> <em>port</em>, const <a href="qsslconfiguration.html">QSslConfiguration</a> &amp;<em>sslConfiguration</em>, const <a href="qstring.html">QString</a> &amp;<em>peerName</em>)</li>
+<li><a href="#qnetworkcookiejar-qnetworkcookiejar-html-qnetworkaccessmanager-cookiejar-const">QNetworkCookieJar</a></li>
+<li><a href="#virtual-protected-qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-createrequest-qnetworkaccessmanager-operation-operation-enum-op-const-qnetworkrequest-qnetworkrequest-html-originalreq-qiodevice-qiodevice-html-outgoingdata-nullptr"><code>[virtual protected]</code></a><a href="qnetworkreply.html">QNetworkReply</a> *QNetworkAccessManager::createRequest(<a href="#Operation-enum">QNetworkAccessManager::Operation</a> <em>op</em>, const <a href="qnetworkrequest.html">QNetworkRequest</a> &amp;<em>originalReq</em>, <a href="qiodevice.html">QIODevice</a> *<em>outgoingData</em> = nullptr)</li>
+<li><a href="#qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-deleteresource-const-qnetworkrequest-qnetworkrequest-html-request">QNetworkReply</a></li>
+<li><a href="#since-5-10-void-qnetworkaccessmanager-enablestricttransportsecuritystore-bool-enabled-const-qstring-qstring-html-storedir-qstring"><code>[since 5.10]</code>void QNetworkAccessManager::enableStrictTransportSecurityStore(bool <em>enabled</em>, const </a><a href="qstring.html">QString</a> &amp;<em>storeDir</em> = QString())</li>
+<li><a href="#qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-get-const-qnetworkrequest-qnetworkrequest-html-request-1">QNetworkReply</a></li>
+<li><a href="#qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-head-const-qnetworkrequest-qnetworkrequest-html-request-2">QNetworkReply</a></li>
+<li><a href="#since-5-9-bool-qnetworkaccessmanager-isstricttransportsecurityenabled-const"><code>[since 5.9]</code>bool QNetworkAccessManager::isStrictTransportSecurityEnabled() const</a></li>
+<li><a href="#since-5-10-bool-qnetworkaccessmanager-isstricttransportsecuritystoreenabled-const"><code>[since 5.10]</code>bool QNetworkAccessManager::isStrictTransportSecurityStoreEnabled() const</a></li>
+<li><a href="#qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-post-const-qnetworkrequest-qnetworkrequest-html-request-qiodevice-qiodevice-html-data-3">QNetworkReply</a></li>
+<li><a href="#qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-post-const-qnetworkrequest-qnetworkrequest-html-request-const-qbytearray-qbytearray-html-data-4">QNetworkReply</a></li>
+<li><a href="#qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-post-const-qnetworkrequest-qnetworkrequest-html-request-qhttpmultipart-qhttpmultipart-html-multipart-5">QNetworkReply</a></li>
+<li><a href="#qnetworkproxy-qnetworkproxy-html-qnetworkaccessmanager-proxy-const">QNetworkProxy</a></li>
+<li><a href="#qnetworkproxyfactory-qnetworkproxyfactory-html-qnetworkaccessmanager-proxyfactory-const">QNetworkProxyFactory</a></li>
+<li><a href="#qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-put-const-qnetworkrequest-qnetworkrequest-html-request-qiodevice-qiodevice-html-data-6">QNetworkReply</a></li>
+<li><a href="#qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-put-const-qnetworkrequest-qnetworkrequest-html-request-const-qbytearray-qbytearray-html-data-7">QNetworkReply</a></li>
+<li><a href="#qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-put-const-qnetworkrequest-qnetworkrequest-html-request-qhttpmultipart-qhttpmultipart-html-multipart-8">QNetworkReply</a></li>
+<li><a href="#since-5-9-qnetworkrequest-redirectpolicy-qnetworkrequest-html-redirectpolicy-enum-qnetworkaccessmanager-redirectpolicy-const"><code>[since 5.9]</code></a><a href="qnetworkrequest.html#RedirectPolicy-enum">QNetworkRequest::RedirectPolicy</a> QNetworkAccessManager::redirectPolicy() const</li>
+<li><a href="#qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-sendcustomrequest-const-qnetworkrequest-qnetworkrequest-html-request-const-qbytearray-qbytearray-html-verb-qiodevice-qiodevice-html-data-nullptr-9">QNetworkReply</a></li>
+<li><a href="#since-5-8-qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-sendcustomrequest-const-qnetworkrequest-qnetworkrequest-html-request-const-qbytearray-qbytearray-html-verb-const-qbytearray-qbytearray-html-data"><code>[since 5.8]</code></a><a href="qnetworkreply.html">QNetworkReply</a> *QNetworkAccessManager::sendCustomRequest(const <a href="qnetworkrequest.html">QNetworkRequest</a> &amp;<em>request</em>, const <a href="qbytearray.html">QByteArray</a> &amp;<em>verb</em>, const <a href="qbytearray.html">QByteArray</a> &amp;<em>data</em>)</li>
+<li><a href="#since-5-8-qnetworkreply-qnetworkreply-html-qnetworkaccessmanager-sendcustomrequest-const-qnetworkrequest-qnetworkrequest-html-request-const-qbytearray-qbytearray-html-verb-qhttpmultipart-qhttpmultipart-html-multipart"><code>[since 5.8]</code></a><a href="qnetworkreply.html">QNetworkReply</a> *QNetworkAccessManager::sendCustomRequest(const <a href="qnetworkrequest.html">QNetworkRequest</a> &amp;<em>request</em>, const <a href="qbytearray.html">QByteArray</a> &amp;<em>verb</em>, <a href="qhttpmultipart.html">QHttpMultiPart</a> *<em>multiPart</em>)</li>
+<li><a href="#since-5-14-void-qnetworkaccessmanager-setautodeletereplies-bool-shouldautodelete"><code>[since 5.14]</code>void QNetworkAccessManager::setAutoDeleteReplies(bool <em>shouldAutoDelete</em>)</a></li>
+<li><a href="#void-qnetworkaccessmanager-setcache-qabstractnetworkcache-qabstractnetworkcache-html-cache">void QNetworkAccessManager::setCache(</a><a href="qabstractnetworkcache.html">QAbstractNetworkCache</a> *<em>cache</em>)</li>
+<li><a href="#void-qnetworkaccessmanager-setcookiejar-qnetworkcookiejar-qnetworkcookiejar-html-cookiejar">void QNetworkAccessManager::setCookieJar(</a><a href="qnetworkcookiejar.html">QNetworkCookieJar</a> *<em>cookieJar</em>)</li>
+<li><a href="#void-qnetworkaccessmanager-setproxy-const-qnetworkproxy-qnetworkproxy-html-proxy">void QNetworkAccessManager::setProxy(const </a><a href="qnetworkproxy.html">QNetworkProxy</a> &amp;<em>proxy</em>)</li>
+<li><a href="#void-qnetworkaccessmanager-setproxyfactory-qnetworkproxyfactory-qnetworkproxyfactory-html-factory">void QNetworkAccessManager::setProxyFactory(</a><a href="qnetworkproxyfactory.html">QNetworkProxyFactory</a> *<em>factory</em>)</li>
+<li><a href="#since-5-9-void-qnetworkaccessmanager-setredirectpolicy-qnetworkrequest-redirectpolicy-qnetworkrequest-html-redirectpolicy-enum-policy"><code>[since 5.9]</code>void QNetworkAccessManager::setRedirectPolicy(</a><a href="qnetworkrequest.html#RedirectPolicy-enum">QNetworkRequest::RedirectPolicy</a> <em>policy</em>)</li>
+<li><a href="#since-5-9-void-qnetworkaccessmanager-setstricttransportsecurityenabled-bool-enabled"><code>[since 5.9]</code>void QNetworkAccessManager::setStrictTransportSecurityEnabled(bool <em>enabled</em>)</a></li>
+<li><a href="#since-5-15-void-qnetworkaccessmanager-settransfertimeout-int-timeout-qnetworkrequest-defaulttransfertimeoutconstant"><code>[since 5.15]</code>void QNetworkAccessManager::setTransferTimeout(int <em>timeout</em> = QNetworkRequest::DefaultTransferTimeoutConstant)</a></li>
+<li><a href="#since-5-9-qlist-qlist-html-qhstspolicy-qhstspolicy-html-qnetworkaccessmanager-stricttransportsecurityhosts-const"><code>[since 5.9]</code></a><a href="qlist.html">QList</a>&lt;<a href="qhstspolicy.html">QHstsPolicy</a>&gt; QNetworkAccessManager::strictTransportSecurityHosts() const</li>
+<li><a href="#virtual-since-5-2-qstringlist-qstringlist-html-qnetworkaccessmanager-supportedschemes-const"><code>[virtual, since 5.2]</code></a><a href="qstringlist.html">QStringList</a> QNetworkAccessManager::supportedSchemes() const</li>
+<li><a href="#since-5-15-int-qnetworkaccessmanager-transfertimeout-const"><code>[since 5.15]</code>int QNetworkAccessManager::transferTimeout() const</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+目录：
+
+<ul>
+<li><a href="#%E5%85%AC%E5%85%B1%E7%B1%BB%E5%9E%8B">公共类型</a></li>
+<li><a href="#%E5%85%AC%E5%85%B1%E5%87%BD%E6%95%B0">公共函数</a></li>
+<li><a href="#%E4%BF%A1%E5%8F%B7">信号</a></li>
+<li><a href="#%E5%8F%97%E4%BF%9D%E6%8A%A4%E7%9A%84%E5%87%BD%E6%95%B0">受保护的函数</a></li>
+<li><a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">详细描述</a></li>
+<li><a href="#%E6%88%90%E5%91%98%E7%B1%BB%E5%9E%8B%E6%96%87%E6%A1%A3">成员类型文档</a></li>
+<li><a href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%96%87%E6%A1%A3">成员函数文档</a></li>
+</ul>
+<p>[TOC]</p>
+<h1><span id="qnetworkaccessmanager-class">QNetworkAccessManager Class</span><a href="#qnetworkaccessmanager-class" class="header-anchor">#</a></h1><p>QNetworkAccessManager类允许应用程序发送网络请求和接收回复。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">More…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qnetworkaccessmanager></qnetworkaccessmanager></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Network REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Network)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += network</td>
+</tr>
+<tr>
+<td>Inherits:</td>
+<td><a href="qobject.html">QObject</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qnetworkaccessmanager-members.html">List of all members, including inherited members</a></li>
+<li><a href="qnetworkaccessmanager-obsolete.html">Deprecated members</a></li>
+</ul>
+<p><strong>注意：</strong>该类中的所有函数都是<a href="threads-reentrancy.html">可重入</a>。</p>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#Operation-enum">Operation</a></strong> { HeadOperation, GetOperation, PutOperation, PostOperation, DeleteOperation, CustomOperation }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QNetworkAccessManager">QNetworkAccessManager</a></strong>(QObject *<em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QNetworkAccessManager">~QNetworkAccessManager</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#addStrictTransportSecurityHosts">addStrictTransportSecurityHosts</a></strong>(const QList<qhstspolicy> &amp;<em>knownHosts</em>)</qhstspolicy></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#autoDeleteReplies">autoDeleteReplies</a></strong>() const</td>
+</tr>
+<tr>
+<td>QAbstractNetworkCache *</td>
+<td><strong><a href="#cache">cache</a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#clearAccessCache">clearAccessCache</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#clearConnectionCache">clearConnectionCache</a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#connectToHost">connectToHost</a></strong>(const QString &amp;<em>hostName</em>, quint16 <em>port</em> = 80)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#connectToHostEncrypted">connectToHostEncrypted</a></strong>(const QString &amp;<em>hostName</em>, quint16 <em>port</em> = 443, const QSslConfiguration &amp;<em>sslConfiguration</em> = QSslConfiguration::defaultConfiguration())</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#connectToHostEncrypted-1">connectToHostEncrypted</a></strong>(const QString &amp;<em>hostName</em>, quint16 <em>port</em>, const QSslConfiguration &amp;<em>sslConfiguration</em>, const QString &amp;<em>peerName</em>)</td>
+</tr>
+<tr>
+<td>QNetworkCookieJar *</td>
+<td><strong><a href="#cookieJar">cookieJar</a></strong>() const</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#deleteResource">deleteResource</a></strong>(const QNetworkRequest &amp;<em>request</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#enableStrictTransportSecurityStore">enableStrictTransportSecurityStore</a></strong>(bool <em>enabled</em>, const QString &amp;<em>storeDir</em> = QString())</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#get">get</a></strong>(const QNetworkRequest &amp;<em>request</em>)</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#head">head</a></strong>(const QNetworkRequest &amp;<em>request</em>)</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isStrictTransportSecurityEnabled">isStrictTransportSecurityEnabled</a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#isStrictTransportSecurityStoreEnabled">isStrictTransportSecurityStoreEnabled</a></strong>() const</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#post">post</a></strong>(const QNetworkRequest &amp;<em>request</em>, QIODevice *<em>data</em>)</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#post-1">post</a></strong>(const QNetworkRequest &amp;<em>request</em>, const QByteArray &amp;<em>data</em>)</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#post-2">post</a></strong>(const QNetworkRequest &amp;<em>request</em>, QHttpMultiPart *<em>multiPart</em>)</td>
+</tr>
+<tr>
+<td>QNetworkProxy</td>
+<td><strong><a href="#proxy">proxy</a></strong>() const</td>
+</tr>
+<tr>
+<td>QNetworkProxyFactory *</td>
+<td><strong><a href="#proxyFactory">proxyFactory</a></strong>() const</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#put">put</a></strong>(const QNetworkRequest &amp;<em>request</em>, QIODevice *<em>data</em>)</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#put-1">put</a></strong>(const QNetworkRequest &amp;<em>request</em>, const QByteArray &amp;<em>data</em>)</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#put-2">put</a></strong>(const QNetworkRequest &amp;<em>request</em>, QHttpMultiPart *<em>multiPart</em>)</td>
+</tr>
+<tr>
+<td>QNetworkRequest::RedirectPolicy</td>
+<td><strong><a href="#redirectPolicy">redirectPolicy</a></strong>() const</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#sendCustomRequest">sendCustomRequest</a></strong>(const QNetworkRequest &amp;<em>request</em>, const QByteArray &amp;<em>verb</em>, QIODevice *<em>data</em> = nullptr)</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#sendCustomRequest-1">sendCustomRequest</a></strong>(const QNetworkRequest &amp;<em>request</em>, const QByteArray &amp;<em>verb</em>, const QByteArray &amp;<em>data</em>)</td>
+</tr>
+<tr>
+<td>QNetworkReply *</td>
+<td><strong><a href="#sendCustomRequest-2">sendCustomRequest</a></strong>(const QNetworkRequest &amp;<em>request</em>, const QByteArray &amp;<em>verb</em>, QHttpMultiPart *<em>multiPart</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setAutoDeleteReplies">setAutoDeleteReplies</a></strong>(bool <em>shouldAutoDelete</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setCache">setCache</a></strong>(QAbstractNetworkCache *<em>cache</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setCookieJar">setCookieJar</a></strong>(QNetworkCookieJar *<em>cookieJar</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setProxy">setProxy</a></strong>(const QNetworkProxy &amp;<em>proxy</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setProxyFactory">setProxyFactory</a></strong>(QNetworkProxyFactory *<em>factory</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setRedirectPolicy">setRedirectPolicy</a></strong>(QNetworkRequest::RedirectPolicy <em>policy</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setStrictTransportSecurityEnabled">setStrictTransportSecurityEnabled</a></strong>(bool <em>enabled</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setTransferTimeout">setTransferTimeout</a></strong>(int <em>timeout</em> = QNetworkRequest::DefaultTransferTimeoutConstant)</td>
+</tr>
+<tr>
+<td>QList<qhstspolicy></qhstspolicy></td>
+<td><strong><a href="#strictTransportSecurityHosts">strictTransportSecurityHosts</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual QStringList</td>
+<td><strong><a href="#supportedSchemes">supportedSchemes</a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#transferTimeout">transferTimeout</a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#authenticationRequired">authenticationRequired</a></strong>(QNetworkReply *<em>reply</em>, QAuthenticator *<em>authenticator</em>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#encrypted">encrypted</a></strong>(QNetworkReply *<em>reply</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#finished">finished</a></strong>(QNetworkReply *<em>reply</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#preSharedKeyAuthenticationRequired">preSharedKeyAuthenticationRequired</a></strong>(QNetworkReply *<em>reply</em>, QSslPreSharedKeyAuthenticator *<em>authenticator</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#proxyAuthenticationRequired">proxyAuthenticationRequired</a></strong>(const QNetworkProxy &amp;<em>proxy</em>, QAuthenticator *<em>authenticator</em>)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#sslErrors">sslErrors</a></strong>(QNetworkReply *<em>reply</em>, const QList<qsslerror> &amp;<em>errors</em>)</qsslerror></td>
+</tr>
+</tbody></table>
+<h2><span id="shou-bao-hu-de-han-shu">受保护的函数</span><a href="#shou-bao-hu-de-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>virtual QNetworkReply *</th>
+<th><strong><a href="#createRequest">createRequest</a></strong>(QNetworkAccessManager::Operation <em>op</em>, const QNetworkRequest &amp;<em>originalReq</em>, QIODevice *<em>outgoingData</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>网络访问API是围绕一个QNetworkAccessManager对象构建的，该对象持有它所发送的请求的通用配置和设置。它包含了代理和缓存配置，以及与此类问题相关的信号，还有可用于监控网络操作进展的回复信号。一个QNetworkAccessManager实例对整个Qt应用程序来说应该是足够了。由于QNetworkAccessManager是基于<a href="qobject.html">QObject</a>，它只能从它所属的线程中使用。</p>
+<p>一旦一个QNetworkAccessManager对象被创建，应用程序就可以用它在网络上发送请求。我们提供了一组标准函数，这些函数接收一个请求和可选的数据，并返回一个<a href="qnetworkreply.html">QNetworkReply</a> 对象。返回的对象被用来获取响应相应请求而返回的任何数据。</p>
+<p>一个简单的网络下载可以通过以下方式完成：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QNetworkAccessManager *manager = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QNetworkAccessManager</span>(<span class="hljs-keyword">this</span>);
+<span class="hljs-built_in">connect</span>(manager, &amp;QNetworkAccessManager::finished,
+        <span class="hljs-keyword">this</span>, &amp;MyClass::replyFinished);
+
+manager-&gt;<span class="hljs-built_in">get</span>(<span class="hljs-built_in">QNetworkRequest</span>(<span class="hljs-built_in">QUrl</span>(<span class="hljs-string">"http://qt-project.org"</span>)));</code></pre></div>
+
+<p>QNetworkAccessManager有一个异步的API。当上面的 “replyFinished “槽被调用时，它的参数是<a href="qnetworkreply.html">QNetworkReply</a>对象，包含了下载的数据以及元数据（头文件等）。</p>
+<p><strong>注意：</strong>请求结束后，用户有责任在适当的时候删除<a href="qnetworkreply.html">QNetworkReply</a>对象。不要在连接到<a href="#finished">finished</a>()的槽内直接删除它。你可以使用<a href="qobject.html#deleteLater">deleteLater</a>()函数。</p>
+<p><strong>注意：</strong> QNetworkAccessManager对它收到的请求进行排队。并行执行的请求的数量取决于协议。目前，对于桌面平台上的HTTP协议，一个主机/端口组合可以并行执行6个请求。</p>
+<p>假设管理器已经存在，一个更复杂的例子可以是：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QNetworkRequest request;
+request.<span class="hljs-built_in">setUrl</span>(<span class="hljs-built_in">QUrl</span>(<span class="hljs-string">"http://qt-project.org"</span>));
+request.<span class="hljs-built_in">setRawHeader</span>(<span class="hljs-string">"User-Agent"</span>, <span class="hljs-string">"MyOwnBrowser 1.0"</span>);
+
+QNetworkReply *reply = manager-&gt;<span class="hljs-built_in">get</span>(request);
+<span class="hljs-built_in">connect</span>(reply, &amp;QIODevice::readyRead, <span class="hljs-keyword">this</span>, &amp;MyClass::slotReadyRead);
+<span class="hljs-built_in">connect</span>(reply, &amp;QNetworkReply::errorOccurred,
+        <span class="hljs-keyword">this</span>, &amp;MyClass::slotError);
+<span class="hljs-built_in">connect</span>(reply, &amp;QNetworkReply::sslErrors,
+        <span class="hljs-keyword">this</span>, &amp;MyClass::slotSslErrors);</code></pre></div>
+
+<p><strong>See also</strong> <a href="qnetworkrequest.html">QNetworkRequest</a>, <a href="qnetworkreply.html">QNetworkReply</a>, and <a href="qnetworkproxy.html">QNetworkProxy</a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang">成员类型文档</span><a href="#cheng-yuan-lei-xing-wen-dang" class="header-anchor">#</a></h2><h3><span id="enum-qnetworkaccessmanager-operation">enum QNetworkAccessManager::Operation</span><a href="#enum-qnetworkaccessmanager-operation" class="header-anchor">#</a></h3><p>表示该回复正在处理的操作。</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QNetworkAccessManager::HeadOperation</code></td>
+<td><code>1</code></td>
+<td>检索标题操作（用<a href="#head">head</a>()创建）。</td>
+</tr>
+<tr>
+<td><code>QNetworkAccessManager::GetOperation</code></td>
+<td><code>2</code></td>
+<td>检索标题和下载内容（用<a href="#get">get</a>()创建）。</td>
+</tr>
+<tr>
+<td><code>QNetworkAccessManager::PutOperation</code></td>
+<td><code>3</code></td>
+<td>上传内容操作（用<a href="#put">put</a>()创建）。</td>
+</tr>
+<tr>
+<td><code>QNetworkAccessManager::PostOperation</code></td>
+<td><code>4</code></td>
+<td>通过HTTP POST（用<a href="#post">post</a>()创建）发送HTML表单的内容供处理。</td>
+</tr>
+<tr>
+<td><code>QNetworkAccessManager::DeleteOperation</code></td>
+<td><code>5</code></td>
+<td>删除内容操作（用<a href="#deleteResource">deleteResource</a>()创建）。</td>
+</tr>
+<tr>
+<td><code>QNetworkAccessManager::CustomOperation</code></td>
+<td><code>6</code></td>
+<td>自定义操作（用<a href="#sendCustomRequest">sendCustomRequest</a>()创建）。</td>
+</tr>
+</tbody></table>
+<p><strong>See also</strong> <a href="qnetworkreply.html#operation">QNetworkReply::operation</a>().</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qnetworkaccessmanager-qnetworkaccessmanager-qobject-parent-nullptr">QNetworkAccessManager::QNetworkAccessManager( *<em>parent</em> = nullptr)</span><a href="#qnetworkaccessmanager-qnetworkaccessmanager-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>构建一个QNetworkAccessManager对象，它是网络访问API的中心，并将<em>parent</em>设为父对象。</p>
+<h3><span id="signal-void-qnetworkaccessmanager-authenticationrequired-qnetworkreply-reply-qauthenticator-authenticator"><code>[signal]</code>void QNetworkAccessManager::authenticationRequired( *<em>reply</em>,  *<em>authenticator</em>)</span><a href="#signal-void-qnetworkaccessmanager-authenticationrequired-qnetworkreply-reply-qauthenticator-authenticator" class="header-anchor">#</a></h3><p>每当最终服务器在交付请求的内容之前请求认证时，就会发出这个信号。连接到这个信号的槽应该在<em>authenticator</em>对象中填写内容的凭证（可以通过检查<em>reply</em>对象确定）。</p>
+<p><a href>QNetworkAccessManager</a>将在内部缓存凭证，如果服务器再次要求认证，将发送相同的值，而不发出authenticationRequired()信号。如果它拒绝了证书，这个信号将被再次发出。</p>
+<p><strong>注意：</strong>要让请求不发送证书，你必须不在<em>authenticator</em>对象上调用setUser()或setPassword()。这将导致<a href="#finished">finished</a>()信号与<a href="qnetworkreply.html">QNetworkReply</a>一起发出，并出现<a href="qnetworkreply.html#NetworkError-enum">AuthenticationRequiredError</a>错误。</p>
+<p><strong>注意：</strong>不可能使用QueuedConnection来连接这个信号，因为当信号返回时，如果认证器没有被填入新的信息，连接将失败。</p>
+<p><strong>See also</strong> <a href="#proxyAuthenticationRequired">proxyAuthenticationRequired</a>(), <a href="qauthenticator.html#setUser">QAuthenticator::setUser</a>(), and <a href="qauthenticator.html#setPassword">QAuthenticator::setPassword</a>().</p>
+<h3><span id="signal-since-5-1-void-qnetworkaccessmanager-encrypted-qnetworkreply-reply"><code>[signal, since 5.1]</code>void QNetworkAccessManager::encrypted( *<em>reply</em>)</span><a href="#signal-since-5-1-void-qnetworkaccessmanager-encrypted-qnetworkreply-reply" class="header-anchor">#</a></h3><p>当一个SSL/TLS会话成功完成初始握手时，就会发出这个信号。在这一点上，没有用户数据被传输。该信号可用于对证书链进行额外的检查，例如，当一个网站的证书发生变化时通知用户。<em>reply</em>参数指定由哪个网络回复负责。如果回复不符合预期的标准，那么应该通过调用<a href="qnetworkreply.html#abort">QNetworkReply::abort</a>()中止与此信号相连的槽。使用中的SSL配置可以通过<a href="qnetworkreply.html#sslConfiguration">QNetworkReply::sslConfiguration</a>()方法进行检查。</p>
+<p>在内部，<a href>QNetworkAccessManager</a>可以打开多个连接到一个服务器，以允许它并行地处理请求。这些连接可以被重复使用，这意味着加密()信号将不会被发射出来。这意味着，在<a href>QNetworkAccessManager</a>的生命周期内，你只能保证在第一次连接到一个站点时收到这个信号。</p>
+<p>这个函数是在Qt 5.1中引入的。</p>
+<p><strong>See also</strong> <a href="qsslsocket.html#encrypted">QSslSocket::encrypted</a>() and <a href="qnetworkreply.html#encrypted">QNetworkReply::encrypted</a>().</p>
+<h3><span id="signal-void-qnetworkaccessmanager-finished-qnetworkreply-reply"><code>[signal]</code>void QNetworkAccessManager::finished( *<em>reply</em>)</span><a href="#signal-void-qnetworkaccessmanager-finished-qnetworkreply-reply" class="header-anchor">#</a></h3><p>每当一个待定的网络回复完成时，就会发出这个信号。<em>reply</em>参数将包含一个指向刚刚完成的回复的指针。这个信号与<a href="qnetworkreply.html#finished">QNetworkReply::finished</a>()信号同时发出。</p>
+<p>关于该对象将处于何种状态，请参见 <a href="qnetworkreply.html#finished">QNetworkReply::finished</a>() 。</p>
+<p><strong>注意：</strong>不要删除连接到此信号的槽中的<em>reply</em>对象。使用<a href="qobject.html#deleteLater">deleteLater</a>()。</p>
+<p><strong>See also</strong> <a href="qnetworkreply.html#finished">QNetworkReply::finished</a>() and <a href="qnetworkreply.html#error">QNetworkReply::error</a>().</p>
+<h3><span id="signal-since-5-5-void-qnetworkaccessmanager-presharedkeyauthenticationrequired-qnetworkreply-reply-qsslpresharedkeyauthenticator-authenticator"><code>[signal, since 5.5]</code>void QNetworkAccessManager::preSharedKeyAuthenticationRequired( *<em>reply</em>,  *<em>authenticator</em>)</span><a href="#signal-since-5-5-void-qnetworkaccessmanager-presharedkeyauthenticationrequired-qnetworkreply-reply-qsslpresharedkeyauthenticator-authenticator" class="header-anchor">#</a></h3><p>如果SSL/TLS握手协商了一个PSK密码器，因此需要进行PSK认证，那么就会发出这个信号。<em>reply</em>对象是<a href="qnetworkreply.html">QNetworkReply</a>，它正在协商这种密码组。</p>
+<p>当使用PSK时，客户端必须向服务器发送一个有效的身份和一个有效的预共享密钥，以便SSL握手继续进行。应用程序可以在连接到该信号的槽中提供这些信息，根据他们的需要填写传递的<em>authenticator</em>对象。</p>
+<p><strong>注意：</strong>忽略这个信号，或未能提供所需的凭证，将导致握手失败，从而导致连接中止。</p>
+<p>这个函数是在Qt 5.5中引入的。</p>
+<p><strong>See also</strong> <a href="qsslpresharedkeyauthenticator.html">QSslPreSharedKeyAuthenticator</a>.</p>
+<h3><span id="signal-void-qnetworkaccessmanager-proxyauthenticationrequired-const-qnetworkproxy-amp-proxy-qauthenticator-authenticator"><code>[signal]</code>void QNetworkAccessManager::proxyAuthenticationRequired(const  &amp;<em>proxy</em>,  *<em>authenticator</em>)</span><a href="#signal-void-qnetworkaccessmanager-proxyauthenticationrequired-const-qnetworkproxy-amp-proxy-qauthenticator-authenticator" class="header-anchor">#</a></h3><p>每当代理请求认证，而<a href>QNetworkAccessManager</a>无法找到有效的、缓存的凭证时，就会发出这个信号。连接到这个信号的槽应该在<em>authenticator</em>对象中填入代理*的凭证。</p>
+<p><a href>QNetworkAccessManager</a>将在内部缓存凭证。下次代理请求认证时，<a href>QNetworkAccessManager</a>将自动发送相同的凭证，而不会再次发出proxyAuthenticationRequired信号。</p>
+<p>如果代理拒绝凭证，<a href>QNetworkAccessManager</a>将再次发出信号。</p>
+<p><strong>See also</strong> <a href="#proxy">proxy</a>(), <a href="#setProxy">setProxy</a>(), and <a href="#authenticationRequired">authenticationRequired</a>().</p>
+<h3><span id="signal-void-qnetworkaccessmanager-sslerrors-qnetworkreply-reply-const-qlist-lt-qsslerror-gt-amp-errors"><code>[signal]</code>void QNetworkAccessManager::sslErrors( *<em>reply</em>, const &lt;&gt; &amp;<em>errors</em>)</span><a href="#signal-void-qnetworkaccessmanager-sslerrors-qnetworkreply-reply-const-qlist-lt-qsslerror-gt-amp-errors" class="header-anchor">#</a></h3><p>如果SSL/TLS会话在设置过程中遇到错误，包括证书验证错误，就会发出这个信号。参数<em>errors</em>包含错误列表，<em>reply</em>是遇到这些错误的[QNetworkReply]（qnetworkreply.html）。</p>
+<p>为了表明这些错误不是致命的，并且连接应该继续进行，<a href="qnetworkreply.html#ignoreSslErrors">QNetworkReply::ignoreSslErrors</a>()函数应该被连接到这个信号的槽调用。如果不调用它，在任何数据交换（包括URL）之前，SSL会话将被撕毁。</p>
+<p>这个信号可以用来向用户显示一个错误信息，表明安全可能受到影响，并显示SSL设置（见sslConfiguration()获取）。如果用户在分析了远程证书后决定继续进行，槽应该调用ignoreSslErrors（）。</p>
+<p><strong>See also</strong> <a href="qsslsocket.html#sslErrors">QSslSocket::sslErrors</a>(), <a href="qnetworkreply.html#sslErrors">QNetworkReply::sslErrors</a>(), <a href="qnetworkreply.html#sslConfiguration">QNetworkReply::sslConfiguration</a>(), and <a href="qnetworkreply.html#ignoreSslErrors">QNetworkReply::ignoreSslErrors</a>().</p>
+<h3><span id="virtual-qnetworkaccessmanager-qnetworkaccessmanager"><code>[virtual]</code>QNetworkAccessManager::~QNetworkAccessManager()</span><a href="#virtual-qnetworkaccessmanager-qnetworkaccessmanager" class="header-anchor">#</a></h3><p>销毁<a href>QNetworkAccessManager</a>对象并释放任何资源。注意，从该类返回的<a href="qnetworkreply.html">QNetworkReply</a>对象已被设置为它们的父对象，这意味着如果你不对它们调用<a href="qobject.html#setParent">QObject::setParent</a>()，它们将被一并删除。</p>
+<h3><span id="since-5-9-void-qnetworkaccessmanager-addstricttransportsecurityhosts-const-qlist-lt-qhstspolicy-gt-amp-knownhosts"><code>[since 5.9]</code>void QNetworkAccessManager::addStrictTransportSecurityHosts(const &lt;&gt; &amp;<em>knownHosts</em>)</span><a href="#since-5-9-void-qnetworkaccessmanager-addstricttransportsecurityhosts-const-qlist-lt-qhstspolicy-gt-amp-knownhosts" class="header-anchor">#</a></h3><p>将HTTP严格传输安全策略添加到HSTS缓存中。<em>knownHosts</em>包含有[QHstsPolicy]（qhstspolicy.html）信息的已知主机。</p>
+<p><strong>注意：</strong>过期的策略将从缓存中删除已知的主机，如果以前存在的话。</p>
+<p><strong>注意：</strong>在处理HTTP响应时，<a href>QNetworkAccessManager</a>也可以更新HSTS缓存，删除或更新退出的策略或引入新的<em>knownHosts</em>。因此，目前的实现是由服务器驱动的，客户端代码可以向<a href>QNetworkAccessManager</a>提供先前已知或发现的策略，但这些信息可以被 “Strict-Transport-Security “响应头重写。</p>
+<p>这个函数是在Qt 5.9中引入的。</p>
+<p><strong>See also</strong> addStrictTransportSecurityHosts(), <a href="#enableStrictTransportSecurityStore">enableStrictTransportSecurityStore</a>(), and <a href="qhstspolicy.html">QHstsPolicy</a>.</p>
+<h3><span id="since-5-14-bool-qnetworkaccessmanager-autodeletereplies-const"><code>[since 5.14]</code>bool QNetworkAccessManager::autoDeleteReplies() const</span><a href="#since-5-14-bool-qnetworkaccessmanager-autodeletereplies-const" class="header-anchor">#</a></h3><p>如果<a href>QNetworkAccessManager</a>当前被配置为自动删除QNetworkReplies，则返回true，否则返回false。</p>
+<p>这个函数是在Qt 5.14中引入的。</p>
+<p><strong>See also</strong> <a href="#setAutoDeleteReplies">setAutoDeleteReplies</a> and <a href="qnetworkrequest.html#Attribute-enum">QNetworkRequest::AutoDeleteReplyOnFinishAttribute</a>.</p>
+<h3><span id="qabstractnetworkcache-qnetworkaccessmanager-cache-const"> *QNetworkAccessManager::cache() const</span><a href="#qabstractnetworkcache-qnetworkaccessmanager-cache-const" class="header-anchor">#</a></h3><p>返回用于存储从网络获得的数据的缓存。</p>
+<p><strong>See also</strong> <a href="#setCache">setCache</a>().</p>
+<h3><span id="since-5-0-void-qnetworkaccessmanager-clearaccesscache"><code>[since 5.0]</code>void QNetworkAccessManager::clearAccessCache()</span><a href="#since-5-0-void-qnetworkaccessmanager-clearaccesscache" class="header-anchor">#</a></h3><p>冲洗认证数据和网络连接的内部缓存。</p>
+<p>这个功能对做自动测试很有用。</p>
+<p>这个函数是在Qt 5.0中引入的。</p>
+<p><strong>See also</strong> <a href="#clearConnectionCache">clearConnectionCache</a>().</p>
+<h3><span id="since-5-9-void-qnetworkaccessmanager-clearconnectioncache"><code>[since 5.9]</code>void QNetworkAccessManager::clearConnectionCache()</span><a href="#since-5-9-void-qnetworkaccessmanager-clearconnectioncache" class="header-anchor">#</a></h3><p>冲洗网络连接的内部缓存。与<a href="#clearAccessCache">clearAccessCache</a>()相反，认证数据被保留下来。</p>
+<p>这个函数是在Qt 5.9中引入的。</p>
+<p><strong>See also</strong> <a href="#clearAccessCache">clearAccessCache</a>().</p>
+<h3><span id="since-5-2-void-qnetworkaccessmanager-connecttohost-const-qstring-amp-hostname-quint16-port-80"><code>[since 5.2]</code>void QNetworkAccessManager::connectToHost(const  &amp;<em>hostName</em>,  <em>port</em> = 80)</span><a href="#since-5-2-void-qnetworkaccessmanager-connecttohost-const-qstring-amp-hostname-quint16-port-80" class="header-anchor">#</a></h3><p>启动与<em>hostName</em>所给的主机的连接，端口为<em>port</em>。这个函数有助于在发出HTTP请求之前完成与主机的TCP握手，从而降低网络延迟。</p>
+<p><strong>注意：</strong>这个函数不可能报告错误。</p>
+<p>这个函数是在Qt 5.2中引入的。</p>
+<p><strong>See also</strong> <a href="#connectToHostEncrypted">connectToHostEncrypted</a>(), <a href="#get">get</a>(), <a href="#post">post</a>(), <a href="#put">put</a>(), and <a href="#deleteResource">deleteResource</a>().</p>
+<h3><span id="since-5-2-void-qnetworkaccessmanager-connecttohostencrypted-const-qstring-amp-hostname-quint16-port-443-const-qsslconfiguration-amp-sslconfiguration-qsslconfiguration-defaultconfiguration"><code>[since 5.2]</code>void QNetworkAccessManager::connectToHostEncrypted(const  &amp;<em>hostName</em>,  <em>port</em> = 443, const  &amp;<em>sslConfiguration</em> = QSslConfiguration::defaultConfiguration())</span><a href="#since-5-2-void-qnetworkaccessmanager-connecttohostencrypted-const-qstring-amp-hostname-quint16-port-443-const-qsslconfiguration-amp-sslconfiguration-qsslconfiguration-defaultconfiguration" class="header-anchor">#</a></h3><p>使用<em>sslConfiguration</em>启动与<em>hostName</em>给出的主机的连接，端口*。这个函数对于在发出HTTPS请求之前完成与主机的TCP和SSL握手非常有用，从而降低了网络延迟。</p>
+<p><strong>注意：</strong>预连接HTTP/2连接可以通过调用<em>sslConfiguration</em>上的setAllowedNextProtocols()来完成，QSslConfiguration::ALPNProtocolHTTP2包含在允许协议列表中。当使用HTTP/2时，每个主机有一个单一的连接就足够了，也就是说，每个主机多次调用这个方法不会导致更快的网络交易。</p>
+<p><strong>注意：</strong>这个函数不可能报告错误。</p>
+<p>这个函数是在Qt 5.2中引入的。</p>
+<p><strong>See also</strong> <a href="#connectToHost">connectToHost</a>(), <a href="#get">get</a>(), <a href="#post">post</a>(), <a href="#put">put</a>(), and <a href="#deleteResource">deleteResource</a>().</p>
+<h3><span id="since-5-13-void-qnetworkaccessmanager-connecttohostencrypted-const-qstring-amp-hostname-quint16-port-const-qsslconfiguration-amp-sslconfiguration-const-qstring-amp-peername"><code>[since 5.13]</code>void QNetworkAccessManager::connectToHostEncrypted(const  &amp;<em>hostName</em>,  <em>port</em>, const  &amp;<em>sslConfiguration</em>, const  &amp;<em>peerName</em>)</span><a href="#since-5-13-void-qnetworkaccessmanager-connecttohostencrypted-const-qstring-amp-hostname-quint16-port-const-qsslconfiguration-amp-sslconfiguration-const-qstring-amp-peername" class="header-anchor">#</a></h3><p>这是一个重载函数</p>
+<p>使用<em>sslConfiguration</em>启动与<em>hostName</em>给出的主机的连接，<em>peerName</em>设置为用于证书验证的主机名。这个功能对于在发出HTTPS请求之前完成与主机的TCP和SSL握手非常有用，从而降低网络延迟。</p>
+<p><strong>注意：</strong>预连接一个HTTP/2连接可以通过在<em>sslConfiguration</em>上调用setAllowedNextProtocols()来完成，允许的协议列表中包含QSslConfiguration::ALPNProtocolHTTP2。当使用HTTP/2时，每个主机有一个单一的连接就足够了，也就是说，每个主机多次调用这个方法不会带来更快的网络交易。</p>
+<p><strong>注意：</strong>这个函数不可能报告错误。</p>
+<p>这个函数是在Qt 5.13中引入的。</p>
+<p><strong>See also</strong> <a href="#connectToHost">connectToHost</a>(), <a href="#get">get</a>(), <a href="#post">post</a>(), <a href="#put">put</a>(), and <a href="#deleteResource">deleteResource</a>().</p>
+<h3><span id="qnetworkcookiejar-qnetworkaccessmanager-cookiejar-const"> *QNetworkAccessManager::cookieJar() const</span><a href="#qnetworkcookiejar-qnetworkaccessmanager-cookiejar-const" class="header-anchor">#</a></h3><p>Returns the <a href="qnetworkcookiejar.html">QNetworkCookieJar</a> that is used to store cookies obtained from the network as well as cookies that are about to be sent.</p>
+<p><strong>See also</strong> <a href="#setCookieJar">setCookieJar</a>().</p>
+<h3><span id="virtual-protected-qnetworkreply-qnetworkaccessmanager-createrequest-qnetworkaccessmanager-operation-op-const-qnetworkrequest-amp-originalreq-qiodevice-outgoingdata-nullptr"><code>[virtual protected]</code> *QNetworkAccessManager::createRequest( <em>op</em>, const  &amp;<em>originalReq</em>,  *<em>outgoingData</em> = nullptr)</span><a href="#virtual-protected-qnetworkreply-qnetworkaccessmanager-createrequest-qnetworkaccessmanager-operation-op-const-qnetworkrequest-amp-originalreq-qiodevice-outgoingdata-nullptr" class="header-anchor">#</a></h3><p>返回一个新的<a href="qnetworkreply.html">QNetworkReply</a>对象来处理操作<em>op</em>和请求<em>originalReq</em>。对于Get和Head请求，设备<em>outgoingData</em>总是0，但在这些操作中是传递给<a href="#post">post</a>()和<a href="#put">put</a>()的值（<a href="qbytearray.html">QByteArray</a>变体会传递一个<a href="qbuffer.html">QBuffer</a>对象）。</p>
+<p>默认的实现是在用<a href="#setCookieJar">setCookieJar</a>()设置的cookie罐上调用<a href="qnetworkcookiejar.html#cookiesForUrl">QNetworkCookieJar::cookiesForUrl</a>，以获得要发送到远程服务器的cookies。</p>
+<p>返回的对象必须处于开放状态。</p>
+<h3><span id="qnetworkreply-qnetworkaccessmanager-deleteresource-const-qnetworkrequest-amp-request"> *QNetworkAccessManager::deleteResource(const  &amp;<em>request</em>)</span><a href="#qnetworkreply-qnetworkaccessmanager-deleteresource-const-qnetworkrequest-amp-request" class="header-anchor">#</a></h3><p>发送一个请求，删除由<em>request</em>的URL标识的资源。</p>
+<p><strong>注意：</strong>该功能目前仅适用于HTTP，执行HTTP DELETE请求。</p>
+<p><strong>See also</strong> <a href="#get">get</a>(), <a href="#post">post</a>(), <a href="#put">put</a>(), and <a href="#sendCustomRequest">sendCustomRequest</a>().</p>
+<h3><span id="since-5-10-void-qnetworkaccessmanager-enablestricttransportsecuritystore-bool-enabled-const-qstring-amp-storedir-qstring"><code>[since 5.10]</code>void QNetworkAccessManager::enableStrictTransportSecurityStore(bool <em>enabled</em>, const  &amp;<em>storeDir</em> = QString())</span><a href="#since-5-10-void-qnetworkaccessmanager-enablestricttransportsecuritystore-bool-enabled-const-qstring-amp-storedir-qstring" class="header-anchor">#</a></h3><p>如果<em>enabled</em>为 “true”，内部HSTS缓存将使用一个持久的存储来读写HSTS策略。<em>storeDir</em>定义了这个存储的位置。默认位置由<a href="qstandardpaths.html#StandardLocation-enum">QStandardPaths::CacheLocation</a>定义。如果没有可写的QStandartPaths::CacheLocation，并且<em>storeDir</em>是一个空字符串，存储将位于程序的工作目录中。</p>
+<p><strong>注意：</strong>如果HSTS缓存在启用持久化存储时已经包含了HSTS策略，这些策略将被保留在存储中。如果缓存和存储都包含相同的已知主机，缓存中的策略被认为是最新的（因此将覆盖存储中的先前值）。如果不希望出现这种行为，请在启用严格传输安全之前启用HSTS存储。默认情况下，HSTS策略的持久性存储被禁用。</p>
+<p>这个函数是在Qt 5.10中引入的。</p>
+<p><strong>See also</strong> <a href="#isStrictTransportSecurityStoreEnabled">isStrictTransportSecurityStoreEnabled</a>(), <a href="#setStrictTransportSecurityEnabled">setStrictTransportSecurityEnabled</a>(), and <a href="qstandardpaths.html#standardLocations">QStandardPaths::standardLocations</a>().</p>
+<h3><span id="qnetworkreply-qnetworkaccessmanager-get-const-qnetworkrequest-amp-request"> *QNetworkAccessManager::get(const  &amp;<em>request</em>)</span><a href="#qnetworkreply-qnetworkaccessmanager-get-const-qnetworkrequest-amp-request" class="header-anchor">#</a></h3><p>发布一个获取目标<em>请求</em>内容的请求，并返回一个新的<a href="qnetworkreply.html">QNetworkReply</a>对象，该对象在新数据到达时发出<a href="qiodevice.html#readyRead">readyRead</a>()信号，以供读取。</p>
+<p>内容以及相关的标题将被下载。</p>
+<p><strong>See also</strong> <a href="#post">post</a>(), <a href="#put">put</a>(), <a href="#deleteResource">deleteResource</a>(), and <a href="#sendCustomRequest">sendCustomRequest</a>().</p>
+<h3><span id="qnetworkreply-qnetworkaccessmanager-head-const-qnetworkrequest-amp-request"> *QNetworkAccessManager::head(const  &amp;<em>request</em>)</span><a href="#qnetworkreply-qnetworkaccessmanager-head-const-qnetworkrequest-amp-request" class="header-anchor">#</a></h3><p>发布一个请求，以获得<em>request</em>的网络头信息，并返回一个新的<a href="qnetworkreply.html">QNetworkReply</a>对象，其中将包含这些头信息。</p>
+<p>该函数是以HTTP请求相关的（HEAD）命名的。</p>
+<h3><span id="since-5-9-bool-qnetworkaccessmanager-isstricttransportsecurityenabled-const"><code>[since 5.9]</code>bool QNetworkAccessManager::isStrictTransportSecurityEnabled() const</span><a href="#since-5-9-bool-qnetworkaccessmanager-isstricttransportsecurityenabled-const" class="header-anchor">#</a></h3><p>如果HTTP严格传输安全（HSTS）被启用，返回true。默认情况下，HSTS被禁用。</p>
+<p>这个函数是在Qt 5.9中引入的。</p>
+<p><strong>See also</strong> <a href="#setStrictTransportSecurityEnabled">setStrictTransportSecurityEnabled</a>().</p>
+<h3><span id="since-5-10-bool-qnetworkaccessmanager-isstricttransportsecuritystoreenabled-const"><code>[since 5.10]</code>bool QNetworkAccessManager::isStrictTransportSecurityStoreEnabled() const</span><a href="#since-5-10-bool-qnetworkaccessmanager-isstricttransportsecuritystoreenabled-const" class="header-anchor">#</a></h3><p>如果HSTS缓存使用永久存储来加载和存储HSTS策略，返回true。</p>
+<p>这个函数是在Qt 5.10中引入的。</p>
+<p><strong>See also</strong> <a href="#enableStrictTransportSecurityStore">enableStrictTransportSecurityStore</a>().</p>
+<h3><span id="qnetworkreply-qnetworkaccessmanager-post-const-qnetworkrequest-amp-request-qiodevice-data"> *QNetworkAccessManager::post(const  &amp;<em>request</em>,  *<em>data</em>)</span><a href="#qnetworkreply-qnetworkaccessmanager-post-const-qnetworkrequest-amp-request-qiodevice-data" class="header-anchor">#</a></h3><p>向<em>request</em>指定的目的地发送HTTP POST请求，并返回一个新的<a href="qnetworkreply.html">QNetworkReply</a>对象，该对象开放供阅读，将包含服务器发送的回复。<em>data</em>设备的内容将被上传到服务器。</p>
+<p><em>data</em>必须开放供阅读，并且必须保持有效，直到这个回复的<a href="#finished">finished</a>()信号被发射出来。</p>
+<p><strong>注意：</strong>在HTTP和HTTPS以外的协议上发送POST请求是未定义的，很可能会失败。</p>
+<p><strong>See also</strong> <a href="#get">get</a>(), <a href="#put">put</a>(), <a href="#deleteResource">deleteResource</a>(), and <a href="#sendCustomRequest">sendCustomRequest</a>().</p>
+<h3><span id="qnetworkreply-qnetworkaccessmanager-post-const-qnetworkrequest-amp-request-const-qbytearray-amp-data"> *QNetworkAccessManager::post(const  &amp;<em>request</em>, const  &amp;<em>data</em>)</span><a href="#qnetworkreply-qnetworkaccessmanager-post-const-qnetworkrequest-amp-request-const-qbytearray-amp-data" class="header-anchor">#</a></h3><p>这是一个重载函数</p>
+<p>将<em>data</em>字节数组的内容发送到<em>request</em>指定的目的地。</p>
+<h3><span id="qnetworkreply-qnetworkaccessmanager-post-const-qnetworkrequest-amp-request-qhttpmultipart-multipart"> *QNetworkAccessManager::post(const  &amp;<em>request</em>,  *<em>multiPart</em>)</span><a href="#qnetworkreply-qnetworkaccessmanager-post-const-qnetworkrequest-amp-request-qhttpmultipart-multipart" class="header-anchor">#</a></h3><p>这是一个重载函数</p>
+<p>将<em>multiPart</em>消息的内容发送到<em>request</em>指定的目的地。</p>
+<p>这可用于通过HTTP发送MIME多部分消息。</p>
+<p><strong>See also</strong> <a href="qhttpmultipart.html">QHttpMultiPart</a>, <a href="qhttppart.html">QHttpPart</a>, and <a href="#put">put</a>().</p>
+<h3><span id="qnetworkproxy-qnetworkaccessmanager-proxy-const"> QNetworkAccessManager::proxy() const</span><a href="#qnetworkproxy-qnetworkaccessmanager-proxy-const" class="header-anchor">#</a></h3><p>返回<a href="qnetworkproxy.html">QNetworkProxy</a>，使用该<a href>QNetworkAccessManager</a>对象发送的请求将使用该代理。代理的默认值是<a href="qnetworkproxy.html#ProxyType-enum">QNetworkProxy::DefaultProxy</a>。</p>
+<p><strong>See also</strong> <a href="#setProxy">setProxy</a>(), <a href="#setProxyFactory">setProxyFactory</a>(), and <a href="#proxyAuthenticationRequired">proxyAuthenticationRequired</a>().</p>
+<h3><span id="qnetworkproxyfactory-qnetworkaccessmanager-proxyfactory-const"> *QNetworkAccessManager::proxyFactory() const</span><a href="#qnetworkproxyfactory-qnetworkaccessmanager-proxyfactory-const" class="header-anchor">#</a></h3><p>返回这个<a href>QNetworkAccessManager</a>对象用来决定请求所使用的代理工厂。</p>
+<p>注意，这个函数返回的指针由<a href>QNetworkAccessManager</a>管理，可以在任何时候被删除。</p>
+<p><strong>See also</strong> <a href="#setProxyFactory">setProxyFactory</a>() and <a href="#proxy">proxy</a>().</p>
+<h3><span id="qnetworkreply-qnetworkaccessmanager-put-const-qnetworkrequest-amp-request-qiodevice-data"> *QNetworkAccessManager::put(const  &amp;<em>request</em>,  *<em>data</em>)</span><a href="#qnetworkreply-qnetworkaccessmanager-put-const-qnetworkrequest-amp-request-qiodevice-data" class="header-anchor">#</a></h3><p>将<em>data</em>的内容上传到目的地<em>request</em>，并返回一个新的<a href="qnetworkreply.html">QNetworkReply</a>对象，该对象将被打开用于回复。</p>
+<p>当这个函数被调用时，<em>data</em>必须被打开以供阅读，并且必须保持有效，直到这个回复的<a href="#finished">finished</a>()信号被发射出来。</p>
+<p>是否有东西可以从返回的对象中读取，这取决于协议。对于HTTP，服务器可能会发送一个小的HTML页面，表明上传成功（或不成功）。其他协议可能会在他们的回复里有内容。</p>
+<p><strong>注意：</strong>对于HTTP，这个请求将发送一个PUT请求，大多数服务器不允许这样做。表格上传机制，包括通过HTML表格上传文件的机制，使用POST机制。</p>
+<p><strong>See also</strong> <a href="#get">get</a>(), <a href="#post">post</a>(), <a href="#deleteResource">deleteResource</a>(), and <a href="#sendCustomRequest">sendCustomRequest</a>().</p>
+<h3><span id="qnetworkreply-qnetworkaccessmanager-put-const-qnetworkrequest-amp-request-const-qbytearray-amp-data"> *QNetworkAccessManager::put(const  &amp;<em>request</em>, const  &amp;<em>data</em>)</span><a href="#qnetworkreply-qnetworkaccessmanager-put-const-qnetworkrequest-amp-request-const-qbytearray-amp-data" class="header-anchor">#</a></h3><p>这是一个重载函数</p>
+<p>将<em>data</em>字节数组的内容发送到<em>request</em>指定的目的地。</p>
+<h3><span id="qnetworkreply-qnetworkaccessmanager-put-const-qnetworkrequest-amp-request-qhttpmultipart-multipart"> *QNetworkAccessManager::put(const  &amp;<em>request</em>,  *<em>multiPart</em>)</span><a href="#qnetworkreply-qnetworkaccessmanager-put-const-qnetworkrequest-amp-request-qhttpmultipart-multipart" class="header-anchor">#</a></h3><p>这是一个重载函数</p>
+<p>将<em>multiPart</em>消息的内容发送到<em>request</em>指定的目的地。</p>
+<p>这可用于通过HTTP发送MIME多部分信息。</p>
+<p><strong>See also</strong> <a href="qhttpmultipart.html">QHttpMultiPart</a>, <a href="qhttppart.html">QHttpPart</a>, and <a href="#post">post</a>().</p>
+<h3><span id="since-5-9-qnetworkrequest-redirectpolicy-qnetworkaccessmanager-redirectpolicy-const"><code>[since 5.9]</code> QNetworkAccessManager::redirectPolicy() const</span><a href="#since-5-9-qnetworkrequest-redirectpolicy-qnetworkaccessmanager-redirectpolicy-const" class="header-anchor">#</a></h3><p>返回创建新请求时使用的重定向策略。</p>
+<p>这个函数是在Qt 5.9中引入的。</p>
+<p><strong>See also</strong> <a href="#setRedirectPolicy">setRedirectPolicy</a>() and <a href="qnetworkrequest.html#RedirectPolicy-enum">QNetworkRequest::RedirectPolicy</a>.</p>
+<h3><span id="qnetworkreply-qnetworkaccessmanager-sendcustomrequest-const-qnetworkrequest-amp-request-const-qbytearray-amp-verb-qiodevice-data-nullptr"> *QNetworkAccessManager::sendCustomRequest(const  &amp;<em>request</em>, const  &amp;<em>verb</em>,  *<em>data</em> = nullptr)</span><a href="#qnetworkreply-qnetworkaccessmanager-sendcustomrequest-const-qnetworkrequest-amp-request-const-qbytearray-amp-verb-qiodevice-data-nullptr" class="header-anchor">#</a></h3><p>向由<em>request</em>的URL确定的服务器发送一个自定义请求。</p>
+<p>用户有责任向服务器发送一个符合HTTP规范的<em>verb</em>。</p>
+<p>这个方法提供了除通过<a href="#get">get</a>()或<a href="#post">post</a>()等提供的常见动词之外的发送手段，例如，发送HTTP OPTIONS命令。</p>
+<p>如果<em>data</em>不是空的，那么<em>data</em>设备的内容将被上传到服务器；在这种情况下，数据必须是开放的，可以阅读，并且必须保持有效，直到为这个回复发出<a href="#finished">finished</a>()信号。</p>
+<p><strong>注意：</strong>该功能目前仅适用于HTTP(S)。</p>
+<p><strong>See also</strong> <a href="#get">get</a>(), <a href="#post">post</a>(), <a href="#put">put</a>(), and <a href="#deleteResource">deleteResource</a>().</p>
+<h3><span id="since-5-8-qnetworkreply-qnetworkaccessmanager-sendcustomrequest-const-qnetworkrequest-amp-request-const-qbytearray-amp-verb-const-qbytearray-amp-data"><code>[since 5.8]</code> *QNetworkAccessManager::sendCustomRequest(const  &amp;<em>request</em>, const  &amp;<em>verb</em>, const  &amp;<em>data</em>)</span><a href="#since-5-8-qnetworkreply-qnetworkaccessmanager-sendcustomrequest-const-qnetworkrequest-amp-request-const-qbytearray-amp-verb-const-qbytearray-amp-data" class="header-anchor">#</a></h3><p>这是一个重载函数</p>
+<p>将<em>data</em>字节数组的内容发送到<em>request</em>指定的目的地。</p>
+<p>这个函数是在Qt 5.8中引入的。</p>
+<h3><span id="since-5-8-qnetworkreply-qnetworkaccessmanager-sendcustomrequest-const-qnetworkrequest-amp-request-const-qbytearray-amp-verb-qhttpmultipart-multipart"><code>[since 5.8]</code> *QNetworkAccessManager::sendCustomRequest(const  &amp;<em>request</em>, const  &amp;<em>verb</em>,  *<em>multiPart</em>)</span><a href="#since-5-8-qnetworkreply-qnetworkaccessmanager-sendcustomrequest-const-qnetworkrequest-amp-request-const-qbytearray-amp-verb-qhttpmultipart-multipart" class="header-anchor">#</a></h3><p>这是一个重载函数</p>
+<p>向由<em>request</em>的URL确定的服务器发送一个自定义请求。</p>
+<p>将<em>multiPart</em>消息的内容发送到<em>request</em>指定的目的地。</p>
+<p>这可用于发送自定义动词的MIME多部分信息。</p>
+<p>这个函数是在Qt 5.8中引入的。</p>
+<p><strong>See also</strong> <a href="qhttpmultipart.html">QHttpMultiPart</a>, <a href="qhttppart.html">QHttpPart</a>, and <a href="#put">put</a>().</p>
+<h3><span id="since-5-14-void-qnetworkaccessmanager-setautodeletereplies-bool-shouldautodelete"><code>[since 5.14]</code>void QNetworkAccessManager::setAutoDeleteReplies(bool <em>shouldAutoDelete</em>)</span><a href="#since-5-14-void-qnetworkaccessmanager-setautodeletereplies-bool-shouldautodelete" class="header-anchor">#</a></h3><p>启用或禁用自动删除[QNetworkReplies]（qnetworkreply.html）。</p>
+<p>将<em>shouldAutoDelete</em>设置为 “true”，等于将<a href="qnetworkrequest.html#Attribute-enum">QNetworkRequest::AutoDeleteReplyOnFinishAttribute</a>属性在所有<em>未来</em>的<a href="qnetworkrequest.html">QNetworkRequests</a>传递给<a href>QNetworkAccessManager</a>的实例上设置为true，除非该属性已经被明确设置在<a href="qnetworkrequest.html">QNetworkRequest</a>。</p>
+<p>这个函数是在Qt 5.14中引入的。</p>
+<p><strong>See also</strong> <a href="#autoDeleteReplies">autoDeleteReplies</a> and <a href="qnetworkrequest.html#Attribute-enum">QNetworkRequest::AutoDeleteReplyOnFinishAttribute</a>.</p>
+<h3><span id="void-qnetworkaccessmanager-setcache-qabstractnetworkcache-cache">void QNetworkAccessManager::setCache( *<em>cache</em>)</span><a href="#void-qnetworkaccessmanager-setcache-qabstractnetworkcache-cache" class="header-anchor">#</a></h3><p>将管理器的网络缓存设置为<em>cache</em>指定。该缓存被用于管理器派发的所有请求。</p>
+<p>使用此函数将网络缓存对象设置为一个实现额外功能的类，比如将cookie保存到永久存储。</p>
+<p><strong>注意：</strong> <a href>QNetworkAccessManager</a>取得<em>缓存</em>对象的所有权。</p>
+<p><a href>QNetworkAccessManager</a>默认没有设置缓存。Qt提供了一个简单的磁盘缓存，<a href="qnetworkdiskcache.html">QNetworkDiskCache</a>，它可以被使用。</p>
+<p><strong>See also</strong> <a href="#cache">cache</a>() and <a href="qnetworkrequest.html#CacheLoadControl-enum">QNetworkRequest::CacheLoadControl</a>.</p>
+<h3><span id="void-qnetworkaccessmanager-setcookiejar-qnetworkcookiejar-cookiejar">void QNetworkAccessManager::setCookieJar( *<em>cookieJar</em>)</span><a href="#void-qnetworkaccessmanager-setcookiejar-qnetworkcookiejar-cookiejar" class="header-anchor">#</a></h3><p>将管理器的cookie罐设置为指定的<em>cookieJar</em>。这个cookie jar被管理器派发的所有请求所使用。</p>
+<p>使用这个函数可以将cookie jar对象设置为一个实现额外功能的类，比如将cookie保存到永久存储。</p>
+<p><strong>注意：</strong> <a href>QNetworkAccessManager</a>获取<em>cookieJar</em>对象的所有权。</p>
+<p>如果<em>cookieJar</em>和这个<a href>QNetworkAccessManager</a>在同一个线程中，它将设置<em>cookieJar</em>的父对象，这样当这个对象被删除时，cookie罐也被删除。如果你想在不同的<a href>QNetworkAccessManager</a>对象之间共享cookie罐，你可能想在调用这个函数后把cookie罐的父级设置为0。</p>
+<p><a href>QNetworkAccessManager</a>默认情况下不实现自己的任何cookie策略：它接受所有由服务器发送的cookie，只要这些cookie格式良好并满足最低的安全要求（cookie域与请求的匹配，cookie路径与请求的匹配）。为了实现你自己的安全策略，请覆盖<a href="qnetworkcookiejar.html#cookiesForUrl">QNetworkCookieJar::cookiesForUrl</a>()和<a href="qnetworkcookiejar.html#setCookiesFromUrl">QNetworkCookieJar::setCookiesFromUrl</a>() 虚拟函数。当<a href>QNetworkAccessManager</a>检测到一个新的cookie时，这些函数会被调用。</p>
+<p><strong>See also</strong> <a href="#cookieJar">cookieJar</a>(), <a href="qnetworkcookiejar.html#cookiesForUrl">QNetworkCookieJar::cookiesForUrl</a>(), and <a href="qnetworkcookiejar.html#setCookiesFromUrl">QNetworkCookieJar::setCookiesFromUrl</a>().</p>
+<h3><span id="void-qnetworkaccessmanager-setproxy-const-qnetworkproxy-amp-proxy">void QNetworkAccessManager::setProxy(const  &amp;<em>proxy</em>)</span><a href="#void-qnetworkaccessmanager-setproxy-const-qnetworkproxy-amp-proxy" class="header-anchor">#</a></h3><p>将未来请求中使用的代理设置为<em>proxy</em>。这并不影响已经发出的请求。如果代理要求认证，<a href="#proxyAuthenticationRequired">proxyAuthenticationRequired</a>()信号将被发射出来。</p>
+<p>用这个函数设置的代理将被用于由<a href>QNetworkAccessManager</a>发出的所有请求。在某些情况下，可能需要根据发送的请求类型或目标主机来选择不同的代理机构。如果是这种情况，你应该考虑使用<a href="#setProxyFactory">setProxyFactory</a>()。</p>
+<p><strong>See also</strong> <a href="#proxy">proxy</a>() and <a href="#proxyAuthenticationRequired">proxyAuthenticationRequired</a>().</p>
+<h3><span id="void-qnetworkaccessmanager-setproxyfactory-qnetworkproxyfactory-factory">void QNetworkAccessManager::setProxyFactory( *<em>factory</em>)</span><a href="#void-qnetworkaccessmanager-setproxyfactory-qnetworkproxyfactory-factory" class="header-anchor">#</a></h3><p>设置这个类的代理工厂为<em>factory</em>。代理工厂用于确定一个更具体的代理列表，用于给定的请求，而不是试图对所有请求使用相同的代理值。</p>
+<p>所有由<a href>QNetworkAccessManager</a>发送的查询将具有[QNetworkProxyQuery::UrlRequest]（qnetworkproxyquery.html#QueryType-enum）的类型。</p>
+<p>例如，一个代理工厂可以应用以下规则。</p>
+<ul>
+<li>如果目标地址在本地网络中（例如，如果主机名不包含点，或者是组织范围内的IP地址），返回 <a href="qnetworkproxy.html#ProxyType-enum">QNetworkProxy::NoProxy</a></li>
+<li>如果请求是FTP，返回一个FTP代理。</li>
+<li>如果请求是HTTP或HTTPS，那么返回一个HTTP代理</li>
+<li>否则，返回一个SOCKSv5代理服务器。</li>
+</ul>
+<p>对象<em>工厂</em>的寿命将由<a href>QNetworkAccessManager</a>管理。它将在必要时删除该对象。</p>
+<p><strong>注意：</strong>如果用<a href="#setProxy">setProxy</a>()设置了一个特定的代理，工厂将不会被使用。</p>
+<p><strong>See also</strong> <a href="#proxyFactory">proxyFactory</a>(), <a href="#setProxy">setProxy</a>(), and <a href="qnetworkproxyquery.html">QNetworkProxyQuery</a>.</p>
+<h3><span id="since-5-9-void-qnetworkaccessmanager-setredirectpolicy-qnetworkrequest-redirectpolicy-policy"><code>[since 5.9]</code>void QNetworkAccessManager::setRedirectPolicy( <em>policy</em>)</span><a href="#since-5-9-void-qnetworkaccessmanager-setredirectpolicy-qnetworkrequest-redirectpolicy-policy" class="header-anchor">#</a></h3><p>将管理器的重定向策略设置为指定的<em>policy</em>。这个策略将影响所有由管理器创建的后续请求。</p>
+<p>使用此功能可以在管理器的层面上启用或禁用HTTP重定向。</p>
+<p><strong>注意：</strong>当创建一个请求时，QNetworkRequest::RedirectAttributePolicy的优先级最高，其次是管理器的策略。</p>
+<p>默认值是[QNetworkRequest::NoLessSafeRedirectPolicy]（qnetworkrequest.html#RedirectPolicy-enum）。我们鼓励依赖手动重定向处理的客户在他们的代码中明确设置这一策略。</p>
+<p>这个函数是在Qt 5.9中引入的。</p>
+<p><strong>See also</strong> <a href="#redirectPolicy">redirectPolicy</a>() and <a href="qnetworkrequest.html#RedirectPolicy-enum">QNetworkRequest::RedirectPolicy</a>.</p>
+<h3><span id="since-5-9-void-qnetworkaccessmanager-setstricttransportsecurityenabled-bool-enabled"><code>[since 5.9]</code>void QNetworkAccessManager::setStrictTransportSecurityEnabled(bool <em>enabled</em>)</span><a href="#since-5-9-void-qnetworkaccessmanager-setstricttransportsecurityenabled-bool-enabled" class="header-anchor">#</a></h3><p>如果<em>enabled</em>为`true，<a href>QNetworkAccessManager</a>遵循HTTP严格传输安全策略（HSTS，RFC6797）。当处理一个请求时，<a href>QNetworkAccessManager</a>会自动将 “http “方案替换为 “https”，并为HSTS主机使用安全传输。如果是明确设置的，80端口会被443端口取代。</p>
+<p>当HSTS被启用时，对于每个包含HSTS头并通过安全传输接收的HTTP响应，<a href>QNetworkAccessManager</a>将更新其HSTS缓存，要么记住一个具有有效策略的主机，要么删除一个具有过期或禁用HSTS策略的主机。</p>
+<p>这个函数是在Qt 5.9中引入的。</p>
+<p><strong>See also</strong> <a href="#isStrictTransportSecurityEnabled">isStrictTransportSecurityEnabled</a>().</p>
+<h3><span id="since-5-15-void-qnetworkaccessmanager-settransfertimeout-int-timeout-qnetworkrequest-defaulttransfertimeoutconstant"><code>[since 5.15]</code>void QNetworkAccessManager::setTransferTimeout(int <em>timeout</em> = QNetworkRequest::DefaultTransferTimeoutConstant)</span><a href="#since-5-15-void-qnetworkaccessmanager-settransfertimeout-int-timeout-qnetworkrequest-defaulttransfertimeoutconstant" class="header-anchor">#</a></h3><p>设置<em>timeout</em>作为传输超时，单位是毫秒。</p>
+<p>如果在超时前没有传输任何字节，传输将被中止。零意味着不设置定时器。如果没有提供参数，超时是[QNetworkRequest::DefaultTransferTimeoutConstant]（qnetworkrequest.html#TransferTimeoutConstant-enum）。如果这个函数没有被调用，超时将被禁用，其值为零。为被执行的请求所设置的特定请求的非零超时值会覆盖这个值。这意味着，如果<a href>QNetworkAccessManager</a>有一个启用的超时，它需要被禁用来执行一个没有超时的请求。</p>
+<p>这个函数是在Qt 5.15中引入的。</p>
+<p><strong>See also</strong> <a href="#transferTimeout">transferTimeout</a>().</p>
+<h3><span id="since-5-9-qlist-lt-qhstspolicy-gt-qnetworkaccessmanager-stricttransportsecurityhosts-const"><code>[since 5.9]</code>&lt;&gt; QNetworkAccessManager::strictTransportSecurityHosts() const</span><a href="#since-5-9-qlist-lt-qhstspolicy-gt-qnetworkaccessmanager-stricttransportsecurityhosts-const" class="header-anchor">#</a></h3><p>返回HTTP严格传输安全策略的列表。如果HSTS缓存从 “Strict-Transport-Security “响应头更新，这个列表可能与最初通过<a href="#addStrictTransportSecurityHosts">addStrictTransportSecurityHosts</a>()设置的内容不同。</p>
+<p>这个函数是在Qt 5.9中引入的。</p>
+<p><strong>See also</strong> <a href="#addStrictTransportSecurityHosts">addStrictTransportSecurityHosts</a>() and <a href="qhstspolicy.html">QHstsPolicy</a>.</p>
+<h3><span id="virtual-since-5-2-qstringlist-qnetworkaccessmanager-supportedschemes-const"><code>[virtual, since 5.2]</code> QNetworkAccessManager::supportedSchemes() const</span><a href="#virtual-since-5-2-qstringlist-qnetworkaccessmanager-supportedschemes-const" class="header-anchor">#</a></h3><p>列出访问管理器支持的所有URL方案。</p>
+<p>在<a href>QNetworkAccessManager</a>子类中重新实现此方法以提供你自己支持的方案。例如，当你的子类提供对新协议的支持时，它是必要的。</p>
+<p>这个函数是在Qt 5.2中引入的。</p>
+<h3><span id="since-5-15-int-qnetworkaccessmanager-transfertimeout-const"><code>[since 5.15]</code>int QNetworkAccessManager::transferTimeout() const</span><a href="#since-5-15-int-qnetworkaccessmanager-transfertimeout-const" class="header-anchor">#</a></h3><p>返回用于传输的超时时间，单位是毫秒。</p>
+<p>如果<a href="#setTransferTimeout">setTransferTimeout</a>()没有被调用，那么这个超时就为零，这意味着超时没有被使用。</p>
+<p>这个函数是在Qt 5.15中引入的。</p>
+<p><strong>See also</strong> <a href="#setTransferTimeout">setTransferTimeout</a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/N/">N</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/M/Using_the_Meta-Object_Compiler_moc/Using_the_Meta-Object_Compiler_moc/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">元对象编译器(moc)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/M/Why_Does_Qt_Use_Moc_for_Signals_and_Slots/Why_Does_Qt_Use_Moc_for_Signals_and_Slots/">
+                        <span class="hidden-mobile">为何 Qt 使用 Moc 实现信号槽？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

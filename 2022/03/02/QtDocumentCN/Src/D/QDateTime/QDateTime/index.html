@@ -1,0 +1,1266 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QDateTime 类 公共类型 公共函数 静态公共成员 相关非成员 详细描述 备注   成员类型文档编制 [since 5.14] enum class QDateTime:: YearRange   成员函数文档编制 QString  QString  [since 5.8] QDateTime:: QDateTime ( QDateTime &amp;&amp; other ) Q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QDateTime类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/D/QDateTime/QDateTime/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QDateTime 类 公共类型 公共函数 静态公共成员 相关非成员 详细描述 备注   成员类型文档编制 [since 5.14] enum class QDateTime:: YearRange   成员函数文档编制 QString  QString  [since 5.8] QDateTime:: QDateTime ( QDateTime &amp;&amp; other ) Q">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/24c2.png?v8">
+<meta property="article:published_time" content="2022-03-02T06:12:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:37:31.606Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="D">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/24c2.png?v8">
+  
+  
+  <title>QDateTime类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QDateTime类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:12" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      26k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      217 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QDateTime类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qdatetime-lei">QDateTime 类</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-guan-fei-cheng-yuan">相关非成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#bei-zhu">备注</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#since-5-14-enum-class-qdatetime-yearrange"><code>[since 5.14] </code>enum class QDateTime:: YearRange</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qstring-qstring-html-qdatetime-tostring-qstringview-qstringview-html-format-qcalendar-qcalendar-html-cal-qcalendar-const">QString </a></li>
+<li><a href="#qstring-qstring-html-qdatetime-tostring-const-qstring-qstring-html-format-qcalendar-qcalendar-html-cal-qcalendar-const-1">QString </a></li>
+<li><a href="#since-5-8-qdatetime-qdatetime-qdatetime-qdatetime-html-qdatetime-other"><code>[since 5.8] </code>QDateTime:: QDateTime ( </a><a href="qdatetime.html#QDateTime">QDateTime </a>&amp;&amp; <em>other</em> )</li>
+<li><a href="#qdatetime-qdatetime-const-qdatetime-qdatetime-html-qdatetime-other">QDateTime:: QDateTime (const </a><a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>other</em> )</li>
+<li><a href="#since-5-2-qdatetime-qdatetime-qdate-qdate-html-date-qtime-qtime-html-time-const-qtimezone-qtimezone-html-timezone"><code>[since 5.2] </code>QDateTime:: QDateTime ( </a><a href="qdate.html">QDate </a><em>date</em> , <a href="qtime.html">QTime </a><em>time</em> , const <a href="qtimezone.html">QTimeZone </a>&amp; <em>timeZone</em> )</li>
+<li><a href="#qdatetime-qdatetime-qdate-qdate-html-date-qtime-qtime-html-time-qt-timespec-qt-html-timespec-enum-spec-qt-localtime-int-offsetseconds-0">QDateTime:: QDateTime ( </a><a href="qdate.html">QDate </a><em>date</em> , <a href="qtime.html">QTime </a><em>time</em> , <a href="qt.html#TimeSpec-enum">Qt::TimeSpec </a><em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0)</li>
+<li><a href="#qdatetime-qdatetime">QDateTime:: QDateTime ()</a></li>
+<li><a href="#qdatetime-qdatetime-html-qdatetime-qdatetime-operator-const-qdatetime-qdatetime-html-qdatetime-other">QDateTime </a></li>
+<li><a href="#qdatetime-qdatetime">QDateTime:: ~QDateTime ()</a></li>
+<li><a href="#qdatetime-qdatetime-html-qdatetime-qdatetime-adddays-qint64-qtglobal-html-qint64-typedef-ndays-const-1">QDateTime </a></li>
+<li><a href="#qdatetime-qdatetime-html-qdatetime-qdatetime-addmsecs-qint64-qtglobal-html-qint64-typedef-msecs-const-2">QDateTime </a></li>
+<li><a href="#qdatetime-qdatetime-html-qdatetime-qdatetime-addmonths-int-nmonths-const-3">QDateTime </a></li>
+<li><a href="#qdatetime-qdatetime-html-qdatetime-qdatetime-addsecs-qint64-qtglobal-html-qint64-typedef-s-const-4">QDateTime </a></li>
+<li><a href="#qdatetime-qdatetime-html-qdatetime-qdatetime-addyears-int-nyears-const-5">QDateTime </a></li>
+<li><a href="#static-qdatetime-qdatetime-html-qdatetime-qdatetime-currentdatetime"><code>[static] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: currentDateTime ()</li>
+<li><a href="#static-qdatetime-qdatetime-html-qdatetime-qdatetime-currentdatetimeutc"><code>[static] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: currentDateTimeUtc ()</li>
+<li><a href="#static-qint64-qtglobal-html-qint64-typedef-qdatetime-currentmsecssinceepoch"><code>[static] </code></a><a href="qtglobal.html#qint64-typedef">qint64 </a>QDateTime:: currentMSecsSinceEpoch ()</li>
+<li><a href="#static-since-5-8-qint64-qtglobal-html-qint64-typedef-qdatetime-currentsecssinceepoch"><code>[static, since 5.8] </code></a><a href="qtglobal.html#qint64-typedef">qint64 </a>QDateTime:: currentSecsSinceEpoch ()</li>
+<li><a href="#qdate-qdate-html-qdatetime-date-const">QDate </a></li>
+<li><a href="#qint64-qtglobal-html-qint64-typedef-qdatetime-daysto-const-qdatetime-qdatetime-html-qdatetime-other-const">qint64 </a></li>
+<li><a href="#static-since-5-5-qdatetime-qdatetime-html-qdatetime-qdatetime-fromcfdate-cfdateref-date"><code>[static, since 5.5] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: fromCFDate ( CFDateRef <em>date</em> )</li>
+<li><a href="#static-qdatetime-qdatetime-html-qdatetime-qdatetime-frommsecssinceepoch-qint64-qtglobal-html-qint64-typedef-msecs-qt-timespec-qt-html-timespec-enum-spec-qt-localtime-int-offsetseconds-0"><code>[static] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: fromMSecsSinceEpoch ( <a href="qtglobal.html#qint64-typedef">qint64 </a><em>msecs</em> , <a href="qt.html#TimeSpec-enum">Qt::TimeSpec </a><em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0)</li>
+<li><a href="#static-since-5-2-qdatetime-qdatetime-html-qdatetime-qdatetime-frommsecssinceepoch-qint64-qtglobal-html-qint64-typedef-msecs-const-qtimezone-qtimezone-html-timezone"><code>[static, since 5.2] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: fromMSecsSinceEpoch ( <a href="qtglobal.html#qint64-typedef">qint64 </a><em>msecs</em> , const <a href="qtimezone.html">QTimeZone </a>&amp; <em>timeZone</em> )</li>
+<li><a href="#static-since-5-5-qdatetime-qdatetime-html-qdatetime-qdatetime-fromnsdate-const-nsdate-date"><code>[static, since 5.5] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: fromNSDate (const NSDate * <em>date</em> )</li>
+<li><a href="#static-since-5-8-qdatetime-qdatetime-html-qdatetime-qdatetime-fromsecssinceepoch-qint64-qtglobal-html-qint64-typedef-secs-qt-timespec-qt-html-timespec-enum-spec-qt-localtime-int-offsetseconds-0"><code>[static, since 5.8] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: fromSecsSinceEpoch ( <a href="qtglobal.html#qint64-typedef">qint64 </a><em>secs</em> , <a href="qt.html#TimeSpec-enum">Qt::TimeSpec </a><em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0)</li>
+<li><a href="#static-since-5-8-qdatetime-qdatetime-html-qdatetime-qdatetime-fromsecssinceepoch-qint64-qtglobal-html-qint64-typedef-secs-const-qtimezone-qtimezone-html-timezone"><code>[static, since 5.8] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: fromSecsSinceEpoch ( <a href="qtglobal.html#qint64-typedef">qint64 </a><em>secs</em> , const <a href="qtimezone.html">QTimeZone </a>&amp; <em>timeZone</em> )</li>
+<li><a href="#static-qdatetime-qdatetime-html-qdatetime-qdatetime-fromstring-const-qstring-qstring-html-string-qt-dateformat-qt-html-dateformat-enum-format-qt-textdate"><code>[static] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: fromString (const <a href="qstring.html">QString </a>&amp; <em>string</em> , <a href="qt.html#DateFormat-enum">Qt::DateFormat </a><em>format</em> = Qt::TextDate)</li>
+<li><a href="#static-since-6-0-qdatetime-qdatetime-html-qdatetime-qdatetime-fromstring-qstringview-qstringview-html-string-qt-dateformat-qt-html-dateformat-enum-format-qt-textdate"><code>[static, since 6.0] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: fromString ( <a href="qstringview.html">QStringView </a><em>string</em> , <a href="qt.html#DateFormat-enum">Qt::DateFormat </a><em>format</em> = Qt::TextDate)</li>
+<li><a href="#static-since-6-0-qdatetime-qdatetime-html-qdatetime-qdatetime-fromstring-qstringview-qstringview-html-string-qstringview-qstringview-html-format-qcalendar-qcalendar-html-cal-qcalendar"><code>[static, since 6.0] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: fromString ( <a href="qstringview.html">QStringView </a><em>string</em> , <a href="qstringview.html">QStringView </a><em>format</em> , <a href="qcalendar.html">QCalendar </a><em>cal</em> = QCalendar())</li>
+<li><a href="#static-since-6-0-qdatetime-qdatetime-html-qdatetime-qdatetime-fromstring-const-qstring-qstring-html-string-qstringview-qstringview-html-format-qcalendar-qcalendar-html-cal-qcalendar"><code>[static, since 6.0] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: fromString (const <a href="qstring.html">QString </a>&amp; <em>string</em> , <a href="qstringview.html">QStringView </a><em>format</em> , <a href="qcalendar.html">QCalendar </a><em>cal</em> = QCalendar())</li>
+<li><a href="#static-qdatetime-qdatetime-html-qdatetime-qdatetime-fromstring-const-qstring-qstring-html-string-const-qstring-qstring-html-format-qcalendar-qcalendar-html-cal-qcalendar"><code>[static] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: fromString (const <a href="qstring.html">QString </a>&amp; <em>string</em> , const <a href="qstring.html">QString </a>&amp; <em>format</em> , <a href="qcalendar.html">QCalendar </a><em>cal</em> = QCalendar())</li>
+<li><a href="#since-5-2-bool-qdatetime-isdaylighttime-const"><code>[since 5.2] </code>bool QDateTime:: isDaylightTime () const</a></li>
+<li><a href="#bool-qdatetime-isnull-const">bool QDateTime:: isNull () const</a></li>
+<li><a href="#bool-qdatetime-isvalid-const">bool QDateTime:: isValid () const</a></li>
+<li><a href="#qint64-qtglobal-html-qint64-typedef-qdatetime-msecsto-const-qdatetime-qdatetime-html-qdatetime-other-const-1">qint64 </a></li>
+<li><a href="#since-5-2-int-qdatetime-offsetfromutc-const"><code>[since 5.2] </code>int QDateTime:: offsetFromUtc () const</a></li>
+<li><a href="#qint64-qtglobal-html-qint64-typedef-qdatetime-secsto-const-qdatetime-qdatetime-html-qdatetime-other-const-2">qint64 </a></li>
+<li><a href="#void-qdatetime-setdate-qdate-qdate-html-date">void QDateTime:: setDate ( </a><a href="qdate.html">QDate </a><em>date</em> )</li>
+<li><a href="#void-qdatetime-setmsecssinceepoch-qint64-qtglobal-html-qint64-typedef-msecs">void QDateTime:: setMSecsSinceEpoch ( </a><a href="qtglobal.html#qint64-typedef">qint64 </a><em>msecs</em> )</li>
+<li><a href="#since-5-2-void-qdatetime-setoffsetfromutc-int-offsetseconds"><code>[since 5.2] </code>void QDateTime:: setOffsetFromUtc ( int <em>offsetSeconds</em> )</a></li>
+<li><a href="#since-5-8-void-qdatetime-setsecssinceepoch-qint64-qtglobal-html-qint64-typedef-secs"><code>[since 5.8] </code>void QDateTime:: setSecsSinceEpoch ( </a><a href="qtglobal.html#qint64-typedef">qint64 </a><em>secs</em> )</li>
+<li><a href="#void-qdatetime-settime-qtime-qtime-html-time">void QDateTime:: setTime ( </a><a href="qtime.html">QTime </a><em>time</em> )</li>
+<li><a href="#void-qdatetime-settimespec-qt-timespec-qt-html-timespec-enum-spec">void QDateTime:: setTimeSpec ( </a><a href="qt.html#TimeSpec-enum">Qt::TimeSpec </a><em>spec</em> )</li>
+<li><a href="#since-5-2-void-qdatetime-settimezone-const-qtimezone-qtimezone-html-tozone"><code>[since 5.2] </code>void QDateTime:: setTimeZone (const </a><a href="qtimezone.html">QTimeZone </a>&amp; <em>toZone</em> )</li>
+<li><a href="#since-5-0-void-qdatetime-swap-qdatetime-qdatetime-html-qdatetime-other"><code>[since 5.0] </code>void QDateTime:: swap ( </a><a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>other</em> )</li>
+<li><a href="#qtime-qtime-html-qdatetime-time-const">QTime </a></li>
+<li><a href="#qt-timespec-qt-html-timespec-enum-qdatetime-timespec-const">Qt::TimeSpec </a></li>
+<li><a href="#since-5-2-qtimezone-qtimezone-html-qdatetime-timezone-const"><code>[since 5.2] </code></a><a href="qtimezone.html">QTimeZone </a>QDateTime:: timeZone () const</li>
+<li><a href="#since-5-2-qstring-qstring-html-qdatetime-timezoneabbreviation-const"><code>[since 5.2] </code></a><a href="qstring.html">QString </a>QDateTime:: timeZoneAbbreviation () const</li>
+<li><a href="#since-5-5-cfdateref-qdatetime-tocfdate-const"><code>[since 5.5] </code>CFDateRef QDateTime:: toCFDate () const</a></li>
+<li><a href="#qdatetime-qdatetime-html-qdatetime-qdatetime-tolocaltime-const-6">QDateTime </a></li>
+<li><a href="#qint64-qtglobal-html-qint64-typedef-qdatetime-tomsecssinceepoch-const-3">qint64 </a></li>
+<li><a href="#since-5-5-nsdate-qdatetime-tonsdate-const"><code>[since 5.5] </code>NSDate *QDateTime:: toNSDate () const</a></li>
+<li><a href="#since-5-2-qdatetime-qdatetime-html-qdatetime-qdatetime-tooffsetfromutc-int-offsetseconds-const"><code>[since 5.2] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: toOffsetFromUtc ( int <em>offsetSeconds</em> ) const</li>
+<li><a href="#since-5-8-qint64-qtglobal-html-qint64-typedef-qdatetime-tosecssinceepoch-const"><code>[since 5.8] </code></a><a href="qtglobal.html#qint64-typedef">qint64 </a>QDateTime:: toSecsSinceEpoch () const</li>
+<li><a href="#qstring-qstring-html-qdatetime-tostring-qt-dateformat-qt-html-dateformat-enum-format-qt-textdate-const-2">QString </a></li>
+<li><a href="#qdatetime-qdatetime-html-qdatetime-qdatetime-totimespec-qt-timespec-qt-html-timespec-enum-spec-const-7">QDateTime </a></li>
+<li><a href="#since-5-2-qdatetime-qdatetime-html-qdatetime-qdatetime-totimezone-const-qtimezone-qtimezone-html-timezone-const"><code>[since 5.2] </code></a><a href="qdatetime.html#QDateTime">QDateTime </a>QDateTime:: toTimeZone (const <a href="qtimezone.html">QTimeZone </a>&amp; <em>timeZone</em> ) const</li>
+<li><a href="#qdatetime-qdatetime-html-qdatetime-qdatetime-toutc-const-8">QDateTime </a></li>
+</ul>
+</li>
+<li><a href="#xiang-guan-fei-cheng-yuan-1">相关非成员</a><ul>
+<li><a href="#bool-operator-const-qdatetime-qdatetime-html-qdatetime-lhs-const-qdatetime-qdatetime-html-qdatetime-rhs">bool operator!= (const </a><a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>lhs</em> , const <a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>rhs</em> )</li>
+<li><a href="#bool-operator-const-qdatetime-qdatetime-html-qdatetime-lhs-const-qdatetime-qdatetime-html-qdatetime-rhs">bool operator&lt; (const </a><a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>lhs</em> , const <a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>rhs</em> )</li>
+<li><a href="#qdatastream-qdatastream-html-operator-qdatastream-qdatastream-html-out-const-qdatetime-qdatetime-html-qdatetime-datetime">QDataStream </a></li>
+<li><a href="#bool-operator-const-qdatetime-qdatetime-html-qdatetime-lhs-const-qdatetime-qdatetime-html-qdatetime-rhs">bool operator&lt;= (const </a><a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>lhs</em> , const <a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>rhs</em> )</li>
+<li><a href="#bool-operator-const-qdatetime-qdatetime-html-qdatetime-lhs-const-qdatetime-qdatetime-html-qdatetime-rhs">bool operator== (const </a><a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>lhs</em> , const <a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>rhs</em> )</li>
+<li><a href="#bool-operator-const-qdatetime-qdatetime-html-qdatetime-lhs-const-qdatetime-qdatetime-html-qdatetime-rhs">bool operator&gt; (const </a><a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>lhs</em> , const <a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>rhs</em> )</li>
+<li><a href="#bool-operator-const-qdatetime-qdatetime-html-qdatetime-lhs-const-qdatetime-qdatetime-html-qdatetime-rhs">bool operator&gt;= (const </a><a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>lhs</em> , const <a href="qdatetime.html#QDateTime">QDateTime </a>&amp; <em>rhs</em> )</li>
+<li><a href="#qdatastream-qdatastream-html-operator-qdatastream-qdatastream-html-in-qdatetime-qdatetime-html-qdatetime-datetime-1">QDataStream </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="qdatetime-lei">QDateTime 类</span><a href="#qdatetime-lei" class="header-anchor">#</a></h1><p>QDateTime 类提供日期和时间功能。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qdatetime></qdatetime></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Core REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Core)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += core</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qdatetime-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<p><strong>注意：</strong> 此类的所有函数 <a href="17-qdoc-commands-thread.html#reentrant">可重入 </a>.</p>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum class</th>
+<th><strong><a href="qdatetime.html#YearRange-enum">YearRange </a></strong>{ First, Last }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="qdatetime.html#QDateTime-4">QDateTime </a></strong>(QDateTime &amp;&amp; <em>other</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="qdatetime.html#QDateTime-3">QDateTime </a></strong>(const QDateTime &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="qdatetime.html#QDateTime-2">QDateTime </a></strong>(QDate <em>date</em> , QTime <em>time</em> , const QTimeZone &amp; <em>timeZone</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="qdatetime.html#QDateTime-1">QDateTime </a></strong>(QDate <em>date</em> , QTime <em>time</em> , Qt::TimeSpec <em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QDateTime-QDateTime">QDateTime </a></strong>()</td>
+</tr>
+<tr>
+<td>QDateTime &amp;</td>
+<td><strong><a href="qdatetime.html#operator-eq-1">operator= </a></strong>(const QDateTime &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QDateTime-~QDateTime">~QDateTime </a></strong>()</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#addDays">addDays </a></strong>(qint64 <em>ndays</em> ) const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#addMSecs">addMSecs </a></strong>(qint64 <em>msecs</em> ) const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#addMonths">addMonths </a></strong>(int <em>nmonths</em> ) const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#addSecs">addSecs </a></strong>(qint64 <em>s</em> ) const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#addYears">addYears </a></strong>(int <em>nyears</em> ) const</td>
+</tr>
+<tr>
+<td>QDate</td>
+<td><strong><a href="qdatetime.html#date">date </a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="qdatetime.html#daysTo">daysTo </a></strong>(const QDateTime &amp; <em>other</em> ) const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="qdatetime.html#isDaylightTime">isDaylightTime </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="qdatetime.html#isNull">isNull </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="qdatetime.html#isValid">isValid </a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="qdatetime.html#msecsTo">msecsTo </a></strong>(const QDateTime &amp; <em>other</em> ) const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="qdatetime.html#offsetFromUtc">offsetFromUtc </a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="qdatetime.html#secsTo">secsTo </a></strong>(const QDateTime &amp; <em>other</em> ) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="qdatetime.html#setDate">setDate </a></strong>(QDate <em>date</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="qdatetime.html#setMSecsSinceEpoch">setMSecsSinceEpoch </a></strong>(qint64 <em>msecs</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="qdatetime.html#setOffsetFromUtc">setOffsetFromUtc </a></strong>(int <em>offsetSeconds</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="qdatetime.html#setSecsSinceEpoch">setSecsSinceEpoch </a></strong>(qint64 <em>secs</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="qdatetime.html#setTime">setTime </a></strong>(QTime <em>time</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="qdatetime.html#setTimeSpec">setTimeSpec </a></strong>(Qt::TimeSpec <em>spec</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="qdatetime.html#setTimeZone">setTimeZone </a></strong>(const QTimeZone &amp; <em>toZone</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="qdatetime.html#swap">swap </a></strong>(QDateTime &amp; <em>other</em> )</td>
+</tr>
+<tr>
+<td>QTime</td>
+<td><strong><a href="qdatetime.html#time">time </a></strong>() const</td>
+</tr>
+<tr>
+<td>Qt::TimeSpec</td>
+<td><strong><a href="qdatetime.html#timeSpec">timeSpec </a></strong>() const</td>
+</tr>
+<tr>
+<td>QTimeZone</td>
+<td><strong><a href="qdatetime.html#timeZone">timeZone </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="qdatetime.html#timeZoneAbbreviation">timeZoneAbbreviation </a></strong>() const</td>
+</tr>
+<tr>
+<td>CFDateRef</td>
+<td><strong><a href="qdatetime.html#toCFDate">toCFDate </a></strong>() const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#toLocalTime">toLocalTime </a></strong>() const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="qdatetime.html#toMSecsSinceEpoch">toMSecsSinceEpoch </a></strong>() const</td>
+</tr>
+<tr>
+<td>NSDate *</td>
+<td><strong><a href="qdatetime.html#toNSDate">toNSDate </a></strong>() const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#toOffsetFromUtc">toOffsetFromUtc </a></strong>(int <em>offsetSeconds</em> ) const</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="qdatetime.html#toSecsSinceEpoch">toSecsSinceEpoch </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="qdatetime.html#toString">toString </a></strong>(const QString &amp; <em>format</em> , QCalendar <em>cal</em> = QCalendar()) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="qdatetime.html#toString-1">toString </a></strong>(Qt::DateFormat <em>format</em> = Qt::TextDate) const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="qdatetime.html#toString-2">toString </a></strong>(QStringView <em>format</em> , QCalendar <em>cal</em> = QCalendar()) const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#toTimeSpec">toTimeSpec </a></strong>(Qt::TimeSpec <em>spec</em> ) const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#toTimeZone">toTimeZone </a></strong>(const QTimeZone &amp; <em>timeZone</em> ) const</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#toUTC">toUTC </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>QDateTime</th>
+<th><strong><a href="qdatetime.html#currentDateTime">currentDateTime </a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#currentDateTimeUtc">currentDateTimeUtc </a></strong>()</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="qdatetime.html#currentMSecsSinceEpoch">currentMSecsSinceEpoch </a></strong>()</td>
+</tr>
+<tr>
+<td>qint64</td>
+<td><strong><a href="qdatetime.html#currentSecsSinceEpoch">currentSecsSinceEpoch </a></strong>()</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#fromCFDate">fromCFDate </a></strong>(CFDateRef <em>date</em> )</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#fromMSecsSinceEpoch">fromMSecsSinceEpoch </a></strong>(qint64 <em>msecs</em> , Qt::TimeSpec <em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0)</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#fromMSecsSinceEpoch-1">fromMSecsSinceEpoch </a></strong>(qint64 <em>msecs</em> , const QTimeZone &amp; <em>timeZone</em> )</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#fromNSDate">fromNSDate </a></strong>(const NSDate * <em>date</em> )</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#fromSecsSinceEpoch">fromSecsSinceEpoch </a></strong>(qint64 <em>secs</em> , Qt::TimeSpec <em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0)</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#fromSecsSinceEpoch-1">fromSecsSinceEpoch </a></strong>(qint64 <em>secs</em> , const QTimeZone &amp; <em>timeZone</em> )</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#fromString">fromString </a></strong>(const QString &amp; <em>string</em> , Qt::DateFormat <em>format</em> = Qt::TextDate)</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#fromString-1">fromString </a></strong>(QStringView <em>string</em> , Qt::DateFormat <em>format</em> = Qt::TextDate)</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#fromString-2">fromString </a></strong>(QStringView <em>string</em> , QStringView <em>format</em> , QCalendar <em>cal</em> = QCalendar())</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#fromString-3">fromString </a></strong>(const QString &amp; <em>string</em> , QStringView <em>format</em> , QCalendar <em>cal</em> = QCalendar())</td>
+</tr>
+<tr>
+<td>QDateTime</td>
+<td><strong><a href="qdatetime.html#fromString-4">fromString </a></strong>(const QString &amp; <em>string</em> , const QString &amp; <em>format</em> , QCalendar <em>cal</em> = QCalendar())</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong><a href="qdatetime.html#operator-not-eq">operator!= </a></strong>(const QDateTime &amp; <em>lhs</em> , const QDateTime &amp; <em>rhs</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bool</td>
+<td><strong><a href="qdatetime.html#operator-lt">operator&lt; </a></strong>(const QDateTime &amp; <em>lhs</em> , const QDateTime &amp; <em>rhs</em> )</td>
+</tr>
+<tr>
+<td>QDataStream &amp;</td>
+<td><strong><a href="qdatetime.html#operator-lt-lt-2">operator&lt;&lt; </a></strong>(QDataStream &amp; <em>out</em> , const QDateTime &amp; <em>dateTime</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="qdatetime.html#operator-lt-eq">operator&lt;= </a></strong>(const QDateTime &amp; <em>lhs</em> , const QDateTime &amp; <em>rhs</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="qdatetime.html#operator-eq-eq">operator== </a></strong>(const QDateTime &amp; <em>lhs</em> , const QDateTime &amp; <em>rhs</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="qdatetime.html#operator-gt">operator&gt; </a></strong>(const QDateTime &amp; <em>lhs</em> , const QDateTime &amp; <em>rhs</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="qdatetime.html#operator-gt-eq">operator&gt;= </a></strong>(const QDateTime &amp; <em>lhs</em> , const QDateTime &amp; <em>rhs</em> )</td>
+</tr>
+<tr>
+<td>QDataStream &amp;</td>
+<td><strong><a href="qdatetime.html#operator-gt-gt-1">operator&gt;&gt; </a></strong>(QDataStream &amp; <em>in</em> , QDateTime &amp; <em>dateTime</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QDateTime 对象编码日历日期和时钟时间（“日期时间”）。它结合了 <a href="qdate.html">QDate </a> 和 <a href="qtime.html">QTime </a> 类的特性。它可以从系统时钟中读取当前日期时间。它提供了比较日期时间和通过添加秒数、天数、月数或年数来操作日期时间的函数。</p>
+<p>QDateTime 可以描述日期时间相对于 <a href="qt.html#TimeSpec-enum">local time </a>，到 <a href="qt.html#TimeSpec-enum">UTC </a>，到指定的 [offset from UTC ](qt.html#TimeSpec- enum) 或指定的 <a href="qt.html#TimeSpec-enum">time zone </a>，与 <a href="qtimezone.html">QTimeZone </a> 类一起使用。例如，“欧洲/柏林”时区将应用德国使用的夏令时规则。相比之下，与 UTC +3600 秒的偏移比 UTC 早一小时（通常以 ISO 标准表示法写为“UTC+01:00”），没有夏令时偏移或更改。使用本地时间或指定时区时，会考虑时区转换，例如夏令时（DST；但见下文）的开始和结束。用于表示日期时间的系统选择被描述为它的“时间规范”。</p>
+<p>QDateTime 对象通常通过在构造函数中显式给出日期和时间来创建，或者通过使用诸如 <a href="qdatetime.html#currentDateTime">currentDateTime </a>() 或 <a href="qdatetime.html#fromMSecsSinceEpoch">fromMSecsSinceEpoch </a>( ）。可以使用 <a href="qdatetime.html#setDate">setDate </a>() 和 <a href="qdatetime.html#setTime">setTime </a>() 更改日期和时间。还可以使用 <a href="qdatetime.html#setMSecsSinceEpoch">setMSecsSinceEpoch </a>() 函数设置日期时间，该函数从 1970 年 1 月 1 日 00:00:00 开始计算时间，以毫秒为单位。 [fromString ](qdatetime.html# fromString)() 函数返回一个 QDateTime，给定一个字符串和用于解释字符串中日期的日期格式。</p>
+<p><a href="qdatetime.html#currentDateTime">QDateTime::currentDateTime </a>() 返回一个 QDateTime，它表示相对于本地时间的当前时间。 <a href="qdatetime.html#currentDateTimeUtc">QDateTime::currentDateTimeUtc </a>() 返回一个 QDateTime，它表示相对于 UTC 的当前时间。</p>
+<p><a href="qdatetime.html#date">date </a>() 和 <a href="qdatetime.html#time">time </a>() 函数提供对日期时间的日期和时间部分的访问。 <a href="qdatetime.html#toString">toString </a>() 函数以文本格式提供相同的信息。</p>
+<p>QDateTime 提供了一套完整的运算符来比较两个 QDateTime 对象，其中较小的表示较早，较大的表示较晚。</p>
+<p>您可以使用 <a href="qdatetime.html#addMSecs">addMSecs </a>() 将日期时间增加（或减少）给定的毫秒数，使用 <a href="qdatetime.html#addSecs">addSecs </a>() 的秒数，或使用 [addDays ] 的天数(qdatetime.html#addDays)()。同样，可以使用 <a href="qdatetime.html#addMonths">addMonths </a>() 和 <a href="qdatetime.html#addYears">addYears </a>()。 <a href="qdatetime.html#daysTo">daysTo </a>() 函数返回之间的天数两个日期时间， <a href="qdatetime.html#secsTo">secsTo </a>() 返回两个日期时间之间的秒数， <a href="qdatetime.html#msecsTo">msecsTo </a>() 返回两个日期时间之间的毫秒数。这些操作在适用的情况下了解夏令时 (DST) 和其他时区转换。</p>
+<p>使用 <a href="qdatetime.html#toTimeSpec">toTimeSpec </a>() 以本地时间或 UTC 表示日期时间， <a href="qdatetime.html#toOffsetFromUtc">toOffsetFromUtc </a>() 以与 UTC 的偏移量表示，或 <a href="qdatetime.html#toTimeZone">toTimeZone </a>)() 来表示它相对于一般时区。您可以使用 <a href="qdatetime.html#timeSpec">timeSpec </a>() 来找出 QDateTime 对象存储其时间的相对时间规范。当它是 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a> 时，您可以使用 <a href="qdatetime.html#timeZone">timeZone </a>() 找出它正在使用的区域。</p>
+<p><strong>注意：</strong> QDateTime 不考虑闰秒。</p>
+<h3><span id="bei-zhu">备注</span><a href="#bei-zhu" class="header-anchor">#</a></h3><p><strong>注意：</strong> 所有字符串格式的转换都是使用 C 语言环境完成的。有关本地化转换，请参阅 <a href="qlocale.html">QLocale </a>。</p>
+<p><strong>注意：</strong> 公历中没有 0 年。那一年的日期被认为是无效的。 -1 年是“基督之前的 1 年”或“普通时代之前的 1 年”。公元 1 月 1 日的前一天是公元前 1 年 12 月 31 日。</p>
+<h4><span id="you-xiao-ri-qi-fan-wei">有效日期范围</span><a href="#you-xiao-ri-qi-fan-wei" class="header-anchor">#</a></h4><p>QDateTime 可以表示的值范围取决于内部存储实现。 QDateTime 当前存储在 qint64 中，作为对日期和时间进行编码的串行毫秒值。这将日期范围限制在大约 +/- 2.92 亿年，而 <a href="qdate.html">QDate </a> 的范围是 +/- 20 亿年。创建具有极值的 QDateTime 时必须小心，以免溢出存储。支持值的确切范围取决于 <a href="qt.html#TimeSpec-enum">Qt::TimeSpec </a> 和时区。</p>
+<h4><span id="shi-yong-shi-qu">使用时区</span><a href="#shi-yong-shi-qu" class="header-anchor">#</a></h4><p>QDateTime 使用系统的时区信息来确定当前的本地时区及其与 UTC 的偏移量。如果系统配置不正确或不是最新的，QDateTime 将给出错误的结果。</p>
+<p>QDateTime 同样使用系统提供的信息来确定其他时区与 UTC 的偏移量。如果此信息不完整或过时，QDateTime 将给出错误结果。参见<a href="qtimezone.html">QTimeZone</a>文档编制了解更多细节。</p>
+<p>在现代 Unix 系统上，这意味着 QDateTime 通常尽可能地拥有有关历史转换（包括 DST，见下文）的准确信息。在系统不支持历史时区数据的 Windows 上，不会保持关于时区转换的历史准确性，特别是包括 DST。</p>
+<h4><span id="xia-ling-shi-dst">夏令时 (DST)</span><a href="#xia-ling-shi-dst" class="header-anchor">#</a></h4><p>QDateTime 考虑了标准时间和夏令时之间的转换。例如，如果转换是在凌晨 2 点并且时钟前进到凌晨 3 点，则从 02:00:00 到 02:59:59.999 有一个“缺失”小时，QDateTime 认为该小时无效。执行的任何日期算术都将考虑这个缺失的时间并返回有效结果。例如，将一分钟添加到 01:59:59 将得到 03:00:00。</p>
+<p>对于系统<code>time_t</code>可以表示的日期时间（在具有32位<code>time_t</code>的系统上从1901-12-14到2038-01-18；如果类型是64位，QDateTime可以表示全范围） ，标准系统 API 用于确定本地时间与 UTC 的偏移量。对于这些系统 API 未处理的日期时间，使用 <a href="qtimezone.html#systemTimeZone">QTimeZone::systemTimeZone </a>()。在任何一种情况下，所使用的偏移信息都取决于系统，并且可能不完整，或者对于过去的历史而言，是不准确的。无论如何，对于未来的日期，当地时区的偏移量和 DST 规则可能会在该日期到来之前发生变化。</p>
+<h4><span id="utc-pian-yi-liang">UTC 偏移量</span><a href="#utc-pian-yi-liang" class="header-anchor">#</a></h4><p>与 UTC 的偏移量没有明确的大小限制，但在使用 <a href="qdatetime.html#toString">toString </a>() 和 <a href="qdatetime.html#fromString">fromString </a>() 方法时有一个隐式限制 [+|-]hh:mm 格式，有效地将范围限制为 +/- 99 小时 59 分钟和整分钟。 请注意，目前没有时区的偏移量超出 ±14 小时的范围，并且所有已知的偏移量都是五分钟的倍数。</p>
+<p><strong>另请参阅</strong> <a href="qdate.html">QDate </a>, <a href="qtime.html">QTime </a>, <a href="qdatetimeedit.html">QDateTimeEdit </a>，和 <a href="qtimezone.html">QTimeZone </a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="since-5-14-enum-class-qdatetime-yearrange"><code>[since 5.14] </code>enum class QDateTime:: YearRange</span><a href="#since-5-14-enum-class-qdatetime-yearrange" class="header-anchor">#</a></h3><p>此枚举类型描述了由 <a href="qdatetime.html">QDateTime </a> 表示的年份范围（在公历中）:</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QDateTime::YearRange::First</code></td>
+<td align="left"><code>-292275056</code></td>
+<td align="left">今年下半年有代表性</td>
+</tr>
+<tr>
+<td align="left"><code>QDateTime::YearRange::Last</code></td>
+<td align="left"><code>+292278994</code></td>
+<td align="left">今年早些时候是有代表性的</td>
+</tr>
+</tbody></table>
+<p>这两年之间的所有日期也是可以表示的。 但是请注意，公历没有零年。</p>
+<p><strong>注意：</strong> <a href="qdate.html">QDate </a>可以描述更广泛年份的日期。 对于大多数目的，这几乎没有什么区别，因为 <a href="qdatetime.html">QDateTime </a> 可以支持的年范围达到 1970 年两侧的 2.92 亿年。</p>
+<p>该枚举在 Qt 5.14 引入或被修改。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#isValid">isValid </a>() 和 <a href="qdate.html">QDate </a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qstring-qdatetime-tostring-qstringview-format-qcalendar-cal-qcalendar-const">QDateTime:: toString ( <em>format</em> , <em>cal</em> = QCalendar()) const</span><a href="#qstring-qdatetime-tostring-qstringview-format-qcalendar-cal-qcalendar-const" class="header-anchor">#</a></h3><h3><span id="qstring-qdatetime-tostring-const-qstring-amp-format-qcalendar-cal-qcalendar-const">QDateTime:: toString (const &amp; <em>format</em> , <em>cal</em> = QCalendar()) const</span><a href="#qstring-qdatetime-tostring-const-qstring-amp-format-qcalendar-cal-qcalendar-const" class="header-anchor">#</a></h3><p>以字符串形式返回日期时间。 <em>format</em> 参数确定结果字符串的格式。如果提供了 <em>cal</em>，则它确定用于表示日期的日历；它默认为公历。请参阅 <a href="qtime.html#toString">QTime::toString </a>() 和 <a href="qdate.html#toString">QDate::toString </a>() 分别了解支持的时间和日期说明符。</p>
+<p>任何用单引号括起来的字符序列都将逐字包含在输出字符串中（去掉引号），即使它包含格式化字符。在输出中，两个连续的单引号 (“‘’”) 被替换为单引号。格式字符串中的所有其他字符都逐字包含在输出字符串中。</p>
+<p>支持不带分隔符的格式（例如“ddMM”），但必须小心使用，因为结果字符串并不总是可靠地可读（例如，如果“dM”产生“212”，它可能意味着 12 月 2 日或 21 日二月）。</p>
+<p>示例格式字符串（假设 <a href="qdatetime.html">QDateTime </a> 是 2001 年 5 月 21 日 14:13:09.120）：</p>
+<table>
+<thead>
+<tr>
+<th align="left">格式</th>
+<th align="left">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">dd.MM.yyyy</td>
+<td align="left">21.05.2001</td>
+</tr>
+<tr>
+<td align="left">ddd MMMM d yy</td>
+<td align="left">Tue May 21 01</td>
+</tr>
+<tr>
+<td align="left">hh:mm:ss.zzz</td>
+<td align="left">14:13:09.120</td>
+</tr>
+<tr>
+<td align="left">hh:mm:ss.z</td>
+<td align="left">14:13:09.12</td>
+</tr>
+<tr>
+<td align="left">h<span class="github-emoji"><span>Ⓜ</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/24c2.png?v8" srcset="/img/loading.gif" lazyload aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>s ap</td>
+<td align="left">2:13:9 pm</td>
+</tr>
+</tbody></table>
+<p>如果日期时间无效，将返回一个空字符串。</p>
+<p><strong>注意：</strong> 日期和月份名称以及 AM/PM 指示以英语（C 语言环境）给出。 如果使用本地化的月份和日期名称以及 AM/PM 的本地化形式，请使用 <a href="qlocale.html#system">QLocale::system</a>().toDateTime()。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#fromString">fromString </a>(), <a href="qdate.html#toString">QDate::toString </a>(), <a href="qtime.html#toString">QTime::toString </a>()，和 <a href="qlocale.html#toString">QLocale::toString </a>().</p>
+<h3><span id="since-5-8-qdatetime-qdatetime-qdatetime-amp-amp-other"><code>[since 5.8] </code>QDateTime:: QDateTime ( &amp;&amp; <em>other</em> )</span><a href="#since-5-8-qdatetime-qdatetime-qdatetime-amp-amp-other" class="header-anchor">#</a></h3><p>将临时 <em>other</em> 日期时间的内容移动到此对象，并使 <em>other</em> 处于未指定（但正确）的状态。</p>
+<p>该函数在 Qt 5.8 引入。</p>
+<h3><span id="qdatetime-qdatetime-const-qdatetime-amp-other">QDateTime:: QDateTime (const &amp; <em>other</em> )</span><a href="#qdatetime-qdatetime-const-qdatetime-amp-other" class="header-anchor">#</a></h3><p>构造副本为 <em>other</em> datetime.</p>
+<h3><span id="since-5-2-qdatetime-qdatetime-qdate-date-qtime-time-const-qtimezone-amp-timezone"><code>[since 5.2] </code>QDateTime:: QDateTime ( <em>date</em> , <em>time</em> , const &amp; <em>timeZone</em> )</span><a href="#since-5-2-qdatetime-qdatetime-qdate-date-qtime-time-const-qtimezone-amp-timezone" class="header-anchor">#</a></h3><p>使用 <em>timeZone</em> 指定的时区构造具有给定 <em>date</em> 和 <em>time</em> 的日期时间。</p>
+<p>若 <em>date</em> 有效和 <em>time</em> 不存在，时间将设置为 00:00:00。</p>
+<p>若 <em>timeZone</em> 无效，则日期时间无效。</p>
+<p>该函数在 Qt 5.2 引入。</p>
+<h3><span id="qdatetime-qdatetime-qdate-date-qtime-time-qt-timespec-spec-qt-localtime-int-offsetseconds-0">QDateTime:: QDateTime ( <em>date</em> , <em>time</em> , <em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0)</span><a href="#qdatetime-qdatetime-qdate-date-qtime-time-qt-timespec-spec-qt-localtime-int-offsetseconds-0" class="header-anchor">#</a></h3><p>使用由 <em>spec</em> 和 <em>offsetSeconds</em> 秒定义的时间规范，使用给定的 <em>date</em> 和 <em>time</em> 构造一个日期时间。</p>
+<p>若 <em>date</em> 有效和 <em>time</em> 不是，时间将设置为午夜。</p>
+<p>若 <em>spec</em> 不是 <a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a>then <em>offsetSeconds</em> 将被覆盖。</p>
+<p>若 <em>spec</em> is <a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a> and <em>offsetSeconds</em> is 0 then the <a href="qdatetime.html#timeSpec">timeSpec </a>() 将设置为 [Qt::UTC] (qt.html#TimeSpec-enum)，即0秒的偏移量。</p>
+<p>若 <em>spec</em> 为 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a>，则规范将设置为 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a>，即当前系统时区。 要创建 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a>datetime，请使用正确的构造函数。</p>
+<h3><span id="qdatetime-qdatetime">QDateTime:: QDateTime ()</span><a href="#qdatetime-qdatetime" class="header-anchor">#</a></h3><p>构造一个空日期时间。</p>
+<p>空日期时间无效，因为其日期和时间无效。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#isValid">isValid </a>().</p>
+<h3><span id="qdatetime-amp-qdatetime-operator-const-qdatetime-amp-other">&amp;QDateTime:: operator= (const &amp; <em>other</em> )</span><a href="#qdatetime-amp-qdatetime-operator-const-qdatetime-amp-other" class="header-anchor">#</a></h3><p>制作 <em>other</em> 日期时间的副本并返回对副本的引用。</p>
+<h3><span id="qdatetime-qdatetime">QDateTime:: ~QDateTime ()</span><a href="#qdatetime-qdatetime" class="header-anchor">#</a></h3><p>销毁日期时间。</p>
+<h3><span id="qdatetime-qdatetime-adddays-qint64-ndays-const">QDateTime:: addDays ( <em>ndays</em> ) const</span><a href="#qdatetime-qdatetime-adddays-qint64-ndays-const" class="header-anchor">#</a></h3><p>返回 <a href="qdatetime.html">QDateTime </a> 对象，包含比该对象的日期时间晚 <em>ndays</em> 天的日期时间（如果 <em>ndays</em> 为负数，则更早）。</p>
+<p>若 <a href="qdatetime.html#timeSpec">timeSpec </a>() 是 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a> 或 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a> 以及结果日期和 时间落在标准时间到夏令时转换小时，则结果将相应调整，即如果转换是在凌晨 2 点，时钟向前到凌晨 3 点，结果落在凌晨 2 点和凌晨 3 点之间，那么结果将被调整为 凌晨 3 点后跌倒。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#daysTo">daysTo </a>(), <a href="qdatetime.html#addMonths">addMonths </a>(), <a href="qdatetime.html#addYears">addYears </a>()，和 <a href="qdatetime.html#addSecs">addSecs </a>().</p>
+<h3><span id="qdatetime-qdatetime-addmsecs-qint64-msecs-const">QDateTime:: addMSecs ( <em>msecs</em> ) const</span><a href="#qdatetime-qdatetime-addmsecs-qint64-msecs-const" class="header-anchor">#</a></h3><p>返回 <a href="qdatetime.html">QDateTime </a> 对象包含的日期时间 <em>msecs</em> 比该对象的日期时间晚（如果 <em>msecs</em> 为负数则更早）。</p>
+<p>如果此日期时间无效，则将返回无效的日期时间。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#addSecs">addSecs </a>(), <a href="qdatetime.html#msecsTo">msecsTo </a>(), <a href="qdatetime.html#addDays">addDays </a>(), <a href="qdatetime.html#addMonths">addMonths </a>()，和 <a href="qdatetime.html#addYears">addYears </a>().</p>
+<h3><span id="qdatetime-qdatetime-addmonths-int-nmonths-const">QDateTime:: addMonths ( int <em>nmonths</em> ) const</span><a href="#qdatetime-qdatetime-addmonths-int-nmonths-const" class="header-anchor">#</a></h3><p>返回 <a href="qdatetime.html">QDateTime </a>对象，包含一个比该对象的日期时间晚<em>nmonths</em>个月的日期时间（如果<em>nmonths</em>是负数，则更早）。</p>
+<p>若 <a href="qdatetime.html#timeSpec">timeSpec </a>() 是 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a>或 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a>，而结果的日期和时间是在标准时间到夏令时的过渡小时，那么结果将被相应调整，即。 例如，如果过渡时间是凌晨2点，而时钟前进到凌晨3点，结果落在凌晨2点和3点之间，那么结果将被调整为落在凌晨3点之后。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#daysTo">daysTo </a>(), <a href="qdatetime.html#addDays">addDays </a>(), <a href="qdatetime.html#addYears">addYears </a>()，和 <a href="qdatetime.html#addSecs">addSecs </a>().</p>
+<h3><span id="qdatetime-qdatetime-addsecs-qint64-s-const">QDateTime:: addSecs ( <em>s</em> ) const</span><a href="#qdatetime-qdatetime-addsecs-qint64-s-const" class="header-anchor">#</a></h3><p>返回 <a href="qdatetime.html">QDateTime </a>对象，该对象包含一个比该对象日期时间晚<em>s</em>秒的日期时间（如果<em>s</em>是负数，则更早）。</p>
+<p>如果这个日期时间是无效的，将返回一个无效的日期时间。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#addMSecs">addMSecs </a>(), <a href="qdatetime.html#secsTo">secsTo </a>(), <a href="qdatetime.html#addDays">addDays </a>(), <a href="qdatetime.html#addMonths">addMonths </a>()，和 <a href="qdatetime.html#addYears">addYears </a>().</p>
+<h3><span id="qdatetime-qdatetime-addyears-int-nyears-const">QDateTime:: addYears ( int <em>nyears</em> ) const</span><a href="#qdatetime-qdatetime-addyears-int-nyears-const" class="header-anchor">#</a></h3><p>返回 <a href="qdatetime.html">QDateTime </a>对象，该对象包含一个比该对象的日期时间晚<em>nyears</em>的日期时间（如果<em>nyears</em>是负数，则更早）。</p>
+<p>若 <a href="qdatetime.html#timeSpec">timeSpec </a>() 是 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a>或 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a>，而结果的日期和时间是在标准时间到夏令时的过渡小时，那么结果将被相应调整，即：如果过渡时间是在2月2日，那么结果将被调整。 例如，如果过渡时间是凌晨2点，而时钟前进到凌晨3点，结果落在凌晨2点和3点之间，那么结果将被调整为落在凌晨3点之后。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#daysTo">daysTo </a>(), <a href="qdatetime.html#addDays">addDays </a>(), <a href="qdatetime.html#addMonths">addMonths </a>()，和 <a href="qdatetime.html#addSecs">addSecs </a>().</p>
+<h3><span id="static-qdatetime-qdatetime-currentdatetime"><code>[static] </code>QDateTime:: currentDateTime ()</span><a href="#static-qdatetime-qdatetime-currentdatetime" class="header-anchor">#</a></h3><p>返回当前的日期时间，由系统时钟报告，在本地时区。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#currentDateTimeUtc">currentDateTimeUtc </a>(), <a href="qdate.html#currentDate">QDate::currentDate </a>(), <a href="qtime.html#currentTime">QTime::currentTime </a>()，和 <a href="qdatetime.html#toTimeSpec">toTimeSpec </a>().</p>
+<h3><span id="static-qdatetime-qdatetime-currentdatetimeutc"><code>[static] </code>QDateTime:: currentDateTimeUtc ()</span><a href="#static-qdatetime-qdatetime-currentdatetimeutc" class="header-anchor">#</a></h3><p>返回当前的日期时间，由系统时钟报告，单位为UTC。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#currentDateTime">currentDateTime </a>(), <a href="qdate.html#currentDate">QDate::currentDate </a>(), <a href="qtime.html#currentTime">QTime::currentTime </a>()，和 <a href="qdatetime.html#toTimeSpec">toTimeSpec </a>().</p>
+<h3><span id="static-qint64-qdatetime-currentmsecssinceepoch"><code>[static] </code>QDateTime:: currentMSecsSinceEpoch ()</span><a href="#static-qint64-qdatetime-currentmsecssinceepoch" class="header-anchor">#</a></h3><p>返回自1970-01-01T00:00:00世界协调时间以来的毫秒数。这个数字就像POSIX的time_t变量一样，但是用毫秒来表示。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#currentDateTime">currentDateTime </a>(), <a href="qdatetime.html#currentDateTimeUtc">currentDateTimeUtc </a>()，和 <a href="qdatetime.html#toTimeSpec">toTimeSpec </a>().</p>
+<h3><span id="static-since-5-8-qint64-qdatetime-currentsecssinceepoch"><code>[static, since 5.8] </code>QDateTime:: currentSecsSinceEpoch ()</span><a href="#static-since-5-8-qint64-qdatetime-currentsecssinceepoch" class="header-anchor">#</a></h3><p>返回自1970-01-01T00:00:00世界协调时间以来的秒数。</p>
+<p>该函数在 Qt 5.8 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#currentMSecsSinceEpoch">currentMSecsSinceEpoch </a>().</p>
+<h3><span id="qdate-qdatetime-date-const">QDateTime:: date () const</span><a href="#qdate-qdatetime-date-const" class="header-anchor">#</a></h3><p>返回日期时间中的日期部分。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#setDate">setDate </a>(), <a href="qdatetime.html#time">time </a>()，和 <a href="qdatetime.html#timeSpec">timeSpec </a>().</p>
+<h3><span id="qint64-qdatetime-daysto-const-qdatetime-amp-other-const">QDateTime:: daysTo (const &amp; <em>other</em> ) const</span><a href="#qint64-qdatetime-daysto-const-qdatetime-amp-other-const" class="header-anchor">#</a></h3><p>返回从这个日期时间到<em>另一个</em>日期时间的天数。天数的计算方法是，从这个日期时间到<em>另一个</em>日期时间之间的午夜次数。这意味着，从23:55到第二天的0:05，相差10分钟也算一天。</p>
+<p>如果*另一个日期时间比这个日期时间早，返回的值是负数。</p>
+<p>范例：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QDateTime <span class="hljs-title">startDate</span><span class="hljs-params">(QDate(<span class="hljs-number">2012</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>), QTime(<span class="hljs-number">8</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>))</span></span>;
+<span class="hljs-function">QDateTime <span class="hljs-title">endDate</span><span class="hljs-params">(QDate(<span class="hljs-number">2012</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>), QTime(<span class="hljs-number">16</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>))</span></span>;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"Days from startDate to endDate: "</span> &lt;&lt; startDate.<span class="hljs-built_in">daysTo</span>(endDate);
+startDate = <span class="hljs-built_in">QDateTime</span>(<span class="hljs-built_in">QDate</span>(<span class="hljs-number">2012</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>), <span class="hljs-built_in">QTime</span>(<span class="hljs-number">23</span>, <span class="hljs-number">55</span>, <span class="hljs-number">0</span>));
+endDate = <span class="hljs-built_in">QDateTime</span>(<span class="hljs-built_in">QDate</span>(<span class="hljs-number">2012</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>), <span class="hljs-built_in">QTime</span>(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">0</span>));
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"Days from startDate to endDate: "</span> &lt;&lt; startDate.<span class="hljs-built_in">daysTo</span>(endDate);
+<span class="hljs-built_in">qSwap</span>(startDate, endDate); <span class="hljs-comment">// Make endDate before startDate.</span>
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"Days from startDate to endDate: "</span> &lt;&lt; startDate.<span class="hljs-built_in">daysTo</span>(endDate);</code></pre></div>
+
+<p><strong>另请参阅</strong> <a href="qdatetime.html#addDays">addDays </a>(), <a href="qdatetime.html#secsTo">secsTo </a>()，和 <a href="qdatetime.html#msecsTo">msecsTo </a>().</p>
+<h3><span id="static-since-5-5-qdatetime-qdatetime-fromcfdate-cfdateref-date"><code>[static, since 5.5] </code>QDateTime:: fromCFDate ( CFDateRef <em>date</em> )</span><a href="#static-since-5-5-qdatetime-qdatetime-fromcfdate-cfdateref-date" class="header-anchor">#</a></h3><p>构造新的 <a href="qdatetime.html">QDateTime </a>包含CFDate <em>date</em>的副本。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toCFDate">toCFDate </a>().</p>
+<h3><span id="static-qdatetime-qdatetime-frommsecssinceepoch-qint64-msecs-qt-timespec-spec-qt-localtime-int-offsetseconds-0"><code>[static] </code>QDateTime:: fromMSecsSinceEpoch ( <em>msecs</em> , <em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0)</span><a href="#static-qdatetime-qdatetime-frommsecssinceepoch-qint64-msecs-qt-timespec-spec-qt-localtime-int-offsetseconds-0" class="header-anchor">#</a></h3><p>返回一个日期时间，其日期和时间是自协调世界时 (<a href="qt.html#TimeSpec-enum">Qt::UTC </a>) 1970-01-01T00:00:00.000 以来经过的毫秒数 <em>msecs</em> 和 转换为给定的 <em>spec</em> 。</p>
+<p>请注意，<em>msecs</em>有可能超出<a href="qdatetime.html">QDateTime</a>的有效范围，包括负值和正值。对于这些值，这个函数的行为是未定义的。</p>
+<p>如果 <em>spec</em> 不是 <a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a> 那么 <em>offsetSeconds</em> 将被忽略。如果<em>spec</em>是<a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a>和<em>offsetSeconds</em>是0，那么该规格将被设置为<a href="qt.html#TimeSpec-enum">Qt::UTC </a>，即偏移量为0秒。</p>
+<p>如果 <em>spec</em> 是 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a>，那么规格将被设置为 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a>，即当前系统时区。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toMSecsSinceEpoch">toMSecsSinceEpoch </a>() 和 <a href="qdatetime.html#setMSecsSinceEpoch">setMSecsSinceEpoch </a>().</p>
+<h3><span id="static-since-5-2-qdatetime-qdatetime-frommsecssinceepoch-qint64-msecs-const-qtimezone-amp-timezone"><code>[static, since 5.2] </code>QDateTime:: fromMSecsSinceEpoch ( <em>msecs</em> , const &amp; <em>timeZone</em> )</span><a href="#static-since-5-2-qdatetime-qdatetime-frommsecssinceepoch-qint64-msecs-const-qtimezone-amp-timezone" class="header-anchor">#</a></h3><p>返回一个日期时间，其日期和时间是自协调世界时 (<a href="qt.html#TimeSpec-enum">Qt::UTC </a>) 1970-01-01T00:00:00.000 以来经过的毫秒数 <em>msecs</em> 和 使用给定的 <em>timeZone</em> 。</p>
+<p>该函数在 Qt 5.2 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#fromSecsSinceEpoch">fromSecsSinceEpoch </a>().</p>
+<h3><span id="static-since-5-5-qdatetime-qdatetime-fromnsdate-const-nsdate-date"><code>[static, since 5.5] </code>QDateTime:: fromNSDate (const NSDate * <em>date</em> )</span><a href="#static-since-5-5-qdatetime-qdatetime-fromnsdate-const-nsdate-date" class="header-anchor">#</a></h3><p>构造新的 <a href="qdatetime.html">QDateTime </a>，包含NSDate <em>date</em>的副本。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toNSDate">toNSDate </a>().</p>
+<h3><span id="static-since-5-8-qdatetime-qdatetime-fromsecssinceepoch-qint64-secs-qt-timespec-spec-qt-localtime-int-offsetseconds-0"><code>[static, since 5.8] </code>QDateTime:: fromSecsSinceEpoch ( <em>secs</em> , <em>spec</em> = Qt::LocalTime, int <em>offsetSeconds</em> = 0)</span><a href="#static-since-5-8-qdatetime-qdatetime-fromsecssinceepoch-qint64-secs-qt-timespec-spec-qt-localtime-int-offsetseconds-0" class="header-anchor">#</a></h3><p>返回一个日期时间，其日期和时间是自 1970-01-01T00:00:00.000，协调世界时 ( <a href="qt.html#TimeSpec-enum">Qt::UTC </a> ) 以来经过的秒数 <em>secs</em> 和 转换为给定的 <em>spec</em> 。</p>
+<p>请注意，<em>secs</em>的值有可能超出<a href="qdatetime.html">QDateTime</a>的有效范围，包括负值和正值。对于这些值，这个函数的行为是未定义的。</p>
+<p>如果 <em>spec</em> 不是 <a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a> 那么 <em>offsetSeconds</em> 将被忽略。如果<em>spec</em>是<a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a>和<em>offsetSeconds</em>是0，那么该规格将被设置为<a href="qt.html#TimeSpec-enum">Qt::UTC </a>，即偏移量为0秒。</p>
+<p>如果 <em>spec</em> 是 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a>，那么规格将被设置为 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a>，即当前系统时区。</p>
+<p>该函数在 Qt 5.8 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toSecsSinceEpoch">toSecsSinceEpoch </a>() 和 <a href="qdatetime.html#setSecsSinceEpoch">setSecsSinceEpoch </a>().</p>
+<h3><span id="static-since-5-8-qdatetime-qdatetime-fromsecssinceepoch-qint64-secs-const-qtimezone-amp-timezone"><code>[static, since 5.8] </code>QDateTime:: fromSecsSinceEpoch ( <em>secs</em> , const &amp; <em>timeZone</em> )</span><a href="#static-since-5-8-qdatetime-qdatetime-fromsecssinceepoch-qint64-secs-const-qtimezone-amp-timezone" class="header-anchor">#</a></h3><p>返回一个日期时间，其日期和时间是自协调世界时 (<a href="qt.html#TimeSpec-enum">Qt::UTC </a>) 1970-01-01T00:00:00.000 以来经过的秒数 <em>secs</em> 和 使用给定的 <em>timeZone</em> 。</p>
+<p>该函数在 Qt 5.8 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#fromMSecsSinceEpoch">fromMSecsSinceEpoch </a>().</p>
+<h3><span id="static-qdatetime-qdatetime-fromstring-const-qstring-amp-string-qt-dateformat-format-qt-textdate"><code>[static] </code>QDateTime:: fromString (const &amp; <em>string</em> , <em>format</em> = Qt::TextDate)</span><a href="#static-qdatetime-qdatetime-fromstring-const-qstring-amp-string-qt-dateformat-format-qt-textdate" class="header-anchor">#</a></h3><p>返回 <a href="qdatetime.html">QDateTime </a>，由<em>字符串</em>表示，使用<em>format</em>，如果不能这样做，则是一个无效的日期时间。</p>
+<p><a href="qt.html#DateFormat-enum">Qt::TextDate</a>的注意事项：只识别英文短月名（例如，短格式的 “Jan “或长格式的 “January”）。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toString">toString </a>() 和 <a href="qlocale.html#toDateTime">QLocale::toDateTime </a>().</p>
+<h3><span id="static-since-6-0-qdatetime-qdatetime-fromstring-qstringview-string-qt-dateformat-format-qt-textdate"><code>[static, since 6.0] </code>QDateTime:: fromString ( <em>string</em> , <em>format</em> = Qt::TextDate)</span><a href="#static-since-6-0-qdatetime-qdatetime-fromstring-qstringview-string-qt-dateformat-format-qt-textdate" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>该函数在 Qt 6.0 引入。</p>
+<h3><span id="static-since-6-0-qdatetime-qdatetime-fromstring-qstringview-string-qstringview-format-qcalendar-cal-qcalendar"><code>[static, since 6.0] </code>QDateTime:: fromString ( <em>string</em> , <em>format</em> , <em>cal</em> = QCalendar())</span><a href="#static-since-6-0-qdatetime-qdatetime-fromstring-qstringview-string-qstringview-format-qcalendar-cal-qcalendar" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>该函数在 Qt 6.0 引入。</p>
+<h3><span id="static-since-6-0-qdatetime-qdatetime-fromstring-const-qstring-amp-string-qstringview-format-qcalendar-cal-qcalendar"><code>[static, since 6.0] </code>QDateTime:: fromString (const &amp; <em>string</em> , <em>format</em> , <em>cal</em> = QCalendar())</span><a href="#static-since-6-0-qdatetime-qdatetime-fromstring-const-qstring-amp-string-qstringview-format-qcalendar-cal-qcalendar" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>该函数在 Qt 6.0 引入。</p>
+<h3><span id="static-qdatetime-qdatetime-fromstring-const-qstring-amp-string-const-qstring-amp-format-qcalendar-cal-qcalendar"><code>[static] </code>QDateTime:: fromString (const &amp; <em>string</em> , const &amp; <em>format</em> , <em>cal</em> = QCalendar())</span><a href="#static-qdatetime-qdatetime-fromstring-const-qstring-amp-string-const-qstring-amp-format-qcalendar-cal-qcalendar" class="header-anchor">#</a></h3><p>返回 <a href="qdatetime.html">QDateTime</a>，由<em>字符串</em>表示，使用<em>format</em>，如果字符串不能被解析，则为无效的日期时间。</p>
+<p>如果提供日历，则使用<em>cal</em>，否则使用Gregorian。</p>
+<p>除了通过<a href="qdate.html#fromString">QDate::fromString </a>()和<a href="qtime.html#fromString">QTime::fromString </a>()识别格式字符串中的表达式来表示日期和时间的一部分外，该方法还支持:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Expression</th>
+<th align="left">Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">t</td>
+<td align="left">the timezone (for example “CEST”)</td>
+</tr>
+</tbody></table>
+<p>如果没有’t’格式指定符，则使用系统的本地时区。所有其他字段的默认值，见<a href="qdate.html#fromString">QDate::fromString </a>() 和 <a href="qtime.html#fromString">QTime::fromString </a>()。</p>
+<p>例如：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QDateTime dateTime = QDateTime::<span class="hljs-built_in">fromString</span>(<span class="hljs-string">"1.30.1"</span>, <span class="hljs-string">"M.d.s"</span>);
+<span class="hljs-comment">// dateTime is January 30 in 1900 at 00:00:01.</span>
+dateTime = QDateTime::<span class="hljs-built_in">fromString</span>(<span class="hljs-string">"12"</span>, <span class="hljs-string">"yy"</span>);
+<span class="hljs-comment">// dateTime is January 1 in 1912 at 00:00:00.</span></code></pre></div>
+
+<p>所有其他输入字符将被视为文本。任何用单引号括起来的非空字符序列也将被当作文本处理（去掉引号），而不会被解释为表达式。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QTime time1 = QTime::<span class="hljs-built_in">fromString</span>(<span class="hljs-string">"131"</span>, <span class="hljs-string">"HHh"</span>);
+<span class="hljs-comment">// time1 is 13:00:00</span>
+QTime time1 = QTime::<span class="hljs-built_in">fromString</span>(<span class="hljs-string">"1apA"</span>, <span class="hljs-string">"1amAM"</span>);
+<span class="hljs-comment">// time1 is 01:00:00</span>
+QDateTime dateTime2 = QDateTime::<span class="hljs-built_in">fromString</span>(<span class="hljs-string">"M1d1y9800:01:02"</span>,
+                                            <span class="hljs-string">"'M'M'd'd'y'yyhh:mm:ss"</span>);
+<span class="hljs-comment">// dateTime is 1 January 1998 00:01:02</span></code></pre></div>
+
+<p>如果不满足格式，将返回一个无效的<a href="qdatetime.html">QDateTime</a>。如果格式得到满足，但<em>string</em>代表一个无效的日期时间（例如，在时区转换所跳过的空隙中），则返回一个无效的<a href="qdatetime.html">QDateTime</a>，其<a href="qdatetime.html#toMSecsSinceEpoch">toMSecsSinceEpoch</a>（）代表一个接近的有效日期时间。将其传递给 <a href="qdatetime.html#fromMSecsSinceEpoch">fromMSecsSinceEpoch </a>()会产生一个有效的日期时间，但它并不忠实于被解析的字符串。</p>
+<p>没有前导零的表达式（d, M, h, m, s, z）将是贪婪的。这意味着它们将使用两位数（或者三位，对于z），即使这将使它们超出范围和/或为其他部分留下太少的数字。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QDateTime dateTime = QDateTime::<span class="hljs-built_in">fromString</span>(<span class="hljs-string">"130"</span>, <span class="hljs-string">"Mm"</span>); <span class="hljs-comment">// invalid			</span></code></pre></div>
+
+<p>这可能意味着 1 月 1 日 00:30.00，但 M 将获得两位数。</p>
+<p><em>string</em> 的错误指定字段将导致返回无效的 <a href="qdatetime.html">QDateTime </a>。 例如，考虑以下代码，其中两位数年份 12 被读取为 1912（请参阅下表了解所有字段默认值）； 结果日期时间无效，因为 1912 年 4 月 23 日是星期二，而不是星期一：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QString string = <span class="hljs-string">"Monday, 23 April 12 22:51:41"</span>;
+QString format = <span class="hljs-string">"dddd, d MMMM yy hh:mm:ss"</span>;
+QDateTime invalid = QDateTime::<span class="hljs-built_in">fromString</span>(string, format);</code></pre></div>
+
+<p>正确的代码是：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QString string = <span class="hljs-string">"Tuesday, 23 April 12 22:51:41"</span>;
+QString format = <span class="hljs-string">"dddd, d MMMM yy hh:mm:ss"</span>;
+QDateTime valid = QDateTime::<span class="hljs-built_in">fromString</span>(string, format);</code></pre></div>
+
+<p><strong>注意：</strong>日期和月份名称以及 AM/PM 指示必须用英语（C 语言环境）给出。 如果使用本地化的月份和日期名称以及 AM/PM 的本地化形式，请使用 <a href="qlocale.html#system">QLocale::system</a>().toDateTime()。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toString">toString </a>(), <a href="qdate.html#fromString">QDate::fromString </a>(), <a href="qtime.html#fromString">QTime::fromString </a>()，和 <a href="qlocale.html#toDateTime">QLocale::toDateTime </a>().</p>
+<h3><span id="since-5-2-bool-qdatetime-isdaylighttime-const"><code>[since 5.2] </code>bool QDateTime:: isDaylightTime () const</span><a href="#since-5-2-bool-qdatetime-isdaylighttime-const" class="header-anchor">#</a></h3><p>如果此日期时间属于夏令时，则返回。</p>
+<p>若 <a href="qt.html#TimeSpec-enum">Qt::TimeSpec </a> 不是 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a> 或 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a> 那么会 总是返回假。</p>
+<p>该函数在 Qt 5.2 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#timeSpec">timeSpec </a>().</p>
+<h3><span id="bool-qdatetime-isnull-const">bool QDateTime:: isNull () const</span><a href="#bool-qdatetime-isnull-const" class="header-anchor">#</a></h3><p>返回 <code>true</code>如果日期和时间都为空； 否则返回 <code>false</code>。 空日期时间无效。</p>
+<p><strong>另请参阅</strong> <a href="qdate.html#isNull">QDate::isNull </a>(), <a href="qtime.html#isNull">QTime::isNull </a>()，和 <a href="qdatetime.html#isValid">isValid </a>().</p>
+<h3><span id="bool-qdatetime-isvalid-const">bool QDateTime:: isValid () const</span><a href="#bool-qdatetime-isvalid-const" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果日期和时间都有效且在当前 <a href="qt.html#TimeSpec-enum">Qt::TimeSpec </a> 中有效，否则返回 <code>false </code>。</p>
+<p>若 <a href="qdatetime.html#timeSpec">timeSpec </a>() 是 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a> 或 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a> 这个对象代表一个 前向转换跳过的时间，则无效。 例如，如果 DST 在凌晨 2 点结束，而时钟提前到凌晨 3 点，则当天从 02:00:00 到 02:59:59.999 的日期时间被视为无效。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#YearRange-enum">QDateTime::YearRange </a>, <a href="qdate.html#isValid">QDate::isValid </a>()，和 <a href="qtime.html#isValid">QTime::isValid </a>().</p>
+<h3><span id="qint64-qdatetime-msecsto-const-qdatetime-amp-other-const">QDateTime:: msecsTo (const &amp; <em>other</em> ) const</span><a href="#qint64-qdatetime-msecsto-const-qdatetime-amp-other-const" class="header-anchor">#</a></h3><p>返回从该日期时间到 <em>other</em> 日期时间的毫秒数。 如果 <em>other</em> 日期时间早于此日期时间，则返回值为负数。</p>
+<p>在执行比较之前，将两个日期时间转换为 <a href="qt.html#TimeSpec-enum">Qt::UTC </a> 以确保如果夏令时 (DST) 适用于两个日期时间之一但不是 另一个。</p>
+<p>如果任一日期时间无效，则返回 0。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#addMSecs">addMSecs </a>(), <a href="qdatetime.html#daysTo">daysTo </a>()，和 <a href="qtime.html#msecsTo">QTime::msecsTo </a>().</p>
+<h3><span id="since-5-2-int-qdatetime-offsetfromutc-const"><code>[since 5.2] </code>int QDateTime:: offsetFromUtc () const</span><a href="#since-5-2-int-qdatetime-offsetfromutc-const" class="header-anchor">#</a></h3><p>以秒为单位返回此日期时间与 UTC 的偏移量。</p>
+<p>结果取决于 <a href="qdatetime.html#timeSpec">timeSpec </a>()：</p>
+<ul>
+<li><code>Qt::UTC</code>偏移量为 0。</li>
+<li><code>Qt::OffsetFromUTC</code>偏移量是最初设置的值。</li>
+<li><code>Qt::LocalTime </code>返回本地时间与 UTC 的偏移量。</li>
+<li><code>Qt::TimeZone</code>返回时区使用的偏移量。</li>
+</ul>
+<p>对于最后两个，将返回该日期和时间的偏移量，同时考虑夏令时偏移量。 偏移量是给定时区的本地时间或时间与 UTC 时间的差值； 它在 UTC（本初子午线以东）之前的时区为正，对于 UTC（本初子午线以西）之后的时区为负。</p>
+<p>该函数在 Qt 5.2 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#setOffsetFromUtc">setOffsetFromUtc </a>().</p>
+<h3><span id="qint64-qdatetime-secsto-const-qdatetime-amp-other-const">QDateTime:: secsTo (const &amp; <em>other</em> ) const</span><a href="#qint64-qdatetime-secsto-const-qdatetime-amp-other-const" class="header-anchor">#</a></h3><p>返回从该日期时间到 <em>other</em> 日期时间的秒数。 如果 <em>other</em> 日期时间早于此日期时间，则返回值为负数。</p>
+<p>在执行比较之前，将两个日期时间转换为 <a href="qt.html#TimeSpec-enum">Qt::UTC </a> 以确保如果夏令时 (DST) 适用于两个日期时间之一但不是 其他。</p>
+<p>如果任一日期时间无效，则返回 0。</p>
+<p>范例：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QDateTime now = QDateTime::<span class="hljs-built_in">currentDateTime</span>();
+<span class="hljs-function">QDateTime <span class="hljs-title">xmas</span><span class="hljs-params">(QDate(now.date().year(), <span class="hljs-number">12</span>, <span class="hljs-number">25</span>).startOfDay())</span></span>;
+<span class="hljs-built_in">qDebug</span>(<span class="hljs-string">"There are %d seconds to Christmas"</span>, now.<span class="hljs-built_in">secsTo</span>(xmas));</code></pre></div>
+
+<p><strong>另请参阅</strong> <a href="qdatetime.html#addSecs">addSecs </a>(), <a href="qdatetime.html#daysTo">daysTo </a>()，和 <a href="qtime.html#secsTo">QTime::secsTo </a>().</p>
+<h3><span id="void-qdatetime-setdate-qdate-date">void QDateTime:: setDate ( <em>date</em> )</span><a href="#void-qdatetime-setdate-qdate-date" class="header-anchor">#</a></h3><p>将此日期时间的日期部分设置为 <em>date</em> 。 如果尚未设置时间，则设置为午夜。 如果 <em>date</em> 无效，则此 <a href="qdatetime.html">QDateTime </a> 无效。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#date">date </a>(), <a href="qdatetime.html#setTime">setTime </a>()，和 <a href="qdatetime.html#setTimeSpec">setTimeSpec </a>().</p>
+<h3><span id="void-qdatetime-setmsecssinceepoch-qint64-msecs">void QDateTime:: setMSecsSinceEpoch ( <em>msecs</em> )</span><a href="#void-qdatetime-setmsecssinceepoch-qint64-msecs" class="header-anchor">#</a></h3><p>给定自 1970-01-01T00:00:00.000，协调世界时 ( <a href="qt.html#TimeSpec-enum">Qt::UTC </a>) 以来经过的毫秒数 <em>msecs</em> 设置日期和时间。 在不支持时区的系统上，此函数的行为就像本地时间是 <a href="qt.html#TimeSpec-enum">Qt::UTC </a>。</p>
+<p>注意传递 <code>qint64 </code>( <code>std::numeric_limits::min() </code>) 的最小值到 <em>msecs</em> 将产生未定义的行为。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toMSecsSinceEpoch">toMSecsSinceEpoch </a>() 和 <a href="qdatetime.html#setSecsSinceEpoch">setSecsSinceEpoch </a>().</p>
+<h3><span id="since-5-2-void-qdatetime-setoffsetfromutc-int-offsetseconds"><code>[since 5.2] </code>void QDateTime:: setOffsetFromUtc ( int <em>offsetSeconds</em> )</span><a href="#since-5-2-void-qdatetime-setoffsetfromutc-int-offsetseconds" class="header-anchor">#</a></h3><p>设置 <a href="qdatetime.html#timeSpec">timeSpec </a>() 到 <a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a> 和 <em>offsetSeconds</em> 的偏移量。 日期时间将指代不同的时间点。</p>
+<p>最大和最小偏移量为 14 个正小时或负小时。 如果 <em>offsetSeconds</em> 大于或小于该值，则结果未定义。</p>
+<p>若 <em>offsetSeconds</em> 为 0，则 <a href="qdatetime.html#timeSpec">timeSpec </a>() 将设置为 <a href="qt.html#TimeSpec-enum">Qt::UTC </a>。</p>
+<p>该函数在 Qt 5.2 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#isValid">isValid </a>() 和 <a href="qdatetime.html#offsetFromUtc">offsetFromUtc </a>().</p>
+<h3><span id="since-5-8-void-qdatetime-setsecssinceepoch-qint64-secs"><code>[since 5.8] </code>void QDateTime:: setSecsSinceEpoch ( <em>secs</em> )</span><a href="#since-5-8-void-qdatetime-setsecssinceepoch-qint64-secs" class="header-anchor">#</a></h3><p>给定自 1970-01-01T00:00:00.000，协调世界时 (<a href="qt.html#TimeSpec-enum">Qt::UTC</a>) 以来经过的秒数 <em>secs</em> 设置日期和时间。 在不支持时区的系统上，此函数的行为就像本地时间是 <a href="qt.html#TimeSpec-enum">Qt::UTC </a>。</p>
+<p>该函数在 Qt 5.8 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toSecsSinceEpoch">toSecsSinceEpoch </a>() 和 <a href="qdatetime.html#setMSecsSinceEpoch">setMSecsSinceEpoch </a>().</p>
+<h3><span id="void-qdatetime-settime-qtime-time">void QDateTime:: setTime ( <em>time</em> )</span><a href="#void-qdatetime-settime-qtime-time" class="header-anchor">#</a></h3><p>将此日期时间的时间部分设置为 <em>time</em> 。若 <em>time</em> 无效，此函数将其设置为午夜。 因此，可以通过将 <a href="qdatetime.html">QDateTime </a> 中的任何设置时间设置为默认 <a href="qtime.html">QTime </a> 来清除它：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QDateTime dt = QDateTime::<span class="hljs-built_in">currentDateTime</span>();
+dt.<span class="hljs-built_in">setTime</span>(<span class="hljs-built_in">QTime</span>());</code></pre></div>
+
+<p><strong>另请参阅</strong> <a href="qdatetime.html#time">time </a>(), <a href="qdatetime.html#setDate">setDate </a>()，和 <a href="qdatetime.html#setTimeSpec">setTimeSpec </a>().</p>
+<h3><span id="void-qdatetime-settimespec-qt-timespec-spec">void QDateTime:: setTimeSpec ( <em>spec</em> )</span><a href="#void-qdatetime-settimespec-qt-timespec-spec" class="header-anchor">#</a></h3><p>将此日期时间中使用的时间规范设置为 <em>spec</em> 。 日期时间将指代不同的时间点。</p>
+<p>若 <em>spec</em> 为 <a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a> 那么 <a href="qdatetime.html#timeSpec">timeSpec </a>() 将被设置为 [Qt::UTC ](qt.html#TimeSpec- enum)，即有效偏移量为 0。</p>
+<p>若 <em>spec</em> 为 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a>，则规范将设置为 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a>，即当前系统时区。</p>
+<p>范例：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QDateTime <span class="hljs-title">local</span><span class="hljs-params">(QDateTime::currentDateTime())</span></span>;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"Local time is:"</span> &lt;&lt; local;
+<span class="hljs-function">QDateTime <span class="hljs-title">UTC</span><span class="hljs-params">(local)</span></span>;
+UTC.<span class="hljs-built_in">setTimeSpec</span>(Qt::UTC);
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"UTC time is:"</span> &lt;&lt; UTC;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"There are"</span> &lt;&lt; local.<span class="hljs-built_in">secsTo</span>(UTC) &lt;&lt; <span class="hljs-string">"seconds difference between the datetimes."</span>;</code></pre></div>
+
+<p><strong>另请参阅</strong> <a href="qdatetime.html#timeSpec">timeSpec </a>(), <a href="qdatetime.html#setDate">setDate </a>(), <a href="qdatetime.html#setTime">setTime </a>(), <a href="qdatetime.html#setTimeZone">setTimeZone </a>()，和 <a href="qt.html#TimeSpec-enum">Qt::TimeSpec </a>.</p>
+<h3><span id="since-5-2-void-qdatetime-settimezone-const-qtimezone-amp-tozone"><code>[since 5.2] </code>void QDateTime:: setTimeZone (const &amp; <em>toZone</em> )</span><a href="#since-5-2-void-qdatetime-settimezone-const-qtimezone-amp-tozone" class="header-anchor">#</a></h3><p>将此日期时间中使用的时区设置为 <em>toZone</em> 。 日期时间将指代不同的时间点。</p>
+<p>若 <em>toZone</em> 无效，则日期时间无效。</p>
+<p>该函数在 Qt 5.2 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#timeZone">timeZone </a>() 和 <a href="qt.html#TimeSpec-enum">Qt::TimeSpec </a>.</p>
+<h3><span id="since-5-0-void-qdatetime-swap-qdatetime-amp-other"><code>[since 5.0] </code>void QDateTime:: swap ( &amp; <em>other</em> )</span><a href="#since-5-0-void-qdatetime-swap-qdatetime-amp-other" class="header-anchor">#</a></h3><p>用 <em>other</em> 交换这个日期时间。此操作非常快且从不失败。</p>
+<p>该函数在 Qt 5.0 引入。</p>
+<h3><span id="qtime-qdatetime-time-const">QDateTime:: time () const</span><a href="#qtime-qdatetime-time-const" class="header-anchor">#</a></h3><p>返回日期时间的时间部分。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#setTime">setTime </a>(), <a href="qdatetime.html#date">date </a>()，和 <a href="qdatetime.html#timeSpec">timeSpec </a>().</p>
+<h3><span id="qt-timespec-qdatetime-timespec-const">QDateTime:: timeSpec () const</span><a href="#qt-timespec-qdatetime-timespec-const" class="header-anchor">#</a></h3><p>返回日期时间的时间规范。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#setTimeSpec">setTimeSpec </a>(), <a href="qdatetime.html#date">date </a>(), <a href="qdatetime.html#time">time </a>()，和 <a href="qt.html#TimeSpec-enum">Qt::TimeSpec </a>.</p>
+<h3><span id="since-5-2-qtimezone-qdatetime-timezone-const"><code>[since 5.2] </code>QDateTime:: timeZone () const</span><a href="#since-5-2-qtimezone-qdatetime-timezone-const" class="header-anchor">#</a></h3><p>返回日期时间的时区。</p>
+<p>若 <a href="qdatetime.html#timeSpec">timeSpec </a>() 是 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a> 则返回当前系统时区的实例。 但是请注意，如果您复制此时区，则如果系统时区发生更改，实例将不会保持同步。</p>
+<p>该函数在 Qt 5.2 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#setTimeZone">setTimeZone </a>() 和 <a href="qt.html#TimeSpec-enum">Qt::TimeSpec </a>.</p>
+<h3><span id="since-5-2-qstring-qdatetime-timezoneabbreviation-const"><code>[since 5.2] </code>QDateTime:: timeZoneAbbreviation () const</span><a href="#since-5-2-qstring-qdatetime-timezoneabbreviation-const" class="header-anchor">#</a></h3><p>返回此日期时间的时区缩写。</p>
+<p>返回的字符串取决于 <a href="qdatetime.html#timeSpec">timeSpec </a>()：</p>
+<ul>
+<li>对于 <a href="qt.html#TimeSpec-enum">Qt::UTC </a>，它是“UTC”。</li>
+<li>对于 <a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a>，它将采用“UTC[+-]00:00”格式。</li>
+<li>对于 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a>，查询主机系统。</li>
+<li>对于 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a>，查询关联的 <a href="qtimezone.html">QTimeZone </a> 对象。</li>
+</ul>
+<p><strong>注意：</strong> 缩写不保证唯一，即不同时区可能有相同的缩写。 对于 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a> 和 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a>，当主机系统返回时，缩写可能会被本地化。</p>
+<p>该函数在 Qt 5.2 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#timeSpec">timeSpec </a>() 和 <a href="qtimezone.html#abbreviation">QTimeZone::abbreviation </a>().</p>
+<h3><span id="since-5-5-cfdateref-qdatetime-tocfdate-const"><code>[since 5.5] </code>CFDateRef QDateTime:: toCFDate () const</span><a href="#since-5-5-cfdateref-qdatetime-tocfdate-const" class="header-anchor">#</a></h3><p>从 <a href="qdatetime.html">QDateTime </a> 创建 CFDate。</p>
+<p>调用者拥有 CFDate 对象并负责释放它。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#fromCFDate">fromCFDate </a>().</p>
+<h3><span id="qdatetime-qdatetime-tolocaltime-const">QDateTime:: toLocalTime () const</span><a href="#qdatetime-qdatetime-tolocaltime-const" class="header-anchor">#</a></h3><p>返回包含此日期时间中的日期和时间信息的日期时间，但使用 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a> 定义指定。</p>
+<p>范例：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QDateTime <span class="hljs-title">UTC</span><span class="hljs-params">(QDateTime::currentDateTimeUtc())</span></span>;
+<span class="hljs-function">QDateTime <span class="hljs-title">local</span><span class="hljs-params">(UTC.toLocalTime())</span></span>;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"UTC time is:"</span> &lt;&lt; UTC;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"Local time is:"</span> &lt;&lt; local;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"No difference between times:"</span> &lt;&lt; UTC.<span class="hljs-built_in">secsTo</span>(local);</code></pre></div>
+
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toTimeSpec">toTimeSpec </a>().</p>
+<h3><span id="qint64-qdatetime-tomsecssinceepoch-const">QDateTime:: toMSecsSinceEpoch () const</span><a href="#qint64-qdatetime-tomsecssinceepoch-const" class="header-anchor">#</a></h3><p>返回日期时间作为自 1970-01-01T00:00:00.000，协调世界时 (<a href="qt.html#TimeSpec-enum">Qt::UTC</a>) 以来经过的毫秒数。</p>
+<p>在不支持时区的系统上，此函数的行为就像本地时间是 <a href="qt.html#TimeSpec-enum">Qt::UTC </a>。</p>
+<p>如果存储在此对象中的日期时间无效，则此函数的行为未定义。 但是，对于所有有效日期，此函数返回一个唯一值。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toSecsSinceEpoch">toSecsSinceEpoch </a>() 和 <a href="qdatetime.html#setMSecsSinceEpoch">setMSecsSinceEpoch </a>().</p>
+<h3><span id="since-5-5-nsdate-qdatetime-tonsdate-const"><code>[since 5.5] </code>NSDate *QDateTime:: toNSDate () const</span><a href="#since-5-5-nsdate-qdatetime-tonsdate-const" class="header-anchor">#</a></h3><p>从 <a href="qdatetime.html">QDateTime </a> 创建一个 NSDate。</p>
+<p>NSDate 对象是自动释放的。</p>
+<p>该函数在 Qt 5.5 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#fromNSDate">fromNSDate </a>().</p>
+<h3><span id="since-5-2-qdatetime-qdatetime-tooffsetfromutc-int-offsetseconds-const"><code>[since 5.2] </code>QDateTime:: toOffsetFromUtc ( int <em>offsetSeconds</em> ) const</span><a href="#since-5-2-qdatetime-qdatetime-tooffsetfromutc-int-offsetseconds-const" class="header-anchor">#</a></h3><p>返回转换为 <a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a> 采用给定 <em>offsetSeconds</em> 规范的此日期时间的副本。</p>
+<p>若 <em>offsetSeconds</em> 等于 0 则返回 UTC 日期时间</p>
+<p>该函数在 Qt 5.2 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#setOffsetFromUtc">setOffsetFromUtc </a>(), <a href="qdatetime.html#offsetFromUtc">offsetFromUtc </a>()，和 <a href="qdatetime.html#toTimeSpec">toTimeSpec </a>().</p>
+<h3><span id="since-5-8-qint64-qdatetime-tosecssinceepoch-const"><code>[since 5.8] </code>QDateTime:: toSecsSinceEpoch () const</span><a href="#since-5-8-qint64-qdatetime-tosecssinceepoch-const" class="header-anchor">#</a></h3><p>返回日期时间作为自 1970-01-01T00:00:00.000，协调世界时 (<a href="qt.html#TimeSpec-enum">Qt::UTC</a>) 以来经过的秒数。</p>
+<p>在不支持时区的系统上，此函数的行为就像本地时间是 <a href="qt.html#TimeSpec-enum">Qt::UTC </a>。</p>
+<p>如果存储在此对象中的日期时间无效，则此函数的行为未定义。 但是，对于所有有效日期，此函数返回一个唯一值。</p>
+<p>该函数在 Qt 5.8 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toMSecsSinceEpoch">toMSecsSinceEpoch </a>() 和 <a href="qdatetime.html#setSecsSinceEpoch">setSecsSinceEpoch </a>().</p>
+<h3><span id="qstring-qdatetime-tostring-qt-dateformat-format-qt-textdate-const">QDateTime:: toString ( <em>format</em> = Qt::TextDate) const</span><a href="#qstring-qdatetime-tostring-qt-dateformat-format-qt-textdate-const" class="header-anchor">#</a></h3><p>这是重载函数。</p>
+<p>以<em>格式</em>给定的字符串形式返回日期时间。</p>
+<p>若 <em>format</em> 为 <a href="qt.html#DateFormat-enum">Qt::TextDate </a>，字符串以默认方式格式化。日期和月份名称将使用英文。这种格式的一个例子是“Wed May 20 03:40:13 1998”。对于本地化格式，请参阅 <a href="qlocale.html#toString">QLocale::toString </a>()。</p>
+<p>若 <em>format</em> 为 <a href="qt.html#DateFormat-enum">Qt::ISODate </a>，字符串格式对应于日期和时间表示的 ISO 8601 扩展规范，格式为 yyyy-MM-ddTHH:mm:ss [Z|[+|-]HH:mm]，取决于<a href="qdatetime.html">QDateTime</a>的<a href="qdatetime.html#timeSpec">timeSpec</a>()。若<a href="qdatetime.html#timeSpec">timeSpec</a> () 是 <a href="qt.html#TimeSpec-enum">Qt::UTC </a>, Z 将附加到字符串中；如果 <a href="qdatetime.html#timeSpec">timeSpec </a>() 是 <a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a>，则从 UTC 开始的小时和分钟偏移量将附加到字符串中。要在 ISO 8601 日期中包含毫秒，请使用 <em>format</em> <a href="qt.html#DateFormat-enum">Qt::ISODateWithMs </a>，它对应于 yyyy-MM-ddTHH:mm:ss.zzz[Z|[+| -]HH:mm]。</p>
+<p>若 <em>format</em> 为 <a href="qt.html#DateFormat-enum">Qt::RFC2822Date </a>，字符串按照 <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc2822">RFC 2822 </a> 格式化。</p>
+<p>如果日期时间无效，将返回一个空字符串。</p>
+<p><strong>警告：</strong> <a href="qt.html#DateFormat-enum">Qt::ISODate </a> 格式仅对 0 到 9999 范围内的年份有效。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#fromString">fromString </a>(), <a href="qdate.html#toString">QDate::toString </a>(), <a href="qtime.html#toString">QTime::toString </a>()，和 <a href="qlocale.html#toString">QLocale::toString </a>().</p>
+<h3><span id="qdatetime-qdatetime-totimespec-qt-timespec-spec-const">QDateTime:: toTimeSpec ( <em>spec</em> ) const</span><a href="#qdatetime-qdatetime-totimespec-qt-timespec-spec-const" class="header-anchor">#</a></h3><p>返回转换为给定时间 <em>spec</em> 的此日期时间的副本。</p>
+<p>若 <em>spec</em> 为 <a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a>，则设置为 <a href="qt.html#TimeSpec-enum">Qt::UTC </a>。 要设置为 <a href="qt.html#TimeSpec-enum">Qt::OffsetFromUTC </a> 的规范，请使用 <a href="qdatetime.html#toOffsetFromUtc">toOffsetFromUtc </a>()。</p>
+<p>若 <em>spec</em> 为 <a href="qt.html#TimeSpec-enum">Qt::TimeZone </a>，则设置为 <a href="qt.html#TimeSpec-enum">Qt::LocalTime </a>，即本地时区。</p>
+<p>范例：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QDateTime <span class="hljs-title">local</span><span class="hljs-params">(QDateTime::currentDateTime())</span></span>;
+<span class="hljs-function">QDateTime <span class="hljs-title">UTC</span><span class="hljs-params">(local.toTimeSpec(Qt::UTC))</span></span>;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"Local time is:"</span> &lt;&lt; local;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"UTC time is:"</span> &lt;&lt; UTC;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"No difference between times:"</span> &lt;&lt; local.<span class="hljs-built_in">secsTo</span>(UTC);</code></pre></div>
+
+<p><strong>另请参阅</strong> <a href="qdatetime.html#timeSpec">timeSpec </a>(), <a href="qdatetime.html#toTimeZone">toTimeZone </a>()，和 <a href="qdatetime.html#toOffsetFromUtc">toOffsetFromUtc </a>().</p>
+<h3><span id="since-5-2-qdatetime-qdatetime-totimezone-const-qtimezone-amp-timezone-const"><code>[since 5.2] </code>QDateTime:: toTimeZone (const &amp; <em>timeZone</em> ) const</span><a href="#since-5-2-qdatetime-qdatetime-totimezone-const-qtimezone-amp-timezone-const" class="header-anchor">#</a></h3><p>返回转换为给定 <em>timeZone</em> 的此日期时间的副本</p>
+<p>该函数在 Qt 5.2 引入。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#timeZone">timeZone </a>() 和 <a href="qdatetime.html#toTimeSpec">toTimeSpec </a>().</p>
+<h3><span id="qdatetime-qdatetime-toutc-const">QDateTime:: toUTC () const</span><a href="#qdatetime-qdatetime-toutc-const" class="header-anchor">#</a></h3><p>返回包含此日期时间中的日期和时间信息的日期时间，但使用 <a href="qt.html#TimeSpec-enum">Qt::UTC</a> 定义指定。</p>
+<p>范例：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">QDateTime <span class="hljs-title">local</span><span class="hljs-params">(QDateTime::currentDateTime())</span></span>;
+<span class="hljs-function">QDateTime <span class="hljs-title">UTC</span><span class="hljs-params">(local.toUTC())</span></span>;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"Local time is:"</span> &lt;&lt; local;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"UTC time is:"</span> &lt;&lt; UTC;
+<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">"No difference between times:"</span> &lt;&lt; local.<span class="hljs-built_in">secsTo</span>(UTC);</code></pre></div>
+
+<p><strong>另请参阅</strong> <a href="qdatetime.html#toTimeSpec">toTimeSpec </a>().</p>
+<h2><span id="xiang-guan-fei-cheng-yuan">相关非成员</span><a href="#xiang-guan-fei-cheng-yuan" class="header-anchor">#</a></h2><h3><span id="bool-operator-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs">bool operator!= (const &amp; <em>lhs</em> , const &amp; <em>rhs</em> )</span><a href="#bool-operator-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs" class="header-anchor">#</a></h3><p>返回 <code>true </code>如果 <em>lhs</em> 与 <em>rhs</em> 不同；否则返回 <code>false </code>。</p>
+<p>如果日期、时间或时区组成部分不同，则两个日期时间不同。 从 5.14 开始，所有无效的日期时间都相等（并且小于所有有效的日期时间）。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#operator-eq-eq">operator== </a>().</p>
+<h3><span id="bool-operator-lt-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs">bool operator&lt; (const &amp; <em>lhs</em> , const &amp; <em>rhs</em> )</span><a href="#bool-operator-lt-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs" class="header-anchor">#</a></h3><p>如果<em>lhs</em>早于<em>rhs</em>，返回 <code>true</code>；否则返回 <code>false</code>。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#operator-eq-eq">operator== </a>().</p>
+<h3><span id="qdatastream-amp-operator-lt-lt-qdatastream-amp-out-const-qdatetime-amp-datetime">&amp; operator&lt;&lt; ( &amp; <em>out</em> , const &amp; <em>dateTime</em> )</span><a href="#qdatastream-amp-operator-lt-lt-qdatastream-amp-out-const-qdatetime-amp-datetime" class="header-anchor">#</a></h3><p>写入 <em>dateTime</em> 到 <em>out</em> stream.</p>
+<p><strong>另请参阅</strong> <a href="datastreamformat.html">序列化 Qt 数据类型 </a>.</p>
+<h3><span id="bool-operator-lt-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs">bool operator&lt;= (const &amp; <em>lhs</em> , const &amp; <em>rhs</em> )</span><a href="#bool-operator-lt-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs" class="header-anchor">#</a></h3><p>如果<em>lhs</em>早于或等于<em>rhs</em>，返回 “true”；否则返回 “false”。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#operator-eq-eq">operator== </a>().</p>
+<h3><span id="bool-operator-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs">bool operator== (const &amp; <em>lhs</em> , const &amp; <em>rhs</em> )</span><a href="#bool-operator-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs" class="header-anchor">#</a></h3><p>返回 <code>true </code>if <em>lhs</em> 如同 <em>rhs</em> ；否则返回 <code>false </code>.</p>
+<p>如果日期、时间或时区的组成部分不同，则两个日期时间是不同的。从5.14开始，所有无效的数据时间都是相等的（并且小于所有有效的数据时间）。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#operator-not-eq">operator!= </a>(), <a href="qdatetime.html#operator-lt">operator&lt; </a>(), <a href="qdatetime.html#operator-lt-eq">operator&lt;= </a>(), <a href="qdatetime.html#operator-gt">operator&gt; </a>()，和 <a href="qdatetime.html#operator-gt-eq">operator&gt;= </a>().</p>
+<h3><span id="bool-operator-gt-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs">bool operator&gt; (const &amp; <em>lhs</em> , const &amp; <em>rhs</em> )</span><a href="#bool-operator-gt-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs" class="header-anchor">#</a></h3><p>如果<em>lhs</em>晚于<em>rhs</em>，返回 “true”；否则返回 “false”。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#operator-eq-eq">operator== </a>().</p>
+<h3><span id="bool-operator-gt-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs">bool operator&gt;= (const &amp; <em>lhs</em> , const &amp; <em>rhs</em> )</span><a href="#bool-operator-gt-const-qdatetime-amp-lhs-const-qdatetime-amp-rhs" class="header-anchor">#</a></h3><p>如果<em>lhs</em>晚于或等于<em>rhs</em>，返回 “true”；否则返回 “false”。</p>
+<p><strong>另请参阅</strong> <a href="qdatetime.html#operator-eq-eq">operator== </a>().</p>
+<h3><span id="qdatastream-amp-operator-gt-gt-qdatastream-amp-in-qdatetime-amp-datetime">&amp; operator&gt;&gt; ( &amp; <em>in</em> , &amp; <em>dateTime</em> )</span><a href="#qdatastream-amp-operator-gt-gt-qdatastream-amp-in-qdatetime-amp-datetime" class="header-anchor">#</a></h3><p>从流中的<em>in</em>读取一个日期时间到<em>dateTime</em>。</p>
+<p><strong>另请参阅</strong> <a href="datastreamformat.html">序列化 Qt 数据类型 </a>.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/D/">D</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDeadlineTimer/QDeadlineTimer/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QDeadlineTimer类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/D/QDialog/QDialog/">
+                        <span class="hidden-mobile">QDialog类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,619 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QItemEditorFactory 类 公共函数 静态公共成员 详细描述 标准编辑 Widget   成员函数文档编制 QItemEditorFactory:: QItemEditorFactory () [virtual] QItemEditorFactory:: ~QItemEditorFactory () [virtual] QWidget QItemEditorFactory:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QItemEditorFactory类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/I/QItemEditorFactory/QItemEditorFactory/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QItemEditorFactory 类 公共函数 静态公共成员 详细描述 标准编辑 Widget   成员函数文档编制 QItemEditorFactory:: QItemEditorFactory () [virtual] QItemEditorFactory:: ~QItemEditorFactory () [virtual] QWidget QItemEditorFactory:">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:31:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:43:22.014Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="I">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QItemEditorFactory类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QItemEditorFactory类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:31" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QItemEditorFactory类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qitemeditorfactory-lei">QItemEditorFactory 类</a><ul>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#jing-tai-gong-gong-cheng-yuan">静态公共成员</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a><ul>
+<li><a href="#biao-zhun-bian-ji-widget">标准编辑 Widget</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qitemeditorfactory-qitemeditorfactory">QItemEditorFactory:: QItemEditorFactory ()</a></li>
+<li><a href="#virtual-qitemeditorfactory-qitemeditorfactory"><code>[virtual] </code>QItemEditorFactory:: ~QItemEditorFactory ()</a></li>
+<li><a href="#virtual-qwidget-qwidget-html-qitemeditorfactory-createeditor-int-usertype-qwidget-qwidget-html-parent-const"><code>[virtual] </code></a><a href="qwidget.html">QWidget </a><em>QItemEditorFactory:: createEditor ( int <em>userType</em> , <a href="qwidget.html">QWidget </a></em> <em>parent</em> ) const</li>
+<li><a href="#static-const-qitemeditorfactory-qitemeditorfactory-qitemeditorfactory-defaultfactory"><code>[static] </code>const </a><a href="#QItemEditorFactory">QItemEditorFactory </a>*QItemEditorFactory:: defaultFactory ()</li>
+<li><a href="#void-qitemeditorfactory-registereditor-int-usertype-qitemeditorcreatorbase-qitemeditorcreatorbase-html-creator">void QItemEditorFactory:: registerEditor ( int <em>userType</em> , </a><a href="qitemeditorcreatorbase.html">QItemEditorCreatorBase </a>* <em>creator</em> )</li>
+<li><a href="#static-void-qitemeditorfactory-setdefaultfactory-qitemeditorfactory-qitemeditorfactory-factory"><code>[static] </code>void QItemEditorFactory:: setDefaultFactory ( </a><a href="#QItemEditorFactory">QItemEditorFactory </a>* <em>factory</em> )</li>
+<li><a href="#virtual-qbytearray-qbytearray-html-qitemeditorfactory-valuepropertyname-int-usertype-const"><code>[virtual] </code></a><a href="qbytearray.html">QByteArray </a>QItemEditorFactory:: valuePropertyName ( int <em>userType</em> ) const</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QItemEditorFactory 类
+
+<p>QItemEditorFactory 类提供用于在视图和委托中编辑项数据的 Widget。 <a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qitemeditorfactory></qitemeditorfactory></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMake:</td>
+<td>find_package(Qt6 COMPONENTS Widgets REQUIRED) target_link_libraries(mytarget PRIVATE Qt6::Widgets)</td>
+</tr>
+<tr>
+<td>qmake:</td>
+<td>QT += widgets</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qitemeditorfactory-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QItemEditorFactory">QItemEditorFactory </a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QItemEditorFactory">~QItemEditorFactory </a></strong>()</td>
+</tr>
+<tr>
+<td>virtual QWidget *</td>
+<td><strong><a href="#createEditor">createEditor </a></strong>(int <em>userType</em> , QWidget * <em>parent</em> ) const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#registerEditor">registerEditor </a></strong>(int <em>userType</em> , QItemEditorCreatorBase * <em>creator</em> )</td>
+</tr>
+<tr>
+<td>virtual QByteArray</td>
+<td><strong><a href="#valuePropertyName">valuePropertyName </a></strong>(int <em>userType</em> ) const</td>
+</tr>
+</tbody></table>
+<h2><span id="jing-tai-gong-gong-cheng-yuan">静态公共成员</span><a href="#jing-tai-gong-gong-cheng-yuan" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>const QItemEditorFactory *</th>
+<th><strong><a href="#defaultFactory">defaultFactory </a></strong>()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#setDefaultFactory">setDefaultFactory </a></strong>(QItemEditorFactory * <em>factory</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>当在项目视图中编辑数据时，编辑器是由一个委托创建和显示的。<a href="qstyleditemdelegate.html">QStyledItemDelegate</a>是默认安装在Qt项目视图上的委托，它使用一个QItemEditorFactory来为它创建编辑器。一个由QItemEditorFactory提供的默认唯一实例被所有的项委托使用。如果你用<a href="#setDefaultFactory">setDefaultFactory</a>()设置一个新的默认工厂，新工厂将被现有和新的委托使用。</p>
+<p>一个工厂保存一个<a href="qitemeditorcreatorbase.html">QItemEditorCreatorBase</a>实例的集合，这些实例是专门的编辑器，为一个特定的<a href="qvariant.html">QVariant</a>数据类型产生编辑器（所有的Qt模型都以<a href="qvariant.html">QVariant</a>的形式存储它们的数据）。</p>
+<h3><span id="biao-zhun-bian-ji-widget">标准编辑 Widget</span><a href="#biao-zhun-bian-ji-widget" class="header-anchor">#</a></h3><p>标准工厂实现为各种数据类型提供编辑器。每当一个委托人需要为模型提供的数据提供一个编辑器时，就会创建这些编辑器。下表显示了类型和提供的标准编辑器之间的关系。</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">编辑器 Widget</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">bool</td>
+<td align="left"><a href="qcombobox.html">QComboBox</a></td>
+</tr>
+<tr>
+<td align="left">double</td>
+<td align="left"><a href="qdoublespinbox.html">QDoubleSpinBox</a></td>
+</tr>
+<tr>
+<td align="left">int</td>
+<td align="left"><a href="qspinbox.html">QSpinBox</a></td>
+</tr>
+<tr>
+<td align="left">无符号 int</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="qdate.html">QDate</a></td>
+<td align="left"><a href="qdateedit.html">QDateEdit</a></td>
+</tr>
+<tr>
+<td align="left"><a href="qdatetime.html">QDateTime</a></td>
+<td align="left"><a href="qdatetimeedit.html">QDateTimeEdit</a></td>
+</tr>
+<tr>
+<td align="left"><a href="qpixmap.html">QPixmap</a></td>
+<td align="left"><a href="qlabel.html">QLabel</a></td>
+</tr>
+<tr>
+<td align="left"><a href="qstring.html">QString</a></td>
+<td align="left"><a href="qlineedit.html">QLineEdit</a></td>
+</tr>
+<tr>
+<td align="left"><a href="qtime.html">QTime</a></td>
+<td align="left"><a href="qtimeedit.html">QTimeEdit</a></td>
+</tr>
+</tbody></table>
+<p>额外的编辑器可以用<a href="#registerEditor">registerEditor</a>()函数注册。</p>
+<p><strong>另请参阅</strong> <a href="qstyleditemdelegate.html">QStyledItemDelegate </a>, <a href="model-view-programming.html">模型/视图编程 </a>，和 <a href="qtwidgets-itemviews-coloreditorfactory-example.html">色彩编辑器工厂范例 </a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qitemeditorfactory-qitemeditorfactory">QItemEditorFactory:: QItemEditorFactory ()</span><a href="#qitemeditorfactory-qitemeditorfactory" class="header-anchor">#</a></h3><p>构建一个新的项目编辑器工厂。</p>
+<h3><span id="virtual-qitemeditorfactory-qitemeditorfactory"><code>[virtual] </code>QItemEditorFactory:: ~QItemEditorFactory ()</span><a href="#virtual-qitemeditorfactory-qitemeditorfactory" class="header-anchor">#</a></h3><p>销毁物品编辑工厂。</p>
+<h3><span id="virtual-qwidget-qitemeditorfactory-createeditor-int-usertype-qwidget-parent-const"><code>[virtual] </code><em>QItemEditorFactory:: createEditor ( int <em>userType</em> , <a href="qwidget.html">QWidget </a></em> <em>parent</em> ) const</span><a href="#virtual-qwidget-qitemeditorfactory-createeditor-int-usertype-qwidget-parent-const" class="header-anchor">#</a></h3><p>用给定的<em>parent</em>为指定的<em>userType</em>的数据创建一个编辑器部件，并以<a href="qwidget.html">QWidget</a>形式返回。</p>
+<p><strong>另请参阅</strong> <a href="#registerEditor">registerEditor </a>().</p>
+<h3><span id="static-const-qitemeditorfactory-qitemeditorfactory-defaultfactory"><code>[static] </code>const *QItemEditorFactory:: defaultFactory ()</span><a href="#static-const-qitemeditorfactory-qitemeditorfactory-defaultfactory" class="header-anchor">#</a></h3><p>返回默认的项目编辑器工厂。</p>
+<p><strong>另请参阅</strong> <a href="#setDefaultFactory">setDefaultFactory </a>().</p>
+<h3><span id="void-qitemeditorfactory-registereditor-int-usertype-qitemeditorcreatorbase-creator">void QItemEditorFactory:: registerEditor ( int <em>userType</em> , * <em>creator</em> )</span><a href="#void-qitemeditorfactory-registereditor-int-usertype-qitemeditorcreatorbase-creator" class="header-anchor">#</a></h3><p>注册一个由<em>creator</em>指定的项目编辑器创建者，为给定<em>userType</em>的数据。</p>
+<p><strong>注意：</strong>工厂拥有项目编辑器创建者的所有权，如果以后有相同类型的新创建者被注册，它将被销毁。</p>
+<p><strong>另请参阅</strong> <a href="#createEditor">createEditor </a>().</p>
+<h3><span id="static-void-qitemeditorfactory-setdefaultfactory-qitemeditorfactory-factory"><code>[static] </code>void QItemEditorFactory:: setDefaultFactory ( * <em>factory</em> )</span><a href="#static-void-qitemeditorfactory-setdefaultfactory-qitemeditorfactory-factory" class="header-anchor">#</a></h3><p>将默认的项目编辑器工厂设置为给定的<em>factory</em> 。新的和现有的委托人都将使用新的工厂。</p>
+<p><strong>另请参阅</strong> <a href="#defaultFactory">defaultFactory </a>().</p>
+<h3><span id="virtual-qbytearray-qitemeditorfactory-valuepropertyname-int-usertype-const"><code>[virtual] </code>QItemEditorFactory:: valuePropertyName ( int <em>userType</em> ) const</span><a href="#virtual-qbytearray-qitemeditorfactory-valuepropertyname-int-usertype-const" class="header-anchor">#</a></h3><p>返回用于访问数据的属性名称，用于给定的<em>userType</em> 的数据。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/I/">I</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/I/QItemEditorCreator/QItemEditorCreator/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QItemEditorCreator类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/I/QItemModelBarDataProxy/QItemModelBarDataProxy/">
+                        <span class="hidden-mobile">QItemModelBarDataProxy类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

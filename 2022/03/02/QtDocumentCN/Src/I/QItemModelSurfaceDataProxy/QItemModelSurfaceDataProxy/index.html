@@ -1,0 +1,1587 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QItemModelSurfaceDataProxy Class 公共类型 特性 公共函数 信号 详细描述 成员类型文档编制 enum QItemModelSurfaceDataProxy:: MultiMatchBehavior   特性文档编制 autoColumnCategories : bool autoRowCategories : bool columnCategories">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QItemModelSurfaceDataProxy类">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/Src/I/QItemModelSurfaceDataProxy/QItemModelSurfaceDataProxy/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QItemModelSurfaceDataProxy Class 公共类型 特性 公共函数 信号 详细描述 成员类型文档编制 enum QItemModelSurfaceDataProxy:: MultiMatchBehavior   特性文档编制 autoColumnCategories : bool autoRowCategories : bool columnCategories">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T06:31:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:43:32.312Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="I">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>QItemModelSurfaceDataProxy类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="QItemModelSurfaceDataProxy类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 14:31" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      19k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      158 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QItemModelSurfaceDataProxy类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qitemmodelsurfacedataproxy-class">QItemModelSurfaceDataProxy Class</a><ul>
+<li><a href="#gong-gong-lei-xing">公共类型</a></li>
+<li><a href="#te-xing">特性</a></li>
+<li><a href="#gong-gong-han-shu">公共函数</a></li>
+<li><a href="#xin-hao">信号</a></li>
+<li><a href="#xiang-xi-miao-shu">详细描述</a></li>
+<li><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</a><ul>
+<li><a href="#enum-qitemmodelsurfacedataproxy-multimatchbehavior">enum QItemModelSurfaceDataProxy:: MultiMatchBehavior</a></li>
+</ul>
+</li>
+<li><a href="#te-xing-wen-dang-bian-zhi">特性文档编制</a><ul>
+<li><a href="#autocolumncategories-bool">autoColumnCategories : bool</a></li>
+<li><a href="#autorowcategories-bool">autoRowCategories : bool</a></li>
+<li><a href="#columncategories-qstringlist-qstringlist-html">columnCategories : </a><a href="qstringlist.html">QStringList</a></li>
+<li><a href="#columnrole-qstring">columnRole : </a><a href>QString</a></li>
+<li><a href="#columnrolepattern-qregularexpression-qregularexpression-html">columnRolePattern : </a><a href="qregularexpression.html">QRegularExpression</a></li>
+<li><a href="#columnrolereplace-qstring">columnRoleReplace : </a><a href>QString</a></li>
+<li><a href="#itemmodel-qabstractitemmodel-qabstractitemmodel-html">itemModel : </a><a href="qabstractitemmodel.html">QAbstractItemModel </a>*</li>
+<li><a href="#multimatchbehavior-multimatchbehavior-multimatchbehavior-enum">multiMatchBehavior : </a><a href="#MultiMatchBehavior-enum">MultiMatchBehavior</a></li>
+<li><a href="#rowcategories-qstringlist-qstringlist-html">rowCategories : </a><a href="qstringlist.html">QStringList</a></li>
+<li><a href="#rowrole-qstring">rowRole : </a><a href>QString</a></li>
+<li><a href="#rowrolepattern-qregularexpression-qregularexpression-html">rowRolePattern : </a><a href="qregularexpression.html">QRegularExpression</a></li>
+<li><a href="#rowrolereplace-qstring">rowRoleReplace : </a><a href>QString</a></li>
+<li><a href="#usemodelcategories-bool">useModelCategories : bool</a></li>
+<li><a href="#xposrole-qstring">xPosRole : </a><a href>QString</a></li>
+<li><a href="#xposrolepattern-qregularexpression-qregularexpression-html">xPosRolePattern : </a><a href="qregularexpression.html">QRegularExpression</a></li>
+<li><a href="#xposrolereplace-qstring">xPosRoleReplace : </a><a href>QString</a></li>
+<li><a href="#yposrole-qstring">yPosRole : </a><a href>QString</a></li>
+<li><a href="#yposrolepattern-qregularexpression-qregularexpression-html">yPosRolePattern : </a><a href="qregularexpression.html">QRegularExpression</a></li>
+<li><a href="#yposrolereplace-qstring">yPosRoleReplace : </a><a href>QString</a></li>
+<li><a href="#zposrole-qstring">zPosRole : </a><a href>QString</a></li>
+<li><a href="#zposrolepattern-qregularexpression-qregularexpression-html">zPosRolePattern : </a><a href="qregularexpression.html">QRegularExpression</a></li>
+<li><a href="#zposrolereplace-qstring">zPosRoleReplace : </a><a href>QString</a></li>
+</ul>
+</li>
+<li><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</a><ul>
+<li><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-qabstractitemmodel-html-itemmodel-const-qstring-rowrole-const-qstring-columnrole-const-qstring-xposrole-const-qstring-yposrole-const-qstring-zposrole-const-qstringlist-qstringlist-html-rowcategories-const-qstringlist-qstringlist-html-columncategories-qobject-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( </a><a href="qabstractitemmodel.html">QAbstractItemModel </a>* <em>itemModel</em> , const <a href>QString </a>&amp; <em>rowRole</em> , const <a href>QString </a>&amp; <em>columnRole</em> , const <a href>QString </a>&amp; <em>xPosRole</em> , const <a href>QString </a>&amp; <em>yPosRole</em> , const <a href>QString </a>&amp; <em>zPosRole</em> , const <a href="qstringlist.html">QStringList </a>&amp; <em>rowCategories</em> , const <a href="qstringlist.html">QStringList </a>&amp; <em>columnCategories</em> , <a href="#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-qabstractitemmodel-html-itemmodel-const-qstring-rowrole-const-qstring-columnrole-const-qstring-yposrole-const-qstringlist-qstringlist-html-rowcategories-const-qstringlist-qstringlist-html-columncategories-qobject-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( </a><a href="qabstractitemmodel.html">QAbstractItemModel </a>* <em>itemModel</em> , const <a href>QString </a>&amp; <em>rowRole</em> , const <a href>QString </a>&amp; <em>columnRole</em> , const <a href>QString </a>&amp; <em>yPosRole</em> , const <a href="qstringlist.html">QStringList </a>&amp; <em>rowCategories</em> , const <a href="qstringlist.html">QStringList </a>&amp; <em>columnCategories</em> , <a href="#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-qabstractitemmodel-html-itemmodel-const-qstring-rowrole-const-qstring-columnrole-const-qstring-xposrole-const-qstring-yposrole-const-qstring-zposrole-qobject-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( </a><a href="qabstractitemmodel.html">QAbstractItemModel </a>* <em>itemModel</em> , const <a href>QString </a>&amp; <em>rowRole</em> , const <a href>QString </a>&amp; <em>columnRole</em> , const <a href>QString </a>&amp; <em>xPosRole</em> , const <a href>QString </a>&amp; <em>yPosRole</em> , const <a href>QString </a>&amp; <em>zPosRole</em> , <a href="#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-qabstractitemmodel-html-itemmodel-const-qstring-rowrole-const-qstring-columnrole-const-qstring-yposrole-qobject-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( </a><a href="qabstractitemmodel.html">QAbstractItemModel </a>* <em>itemModel</em> , const <a href>QString </a>&amp; <em>rowRole</em> , const <a href>QString </a>&amp; <em>columnRole</em> , const <a href>QString </a>&amp; <em>yPosRole</em> , <a href="#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-qabstractitemmodel-html-itemmodel-const-qstring-yposrole-qobject-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( </a><a href="qabstractitemmodel.html">QAbstractItemModel </a>* <em>itemModel</em> , const <a href>QString </a>&amp; <em>yPosRole</em> , <a href="#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-qabstractitemmodel-html-itemmodel-qobject-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( </a><a href="qabstractitemmodel.html">QAbstractItemModel </a>* <em>itemModel</em> , <a href="#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qobject-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( </a><a href="#QObject">QObject </a>* <em>parent</em> = nullptr)</li>
+<li><a href="#virtual-qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy"><code>[virtual] </code>QItemModelSurfaceDataProxy:: ~QItemModelSurfaceDataProxy ()</a></li>
+<li><a href="#invokable-int-qitemmodelsurfacedataproxy-columncategoryindex-const-qstring-category"><code>[invokable] </code>int QItemModelSurfaceDataProxy:: columnCategoryIndex (const </a><a href>QString </a>&amp; <em>category</em> )</li>
+<li><a href="#void-qitemmodelsurfacedataproxy-remap-const-qstring-rowrole-const-qstring-columnrole-const-qstring-xposrole-const-qstring-yposrole-const-qstring-zposrole-const-qstringlist-qstringlist-html-rowcategories-const-qstringlist-qstringlist-html-columncategories">void QItemModelSurfaceDataProxy:: remap (const </a><a href>QString </a>&amp; <em>rowRole</em> , const <a href>QString </a>&amp; <em>columnRole</em> , const <a href>QString </a>&amp; <em>xPosRole</em> , const <a href>QString </a>&amp; <em>yPosRole</em> , const <a href>QString </a>&amp; <em>zPosRole</em> , const <a href="qstringlist.html">QStringList </a>&amp; <em>rowCategories</em> , const <a href="qstringlist.html">QStringList </a>&amp; <em>columnCategories</em> )</li>
+<li><a href="#invokable-int-qitemmodelsurfacedataproxy-rowcategoryindex-const-qstring-category"><code>[invokable] </code>int QItemModelSurfaceDataProxy:: rowCategoryIndex (const </a><a href>QString </a>&amp; <em>category</em> )</li>
+<li><a href="#void-qitemmodelsurfacedataproxy-setitemmodel-qabstractitemmodel-qabstractitemmodel-html-itemmodel">void QItemModelSurfaceDataProxy:: setItemModel ( </a><a href="qabstractitemmodel.html">QAbstractItemModel </a>* <em>itemModel</em> )</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+# QItemModelSurfaceDataProxy Class
+
+<p>用<a href="q3dsurface.html">Q3DSurface</a>在项目模型中展示数据的代理类。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<table>
+<thead>
+<tr>
+<th>Header:</th>
+<th>#include <qitemmodelsurfacedataproxy></qitemmodelsurfacedataproxy></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Since:</td>
+<td>QtDataVisualization 1.0</td>
+</tr>
+<tr>
+<td>实例化：</td>
+<td><a href="qml-qtdatavisualization-itemmodelsurfacedataproxy.html">ItemModelSurfaceDataProxy</a></td>
+</tr>
+<tr>
+<td>继承：</td>
+<td><a href="qsurfacedataproxy.html">QSurfaceDataProxy</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><a href="qitemmodelsurfacedataproxy-members.html">所有成员列表，包括继承成员</a></li>
+</ul>
+<h2><span id="gong-gong-lei-xing">公共类型</span><a href="#gong-gong-lei-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>enum</th>
+<th><strong><a href="#MultiMatchBehavior-enum">MultiMatchBehavior </a></strong>{ MMBFirst, MMBLast, MMBAverage, MMBCumulativeY }</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="te-xing">特性</span><a href="#te-xing" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th><strong><a href="#autoColumnCategories-prop">autoColumnCategories </a></strong>: bool**<a href="#autoRowCategories-prop">autoRowCategories </a><strong>: bool</strong><a href="#columnCategories-prop">columnCategories </a><strong>: QStringList</strong><a href="#columnRole-prop">columnRole </a><strong>: QString</strong><a href="#columnRolePattern-prop">columnRolePattern </a><strong>: QRegularExpression</strong><a href="#columnRoleReplace-prop">columnRoleReplace </a><strong>: QString</strong><a href="#itemModel-prop">itemModel </a><strong>: QAbstractItemModel</strong><em><a href="#multiMatchBehavior-prop">multiMatchBehavior </a>**: MultiMatchBehavior*</em><a href="#rowCategories-prop">rowCategories </a><strong>: QStringList</strong><a href="#rowRole-prop">rowRole </a><strong>: QString</strong><a href="#rowRolePattern-prop">rowRolePattern </a>**: QRegularExpression</th>
+<th><strong><a href="#rowRoleReplace-prop">rowRoleReplace </a></strong>: QString**<a href="#useModelCategories-prop">useModelCategories </a><strong>: bool</strong><a href="#xPosRole-prop">xPosRole </a><strong>: QString</strong><a href="#xPosRolePattern-prop">xPosRolePattern </a><strong>: QRegularExpression</strong><a href="#xPosRoleReplace-prop">xPosRoleReplace </a><strong>: QString</strong><a href="#yPosRole-prop">yPosRole </a><strong>: QString</strong><a href="#yPosRolePattern-prop">yPosRolePattern </a><strong>: QRegularExpression</strong><a href="#yPosRoleReplace-prop">yPosRoleReplace </a><strong>: QString</strong><a href="#zPosRole-prop">zPosRole </a><strong>: QString</strong><a href="#zPosRolePattern-prop">zPosRolePattern </a><strong>: QRegularExpression</strong><a href="#zPosRoleReplace-prop">zPosRoleReplace </a>**: QString</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2><span id="gong-gong-han-shu">公共函数</span><a href="#gong-gong-han-shu" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th></th>
+<th><strong><a href="#QItemModelSurfaceDataProxy-6">QItemModelSurfaceDataProxy </a></strong>(QAbstractItemModel * <em>itemModel</em> , const QString &amp; <em>rowRole</em> , const QString &amp; <em>columnRole</em> , const QString &amp; <em>xPosRole</em> , const QString &amp; <em>yPosRole</em> , const QString &amp; <em>zPosRole</em> , const QStringList &amp; <em>rowCategories</em> , const QStringList &amp; <em>columnCategories</em> , QObject * <em>parent</em> = nullptr)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><strong><a href="#QItemModelSurfaceDataProxy-5">QItemModelSurfaceDataProxy </a></strong>(QAbstractItemModel * <em>itemModel</em> , const QString &amp; <em>rowRole</em> , const QString &amp; <em>columnRole</em> , const QString &amp; <em>yPosRole</em> , const QStringList &amp; <em>rowCategories</em> , const QStringList &amp; <em>columnCategories</em> , QObject * <em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QItemModelSurfaceDataProxy-4">QItemModelSurfaceDataProxy </a></strong>(QAbstractItemModel * <em>itemModel</em> , const QString &amp; <em>rowRole</em> , const QString &amp; <em>columnRole</em> , const QString &amp; <em>xPosRole</em> , const QString &amp; <em>yPosRole</em> , const QString &amp; <em>zPosRole</em> , QObject * <em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QItemModelSurfaceDataProxy-3">QItemModelSurfaceDataProxy </a></strong>(QAbstractItemModel * <em>itemModel</em> , const QString &amp; <em>rowRole</em> , const QString &amp; <em>columnRole</em> , const QString &amp; <em>yPosRole</em> , QObject * <em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QItemModelSurfaceDataProxy-2">QItemModelSurfaceDataProxy </a></strong>(QAbstractItemModel * <em>itemModel</em> , const QString &amp; <em>yPosRole</em> , QObject * <em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QItemModelSurfaceDataProxy-1">QItemModelSurfaceDataProxy </a></strong>(QAbstractItemModel * <em>itemModel</em> , QObject * <em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="#QItemModelSurfaceDataProxy">QItemModelSurfaceDataProxy </a></strong>(QObject * <em>parent</em> = nullptr)</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="#dtor.QItemModelSurfaceDataProxy">~QItemModelSurfaceDataProxy </a></strong>()</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#autoColumnCategories-prop">autoColumnCategories </a></strong>() const</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#autoRowCategories-prop">autoRowCategories </a></strong>() const</td>
+</tr>
+<tr>
+<td>QStringList</td>
+<td><strong><a href="#columnCategories-prop">columnCategories </a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#columnCategoryIndex">columnCategoryIndex </a></strong>(const QString &amp; <em>category</em> )</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#columnRole-prop">columnRole </a></strong>() const</td>
+</tr>
+<tr>
+<td>QRegularExpression</td>
+<td><strong><a href="#columnRolePattern-prop">columnRolePattern </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#columnRoleReplace-prop">columnRoleReplace </a></strong>() const</td>
+</tr>
+<tr>
+<td>QAbstractItemModel *</td>
+<td><strong><a href="#itemModel-prop">itemModel </a></strong>() const</td>
+</tr>
+<tr>
+<td>QItemModelSurfaceDataProxy::MultiMatchBehavior</td>
+<td><strong><a href="#multiMatchBehavior-prop">multiMatchBehavior </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#remap">remap </a></strong>(const QString &amp; <em>rowRole</em> , const QString &amp; <em>columnRole</em> , const QString &amp; <em>xPosRole</em> , const QString &amp; <em>yPosRole</em> , const QString &amp; <em>zPosRole</em> , const QStringList &amp; <em>rowCategories</em> , const QStringList &amp; <em>columnCategories</em> )</td>
+</tr>
+<tr>
+<td>QStringList</td>
+<td><strong><a href="#rowCategories-prop">rowCategories </a></strong>() const</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong><a href="#rowCategoryIndex">rowCategoryIndex </a></strong>(const QString &amp; <em>category</em> )</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#rowRole-prop">rowRole </a></strong>() const</td>
+</tr>
+<tr>
+<td>QRegularExpression</td>
+<td><strong><a href="#rowRolePattern-prop">rowRolePattern </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#rowRoleReplace-prop">rowRoleReplace </a></strong>() const</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#autoColumnCategories-prop">setAutoColumnCategories </a></strong>(bool <em>enable</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#autoRowCategories-prop">setAutoRowCategories </a></strong>(bool <em>enable</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#columnCategories-prop">setColumnCategories </a></strong>(const QStringList &amp; <em>categories</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#columnRole-prop">setColumnRole </a></strong>(const QString &amp; <em>role</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#columnRolePattern-prop">setColumnRolePattern </a></strong>(const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#columnRoleReplace-prop">setColumnRoleReplace </a></strong>(const QString &amp; <em>replace</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#setItemModel">setItemModel </a></strong>(QAbstractItemModel * <em>itemModel</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#multiMatchBehavior-prop">setMultiMatchBehavior </a></strong>(QItemModelSurfaceDataProxy::MultiMatchBehavior <em>behavior</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#rowCategories-prop">setRowCategories </a></strong>(const QStringList &amp; <em>categories</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#rowRole-prop">setRowRole </a></strong>(const QString &amp; <em>role</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#rowRolePattern-prop">setRowRolePattern </a></strong>(const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#rowRoleReplace-prop">setRowRoleReplace </a></strong>(const QString &amp; <em>replace</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#useModelCategories-prop">setUseModelCategories </a></strong>(bool <em>enable</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#xPosRole-prop">setXPosRole </a></strong>(const QString &amp; <em>role</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#xPosRolePattern-prop">setXPosRolePattern </a></strong>(const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#xPosRoleReplace-prop">setXPosRoleReplace </a></strong>(const QString &amp; <em>replace</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#yPosRole-prop">setYPosRole </a></strong>(const QString &amp; <em>role</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#yPosRolePattern-prop">setYPosRolePattern </a></strong>(const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#yPosRoleReplace-prop">setYPosRoleReplace </a></strong>(const QString &amp; <em>replace</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#zPosRole-prop">setZPosRole </a></strong>(const QString &amp; <em>role</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#zPosRolePattern-prop">setZPosRolePattern </a></strong>(const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#zPosRoleReplace-prop">setZPosRoleReplace </a></strong>(const QString &amp; <em>replace</em> )</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="#useModelCategories-prop">useModelCategories </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#xPosRole-prop">xPosRole </a></strong>() const</td>
+</tr>
+<tr>
+<td>QRegularExpression</td>
+<td><strong><a href="#xPosRolePattern-prop">xPosRolePattern </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#xPosRoleReplace-prop">xPosRoleReplace </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#yPosRole-prop">yPosRole </a></strong>() const</td>
+</tr>
+<tr>
+<td>QRegularExpression</td>
+<td><strong><a href="#yPosRolePattern-prop">yPosRolePattern </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#yPosRoleReplace-prop">yPosRoleReplace </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#zPosRole-prop">zPosRole </a></strong>() const</td>
+</tr>
+<tr>
+<td>QRegularExpression</td>
+<td><strong><a href="#zPosRolePattern-prop">zPosRolePattern </a></strong>() const</td>
+</tr>
+<tr>
+<td>QString</td>
+<td><strong><a href="#zPosRoleReplace-prop">zPosRoleReplace </a></strong>() const</td>
+</tr>
+</tbody></table>
+<h2><span id="xin-hao">信号</span><a href="#xin-hao" class="header-anchor">#</a></h2><table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong><a href="#autoColumnCategories-prop">autoColumnCategoriesChanged </a></strong>(bool <em>enable</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#autoRowCategories-prop">autoRowCategoriesChanged </a></strong>(bool <em>enable</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#columnCategories-prop">columnCategoriesChanged </a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#columnRole-prop">columnRoleChanged </a></strong>(const QString &amp; <em>role</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#columnRolePattern-prop">columnRolePatternChanged </a></strong>(const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#columnRoleReplace-prop">columnRoleReplaceChanged </a></strong>(const QString &amp; <em>replace</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#itemModel-prop">itemModelChanged </a></strong>(const QAbstractItemModel * <em>itemModel</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#multiMatchBehavior-prop">multiMatchBehaviorChanged </a></strong>(QItemModelSurfaceDataProxy::MultiMatchBehavior <em>behavior</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#rowCategories-prop">rowCategoriesChanged </a></strong>()</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#rowRole-prop">rowRoleChanged </a></strong>(const QString &amp; <em>role</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#rowRolePattern-prop">rowRolePatternChanged </a></strong>(const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#rowRoleReplace-prop">rowRoleReplaceChanged </a></strong>(const QString &amp; <em>replace</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#useModelCategories-prop">useModelCategoriesChanged </a></strong>(bool <em>enable</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#xPosRole-prop">xPosRoleChanged </a></strong>(const QString &amp; <em>role</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#xPosRolePattern-prop">xPosRolePatternChanged </a></strong>(const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#xPosRoleReplace-prop">xPosRoleReplaceChanged </a></strong>(const QString &amp; <em>replace</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#yPosRole-prop">yPosRoleChanged </a></strong>(const QString &amp; <em>role</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#yPosRolePattern-prop">yPosRolePatternChanged </a></strong>(const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#yPosRoleReplace-prop">yPosRoleReplaceChanged </a></strong>(const QString &amp; <em>replace</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#zPosRole-prop">zPosRoleChanged </a></strong>(const QString &amp; <em>role</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#zPosRolePattern-prop">zPosRolePatternChanged </a></strong>(const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="#zPosRoleReplace-prop">zPosRoleReplaceChanged </a></strong>(const QString &amp; <em>replace</em> )</td>
+</tr>
+</tbody></table>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>QItemModelSurfaceDataProxy允许你使用<a href="qabstractitemmodel.html">QAbstractItemModel</a>衍生的模型作为<a href="q3dsurface.html">Q3DSurface</a>的数据源。它使用定义的映射将数据从模型映射到 <a href="q3dsurface.html">Q3DSurface </a>图的行、列和表面点。</p>
+<p>只要映射或模型发生变化，数据就会被异步解析。当数据被解析后，<a href="qsurfacedataproxy.html#arrayReset">QSurfaceDataProxy::arrayReset</a>()被发射出来。然而，当<a href="#useModelCategories-prop">useModelCategories</a>属性被设置为<code>true</code>时，单项变化被同步解析，除非同一帧也包含一个导致整个模型被解析的变化。</p>
+<p>映射可以通过以下方式使用。</p>
+<ul>
+<li>如果<a href="#useModelCategories-prop">useModelCategories</a>属性被设置为<code>true</code>，这个代理将把<a href="qabstractitemmodel.html">QAbstractItemModel</a>的行和列映射为<a href="q3dsurface.html">Q3DSurface</a>的行和列，并且默认使用<a href="qt.html#ItemDataRole-enum">Qt::DisplayRole</a>返回的值作为Y-position。如果行和列的标题可以转换为浮点数，则默认使用Z-position和X-position。否则就使用行和列的索引。如果<a href="qt.html#ItemDataRole-enum">Qt::DisplayRole</a>不适合，可以重新定义要使用的Y-position角色。如果标题或索引不合适，要使用的Z-位置和X-位置角色可以被重新定义。</li>
+<li>对于没有数据已经被整齐地分类为行和列的模型，比如基于 <a href="qabstractlistmodel.html">QAbstractListModel</a>的模型，你可以从模型中定义一个角色来映射行、列和 Y-位置中的每一个。</li>
+<li>如果你不想包括模型中包含的所有数据，或者自动生成的行和列的顺序不符合你的要求，你可以通过为行和列中的任何一个或两个定义一个明确的类别列表来指定哪些行和列应该被包括，以及以何种顺序。</li>
+</ul>
+<p>例如，假设你有一个自定义的<a href="qabstractitemmodel.html">QAbstractItemModel</a>来存储表面地形数据。模型中的每个项目都有 “经度”、”纬度 “和 “高度 “等角色。项目模型已经包含了正确排序的数据，所以经度和纬度是以正确的顺序首先遇到的，这使得我们能够利用行和列的类别自动生成。你可以做以下工作，在一个表面图中显示数据：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">QItemModelSurfaceDataProxy *proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QItemModelSurfaceDataProxy</span>(customModel,
+                                                                   <span class="hljs-built_in">QStringLiteral</span>(<span class="hljs-string">"longitude"</span>), <span class="hljs-comment">// Row role</span>
+                                                                   <span class="hljs-built_in">QStringLiteral</span>(<span class="hljs-string">"latitude"</span>), <span class="hljs-comment">// Column role</span>
+                                                                   <span class="hljs-built_in">QStringLiteral</span>(<span class="hljs-string">"height"</span>)); <span class="hljs-comment">// Y-position role</span></code></pre></div>
+
+<p>如果模型的字段不包含你需要的确切格式的数据，你可以为每个角色指定一个搜索模式正则表达式和替换规则，以获得你需要的格式的值。关于使用正则表达式进行替换的更多信息，请参阅 <a href="#replace">QString::replace</a>(const <a href="qregularexpression.html">QRegularExpression</a>&amp;rx, const <a href>QString</a>&amp;after) 函数文档。请注意，使用正则表达式对性能有影响，所以利用项目模式更有效率，在这种情况下，做搜索和替换不一定能得到所需的值。</p>
+<p>关于结合角色使用搜索模式的例子，见<a href="qml-qtdatavisualization-itemmodelbardataproxy.html">ItemModelBarDataProxy</a>在<a href="qtdatavis3d-qmlbars-example.html">Qt Quick 2 Bars Example</a>中的用法。</p>
+<p><strong>另请参阅</strong> <a href="qtdatavisualization-data-handling.html">Qt Data Visualization 数据处理 </a>.</p>
+<h2><span id="cheng-yuan-lei-xing-wen-dang-bian-zhi">成员类型文档编制</span><a href="#cheng-yuan-lei-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="enum-qitemmodelsurfacedataproxy-multimatchbehavior">enum QItemModelSurfaceDataProxy:: MultiMatchBehavior</span><a href="#enum-qitemmodelsurfacedataproxy-multimatchbehavior" class="header-anchor">#</a></h3><p><a href="#multiMatchBehavior-prop">QItemModelSurfaceDataProxy::multiMatchBehavior</a>的行为类型。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>QItemModelSurfaceDataProxy::MMBFirst</code></td>
+<td align="left"><code>0</code></td>
+<td align="left">位置值取自项目模型中与每个行/列组合相匹配的第一个项目。</td>
+</tr>
+<tr>
+<td align="left"><code>QItemModelSurfaceDataProxy::MMBLast</code></td>
+<td align="left"><code>1</code></td>
+<td align="left">位置值取自项目模型中与每个行/列组合相匹配的最后一个项目。</td>
+</tr>
+<tr>
+<td align="left"><code>QItemModelSurfaceDataProxy::MMBAverage</code></td>
+<td align="left"><code>2</code></td>
+<td align="left">匹配每行/每列组合的所有项目的位置值被平均到一起，平均数被用作表面点位置。</td>
+</tr>
+<tr>
+<td align="left"><code>QItemModelSurfaceDataProxy::MMBCumulativeY</code></td>
+<td align="left"><code>3</code></td>
+<td align="left">对于X和Z值，其作用与<code>MMBAverage</code>相同，但Y值被加在一起，而不是平均，总和被用作表面点的Y位置。</td>
+</tr>
+</tbody></table>
+<h2><span id="te-xing-wen-dang-bian-zhi">特性文档编制</span><a href="#te-xing-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="autocolumncategories-bool">autoColumnCategories : bool</span><a href="#autocolumncategories-bool" class="header-anchor">#</a></h3><p>这个属性决定了是否自动生成列的类别。</p>
+<p>当设置为 “true “时，映射会忽略任何明确设置的列类别，并在模型的数据被解析时用自动生成的列类别覆盖它们。默认为<code>true</code>。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>autoColumnCategories</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setAutoColumnCategories</strong> (bool <em>enable</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>autoColumnCategoriesChanged</strong> (bool <em>enable</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="autorowcategories-bool">autoRowCategories : bool</span><a href="#autorowcategories-bool" class="header-anchor">#</a></h3><p>这个属性决定了行类别是否会自动生成。</p>
+<p>当设置为 “true “时，映射会忽略任何明确设置的行类别，并在模型的数据被解析时用自动生成的类别覆盖它们。默认为<code>true</code>。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>autoRowCategories</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setAutoRowCategories</strong> (bool <em>enable</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>autoRowCategoriesChanged</strong> (bool <em>enable</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="columncategories-qstringlist">columnCategories : </span><a href="#columncategories-qstringlist" class="header-anchor">#</a></h3><p>此属性持有映射的列类别。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QStringList</th>
+<th><strong>columnCategories</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setColumnCategories</strong> (const QStringList &amp; <em>categories</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>columnCategoriesChanged</strong> ()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="columnrole-qstring">columnRole : </span><a href="#columnrole-qstring" class="header-anchor">#</a></h3><p>这个属性持有要映射到列类别的项目模型角色。</p>
+<p>除了定义数据属于哪一列之外，当模型数据被解析时，由列角色指示的值也被设置为<a href="qsurfacedataitem.html">QSurfaceDataItem</a>的X坐标值，除非还定义了一个单独的X位置角色。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>columnRole</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setColumnRole</strong> (const QString &amp; <em>role</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>columnRoleChanged</strong> (const QString &amp; <em>role</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="columnrolepattern-qregularexpression">columnRolePattern : </span><a href="#columnrolepattern-qregularexpression" class="header-anchor">#</a></h3><p>此属性持有在将列角色映射的值用作列类别之前是否对其进行搜索和替换。</p>
+<p>此属性指定了用于查找要替换的映射值部分的正则表达式，<a href="#columnRoleReplace-prop">columnRoleReplace</a>属性包含替换字符串。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QRegularExpression</th>
+<th><strong>columnRolePattern</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setColumnRolePattern</strong> (const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>columnRolePatternChanged</strong> (const QRegularExpression &amp; <em>pattern</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#columnRole-prop">columnRole </a>and <a href="#columnRoleReplace-prop">columnRoleReplace </a>.</p>
+<h3><span id="columnrolereplace-qstring">columnRoleReplace : </span><a href="#columnrolereplace-qstring" class="header-anchor">#</a></h3><p>此属性持有要与列角色模式一起使用的替换内容。</p>
+<p>默认为一个空字符串。关于使用正则表达式进行搜索和替换的更多信息，请参阅<a href="#replace">QString::replace</a>(const <a href="qregularexpression.html">QRegularExpression</a>&amp;rx, const <a href>QString</a>&amp;after) 函数文档。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>columnRoleReplace</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setColumnRoleReplace</strong> (const QString &amp; <em>replace</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>columnRoleReplaceChanged</strong> (const QString &amp; <em>replace</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#columnRole-prop">columnRole </a>and <a href="#columnRolePattern-prop">columnRolePattern </a>.</p>
+<h3><span id="itemmodel-qabstractitemmodel">itemModel : *</span><a href="#itemmodel-qabstractitemmodel" class="header-anchor">#</a></h3><p>此属性持有作为三维表面的数据源的项目模型。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QAbstractItemModel *</th>
+<th><strong>itemModel</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong><a href="#setItemModel">setItemModel </a></strong>(QAbstractItemModel * <em>itemModel</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>itemModelChanged</strong> (const QAbstractItemModel * <em>itemModel</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="multimatchbehavior-multimatchbehavior">multiMatchBehavior : </span><a href="#multimatchbehavior-multimatchbehavior" class="header-anchor">#</a></h3><p>如何处理每个行/列组合的多重匹配。</p>
+<p>默认为 <a href="#MultiMatchBehavior-enum">MMBLast</a>。</p>
+<p>例如，你可能有一个带有时间戳的数据的项目模型，以不规则的时间间隔拍摄，你想用一个表面图来可视化每个小时的数据项目的平均位置。这可以通过指定行和列的类别，使每个表面点代表一个小时，并将此属性设置为<a href="#MultiMatchBehavior-enum">MMBAverage</a>来实现。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QItemModelSurfaceDataProxy::MultiMatchBehavior</th>
+<th><strong>multiMatchBehavior</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setMultiMatchBehavior</strong> (QItemModelSurfaceDataProxy::MultiMatchBehavior <em>behavior</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>multiMatchBehaviorChanged</strong> (QItemModelSurfaceDataProxy::MultiMatchBehavior <em>behavior</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="rowcategories-qstringlist">rowCategories : </span><a href="#rowcategories-qstringlist" class="header-anchor">#</a></h3><p>此属性持有映射的行类别。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QStringList</th>
+<th><strong>rowCategories</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setRowCategories</strong> (const QStringList &amp; <em>categories</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>rowCategoriesChanged</strong> ()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="rowrole-qstring">rowRole : </span><a href="#rowrole-qstring" class="header-anchor">#</a></h3><p>这个属性持有要映射到行类别的项目模型角色。</p>
+<p>除了定义数据属于哪一行之外，当模型数据被解析时，行角色所指示的值也被设置为<a href="qsurfacedataitem.html">QSurfaceDataItem</a>的Z坐标值，除非还定义了一个单独的Z位置角色。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>rowRole</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setRowRole</strong> (const QString &amp; <em>role</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>rowRoleChanged</strong> (const QString &amp; <em>role</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="rowrolepattern-qregularexpression">rowRolePattern : </span><a href="#rowrolepattern-qregularexpression" class="header-anchor">#</a></h3><p>此属性持有在行角色映射的值被用作行类别之前是否对其进行搜索和替换。</p>
+<p>此属性指定了用于查找要替换的映射值部分的正则表达式，<a href="#rowRoleReplace-prop">rowRoleReplace</a>属性包含替换字符串。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QRegularExpression</th>
+<th><strong>rowRolePattern</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setRowRolePattern</strong> (const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>rowRolePatternChanged</strong> (const QRegularExpression &amp; <em>pattern</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#rowRole-prop">rowRole </a>and <a href="#rowRoleReplace-prop">rowRoleReplace </a>.</p>
+<h3><span id="rowrolereplace-qstring">rowRoleReplace : </span><a href="#rowrolereplace-qstring" class="header-anchor">#</a></h3><p>此属性持有要与行角色模式一起使用的替换内容。</p>
+<p>默认为一个空字符串。关于使用正则表达式进行搜索和替换的更多信息，请参阅<a href="#replace">QString::replace</a>(const <a href="qregularexpression.html">QRegularExpression</a>&amp;rx, const <a href>QString</a>&amp;after) 函数文档。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>rowRoleReplace</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setRowRoleReplace</strong> (const QString &amp; <em>replace</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>rowRoleReplaceChanged</strong> (const QString &amp; <em>replace</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#rowRole-prop">rowRole </a>and <a href="#rowRolePattern-prop">rowRolePattern </a>.</p>
+<h3><span id="usemodelcategories-bool">useModelCategories : bool</span><a href="#usemodelcategories-bool" class="header-anchor">#</a></h3><p>此属性持有行和列的角色和类别是否被用于映射。</p>
+<p>当设置为<code>true</code>时，映射会忽略行和列的角色和类别，而使用模型的行和列。默认为<code>false</code>。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th><strong>useModelCategories</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setUseModelCategories</strong> (bool <em>enable</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>useModelCategoriesChanged</strong> (bool <em>enable</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="xposrole-qstring">xPosRole : </span><a href="#xposrole-qstring" class="header-anchor">#</a></h3><p>这个属性持有要映射到X位置的项目模型角色。</p>
+<p>如果没有定义这个角色，<a href="#columnRole-prop">columnRole</a>会被用来确定所解决的<a href="qsurfacedataitem.html">QSurfaceDataItem</a>对象的X坐标值。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>xPosRole</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setXPosRole</strong> (const QString &amp; <em>role</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>xPosRoleChanged</strong> (const QString &amp; <em>role</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="xposrolepattern-qregularexpression">xPosRolePattern : </span><a href="#xposrolepattern-qregularexpression" class="header-anchor">#</a></h3><p>此属性持有是否在x位置角色映射的值被用作项目位置值之前对其进行搜索和替换。</p>
+<p>此属性指定了用于查找要替换的映射值部分的正则表达式，<a href="#xPosRoleReplace-prop">xPosRoleReplace</a>属性包含替换字符串。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QRegularExpression</th>
+<th><strong>xPosRolePattern</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setXPosRolePattern</strong> (const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>xPosRolePatternChanged</strong> (const QRegularExpression &amp; <em>pattern</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#xPosRole-prop">xPosRole </a>and <a href="#xPosRoleReplace-prop">xPosRoleReplace </a>.</p>
+<h3><span id="xposrolereplace-qstring">xPosRoleReplace : </span><a href="#xposrolereplace-qstring" class="header-anchor">#</a></h3><p>此属性持有要与x位置角色模式一起使用的替换内容。</p>
+<p>默认为一个空字符串。关于使用正则表达式进行搜索和替换的更多信息，请参阅<a href="#replace">QString::replace</a>(const <a href="qregularexpression.html">QRegularExpression</a>&amp;rx, const <a href>QString</a>&amp;after) 函数文档。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>xPosRoleReplace</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setXPosRoleReplace</strong> (const QString &amp; <em>replace</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>xPosRoleReplaceChanged</strong> (const QString &amp; <em>replace</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#xPosRole-prop">xPosRole </a>and <a href="#xPosRolePattern-prop">xPosRolePattern </a>.</p>
+<h3><span id="yposrole-qstring">yPosRole : </span><a href="#yposrole-qstring" class="header-anchor">#</a></h3><p>此属性持有要映射到Y位置的项目模型角色。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>yPosRole</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setYPosRole</strong> (const QString &amp; <em>role</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>yPosRoleChanged</strong> (const QString &amp; <em>role</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="yposrolepattern-qregularexpression">yPosRolePattern : </span><a href="#yposrolepattern-qregularexpression" class="header-anchor">#</a></h3><p>此属性持有在y位置角色映射的值被用作项目位置值之前是否对其进行搜索和替换。</p>
+<p>此属性指定了用于查找要替换的映射值部分的正则表达式，<a href="#yPosRoleReplace-prop">yPosRoleReplace</a>属性包含替换字符串。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QRegularExpression</th>
+<th><strong>yPosRolePattern</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setYPosRolePattern</strong> (const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>yPosRolePatternChanged</strong> (const QRegularExpression &amp; <em>pattern</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#yPosRole-prop">yPosRole </a>and <a href="#yPosRoleReplace-prop">yPosRoleReplace </a>.</p>
+<h3><span id="yposrolereplace-qstring">yPosRoleReplace : </span><a href="#yposrolereplace-qstring" class="header-anchor">#</a></h3><p>此属性持有要与y位置角色模式一起使用的替换内容。</p>
+<p>默认为一个空字符串。关于使用正则表达式进行搜索和替换的更多信息，请参阅<a href="#replace">QString::replace</a>(const <a href="qregularexpression.html">QRegularExpression</a>&amp;rx, const <a href>QString</a>&amp;after) 函数文档。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>yPosRoleReplace</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setYPosRoleReplace</strong> (const QString &amp; <em>replace</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>yPosRoleReplaceChanged</strong> (const QString &amp; <em>replace</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#yPosRole-prop">yPosRole </a>and <a href="#yPosRolePattern-prop">yPosRolePattern </a>.</p>
+<h3><span id="zposrole-qstring">zPosRole : </span><a href="#zposrole-qstring" class="header-anchor">#</a></h3><p>这个属性持有要映射到Z位置的项目模型角色。</p>
+<p>如果这个角色没有被定义，<a href="#rowRole-prop">rowRole</a>被用来确定解决<a href="qsurfacedataitem.html">QSurfaceDataItem</a>对象的Z坐标值。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>zPosRole</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setZPosRole</strong> (const QString &amp; <em>role</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>zPosRoleChanged</strong> (const QString &amp; <em>role</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="zposrolepattern-qregularexpression">zPosRolePattern : </span><a href="#zposrolepattern-qregularexpression" class="header-anchor">#</a></h3><p>此属性持有是否在z位置角色映射的值被用作项目位置值之前对其进行搜索和替换。</p>
+<p>此属性指定了用于查找要替换的映射值部分的正则表达式，<a href="#zPosRoleReplace-prop">zPosRoleReplace</a>属性包含替换字符串。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QRegularExpression</th>
+<th><strong>zPosRolePattern</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setZPosRolePattern</strong> (const QRegularExpression &amp; <em>pattern</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>zPosRolePatternChanged</strong> (const QRegularExpression &amp; <em>pattern</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#zPosRole-prop">zPosRole </a>and <a href="#zPosRoleReplace-prop">zPosRoleReplace </a>.</p>
+<h3><span id="zposrolereplace-qstring">zPosRoleReplace : </span><a href="#zposrolereplace-qstring" class="header-anchor">#</a></h3><p>此属性持有要与z位置角色模式一起使用的替换内容。</p>
+<p>默认为一个空字符串。关于使用正则表达式进行搜索和替换的更多信息，请参阅<a href="#replace">QString::replace</a>(const <a href="qregularexpression.html">QRegularExpression</a>&amp;rx, const <a href>QString</a>&amp;after) 函数文档。</p>
+<p><strong>访问函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>QString</th>
+<th><strong>zPosRoleReplace</strong> () const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td><strong>setZPosRoleReplace</strong> (const QString &amp; <em>replace</em> )</td>
+</tr>
+</tbody></table>
+<p><strong>通知程序信号：</strong></p>
+<table>
+<thead>
+<tr>
+<th>void</th>
+<th><strong>zPosRoleReplaceChanged</strong> (const QString &amp; <em>replace</em> )</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>另请参阅</strong> <a href="#zPosRole-prop">zPosRole </a>and <a href="#zPosRolePattern-prop">zPosRolePattern </a>.</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang-bian-zhi">成员函数文档编制</span><a href="#cheng-yuan-han-shu-wen-dang-bian-zhi" class="header-anchor">#</a></h2><h3><span id="qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-const-qstring-amp-rowrole-const-qstring-amp-columnrole-const-qstring-amp-xposrole-const-qstring-amp-yposrole-const-qstring-amp-zposrole-const-qstringlist-amp-rowcategories-const-qstringlist-amp-columncategories-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( * <em>itemModel</em> , const &amp; <em>rowRole</em> , const &amp; <em>columnRole</em> , const &amp; <em>xPosRole</em> , const &amp; <em>yPosRole</em> , const &amp; <em>zPosRole</em> , const &amp; <em>rowCategories</em> , const &amp; <em>columnCategories</em> , * <em>parent</em> = nullptr)</span><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-const-qstring-amp-rowrole-const-qstring-amp-columnrole-const-qstring-amp-xposrole-const-qstring-amp-yposrole-const-qstring-amp-zposrole-const-qstringlist-amp-rowcategories-const-qstringlist-amp-columncategories-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>用<em>itemModel</em>和可选<em>parent</em>构造QItemModelSurfaceDataProxy。代理并不拥有<em>itemModel</em>的所有权，因为通常项目模型是由其他控件拥有的。角色映射用<em>rowRole</em>, <em>columnRole</em>, <em>xPosRole</em>, <em>yPosRole</em> ，和<em>zPosRole</em>设置。行和列的类别用 <em>rowCategories</em> 和 <em>columnCategories</em> 设置。该构造函数还设置<a href="#autoRowCategories-prop">autoRowCategories</a>和<a href="#autoColumnCategories-prop">autoColumnCategories</a>为假。</p>
+<h3><span id="qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-const-qstring-amp-rowrole-const-qstring-amp-columnrole-const-qstring-amp-yposrole-const-qstringlist-amp-rowcategories-const-qstringlist-amp-columncategories-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( * <em>itemModel</em> , const &amp; <em>rowRole</em> , const &amp; <em>columnRole</em> , const &amp; <em>yPosRole</em> , const &amp; <em>rowCategories</em> , const &amp; <em>columnCategories</em> , * <em>parent</em> = nullptr)</span><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-const-qstring-amp-rowrole-const-qstring-amp-columnrole-const-qstring-amp-yposrole-const-qstringlist-amp-rowcategories-const-qstringlist-amp-columncategories-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>用<em>itemModel</em>和可选<em>parent</em>构造QItemModelSurfaceDataProxy。代理并不拥有<em>itemModel</em>的所有权，因为通常项目模型是由其他控件拥有的。角色映射用<em>rowRole</em> ，<em>columnRole</em> ，和<em>yPosRole</em> 。 <a href="#zPosRole-prop">zPosRole </a>和<a href="#xPosRole-prop">xPosRole </a>分别设置为<em>rowRole</em>和<em>columnRole</em>。行和列的类别用 <em>rowCategories</em> 和 <em>columnCategories</em> 设置。该构造函数还设置<a href="#autoRowCategories-prop">autoRowCategories</a>和<a href="#autoColumnCategories-prop">autoColumnCategories</a>为假。</p>
+<h3><span id="qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-const-qstring-amp-rowrole-const-qstring-amp-columnrole-const-qstring-amp-xposrole-const-qstring-amp-yposrole-const-qstring-amp-zposrole-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( * <em>itemModel</em> , const &amp; <em>rowRole</em> , const &amp; <em>columnRole</em> , const &amp; <em>xPosRole</em> , const &amp; <em>yPosRole</em> , const &amp; <em>zPosRole</em> , * <em>parent</em> = nullptr)</span><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-const-qstring-amp-rowrole-const-qstring-amp-columnrole-const-qstring-amp-xposrole-const-qstring-amp-yposrole-const-qstring-amp-zposrole-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>用<em>itemModel</em>和可选<em>parent</em>构造QItemModelSurfaceDataProxy。代理并不拥有<em>itemModel</em>的所有权，因为通常项目模型是由其他控件拥有的。角色映射是用<em>rowRole</em>, <em>columnRole</em>, <em>xPosRole</em>, <em>yPosRole</em> ，和<em>zPosRole</em>设置的。</p>
+<h3><span id="qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-const-qstring-amp-rowrole-const-qstring-amp-columnrole-const-qstring-amp-yposrole-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( * <em>itemModel</em> , const &amp; <em>rowRole</em> , const &amp; <em>columnRole</em> , const &amp; <em>yPosRole</em> , * <em>parent</em> = nullptr)</span><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-const-qstring-amp-rowrole-const-qstring-amp-columnrole-const-qstring-amp-yposrole-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>构造QItemModelSurfaceDataProxy，包含itemModel和可选的parent。代理并不拥有 itemModel 的所有权，因为通常项目模型是由其他控件拥有的。角色映射被设置为rowRole、columnRole和yPosRole。zPosRole和xPosRole分别被设置为rowRole和columnRole。</p>
+<h3><span id="qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-const-qstring-amp-yposrole-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( * <em>itemModel</em> , const &amp; <em>yPosRole</em> , * <em>parent</em> = nullptr)</span><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-const-qstring-amp-yposrole-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>用<em>itemModel</em>和可选<em>parent</em>构造QItemModelSurfaceDataProxy。代理并不拥有<em>itemModel</em>的所有权，因为通常项目模型是由其他控件拥有的。<a href="#yPosRole-prop">yPosRole</a>角色被设置为<em>yPosRole</em>。这个构造函数是为了用于已经有数据在行和列中正确排序的模型，所以它也设置 <a href="#useModelCategories-prop">useModelCategories </a>特性到 <code>true </code>。</p>
+<h3><span id="qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( * <em>itemModel</em> , * <em>parent</em> = nullptr)</span><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qabstractitemmodel-itemmodel-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>用<em>itemModel</em>和可选<em>parent</em>构造QItemModelSurfaceDataProxy。代理并不拥有<em>itemModel</em>的所有权，因为通常项目模型是由其他控件拥有的。</p>
+<h3><span id="qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qobject-parent-nullptr">QItemModelSurfaceDataProxy:: QItemModelSurfaceDataProxy ( * <em>parent</em> = nullptr)</span><a href="#qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy-qobject-parent-nullptr" class="header-anchor">#</a></h3><p>构建QItemModelSurfaceDataProxy，可选<em>parent</em>。</p>
+<h3><span id="virtual-qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy"><code>[virtual] </code>QItemModelSurfaceDataProxy:: ~QItemModelSurfaceDataProxy ()</span><a href="#virtual-qitemmodelsurfacedataproxy-qitemmodelsurfacedataproxy" class="header-anchor">#</a></h3><p>销毁 <a href>QItemModelSurfaceDataProxy </a>.</p>
+<h3><span id="invokable-int-qitemmodelsurfacedataproxy-columncategoryindex-const-qstring-amp-category"><code>[invokable] </code>int QItemModelSurfaceDataProxy:: columnCategoryIndex (const &amp; <em>category</em> )</span><a href="#invokable-int-qitemmodelsurfacedataproxy-columncategoryindex-const-qstring-amp-category" class="header-anchor">#</a></h3><p>返回指定的<em>category</em> 在列类别列表中的索引。如果没有找到该类别，将返回-1。</p>
+<p><strong>注意：</strong>如果正在使用自动生成列类别，在模型中的数据被首次解析之前，该方法将不会返回一个有效的索引。</p>
+<p><strong>注意：</strong> 此函数可以被援引，通过元对象系统和从 QML。见 <a href="#Q_INVOKABLE">Q_INVOKABLE </a>.</p>
+<h3><span id="void-qitemmodelsurfacedataproxy-remap-const-qstring-amp-rowrole-const-qstring-amp-columnrole-const-qstring-amp-xposrole-const-qstring-amp-yposrole-const-qstring-amp-zposrole-const-qstringlist-amp-rowcategories-const-qstringlist-amp-columncategories">void QItemModelSurfaceDataProxy:: remap (const &amp; <em>rowRole</em> , const &amp; <em>columnRole</em> , const &amp; <em>xPosRole</em> , const &amp; <em>yPosRole</em> , const &amp; <em>zPosRole</em> , const &amp; <em>rowCategories</em> , const &amp; <em>columnCategories</em> )</span><a href="#void-qitemmodelsurfacedataproxy-remap-const-qstring-amp-rowrole-const-qstring-amp-columnrole-const-qstring-amp-xposrole-const-qstring-amp-yposrole-const-qstring-amp-zposrole-const-qstringlist-amp-rowcategories-const-qstringlist-amp-columncategories" class="header-anchor">#</a></h3><p>变化 <em>rowRole</em> , <em>columnRole</em> , <em>xPosRole</em> , <em>yPosRole</em> , <em>zPosRole</em> , <em>rowCategories</em> 和 <em>columnCategories</em>到映射中。</p>
+<h3><span id="invokable-int-qitemmodelsurfacedataproxy-rowcategoryindex-const-qstring-amp-category"><code>[invokable] </code>int QItemModelSurfaceDataProxy:: rowCategoryIndex (const &amp; <em>category</em> )</span><a href="#invokable-int-qitemmodelsurfacedataproxy-rowcategoryindex-const-qstring-amp-category" class="header-anchor">#</a></h3><p>返回指定的<em>category</em> 在行类别列表中的索引。如果行类别列表是空的，将返回-1。</p>
+<p><strong>注意：</strong>如果正在使用自动行类别生成，在模型中的数据被首次解析之前，该方法将不会返回一个有效的索引。</p>
+<p><strong>注意：</strong> 此函数可以被援引，通过元对象系统和从 QML。见 <a href="#Q_INVOKABLE">Q_INVOKABLE </a>.</p>
+<h3><span id="void-qitemmodelsurfacedataproxy-setitemmodel-qabstractitemmodel-itemmodel">void QItemModelSurfaceDataProxy:: setItemModel ( * <em>itemModel</em> )</span><a href="#void-qitemmodelsurfacedataproxy-setitemmodel-qabstractitemmodel-itemmodel" class="header-anchor">#</a></h3><p>设置项目模型为<em>itemModel</em>。不占用模型的所有权，但连接到它以监听变化。</p>
+<p><strong>注意：</strong> Setter 函数对于特性 <a href="#itemModel-prop">itemModel </a>.</p>
+<p><strong>另请参阅</strong> <a href="#itemModel-prop">itemModel </a>().</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/I/">I</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/I/QItemSelectionRange/QItemSelectionRange/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QItemSelectionRange类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Src/I/QItemSelectionModel/QItemSelectionModel/">
+                        <span class="hidden-mobile">QItemSelectionModel类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

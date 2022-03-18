@@ -1,0 +1,639 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="贡献指南 提交说明 目录&#x2F;文件管理 范例 占位符 Obselete Member 子类型 所有成员列表   完成度追踪 参考资料 Markdown 格式规范 类成员或实现方法标题 [virtual protected] void QObject::childEvent(QChildEvent *event) [override virtual] qint64 QAbstractSocke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贡献指南">
+<meta property="og:url" content="https://txt1994.github.io/2022/03/02/QtDocumentCN/CONTRIBUTING/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="贡献指南 提交说明 目录&#x2F;文件管理 范例 占位符 Obselete Member 子类型 所有成员列表   完成度追踪 参考资料 Markdown 格式规范 类成员或实现方法标题 [virtual protected] void QObject::childEvent(QChildEvent *event) [override virtual] qint64 QAbstractSocke">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-02T04:52:47.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:32:02.390Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="贡献指南">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>贡献指南 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="贡献指南">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 12:52" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      36 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">贡献指南</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#gong-xian-zhi-nan">贡献指南</a><ul>
+<li><a href="#ti-jiao-shuo-ming">提交说明</a></li>
+<li><a href="#mu-lu-wen-jian-guan-li">目录/文件管理</a><ul>
+<li><a href="#fan-li">范例</a></li>
+<li><a href="#zhan-wei-fu">占位符</a></li>
+<li><a href="#obselete-member">Obselete Member</a></li>
+<li><a href="#zi-lei-xing">子类型</a></li>
+<li><a href="#suo-you-cheng-yuan-lie-biao">所有成员列表</a></li>
+</ul>
+</li>
+<li><a href="#wan-cheng-du-zhui-zong">完成度追踪</a></li>
+<li><a href="#can-kao-zi-liao">参考资料</a></li>
+<li><a href="#markdown-ge-shi-gui-fan">Markdown 格式规范</a><ul>
+<li><a href="#lei-cheng-yuan-huo-shi-xian-fang-fa-biao-ti">类成员或实现方法标题</a></li>
+<li><a href="#span-class-hljs-keyword-virtual-span-span-class-hljs-keyword-protected-span-span-class-hljs-type-void-span-qobject-childevent-qchildevent-event"><em>[<span class="hljs-keyword">virtual</span> <span class="hljs-keyword">protected</span>]</em> <span class="hljs-type">void</span> QObject::<strong>childEvent</strong>(QChildEvent *<em>event</em>)</a></li>
+<li><a href="#span-class-hljs-keyword-override-span-span-class-hljs-keyword-virtual-span-qint64-qabstractsocket-bytesavailable-span-class-hljs-type-const-span-code-pre-hexopostrendercodeblock"><em>[<span class="hljs-keyword">override</span> <span class="hljs-keyword">virtual</span>]</em> qint64 QAbstractSocket::<strong>bytesAvailable</strong>() <span class="hljs-type">const</span></a></li>
+<li><a href="#zhu-jie">注解</a></li>
+<li><a href="#mu-lu">目录</a></li>
+<li><a href="#zhong-ying-hun-pai">中英混排</a></li>
+<li><a href="#tu-pian">图片</a></li>
+<li><a href="#yin-yong-lian-jie">引用链接</a></li>
+</ul>
+</li>
+<li><a href="#markdown-bian-ji-qi">Markdown 编辑器</a><ul>
+<li><a href="#typora">Typora</a></li>
+<li><a href="#vscode">VSCode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="gong-xian-zhi-nan">贡献指南</span><a href="#gong-xian-zhi-nan" class="header-anchor">#</a></h1><h2><span id="ti-jiao-shuo-ming">提交说明</span><a href="#ti-jiao-shuo-ming" class="header-anchor">#</a></h2><p>各种提交代码之前一定要</p>
+<div class="code-wrapper"><pre><code class="hljs shell">git pull --rebase</code></pre></div>
+
+
+
+<h2><span id="mu-lu-wen-jian-guan-li">目录/文件管理</span><a href="#mu-lu-wen-jian-guan-li" class="header-anchor">#</a></h2><p>为方便快速填充内容，以及便于跨文档引用，文档按首字母排序，从A-Z共12个根文件夹。</p>
+<p>每一个类新建一个文件夹，将该类的<code>.md</code>文件和其它引用的资源文件（如图片）放入其中。</p>
+<h3><span id="fan-li">范例</span><a href="#fan-li" class="header-anchor">#</a></h3><p>比如我想翻译<code>QX11Info</code>类。</p>
+<p>我要在 X 文件夹下，新建一个 QX11Info 的文件夹。</p>
+<p>然后把对应的<code>QX11Info.md</code>文档放进去。</p>
+<hr>
+<h3><span id="zhan-wei-fu">占位符</span><a href="#zhan-wei-fu" class="header-anchor">#</a></h3><p>为避免编辑冲突，在完成第一版翻译前，请尽量不要多人修改同一个页面。</p>
+<p>正在为某页面编写第一版翻译的参与者，可提交一个空文档作为占位符，并且在其中注明编写者和 deadline，如：</p>
+<blockquote>
+<p>Reserved by ZgblKylin until 2020-07-31.</p>
+</blockquote>
+<p>超过 deadline 后尚未完成第一版提交的页面，或已经完成第一版提交的页面，均被视作<strong>开放状态</strong>，其它参与者可对其进行修改。</p>
+<hr>
+<h3><span id="obselete-member">Obselete Member</span><a href="#obselete-member" class="header-anchor">#</a></h3><p>对于 <code>已废弃/Obselete</code> 的成员，Qt 会在类开头添加一个链接指向单独的页面。</p>
+<p>若已废弃的成员数量并不多（独立页面中没有详细信息章节或函数列表），则为减少阅读时的跳转，建议将该页面作为一个单独的章节，附加到原页面尾部。</p>
+<p>即将一级标题 <code># Obselete Menber</code> 降级为二级标题 <code>## 已废弃成员</code>，其它标题同样进行降级处理。</p>
+<hr>
+<h3><span id="zi-lei-xing">子类型</span><a href="#zi-lei-xing" class="header-anchor">#</a></h3><p>如 <a href="Src/M/QMetaObject/QMetaObject_Connection.md">QMetaObject::Connection</a> 等子类型，不应单独开文件夹，而是存在隶属类型的文件夹中。</p>
+<p>子类型文件名称应带有隶属类型名称，如 <code>QMetaObject/QMetaObject_Connection.md</code>。</p>
+<hr>
+<h3><span id="suo-you-cheng-yuan-lie-biao">所有成员列表</span><a href="#suo-you-cheng-yuan-lie-biao" class="header-anchor">#</a></h3><p>无需单独添加所有成员列表页面。</p>
+<p>该页面是类似 <code>[TOC]</code> 的目录索引功能，本项目中应交由发布脚本自动生成目录，而非浪费大量人力编写单独的目录页面——单独的页面在检索时需要在不同页面来回跳转，对于读者也不友好。</p>
+<p><strong>注意：</strong> 需对 <code>List of all members</code> 页面进行校对，确保其中所有内容均在主文档中有描述。若存在主文档中没有的内容，需将其挪到主文档中。</p>
+<h2><span id="wan-cheng-du-zhui-zong">完成度追踪</span><a href="#wan-cheng-du-zhui-zong" class="header-anchor">#</a></h2><p>每添加一个页面，需在<a href="completeness_tracking.md">完成度追踪表</a>中增加相应条目。</p>
+<p>当页面完成编辑、完成维护等状态改变时，维护者有责任在<a href="completeness_tracking.md">完成度追踪表</a>中更新对应信息。</p>
+<p>需要新增或修改一篇文档时，请先检索追踪表中是否已存在该文档，和该文档的翻译进度。</p>
+<h2><span id="can-kao-zi-liao">参考资料</span><a href="#can-kao-zi-liao" class="header-anchor">#</a></h2><p>技术词汇的翻译可参考 <a href="Comparison_Table.md">词汇对照表</a>。</p>
+<p>关于如何将英文文档信达雅地翻译为中文技术文档，可参考 <a href="Grammar_Tips.md">语法小贴士</a>。</p>
+<h2><span id="markdown-ge-shi-gui-fan">Markdown 格式规范</span><a href="#markdown-ge-shi-gui-fan" class="header-anchor">#</a></h2><p>可参考模板文件<a href="Template.md">Template.md</a> ，抑或参考其它的翻译文档。</p>
+<p>翻译名词可参考<a href="Comparison_Table.md">对照表</a>。</p>
+<h3><span id="lei-cheng-yuan-huo-shi-xian-fang-fa-biao-ti">类成员或实现方法标题</span><a href="#lei-cheng-yuan-huo-shi-xian-fang-fa-biao-ti" class="header-anchor">#</a></h3><p>在对类成员或实现方法进行讲解时，我们决定采用 Qt 官方文档的命名方式。</p>
+<p>以成员函数标题为例： <code>[修饰符] 返回类型 函数名(参数类型 参数名) const/volatile/override</code>。</p>
+<p>其中，<code>函数名 </code>加粗，<code>修饰符</code>、<code>参数名</code> 斜体，<code>const/volatile/override</code> 等后缀不添加额外修饰。</p>
+<p>示例：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">### *[<span class="hljs-type">static</span>]* <span class="hljs-type">int</span> QString::**compare**(<span class="hljs-type">const</span> QString &amp;*s1*, <span class="hljs-type">const</span> QString &amp;*s2*, Qt::CaseSensitivity *cs* = Qt::CaseSensitive)
+### *[<span class="hljs-keyword">virtual</span> <span class="hljs-keyword">protected</span>]* <span class="hljs-type">void</span> QObject::**childEvent**(QChildEvent \**event*)
+### *[<span class="hljs-keyword">override</span> <span class="hljs-keyword">virtual</span>]* qint64 QAbstractSocket::**bytesAvailable**() <span class="hljs-type">const</span></code></pre></div>
+
+<blockquote>
+<p><em>[static]</em> int QString::<strong>compare</strong>(const QString &amp;<em>s1</em>, const QString &amp;<em>s2</em>, Qt::CaseSensitivity <em>cs</em> = Qt::CaseSensitive)</p>
+<p><em>[virtual protected]</em> void QObject::<strong>childEvent</strong>(QChildEvent <em>*event</em>)</p>
+<p><em>[override virtual]</em> qint64 QAbstractSocket::<strong>bytesAvailable</strong>() const</p>
+</blockquote>
+<p>注：对于指针变量<code>**event*</code>，请添加转义符 <code>\</code>，以避免开头的两个星在多个指针变量中，被渲染为加粗。</p>
+<hr>
+<h3><span id="zhu-jie">注解</span><a href="#zhu-jie" class="header-anchor">#</a></h3><p>当翻译者需要添加额外的资料或吐槽时，需有明确的标注与官方文档区分开。</p>
+<p>若为独立段落，建议使用<code>&gt;</code>引用语法，并在开头单独一行标识<code>译者注:</code>。</p>
+<p>若为段内信息，建议使用段内代码(<code>译者注：xxx</code>)的方式标注。</p>
+<hr>
+<h3><span id="mu-lu">目录</span><a href="#mu-lu" class="header-anchor">#</a></h3><p>无需使用<code>[TOC]</code>生成目录，因为：</p>
+<ol>
+<li><code>[TOC]</code>为扩展语法，并非 Markdown 原生语法，GitHub 不支持此扩展。</li>
+<li>本项目将使用 GitBook 发布，可自动生成侧边栏目录。</li>
+</ol>
+<hr>
+<h3><span id="zhong-ying-hun-pai">中英混排</span><a href="#zhong-ying-hun-pai" class="header-anchor">#</a></h3><p>中英混排时，英文内容前后需增加空格分隔，以避免文字过于紧凑：</p>
+<blockquote>
+<p>正确写法：</p>
+<p>我要在 X 文件夹下，新建一个 QX11Info 的文件夹。</p>
+<p>错误写法：</p>
+<p>我要在X文件夹下，新建一个QX11Info的文件夹。</p>
+</blockquote>
+<p>文本字段落中的编程关键字，需用段内代码格式包裹，如：</p>
+<div class="code-wrapper"><pre><code class="hljs text">比如我想翻译 `QX11Info` 类。</code></pre></div>
+<p>比如我想翻译 <code>QX11Info</code> 类。</p>
+<hr>
+<h3><span id="tu-pian">图片</span><a href="#tu-pian" class="header-anchor">#</a></h3><p>可直接使用 Qt 官方文档图片。</p>
+<p>但官方文档图片为 png/jpg 格式，分辨率有限，且对主题样式无法自适应，因此推荐使用 <a target="_blank" rel="noopener" href="https://app.diagrams.net/">draw.io</a> 绘制的矢量图形，并将其保存为<code>.drawio.svg</code>格式，以便支持<code>.md</code>引用的同时，依然可以作为工程文件供 <a target="_blank" rel="noopener" href="https://app.diagrams.net/">draw.io</a> 编辑。</p>
+<p>可使用 VSCode 插件 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio">hediet.vscode-drawio</a> 直接在 VSCode 中编辑图形。</p>
+<p>范例参见 <a href="S/Signals_and_Slots/Signals_and_Slots.md">信号与槽</a>。</p>
+<hr>
+<h3><span id="yin-yong-lian-jie">引用链接</span><a href="#yin-yong-lian-jie" class="header-anchor">#</a></h3><h4><span id="ye-nei-tiao-zhuan">页内跳转</span><a href="#ye-nei-tiao-zhuan" class="header-anchor">#</a></h4><p>Markdown 页内标题跳转较为简便，语法如下：</p>
+<div class="code-wrapper"><pre><code class="hljs markdown">[<span class="hljs-string">页内跳转</span>](<span class="hljs-link">本文档名#页内跳转标题</span>)</code></pre></div>
+
+<p>页内跳转：<a href="CONTRIBUTING.md#%E4%B8%AD%E8%8B%B1%E6%B7%B7%E6%8E%92">中英混排</a></p>
+<p>省略本文件名称时，通常也可进行跳转，但有的场景会无法正确生成跳转链接，因此不建议省略。</p>
+<h4><span id="kua-ye-tiao-zhuan">跨页跳转</span><a href="#kua-ye-tiao-zhuan" class="header-anchor">#</a></h4><p>编写引用链接时，Markdown 支持直接链接跳转至目标页面的标题，语法如下：</p>
+<p>相对路径：</p>
+<div class="code-wrapper"><pre><code class="hljs Markdown">跨页跳转：[<span class="hljs-string">真实范例</span>](<span class="hljs-link">S/Signals_and_Slots/Signals_and_Slots.md#真实范例</span>)</code></pre></div>
+<p>跨页跳转：<a href="S/Signals_and_Slots/Signals_and_Slots.md#%E7%9C%9F%E5%AE%9E%E8%8C%83%E4%BE%8B">真实范例</a></p>
+<p>注：在相对路径中您可以使用<code>../</code>进行上层目录访问。</p>
+<p>绝对路径：</p>
+<div class="code-wrapper"><pre><code class="hljs Markdown">跨页跳转：[<span class="hljs-string">QAbstractSocket::socketDescriptor()</span>](<span class="hljs-link">https://github.com/QtDocumentCN/QtDocumentCN/blob/master/A/QAbstractSocket/QAbstractSocket.md#qabstractsocketsockettype-qabstractsocketsockettype-const</span>)</code></pre></div>
+<p>跨页跳转：<a target="_blank" rel="noopener" href="https://github.com/QtDocumentCN/QtDocumentCN/blob/master/A/QAbstractSocket/QAbstractSocket.md#qabstractsocketsockettype-qabstractsocketsockettype-const">QAbstractSocket::socketDescriptor()</a></p>
+<p>注意：</p>
+<ol>
+<li><p><code>#</code>后的标题名称，与文本可能并不一致。若直接使用标题文本无法成功跳转，可尝试：</p>
+<ol>
+<li>将<code>.md</code>导出至<code>.html</code>，在标题处右键——检查元素，使用该元素的 html tag 中<code>id</code>字段值；</li>
+<li>（推荐此种方法）提交至 GitHub 后，直接复制标题左方的超链接图标所指向的地址并进行修改。</li>
+</ol>
+</li>
+<li><p>为方便生成其它不依赖 GitHub 的发布页面，建议使用相对路径跳转而非绝对路径。</p>
+</li>
+<li><p>不同工具导出的 html 标签字段并不一致，GitHub 生成的中文标题标签会比 Typora 的多<code>user-content-</code>前缀。实测无需该前缀也能完成跳转，因此建议不添加此前缀，以减少对特定导出工具的依赖。待本项目发布至 GitBook 后，需要再次检查跳转链接是否能正确运作。</p>
+</li>
+<li><p>若要跨页跳转的目标页尚未完成，可以先采用规则进行目标地址的推算，待目标页完成后再进行检查。</p>
+</li>
+</ol>
+<p>原标题：</p>
+<blockquote>
+<div class="code-wrapper"><pre><code class="hljs markdown"><span class="hljs-section">### <span class="hljs-emphasis">*[override virtual]*</span> bool <span class="hljs-strong">**QAbstractSocket**</span>::waitForBytesWritten(int <span class="hljs-emphasis">*msecs*</span> = 30000)</span>
+<span class="hljs-section">### bool <span class="hljs-strong">**QAbstractSocket**</span>::bind(const QHostAddress &amp;<span class="hljs-emphasis">*address*</span>, quint16 <span class="hljs-emphasis">*port*</span> = 0, QAbstractSocket::BindMode <span class="hljs-emphasis">*mode*</span> = DefaultForPlatform)</span></code></pre></div>
+</blockquote>
+<p>跳转路径：</p>
+<blockquote>
+<div class="code-wrapper"><pre><code class="hljs rust">#<span class="hljs-keyword">override</span>-<span class="hljs-keyword">virtual</span>-<span class="hljs-type">bool</span>-qabstractsocketwaitforbyteswrittenint-msecs--<span class="hljs-number">30000</span>
+#<span class="hljs-type">bool</span>-qabstractsocketbindconst-qhostaddress-address-quint16-port--<span class="hljs-number">0</span>-qabstractsocketbindmode-mode--defaultforplatform</code></pre></div>
+</blockquote>
+<p>从以上示例我们可以推导出跳转规则：</p>
+<ul>
+<li><code>* ：() &amp; [] =</code> 等所有符号直接省略；</li>
+<li>大写全部改为小写；</li>
+<li><code>空格</code> 改为 <code>-</code>。</li>
+</ul>
+<p>此外，中文标题请改为 <code>%</code> 转义格式，如 <code>[更多内容...](#详细描述)</code> 应改为 <code>[更多内容...](#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0)</code>。</p>
+<h4><span id="di-san-fang-lian-jie">第三方链接</span><a href="#di-san-fang-lian-jie" class="header-anchor">#</a></h4><p>除 Qt 原文档中的第三方链接，根据翻译需求添加的 <code>译者注：</code> 中，<strong>只应</strong>引用其它官方组织的文档，如 <a target="_blank" rel="noopener" href="https://en.cppreference.com/w/">CppReference</a> 或 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentthreadid">MSDN</a>，<strong>不可</strong>添加个人博客等非官方组织的链接。</p>
+<h2><span id="markdown-bian-ji-qi">Markdown 编辑器</span><a href="#markdown-bian-ji-qi" class="header-anchor">#</a></h2><h3><span id="typora">Typora</span><a href="#typora" class="header-anchor">#</a></h3><p>为规范格式（空行、缩进等），减少多人合作编辑同一<code>.md</code>文件时的无意义的 diff 内容，推荐使用 <a target="_blank" rel="noopener" href="https://typora.io/">Typora</a> 编辑器。</p>
+<p>该编辑器为类 Word 的所见即所得编辑方式，会自动按照固定格式对 Markdown 源码进行排版，从而避免手动排版与他人排版风格不匹配的问题。</p>
+<hr>
+<h3><span id="vscode">VSCode</span><a href="#vscode" class="header-anchor">#</a></h3><p>若不想下载独立编辑工具，但想直观阅览 Markdown 渲染效果，则可直接使用 VSCode 编辑<code>.md</code>文件。</p>
+<p>点击 VSCode 的<code>.md</code>文件标签页右上角的“打开侧边预览”(Ctrl+K V)，或在命令面板(F1)中搜索“Markdown”并选择打开预览(Markdown: Open Preview)即可。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%B4%A1%E7%8C%AE%E6%8C%87%E5%8D%97/">贡献指南</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/CODE_OF_CONDUCT/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">参与者公约</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/QtDocumentCN/Comparison_Table/">
+                        <span class="hidden-mobile">词汇对照表</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,595 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="std::tuple std::tie std::pair      来自于👉 tuple - C++ Reference (cplusplus.com) 并整理  一个元组std::tuple是一个能够容纳 元素集合 的对象。每个元素都可以是 不同的类型。   std::make_pair()可以构建一个配对对象，其第一个元素设置为x，第二个元素设置为y，并返回。   std::ti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++元组与对组">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/29/C-%E5%85%83%E7%BB%84%E4%B8%8E%E5%AF%B9%E7%BB%84/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="std::tuple std::tie std::pair      来自于👉 tuple - C++ Reference (cplusplus.com) 并整理  一个元组std::tuple是一个能够容纳 元素集合 的对象。每个元素都可以是 不同的类型。   std::make_pair()可以构建一个配对对象，其第一个元素设置为x，第二个元素设置为y，并返回。   std::ti">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/xuxieban.png">
+<meta property="article:published_time" content="2022-01-29T09:41:10.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:03:24.958Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++11">
+<meta property="article:tag" content="Tuple">
+<meta property="article:tag" content="Pair">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/xuxieban.png">
+  
+  
+  <title>C++元组与对组 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++元组与对组">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-29 17:41" pubdate>
+        2022年1月29日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      22 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++元组与对组</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#std-tuple"><code>std::tuple</code></a></li>
+<li><a href="#std-tie"><code>std::tie</code></a></li>
+<li><a href="#std-pair"><code>std::pair</code></a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<p>来自于👉 <a target="_blank" rel="noopener" href="http://www.cplusplus.com/reference/tuple/tuple/?kw=tuple">tuple - C++ Reference (cplusplus.com)</a> 并整理</p>
+<blockquote>
+<p>一个元组<code>std::tuple</code>是一个能够容纳 <em><strong>元素集合</strong></em> 的对象。每个元素都可以是 <em><strong>不同的类型</strong></em>。</p>
+</blockquote>
+<blockquote>
+<p><code>std::make_pair()</code>可以<em><strong>构建一个配对对象</strong></em>，其第一个元素设置为x，第二个元素设置为y，并返回。</p>
+</blockquote>
+<blockquote>
+<p><code>std::tie</code>可以绑定<code>std::tuple&lt;T,T,T,...&gt;</code>的实例，并分别给这些元素起别名</p>
+</blockquote>
+<hr>
+<h1><span id="std-tuple"><code>std::tuple</code></span><a href="#std-tuple" class="header-anchor">#</a></h1><p>所在头文件 <code>&lt;tuple&gt;</code></p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// tuple example</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span>     <span class="hljs-comment">// std::cout</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;tuple&gt;</span>        <span class="hljs-comment">// std::tuple, std::get, std::tie, std::ignore</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::tuple&lt;<span class="hljs-type">int</span>,<span class="hljs-type">char</span>&gt; <span class="hljs-title">foo</span> <span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-string">'x'</span>)</span></span>;
+    <span class="hljs-keyword">auto</span> bar = std::<span class="hljs-built_in">make_tuple</span> (<span class="hljs-string">"test"</span>, <span class="hljs-number">3.1</span>, <span class="hljs-number">14</span>, <span class="hljs-string">'y'</span>);
+    std::cout &lt;&lt; <span class="hljs-string">"bar has "</span>&lt;&lt;std::tuple_size&lt;<span class="hljs-keyword">decltype</span>(bar)&gt;::value &lt;&lt; elements&lt;&lt; <span class="hljs-string">'\n'</span>;
+	std::tuple_element&lt;<span class="hljs-number">0</span>,<span class="hljs-keyword">decltype</span>(bar)&gt;::type first = std::<span class="hljs-built_in">get</span>&lt;<span class="hljs-number">0</span>&gt;(bar);
+    std::cout &lt;&lt; <span class="hljs-string">"bar contains: "</span> &lt;&lt; first &lt;&lt; <span class="hljs-string">'\n'</span>;
+    
+    std::<span class="hljs-built_in">get</span>&lt;<span class="hljs-number">2</span>&gt;(bar) = <span class="hljs-number">100</span>;                                    <span class="hljs-comment">// access element</span>
+
+    <span class="hljs-type">int</span> myint; <span class="hljs-type">char</span> mychar;
+
+    std::<span class="hljs-built_in">tie</span> (myint, mychar) = foo;                            <span class="hljs-comment">// unpack elements</span>
+    std::<span class="hljs-built_in">tie</span> (std::ignore, std::ignore, myint, mychar) = bar;  <span class="hljs-comment">// unpack (with ignore)</span>
+
+    mychar = std::<span class="hljs-built_in">get</span>&lt;<span class="hljs-number">3</span>&gt;(bar);
+
+    std::<span class="hljs-built_in">get</span>&lt;<span class="hljs-number">0</span>&gt;(foo) = std::<span class="hljs-built_in">get</span>&lt;<span class="hljs-number">2</span>&gt;(bar);
+    std::<span class="hljs-built_in">get</span>&lt;<span class="hljs-number">1</span>&gt;(foo) = mychar;
+
+    std::cout &lt;&lt; <span class="hljs-string">"foo contains: "</span>;
+    std::cout &lt;&lt; std::<span class="hljs-built_in">get</span>&lt;<span class="hljs-number">0</span>&gt;(foo) &lt;&lt; <span class="hljs-string">' '</span>;
+    std::cout &lt;&lt; std::<span class="hljs-built_in">get</span>&lt;<span class="hljs-number">1</span>&gt;(foo) &lt;&lt; <span class="hljs-string">'\n'</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+<p>答案：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">bar has 4 elements
+bar contains: <span class="hljs-built_in">test</span>
+foo contains: 100 y</code></pre></div>
+
+<hr>
+<h1><span id="std-tie"><code>std::tie</code></span><a href="#std-tie" class="header-anchor">#</a></h1><p>所在头文件 <code>&lt;tuple&gt;</code></p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// packing/unpacking tuples</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span>     <span class="hljs-comment">// std::cout</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;tuple&gt;</span>        <span class="hljs-comment">// std::tuple, std::make_tuple, std::tie</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::tuple&lt;<span class="hljs-type">int</span>,<span class="hljs-type">float</span>,<span class="hljs-type">char</span>&gt; mytuple;
+
+    mytuple = std::<span class="hljs-built_in">make_tuple</span> (<span class="hljs-number">10</span>, <span class="hljs-number">2.6</span>, <span class="hljs-string">'a'</span>);          <span class="hljs-comment">// packing values into tuple</span>
+
+    <span class="hljs-type">int</span> myint;
+    <span class="hljs-type">char</span> mychar;
+    std::<span class="hljs-built_in">tie</span> (myint, std::ignore, mychar) = mytuple;   <span class="hljs-comment">// unpacking tuple into variables</span>
+
+    std::cout &lt;&lt; <span class="hljs-string">"myint contains: "</span> &lt;&lt; myint &lt;&lt; <span class="hljs-string">'\n'</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"mychar contains: "</span> &lt;&lt; mychar &lt;&lt; <span class="hljs-string">'\n'</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>结果：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">myint contains: 10
+mychar contains: a</code></pre></div>
+
+<hr>
+<h1><span id="std-pair"><code>std::pair</code></span><a href="#std-pair" class="header-anchor">#</a></h1><p>所在头文件 <code>&lt;utility&gt;</code></p>
+<p>例子：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// make_pair example</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span>      <span class="hljs-comment">// std::pair</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span>     <span class="hljs-comment">// std::cout</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+    std::pair &lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; foo;
+    std::pair &lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; bar;
+
+    foo = std::<span class="hljs-built_in">make_pair</span> (<span class="hljs-number">10</span>,<span class="hljs-number">20</span>);
+    bar = std::<span class="hljs-built_in">make_pair</span> (<span class="hljs-number">10.5</span>,<span class="hljs-string">'A'</span>); <span class="hljs-comment">// ok: implicit conversion from pair&lt;double,char&gt;</span>
+
+    std::cout &lt;&lt; <span class="hljs-string">"foo: "</span> &lt;&lt; foo.first &lt;&lt; <span class="hljs-string">", "</span> &lt;&lt; foo.second &lt;&lt; <span class="hljs-string">'\n'</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"bar: "</span> &lt;&lt; bar.first &lt;&lt; <span class="hljs-string">", "</span> &lt;&lt; bar.second &lt;&lt; <span class="hljs-string">'\n'</span>;
+	std::cout&lt;&lt; <span class="hljs-string">"foo contains: "</span> &lt;&lt; std::<span class="hljs-built_in">get</span>&lt;<span class="hljs-number">0</span>&gt;(foo) &lt;&lt; <span class="hljs-string">" and "</span> &lt;&lt; std::<span class="hljs-built_in">get</span>&lt;<span class="hljs-number">1</span>&gt;(foo) &lt;&lt; <span class="hljs-string">'\n'</span>;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+<p>结果：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">foo: 10, 20
+bar: 10, 65
+foo contains: 50 and x</code></pre></div>
+
+<hr>
+<p>End.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C-11/">C++11</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Tuple/">Tuple</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Pair/">Pair</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/29/C-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%9C%A8%E6%88%96%E4%B8%8D%E5%AD%98%E5%9C%A8%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++数据存在或不存在处理方法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/29/C-%E7%BB%93%E6%9E%84%E5%8C%96%E7%BB%91%E5%AE%9A/">
+                        <span class="hidden-mobile">C++结构化绑定</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

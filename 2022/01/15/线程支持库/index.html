@@ -1,0 +1,2086 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#6aa84f">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="线程支持库 #include &lt;thread&gt; std::thread std::thread::id std::thread::hardware_concurrency() std::thread::native_handle() std::thread::join() std::thread::detach() std::thread::swap std::this_th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线程支持库">
+<meta property="og:url" content="https://txt1994.github.io/2022/01/15/%E7%BA%BF%E7%A8%8B%E6%94%AF%E6%8C%81%E5%BA%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="线程支持库 #include &lt;thread&gt; std::thread std::thread::id std::thread::hardware_concurrency() std::thread::native_handle() std::thread::join() std::thread::detach() std::thread::swap std::this_th">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://txt1994.github.io/img/15499750511455.jpg">
+<meta property="article:published_time" content="2022-01-15T09:13:05.000Z">
+<meta property="article:modified_time" content="2022-03-18T16:31:04.834Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Thread">
+<meta property="article:tag" content="Mutex">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://txt1994.github.io/img/15499750511455.jpg">
+  
+  
+  <title>线程支持库 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"txt1994.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>txt1994s</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友联
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="线程支持库">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-15 17:13" pubdate>
+        2022年1月15日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      33k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      278 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">线程支持库</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月19日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#xian-cheng-zhi-chi-ku">线程支持库</a><ul>
+<li><a href="#include-thread"><strong><code>#include &lt;thread&gt;</code></strong></a><ul>
+<li><a href="#std-thread">std::thread</a></li>
+<li><a href="#std-thread-id"><code>std::thread::id</code></a></li>
+<li><a href="#std-thread-hardware-concurrency"><code>std::thread::hardware_concurrency()</code></a></li>
+<li><a href="#std-thread-native-handle"><code>std::thread::native_handle()</code></a></li>
+<li><a href="#std-thread-join"><code>std::thread::join()</code></a></li>
+<li><a href="#std-thread-detach"><code>std::thread::detach()</code></a></li>
+<li><a href="#std-thread-swap"><code>std::thread::swap</code></a></li>
+<li><a href="#std-this-thread-yield">std::this_thread::yield()</a></li>
+<li><a href="#std-this-thread-get-id">std::this_thread::get_id()</a></li>
+<li><a href="#std-this-thread-sleep-for">std::this_thread::sleep_for()</a></li>
+<li><a href="#std-this-thread-sleep-until">std::this_thread::sleep_until()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#hu-chi">互斥</a><ul>
+<li><a href="#include-mutex"><strong><code>#include &lt;mutex&gt;</code></strong></a><ul>
+<li><a href="#std-mutex-lock">std::mutex::lock()</a></li>
+<li><a href="#std-mutex-try-lock">std::mutex::try_lock()</a></li>
+<li><a href="#std-mutex-unlock">std::mutex::unlock()</a></li>
+<li><a href="#std-timed-mutex">std::timed_mutex</a></li>
+<li><a href="#std-timed-mutex-lock">std::timed_mutex::lock()</a></li>
+<li><a href="#std-timed-mutex-unlock">std::timed_mutex::unlock()</a></li>
+<li><a href="#std-timed-mutex-try-lock">std::timed_mutex::try_lock()</a></li>
+<li><a href="#std-timed-mutex-try-lock-for">std::timed_mutex::try_lock_for()</a></li>
+<li><a href="#std-timed-mutex-try-lock-until">std::timed_mutex::try_lock_until()</a></li>
+<li><a href="#std-lock-guard-std-mutex">std::lock_guard<code>&lt;std::mutex&gt;</code></a></li>
+<li><a href="#std-unique-lock-mutex-lock">std::unique_lock<code>&lt;Mutex&gt;::lock</code></a></li>
+<li><a href="#std-unique-lock-std-mutex">std::unique_lock<code>&lt;std::mutex&gt;</code></a></li>
+<li><a href="#std-unique-lock-mutex-try-lock">std::unique_lock<code>&lt;Mutex&gt;::try_lock</code></a></li>
+<li><a href="#std-unique-lock-mutex-try-lock-for">std::unique_lock<code>&lt;Mutex&gt;::try_lock_for</code></a></li>
+<li><a href="#std-call-once">std::call_once</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#tiao-jian-bian-liang">条件变量</a><ul>
+<li><a href="#std-condition-variable">std::condition_variable</a></li>
+<li><a href="#std-condition-variable-notify-all">std::condition_variable::notify_all()</a></li>
+<li><a href="#std-condition-variable-notify-one">std::condition_variable::notify_one()</a></li>
+<li><a href="#std-condition-variable-wait">std::condition_variable::wait()</a></li>
+<li><a href="#std-condition-variable-wait-for">std::condition_variable::wait_for()</a></li>
+</ul>
+</li>
+<li><a href="#xin-hao-liang">信号量</a><ul>
+<li><a href="#std-counting-semaphore-std-binary-semaphore">std::counting_semaphore, std::binary_semaphore</a></li>
+</ul>
+</li>
+<li><a href="#future">Future</a><ul>
+<li><a href="#yi-bu-xian-cheng">异步线程</a><ul>
+<li><a href="#classes">Classes</a></li>
+<li><a href="#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<p>此文来自于👉<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread">线程支持库 - cppreference.com</a></p>
+<h1><span id="xian-cheng-zhi-chi-ku">线程支持库</span><a href="#xian-cheng-zhi-chi-ku" class="header-anchor">#</a></h1><table>
+<thead>
+<tr>
+<th><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/header/thread">thread</a>(C++11)</th>
+<th><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/thread">std::thread</a> 类与<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread">支持函数</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/header/stop_token">stop_token</a>(C++20)</td>
+<td>std::jthread 的停止记号</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/header/mutex">mutex</a>(C++11)</td>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread">互斥元件</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/header/shared_mutex">shared_mutex</a>(C++14)</td>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread">共享互斥元件</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/header/future">future</a>(C++11)</td>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread">异步计算元件</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/header/condition_variable">condition_variable</a>(C++11)</td>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread">线程等待条件</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/header/semaphore">semaphore</a>(C++20)</td>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/counting_semaphore">信号量</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/header/latch">latch</a>(C++20)</td>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/latch">闩</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/header/barrier">barrier</a>(C++20)</td>
+<td><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/barrier">屏障</a></td>
+</tr>
+</tbody></table>
+<h2><span id="include-lt-thread-gt"><strong><code>#include &lt;thread&gt;</code></strong></span><a href="#include-lt-thread-gt" class="header-anchor">#</a></h2><h3><span id="std-thread">std::thread</span><a href="#std-thread" class="header-anchor">#</a></h3><blockquote>
+<p>thread类  表示单个执行线程。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::thread th1;
+}
+</code></pre></div>
+
+
+<h3><span id="std-thread-id"><code>std::thread::id</code></span><a href="#std-thread-id" class="header-anchor">#</a></h3><blockquote>
+<p>thread::id类 是轻量的可频繁复制类，它作为 <code>std::thread</code> 对象的<strong>唯一标识符</strong>工作。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ULL;
+
+<span class="hljs-function">std::string <span class="hljs-title">getThreadIdOfString</span><span class="hljs-params">(<span class="hljs-type">const</span> std::thread::id &amp; id)</span></span>
+<span class="hljs-function"></span>{
+    std::stringstream sin;
+    sin &lt;&lt; id;
+    <span class="hljs-keyword">return</span> sin.<span class="hljs-built_in">str</span>();
+}
+
+<span class="hljs-function">ULL <span class="hljs-title">getThreadIdOfULL</span><span class="hljs-params">(<span class="hljs-type">const</span> std::thread::id &amp; id)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">stoull</span>(<span class="hljs-built_in">getThreadIdOfString</span>(id));
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::thread::id id = std::this_thread::<span class="hljs-built_in">get_id</span>();
+    std::cout &lt;&lt; <span class="hljs-string">"cout ----- id : "</span> &lt;&lt; id &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"getThreadIdOfString ----- id : "</span> &lt;&lt; <span class="hljs-built_in">getThreadIdOfString</span>(id) &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"getThreadIdOfULL ----- id : "</span> &lt;&lt; <span class="hljs-built_in">getThreadIdOfULL</span>(id) &lt;&lt; std::endl;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3><span id="std-thread-hardware-concurrency"><code>std::thread::hardware_concurrency()</code></span><a href="#std-thread-hardware-concurrency" class="header-anchor">#</a></h3><blockquote>
+<p>返回处理器支持的并发线程数。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> n = std::thread::<span class="hljs-built_in">hardware_concurrency</span>();
+    std::cout &lt;&lt; n &lt;&lt; <span class="hljs-string">" concurrent threads are supported.\n"</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3><span id="std-thread-native-handle"><code>std::thread::native_handle()</code></span><a href="#std-thread-native-handle" class="header-anchor">#</a></h3><blockquote>
+<p>返回实现定义的底层线程柄。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span>
+ 
+std::mutex iomutex;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> num)</span></span>
+<span class="hljs-function"></span>{
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+ 
+    sched_param sch;
+    <span class="hljs-type">int</span> policy; 
+    <span class="hljs-built_in">pthread_getschedparam</span>(<span class="hljs-built_in">pthread_self</span>(), &amp;policy, &amp;sch);
+    <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(iomutex)</span></span>;
+    std::cout &lt;&lt; <span class="hljs-string">"Thread "</span> &lt;&lt; num &lt;&lt; <span class="hljs-string">" is executing at priority "</span>
+              &lt;&lt; sch.sched_priority &lt;&lt; <span class="hljs-string">'\n'</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(f, <span class="hljs-number">1</span>)</span>, <span class="hljs-title">t2</span><span class="hljs-params">(f, <span class="hljs-number">2</span>)</span></span>;
+ 
+    sched_param sch;
+    <span class="hljs-type">int</span> policy; 
+    <span class="hljs-built_in">pthread_getschedparam</span>(t1.<span class="hljs-built_in">native_handle</span>(), &amp;policy, &amp;sch);
+    sch.sched_priority = <span class="hljs-number">20</span>;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pthread_setschedparam</span>(t1.<span class="hljs-built_in">native_handle</span>(), SCHED_FIFO, &amp;sch)) {
+        std::cout &lt;&lt; <span class="hljs-string">"Failed to setschedparam: "</span> &lt;&lt; std::<span class="hljs-built_in">strerror</span>(errno) &lt;&lt; <span class="hljs-string">'\n'</span>;
+    }
+ 
+    t1.<span class="hljs-built_in">join</span>(); t2.<span class="hljs-built_in">join</span>();
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3><span id="std-thread-join"><code>std::thread::join()</code></span><a href="#std-thread-join" class="header-anchor">#</a></h3><blockquote>
+<p>等待线程完成其执行</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// 模拟耗费大量资源的操作</span>
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bar</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// 模拟耗费大量资源的操作</span>
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::cout &lt;&lt; <span class="hljs-string">"starting first helper...\n"</span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">helper1</span><span class="hljs-params">(foo)</span></span>;
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"starting second helper...\n"</span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">helper2</span><span class="hljs-params">(bar)</span></span>;
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"waiting for helpers to finish..."</span> &lt;&lt; std::endl;
+    helper1.<span class="hljs-built_in">join</span>();
+    helper2.<span class="hljs-built_in">join</span>();
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"done!\n"</span>;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3><span id="std-thread-detach"><code>std::thread::detach()</code></span><a href="#std-thread-detach" class="header-anchor">#</a></h3><blockquote>
+<p>容许线程从线程句柄独立开来执行</p>
+<p>从 thread 对象分离执行线程，允许执行独立地持续。一旦该线程退出，则释放任何分配的资源。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">independentThread</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    std::cout &lt;&lt; <span class="hljs-string">"Starting concurrent thread.\n"</span>;
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">2</span>));
+    std::cout &lt;&lt; <span class="hljs-string">"Exiting concurrent thread.\n"</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">threadCaller</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    std::cout &lt;&lt; <span class="hljs-string">"Starting thread caller.\n"</span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t</span><span class="hljs-params">(independentThread)</span></span>;
+    t.<span class="hljs-built_in">detach</span>();
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+    std::cout &lt;&lt; <span class="hljs-string">"Exiting thread caller.\n"</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    <span class="hljs-built_in">threadCaller</span>();
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">5</span>));
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3><span id="std-thread-swap"><code>std::thread::swap</code></span><a href="#std-thread-swap" class="header-anchor">#</a></h3><blockquote>
+<p>交换二个 thread 对象的底层柄。</p>
+<p>交换二个 <code>thread</code> 对象</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bar</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(foo)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t2</span><span class="hljs-params">(bar)</span></span>;
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"thread 1 id: "</span> &lt;&lt; t1.<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">'\n'</span>
+              &lt;&lt; <span class="hljs-string">"thread 2 id: "</span> &lt;&lt; t2.<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+ 
+    std::<span class="hljs-built_in">swap</span>(t1, t2);
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"after std::swap(t1, t2):"</span> &lt;&lt; <span class="hljs-string">'\n'</span>
+              &lt;&lt; <span class="hljs-string">"thread 1 id: "</span> &lt;&lt; t1.<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">'\n'</span>
+              &lt;&lt; <span class="hljs-string">"thread 2 id: "</span> &lt;&lt; t2.<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+ 
+    t1.<span class="hljs-built_in">swap</span>(t2);
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"after t1.swap(t2):"</span> &lt;&lt; <span class="hljs-string">'\n'</span>
+              &lt;&lt; <span class="hljs-string">"thread 1 id: "</span> &lt;&lt; t1.<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">'\n'</span>
+              &lt;&lt; <span class="hljs-string">"thread 2 id: "</span> &lt;&lt; t2.<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+ 
+    t1.<span class="hljs-built_in">join</span>();
+    t2.<span class="hljs-built_in">join</span>();
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+
+
+<h3><span id="std-this-thread-yield">std::this_thread::yield()</span><a href="#std-this-thread-yield" class="header-anchor">#</a></h3><p><strong>建议实现重新调度各执行线程</strong></p>
+<blockquote>
+<p> 提供提示给实现，以重调度线程的执行，允许其他线程运行</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+ 
+<span class="hljs-comment">// 建议其他线程运行一小段时间的“忙睡眠”</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">little_sleep</span><span class="hljs-params">(std::chrono::microseconds us)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">auto</span> start = std::chrono::high_resolution_clock::<span class="hljs-built_in">now</span>();
+    <span class="hljs-keyword">auto</span> end = start + us;
+    <span class="hljs-keyword">do</span> {
+        std::this_thread::<span class="hljs-built_in">yield</span>();
+    } <span class="hljs-keyword">while</span> (std::chrono::high_resolution_clock::<span class="hljs-built_in">now</span>() &lt; end);
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">auto</span> start = std::chrono::high_resolution_clock::<span class="hljs-built_in">now</span>();
+ 
+    <span class="hljs-built_in">little_sleep</span>(std::chrono::<span class="hljs-built_in">microseconds</span>(<span class="hljs-number">100</span>));
+ 
+    <span class="hljs-keyword">auto</span> elapsed = std::chrono::high_resolution_clock::<span class="hljs-built_in">now</span>() - start;
+    std::cout &lt;&lt; <span class="hljs-string">"waited for "</span>
+              &lt;&lt; std::chrono::<span class="hljs-built_in">duration_cast</span>&lt;std::chrono::microseconds&gt;(elapsed).<span class="hljs-built_in">count</span>()
+              &lt;&lt; <span class="hljs-string">" microseconds\n"</span>;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3><span id="std-this-thread-get-id">std::this_thread::get_id()</span><a href="#std-this-thread-get-id" class="header-anchor">#</a></h3><blockquote>
+<p>返回当前线程的线程 id</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+ 
+std::mutex g_display_mutex;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::thread::id this_id = std::this_thread::<span class="hljs-built_in">get_id</span>();
+ 
+    g_display_mutex.<span class="hljs-built_in">lock</span>();
+    std::cout &lt;&lt; <span class="hljs-string">"thread "</span> &lt;&lt; this_id &lt;&lt; <span class="hljs-string">" sleeping...\n"</span>;
+    g_display_mutex.<span class="hljs-built_in">unlock</span>();
+ 
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(foo)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t2</span><span class="hljs-params">(foo)</span></span>;
+ 
+    t1.<span class="hljs-built_in">join</span>();
+    t2.<span class="hljs-built_in">join</span>();
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+
+
+
+
+<h3><span id="std-this-thread-sleep-for">std::this_thread::sleep_for()</span><a href="#std-this-thread-sleep-for" class="header-anchor">#</a></h3><blockquote>
+<p>使当前线程的执行停止指定的时间段</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+    std::cout &lt;&lt; <span class="hljs-string">"Hello waiter\n"</span> &lt;&lt; std::flush;
+    <span class="hljs-keyword">auto</span> start = std::chrono::high_resolution_clock::<span class="hljs-built_in">now</span>();
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">2000</span>ms);
+    <span class="hljs-keyword">auto</span> end = std::chrono::high_resolution_clock::<span class="hljs-built_in">now</span>();
+    std::chrono::duration&lt;<span class="hljs-type">double</span>, std::milli&gt; elapsed = end-start;
+    std::cout &lt;&lt; <span class="hljs-string">"Waited "</span> &lt;&lt; elapsed.<span class="hljs-built_in">count</span>() &lt;&lt; <span class="hljs-string">" ms\n"</span>;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3><span id="std-this-thread-sleep-until">std::this_thread::sleep_until()</span><a href="#std-this-thread-sleep-until" class="header-anchor">#</a></h3><blockquote>
+<p>使当前线程的执行停止直到指定的时间点</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span>  </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iomanip&gt;</span>  </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span>  </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;ctime&gt;</span>  </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span>  </span>
+<span class="hljs-meta">#<span class="hljs-keyword">pragma</span> <span class="hljs-keyword">warning</span>(disable:4996)<span class="hljs-comment">//加上可去掉unsafe 请使用localtime_s的编译报错  </span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>  </span>
+<span class="hljs-function"></span>{  
+    <span class="hljs-keyword">using</span> std::chrono::system_clock;  
+    std::<span class="hljs-type">time_t</span> tt = system_clock::<span class="hljs-built_in">to_time_t</span>(system_clock::<span class="hljs-built_in">now</span>());  
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">std</span>::tm *ptm = std::<span class="hljs-built_in">localtime</span>(&amp;tt);  
+    std::cout &lt;&lt; <span class="hljs-string">"Current time: "</span> &lt;&lt; std::<span class="hljs-built_in">put_time</span>(ptm, <span class="hljs-string">"%X"</span>) &lt;&lt; <span class="hljs-string">'\n'</span>; <span class="hljs-comment">//必须大写X，若小写x，输出的为日期  </span>
+    std::cout &lt;&lt; <span class="hljs-string">"Waiting for the next minute to begin...\n"</span>;  
+    ++ptm-&gt;tm_min;   
+    ptm-&gt;tm_sec = <span class="hljs-number">0</span>;  
+    std::this_thread::<span class="hljs-built_in">sleep_until</span>(system_clock::<span class="hljs-built_in">from_time_t</span>(<span class="hljs-built_in">mktime</span>(ptm)));  
+    std::cout &lt;&lt; std::<span class="hljs-built_in">put_time</span>(ptm, <span class="hljs-string">"%X"</span>) &lt;&lt; <span class="hljs-string">"reached!\n"</span>;  
+  
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;  
+}</code></pre></div>
+
+<h1><span id="hu-chi">互斥</span><a href="#hu-chi" class="header-anchor">#</a></h1><h2><span id="include-lt-mutex-gt"><strong><code>#include &lt;mutex&gt;</code></strong></span><a href="#include-lt-mutex-gt" class="header-anchor">#</a></h2><h3><span id="std-mutex-lock">std::mutex::lock()</span><a href="#std-mutex-lock" class="header-anchor">#</a></h3><blockquote>
+<p>锁定互斥。若另一线程已锁定互斥，则到 <code>lock</code> 的调用将阻塞执行，直至获得锁。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+ 
+<span class="hljs-type">int</span> g_num = <span class="hljs-number">0</span>;  <span class="hljs-comment">// 为 g_num_mutex 所保护</span>
+std::mutex g_num_mutex;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">slow_increment</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span> </span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; ++i) {
+        g_num_mutex.<span class="hljs-built_in">lock</span>();
+        ++g_num;
+        std::cout &lt;&lt; id &lt;&lt; <span class="hljs-string">" =&gt; "</span> &lt;&lt; g_num &lt;&lt; <span class="hljs-string">'\n'</span>;
+        g_num_mutex.<span class="hljs-built_in">unlock</span>();
+ 
+        std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+    }
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(slow_increment, <span class="hljs-number">0</span>)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t2</span><span class="hljs-params">(slow_increment, <span class="hljs-number">1</span>)</span></span>;
+    t1.<span class="hljs-built_in">join</span>();
+    t2.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+<h3><span id="std-mutex-try-lock">std::mutex::try_lock()</span><a href="#std-mutex-try-lock" class="header-anchor">#</a></h3><blockquote>
+<p>尝试锁定互斥。立即返回。成功获得锁时返回 true ，否则返回 false 。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span> <span class="hljs-comment">// std::cout</span></span>
+ 
+std::<span class="hljs-function">chrono::milliseconds <span class="hljs-title">interval</span><span class="hljs-params">(<span class="hljs-number">100</span>)</span></span>;
+ 
+std::mutex mutex;
+<span class="hljs-type">int</span> job_shared = <span class="hljs-number">0</span>; <span class="hljs-comment">// 两个线程都能修改 'job_shared',</span>
+    <span class="hljs-comment">// mutex 将保护此变量</span>
+ 
+<span class="hljs-type">int</span> job_exclusive = <span class="hljs-number">0</span>; <span class="hljs-comment">// 只有一个线程能修改 'job_exclusive'</span>
+    <span class="hljs-comment">// 不需要保护</span>
+ 
+<span class="hljs-comment">// 此线程能修改 'job_shared' 和 'job_exclusive'</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">job_1</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(interval); <span class="hljs-comment">// 令 'job_2' 持锁</span>
+ 
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+        <span class="hljs-comment">// 尝试锁定 mutex 以修改 'job_shared'</span>
+        <span class="hljs-keyword">if</span> (mutex.<span class="hljs-built_in">try_lock</span>()) {
+            std::cout &lt;&lt; <span class="hljs-string">"job shared ("</span> &lt;&lt; job_shared &lt;&lt; <span class="hljs-string">")\n"</span>;
+            mutex.<span class="hljs-built_in">unlock</span>();
+            <span class="hljs-keyword">return</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// 不能获取锁以修改 'job_shared'</span>
+            <span class="hljs-comment">// 但有其他工作可做</span>
+            ++job_exclusive;
+            std::cout &lt;&lt; <span class="hljs-string">"job exclusive ("</span> &lt;&lt; job_exclusive &lt;&lt; <span class="hljs-string">")\n"</span>;
+            std::this_thread::<span class="hljs-built_in">sleep_for</span>(interval);
+        }
+    }
+}
+ 
+<span class="hljs-comment">// 此线程只能修改 'job_shared'</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">job_2</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    mutex.<span class="hljs-built_in">lock</span>();
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">5</span> * interval);
+    ++job_shared;
+    mutex.<span class="hljs-built_in">unlock</span>();
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">thread_1</span><span class="hljs-params">(job_1)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">thread_2</span><span class="hljs-params">(job_2)</span></span>;
+ 
+    thread_1.<span class="hljs-built_in">join</span>();
+    thread_2.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+<h3><span id="std-mutex-unlock">std::mutex::unlock()</span><a href="#std-mutex-unlock" class="header-anchor">#</a></h3><blockquote>
+<p>解锁互斥</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+ 
+<span class="hljs-type">int</span> g_num = <span class="hljs-number">0</span>;  <span class="hljs-comment">// 为 g_num_mutex 所保护</span>
+std::mutex g_num_mutex;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">slow_increment</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span> </span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; ++i) {
+        g_num_mutex.<span class="hljs-built_in">lock</span>();
+        ++g_num;
+        std::cout &lt;&lt; id &lt;&lt; <span class="hljs-string">" =&gt; "</span> &lt;&lt; g_num &lt;&lt; <span class="hljs-string">'\n'</span>;
+        g_num_mutex.<span class="hljs-built_in">unlock</span>();
+ 
+        std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+    }
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(slow_increment, <span class="hljs-number">0</span>)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t2</span><span class="hljs-params">(slow_increment, <span class="hljs-number">1</span>)</span></span>;
+    t1.<span class="hljs-built_in">join</span>();
+    t2.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+<h3><span id="std-timed-mutex">std::timed_mutex</span><a href="#std-timed-mutex" class="header-anchor">#</a></h3><blockquote>
+<p><code>timed_mutex</code> 类是能用于保护数据免受多个线程同时访问的同步原语。</p>
+</blockquote>
+<h3><span id="std-timed-mutex-lock">std::timed_mutex::lock()</span><a href="#std-timed-mutex-lock" class="header-anchor">#</a></h3><blockquote>
+<p>锁定互斥。若另一线程已锁定互斥，则到 <code>lock</code> 的调用将阻塞执行，直至获得锁。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+ 
+<span class="hljs-type">int</span> g_num = <span class="hljs-number">0</span>;  <span class="hljs-comment">// 为 g_num_mutex 所保护</span>
+std::mutex g_num_mutex;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">slow_increment</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span> </span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; ++i) {
+        g_num_mutex.<span class="hljs-built_in">lock</span>();
+        ++g_num;
+        std::cout &lt;&lt; id &lt;&lt; <span class="hljs-string">" =&gt; "</span> &lt;&lt; g_num &lt;&lt; <span class="hljs-string">'\n'</span>;
+        g_num_mutex.<span class="hljs-built_in">unlock</span>();
+ 
+        std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+    }
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(slow_increment, <span class="hljs-number">0</span>)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t2</span><span class="hljs-params">(slow_increment, <span class="hljs-number">1</span>)</span></span>;
+    t1.<span class="hljs-built_in">join</span>();
+    t2.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+<h3><span id="std-timed-mutex-unlock">std::timed_mutex::unlock()</span><a href="#std-timed-mutex-unlock" class="header-anchor">#</a></h3><blockquote>
+<p>解锁互斥。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+ 
+<span class="hljs-type">int</span> g_num = <span class="hljs-number">0</span>;  <span class="hljs-comment">// 为 g_num_mutex 所保护</span>
+std::mutex g_num_mutex;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">slow_increment</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span> </span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; ++i) {
+        g_num_mutex.<span class="hljs-built_in">lock</span>();
+        ++g_num;
+        std::cout &lt;&lt; id &lt;&lt; <span class="hljs-string">" =&gt; "</span> &lt;&lt; g_num &lt;&lt; <span class="hljs-string">'\n'</span>;
+        g_num_mutex.<span class="hljs-built_in">unlock</span>();
+ 
+        std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+    }
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(slow_increment, <span class="hljs-number">0</span>)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t2</span><span class="hljs-params">(slow_increment, <span class="hljs-number">1</span>)</span></span>;
+    t1.<span class="hljs-built_in">join</span>();
+    t2.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+
+
+<h3><span id="std-timed-mutex-try-lock">std::timed_mutex::try_lock()</span><a href="#std-timed-mutex-try-lock" class="header-anchor">#</a></h3><blockquote>
+<p>尝试锁定互斥。立即返回。成功获得锁时返回 true ，否则返回 false 。</p>
+</blockquote>
+<h3><span id="std-timed-mutex-try-lock-for">std::timed_mutex::try_lock_for()</span><a href="#std-timed-mutex-try-lock-for" class="header-anchor">#</a></h3><blockquote>
+<p>尝试锁定互斥，若互斥在指定的时限时期中不可用则返回</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sstream&gt;</span></span>
+ 
+std::mutex cout_mutex; <span class="hljs-comment">// 控制到 std::cout 的访问</span>
+std::timed_mutex mutex;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">job</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span> </span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">using</span> Ms = std::chrono::milliseconds;
+    std::ostringstream stream;
+ 
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; ++i) {
+        <span class="hljs-keyword">if</span> (mutex.<span class="hljs-built_in">try_lock_for</span>(<span class="hljs-built_in">Ms</span>(<span class="hljs-number">100</span>))) {
+            stream &lt;&lt; <span class="hljs-string">"success "</span>;
+            std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-built_in">Ms</span>(<span class="hljs-number">100</span>));
+            mutex.<span class="hljs-built_in">unlock</span>();
+        } <span class="hljs-keyword">else</span> {
+            stream &lt;&lt; <span class="hljs-string">"failed "</span>;
+        }
+        std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-built_in">Ms</span>(<span class="hljs-number">100</span>));
+    }
+ 
+    <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lock</span><span class="hljs-params">(cout_mutex)</span></span>;
+    std::cout &lt;&lt; <span class="hljs-string">"["</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">"] "</span> &lt;&lt; stream.<span class="hljs-built_in">str</span>() &lt;&lt; <span class="hljs-string">"\n"</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    std::vector&lt;std::thread&gt; threads;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; ++i) {
+        threads.<span class="hljs-built_in">emplace_back</span>(job, i);
+    }
+ 
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; i: threads) {
+        i.<span class="hljs-built_in">join</span>();
+    }
+}</code></pre></div>
+
+<h3><span id="std-timed-mutex-try-lock-until">std::timed_mutex::try_lock_until()</span><a href="#std-timed-mutex-try-lock-until" class="header-anchor">#</a></h3><blockquote>
+<p>尝试锁定互斥，若直至抵达指定时间点互斥不可用则返回</p>
+</blockquote>
+<blockquote>
+<p> 尝试所互斥。阻塞直至抵达指定的 <code>timeout_time</code> 或得到锁，取决于何者先到来。成功获得锁时返回 true ，否则返回 false 。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+ 
+std::timed_mutex test_mutex;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">auto</span> now=std::chrono::steady_clock::<span class="hljs-built_in">now</span>();
+    test_mutex.<span class="hljs-built_in">try_lock_until</span>(now + std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">10</span>));
+    std::cout &lt;&lt; <span class="hljs-string">"hello world\n"</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::lock_guard&lt;std::timed_mutex&gt; <span class="hljs-title">l</span><span class="hljs-params">(test_mutex)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t</span><span class="hljs-params">(f)</span></span>;
+    t.<span class="hljs-built_in">join</span>();
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3><span id="std-lock-guard-lt-std-mutex-gt">std::lock_guard<code>&lt;std::mutex&gt;</code></span><a href="#std-lock-guard-lt-std-mutex-gt" class="header-anchor">#</a></h3><blockquote>
+<p>实现严格基于作用域的互斥体所有权包装器</p>
+<p>创建 <code>lock_guard</code> 对象时，它试图接收给定互斥的所有权。控制<strong>离开</strong>创建 <code>lock_guard</code> 对象的作用域时，<strong>销毁</strong> <code>lock_guard</code> 并释放互斥。</p>
+<p><code>lock_guard</code> 类不可复制。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+ 
+<span class="hljs-type">int</span> g_i = <span class="hljs-number">0</span>;
+std::mutex g_i_mutex;  <span class="hljs-comment">// 保护 g_i</span>
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">safe_increment</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lock</span><span class="hljs-params">(g_i_mutex)</span></span>;
+    ++g_i;
+ 
+    std::cout &lt;&lt; std::this_thread::<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">": "</span> &lt;&lt; g_i &lt;&lt; <span class="hljs-string">'\n'</span>;
+ 
+    <span class="hljs-comment">// g_i_mutex 在锁离开作用域时自动释放</span>
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::cout &lt;&lt; <span class="hljs-string">"main: "</span> &lt;&lt; g_i &lt;&lt; <span class="hljs-string">'\n'</span>;
+ 
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(safe_increment)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t2</span><span class="hljs-params">(safe_increment)</span></span>;
+ 
+    t1.<span class="hljs-built_in">join</span>();
+    t2.<span class="hljs-built_in">join</span>();
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"main: "</span> &lt;&lt; g_i &lt;&lt; <span class="hljs-string">'\n'</span>;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3><span id="std-unique-lock-lt-mutex-gt-lock">std::unique_lock<code>&lt;Mutex&gt;::lock</code></span><a href="#std-unique-lock-lt-mutex-gt-lock" class="header-anchor">#</a></h3><blockquote>
+<p>等效地调用 mutex()-&gt;lock()</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">int</span> counter = <span class="hljs-number">0</span>;
+    std::mutex counter_mutex;
+    std::vector&lt;std::thread&gt; threads;
+ 
+    <span class="hljs-keyword">auto</span> worker_task = [&amp;](<span class="hljs-type">int</span> id) {
+        std::unique_lock&lt;std::mutex&gt; <span class="hljs-built_in">lock</span>(counter_mutex);
+        ++counter;
+        std::cout &lt;&lt; id &lt;&lt; <span class="hljs-string">", initial counter: "</span> &lt;&lt; counter &lt;&lt; <span class="hljs-string">'\n'</span>;
+        lock.<span class="hljs-built_in">unlock</span>();
+ 
+        <span class="hljs-comment">// 我们模拟昂贵操作时不保有锁</span>
+        std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+ 
+        lock.<span class="hljs-built_in">lock</span>(); <span class="hljs-comment">// 可以不解锁，因为是智能锁</span>
+        ++counter;
+        std::cout &lt;&lt; id &lt;&lt; <span class="hljs-string">", final counter: "</span> &lt;&lt; counter &lt;&lt; <span class="hljs-string">'\n'</span>;
+    };
+ 
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; ++i) threads.<span class="hljs-built_in">emplace_back</span>(worker_task, i);
+ 
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;thread : threads) thread.<span class="hljs-built_in">join</span>();
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3><span id="std-unique-lock-lt-std-mutex-gt">std::unique_lock<code>&lt;std::mutex&gt;</code></span><a href="#std-unique-lock-lt-std-mutex-gt" class="header-anchor">#</a></h3><blockquote>
+<p>类 unique_lock 是通用互斥包装器，允许延迟锁定、锁定的有时限尝试、递归锁定、所有权转移和与条件变量一同使用</p>
+<p>类 unique_lock 可移动，但不可复制</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+ 
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Box</span> {
+    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">Box</span><span class="hljs-params">(<span class="hljs-type">int</span> num)</span> : num_things{</span>num} {}
+ 
+    <span class="hljs-type">int</span> num_things;
+    std::mutex m;
+};
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">transfer</span><span class="hljs-params">(Box &amp;from, Box &amp;to, <span class="hljs-type">int</span> num)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// 仍未实际取锁</span>
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lock1</span><span class="hljs-params">(from.m, std::defer_lock)</span></span>;
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lock2</span><span class="hljs-params">(to.m, std::defer_lock)</span></span>;
+ 
+    <span class="hljs-comment">// 锁两个 unique_lock 而不死锁</span>
+    std::<span class="hljs-built_in">lock</span>(lock1, lock2);
+ 
+    from.num_things -= num;
+    to.num_things += num;
+ 
+    <span class="hljs-comment">// 'from.m' 与 'to.m' 互斥解锁于 'unique_lock' 析构函数</span>
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">Box <span class="hljs-title">acc1</span><span class="hljs-params">(<span class="hljs-number">100</span>)</span></span>;
+    <span class="hljs-function">Box <span class="hljs-title">acc2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span></span>;
+ 
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(transfer, std::ref(acc1), std::ref(acc2), <span class="hljs-number">10</span>)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t2</span><span class="hljs-params">(transfer, std::ref(acc2), std::ref(acc1), <span class="hljs-number">5</span>)</span></span>;
+ 
+    t1.<span class="hljs-built_in">join</span>();
+    t2.<span class="hljs-built_in">join</span>();
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3><span id="std-unique-lock-lt-mutex-gt-try-lock">std::unique_lock<code>&lt;Mutex&gt;::try_lock</code></span><a href="#std-unique-lock-lt-mutex-gt-try-lock" class="header-anchor">#</a></h3><blockquote>
+<p>尝试锁定关联互斥，若互斥不可用则返回</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span> <span class="hljs-comment">// std::cout</span></span>
+ 
+std::<span class="hljs-function">chrono::milliseconds <span class="hljs-title">interval</span><span class="hljs-params">(<span class="hljs-number">100</span>)</span></span>;
+ 
+std::mutex mutex;
+<span class="hljs-type">int</span> job_shared = <span class="hljs-number">0</span>; <span class="hljs-comment">// 两个线程都能修改 'job_shared',</span>
+    <span class="hljs-comment">// mutex 将保护此变量</span>
+ 
+<span class="hljs-type">int</span> job_exclusive = <span class="hljs-number">0</span>; <span class="hljs-comment">// 只有一个线程能修改 'job_exclusive'</span>
+    <span class="hljs-comment">// 不需要保护</span>
+ 
+<span class="hljs-comment">// 此线程能修改 'job_shared' 和 'job_exclusive'</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">job_1</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(interval); <span class="hljs-comment">// 令 'job_2' 持锁</span>
+ 
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+        <span class="hljs-comment">// 尝试锁定 mutex 以修改 'job_shared'</span>
+        <span class="hljs-keyword">if</span> (std::unique_lock&lt;std::mutex&gt;::try_lock <span class="hljs-built_in">lk</span>(mutex)) {
+            std::cout &lt;&lt; <span class="hljs-string">"job shared ("</span> &lt;&lt; job_shared &lt;&lt; <span class="hljs-string">")\n"</span>;
+            lk.<span class="hljs-built_in">unlock</span>();
+            <span class="hljs-keyword">return</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// 不能获取锁以修改 'job_shared'</span>
+            <span class="hljs-comment">// 但有其他工作可做</span>
+            ++job_exclusive;
+            std::cout &lt;&lt; <span class="hljs-string">"job exclusive ("</span> &lt;&lt; job_exclusive &lt;&lt; <span class="hljs-string">")\n"</span>;
+            std::this_thread::<span class="hljs-built_in">sleep_for</span>(interval);
+        }
+    }
+}
+ 
+<span class="hljs-comment">// 此线程只能修改 'job_shared'</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">job_2</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    mutex.<span class="hljs-built_in">lock</span>();
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">5</span> * interval);
+    ++job_shared;
+    mutex.<span class="hljs-built_in">unlock</span>();
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">thread_1</span><span class="hljs-params">(job_1)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">thread_2</span><span class="hljs-params">(job_2)</span></span>;
+ 
+    thread_1.<span class="hljs-built_in">join</span>();
+    thread_2.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+<h3><span id="std-unique-lock-lt-mutex-gt-try-lock-for">std::unique_lock<code>&lt;Mutex&gt;::try_lock_for</code></span><a href="#std-unique-lock-lt-mutex-gt-try-lock-for" class="header-anchor">#</a></h3><blockquote>
+<p>试图锁定关联的<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/named_req/TimedLockable"><em>可定时锁定</em> <em>(TimedLockable)</em> </a>互斥，若互斥在给定时长中不可用则返回</p>
+<p>bool try_lock_for( const <a target="_blank" rel="noopener" href="http://zh.cppreference.com/w/cpp/chrono/duration">std::chrono::duration</a>&lt;Rep,Period&gt;&amp; timeout_duration );</p>
+<p> timeout_duration  -    要阻塞的最大时长 </p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span> <span class="hljs-comment">// std::cout</span></span>
+ 
+std::<span class="hljs-function">chrono::milliseconds <span class="hljs-title">interval</span><span class="hljs-params">(<span class="hljs-number">100</span>)</span></span>;
+ 
+std::mutex mutex;
+<span class="hljs-type">int</span> job_shared = <span class="hljs-number">0</span>; <span class="hljs-comment">// 两个线程都能修改 'job_shared',</span>
+    <span class="hljs-comment">// mutex 将保护此变量</span>
+ 
+<span class="hljs-type">int</span> job_exclusive = <span class="hljs-number">0</span>; <span class="hljs-comment">// 只有一个线程能修改 'job_exclusive'</span>
+    <span class="hljs-comment">// 不需要保护</span>
+ 
+<span class="hljs-comment">// 此线程能修改 'job_shared' 和 'job_exclusive'</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">job_1</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(interval); <span class="hljs-comment">// 令 'job_2' 持锁</span>
+ 
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+        <span class="hljs-comment">// 尝试锁定 mutex 以修改 'job_shared'</span>
+        <span class="hljs-keyword">if</span> (std::unique_lock&lt;std::mutex&gt;::try_lock_for <span class="hljs-built_in">lk</span>(mutex)) {
+            std::cout &lt;&lt; <span class="hljs-string">"job shared ("</span> &lt;&lt; job_shared &lt;&lt; <span class="hljs-string">")\n"</span>;
+            lk.<span class="hljs-built_in">unlock</span>();
+            <span class="hljs-keyword">return</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// 不能获取锁以修改 'job_shared'</span>
+            <span class="hljs-comment">// 但有其他工作可做</span>
+            ++job_exclusive;
+            std::cout &lt;&lt; <span class="hljs-string">"job exclusive ("</span> &lt;&lt; job_exclusive &lt;&lt; <span class="hljs-string">")\n"</span>;
+            std::this_thread::<span class="hljs-built_in">sleep_for</span>(interval);
+        }
+    }
+}
+ 
+<span class="hljs-comment">// 此线程只能修改 'job_shared'</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">job_2</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    mutex.<span class="hljs-built_in">lock</span>();
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">5</span> * interval);
+    ++job_shared;
+    mutex.<span class="hljs-built_in">unlock</span>();
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">thread_1</span><span class="hljs-params">(job_1)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">thread_2</span><span class="hljs-params">(job_2)</span></span>;
+ 
+    thread_1.<span class="hljs-built_in">join</span>();
+    thread_2.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+<h3><span id="std-call-once">std::call_once</span><a href="#std-call-once" class="header-anchor">#</a></h3><blockquote>
+<p>仅调用函数一次，即使从多个线程调用</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+
+std::once_flag flag1, flag2;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">simple_do_once</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::<span class="hljs-built_in">call_once</span>(flag1, [](){ std::cout &lt;&lt; <span class="hljs-string">"Simple example: called once\n"</span>; });
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">may_throw_function</span><span class="hljs-params">(<span class="hljs-type">bool</span> do_throw)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">if</span> (do_throw) {
+        std::cout &lt;&lt; <span class="hljs-string">"throw: call_once will retry\n"</span>; <span class="hljs-comment">// 这会出现多于一次</span>
+        <span class="hljs-keyword">throw</span> std::<span class="hljs-built_in">exception</span>();
+    }
+    std::cout &lt;&lt; <span class="hljs-string">"Didn't throw, call_once will not attempt again\n"</span>; <span class="hljs-comment">// 保证一次</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">do_once</span><span class="hljs-params">(<span class="hljs-type">bool</span> do_throw)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">try</span> {
+        std::<span class="hljs-built_in">call_once</span>(flag2, may_throw_function, do_throw);
+    }
+    <span class="hljs-built_in">catch</span> (...) {
+    }
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">st1</span><span class="hljs-params">(simple_do_once)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">st2</span><span class="hljs-params">(simple_do_once)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">st3</span><span class="hljs-params">(simple_do_once)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">st4</span><span class="hljs-params">(simple_do_once)</span></span>;
+    st1.<span class="hljs-built_in">join</span>();
+    st2.<span class="hljs-built_in">join</span>();
+    st3.<span class="hljs-built_in">join</span>();
+    st4.<span class="hljs-built_in">join</span>();
+
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(do_once, <span class="hljs-literal">true</span>)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t2</span><span class="hljs-params">(do_once, <span class="hljs-literal">true</span>)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t3</span><span class="hljs-params">(do_once, <span class="hljs-literal">false</span>)</span></span>;
+    <span class="hljs-function">std::thread <span class="hljs-title">t4</span><span class="hljs-params">(do_once, <span class="hljs-literal">true</span>)</span></span>;
+    t1.<span class="hljs-built_in">join</span>();
+    t2.<span class="hljs-built_in">join</span>();
+    t3.<span class="hljs-built_in">join</span>();
+    t4.<span class="hljs-built_in">join</span>();
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>结果</p>
+<div class="code-wrapper"><pre><code class="hljs shell">Simple example: called once
+throw: call_once will retry</code></pre></div>
+
+<h1><span id="tiao-jian-bian-liang">条件变量</span><a href="#tiao-jian-bian-liang" class="header-anchor">#</a></h1><blockquote>
+<p>条件变量是允许多个线程相互交流的同步原语。它允许一定量的线程等待（可以定时）另一线程的提醒，然后再继续。条件变量始终关联到一个互斥。</p>
+</blockquote>
+<p>定义于头文件 <code>&lt;condition_variable&gt;</code></p>
+<h3><span id="std-condition-variable">std::condition_variable</span><a href="#std-condition-variable" class="header-anchor">#</a></h3><blockquote>
+<p>提供与 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/unique_lock">std::unique_lock</a> 关联的条件变量</p>
+<p><code>condition_variable</code> 类是同步原语，能用于阻塞一个线程，或同时阻塞多个线程，直至另一线程修改共享变量（<em>条件</em>）并通知 <code>condition_variable</code> 。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;condition_variable&gt;</span></span>
+ 
+std::mutex m;
+std::condition_variable cv;
+std::string data;
+<span class="hljs-type">bool</span> ready = <span class="hljs-literal">false</span>;
+<span class="hljs-type">bool</span> processed = <span class="hljs-literal">false</span>;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">worker_thread</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// 等待直至 main() 发送数据</span>
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(m)</span></span>;
+    cv.<span class="hljs-built_in">wait</span>(lk, []{<span class="hljs-keyword">return</span> ready;});
+ 
+    <span class="hljs-comment">// 等待后，我们占有锁。</span>
+    std::cout &lt;&lt; <span class="hljs-string">"Worker thread is processing data\n"</span>;
+    data += <span class="hljs-string">" after processing"</span>;
+ 
+    <span class="hljs-comment">// 发送数据回 main()</span>
+    processed = <span class="hljs-literal">true</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"Worker thread signals data processing completed\n"</span>;
+ 
+    <span class="hljs-comment">// 通知前完成手动解锁，以避免等待线程才被唤醒就阻塞（细节见 notify_one ）</span>
+    lk.<span class="hljs-built_in">unlock</span>();
+    cv.<span class="hljs-built_in">notify_one</span>();
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">worker</span><span class="hljs-params">(worker_thread)</span></span>;
+ 
+    data = <span class="hljs-string">"Example data"</span>;
+    <span class="hljs-comment">// 发送数据到 worker 线程</span>
+    {
+        <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(m)</span></span>;
+        ready = <span class="hljs-literal">true</span>;
+        std::cout &lt;&lt; <span class="hljs-string">"main() signals data ready for processing\n"</span>;
+    }
+    cv.<span class="hljs-built_in">notify_one</span>();
+ 
+    <span class="hljs-comment">// 等候 worker</span>
+    {
+        <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(m)</span></span>;
+        cv.<span class="hljs-built_in">wait</span>(lk, []{<span class="hljs-keyword">return</span> processed;});
+    }
+    std::cout &lt;&lt; <span class="hljs-string">"Back in main(), data = "</span> &lt;&lt; data &lt;&lt; <span class="hljs-string">'\n'</span>;
+ 
+    worker.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+<h3><span id="std-condition-variable-notify-all">std::condition_variable::notify_all()</span><a href="#std-condition-variable-notify-all" class="header-anchor">#</a></h3><blockquote>
+<p>解阻塞全部当前等待于 *this 的线程</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;condition_variable&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+ 
+std::condition_variable cv;
+std::mutex cv_m; <span class="hljs-comment">// 此互斥用于三个目的：</span>
+                 <span class="hljs-comment">// 1) 同步到 i 的访问</span>
+                 <span class="hljs-comment">// 2) 同步到 std::cerr 的访问</span>
+                 <span class="hljs-comment">// 3) 为条件变量 cv</span>
+<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">waits</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(cv_m)</span></span>;
+    std::cerr &lt;&lt; <span class="hljs-string">"Waiting... \n"</span>;
+    cv.<span class="hljs-built_in">wait</span>(lk, []{<span class="hljs-keyword">return</span> i == <span class="hljs-number">1</span>;});
+    std::cerr &lt;&lt; <span class="hljs-string">"...finished waiting. i == 1\n"</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">signals</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+    {
+        <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(cv_m)</span></span>;
+        std::cerr &lt;&lt; <span class="hljs-string">"Notifying...\n"</span>;
+    }
+    cv.<span class="hljs-built_in">notify_all</span>();
+ 
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+ 
+    {
+        <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(cv_m)</span></span>;
+        i = <span class="hljs-number">1</span>;
+        std::cerr &lt;&lt; <span class="hljs-string">"Notifying again...\n"</span>;
+    }
+    cv.<span class="hljs-built_in">notify_all</span>();
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(waits)</span>, <span class="hljs-title">t2</span><span class="hljs-params">(waits)</span>, <span class="hljs-title">t3</span><span class="hljs-params">(waits)</span>, <span class="hljs-title">t4</span><span class="hljs-params">(signals)</span></span>;
+    t1.<span class="hljs-built_in">join</span>(); 
+    t2.<span class="hljs-built_in">join</span>(); 
+    t3.<span class="hljs-built_in">join</span>();
+    t4.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+<h3><span id="std-condition-variable-notify-one">std::condition_variable::notify_one()</span><a href="#std-condition-variable-notify-one" class="header-anchor">#</a></h3><blockquote>
+<p>若任何线程在 *this 上等待，则调用 <code>notify_one</code> 会解除一个阻塞等待线程</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;condition_variable&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+ 
+std::condition_variable cv;
+std::mutex cv_m;
+<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;
+<span class="hljs-type">bool</span> done = <span class="hljs-literal">false</span>;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">waits</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(cv_m)</span></span>;
+    std::cout &lt;&lt; <span class="hljs-string">"Waiting... \n"</span>;
+    cv.<span class="hljs-built_in">wait</span>(lk, []{<span class="hljs-keyword">return</span> i == <span class="hljs-number">1</span>;});
+    std::cout &lt;&lt; <span class="hljs-string">"...finished waiting. i == 1\n"</span>;
+    done = <span class="hljs-literal">true</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">signals</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+    std::cout &lt;&lt; <span class="hljs-string">"Notifying falsely...\n"</span>;
+    cv.<span class="hljs-built_in">notify_one</span>(); <span class="hljs-comment">// 等待线程被通知 i == 0.</span>
+                     <span class="hljs-comment">// cv.wait 唤醒，检查 i ，再回到等待</span>
+ 
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(cv_m)</span></span>;
+    i = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (!done) 
+    {
+        std::cout &lt;&lt; <span class="hljs-string">"Notifying true change...\n"</span>;
+        lk.<span class="hljs-built_in">unlock</span>();
+        cv.<span class="hljs-built_in">notify_one</span>(); <span class="hljs-comment">// 等待线程被通知 i == 1 ， cv.wait 返回</span>
+        std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+        lk.<span class="hljs-built_in">lock</span>();
+    }
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(waits)</span>, <span class="hljs-title">t2</span><span class="hljs-params">(signals)</span></span>;
+    t1.<span class="hljs-built_in">join</span>(); 
+    t2.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+<h3><span id="std-condition-variable-wait">std::condition_variable::wait()</span><a href="#std-condition-variable-wait" class="header-anchor">#</a></h3><blockquote>
+<p>wait 导致当前线程阻塞直至条件变量被通知，或虚假唤醒发生，可选地循环直至满足某谓词。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;condition_variable&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+ 
+std::condition_variable cv;
+std::mutex cv_m; <span class="hljs-comment">// 此互斥用于三个目的：</span>
+                 <span class="hljs-comment">// 1) 同步到 i 的访问</span>
+                 <span class="hljs-comment">// 2) 同步到 std::cerr 的访问</span>
+                 <span class="hljs-comment">// 3) 为条件变量 cv</span>
+<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">waits</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(cv_m)</span></span>;
+    std::cerr &lt;&lt; <span class="hljs-string">"Waiting... \n"</span>;
+    cv.<span class="hljs-built_in">wait</span>(lk, []{<span class="hljs-keyword">return</span> i == <span class="hljs-number">1</span>;});
+    std::cerr &lt;&lt; <span class="hljs-string">"...finished waiting. i == 1\n"</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">signals</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+    {
+        <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(cv_m)</span></span>;
+        std::cerr &lt;&lt; <span class="hljs-string">"Notifying...\n"</span>;
+    }
+    cv.<span class="hljs-built_in">notify_all</span>();
+ 
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+ 
+    {
+        <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(cv_m)</span></span>;
+        i = <span class="hljs-number">1</span>;
+        std::cerr &lt;&lt; <span class="hljs-string">"Notifying again...\n"</span>;
+    }
+    cv.<span class="hljs-built_in">notify_all</span>();
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(waits)</span>, <span class="hljs-title">t2</span><span class="hljs-params">(waits)</span>, <span class="hljs-title">t3</span><span class="hljs-params">(waits)</span>, <span class="hljs-title">t4</span><span class="hljs-params">(signals)</span></span>;
+    t1.<span class="hljs-built_in">join</span>(); 
+    t2.<span class="hljs-built_in">join</span>(); 
+    t3.<span class="hljs-built_in">join</span>();
+    t4.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+<h3><span id="std-condition-variable-wait-for">std::condition_variable::wait_for()</span><a href="#std-condition-variable-wait-for" class="header-anchor">#</a></h3><blockquote>
+<p>阻塞当前线程，直到条件变量被唤醒，或到指定时限时长后</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;atomic&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;condition_variable&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+ 
+std::condition_variable cv;
+std::mutex cv_m;
+std::atomic&lt;<span class="hljs-type">int</span>&gt; i{<span class="hljs-number">0</span>};
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">waits</span><span class="hljs-params">(<span class="hljs-type">int</span> idx)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(cv_m)</span></span>;
+    <span class="hljs-keyword">auto</span> now = std::chrono::system_clock::<span class="hljs-built_in">now</span>();
+    <span class="hljs-keyword">if</span>(cv.<span class="hljs-built_in">wait_until</span>(lk, now + idx*<span class="hljs-number">100</span>ms, [](){<span class="hljs-keyword">return</span> i == <span class="hljs-number">1</span>;}))
+        std::cerr &lt;&lt; <span class="hljs-string">"Thread "</span> &lt;&lt; idx &lt;&lt; <span class="hljs-string">" finished waiting. i == "</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">'\n'</span>;
+    <span class="hljs-keyword">else</span>
+        std::cerr &lt;&lt; <span class="hljs-string">"Thread "</span> &lt;&lt; idx &lt;&lt; <span class="hljs-string">" timed out. i == "</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">'\n'</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">signals</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">120</span>ms);
+    std::cerr &lt;&lt; <span class="hljs-string">"Notifying...\n"</span>;
+    cv.<span class="hljs-built_in">notify_all</span>();
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">100</span>ms);
+    i = <span class="hljs-number">1</span>;
+    std::cerr &lt;&lt; <span class="hljs-string">"Notifying again...\n"</span>;
+    cv.<span class="hljs-built_in">notify_all</span>();
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::thread <span class="hljs-title">t1</span><span class="hljs-params">(waits, <span class="hljs-number">1</span>)</span>, <span class="hljs-title">t2</span><span class="hljs-params">(waits, <span class="hljs-number">2</span>)</span>, <span class="hljs-title">t3</span><span class="hljs-params">(waits, <span class="hljs-number">3</span>)</span>, <span class="hljs-title">t4</span><span class="hljs-params">(signals)</span></span>;
+    t1.<span class="hljs-built_in">join</span>(); 
+    t2.<span class="hljs-built_in">join</span>();
+    t3.<span class="hljs-built_in">join</span>();
+    t4.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+<h1><span id="xin-hao-liang">信号量</span><a href="#xin-hao-liang" class="header-anchor">#</a></h1><blockquote>
+<p>信号量 (semaphore) 是一种轻量的同步原件，用于制约对共享资源的并发访问。在可以使用两者时，信号量能比条件变量更有效率。</p>
+</blockquote>
+<p>定义于头文件 <code>&lt;semaphore&gt;</code></p>
+<h3><span id="std-counting-semaphore-std-binary-semaphore">std::counting_semaphore, std::binary_semaphore</span><a href="#std-counting-semaphore-std-binary-semaphore" class="header-anchor">#</a></h3><blockquote>
+<p>\1) <code>counting_semaphore</code> 是一个轻量同步元件，能控制对共享资源的访问。</p>
+<p>\2) <code>binary_semaphore</code> 是 std::counting_semaphore 的特化的别名，其 <code>LeastMaxValue</code> 为 1 。实现可能将 <code>binary_semaphore</code> 实现得比 std::counting_semaphore 的默认实现更高效。</p>
+</blockquote>
+<h4><span id="std-counting-semaphore">std::counting_semaphore</span><a href="#std-counting-semaphore" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;semaphore&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::literals; 
+ 
+<span class="hljs-comment">// 全局二元信号量实例</span>
+<span class="hljs-comment">// 设置对象计数为零</span>
+<span class="hljs-comment">// 对象在未被发信状态</span>
+<span class="hljs-function">std::binary_semaphore <span class="hljs-title">smphSignal</span><span class="hljs-params">(<span class="hljs-number">0</span>)</span></span>;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ThreadProc</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// 通过尝试减少信号量的计数等待来自主程序的信号</span>
+    smphSignal.<span class="hljs-built_in">acquire</span>();
+ 
+    <span class="hljs-comment">// 此调用阻塞直至信号量的计数被从主程序增加</span>
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"[thread] Got the signal"</span> &lt;&lt; std::endl; <span class="hljs-comment">// 回应消息</span>
+ 
+    <span class="hljs-comment">// 等待 3 秒以模仿某种线程正在进行的工作</span>
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">3</span>s);
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"[thread] Send the signal\n"</span>; <span class="hljs-comment">// 消息</span>
+ 
+    <span class="hljs-comment">// 对主程序回复发信</span>
+    smphSignal.<span class="hljs-built_in">release</span>();
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// 创建某个背景工作线程，它将长期存在</span>
+    <span class="hljs-function">std::jthread <span class="hljs-title">thrWorker</span><span class="hljs-params">(ThreadProc)</span></span>;
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"[main] Send the signal\n"</span>; <span class="hljs-comment">// 消息</span>
+ 
+    <span class="hljs-comment">// 通过增加信号量的计数对工作线程发信以开始工作</span>
+    smphSignal.<span class="hljs-built_in">release</span>();
+ 
+    <span class="hljs-comment">// release() 后随 acquire() 可以阻止工作线程获取信号量，所以添加延迟：</span>
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">50</span>ms);
+ 
+    <span class="hljs-comment">// 通过试图减少信号量的计数等待直至工作线程完成工作</span>
+    smphSignal.<span class="hljs-built_in">acquire</span>();
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"[main] Got the signal\n"</span>; <span class="hljs-comment">// 回应消息</span>
+}</code></pre></div>
+
+<h4><span id="std-binary-semaphore">std::binary_semaphore</span><a href="#std-binary-semaphore" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;semaphore&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::literals; 
+ 
+<span class="hljs-comment">// 全局二元信号量实例</span>
+<span class="hljs-comment">// 设置对象计数为零</span>
+<span class="hljs-comment">// 对象在未被发信状态</span>
+<span class="hljs-function">std::binary_semaphore <span class="hljs-title">smphSignal</span><span class="hljs-params">(<span class="hljs-number">0</span>)</span></span>;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ThreadProc</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// 通过尝试减少信号量的计数等待来自主程序的信号</span>
+    smphSignal.<span class="hljs-built_in">acquire</span>();
+ 
+    <span class="hljs-comment">// 此调用阻塞直至信号量的计数被从主程序增加</span>
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"[thread] Got the signal"</span> &lt;&lt; std::endl; <span class="hljs-comment">// 回应消息</span>
+ 
+    <span class="hljs-comment">// 等待 3 秒以模仿某种线程正在进行的工作</span>
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">3</span>s);
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"[thread] Send the signal\n"</span>; <span class="hljs-comment">// 消息</span>
+ 
+    <span class="hljs-comment">// 对主程序回复发信</span>
+    smphSignal.<span class="hljs-built_in">release</span>();
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// 创建某个背景工作线程，它将长期存在</span>
+    <span class="hljs-function">std::jthread <span class="hljs-title">thrWorker</span><span class="hljs-params">(ThreadProc)</span></span>;
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"[main] Send the signal\n"</span>; <span class="hljs-comment">// 消息</span>
+ 
+    <span class="hljs-comment">// 通过增加信号量的计数对工作线程发信以开始工作</span>
+    smphSignal.<span class="hljs-built_in">release</span>();
+ 
+    <span class="hljs-comment">// release() 后随 acquire() 可以阻止工作线程获取信号量，所以添加延迟：</span>
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">50</span>ms);
+ 
+    <span class="hljs-comment">// 通过试图减少信号量的计数等待直至工作线程完成工作</span>
+    smphSignal.<span class="hljs-built_in">acquire</span>();
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"[main] Got the signal\n"</span>; <span class="hljs-comment">// 回应消息</span>
+}</code></pre></div>
+
+<h1><span id="future">Future</span><a href="#future" class="header-anchor">#</a></h1><blockquote>
+<p>标准库提供了一些工具来获取异步任务（即在单独的线程中启动的函数）的返回值，并捕捉其所抛出的异常。这些值在<em>共享状态</em>中传递，其中异步任务可以写入其返回值或存储异常，而且可以由持有该引用该共享态的 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/future">std::future</a> 或 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/shared_future">std::shared_future</a> 实例的线程检验、等待或是操作这个状态。</p>
+</blockquote>
+<p>定义于头文件 <code>&lt;future&gt;</code></p>
+<h2><span id="yi-bu-xian-cheng">异步线程</span><a href="#yi-bu-xian-cheng" class="header-anchor">#</a></h2><h3><span id="classes">Classes</span><a href="#classes" class="header-anchor">#</a></h3><h4><span id="cheng-nuo">承诺</span><a href="#cheng-nuo" class="header-anchor">#</a></h4><h4><span id="std-promise">std::promise</span><a href="#std-promise" class="header-anchor">#</a></h4><p><strong>允诺结果</strong></p>
+<h5><span id="std-promise-lt-t-gt"><code>std::promise&lt;T&gt; </code></span><a href="#std-promise-lt-t-gt" class="header-anchor">#</a></h5><h6><span id="std-promise-lt-t-gt-set-value"><code>std::promise&lt;T&gt;::set_value()</code></span><a href="#std-promise-lt-t-gt-set-value" class="header-anchor">#</a></h6><h6><span id="std-promise-lt-t-gt-get-future"><code>std::promise&lt;T&gt;::get_future()</code></span><a href="#std-promise-lt-t-gt-get-future" class="header-anchor">#</a></h6><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;future&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;numeric&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">accumulate</span><span class="hljs-params">(std::vector&lt;<span class="hljs-type">int</span>&gt;::iterator first,</span></span>
+<span class="hljs-params"><span class="hljs-function">                std::vector&lt;<span class="hljs-type">int</span>&gt;::iterator last,</span></span>
+<span class="hljs-params"><span class="hljs-function">                std::promise&lt;<span class="hljs-type">int</span>&gt; accumulate_promise)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-type">int</span> sum = std::<span class="hljs-built_in">accumulate</span>(first, last, <span class="hljs-number">0</span>);
+    accumulate_promise.<span class="hljs-built_in">set_value</span>(sum);  <span class="hljs-comment">// Notify future</span>
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">do_work</span><span class="hljs-params">(std::promise&lt;<span class="hljs-type">void</span>&gt; barrier)</span></span>
+<span class="hljs-function"></span>{
+    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>));
+    barrier.<span class="hljs-built_in">set_value</span>();
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// Demonstrate using promise&lt;int&gt; to transmit a result between threads.</span>
+    std::vector&lt;<span class="hljs-type">int</span>&gt; numbers = { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> };
+    std::promise&lt;<span class="hljs-type">int</span>&gt; accumulate_promise;
+    std::future&lt;<span class="hljs-type">int</span>&gt; accumulate_future = accumulate_promise.<span class="hljs-built_in">get_future</span>();
+    <span class="hljs-function">std::thread <span class="hljs-title">work_thread</span><span class="hljs-params">(accumulate, numbers.begin(), numbers.end(),</span></span>
+<span class="hljs-params"><span class="hljs-function">                            std::move(accumulate_promise))</span></span>;
+    accumulate_future.<span class="hljs-built_in">wait</span>();  <span class="hljs-comment">// wait for result</span>
+    std::cout &lt;&lt; <span class="hljs-string">"result="</span> &lt;&lt; accumulate_future.<span class="hljs-built_in">get</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+    work_thread.<span class="hljs-built_in">join</span>();  <span class="hljs-comment">// wait for thread completion</span>
+
+    <span class="hljs-comment">// Demonstrate using promise&lt;void&gt; to signal state between threads.</span>
+    std::promise&lt;<span class="hljs-type">void</span>&gt; barrier;
+    std::future&lt;<span class="hljs-type">void</span>&gt; barrier_future = barrier.<span class="hljs-built_in">get_future</span>();
+    <span class="hljs-function">std::thread <span class="hljs-title">new_work_thread</span><span class="hljs-params">(do_work, std::move(barrier))</span></span>;
+    barrier_future.<span class="hljs-built_in">wait</span>();
+    new_work_thread.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+<h4><span id="std-packaged-task">std::packaged_task</span><a href="#std-packaged-task" class="header-anchor">#</a></h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt; <span class="hljs-keyword">class</span> <span class="hljs-title class_">R</span>, <span class="hljs-keyword">class</span> ...Args &gt; 
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">packaged_task</span>&lt;<span class="hljs-built_in">R</span>(Args...)&gt;;</code></pre></div>
+<h5><span id="std-packaged-task-lt-r-args-gt-get-future"><code>std::packaged_task&lt;R(Args...)&gt;::get_future</code></span><a href="#std-packaged-task-lt-r-args-gt-get-future" class="header-anchor">#</a></h5><h5><span id="std-packaged-task-lt-r-args-gt-reset"><code>std::packaged_task&lt;R(Args...)&gt;::reset</code></span><a href="#std-packaged-task-lt-r-args-gt-reset" class="header-anchor">#</a></h5><blockquote>
+<p>类模板包装任何可调用目标（函数、lambda 表达式、绑定表达式或其他函数对象），以便可以异步调用它。其返回值或引发的异常存储在可通过对象访问的共享状态中。</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;future&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;functional&gt;</span></span>
+ 
+<span class="hljs-comment">// unique function to avoid disambiguating the std::pow overload set</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>{ <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">pow</span>(x,y); }
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">task_lambda</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::packaged_task&lt;<span class="hljs-title">int</span><span class="hljs-params">(<span class="hljs-type">int</span>,<span class="hljs-type">int</span>)</span>&gt; <span class="hljs-title">task</span><span class="hljs-params">([](<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b) {</span></span>
+<span class="hljs-params"><span class="hljs-function">        <span class="hljs-keyword">return</span> std::pow(a, b); </span></span>
+<span class="hljs-params"><span class="hljs-function">    })</span></span>;
+    std::future&lt;<span class="hljs-type">int</span>&gt; result = task.<span class="hljs-built_in">get_future</span>();
+ 
+    <span class="hljs-built_in">task</span>(<span class="hljs-number">2</span>, <span class="hljs-number">9</span>);
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"task_lambda:\t"</span> &lt;&lt; result.<span class="hljs-built_in">get</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">task_bind</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::packaged_task&lt;<span class="hljs-title">int</span><span class="hljs-params">()</span>&gt; <span class="hljs-title">task</span><span class="hljs-params">(std::bind(f, <span class="hljs-number">2</span>, <span class="hljs-number">11</span>))</span></span>;
+    std::future&lt;<span class="hljs-type">int</span>&gt; result = task.<span class="hljs-built_in">get_future</span>();
+ 
+    <span class="hljs-built_in">task</span>();
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"task_bind:\t"</span> &lt;&lt; result.<span class="hljs-built_in">get</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">task_thread</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::packaged_task&lt;<span class="hljs-title">int</span><span class="hljs-params">(<span class="hljs-type">int</span>,<span class="hljs-type">int</span>)</span>&gt; <span class="hljs-title">task</span><span class="hljs-params">(f)</span></span>;
+    std::future&lt;<span class="hljs-type">int</span>&gt; result = task.<span class="hljs-built_in">get_future</span>();
+ 
+    <span class="hljs-function">std::thread <span class="hljs-title">task_td</span><span class="hljs-params">(std::move(task), <span class="hljs-number">2</span>, <span class="hljs-number">10</span>)</span></span>;
+    task_td.<span class="hljs-built_in">join</span>();
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"task_thread:\t"</span> &lt;&lt; result.<span class="hljs-built_in">get</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-built_in">task_lambda</span>();
+    <span class="hljs-built_in">task_bind</span>();
+    <span class="hljs-built_in">task_thread</span>();
+}</code></pre></div>
+
+<h4><span id="wei-lai">未来</span><a href="#wei-lai" class="header-anchor">#</a></h4><h4><span id="std-future">std::future</span><a href="#std-future" class="header-anchor">#</a></h4><p><strong>等待一个值</strong></p>
+<h5><span id="std-future-lt-t-amp-gt"><code>std::future&lt;T&amp;&gt;</code></span><a href="#std-future-lt-t-amp-gt" class="header-anchor">#</a></h5><h6><span id="std-future-lt-t-amp-gt-get"><code>std::future&lt;T&amp;&gt;::get()</code></span><a href="#std-future-lt-t-amp-gt-get" class="header-anchor">#</a></h6><h6><span id="std-future-lt-t-amp-gt-wait"><code>std::future&lt;T&amp;&gt;::wait()</code></span><a href="#std-future-lt-t-amp-gt-wait" class="header-anchor">#</a></h6><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;future&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// future from a packaged_task</span>
+    <span class="hljs-function">std::packaged_task&lt;<span class="hljs-title">int</span><span class="hljs-params">()</span>&gt; <span class="hljs-title">task</span><span class="hljs-params">([]{ <span class="hljs-keyword">return</span> <span class="hljs-number">7</span>; })</span></span>; <span class="hljs-comment">// wrap the function</span>
+    std::future&lt;<span class="hljs-type">int</span>&gt; f1 = task.<span class="hljs-built_in">get_future</span>();  <span class="hljs-comment">// get a future</span>
+    <span class="hljs-function">std::thread <span class="hljs-title">t</span><span class="hljs-params">(std::move(task))</span></span>; <span class="hljs-comment">// launch on a thread</span>
+ 
+    <span class="hljs-comment">// future from an async()</span>
+    std::future&lt;<span class="hljs-type">int</span>&gt; f2 = std::<span class="hljs-built_in">async</span>(std::launch::async, []{ <span class="hljs-keyword">return</span> <span class="hljs-number">8</span>; });
+ 
+    <span class="hljs-comment">// future from a promise</span>
+    std::promise&lt;<span class="hljs-type">int</span>&gt; p;
+    std::future&lt;<span class="hljs-type">int</span>&gt; f3 = p.<span class="hljs-built_in">get_future</span>();
+    std::<span class="hljs-built_in">thread</span>( [&amp;p]{ p.<span class="hljs-built_in">set_value_at_thread_exit</span>(<span class="hljs-number">9</span>); }).<span class="hljs-built_in">detach</span>();
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"Waiting..."</span> &lt;&lt; std::flush;
+    f1.<span class="hljs-built_in">wait</span>();
+    f2.<span class="hljs-built_in">wait</span>();
+    f3.<span class="hljs-built_in">wait</span>();
+    std::cout &lt;&lt; <span class="hljs-string">"Done!\nResults are: "</span>
+              &lt;&lt; f1.<span class="hljs-built_in">get</span>() &lt;&lt; <span class="hljs-string">' '</span> &lt;&lt; f2.<span class="hljs-built_in">get</span>() &lt;&lt; <span class="hljs-string">' '</span> &lt;&lt; f3.<span class="hljs-built_in">get</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+    t.<span class="hljs-built_in">join</span>();
+}</code></pre></div>
+
+
+
+<h4><span id="std-future-error">std::future_error</span><a href="#std-future-error" class="header-anchor">#</a></h4><p><strong>返回错误代码，和 返回特定于错误代码<br>的解释性字符串</strong> </p>
+<h6><span id="std-future-error-code"><code>std::future_error::code()</code></span><a href="#std-future-error-code" class="header-anchor">#</a></h6><h6><span id="std-future-error-what"><code>std::future_error::what()</code></span><a href="#std-future-error-what" class="header-anchor">#</a></h6><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;future&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    std::future&lt;<span class="hljs-type">int</span>&gt; empty;
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-type">int</span> n = empty.<span class="hljs-built_in">get</span>(); <span class="hljs-comment">// The behavior is undefined, but</span>
+                             <span class="hljs-comment">// some implementations throw std::future_error</span>
+    } <span class="hljs-built_in">catch</span> (<span class="hljs-type">const</span> std::future_error&amp; e) {
+        std::cout &lt;&lt; <span class="hljs-string">"Caught a future_error with code \""</span> &lt;&lt; e.<span class="hljs-built_in">code</span>()
+                  &lt;&lt; <span class="hljs-string">"\"\nMessage: \""</span> &lt;&lt; e.<span class="hljs-built_in">what</span>() &lt;&lt; <span class="hljs-string">"\"\n"</span>;
+    }
+}</code></pre></div>
+
+
+
+<h4><span id="std-shared-future">std::shared_future</span><a href="#std-shared-future" class="header-anchor">#</a></h4><p><strong>等待一个值 (possibly referenced by other futures）</strong></p>
+<h5><span id="std-shared-future-lt-t-amp-gt"><code>std::shared_future&lt;T&amp;&gt;</code></span><a href="#std-shared-future-lt-t-amp-gt" class="header-anchor">#</a></h5><h6><span id="std-shared-future-get"><code>std::shared_future::get()</code></span><a href="#std-shared-future-get" class="header-anchor">#</a></h6><h6><span id="std-shared-future-wait"><code>std::shared_future::wait()</code></span><a href="#std-shared-future-wait" class="header-anchor">#</a></h6><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;future&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{   
+    std::promise&lt;<span class="hljs-type">void</span>&gt; ready_promise, t1_ready_promise, t2_ready_promise;
+    <span class="hljs-function">std::shared_future&lt;<span class="hljs-type">void</span>&gt; <span class="hljs-title">ready_future</span><span class="hljs-params">(ready_promise.get_future())</span></span>;
+ 
+    std::chrono::time_point&lt;std::chrono::high_resolution_clock&gt; start;
+ 
+    <span class="hljs-keyword">auto</span> fun1 = [&amp;, ready_future]() -&gt; std::chrono::duration&lt;<span class="hljs-type">double</span>, std::milli&gt; 
+    {
+        t1_ready_promise.<span class="hljs-built_in">set_value</span>();
+        ready_future.<span class="hljs-built_in">wait</span>(); <span class="hljs-comment">// waits for the signal from main()</span>
+        <span class="hljs-keyword">return</span> std::chrono::high_resolution_clock::<span class="hljs-built_in">now</span>() - start;
+    };
+ 
+ 
+    <span class="hljs-keyword">auto</span> fun2 = [&amp;, ready_future]() -&gt; std::chrono::duration&lt;<span class="hljs-type">double</span>, std::milli&gt; 
+    {
+        t2_ready_promise.<span class="hljs-built_in">set_value</span>();
+        ready_future.<span class="hljs-built_in">wait</span>(); <span class="hljs-comment">// waits for the signal from main()</span>
+        <span class="hljs-keyword">return</span> std::chrono::high_resolution_clock::<span class="hljs-built_in">now</span>() - start;
+    };
+ 
+    <span class="hljs-keyword">auto</span> fut1 = t1_ready_promise.<span class="hljs-built_in">get_future</span>();
+    <span class="hljs-keyword">auto</span> fut2 = t2_ready_promise.<span class="hljs-built_in">get_future</span>();
+ 
+    <span class="hljs-keyword">auto</span> result1 = std::<span class="hljs-built_in">async</span>(std::launch::async, fun1);
+    <span class="hljs-keyword">auto</span> result2 = std::<span class="hljs-built_in">async</span>(std::launch::async, fun2);
+ 
+    <span class="hljs-comment">// wait for the threads to become ready</span>
+    fut1.<span class="hljs-built_in">wait</span>();
+    fut2.<span class="hljs-built_in">wait</span>();
+ 
+    <span class="hljs-comment">// the threads are ready, start the clock</span>
+    start = std::chrono::high_resolution_clock::<span class="hljs-built_in">now</span>();
+ 
+    <span class="hljs-comment">// signal the threads to go</span>
+    ready_promise.<span class="hljs-built_in">set_value</span>();
+ 
+    std::cout &lt;&lt; <span class="hljs-string">"Thread 1 received the signal "</span>
+              &lt;&lt; result1.<span class="hljs-built_in">get</span>().<span class="hljs-built_in">count</span>() &lt;&lt; <span class="hljs-string">" ms after start\n"</span>
+              &lt;&lt; <span class="hljs-string">"Thread 2 received the signal "</span>
+              &lt;&lt; result2.<span class="hljs-built_in">get</span>().<span class="hljs-built_in">count</span>() &lt;&lt; <span class="hljs-string">" ms after start\n"</span>;
+}</code></pre></div>
+
+
+
+<h3><span id="functions">Functions</span><a href="#functions" class="header-anchor">#</a></h3><h4><span id="yi-bu">异步</span><a href="#yi-bu" class="header-anchor">#</a></h4><h4><span id="std-async">std::async</span><a href="#std-async" class="header-anchor">#</a></h4><h5><span id="async-function-amp-amp-f-args-amp-amp-args"><code>async( Function&amp;&amp; f, Args&amp;&amp;... args )</code></span><a href="#async-function-amp-amp-f-args-amp-amp-args" class="header-anchor">#</a></h5><h5><span id="async-std-launch-policy-function-amp-amp-f-args-amp-amp-args"><code>async( std::launch policy, Function&amp;&amp; f, Args&amp;&amp;... args );</code></span><a href="#async-std-launch-policy-function-amp-amp-f-args-amp-amp-args" class="header-anchor">#</a></h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;numeric&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;future&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span>
+ 
+std::mutex m;
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">X</span> {
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-type">int</span> i, <span class="hljs-type">const</span> std::string&amp; str)</span> </span>{
+        <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(m)</span></span>;
+        std::cout &lt;&lt; str &lt;&lt; <span class="hljs-string">' '</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">'\n'</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bar</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string&amp; str)</span> </span>{
+        <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(m)</span></span>;
+        std::cout &lt;&lt; str &lt;&lt; <span class="hljs-string">'\n'</span>;
+    }
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>{
+        <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lk</span><span class="hljs-params">(m)</span></span>;
+        std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">'\n'</span>;
+        <span class="hljs-keyword">return</span> i + <span class="hljs-number">10</span>;
+    }
+};
+ 
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> RandomIt&gt;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">parallel_sum</span><span class="hljs-params">(RandomIt beg, RandomIt end)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-keyword">auto</span> len = end - beg;
+    <span class="hljs-keyword">if</span> (len &lt; <span class="hljs-number">1000</span>)
+        <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">accumulate</span>(beg, end, <span class="hljs-number">0</span>);
+ 
+    RandomIt mid = beg + len/<span class="hljs-number">2</span>;
+    <span class="hljs-keyword">auto</span> handle = std::<span class="hljs-built_in">async</span>(std::launch::async,
+                             parallel_sum&lt;RandomIt&gt;, mid, end);
+    <span class="hljs-type">int</span> sum = <span class="hljs-built_in">parallel_sum</span>(beg, mid);
+    <span class="hljs-keyword">return</span> sum + handle.<span class="hljs-built_in">get</span>();
+}
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">v</span><span class="hljs-params">(<span class="hljs-number">10000</span>, <span class="hljs-number">1</span>)</span></span>;
+    std::cout &lt;&lt; <span class="hljs-string">"The sum is "</span> &lt;&lt; <span class="hljs-built_in">parallel_sum</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>()) &lt;&lt; <span class="hljs-string">'\n'</span>;
+ 
+    X x;
+    <span class="hljs-comment">// Calls (&amp;x)-&gt;foo(42, "Hello") with default policy:</span>
+    <span class="hljs-comment">// may print "Hello 42" concurrently or defer execution</span>
+    <span class="hljs-keyword">auto</span> a1 = std::<span class="hljs-built_in">async</span>(&amp;X::foo, &amp;x, <span class="hljs-number">42</span>, <span class="hljs-string">"Hello"</span>);
+    
+    <span class="hljs-comment">// Calls x.bar("world!") with deferred policy</span>
+    <span class="hljs-comment">// prints "world!" when a2.get() or a2.wait() is called</span>
+    <span class="hljs-keyword">auto</span> a2 = std::<span class="hljs-built_in">async</span>(std::launch::deferred, &amp;X::bar, x, <span class="hljs-string">"world!"</span>);
+    
+    <span class="hljs-comment">// Calls X()(43); with async policy</span>
+    <span class="hljs-comment">// prints "43" concurrently</span>
+    <span class="hljs-keyword">auto</span> a3 = std::<span class="hljs-built_in">async</span>(std::launch::async, <span class="hljs-built_in">X</span>(), <span class="hljs-number">43</span>);
+    a2.<span class="hljs-built_in">wait</span>();                     <span class="hljs-comment">// prints "world!"</span>
+    std::cout &lt;&lt; a3.<span class="hljs-built_in">get</span>() &lt;&lt; <span class="hljs-string">'\n'</span>; <span class="hljs-comment">// prints "53"</span>
+} <span class="hljs-comment">// if a1 is not done at this point, destructor of a1 prints "Hello 42" here</span></code></pre></div>
+
+<p><strong>可能的结果：</strong></p>
+<p>上边程序打印顺序不确定，</p>
+<div class="code-wrapper"><pre><code class="hljs bash">The <span class="hljs-built_in">sum</span> is 10000
+43
+world!
+53
+Hello 42</code></pre></div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Thread/">Thread</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Mutex/">Mutex</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/16/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++正则表达式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/15/C++%E5%85%B3%E9%94%AE%E8%AF%8D/">
+                        <span class="hidden-mobile">C++关键词</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC81NTMzMi8zMTc5OQ==">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
