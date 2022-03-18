@@ -18,16 +18,16 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本阶段主要针对C++泛型编程和STL技术做详细讲解，探讨C++更深层的使用 1 模板#1.1 模板的概念#模板就是建立通用的模具，大大提高复用性 模板的特点：  模板不可以直接使用，它只是一个框架 模板的通用并不是万能的  1.2 函数模板# C++另一种编程思想称为 泛型编程 ，主要利用的技术就是模板  C++提供两种模板机制:函数模板和类模板   1.2.1 函数模板语法#函数模板作用： 建立">
+    <meta name="description" content="1 模板 1.1 模板的概念 1.2 函数模板 1.3 类模板   2 STL初识 2.1 STL的诞生 2.2 STL基本概念 2.3 STL六大组件 2.4 STL中容器、算法、迭代器 2.5 容器算法迭代器初识   3 STL- 常用容器 3.1 string容器 3.2 vector容器 3.3 deque容器 3.4 案例-评委打分 3.5 stack容器 3.6 queue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模板">
 <meta property="og:url" content="https://txt1994.github.io/2022/01/23/%E6%A8%A1%E6%9D%BF/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本阶段主要针对C++泛型编程和STL技术做详细讲解，探讨C++更深层的使用 1 模板#1.1 模板的概念#模板就是建立通用的模具，大大提高复用性 模板的特点：  模板不可以直接使用，它只是一个框架 模板的通用并不是万能的  1.2 函数模板# C++另一种编程思想称为 泛型编程 ，主要利用的技术就是模板  C++提供两种模板机制:函数模板和类模板   1.2.1 函数模板语法#函数模板作用： 建立">
+<meta property="og:description" content="1 模板 1.1 模板的概念 1.2 函数模板 1.3 类模板   2 STL初识 2.1 STL的诞生 2.2 STL基本概念 2.3 STL六大组件 2.4 STL中容器、算法、迭代器 2.5 容器算法迭代器初识   3 STL- 常用容器 3.1 string容器 3.2 vector容器 3.3 deque容器 3.4 案例-评委打分 3.5 stack容器 3.6 queue">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://txt1994.github.io/img/Template.png">
 <meta property="article:published_time" content="2022-01-23T11:49:07.000Z">
-<meta property="article:modified_time" content="2022-01-27T09:20:16.000Z">
+<meta property="article:modified_time" content="2022-03-18T17:26:46.358Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Template">
 <meta name="twitter:card" content="summary_large_image">
@@ -207,7 +207,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      93k 字
+      94k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      776 分钟
+      780 分钟
     </span>
   
 
@@ -249,12 +249,67 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年1月27日 下午
+                  本文最后更新于：2022年3月19日 凌晨
                 
               </p>
             
             <div class="markdown-body">
-              <p>本阶段主要针对C++<strong>泛型编程</strong>和<strong>STL</strong>技术做详细讲解，探讨C++更深层的使用</p>
+              <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#1-mo-ban">1 模板</a><ul>
+<li><a href="#1-1-mo-ban-de-gai-nian">1.1 模板的概念</a></li>
+<li><a href="#1-2-han-shu-mo-ban">1.2 函数模板</a></li>
+<li><a href="#1-3-lei-mo-ban">1.3 类模板</a></li>
+</ul>
+</li>
+<li><a href="#2-stl-chu-shi">2 STL初识</a><ul>
+<li><a href="#2-1-stl-de-dan-sheng">2.1 STL的诞生</a></li>
+<li><a href="#2-2-stl-ji-ben-gai-nian">2.2 STL基本概念</a></li>
+<li><a href="#2-3-stl-liu-da-zu-jian">2.3 STL六大组件</a></li>
+<li><a href="#2-4-stl-zhong-rong-qi-suan-fa-die-dai-qi">2.4 STL中容器、算法、迭代器</a></li>
+<li><a href="#2-5-rong-qi-suan-fa-die-dai-qi-chu-shi">2.5 容器算法迭代器初识</a></li>
+</ul>
+</li>
+<li><a href="#3-stl-chang-yong-rong-qi">3 STL- 常用容器</a><ul>
+<li><a href="#3-1-string-rong-qi">3.1 string容器</a></li>
+<li><a href="#3-2-vector-rong-qi">3.2 vector容器</a></li>
+<li><a href="#3-3-deque-rong-qi">3.3 deque容器</a></li>
+<li><a href="#3-4-an-li-ping-wei-da-fen">3.4 案例-评委打分</a></li>
+<li><a href="#3-5-stack-rong-qi">3.5 stack容器</a></li>
+<li><a href="#3-6-queue-rong-qi">3.6 queue 容器</a></li>
+<li><a href="#3-7-list-rong-qi">3.7 list容器</a></li>
+<li><a href="#3-8-set-multiset-rong-qi">3.8 set/ multiset 容器</a></li>
+<li><a href="#3-9-map-multimap-rong-qi">3.9 map/ multimap容器</a></li>
+<li><a href="#3-10-an-li-yuan-gong-fen-zu">3.10 案例-员工分组</a></li>
+<li><a href="#3-11-unordered-map-unordered-multimap-rong-qi">3.11 unordered_map/unordered_multimap容器</a></li>
+<li><a href="#3-12-unordered-set-unordered-multiset-rong-qi">3.12 unordered_set/unordered_multiset容器</a></li>
+</ul>
+</li>
+<li><a href="#4-stl-han-shu-dui-xiang">4 STL- 函数对象</a><ul>
+<li><a href="#4-1-han-shu-dui-xiang">4.1 函数对象</a></li>
+<li><a href="#4-2-wei-ci">4.2 谓词</a></li>
+<li><a href="#4-3-nei-jian-han-shu-dui-xiang">4.3 内建函数对象</a></li>
+</ul>
+</li>
+<li><a href="#5-stl-chang-yong-suan-fa">5 STL- 常用算法</a><ul>
+<li><a href="#5-1-chang-yong-bian-li-suan-fa">5.1 常用遍历算法</a></li>
+<li><a href="#5-2-chang-yong-cha-zhao-suan-fa">5.2 常用查找算法</a></li>
+<li><a href="#5-3-chang-yong-pai-xu-suan-fa">5.3 常用排序算法</a></li>
+<li><a href="#5-4-chang-yong-kao-bei-he-ti-huan-suan-fa">5.4 常用拷贝和替换算法</a></li>
+<li><a href="#5-5-chang-yong-suan-zhu-sheng-cheng-suan-fa">5.5 常用算术生成算法</a></li>
+<li><a href="#5-6-chang-yong-ji-he-suan-fa">5.6 常用集合算法</a></li>
+<li><a href="#5-7-chang-yong-bi-jiao-suan-fa">5.7 常用比较算法</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<p>本阶段主要针对C++<strong>泛型编程</strong>和<strong>STL</strong>技术做详细讲解，探讨C++更深层的使用</p>
 <h2><span id="1-mo-ban">1 模板</span><a href="#1-mo-ban" class="header-anchor">#</a></h2><h3><span id="1-1-mo-ban-de-gai-nian">1.1 模板的概念</span><a href="#1-1-mo-ban-de-gai-nian" class="header-anchor">#</a></h3><p>模板就是建立<strong>通用的模具</strong>，大大<strong>提高复用性</strong></p>
 <p>模板的特点：</p>
 <ul>
