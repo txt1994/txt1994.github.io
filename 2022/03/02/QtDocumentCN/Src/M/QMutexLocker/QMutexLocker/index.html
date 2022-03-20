@@ -26,7 +26,7 @@
 <meta property="og:description" content="QMutexLocker 公共成员函数 详细描述 成员函数文档 QMutexLocker::QMutexLocker(QRecursiveMutex *mutex) QMutexLocker::QMutexLocker(QMutex *mutex) QMutexLocker::~QMutexLocker() QMutex void QMutexLocker::relock() void">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
-<meta property="article:modified_time" content="2022-03-18T16:47:59.327Z">
+<meta property="article:modified_time" content="2022-03-20T07:52:01.945Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="M">
 <meta name="twitter:card" content="summary_large_image">
@@ -205,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.8k 字
+      2.5k 字
     </span>
   
 
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24 分钟
+      21 分钟
     </span>
   
 
@@ -247,7 +247,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月19日 凌晨
+                  本文最后更新于：2022年3月20日 下午
                 
               </p>
             
@@ -277,7 +277,7 @@
 </div>
 # QMutexLocker
 
-<p>&amp;emsp;&amp;emsp;<code>QMutexLocker</code> 是一个工具类，它能非常方便地将互斥量锁定以及解锁。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多内容…</a></p>
+<p><code>QMutexLocker</code> 是一个工具类，它能非常方便地将互斥量锁定以及解锁。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多内容…</a></p>
 <table>
 <thead>
 <tr>
@@ -327,9 +327,9 @@
 <td><strong><a href="#void-qmutexlockerunlock">unlock</a></strong>()</td>
 </tr>
 </tbody></table>
-<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>&amp;emsp;&amp;emsp;在复杂的函数、语句或异常处理代码中锁定和解锁 <a href="../QMutex/QMutex.md">QMutex</a> 很容易出错，而且很难调试。<code>QMutexLocker</code> 可用于此类情况，以确保互斥量的状态始终定义良好。</p>
-<p>&amp;emsp;&amp;emsp;<code>QMutexLocker</code> 应该在需要锁定 <a href="../QMutex/QMutex.md">QMutex</a> 的函数中创建。在创建 <code>QMutexLocker</code> 时互斥量被锁定。您可以使用 <code>unlock()</code> 和 <code>relock()</code> 解锁和重新锁定互斥体。如果锁定，则当 <code>QMutexLocker</code> 被销毁时，互斥量将被解锁。</p>
-<p>&amp;emsp;&amp;emsp;例如，此复杂函数在进入函数时锁定 <code>QMutex</code>，并在所有出口点解锁互斥量：</p>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>在复杂的函数、语句或异常处理代码中锁定和解锁 <a href="../QMutex/QMutex.md">QMutex</a> 很容易出错，而且很难调试。<code>QMutexLocker</code> 可用于此类情况，以确保互斥量的状态始终定义良好。</p>
+<p><code>QMutexLocker</code> 应该在需要锁定 <a href="../QMutex/QMutex.md">QMutex</a> 的函数中创建。在创建 <code>QMutexLocker</code> 时互斥量被锁定。您可以使用 <code>unlock()</code> 和 <code>relock()</code> 解锁和重新锁定互斥体。如果锁定，则当 <code>QMutexLocker</code> 被销毁时，互斥量将被解锁。</p>
+<p>例如，此复杂函数在进入函数时锁定 <code>QMutex</code>，并在所有出口点解锁互斥量：</p>
 <div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">complexFunction</span><span class="hljs-params">(<span class="hljs-type">int</span> flag)</span></span>
 <span class="hljs-function"></span>{
     mutex.<span class="hljs-built_in">lock</span>();
@@ -363,7 +363,7 @@
     <span class="hljs-keyword">return</span> retVal;
 }</code></pre></div>
 
-<p>&amp;emsp;&amp;emsp;该示例在开发过程中会变得更加复杂，也更加容易出错。<br>&amp;emsp;&amp;emsp;使用 <code>QMutexLocker</code> 可大大简化代码，且可读性更好：</p>
+<p>该示例在开发过程中会变得更加复杂，也更加容易出错。<br>使用 <code>QMutexLocker</code> 可大大简化代码，且可读性更好：</p>
 <div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">complexFunction</span><span class="hljs-params">(<span class="hljs-type">int</span> flag)</span></span>
 <span class="hljs-function"></span>{
     <span class="hljs-function">QMutexLocker <span class="hljs-title">locker</span><span class="hljs-params">(&amp;mutex)</span></span>;
@@ -392,9 +392,9 @@
 }</code></pre></div>
 
 <p>&amp;emsp;现在，当 <code>QMutexLocker</code> 对象被销毁时（当函数返回时，因为 <code>locker</code> 是一个栈变量），互斥量将始终被解锁。</p>
-<p>&amp;emsp;&amp;emsp;同样的原则也适用于抛出和捕获异常的代码。在将异常传递给调用函数之前，如果函数未在锁定互斥量的函数中捕获到异常，则无法解锁互斥体。</p>
+<p>同样的原则也适用于抛出和捕获异常的代码。在将异常传递给调用函数之前，如果函数未在锁定互斥量的函数中捕获到异常，则无法解锁互斥体。</p>
 <p>（<code>译者注：在进入被调函数后，被调函数锁定互斥量（使用QMutex::lock()），在执行过程中发生异常，异常被调用函数获取，被调函数就没有正确执行解锁。</code>）</p>
-<p>&amp;emsp;&amp;emsp;<code>QMutexLocker</code> 还提供一个 <code>mutex()</code> 成员函数，该函数返回<code>QMutexLocker</code> 正在其上操作的互斥体。这对于需要访问互斥体的代码非常有用，例如 <code>QWaitCondition::wait()</code>。例如：</p>
+<p><code>QMutexLocker</code> 还提供一个 <code>mutex()</code> 成员函数，该函数返回<code>QMutexLocker</code> 正在其上操作的互斥体。这对于需要访问互斥体的代码非常有用，例如 <code>QWaitCondition::wait()</code>。例如：</p>
 <div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SignalWaiter</span>
 {
 <span class="hljs-keyword">private</span>:
@@ -416,21 +416,21 @@
 };</code></pre></div>
 
 <p><strong>另请参阅：</strong> <a href="../../R/QReadLocker/QReadLocker.md">QReadLockr</a>，<a href="../../W/QWriteLocker/QWriteLocker.md">QWriteLocker</a>，<a href="../QMutex/QMutex.md">QMutex</a>。</p>
-<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qmutexlocker-qmutexlocker-qrecursivemutex-mutex">QMutexLocker::QMutexLocker(QRecursiveMutex *<em>mutex</em>)</span><a href="#qmutexlocker-qmutexlocker-qrecursivemutex-mutex" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;构造一个 <code>QMutexLocker</code> 并锁定互斥量。当 <code>QMutexLocker</code> 被销毁时，互斥量将被解锁（<a href="#void-qmutexlockerunlock">unlock</a>()）。如果 <code>mutex</code> 为空，那么 <code>QMutexLocker</code> 不执行任何操作。</p>
-<p>&amp;emsp;&amp;emsp;在 Qt5.14 中引入该函数。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qmutexlocker-qmutexlocker-qrecursivemutex-mutex">QMutexLocker::QMutexLocker(QRecursiveMutex *<em>mutex</em>)</span><a href="#qmutexlocker-qmutexlocker-qrecursivemutex-mutex" class="header-anchor">#</a></h3><p>构造一个 <code>QMutexLocker</code> 并锁定互斥量。当 <code>QMutexLocker</code> 被销毁时，互斥量将被解锁（<a href="#void-qmutexlockerunlock">unlock</a>()）。如果 <code>mutex</code> 为空，那么 <code>QMutexLocker</code> 不执行任何操作。</p>
+<p>在 Qt5.14 中引入该函数。</p>
 <p><strong>另请参阅：</strong> <a href="../QMutex/QMutex.md#void-qmutexlock">QMutex::lock()</a></p>
 <hr>
-<h3><span id="qmutexlocker-qmutexlocker-qmutex-mutex">QMutexLocker::QMutexLocker(QMutex *<em>mutex</em>)</span><a href="#qmutexlocker-qmutexlocker-qmutex-mutex" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp; 构造一个  并锁定互斥量。当 <code>QMutexLocker</code> 被销毁时，互斥量将被解锁。如果 <code>mutex</code> 为空，那么 <code>QMutexLocker</code> 不执行任何操作。</p>
+<h3><span id="qmutexlocker-qmutexlocker-qmutex-mutex">QMutexLocker::QMutexLocker(QMutex *<em>mutex</em>)</span><a href="#qmutexlocker-qmutexlocker-qmutex-mutex" class="header-anchor">#</a></h3><p> 构造一个  并锁定互斥量。当 <code>QMutexLocker</code> 被销毁时，互斥量将被解锁。如果 <code>mutex</code> 为空，那么 <code>QMutexLocker</code> 不执行任何操作。</p>
 <p><strong>另请参阅：</strong> <a href="../QMutex/QMutex.md#void-qmutexlock">QMutex::lock()</a></p>
 <hr>
-<h3><span id="qmutexlocker-qmutexlocker">QMutexLocker::~QMutexLocker()</span><a href="#qmutexlocker-qmutexlocker" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;销毁 <code>QMutexLocker</code> 并解除锁定构造函数中锁定的互斥量。</p>
+<h3><span id="qmutexlocker-qmutexlocker">QMutexLocker::~QMutexLocker()</span><a href="#qmutexlocker-qmutexlocker" class="header-anchor">#</a></h3><p>销毁 <code>QMutexLocker</code> 并解除锁定构造函数中锁定的互斥量。</p>
 <p><strong>另请参阅：</strong> <a href="../QMutex/QMutex.md#void-qmutexunlock">QMutex::unlock()</a></p>
-<h3><span id="qmutex-qmutexlocker-mutex-const"> *QMutexLocker::mutex() const</span><a href="#qmutex-qmutexlocker-mutex-const" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;返回 <code>QMutexLocker</code> 正在操作的互斥量。</p>
+<h3><span id="qmutex-qmutexlocker-mutex-const"> *QMutexLocker::mutex() const</span><a href="#qmutex-qmutexlocker-mutex-const" class="header-anchor">#</a></h3><p>返回 <code>QMutexLocker</code> 正在操作的互斥量。</p>
 <hr>
-<h3><span id="void-qmutexlocker-relock">void QMutexLocker::relock()</span><a href="#void-qmutexlocker-relock" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;重新锁定，未上锁的互斥量。</p>
+<h3><span id="void-qmutexlocker-relock">void QMutexLocker::relock()</span><a href="#void-qmutexlocker-relock" class="header-anchor">#</a></h3><p>重新锁定，未上锁的互斥量。</p>
 <p><strong>另请参阅：</strong> <a href="#void-qmutexlockerunlock">unlock()</a></p>
 <hr>
-<h3><span id="void-qmutexlocker-unlock">void QMutexLocker::unlock()</span><a href="#void-qmutexlocker-unlock" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;解锁这个互斥量。您可以使用 <code>relock()</code> 再次锁定它。销毁时不需要锁定。</p>
+<h3><span id="void-qmutexlocker-unlock">void QMutexLocker::unlock()</span><a href="#void-qmutexlocker-unlock" class="header-anchor">#</a></h3><p>解锁这个互斥量。您可以使用 <code>relock()</code> 再次锁定它。销毁时不需要锁定。</p>
 <p><strong>另请参阅：</strong> <a href="#void-qmutexlockerrelock">relock()</a></p>
 
             </div>
@@ -459,9 +459,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/02/QtDocumentCN/Src/M/QMutex/QMutex/">
+                      <a href="/2022/03/02/QtDocumentCN/Src/M/QMetaType/QMetaType/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">QMutex类</span>
+                        <span class="hidden-mobile">QMetaType类</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -469,8 +469,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/02/QtDocumentCN/Src/M/The_Meta-Object_System/The_Meta-Object_System/">
-                        <span class="hidden-mobile">元对象系统</span>
+                      <a href="/2022/03/02/QtDocumentCN/Src/M/QMetaProperty/QMetaProperty/">
+                        <span class="hidden-mobile">QMetaProperty类</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

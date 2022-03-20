@@ -26,7 +26,7 @@
 <meta property="og:description" content="QWaitCondition 公共成员函数 详细描述 成员函数文档 QWaitCondition::QWaitCondition() QWaitCondition::~QWaitCondition() void QWaitCondition::notify_all() void QWaitCondition::notify_one() bool QWaitCondition::wait(">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-02T06:47:47.000Z">
-<meta property="article:modified_time" content="2022-03-18T16:57:16.919Z">
+<meta property="article:modified_time" content="2022-03-20T07:22:06.150Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="W">
 <meta name="twitter:card" content="summary_large_image">
@@ -205,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.3k 字
+      3.7k 字
     </span>
   
 
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      36 分钟
+      32 分钟
     </span>
   
 
@@ -247,7 +247,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月19日 凌晨
+                  本文最后更新于：2022年3月20日 下午
                 
               </p>
             
@@ -281,7 +281,7 @@
 </div>
 # QWaitCondition
 
-<p>&amp;emsp;&amp;emsp;<code>QWaitCondition</code> 提供一个用于同步线程的条件变量。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
+<p><code>QWaitCondition</code> 提供一个用于同步线程的条件变量。<a href="#%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0">更多…</a></p>
 <table>
 <thead>
 <tr>
@@ -347,19 +347,19 @@
 <td><strong><a href="#void-qwaitconditionwakeone">wakeOne</a></strong>()</td>
 </tr>
 </tbody></table>
-<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p>&amp;emsp;&amp;emsp;<code>QWaitCondition</code> 允许线程告诉其他线程某种条件已经满足。一个或多个线程可以被阻塞并等待 <code>QWaitCondition</code> 用 <a href="#void-qwaitconditionwakeone">wakeOne</a>() 或 <a href="#void-qwaitconditionwakeall">wakeAll</a>() 设置条件。使用 <a href="#void-qwaitconditionwakeone">wakeOne</a>() 唤醒一个随机选择的线程，或使用 <a href="#void-qwaitconditionwakeall">wakeAll</a>() 唤醒所有线程。<br>&amp;emsp;&amp;emsp;例，假设我们有三个任务，当用户按下一个键时，应该执行某些任务。每个任务可以分成一个线程，每个线程都有一个 <a href="../../T/QThread/QThread.md">run</a>() 主体，如下所示：</p>
+<h2><span id="xiang-xi-miao-shu">详细描述</span><a href="#xiang-xi-miao-shu" class="header-anchor">#</a></h2><p><code>QWaitCondition</code> 允许线程告诉其他线程某种条件已经满足。一个或多个线程可以被阻塞并等待 <code>QWaitCondition</code> 用 <a href="#void-qwaitconditionwakeone">wakeOne</a>() 或 <a href="#void-qwaitconditionwakeall">wakeAll</a>() 设置条件。使用 <a href="#void-qwaitconditionwakeone">wakeOne</a>() 唤醒一个随机选择的线程，或使用 <a href="#void-qwaitconditionwakeall">wakeAll</a>() 唤醒所有线程。<br>例，假设我们有三个任务，当用户按下一个键时，应该执行某些任务。每个任务可以分成一个线程，每个线程都有一个 <a href="../../T/QThread/QThread.md">run</a>() 主体，如下所示：</p>
 <div class="code-wrapper"><pre><code class="hljs cpp">forever {
     mutex.<span class="hljs-built_in">lock</span>();
     keyPressed.<span class="hljs-built_in">wait</span>(&amp;mutex);
     <span class="hljs-built_in">do_something</span>();
     mutex.<span class="hljs-built_in">unlock</span>();
 }</code></pre></div>
-<p>&amp;emsp;&amp;emsp;这里，<code>keyPressed</code> 变量是 <code>QWaitCondition</code> 类型的全局变量。<br>&amp;emsp;&amp;emsp;第四个线程将读取按键，并在每次收到按键时唤醒其他三个线程，如下所示：</p>
+<p>这里，<code>keyPressed</code> 变量是 <code>QWaitCondition</code> 类型的全局变量。<br>第四个线程将读取按键，并在每次收到按键时唤醒其他三个线程，如下所示：</p>
 <div class="code-wrapper"><pre><code class="hljs cpp">forever {
     <span class="hljs-built_in">getchar</span>();
     keyPressed.<span class="hljs-built_in">wakeAll</span>();
 }</code></pre></div>
-<p>&amp;emsp;&amp;emsp;唤醒三个线程的顺序是未知的。另外，如果某些线程在按下键时仍在 <code>do_something()</code> 中，它们将不会被唤醒（因为它们没有等待条件变量），因此该按键不会执行任务。这个问题可以通过使用计数器和 <a href="../../M/QMutex/QMutex.md">QMutex</a>() 来解决。例如，下面是工作线程的新代码：</p>
+<p>唤醒三个线程的顺序是未知的。另外，如果某些线程在按下键时仍在 <code>do_something()</code> 中，它们将不会被唤醒（因为它们没有等待条件变量），因此该按键不会执行任务。这个问题可以通过使用计数器和 <a href="../../M/QMutex/QMutex.md">QMutex</a>() 来解决。例如，下面是工作线程的新代码：</p>
 <div class="code-wrapper"><pre><code class="hljs cpp">forever {
     mutex.<span class="hljs-built_in">lock</span>();
     keyPressed.<span class="hljs-built_in">wait</span>(&amp;mutex);
@@ -372,7 +372,7 @@
     --count;
     mutex.<span class="hljs-built_in">unlock</span>();
 }</code></pre></div>
-<p>&amp;emsp;&amp;emsp;下面是第四个线程的代码：</p>
+<p>下面是第四个线程的代码：</p>
 <div class="code-wrapper"><pre><code class="hljs cpp">forever {
     <span class="hljs-built_in">getchar</span>();
 
@@ -386,40 +386,40 @@
     keyPressed.<span class="hljs-built_in">wakeAll</span>();
     mutex.<span class="hljs-built_in">unlock</span>();
 }</code></pre></div>
-<p>&amp;emsp;&amp;emsp;互斥量是必需的，因为当两个线程同时更改同一变量的值时，结果是不可预测的。<br>&amp;emsp;&amp;emsp;等待条件是一个强大的线程同步原语。<a href>Wait Conditions示例</a>演示了如何使用 <code>QWaitCondition</code> 作为 <a href="../../S/QSemaphore/QSemaphore.md">QSemaphore</a>() 的替代品，来控制生产者消费者的共享循环缓冲区的访问。</p>
+<p>互斥量是必需的，因为当两个线程同时更改同一变量的值时，结果是不可预测的。<br>等待条件是一个强大的线程同步原语。<a href>Wait Conditions示例</a>演示了如何使用 <code>QWaitCondition</code> 作为 <a href="../../S/QSemaphore/QSemaphore.md">QSemaphore</a>() 的替代品，来控制生产者消费者的共享循环缓冲区的访问。</p>
 <p><strong>另请参阅：</strong> <a href="../../M/QMutex/QMutex.md">QMutex</a>、<a href="../../S/QSemaphore/QSemaphore.md">QSemaphore</a>、<a href="../../T/QThread/QThread.md">QThread</a>() 和 <a href>Wait Conditions示例</a>。</p>
-<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qwaitcondition-qwaitcondition">QWaitCondition::QWaitCondition()</span><a href="#qwaitcondition-qwaitcondition" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;构造。</p>
+<h2><span id="cheng-yuan-han-shu-wen-dang">成员函数文档</span><a href="#cheng-yuan-han-shu-wen-dang" class="header-anchor">#</a></h2><h3><span id="qwaitcondition-qwaitcondition">QWaitCondition::QWaitCondition()</span><a href="#qwaitcondition-qwaitcondition" class="header-anchor">#</a></h3><p>构造。</p>
 <hr>
-<h3><span id="qwaitcondition-qwaitcondition">QWaitCondition::~QWaitCondition()</span><a href="#qwaitcondition-qwaitcondition" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;析构。</p>
+<h3><span id="qwaitcondition-qwaitcondition">QWaitCondition::~QWaitCondition()</span><a href="#qwaitcondition-qwaitcondition" class="header-anchor">#</a></h3><p>析构。</p>
 <hr>
-<h3><span id="void-qwaitcondition-notify-all">void QWaitCondition::notify_all()</span><a href="#void-qwaitcondition-notify-all" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;用于STL兼容。它相当于 <a href="#void-qwaitconditionwakeall">wakeAll</a>()。<br>&amp;emsp;&amp;emsp;在 Qt 5.8 引入该函数。</p>
+<h3><span id="void-qwaitcondition-notify-all">void QWaitCondition::notify_all()</span><a href="#void-qwaitcondition-notify-all" class="header-anchor">#</a></h3><p>用于STL兼容。它相当于 <a href="#void-qwaitconditionwakeall">wakeAll</a>()。<br>在 Qt 5.8 引入该函数。</p>
 <hr>
-<h3><span id="void-qwaitcondition-notify-one">void QWaitCondition::notify_one()</span><a href="#void-qwaitcondition-notify-one" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;用于STL兼容。它相当于 <a href="#void-qwaitconditionwakeone">wakeOne</a>()。<br>&amp;emsp;&amp;emsp;在 Qt 5.8 引入该函数。</p>
+<h3><span id="void-qwaitcondition-notify-one">void QWaitCondition::notify_one()</span><a href="#void-qwaitcondition-notify-one" class="header-anchor">#</a></h3><p>用于STL兼容。它相当于 <a href="#void-qwaitconditionwakeone">wakeOne</a>()。<br>在 Qt 5.8 引入该函数。</p>
 <hr>
-<h3><span id="bool-qwaitcondition-wait-qmutex-lockedmutex-qdeadlinetimer-deadline-qdeadlinetimer-qdeadlinetimer-forever">bool QWaitCondition::wait(QMutex *<em>lockedMutex</em>, QDeadlineTimer <em>deadline</em> = QDeadlineTimer(QDeadlineTimer::Forever))</span><a href="#bool-qwaitcondition-wait-qmutex-lockedmutex-qdeadlinetimer-deadline-qdeadlinetimer-qdeadlinetimer-forever" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;释放 <code>lockedMutex</code> 并等待条件。<code>lockedMutex</code> 最初必须由调用线程锁定。如果 <code>lockedMutex</code> 未处于锁定状态，则行为未定义。如果 <code>lockedMutex</code> 是递归互斥体，则此函数将立即返回。<code>lockedMutex</code> 将被解锁，调用线程将阻塞，直到满足以下任一条件：</p>
+<h3><span id="bool-qwaitcondition-wait-qmutex-lockedmutex-qdeadlinetimer-deadline-qdeadlinetimer-qdeadlinetimer-forever">bool QWaitCondition::wait(QMutex *<em>lockedMutex</em>, QDeadlineTimer <em>deadline</em> = QDeadlineTimer(QDeadlineTimer::Forever))</span><a href="#bool-qwaitcondition-wait-qmutex-lockedmutex-qdeadlinetimer-deadline-qdeadlinetimer-qdeadlinetimer-forever" class="header-anchor">#</a></h3><p>释放 <code>lockedMutex</code> 并等待条件。<code>lockedMutex</code> 最初必须由调用线程锁定。如果 <code>lockedMutex</code> 未处于锁定状态，则行为未定义。如果 <code>lockedMutex</code> 是递归互斥体，则此函数将立即返回。<code>lockedMutex</code> 将被解锁，调用线程将阻塞，直到满足以下任一条件：</p>
 <ul>
 <li>另一个线程调用 <a href="#void-qwaitconditionwakeone">wakeOne</a>() 或 <a href="#void-qwaitconditionwakeall">wakeAll</a>() 发出信号。在这种情况下，此函数将返回true。</li>
 <li>截止日期已到。如果 <code>deadline</code> 是默认值 <code>QDeadlineTimer::Forever</code>，则永远不会超时（必须用信号通知事件）。如果等待超时，此函数将返回false。</li>
 </ul>
-<p>&amp;emsp;&amp;emsp;<code>lockedMutex</code> 将返回到相同的锁定状态。提供此函数是为了允许原子从锁定状态转换到等待状态。<br>&amp;emsp;&amp;emsp;在 Qt 5.12 引入该函数。</p>
+<p><code>lockedMutex</code> 将返回到相同的锁定状态。提供此函数是为了允许原子从锁定状态转换到等待状态。<br>在 Qt 5.12 引入该函数。</p>
 <p><strong>另请参阅：</strong> <a href="#void-qwaitconditionwakeone">wakeOne</a>()、<a href="#void-qwaitconditionwakeall">wakeAll</a>()。</p>
 <hr>
-<h3><span id="bool-qwaitcondition-wait-qmutex-lockedmutex-unsigned-long-time">bool QWaitCondition::wait(QMutex *<em>lockedMutex</em>, unsigned long <em>time</em>)</span><a href="#bool-qwaitcondition-wait-qmutex-lockedmutex-unsigned-long-time" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;重载。</p>
+<h3><span id="bool-qwaitcondition-wait-qmutex-lockedmutex-unsigned-long-time">bool QWaitCondition::wait(QMutex *<em>lockedMutex</em>, unsigned long <em>time</em>)</span><a href="#bool-qwaitcondition-wait-qmutex-lockedmutex-unsigned-long-time" class="header-anchor">#</a></h3><p>重载。</p>
 <hr>
-<h3><span id="bool-qwaitcondition-wait-qreadwritelock-lockedreadwritelock-qdeadlinetimer-deadline-qdeadlinetimer-qdeadlinetimer-forever">bool QWaitCondition::wait(QReadWriteLock **lockedReadWriteLock, QDeadlineTimer <em>deadline</em> = QDeadlineTimer(QDeadlineTimer::Forever))</span><a href="#bool-qwaitcondition-wait-qreadwritelock-lockedreadwritelock-qdeadlinetimer-deadline-qdeadlinetimer-qdeadlinetimer-forever" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;释放 <code>lockedReadWriteLock</code> 并等待条件。<code>lockedReadWriteLock</code> 最初必须由调用线程锁定。如果 <code>lockedReadWriteLock</code> 未处于锁定状态，则此函数将立即返回。 <code>lockedReadWriteLock</code> 不能递归锁定，否则此函数将无法正确释放锁。<code>lockedReadWriteLock</code> 将被解锁，调用线程将阻塞，直到满足以下任一条件：</p>
+<h3><span id="bool-qwaitcondition-wait-qreadwritelock-lockedreadwritelock-qdeadlinetimer-deadline-qdeadlinetimer-qdeadlinetimer-forever">bool QWaitCondition::wait(QReadWriteLock **lockedReadWriteLock, QDeadlineTimer <em>deadline</em> = QDeadlineTimer(QDeadlineTimer::Forever))</span><a href="#bool-qwaitcondition-wait-qreadwritelock-lockedreadwritelock-qdeadlinetimer-deadline-qdeadlinetimer-qdeadlinetimer-forever" class="header-anchor">#</a></h3><p>释放 <code>lockedReadWriteLock</code> 并等待条件。<code>lockedReadWriteLock</code> 最初必须由调用线程锁定。如果 <code>lockedReadWriteLock</code> 未处于锁定状态，则此函数将立即返回。 <code>lockedReadWriteLock</code> 不能递归锁定，否则此函数将无法正确释放锁。<code>lockedReadWriteLock</code> 将被解锁，调用线程将阻塞，直到满足以下任一条件：</p>
 <ul>
 <li>另一个线程调用 <a href="#void-qwaitconditionwakeone">wakeOne</a>() 或 <a href="#void-qwaitconditionwakeall">wakeAll</a>() 发出信号。在这种情况下，此函数将返回true。</li>
 <li>截止日期已到。如果 <code>deadline</code> 是默认值 <code>QDeadlineTimer::Forever</code>，则永远不会超时（必须用信号通知事件）。如果等待超时，此函数将返回false。</li>
 </ul>
-<p>&amp;emsp;&amp;emsp;<code>lockedReadWriteLock</code> 将返回到相同的锁定状态。提供此函数是为了允许原子从锁定状态转换到等待状态。<br>&amp;emsp;&amp;emsp;在 Qt 5.12 引入该函数。</p>
+<p><code>lockedReadWriteLock</code> 将返回到相同的锁定状态。提供此函数是为了允许原子从锁定状态转换到等待状态。<br>在 Qt 5.12 引入该函数。</p>
 <p><strong>另请参阅：</strong> <a href="#void-qwaitconditionwakeone">wakeOne</a>()、<a href="#void-qwaitconditionwakeall">wakeAll</a>()。</p>
 <hr>
-<h3><span id="bool-qwaitcondition-wait-qreadwritelock-lockedreadwritelock-unsigned-long-time">bool QWaitCondition::wait(QReadWriteLock *<em>lockedReadWriteLock</em>, unsigned long <em>time</em>)</span><a href="#bool-qwaitcondition-wait-qreadwritelock-lockedreadwritelock-unsigned-long-time" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;重载。</p>
+<h3><span id="bool-qwaitcondition-wait-qreadwritelock-lockedreadwritelock-unsigned-long-time">bool QWaitCondition::wait(QReadWriteLock *<em>lockedReadWriteLock</em>, unsigned long <em>time</em>)</span><a href="#bool-qwaitcondition-wait-qreadwritelock-lockedreadwritelock-unsigned-long-time" class="header-anchor">#</a></h3><p>重载。</p>
 <hr>
-<h3><span id="void-qwaitcondition-wakeall">void QWaitCondition::wakeAll()</span><a href="#void-qwaitcondition-wakeall" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;唤醒等待条件的所有线程。线程的唤醒顺序取决于操作系统的调度策略，无法控制或预测。</p>
+<h3><span id="void-qwaitcondition-wakeall">void QWaitCondition::wakeAll()</span><a href="#void-qwaitcondition-wakeall" class="header-anchor">#</a></h3><p>唤醒等待条件的所有线程。线程的唤醒顺序取决于操作系统的调度策略，无法控制或预测。</p>
 <p><strong>另请参阅：</strong> <a href="#void-qwaitconditionwakeone">wakeOne</a>()。</p>
 <hr>
-<h3><span id="void-qwaitcondition-wakeone">void QWaitCondition::wakeOne()</span><a href="#void-qwaitcondition-wakeone" class="header-anchor">#</a></h3><p>&amp;emsp;&amp;emsp;唤醒一个等待条件的线程。线程的唤醒顺序取决于操作系统的调度策略，无法控制或预测。<br>&amp;emsp;&amp;emsp;如果要唤醒特定线程，解决方案通常是使用不同的等待条件，并让线程在不同的条件下等待。</p>
+<h3><span id="void-qwaitcondition-wakeone">void QWaitCondition::wakeOne()</span><a href="#void-qwaitcondition-wakeone" class="header-anchor">#</a></h3><p>唤醒一个等待条件的线程。线程的唤醒顺序取决于操作系统的调度策略，无法控制或预测。<br>如果要唤醒特定线程，解决方案通常是使用不同的等待条件，并让线程在不同的条件下等待。</p>
 <p><strong>另请参阅：</strong> <a href="#void-qwaitconditionwakeall">wakeAll</a>()。</p>
 
             </div>
@@ -448,9 +448,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/02/QtDocumentCN/Src/V/QVariantPointer/QVariantPointer/">
+                      <a href="/2022/03/02/QtDocumentCN/Src/W/QWebEngineHistoryItem/QWebEngineHistoryItem/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">QVariantPointer类</span>
+                        <span class="hidden-mobile">QWebEngineHistoryItem类</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -458,8 +458,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/02/QtDocumentCN/Src/W/QWebEngineHistoryItem/QWebEngineHistoryItem/">
-                        <span class="hidden-mobile">QWebEngineHistoryItem类</span>
+                      <a href="/2022/03/02/QtDocumentCN/Src/W/QWebEngineHistory/QWebEngineHistory/">
+                        <span class="hidden-mobile">QWebEngineHistory类</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
